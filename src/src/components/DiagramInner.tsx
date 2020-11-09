@@ -11,6 +11,7 @@ import {
 import { DigramApi } from "./Diagram";
 import { DraggableCore, DraggableData, DraggableEvent } from "react-draggable";
 import { computeTransformationOnScale, generateTransform } from "../utils";
+import "./Diagram.css";
 
 export const InnerDiagram = forwardRef((props, ref) => {
   const [diagramTransformation, setDiagramTransformation] = useRecoilState(
@@ -54,13 +55,7 @@ export const InnerDiagram = forwardRef((props, ref) => {
       <div
         ref={movableElementRef}
         onWheel={onWheel}
-        style={{
-          width: "100%",
-          height: "100%",
-          minHeight: "100%",
-          position: "relative",
-          overflow: "hidden",
-        }}
+        className="react-fast-diagram-DiagramInner"
       >
         <LinksLayer transform={transform} />
         <NodesLayer transform={transform} />
