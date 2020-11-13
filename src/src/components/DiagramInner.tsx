@@ -1,9 +1,15 @@
 import React, { forwardRef, useImperativeHandle, useRef } from "react";
-import { useRecoilCallback, useRecoilState } from "recoil";
+import {
+  useRecoilCallback,
+  useRecoilSnapshot,
+  useRecoilState,
+  useResetRecoilState,
+} from "recoil";
 import { LinksLayer } from "./LinksLayer";
 import { NodesLayer } from "./NodesLayer";
 import {
-  diagramTransformationState,
+  diagramScaleState,
+  diagramTranslateState,
   nodesIdsState,
   NodeState,
   nodeWithIdState,
@@ -14,9 +20,9 @@ import { computeTransformationOnScale, generateTransform } from "../utils";
 import "./Diagram.css";
 
 export const InnerDiagram = forwardRef((props, ref) => {
-  const [diagramTransformation, setDiagramTransformation] = useRecoilState(
-    diagramTransformationState
-  );
+  const [translate, setTranslate] = useRecoilState(diagramTranslateState);
+
+  const [scale, setScale] = useRecoilState(diagramScaleState);
 
   const addNode = useRecoilCallback(({ set }) => (newNode: NodeState) => {
     console.log(newNode);
@@ -24,31 +30,52 @@ export const InnerDiagram = forwardRef((props, ref) => {
     set(nodesIdsState, (v) => v.concat([newNode.id]));
   });
 
+  const reinitState = useRecoilCallback(
+    ({ set, reset, snapshot }) => (newNodes: NodeState[]) => {
+      const ids = snapshot.getLoadable(nodesIdsState).contents;
+      if (Array.isArray(ids)) {
+        ids.forEach((id) => reset(nodeWithIdState(id)));
+      }
+
+      set(
+        nodesIdsState,
+        newNodes.map((n) => n.id)
+      );
+
+      newNodes.forEach((n) => set(nodeWithIdState(n.id), n));
+    }
+  );
+
   useImperativeHandle(
     ref,
     (): DigramApi => ({
       addNode,
+      reinitState,
     })
   );
 
   const onDrag = (e: DraggableEvent, d: DraggableData) => {
-    setDiagramTransformation((current) => ({
-      ...current,
-      translation: {
-        x: current.translation.x + d.deltaX,
-        y: current.translation.y + d.deltaY,
-      },
+    setTranslate((current) => ({
+      x: current.x + d.deltaX,
+      y: current.y + d.deltaY,
     }));
   };
 
   const onWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    setDiagramTransformation((current) =>
-      computeTransformationOnScale(movableElementRef.current, e, current)
+    const transformation = computeTransformationOnScale(
+      movableElementRef.current,
+      e,
+      translate,
+      scale
     );
+    if (transformation) {
+      setTranslate(transformation.translate);
+      setScale(transformation.scale);
+    }
   };
 
   const movableElementRef = useRef<HTMLDivElement>(null);
-  const transform = generateTransform(diagramTransformation);
+  const transform = generateTransform(translate, scale);
 
   return (
     <DraggableCore onDrag={onDrag}>
@@ -57,8 +84,15 @@ export const InnerDiagram = forwardRef((props, ref) => {
         onWheel={onWheel}
         className="react-fast-diagram-DiagramInner"
       >
-        <LinksLayer transform={transform} />
-        <NodesLayer transform={transform} />
+        <div
+          className="react-fast-diagram-Movable"
+          style={{
+            transform: transform,
+          }}
+        >
+          <LinksLayer />
+          <NodesLayer />
+        </div>
       </div>
     </DraggableCore>
   );

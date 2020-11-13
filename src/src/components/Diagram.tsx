@@ -7,7 +7,7 @@ export interface DiagramProps {
   initialState?: NodeState[];
 }
 
-const initializeState = (snap: MutableSnapshot, props: DiagramProps) => {
+export const initializeState = (snap: MutableSnapshot, props: DiagramProps) => {
   if (props.initialState) {
     props.initialState.forEach((node) => {
       snap.set(nodeWithIdState(node.id), node);
@@ -21,6 +21,7 @@ const initializeState = (snap: MutableSnapshot, props: DiagramProps) => {
 
 export interface DigramApi {
   addNode(node: NodeState): void;
+  reinitState(nodes: NodeState[]): void;
 }
 
 export const Diagram = forwardRef((props: DiagramProps, ref) => {

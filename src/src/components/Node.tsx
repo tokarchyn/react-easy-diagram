@@ -1,11 +1,15 @@
 import React from "react";
 import { DraggableCore } from "react-draggable";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilCallback, useRecoilState } from "recoil";
 import { diagramScaleState, nodeWithIdState } from "../DiagramState";
 
 export const Node = (props: { id: string }) => {
   const [node, setNode] = useRecoilState(nodeWithIdState(props.id));
-  const scale = useRecoilValue(diagramScaleState);
+  
+  const getScale = useRecoilCallback(({ snapshot }) => () => {
+    const scaleState = snapshot.getLoadable(diagramScaleState).contents;
+    return typeof scaleState === 'number' ? scaleState : 1;
+  });
 
   return (
     <DraggableCore
@@ -13,6 +17,7 @@ export const Node = (props: { id: string }) => {
       onStop={(e, d) => e.stopPropagation()}
       onDrag={(e, d) => {
         e.stopPropagation();
+        const scale = getScale();
         setNode((curValue) => ({
           ...curValue,
           position: {
@@ -37,3 +42,5 @@ export const Node = (props: { id: string }) => {
     </DraggableCore>
   );
 };
+
+export const MemoizedNode = React.memo(Node);

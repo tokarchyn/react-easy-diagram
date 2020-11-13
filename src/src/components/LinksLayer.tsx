@@ -1,13 +1,9 @@
 import React from "react";
 import {} from "recoil";
 
-export const LinksLayer = (props: { transform: string }) => {
+export const LinksLayer = React.memo(() => {
   return (
     <div
-      className="react-fast-diagram-Layer"
-      style={{
-        transform: props.transform,
-      }}
     ></div>
   );
-};
+});

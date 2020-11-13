@@ -1,21 +1,16 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { nodesIdsState } from "../DiagramState";
-import { Node } from "./Node";
+import { MemoizedNode } from "./Node";
 
-export const NodesLayer = (props: { transform: string }) => {
+export const NodesLayer = React.memo(() => {
   const [nodes] = useRecoilState(nodesIdsState);
 
   return (
-    <div
-      className="react-fast-diagram-Layer"
-      style={{
-        transform: props.transform,
-      }}
-    >
+    <>
       {nodes.map((id) => (
-        <Node key={id} id={id} />
+        <MemoizedNode key={id} id={id} />
       ))}
-    </div>
+    </>
   );
-};
+});

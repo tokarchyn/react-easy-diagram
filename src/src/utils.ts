@@ -1,8 +1,8 @@
-import { Transformation } from "./DiagramState";
+import { Point } from "./DiagramState";
 
-export const generateTransform = (diagramTransformation: Transformation): string => {
-  const scalePart = `scale(${diagramTransformation.scale})`;
-  const translatePart = `translate(${diagramTransformation.translation.x}px, ${diagramTransformation.translation.y}px)`;
+export const generateTransform = (translate: Point, scale: number): string => {
+  const scalePart = `scale(${scale})`;
+  const translatePart = `translate(${translate.x}px, ${translate.y}px)`;
   const transform = translatePart + " " + scalePart;
   return transform;
 };
@@ -11,11 +11,12 @@ export const generateTransform = (diagramTransformation: Transformation): string
 export const computeTransformationOnScale = (
   target: Element | null,
   e: React.WheelEvent<HTMLDivElement>,
-  transformation: Transformation
-): Transformation => {
+  translate: Point, 
+  scale: number
+): {scale: number, translate: Point} | null => {
   // The upper left corner of the target stays in the same place while the picture is enlarged
   const rect = target?.getBoundingClientRect();
-  if (!rect) return transformation;
+  if (!rect) return null;
 
   // Get mouse position related to target
   let mouseXPos = e.pageX - rect.left;
@@ -32,16 +33,15 @@ export const computeTransformationOnScale = (
   // Note that the target might have been moved in the canvas before the zooming operation, so the 
   // cursor's horizontal position in the target is mouseXPos - transformation.translation.x before zooming, 
   // and likewise for the vertical position.
-  let dx = (mouseXPos - transformation.translation.x) * (factor - 1);
-  let dy = (mouseYPos - transformation.translation.y) * (factor - 1);
+  let dx = (mouseXPos - translate.x) * (factor - 1);
+  let dy = (mouseYPos - translate.y) * (factor - 1);
 
   return {
-    ...transformation,
-    scale: transformation.scale * factor,
-    translation: {
+    scale: scale * factor,
+    translate: {
       // Compensate for the displacement by moving the point back under the cursor
-      x: transformation.translation.x - dx,
-      y: transformation.translation.y - dy,
+      x: translate.x - dx,
+      y: translate.y - dy,
     },
   };
 };

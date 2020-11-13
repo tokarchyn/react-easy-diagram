@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import { Diagram, useDiagramRef } from "./components/Diagram";
+import { NodeState } from "./DiagramState";
 
 const btnStyle: React.CSSProperties = {
   padding: "14px 16px",
@@ -11,8 +12,25 @@ const liStyle: React.CSSProperties = {
   gap: '10px'
 };
 
-function App() {
+const generateLargeDiagram = (colNum: number, rowNum: number) : NodeState[] => {
+  const nodes = [];
+  for(let i = 0; i < colNum; i++) {
+    for(let j = 0; j < rowNum; j++) {
+      nodes.push({ id: `node_${i}_${j}`, position: { x: i * 120, y: j * 120 } })
+    }
+  }
+
+  return nodes;
+}
+
+export const App = () => {
   const diagramRef = useDiagramRef();
+  const [row, setRow] = useState(10);
+  const [col, setCol] = useState(10);
+
+  useEffect(() => {
+    diagramRef.current?.reinitState(generateLargeDiagram(row,col))
+  }, [diagramRef, row,col])
 
   return (
     <div
@@ -52,6 +70,12 @@ function App() {
         <li style={liStyle}>
           <div style={btnStyle}>Second</div>
         </li>
+        <li style={liStyle}>
+          <input type="number" onChange={(e) => setRow(parseInt(e.target.value))} value={row} />
+        </li>
+        <li style={liStyle}>
+          <input type="number" onChange={(e) => setCol(parseInt(e.target.value))} value={col} />
+        </li>
       </ul>
       <div
         style={{
@@ -61,14 +85,9 @@ function App() {
       >
         <Diagram
           ref={diagramRef}
-          initialState={[
-            { id: "node_1", position: { x: 0, y: 0 } },
-            { id: "node_2", position: { x: 100, y: 100 } },
-          ]}
+          initialState={generateLargeDiagram(row,col)}
         />
       </div>
     </div>
   );
 }
-
-export default App;

@@ -20,22 +20,11 @@ export const nodeWithIdState = atomFamily<NodeState, string>({
   default: (id) => ({ id: id, position: { x: 0, y: 0 } }),
 });
 
-export interface Transformation {
-  scale: number;
-  translation: {
-    x: number;
-    y: number;
-  };
-}
-
-export const diagramTransformationState = atom<Transformation>({
-  key: "diagram",
+export const diagramTranslateState = atom<Point>({
+  key: "diagramTranslate",
   default: {
-    scale: 1,
-    translation: {
-      x: 0,
-      y: 0,
-    },
+    x: 0,
+    y: 0,
   },
   // effects_UNSTABLE: [
   //   ({onSet}) => {
@@ -47,10 +36,7 @@ export const diagramTransformationState = atom<Transformation>({
   // ],
 });
 
-export const diagramScaleState = selector({
+export const diagramScaleState = atom<number>({
   key: "diagramScale",
-  get: ({ get }) => {
-    const diagramTransformation = get(diagramTransformationState);
-    return diagramTransformation.scale;
-  },
+  default: 1,
 });
