@@ -1,4 +1,4 @@
-import { Point } from "./DiagramState";
+import { Point } from "DiagramState";
 
 export const generateTransform = (translate: Point, scale: number): string => {
   const scalePart = `scale(${scale})`;
@@ -11,30 +11,30 @@ export const generateTransform = (translate: Point, scale: number): string => {
 export const computeTransformationOnScale = (
   target: Element | null,
   e: React.WheelEvent<HTMLDivElement>,
-  translate: Point, 
+  translate: Point,
   scale: number
-): {scale: number, translate: Point} | null => {
+): { scale: number; translate: Point } | null => {
   // The upper left corner of the target stays in the same place while the picture is enlarged
   const rect = target?.getBoundingClientRect();
   if (!rect) return null;
 
   // Get mouse position related to target
-  let mouseXPos = e.pageX - rect.left;
-  let mouseYPos = e.pageY - rect.top;
+  const mouseXPos = e.pageX - rect.left;
+  const mouseYPos = e.pageY - rect.top;
 
   let factor = 0.9;
   if (e.deltaY < 0) {
     factor = 1 / factor;
   }
 
-  // Now consider the point under the mouse cursor. Every pixel above and to the 
-  // left of the cursor has become *factor* larger. This displaces the point under the 
+  // Now consider the point under the mouse cursor. Every pixel above and to the
+  // left of the cursor has become *factor* larger. This displaces the point under the
   // cursor by *factor* downward and to the right. Meanwhile, the cursor is in the same position.
-  // Note that the target might have been moved in the canvas before the zooming operation, so the 
-  // cursor's horizontal position in the target is mouseXPos - transformation.translation.x before zooming, 
+  // Note that the target might have been moved in the canvas before the zooming operation, so the
+  // cursor's horizontal position in the target is mouseXPos - transformation.translation.x before zooming,
   // and likewise for the vertical position.
-  let dx = (mouseXPos - translate.x) * (factor - 1);
-  let dy = (mouseYPos - translate.y) * (factor - 1);
+  const dx = (mouseXPos - translate.x) * (factor - 1);
+  const dy = (mouseYPos - translate.y) * (factor - 1);
 
   return {
     scale: scale * factor,

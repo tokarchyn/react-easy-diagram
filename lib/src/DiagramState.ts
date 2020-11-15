@@ -1,4 +1,4 @@
-import { atom, atomFamily, selector } from "recoil";
+import { atom, atomFamily } from "recoil";
 
 export interface Point {
   x: number;

@@ -1,13 +1,16 @@
 import React, { forwardRef, useRef } from "react";
 import { MutableSnapshot, RecoilRoot } from "recoil";
-import { nodesIdsState, NodeState, nodeWithIdState } from "../DiagramState";
-import { InnerDiagram } from "./DiagramInner";
+import { nodesIdsState, NodeState, nodeWithIdState } from "DiagramState";
+import { InnerDiagram } from "components/DiagramInner";
 
 export interface DiagramProps {
   initialState?: NodeState[];
 }
 
-export const initializeState = (snap: MutableSnapshot, props: DiagramProps) => {
+export const initializeState = (
+  snap: MutableSnapshot,
+  props: DiagramProps
+): void => {
   if (props.initialState) {
     props.initialState.forEach((node) => {
       snap.set(nodeWithIdState(node.id), node);
@@ -30,9 +33,13 @@ export const Diagram = forwardRef((props: DiagramProps, ref) => {
 
   return (
     <RecoilRoot initializeState={initializeStateWrapper}>
-      <InnerDiagram ref={ref}/>
+      <InnerDiagram ref={ref} />
     </RecoilRoot>
   );
 });
 
-export const useDiagramRef = () => useRef<DigramApi>();
+Diagram.displayName = "Diagram";
+
+export const useDiagramRef = (): React.MutableRefObject<
+  DigramApi | undefined
+> => useRef<DigramApi>();

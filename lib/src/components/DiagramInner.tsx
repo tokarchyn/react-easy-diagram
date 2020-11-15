@@ -1,25 +1,20 @@
 import React, { forwardRef, useImperativeHandle, useRef } from "react";
-import {
-  useRecoilCallback,
-  useRecoilSnapshot,
-  useRecoilState,
-  useResetRecoilState,
-} from "recoil";
-import { LinksLayer } from "./LinksLayer";
-import { NodesLayer } from "./NodesLayer";
+import { useRecoilCallback, useRecoilState } from "recoil";
+import { LinksLayerMemorized } from "components/LinksLayer";
+import { NodesLayerMemorized } from "components/NodesLayer";
 import {
   diagramScaleState,
   diagramTranslateState,
   nodesIdsState,
   NodeState,
   nodeWithIdState,
-} from "../DiagramState";
-import { DigramApi } from "./Diagram";
+} from "DiagramState";
+import { DigramApi } from "components/Diagram";
 import { DraggableCore, DraggableData, DraggableEvent } from "react-draggable";
-import { computeTransformationOnScale, generateTransform } from "../utils";
-import "./Diagram.css";
+import { computeTransformationOnScale, generateTransform } from "utils";
+import "Diagram.css";
 
-export const InnerDiagram = forwardRef((props, ref) => {
+export const InnerDiagram = forwardRef((_props, ref) => {
   const [translate, setTranslate] = useRecoilState(diagramTranslateState);
 
   const [scale, setScale] = useRecoilState(diagramScaleState);
@@ -90,10 +85,12 @@ export const InnerDiagram = forwardRef((props, ref) => {
             transform: transform,
           }}
         >
-          <LinksLayer />
-          <NodesLayer />
+          <LinksLayerMemorized />
+          <NodesLayerMemorized />
         </div>
       </div>
     </DraggableCore>
   );
 });
+
+InnerDiagram.displayName = "InnerDiagram";
