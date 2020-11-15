@@ -18,8 +18,9 @@
     "declaration": true,
     "outDir": "./build",
     "jsx": "react",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "composite": true
   },
-  "include": ["src"],
+  "include": ["src", "index.ts"],
   "exclude": ["node_modules"]
 }

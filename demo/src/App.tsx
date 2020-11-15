@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
-import { Diagram, useDiagramRef } from "./components/Diagram";
-import { NodeState } from "./DiagramState";
+import { Diagram, useDiagramRef, NodeState } from "@diagram-lib";
 
 const btnStyle: React.CSSProperties = {
   padding: "14px 16px",
