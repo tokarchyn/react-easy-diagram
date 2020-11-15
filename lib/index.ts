@@ -1,7 +1,7 @@
-export * from "components/Diagram";
-export * from "components/DiagramInner";
-export * from "components/LinksLayer";
-export * from "components/NodesLayer";
-export * from "components/Node";
+export * from "./src/components/Diagram";
+export * from "./src/components/DiagramInner";
+export * from "./src/components/LinksLayer";
+export * from "./src/components/NodesLayer";
+export * from "./src/components/Node";
 
-export * from "DiagramState";
+export * from "./src/DiagramState";
