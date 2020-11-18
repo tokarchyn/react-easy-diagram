@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef } from "react";
 import { MutableSnapshot, RecoilRoot } from "recoil";
-import { nodesIdsState, NodeState, nodeWithIdState } from "DiagramState";
-import { InnerDiagram } from "components/DiagramInner";
+import { nodesIdsState, NodeState, nodeWithIdState } from "../DiagramState";
+import { InnerDiagram } from "./DiagramInner";
 
 export interface DiagramProps {
   initialState?: NodeState[];

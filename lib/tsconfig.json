@@ -1,24 +1,20 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["es5", "es6", "es7", "es2017", "dom"],
     "allowJs": true,
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "ES2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,
-    "outDir": "./build",
+    "outDir": "build",
     "jsx": "react",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "composite": true
   },
   "include": ["src", "index.ts"],

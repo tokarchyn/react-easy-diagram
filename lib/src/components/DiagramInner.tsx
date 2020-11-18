@@ -1,18 +1,18 @@
 import React, { forwardRef, useImperativeHandle, useRef } from "react";
 import { useRecoilCallback, useRecoilState } from "recoil";
-import { LinksLayerMemorized } from "components/LinksLayer";
-import { NodesLayerMemorized } from "components/NodesLayer";
+import { LinksLayerMemorized } from "./LinksLayer";
+import { NodesLayerMemorized } from "./NodesLayer";
 import {
   diagramScaleState,
   diagramTranslateState,
   nodesIdsState,
   NodeState,
   nodeWithIdState,
-} from "DiagramState";
-import { DigramApi } from "components/Diagram";
+} from "../DiagramState";
+import { DigramApi } from "./Diagram";
 import { DraggableCore, DraggableData, DraggableEvent } from "react-draggable";
-import { computeTransformationOnScale, generateTransform } from "utils";
-import "Diagram.css";
+import { computeTransformationOnScale, generateTransform } from "../utils";
+import "../Diagram.css";
 
 export const InnerDiagram = forwardRef((_props, ref) => {
   const [translate, setTranslate] = useRecoilState(diagramTranslateState);

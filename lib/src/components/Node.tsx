@@ -1,7 +1,7 @@
 import React from "react";
 import { DraggableCore } from "react-draggable";
 import { useRecoilCallback, useRecoilState } from "recoil";
-import { diagramScaleState, nodeWithIdState } from "DiagramState";
+import { diagramScaleState, nodeWithIdState } from "../DiagramState";
 
 export interface NodeProps {
   id: string;

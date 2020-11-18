@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { nodesIdsState } from "DiagramState";
-import { NodeMemo } from "components/Node";
+import { nodesIdsState } from "../DiagramState";
+import { NodeMemo } from "./Node";
 
 const NodesLayer: React.FC = () => {
   const [nodes] = useRecoilState(nodesIdsState);
