@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef } from 'react';
+import React, { forwardRef, useCallback, useRef, useState } from 'react';
 import { RecoilRoot } from 'recoil';
 import type { MutableSnapshot } from 'recoil';
 import { nodesIdsState, NodeState, nodeWithIdState } from '../DiagramState';
@@ -43,4 +43,25 @@ Diagram.displayName = 'Diagram';
 
 export const useDiagramRef = (): React.MutableRefObject<
   DigramApi | undefined
-> => useRef<DigramApi>();
+> => {
+  const [_, forceUpdate] = useState(0);
+  const [ref] = useState(() => ({
+    value: undefined,
+    facade: {
+      get current() {
+        return ref.value;
+      },
+      set current(value) {
+        const last = ref.value;
+        if (last !== value) {
+          ref.value = value;
+          console.log('Force update');
+          forceUpdate((i) => i + 1);
+        }
+      },
+    },
+  }));
+
+  console.log('Facade is ' + ref.facade);
+  return ref.facade;
+};

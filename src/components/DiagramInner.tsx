@@ -27,6 +27,7 @@ export const InnerDiagram = forwardRef((_props, ref) => {
 
   const reinitState = useRecoilCallback(
     ({ set, reset, snapshot }) => (newNodes: NodeState[]) => {
+      console.log('ReinitState');
       const ids = snapshot.getLoadable(nodesIdsState).contents;
       if (Array.isArray(ids)) {
         ids.forEach((id) => reset(nodeWithIdState(id)));
@@ -46,7 +47,8 @@ export const InnerDiagram = forwardRef((_props, ref) => {
     (): DigramApi => ({
       addNode,
       reinitState,
-    })
+    }),
+    []
   );
 
   const onDrag = (_: DraggableEvent, d: DraggableData) => {

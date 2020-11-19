@@ -35,13 +35,24 @@ export const Node: React.FC<NodeProps> = (props) => {
         style={{
           width: '100px',
           height: '100px',
-          backgroundColor: 'gray',
+          backgroundColor: 'white',
+          border: '2px solid WhiteSmoke',
           position: 'absolute',
           bottom: node.position.y,
           left: node.position.x,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
-        {props.id}
+        <div
+          style={{
+            textAlign: 'center',
+            margin: 'auto',
+          }}
+        >
+          {props.id}
+        </div>
       </div>
     </DraggableCore>
   );
