@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import { Diagram, NodeState, useDiagramRef } from 'react-easy-diagram';
 import 'react-easy-diagram/dist/index.css';
@@ -27,7 +27,7 @@ export const App = () => {
 
   return (
     <Box className={classes.diagram}>
-      <Diagram ref={diagramRef} initialState={initDiagram}/>
+      <Diagram ref={diagramRef} initialState={initDiagram} />
       <Box className={classes.controlPanel}>
         <ControlPanel reinitState={diagramRef.current?.reinitState} />
       </Box>
@@ -35,26 +35,26 @@ export const App = () => {
   );
 };
 
-const initDiagram : NodeState[] = [
+const initDiagram: NodeState[] = [
   {
     id: 'Node 1',
     position: {
       x: 300,
-      y: 300
-    }
+      y: 300,
+    },
   },
   {
     id: 'Node 2',
     position: {
       x: 520,
-      y: 400
-    }
+      y: 400,
+    },
   },
   {
     id: 'Node 3',
     position: {
       x: 520,
-      y: 200
-    }
+      y: 200,
+    },
   },
-]
+];
