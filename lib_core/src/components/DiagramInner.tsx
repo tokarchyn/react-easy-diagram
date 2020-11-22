@@ -12,7 +12,7 @@ import {
 import { DigramApi } from './Diagram';
 import { DraggableCore, DraggableData, DraggableEvent } from 'react-draggable';
 import { computeTransformationOnScale, generateTransform } from '../utils';
-import styles from '../Diagram.module.css';
+import '../Diagram.css';
 
 export const InnerDiagram = forwardRef((_props, ref) => {
   const [translate, setTranslate] = useRecoilState(diagramTranslateState);
@@ -78,10 +78,10 @@ export const InnerDiagram = forwardRef((_props, ref) => {
       <div
         ref={movableElementRef}
         onWheel={onWheel}
-        className={styles.react_fast_diagram_DiagramInner}
+        className="react_fast_diagram_DiagramInner"
       >
         <div
-          className={styles.react_fast_diagram_Movable}
+          className="react_fast_diagram_Movable"
           style={{
             transform: transform,
           }}

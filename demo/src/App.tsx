@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Diagram, NodeState, useDiagramRef } from 'react-easy-diagram';
-import 'react-easy-diagram/dist/index.css';
+import { Diagram, NodeState, useDiagramRef } from '@react-easy-diagram/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import { ControlPanel } from './ControlPanel';

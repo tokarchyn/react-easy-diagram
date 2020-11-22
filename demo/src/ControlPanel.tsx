@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NodeState } from 'react-easy-diagram';
+import type { NodeState } from '@react-easy-diagram/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Tune } from '@material-ui/icons';
 import Card from '@material-ui/core/Card';
@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: '25px',
     minWidth: '24px',
     padding: '8px 8px',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   header: {
     marginBottom: '15px',

@@ -5,3 +5,4 @@ export * from './components/NodesLayer';
 export * from './components/Node';
 
 export * from './DiagramState';
+export * from './hooks';
