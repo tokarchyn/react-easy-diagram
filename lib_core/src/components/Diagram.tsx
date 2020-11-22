@@ -1,11 +1,23 @@
 import React, { forwardRef, useCallback, useRef, useState } from 'react';
 import { RecoilRoot } from 'recoil';
 import type { MutableSnapshot } from 'recoil';
-import { nodesIdsState, NodeState, nodeWithIdState } from '../DiagramState';
+import {
+  linksIdsState,
+  LinkState,
+  linkWithIdState,
+  nodesIdsState,
+  NodeState,
+  nodeWithIdState,
+} from '../DiagramState';
 import { InnerDiagram } from './DiagramInner';
 
+export interface DiagramPropsInitState {
+  nodes: NodeState[];
+  links: LinkState[];
+}
+
 export interface DiagramProps {
-  initialState?: NodeState[];
+  initialState?: DiagramPropsInitState;
 }
 
 export const initializeState = (
@@ -13,12 +25,20 @@ export const initializeState = (
   props: DiagramProps
 ): void => {
   if (props.initialState) {
-    props.initialState.forEach((node) => {
+    props.initialState.nodes.forEach((node) => {
       snap.set(nodeWithIdState(node.id), node);
     });
     snap.set(
       nodesIdsState,
-      props.initialState.map((node) => node.id)
+      props.initialState.nodes.map((node) => node.id)
+    );
+
+    props.initialState.links.forEach((link) => {
+      snap.set(linkWithIdState(link.id), link);
+    });
+    snap.set(
+      linksIdsState,
+      props.initialState.links.map((link) => link.id)
     );
   }
 };

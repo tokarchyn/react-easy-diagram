@@ -1,27 +1,30 @@
+import { MutableRefObject } from 'react';
 import { atom, atomFamily } from 'recoil';
 
-export interface Point {
-  x: number;
-  y: number;
-}
-
-export interface NodeState {
-  id: string;
-  position: Point;
-}
+const libraryPrefix = 'reactEasyDiagram';
 
 export const nodesIdsState = atom<string[]>({
-  key: 'nodesIds',
+  key: `${libraryPrefix}_NodesIds`,
   default: [],
 });
 
 export const nodeWithIdState = atomFamily<NodeState, string>({
-  key: `node`,
-  default: (id) => ({ id: id, position: { x: 0, y: 0 } }),
+  key: `${libraryPrefix}_Node`,
+  default: (id) => ({ id: id, position: { x: 0, y: 0 }}),
+});
+
+export const linksIdsState = atom<string[]>({
+  key: `${libraryPrefix}_LinksIds`,
+  default: [],
+});
+
+export const linkWithIdState = atomFamily<LinkState, string>({
+  key: `${libraryPrefix}_Link`,
+  default: (id) => ({ id: id }),
 });
 
 export const diagramTranslateState = atom<Point>({
-  key: 'diagramTranslate',
+  key: `${libraryPrefix}_DiagramTranslate`,
   default: {
     x: 0,
     y: 0,
@@ -37,6 +40,48 @@ export const diagramTranslateState = atom<Point>({
 });
 
 export const diagramScaleState = atom<number>({
-  key: 'diagramScale',
+  key: `${libraryPrefix}_DiagramScale`,
   default: 1,
 });
+
+export interface Dictionary<TValue> {
+  [key: string]: TValue;
+}
+
+export interface Point {
+  x: number;
+  y: number;
+}
+
+export interface Port {
+  id: string;
+}
+
+export interface NodeState {
+  id: string;
+  position: Point;
+  ports?: Dictionary<Port>;
+  ref?: MutableRefObject<HTMLDivElement|null>
+}
+
+export interface LinkSegment {
+  position: Point;
+}
+
+export interface LinkNodeTarget {
+  nodeId: string;
+  portId?: string;
+}
+
+export interface LinkPointTarget {
+  position: Point;
+}
+
+export type LinkTarget = LinkNodeTarget | LinkPointTarget;
+
+export interface LinkState {
+  id: string;
+  from?: LinkTarget;
+  to?: LinkTarget;
+  segments?: LinkSegment[];
+}

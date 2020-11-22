@@ -1,6 +1,11 @@
 import React from 'react';
 import './App.css';
-import { Diagram, NodeState, useDiagramRef } from '@react-easy-diagram/core';
+import {
+  Diagram,
+  DiagramPropsInitState,
+  NodeState,
+  useDiagramRef,
+} from '@react-easy-diagram/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import { ControlPanel } from './ControlPanel';
@@ -34,26 +39,36 @@ export const App = () => {
   );
 };
 
-const initDiagram: NodeState[] = [
-  {
-    id: 'Node 1',
-    position: {
-      x: 300,
-      y: 300,
+const initDiagram: DiagramPropsInitState = {
+  nodes: [
+    {
+      id: 'Node 1',
+      position: {
+        x: 300,
+        y: 300,
+      },
     },
-  },
-  {
-    id: 'Node 2',
-    position: {
-      x: 520,
-      y: 400,
+    {
+      id: 'Node 2',
+      position: {
+        x: 520,
+        y: 400,
+      },
     },
-  },
-  {
-    id: 'Node 3',
-    position: {
-      x: 520,
-      y: 200,
+    {
+      id: 'Node 3',
+      position: {
+        x: 520,
+        y: 200,
+      },
     },
-  },
-];
+  ],
+  links: [
+    {
+      id: 'test',
+      from: {
+        nodeId: 'Node 2'
+      }
+    }
+  ]
+};

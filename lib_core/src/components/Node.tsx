@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { DraggableCore } from 'react-draggable';
 import { useRecoilCallback, useRecoilState } from 'recoil';
 import { diagramScaleState, nodeWithIdState } from '../DiagramState';
+import { useNotiftRef } from '../hooks';
 
 export interface NodeProps {
   id: string;
@@ -9,6 +10,14 @@ export interface NodeProps {
 
 export const Node: React.FC<NodeProps> = (props) => {
   const [node, setNode] = useRecoilState(nodeWithIdState(props.id));
+  const nodeRef = useNotiftRef<HTMLDivElement>();
+
+  useEffect(() => {
+    setNode((curValue) => ({
+      ...curValue,
+      ref: nodeRef
+    }))
+  }, [nodeRef])
 
   const getScale = useRecoilCallback(({ snapshot }) => () => {
     const scaleState = snapshot.getLoadable(diagramScaleState).contents;
@@ -32,6 +41,7 @@ export const Node: React.FC<NodeProps> = (props) => {
       }}
     >
       <div
+        ref={nodeRef}
         style={{
           width: '100px',
           height: '100px',

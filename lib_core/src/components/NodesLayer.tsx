@@ -7,11 +7,11 @@ const NodesLayer: React.FC = () => {
   const [nodes] = useRecoilState(nodesIdsState);
 
   return (
-    <React.Fragment>
+    <div>
       {nodes.map((id) => (
         <NodeMemo key={id} id={id} />
       ))}
-    </React.Fragment>
+    </div>
   );
 };
 

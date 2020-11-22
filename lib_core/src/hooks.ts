@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { DigramApi } from ".";
 
-export const useDiagramRef = (): React.MutableRefObject<
-  DigramApi | undefined
+export const useDiagramRef = () => useNotiftRef<DigramApi>();
+
+export const useNotiftRef = <TValue>(): React.MutableRefObject<
+  TValue | null
 > => {
   const [_, forceUpdate] = useState(0);
   const [ref] = useState(() => ({
-    value: undefined,
+    value: null,
     facade: {
       get current() {
         return ref.value;
@@ -15,13 +17,11 @@ export const useDiagramRef = (): React.MutableRefObject<
         const last = ref.value;
         if (last !== value) {
           ref.value = value;
-          console.log('Force update');
           forceUpdate((i) => i + 1);
         }
       },
     },
   }));
 
-  console.log('Facade is ' + ref.facade);
   return ref.facade;
 };
