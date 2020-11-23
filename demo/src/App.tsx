@@ -2,8 +2,7 @@ import React from 'react';
 import './App.css';
 import {
   Diagram,
-  DiagramPropsInitState,
-  NodeState,
+  DiagramInitializer,
   useDiagramRef,
 } from '@react-easy-diagram/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -39,7 +38,7 @@ export const App = () => {
   );
 };
 
-const initDiagram: DiagramPropsInitState = {
+const initDiagram: DiagramInitializer = {
   nodes: [
     {
       id: 'Node 1',
@@ -65,9 +64,11 @@ const initDiagram: DiagramPropsInitState = {
   ],
   links: [
     {
-      id: 'test',
       from: {
         nodeId: 'Node 2'
+      },
+      to: {
+        nodeId: 'Node 1'
       }
     }
   ]

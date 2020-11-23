@@ -1,15 +1,17 @@
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
-import { useRecoilCallback, useRecoilState } from 'recoil';
+import { MutableSnapshot, useRecoilCallback, useRecoilState } from 'recoil';
 import { LinksLayerMemorized } from './LinksLayer';
 import { NodesLayerMemorized } from './NodesLayer';
 import {
   diagramScaleState,
   diagramTranslateState,
+  linksIdsState,
+  linkWithIdState,
   nodesIdsState,
   NodeState,
   nodeWithIdState,
 } from '../DiagramState';
-import { DigramApi } from './Diagram';
+import { DiagramInitializer, DiagramApi, initializeState } from './Diagram';
 import { DraggableCore, DraggableData, DraggableEvent } from 'react-draggable';
 import { computeTransformationOnScale, generateTransform } from '../utils';
 import '../Diagram.css';
@@ -20,31 +22,31 @@ export const InnerDiagram = forwardRef((_props, ref) => {
   const movableElementRef = useRef<HTMLDivElement>(null);
 
   const addNode = useRecoilCallback(({ set }) => (newNode: NodeState) => {
-    console.log(newNode);
     set(nodeWithIdState(newNode.id), newNode);
     set(nodesIdsState, (v) => v.concat([newNode.id]));
   });
 
   const reinitState = useRecoilCallback(
-    ({ set, reset, snapshot }) => (newNodes: NodeState[]) => {
-      console.log('ReinitState');
-      const ids = snapshot.getLoadable(nodesIdsState).contents;
-      if (Array.isArray(ids)) {
-        ids.forEach((id) => reset(nodeWithIdState(id)));
-      }
+    ({ snapshot, gotoSnapshot }) => (initializer: DiagramInitializer) => {
+      gotoSnapshot(snapshot.map(m => {
+        const nodeIds = m.getLoadable(nodesIdsState).contents;
+        if (Array.isArray(nodeIds)) {
+          nodeIds.forEach((id) => m.reset(nodeWithIdState(id)));
+        }
 
-      set(
-        nodesIdsState,
-        newNodes.map((n) => n.id)
-      );
+        const linksIds = m.getLoadable(linksIdsState).contents;
+        if (Array.isArray(linksIds)) {
+          linksIds.forEach((id) => m.reset(linkWithIdState(id)));
+        }
 
-      newNodes.forEach((n) => set(nodeWithIdState(n.id), n));
+        initializeState(m, initializer);
+      }));
     }
   );
 
   useImperativeHandle(
     ref,
-    (): DigramApi => ({
+    (): DiagramApi => ({
       addNode,
       reinitState,
     }),

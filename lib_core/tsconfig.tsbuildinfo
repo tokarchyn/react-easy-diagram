@@ -232,8 +232,8 @@
         "affectsGlobalScope": false
       },
       "./src/diagramstate.ts": {
-        "version": "5cf79b93825d2ad57773761205e82bc57a4c3e7ce59846f77fad7124dbdce092",
-        "signature": "d1672febb53a9e6f4c6aa72572be4490e0d96117e1c47749c2227d7592aab005",
+        "version": "ac968b2956f4b35ff4d9927fba1ce8e02da1e444124d33284533d58529b05208",
+        "signature": "b45061144e478b68d174f2ad6103317e15e1dccaf54077ad4765bc1870db469d",
         "affectsGlobalScope": false
       },
       "../node_modules/react-draggable/typings/index.d.ts": {
@@ -242,17 +242,22 @@
         "affectsGlobalScope": false
       },
       "./src/components/link.tsx": {
-        "version": "019f007ce549176f2ce29ee96635ef50cad6e5e373148bac9da8cf0b2869a925",
+        "version": "bb2e18e71b94bb9491785083f0aaec317d5c7265925479c2bc53dc31df2e268a",
         "signature": "225c0b78f496525d4cdd137db562422c6cd7f7096a54f87f5ebd17ea6d0d1191",
         "affectsGlobalScope": false
       },
       "./src/components/linkslayer.tsx": {
-        "version": "82b27df6a58ffa1ea8e0b725e15f428cc6c4c5a250330519a8f2ab73a194a704",
+        "version": "ba75917ebbdfbba183928b5cd937e4d8603abe8715d5f4b57644b466c941f7ee",
         "signature": "67c8f32bfccdba382fa8d8fb276b45a6d0fd1b2410b5dc4f588e98a7e5ad18c7",
         "affectsGlobalScope": false
       },
+      "./src/utils.ts": {
+        "version": "4226b2d68376cfca01a768129b4a69ebdf1166be377744bffbb6f6cde1ea173c",
+        "signature": "76daa6a094b740101c92c78a20b4b41daa6449cff87a7d531d4fd97be7b83f9f",
+        "affectsGlobalScope": false
+      },
       "./src/components/node.tsx": {
-        "version": "338418c5e6a37a7210baa312386de98421bad74b10222ae4d516b6774d05cf36",
+        "version": "6c61b397a894fc0eeaccf7ce2eda854192200e614cdbbf559daf2f8b2f77db9a",
         "signature": "2a5d57f9c7549b715c6ab882e635b0f93889669cd8c5bc18f0743d2e724c9085",
         "affectsGlobalScope": false
       },
@@ -261,19 +266,19 @@
         "signature": "ed719f31de533d351a0461498a7bba283a909b8bdc76d65482da22150b3ca795",
         "affectsGlobalScope": false
       },
-      "./src/utils.ts": {
-        "version": "8202c110bd5bd051f753b9f92f041f0180daa5e569f1ab7078edca0f8a460b73",
-        "signature": "4bf7da5117cd7809dd3a7a5ba0236724322289ff799bf73e0f72fd3afbc50aa4",
-        "affectsGlobalScope": false
-      },
       "./src/components/diagraminner.tsx": {
-        "version": "51c0a6781bc8cb72bc63b213c994a1f1b42a924f924a7584c0533dfef00aefb7",
+        "version": "0f3403cf607c5c2f82a3267c1cd416229e3eef01e58e133df23d48cb342b9ef9",
         "signature": "e82f0d606bc1f70b3eca98d0c7cb2707d6d602bad756fc3a83a00454fa91e428",
         "affectsGlobalScope": false
       },
+      "../node_modules/@types/uuid/index.d.ts": {
+        "version": "96b49a9de749afcf92b5bce1d8cc42cfae6816cdf5ea36584fd9256b8b2e5292",
+        "signature": "96b49a9de749afcf92b5bce1d8cc42cfae6816cdf5ea36584fd9256b8b2e5292",
+        "affectsGlobalScope": false
+      },
       "./src/components/diagram.tsx": {
-        "version": "c15709c63159047b253cf52ff49bfaa94e80c879f12797def2e6209a57bb477c",
-        "signature": "38b535a5d6bdc4e65ec5f9c65113a92e7a4687bb7f924d97d85266f6a9191aa3",
+        "version": "c26dbef6118bc06ed7e2a7a415722e4dc9cd7b1b192d4d3a4b3f0fb8f3bc471b",
+        "signature": "e4e5d2bd05f65c32516dd9fd31205e4f27a1eb21ff69cf9399aa3ca00d4d81e3",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
@@ -282,8 +287,8 @@
         "affectsGlobalScope": false
       },
       "./src/hooks.ts": {
-        "version": "fd5d1c57b059695033208f6cf8db99941696fa084e8411c0f8758f5282a6ae72",
-        "signature": "50fee9692bc22b60d0e9a826204c7169b31f7f8b18b962b40d00054267bddef0",
+        "version": "387be70605217826c287c43946a6d8cd2aeb77abbf57c1370e0794506e60208c",
+        "signature": "a530ca523be5f2aa8767881198ad1032e0dfb81ef5a3bbad577e15b7f6d1de46",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/anymatch/index.d.ts": {
@@ -826,6 +831,7 @@
     "referencedMap": {
       "./src/components/diagram.tsx": [
         "../node_modules/@types/react/index.d.ts",
+        "../node_modules/@types/uuid/index.d.ts",
         "../node_modules/recoil/index.d.ts",
         "./src/components/diagraminner.tsx",
         "./src/diagramstate.ts"
@@ -857,7 +863,8 @@
         "../node_modules/react-draggable/typings/index.d.ts",
         "../node_modules/recoil/index.d.ts",
         "./src/diagramstate.ts",
-        "./src/hooks.ts"
+        "./src/hooks.ts",
+        "./src/utils.ts"
       ],
       "./src/components/nodeslayer.tsx": [
         "../node_modules/@types/react/index.d.ts",
@@ -1702,6 +1709,7 @@
       "../node_modules/@types/stack-utils/index.d.ts",
       "../node_modules/@types/tapable/index.d.ts",
       "../node_modules/@types/uglify-js/index.d.ts",
+      "../node_modules/@types/uuid/index.d.ts",
       "../node_modules/@types/webpack-sources/index.d.ts",
       "../node_modules/@types/webpack-sources/lib/cachedsource.d.ts",
       "../node_modules/@types/webpack-sources/lib/compatsource.d.ts",

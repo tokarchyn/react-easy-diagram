@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { NodeState } from '@react-easy-diagram/core';
+import type { DiagramApi, DiagramInitializer, NodeState } from '@react-easy-diagram/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Tune } from '@material-ui/icons';
 import Card from '@material-ui/core/Card';
@@ -25,22 +25,45 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const generateLargeDiagram = (colNum: number, rowNum: number): NodeState[] => {
+const generateLargeDiagram = (colNum: number, rowNum: number): DiagramInitializer => {
   const nodes = [];
+  const links = [];
+  const getNodeId = (i: number,j: number) => `node_${i}_${j}`;
+
   for (let i = 0; i < colNum; i++) {
     for (let j = 0; j < rowNum; j++) {
       nodes.push({
-        id: `node_${i}_${j}`,
+        id: getNodeId(i,j),
         position: { x: i * 120, y: j * 120 },
       });
+      if (i - 1 >= 0) {
+        links.push({
+          from: {
+            nodeId: getNodeId(i - 1,j)
+          },
+          to: {
+            nodeId: getNodeId(i,j)
+          }
+        });
+      }
+      if (j - 1 >= 0) {
+        links.push({
+          from: {
+            nodeId: getNodeId(i,j - 1)
+          },
+          to: {
+            nodeId: getNodeId(i,j)
+          }
+        });
+      }
     }
   }
 
-  return nodes;
+  return {nodes,links};
 };
 
-export interface ControlPanelProps {
-  reinitState?(newNodes: NodeState[]): any;
+export interface ControlPanelProps{
+  reinitState?(initializer: DiagramInitializer): void;
 }
 
 export const ControlPanel = (props: ControlPanelProps) => {
@@ -53,10 +76,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
 
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (props.reinitState) {
-      console.log('generateLargeDiagram');
       props.reinitState(generateLargeDiagram(row, col));
-    } else {
-      console.log('generateLargeDiagram reinitState is undefined');
     }
     e.preventDefault();
     e.stopPropagation();

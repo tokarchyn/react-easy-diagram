@@ -7,11 +7,11 @@ const LinksLayer: React.FC = () => {
   const [links] = useRecoilState(linksIdsState);
 
   return (
-    <div>
+    <svg>
       {links.map((id) => (
         <LinkMemo key={id} id={id} />
       ))}
-    </div>
+    </svg>
   );
 };
 

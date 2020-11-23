@@ -25,6 +25,10 @@
   bottom: 0px;
 }
 
+.react_fast_diagram_Movable > * {
+  overflow: visible;
+}
+
 .react_fast_diagram_DiagramInner:active .react_fast_diagram_Movable {
   will-change: transform;
 }

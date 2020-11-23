@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { DigramApi } from ".";
+import { DiagramApi } from ".";
 
-export const useDiagramRef = () => useNotiftRef<DigramApi>();
+export const useDiagramRef = () => useNotifyRef<DiagramApi>();
 
-export const useNotiftRef = <TValue>(): React.MutableRefObject<
+export const useNotifyRef = <TValue>(): React.MutableRefObject<
   TValue | null
 > => {
   const [_, forceUpdate] = useState(0);

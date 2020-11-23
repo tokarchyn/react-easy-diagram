@@ -45,3 +45,8 @@ export const computeTransformationOnScale = (
     },
   };
 };
+
+export const roundPoint = (point: Point) => ({
+  x: Math.round(point.x),
+  y: Math.round(point.y),
+})

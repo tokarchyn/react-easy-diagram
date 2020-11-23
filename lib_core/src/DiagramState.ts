@@ -10,7 +10,7 @@ export const nodesIdsState = atom<string[]>({
 
 export const nodeWithIdState = atomFamily<NodeState, string>({
   key: `${libraryPrefix}_Node`,
-  default: (id) => ({ id: id, position: { x: 0, y: 0 }}),
+  default: (id) => ({ id: id, position: { x: 0, y: 0 } }),
 });
 
 export const linksIdsState = atom<string[]>({
@@ -61,8 +61,10 @@ export interface NodeState {
   id: string;
   position: Point;
   ports?: Dictionary<Port>;
-  ref?: MutableRefObject<HTMLDivElement|null>
+  ref?: MutableRefObject<HTMLDivElement | null>;
 }
+
+export interface NodeInit extends Omit<NodeState, 'ref'> {}
 
 export interface LinkSegment {
   position: Point;
@@ -85,3 +87,7 @@ export interface LinkState {
   to?: LinkTarget;
   segments?: LinkSegment[];
 }
+
+type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
+
+export interface LinkInit extends Optional<LinkState, 'id'> { }
