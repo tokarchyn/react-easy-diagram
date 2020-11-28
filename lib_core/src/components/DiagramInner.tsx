@@ -28,19 +28,21 @@ export const InnerDiagram = forwardRef((_props, ref) => {
 
   const reinitState = useRecoilCallback(
     ({ snapshot, gotoSnapshot }) => (initializer: DiagramInitializer) => {
-      gotoSnapshot(snapshot.map(m => {
-        const nodeIds = m.getLoadable(nodesIdsState).contents;
-        if (Array.isArray(nodeIds)) {
-          nodeIds.forEach((id) => m.reset(nodeWithIdState(id)));
-        }
+      gotoSnapshot(
+        snapshot.map((m) => {
+          const nodeIds = m.getLoadable(nodesIdsState).contents;
+          if (Array.isArray(nodeIds)) {
+            nodeIds.forEach((id) => m.reset(nodeWithIdState(id)));
+          }
 
-        const linksIds = m.getLoadable(linksIdsState).contents;
-        if (Array.isArray(linksIds)) {
-          linksIds.forEach((id) => m.reset(linkWithIdState(id)));
-        }
+          const linksIds = m.getLoadable(linksIdsState).contents;
+          if (Array.isArray(linksIds)) {
+            linksIds.forEach((id) => m.reset(linkWithIdState(id)));
+          }
 
-        initializeState(m, initializer);
-      }));
+          initializeState(m, initializer);
+        })
+      );
     }
   );
 
@@ -53,7 +55,8 @@ export const InnerDiagram = forwardRef((_props, ref) => {
     []
   );
 
-  const onDrag = (_: DraggableEvent, d: DraggableData) => {
+  const onDrag = (e: DraggableEvent, d: DraggableData) => {
+    // console.log(e);
     setTranslate((current) => ({
       x: current.x + d.deltaX,
       y: current.y + d.deltaY,
@@ -76,14 +79,18 @@ export const InnerDiagram = forwardRef((_props, ref) => {
   const transform = generateTransform(translate, scale);
 
   return (
-    <DraggableCore onDrag={onDrag}>
+    <DraggableCore
+      nodeRef={movableElementRef}
+      onDrag={onDrag}
+      cancel='.react_fast_diagram_Node'
+    >
       <div
         ref={movableElementRef}
         onWheel={onWheel}
-        className="react_fast_diagram_DiagramInner"
+        className='react_fast_diagram_DiagramInner'
       >
         <div
-          className="react_fast_diagram_Movable"
+          className='react_fast_diagram_Movable'
           style={{
             transform: transform,
           }}

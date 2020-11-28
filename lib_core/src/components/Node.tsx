@@ -17,9 +17,9 @@ export const Node: React.FC<NodeProps> = (props) => {
   useEffect(() => {
     setNode((curValue) => ({
       ...curValue,
-      ref: nodeRef
-    }))
-  }, [nodeRef, nodeHasRef])
+      ref: nodeRef,
+    }));
+  }, [nodeRef, nodeHasRef]);
 
   const getScale = useRecoilCallback(({ snapshot }) => () => {
     const scaleState = snapshot.getLoadable(diagramScaleState).contents;
@@ -28,10 +28,12 @@ export const Node: React.FC<NodeProps> = (props) => {
 
   return (
     <DraggableCore
-      onStart={(e) => e.stopPropagation()}
-      onStop={(e) => e.stopPropagation()}
-      onDrag={(e, d) => {
+      enableUserSelectHack={true}
+      nodeRef={nodeRef}
+      onStart={(e) => {
         e.stopPropagation();
+      }}
+      onDrag={(e, d) => {
         const scale = getScale();
         setNode((curValue) => ({
           ...curValue,
@@ -44,13 +46,13 @@ export const Node: React.FC<NodeProps> = (props) => {
     >
       <div
         id={node.id}
+        className='react_fast_diagram_Node'
         ref={nodeRef}
         style={{
           width: '100px',
           height: '100px',
           backgroundColor: 'white',
           border: '2px solid WhiteSmoke',
-          position: 'absolute',
           top: node.position.y,
           left: node.position.x,
           display: 'flex',
