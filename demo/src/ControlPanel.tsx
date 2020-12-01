@@ -38,20 +38,20 @@ const generateLargeDiagram = (colNum: number, rowNum: number): DiagramInitialize
       });
       if (i - 1 >= 0) {
         links.push({
-          from: {
+          source: {
             nodeId: getNodeId(i - 1,j)
           },
-          to: {
+          target: {
             nodeId: getNodeId(i,j)
           }
         });
       }
       if (j - 1 >= 0) {
         links.push({
-          from: {
+          source: {
             nodeId: getNodeId(i,j - 1)
           },
-          to: {
+          target: {
             nodeId: getNodeId(i,j)
           }
         });

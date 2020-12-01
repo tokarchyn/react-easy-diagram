@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { DraggableCore } from 'react-draggable';
 import { useRecoilCallback, useRecoilSnapshot, useRecoilState } from 'recoil';
-import { diagramScaleState, nodeWithIdState } from '../DiagramState';
-import { useNotifyRef } from '../hooks';
+import { useNodeState } from '../hooks/nodeHooks';
+import { useNotifyRef } from '../hooks/useNotifyRef';
+import { diagramScaleState } from '../states/diagramState';
 import { roundPoint } from '../utils';
 
 export interface NodeProps {
@@ -10,7 +11,7 @@ export interface NodeProps {
 }
 
 export const Node: React.FC<NodeProps> = (props) => {
-  const [node, setNode] = useRecoilState(nodeWithIdState(props.id));
+  const [node, setNode] = useNodeState(props.id);
   const nodeRef = useNotifyRef<HTMLDivElement>();
 
   const nodeHasRef = !!node.ref;

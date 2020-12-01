@@ -64,10 +64,10 @@ const initDiagram: DiagramInitializer = {
   ],
   links: [
     {
-      from: {
+      source: {
         nodeId: 'Node 2'
       },
-      to: {
+      target: {
         nodeId: 'Node 1'
       }
     }

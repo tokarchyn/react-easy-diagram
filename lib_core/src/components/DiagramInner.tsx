@@ -5,18 +5,15 @@ import { NodesLayerMemorized } from './NodesLayer';
 import {
   diagramScaleState,
   diagramTranslateState,
-  linksIdsState,
-  linkWithIdState,
-  nodesIdsState,
-  NodeState,
-  nodeWithIdState,
-} from '../DiagramState';
+} from '../states/diagramState';
 import { DiagramInitializer, DiagramApi, initializeState } from './Diagram';
 import { DraggableCore, DraggableData, DraggableEvent } from 'react-draggable';
 import { computeTransformationOnScale, generateTransform } from '../utils';
 import '../Diagram.css';
+import { nodesIdsState, NodeState, nodeWithIdState } from '../states/nodeState';
+import { linksIdsState, linkWithIdState } from '../states/linkState';
 
-export const InnerDiagram = forwardRef((_props, ref) => {
+export const InnerDiagram = forwardRef<DiagramApi>((_props, ref) => {
   const [translate, setTranslate] = useRecoilState(diagramTranslateState);
   const [scale, setScale] = useRecoilState(diagramScaleState);
   const movableElementRef = useRef<HTMLDivElement>(null);

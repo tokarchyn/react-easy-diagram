@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { linksIdsState } from '../DiagramState';
-import { LinkMemo } from './Link';
+import { linksIdsState } from '../states/linkState';
+import { LinkWrapperMemo } from './LinkWrapper';
 
 const LinksLayer: React.FC = () => {
   const [links] = useRecoilState(linksIdsState);
@@ -9,7 +9,7 @@ const LinksLayer: React.FC = () => {
   return (
     <svg>
       {links.map((id) => (
-        <LinkMemo key={id} id={id} />
+        <LinkWrapperMemo key={id} id={id} />
       ))}
     </svg>
   );

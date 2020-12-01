@@ -2,17 +2,11 @@ import React, { forwardRef, useCallback, useRef, useState } from 'react';
 import { RecoilRoot, RecoilRootProps, RecoilState } from 'recoil';
 import type { MutableSnapshot } from 'recoil';
 import {
-  LinkInit,
-  linksIdsState,
-  LinkState,
-  linkWithIdState,
-  NodeInit,
-  nodesIdsState,
-  NodeState,
-  nodeWithIdState,
-} from '../DiagramState';
+} from '../states/diagramState';
 import { InnerDiagram } from './DiagramInner';
 import { v4 as uuidv4 } from 'uuid';
+import { NodeInit, nodesIdsState, NodeState, nodeWithIdState } from '../states/nodeState';
+import { LinkInit, linksIdsState, linkWithIdState } from '../states/linkState';
 
 export interface DiagramInitializer{
   nodes: NodeInit[];
@@ -37,13 +31,15 @@ export const initializeState = (
     );
 
     const linksIds: string[] = [];
-    initializer.links.forEach((link) => {
-      let id = link.id ?? uuidv4();
-      if (link.id !== id) {
-        link = {...link, id};
+    initializer.links.forEach((linkOriginal) => {
+      const link = {
+        type: 'simple',
+        id: linkOriginal.id ?? uuidv4(),
+        ...linkOriginal
       }
-      linksIds.push(id);      
-      snap.set(linkWithIdState(id), link);
+
+      linksIds.push(link.id);      
+      snap.set(linkWithIdState(link.id), link);
 
     });
     snap.set(linksIdsState,linksIds);
@@ -55,7 +51,7 @@ export interface DiagramApi {
   reinitState(initializer: DiagramInitializer): void;
 }
 
-export const Diagram = forwardRef((props: DiagramProps, ref) => {
+export const Diagram = forwardRef<DiagramApi, DiagramProps>((props, ref) => {
   const initializeStateWrapper = (snap: MutableSnapshot) =>
     initializeState(snap, props.initialState);
 

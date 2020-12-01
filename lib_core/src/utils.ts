@@ -1,4 +1,4 @@
-import { Point } from './DiagramState';
+import { Point } from "./types/common";
 
 export const generateTransform = (translate: Point, scale: number): string => {
   const scalePart = `scale(${scale})`;
