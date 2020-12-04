@@ -12,11 +12,14 @@ import { computeTransformationOnScale, generateTransform } from '../utils';
 import '../Diagram.css';
 import { nodesIdsState, NodeState, nodeWithIdState } from '../states/nodeState';
 import { linksIdsState, linkWithIdState } from '../states/linkState';
+import { useNotifyRef } from '../hooks/useNotifyRef';
+import { useDrag } from '../hooks/useDrag';
 
 export const InnerDiagram = forwardRef<DiagramApi>((_props, ref) => {
   const [translate, setTranslate] = useRecoilState(diagramTranslateState);
   const [scale, setScale] = useRecoilState(diagramScaleState);
-  const movableElementRef = useRef<HTMLDivElement>(null);
+  const movableElementRef = useNotifyRef<HTMLDivElement>();
+  const transform = useDrag({elemToAttachTo: movableElementRef});
 
   const addNode = useRecoilCallback(({ set }) => (newNode: NodeState) => {
     set(nodeWithIdState(newNode.id), newNode);
@@ -58,45 +61,23 @@ export const InnerDiagram = forwardRef<DiagramApi>((_props, ref) => {
       x: current.x + d.deltaX,
       y: current.y + d.deltaY,
     }));
-  };
-
-  const onWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    const transformation = computeTransformationOnScale(
-      movableElementRef.current,
-      e,
-      translate,
-      scale
-    );
-    if (transformation) {
-      setTranslate(transformation.translate);
-      setScale(transformation.scale);
-    }
-  };
-
-  const transform = generateTransform(translate, scale);
+  };  
 
   return (
-    <DraggableCore
-      nodeRef={movableElementRef}
-      onDrag={onDrag}
-      cancel='.react_fast_diagram_Node'
+    <div
+      ref={movableElementRef}
+      className='react_fast_diagram_DiagramInner'
     >
       <div
-        ref={movableElementRef}
-        onWheel={onWheel}
-        className='react_fast_diagram_DiagramInner'
+        className='react_fast_diagram_Movable'
+        style={{
+          transform: transform,
+        }}
       >
-        <div
-          className='react_fast_diagram_Movable'
-          style={{
-            transform: transform,
-          }}
-        >
-          <LinksLayerMemorized />
-          <NodesLayerMemorized />
-        </div>
+        <LinksLayerMemorized />
+        <NodesLayerMemorized />
       </div>
-    </DraggableCore>
+    </div>
   );
 });
 

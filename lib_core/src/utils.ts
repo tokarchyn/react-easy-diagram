@@ -7,16 +7,20 @@ export const generateTransform = (translate: Point, scale: number): string => {
   return transform;
 };
 
+export interface ITransformation { 
+  scale: number; 
+  translate: Point 
+}
+
 // See: https://stackoverflow.com/a/30039971/9142642
 export const computeTransformationOnScale = (
-  target: Element | null,
+  target: Element,
   e: WheelEvent,
   translate: Point,
   scale: number
-): { scale: number; translate: Point } | null => {
+): ITransformation => {
   // The upper left corner of the target stays in the same place while the picture is enlarged
-  const rect = target?.getBoundingClientRect();
-  if (!rect) return null;
+  const rect = target.getBoundingClientRect();
 
   // Get mouse position related to target
   const mouseXPos = e.pageX - rect.left;
