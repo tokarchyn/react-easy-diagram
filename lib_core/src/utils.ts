@@ -10,7 +10,7 @@ export const generateTransform = (translate: Point, scale: number): string => {
 // See: https://stackoverflow.com/a/30039971/9142642
 export const computeTransformationOnScale = (
   target: Element | null,
-  e: React.WheelEvent<HTMLDivElement>,
+  e: WheelEvent,
   translate: Point,
   scale: number
 ): { scale: number; translate: Point } | null => {
