@@ -11,7 +11,8 @@ export interface ILinkDefaultProps
 
 export const LinkDefault = forwardRef<any, ILinkDefaultProps>((props, ref) => {
   console.log(props.settings)
-  props.settings = {
+
+  const settings = {
     color: 'LightBlue',
     strokeWidth: 3,
     ... (props.settings ? props.settings : {})
@@ -21,8 +22,8 @@ export const LinkDefault = forwardRef<any, ILinkDefaultProps>((props, ref) => {
     <path
       ref={ref}
       d={props.path}
-      stroke={props.settings.color}
-      strokeWidth={props.settings.strokeWidth}
+      stroke={settings.color}
+      strokeWidth={settings.strokeWidth}
       fill='none'
     />
   );
