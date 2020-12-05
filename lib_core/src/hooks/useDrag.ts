@@ -1,19 +1,293 @@
-import React, {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import { MutableSnapshot, useRecoilCallback, useRecoilState } from 'recoil';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Point } from '../types/common';
-import { DraggableCore, DraggableData, DraggableEvent } from 'react-draggable';
 import {
   computeTransformationOnScale,
   generateTransform,
   ITransformation,
 } from '../utils';
-import '../Diagram.css';
+
+export interface IUseDragProps {
+  elemToAttachTo: React.RefObject<HTMLElement>;
+}
+
+export enum DragType {
+  mouse = 'mouse',
+  touch = 'touch',
+}
+
+interface IActiveState {
+  type: DragType;
+  points: Point[];
+}
+
+interface IDragState {
+  active?: IActiveState;
+  transformation: ITransformation;
+}
+
+export const useDrag = (props: IUseDragProps) => {
+  const [state, setState] = useState<IDragState>({
+    transformation: {
+      translate: { x: 0, y: 0 },
+      scale: 1,
+    },
+  });
+
+  const onWheel = useCallback(
+    (e: WheelEvent) => {
+      setState((state) => {
+        if (props.elemToAttachTo.current) {
+          const newTransformation = computeTransformationOnScale(
+            props.elemToAttachTo.current,
+            e,
+            state.transformation.translate,
+            state.transformation.scale
+          );
+          if (newTransformation) {
+            return {
+              ...state,
+              transformation: newTransformation,
+            };
+          }
+        }
+
+        return state;
+      });
+    },
+    [setState]
+  );
+
+  const onMouseDown = useCallback(
+    (e: MouseEvent) => {
+      setState((state) => createStateForStartDrag(e, state));
+    },
+    [setState]
+  );
+
+  const onTouchDown = useCallback(
+    (e: TouchEvent) => {
+      setState((state) => createStateForStartDrag(e, state));
+    },
+    [setState]
+  );
+
+  const onBodyMouseMove = useCallback(
+    (e: MouseEvent) => {
+      setState((state) => {
+        if (state.active) {
+          return createStateForDrag(e, state);
+        } else return state;
+      });
+    },
+    [setState]
+  );
+
+  const onBodyMouseUp = useCallback(
+    (e: MouseEvent) => {
+      setState((state) => setActiveFalse(state));
+    },
+    [setState]
+  );
+
+  const onBodyTouchMove = useCallback(
+    (e: TouchEvent) => {
+      setState((state) => {
+        if (state.active) {
+          return createStateForDrag(e, state);
+        } else return state;
+      });
+    },
+    [setState]
+  );
+
+  const onBodyTouchUp = useCallback(
+    (e: TouchEvent) => {
+      setState((state) => setActiveFalse(state));
+    },
+    [setState]
+  );
+
+  useEffect(() => {
+    const elem = props.elemToAttachTo.current;
+    if (!elem) {
+      return;
+    }
+
+    elem.addEventListener('wheel', onWheel, { passive: false, capture: true });
+    elem.addEventListener('mousedown', onMouseDown, { capture: true });
+    elem.addEventListener('touchstart', onTouchDown, {
+      passive: false,
+      capture: true,
+    });
+
+    return () => {
+      elem.removeEventListener('wheel', onWheel, { capture: true });
+      elem.removeEventListener('mousedown', onMouseDown, { capture: true });
+      elem.removeEventListener('touchstart', onTouchDown, { capture: true });
+    };
+  }, [props.elemToAttachTo.current]);
+
+  useEffect(() => {
+    if (!state.active) {
+      return;
+    }
+    const body = props.elemToAttachTo.current?.ownerDocument?.body;
+    if (!body) {
+      return;
+    }
+
+    if (state.active.type === DragType.mouse) {
+      body.addEventListener('mousemove', onBodyMouseMove);
+      body.addEventListener('mouseup', onBodyMouseUp);
+
+      return () => {
+        body.removeEventListener('mousemove', onBodyMouseMove);
+        body.removeEventListener('mouseup', onBodyMouseUp);
+      };
+    } else if (state.active.type === DragType.touch) {
+      body.addEventListener('touchmove', onBodyTouchMove);
+      body.addEventListener('touchend', onBodyTouchUp);
+
+      return () => {
+        body.removeEventListener('touchmove', onBodyTouchMove);
+        body.removeEventListener('touchend', onBodyTouchUp);
+      };
+    }
+  }, [state.active]);
+
+  useEffect(() => {
+    if (!state.active) {
+      return;
+    }
+    const body = props.elemToAttachTo.current?.ownerDocument?.body;
+    if (!body) {
+      return;
+    }
+
+    body.classList.add('react_fast_diagram_disabled_user_select');
+
+    return () => {
+      body.classList.remove('react_fast_diagram_disabled_user_select');
+    };
+  }, [state.active]);
+
+  const handlePinchMove = (e: TouchEvent) => {
+    // e.preventDefault();
+    // if (!props.elemToAttachTo.current){
+    //   return;
+    // }
+    // const pointA = getPointFromTouch(e.touches[0], props.elemToAttachTo?.current);
+    // const pointB = getPointFromTouch(e.touches[1], props.elemToAttachTo?.current);
+    // const distance = getDistanceBetweenPoints(pointA, pointB);
+    // const midpoint = getMidpoint(pointA, pointB);
+    // const scale = between(MIN_SCALE - ADDITIONAL_LIMIT, MAX_SCALE + ADDITIONAL_LIMIT, this.state.scale * (distance / this.lastDistance));
+    // this.zoom(scale, midpoint);
+    // this.lastMidpoint = midpoint;
+    // this.lastDistance = distance;
+  };
+
+  return generateTransform(
+    state.transformation.translate,
+    state.transformation.scale
+  );
+};
+
+function setActiveFalse(state: IDragState) {
+  return {
+    ...state,
+    active: undefined,
+  };
+}
+
+function getEventPoints(e: TouchEvent | MouseEvent): Point[] {
+  const touchPoints: Point[] = [];
+
+  if ('touches' in e) {
+    for (let i = 0; i < e.touches.length; i++) {
+      const touch = e.touches[i];
+      touchPoints.push({
+        x: touch.clientX,
+        y: touch.clientY,
+      });
+    }
+  } else {
+    touchPoints.push({
+      x: e.clientX,
+      y: e.clientY,
+    });
+  }
+
+  return touchPoints;
+}
+
+function createActiveState(
+  type: DragType,
+  e: TouchEvent | MouseEvent
+): IActiveState {
+  const newPoints = getEventPoints(e);
+  return {
+    type,
+    points: newPoints,
+  };
+}
+
+function getDeltaForSinglePoint(
+  newPoints: Point[],
+  lastPoints?: Point[]
+): Point {
+  return lastPoints
+    ? {
+        x: newPoints[0].x - lastPoints[0].x,
+        y: newPoints[0].y - lastPoints[0].y,
+      }
+    : { x: 0, y: 0 };
+}
+
+function createTranslateState(state: IDragState, delta: Point): Point {
+  return {
+    x: state.transformation.translate.x + delta.x,
+    y: state.transformation.translate.y + delta.y,
+  };
+}
+
+function createStateForDrag(
+  event: TouchEvent | MouseEvent,
+  lastState: IDragState,
+  getDelta: (
+    points: Point[],
+    lastPoints?: Point[]
+  ) => Point = getDeltaForSinglePoint
+) {
+  const type = getEventType(event);
+  const newActive = createActiveState(type, event);
+  const delta = getDelta(newActive.points, lastState.active?.points);
+  const newTranslate = createTranslateState(lastState, delta);
+
+  return {
+    transformation: {
+      scale: lastState.transformation.scale,
+      translate: newTranslate,
+    },
+    active: newActive,
+  };
+}
+
+function getEventType(event: TouchEvent | MouseEvent) {
+  return 'touches' in event ? DragType.touch : DragType.mouse;
+}
+
+function createStateForStartDrag(
+  event: TouchEvent | MouseEvent,
+  lastState: IDragState
+) {
+  const type = getEventType(event);
+  const newActive = createActiveState(type, event);
+
+  return {
+    ...lastState,
+    active: newActive,
+  };
+}
 
 const MIN_SCALE = 1;
 const MAX_SCALE = 4;
@@ -54,80 +328,3 @@ const getDistanceBetweenPoints = (pointA: Point, pointB: Point) =>
 
 const between = (min: number, max: number, value: number) =>
   Math.min(max, Math.max(min, value));
-
-export interface IUseDragProps {
-  elemToAttachTo: React.RefObject<HTMLElement>;
-}
-
-export const useDrag = (props: IUseDragProps) => {
-  const [transformation, setTransformation] = useState<ITransformation>({
-    translate: { x: 0, y: 0 },
-    scale: 1,
-  });
-  // const [draggable, setDraggable] = useRecoilState(draggableState);
-
-  const onMouseDown = () => {};
-
-  const onWheel = useCallback((e: WheelEvent) => {
-    setTransformation(cur => {
-      if (props.elemToAttachTo.current) {
-        const newTransformation = computeTransformationOnScale(
-          props.elemToAttachTo.current,
-          e,
-          cur.translate,
-          cur.scale
-        );
-        if (newTransformation) {
-          return newTransformation;
-        }
-      }
-
-      return cur;
-    });
-  }, [setTransformation]);
-
-  useEffect(() => {
-    const elem = props.elemToAttachTo.current;
-    if (!elem) {
-      return;
-    }
-
-    console.log('Attach listeners');
-    elem.addEventListener('wheel', onWheel, { passive: true });
-
-    return () => {
-      elem.removeEventListener('wheel', onWheel);
-    };
-  }, [props.elemToAttachTo.current]);
-
-  const handlePinchMove = (e: TouchEvent) => {
-    // e.preventDefault();
-    // if (!props.elemToAttachTo.current){
-    //   return;
-    // }
-    // const pointA = getPointFromTouch(e.touches[0], props.elemToAttachTo?.current);
-    // const pointB = getPointFromTouch(e.touches[1], props.elemToAttachTo?.current);
-    // const distance = getDistanceBetweenPoints(pointA, pointB);
-    // const midpoint = getMidpoint(pointA, pointB);
-    // const scale = between(MIN_SCALE - ADDITIONAL_LIMIT, MAX_SCALE + ADDITIONAL_LIMIT, this.state.scale * (distance / this.lastDistance));
-    // this.zoom(scale, midpoint);
-    // this.lastMidpoint = midpoint;
-    // this.lastDistance = distance;
-  };
-
-  // const onDrag = (e: DraggableEvent, d: DraggableData) => {
-  //   // console.log(e);
-  //   if ('touches' in e) {
-  //     const touchEvent = e as  TouchEvent;
-  //     if (touchEvent.touches.length === 2) {
-
-  //     }
-  //   }
-  //   setTranslate((current) => ({
-  //     x: current.x + d.deltaX,
-  //     y: current.y + d.deltaY,
-  //   }));
-  // };
-
-  return generateTransform(transformation.translate, transformation.scale);
-};

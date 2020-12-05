@@ -10,7 +10,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  user-select: none;
 }
 
 .react_fast_diagram_Movable {
@@ -35,4 +34,8 @@
 
 .react_fast_diagram_Node {
   position: absolute
+}
+
+.react_fast_diagram_disabled_user_select {
+  user-select: none;
 }
