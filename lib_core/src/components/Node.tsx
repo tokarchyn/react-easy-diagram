@@ -12,7 +12,7 @@ export interface NodeProps {
 
 export const Node: React.FC<NodeProps> = (props) => {
   const [node, setNode] = useNodeState(props.id);
-  const nodeRef = useNotifyRef<HTMLDivElement>();
+  const nodeRef = useNotifyRef<HTMLDivElement|null>(null);
 
   const nodeHasRef = !!node.ref;
   useEffect(() => {

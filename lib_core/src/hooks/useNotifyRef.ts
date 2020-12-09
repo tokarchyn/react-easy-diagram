@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-export const useNotifyRef = <TValue>(): React.MutableRefObject<
-  TValue | null
+export const useNotifyRef = <TValue>(init: TValue): React.MutableRefObject<
+  TValue
 > => {
   const [_, forceUpdate] = useState(0);
   const [ref] = useState(() => ({
-    value: null,
+    value: init,
     facade: {
       get current() {
         return ref.value;

@@ -15,21 +15,17 @@ export interface ITransformation {
 // See: https://stackoverflow.com/a/30039971/9142642
 export const computeTransformationOnScale = (
   target: Element,
-  e: WheelEvent,
+  midpoint: Point,
   translate: Point,
-  scale: number
+  scale: number,
+  factor: number
 ): ITransformation => {
   // The upper left corner of the target stays in the same place while the picture is enlarged
   const rect = target.getBoundingClientRect();
 
   // Get mouse position related to target
-  const mouseXPos = e.pageX - rect.left;
-  const mouseYPos = e.pageY - rect.top;
-
-  let factor = 0.9;
-  if (e.deltaY < 0) {
-    factor = 1 / factor;
-  }
+  const mouseXPos = midpoint.x - rect.left;
+  const mouseYPos = midpoint.y - rect.top;
 
   // Now consider the point under the mouse cursor. Every pixel above and to the
   // left of the cursor has become *factor* larger. This displaces the point under the
@@ -53,4 +49,14 @@ export const computeTransformationOnScale = (
 export const roundPoint = (point: Point) => ({
   x: Math.round(point.x),
   y: Math.round(point.y),
+})
+
+export const addPoints = (a: Point, b: Point) : Point => ({
+  x: a.x + b.x,
+  y: a.y + b.y
+})
+
+export const subtractPoints = (a: Point, b: Point) : Point => ({
+  x: a.x - b.x,
+  y: a.y - b.y
 })

@@ -12,7 +12,7 @@ export interface LinkWrapperProps {
 export const LinkWrapper: React.FC<LinkWrapperProps> = (props) => {
   const [linkStateExtended] = useLinkStateExtended(props.id);
   const [linksSettings] = useLinksSettings();
-  const linkRef = useNotifyRef();
+  const linkRef = useNotifyRef(null);
 
   const linkType = linkStateExtended.link.type;
   const pathConstructor = linksSettings.linkTypeToPathConstructor[linkType];

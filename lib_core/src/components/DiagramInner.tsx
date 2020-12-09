@@ -13,13 +13,13 @@ import '../Diagram.css';
 import { nodesIdsState, NodeState, nodeWithIdState } from '../states/nodeState';
 import { linksIdsState, linkWithIdState } from '../states/linkState';
 import { useNotifyRef } from '../hooks/useNotifyRef';
-import { useDrag } from '../hooks/useDrag';
+import { useDragAndZoom } from '../hooks/useDrag';
 
 export const InnerDiagram = forwardRef<DiagramApi>((_props, ref) => {
   const [translate, setTranslate] = useRecoilState(diagramTranslateState);
   const [scale, setScale] = useRecoilState(diagramScaleState);
-  const movableElementRef = useNotifyRef<HTMLDivElement>();
-  const transform = useDrag({elemToAttachTo: movableElementRef});
+  const movableElementRef = useNotifyRef<HTMLDivElement | null>(null);
+  const transform = useDragAndZoom({elemToAttachTo: movableElementRef});
 
   const addNode = useRecoilCallback(({ set }) => (newNode: NodeState) => {
     set(nodeWithIdState(newNode.id), newNode);
@@ -66,6 +66,7 @@ export const InnerDiagram = forwardRef<DiagramApi>((_props, ref) => {
   return (
     <div
       ref={movableElementRef}
+      style={{touchAction: 'none'}}
       className='react_fast_diagram_DiagramInner'
     >
       <div
