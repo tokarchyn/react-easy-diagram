@@ -22,10 +22,16 @@
   left: 0px;
   right: 0px;
   bottom: 0px;
+  /* useGestures hook use targetTouches instead of simply touches, 
+  so we should set this property to Movable, otherwise if user put 
+  one finger above Movable and another above DiagramInner, the hook 
+  will not trigger pinch gesture */
+  pointer-events: none; 
 }
 
 .react_fast_diagram_Movable > * {
   overflow: visible;
+  pointer-events: auto; 
 }
 
 .react_fast_diagram_DiagramInner:active .react_fast_diagram_Movable {

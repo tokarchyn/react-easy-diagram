@@ -10,8 +10,6 @@ export interface ILinkDefaultProps
   extends ILinkComponentProps<ILinkDefaultSettings> {}
 
 export const LinkDefault = forwardRef<any, ILinkDefaultProps>((props, ref) => {
-  console.log(props.settings)
-
   const settings = {
     color: 'LightBlue',
     strokeWidth: 3,

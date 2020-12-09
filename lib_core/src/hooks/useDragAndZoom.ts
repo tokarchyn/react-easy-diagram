@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useGesture } from 'react-use-gesture';
+import { Vector2 } from 'react-use-gesture/dist/types';
 import { Point } from '../types/common';
 import {
   addPoints,
@@ -9,26 +10,37 @@ import {
 } from '../utils';
 import { useNotifyRef } from './useNotifyRef';
 
-export interface IUseDragProps {
+export interface IUseDragAndZoomProps {
   elemToAttachTo: React.RefObject<HTMLElement>;
+  // transformationState: ITransformation;
+  // setTransformationState: (newState: ITransformation) => any;
+  listenOnlyClass?: string;
+  enableZoom?: boolean;
 }
 
-export enum DragType {
-  mouse = 'mouse',
-  touch = 'touch',
+export interface IUseDragAndZoomResult {
+  transform: string;
+  scale: number;
+  translate: Point;
 }
 
-interface IActiveState {
-  type: DragType;
-  points: Point[];
+interface IPinchState {
+  distance: number;
+  origin: Vector2;
 }
 
-interface IDragState {
-  active?: IActiveState;
-  transformation: ITransformation;
+function eventTargetContainsClass(
+  eventTarget: any,
+  className: string
+): boolean {
+  if (eventTarget && 'classList' in eventTarget) {
+    return eventTarget.classList.contains(className);
+  } else return false;
 }
 
-export const useDragAndZoom = (props: IUseDragProps) => {
+export const useDragAndZoom = (
+  props: IUseDragAndZoomProps
+): IUseDragAndZoomResult => {
   // useState instead of reference cause the situation, when multiple gesture callback invocations go before state actually updates,
   // so those invocations will rely on old state data.
   const state = useNotifyRef<ITransformation>({
@@ -36,15 +48,23 @@ export const useDragAndZoom = (props: IUseDragProps) => {
     translate: { x: 0, y: 0 },
   });
 
-  const pinchState = useRef({
+  const pinchState = useRef<IPinchState>({
     distance: 0,
     origin: [0, 0],
   });
 
-  const bind = useGesture(
+  const gestureStartInAppropriateElem = useRef(false);
+
+  // Should trigger rendering on change, otherwise useEffect will not be invoked 
+  const active = useNotifyRef(false);
+
+  const {} = useGesture(
     {
       onDrag: ({ delta, pinching }) => {
-        if (pinching) return;
+        if (pinching || !gestureStartInAppropriateElem.current) {
+          return;
+        }
+
         state.current = {
           scale: state.current.scale,
           translate: {
@@ -53,6 +73,15 @@ export const useDragAndZoom = (props: IUseDragProps) => {
           },
         };
       },
+      onDragStart: ({ event }) => {
+        gestureStartInAppropriateElem.current =
+          !props.listenOnlyClass ||
+          eventTargetContainsClass(event.target, props.listenOnlyClass);
+        if (gestureStartInAppropriateElem.current) {
+          active.current = true;
+        }
+      },
+      onDragEnd: () => active.current = false,
       onPinch: ({ da: [distance], origin }) => {
         const originDiff = {
           x: origin[0] - pinchState.current.origin[0],
@@ -101,16 +130,18 @@ export const useDragAndZoom = (props: IUseDragProps) => {
           distance,
           origin,
         };
+        active.current = true;
       },
-      onWheel: ({ offset: [, y], vxvy: [, vy], event }) => {
+      onPinchEnd: () => active.current = false,
+      onWheel: ({direction: [_, yDirection], event: {clientX,clientY}}) => {
         if (props.elemToAttachTo.current) {
           let factor = 0.9;
-          if (event.deltaY < 0) {
+          if (yDirection < 0) {
             factor = 1 / factor;
           }
           const newTransformation = computeTransformationOnScale(
             props.elemToAttachTo.current,
-            { x: event.clientX, y: event.clientY },
+            { x: clientX, y: clientY },
             state.current.translate,
             state.current.scale,
             factor
@@ -119,8 +150,33 @@ export const useDragAndZoom = (props: IUseDragProps) => {
         }
       },
     },
-    { domTarget: props.elemToAttachTo, eventOptions: {passive: false} }
+    {
+      domTarget: props.elemToAttachTo,
+      eventOptions: { passive: false },
+      pinch: { enabled: props.enableZoom },
+      wheel: { enabled: props.enableZoom },
+    }
   );
 
-  return generateTransform(state.current.translate, state.current.scale);
+  useEffect(() => {
+    if (!active.current) {
+      return;
+    }
+    const body = props.elemToAttachTo.current?.ownerDocument?.body;
+    if (!body) {
+      return;
+    }
+
+    body.classList.add('react_fast_diagram_disabled_user_select');
+
+    return () => {
+      body.classList.remove('react_fast_diagram_disabled_user_select');
+    };
+  }, [active.current])
+
+  return {
+    transform: generateTransform(state.current.translate, state.current.scale),
+    scale: state.current.scale,
+    translate: state.current.translate,
+  };
 };
