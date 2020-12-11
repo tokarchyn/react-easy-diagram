@@ -1,10 +1,14 @@
 import { Point } from "./types/common";
 
-export const generateTransform = (translate: Point, scale: number): string => {
-  const scalePart = `scale(${scale})`;
+export const generateTransform = (translate: Point, scale?: number): string => {
   const translatePart = `translate(${translate.x}px, ${translate.y}px)`;
-  const transform = translatePart + ' ' + scalePart;
-  return transform;
+  if (scale) {
+    const scalePart = `scale(${scale})`;
+    return translatePart + ' ' + scalePart;
+  }
+  else {
+    return translatePart;
+  }
 };
 
 export interface ITransformation { 
@@ -59,4 +63,9 @@ export const addPoints = (a: Point, b: Point) : Point => ({
 export const subtractPoints = (a: Point, b: Point) : Point => ({
   x: a.x - b.x,
   y: a.y - b.y
+})
+
+export const multiplyPoint = (a: Point, m: number) : Point => ({
+  x: a.x * m,
+  y: a.y * m
 })

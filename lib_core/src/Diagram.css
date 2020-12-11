@@ -39,7 +39,19 @@
 }
 
 .react_fast_diagram_Node {
-  position: absolute
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.react_fast_diagram_Node_Default {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border: 2px solid WhiteSmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .react_fast_diagram_disabled_user_select {

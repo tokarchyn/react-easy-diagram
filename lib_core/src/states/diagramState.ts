@@ -1,10 +1,11 @@
 import { Dictionary, Point } from '../types/common';
-import { atom } from 'recoil';
+import { atom, DefaultValue, selector } from 'recoil';
 import { libraryPrefix } from './common';
 import { defaultLinkType, LinkState } from './linkState';
 import { LinkStateExtended } from '../hooks/linkHooks';
 import { simpleLinkPathConstructor } from '../linkConstructors/simple';
 import { ILinkDefaultSettings, LinkDefault } from '../components/LinkDefault';
+import { ITransformation } from '../utils';
 
 export const diagramTranslateState = atom<Point>({
   key: `${libraryPrefix}_DiagramTranslate`,
@@ -25,6 +26,24 @@ export const diagramTranslateState = atom<Point>({
 export const diagramScaleState = atom<number>({
   key: `${libraryPrefix}_DiagramScale`,
   default: 1,
+});
+
+export const diagramTransformationState = selector<ITransformation>({
+  key: `${libraryPrefix}_DiagramTransformation`,
+  get: ({ get }) => {
+    const scale = get(diagramScaleState);
+    const translate = get(diagramTranslateState);
+    return {scale, translate};
+  },
+  set: ({ get, set }, newValue) => {
+    if (newValue instanceof DefaultValue) {
+      
+    }
+    else {
+      set(diagramScaleState, newValue.scale);
+      set(diagramTranslateState, newValue.translate);
+    }
+  }
 });
 
 export const diagramSettingsState = atom<DiagramSettings>({

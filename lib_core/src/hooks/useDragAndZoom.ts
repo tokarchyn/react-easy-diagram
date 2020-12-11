@@ -16,6 +16,9 @@ export interface IUseDragAndZoomProps {
   // setTransformationState: (newState: ITransformation) => any;
   listenOnlyClass?: string;
   enableZoom?: boolean;
+  parentScale?: number;
+  initScale?: number;
+  initTranslate?: Point;
 }
 
 export interface IUseDragAndZoomResult {
@@ -44,8 +47,8 @@ export const useDragAndZoom = (
   // useState instead of reference cause the situation, when multiple gesture callback invocations go before state actually updates,
   // so those invocations will rely on old state data.
   const state = useNotifyRef<ITransformation>({
-    scale: 1,
-    translate: { x: 0, y: 0 },
+    scale: props.initScale ?? 1,
+    translate: props.initTranslate ?? { x: 0, y: 0 },
   });
 
   const pinchState = useRef<IPinchState>({
@@ -61,15 +64,17 @@ export const useDragAndZoom = (
   const {} = useGesture(
     {
       onDrag: ({ delta, pinching }) => {
-        if (pinching || !gestureStartInAppropriateElem.current) {
+        if (!active || pinching || !gestureStartInAppropriateElem.current) {
           return;
         }
+
+        const parentScale = props.parentScale ?? 1;
 
         state.current = {
           scale: state.current.scale,
           translate: {
-            x: state.current.translate.x + delta[0],
-            y: state.current.translate.y + delta[1],
+            x: state.current.translate.x + delta[0] / parentScale,
+            y: state.current.translate.y + delta[1] / parentScale,
           },
         };
       },
@@ -83,6 +88,8 @@ export const useDragAndZoom = (
       },
       onDragEnd: () => active.current = false,
       onPinch: ({ da: [distance], origin }) => {
+        if (!active) { return; }
+
         const originDiff = {
           x: origin[0] - pinchState.current.origin[0],
           y: origin[1] - pinchState.current.origin[1],
@@ -153,8 +160,8 @@ export const useDragAndZoom = (
     {
       domTarget: props.elemToAttachTo,
       eventOptions: { passive: false },
-      pinch: { enabled: props.enableZoom },
-      wheel: { enabled: props.enableZoom },
+      pinch: { enabled: !!props.enableZoom },
+      wheel: { enabled: !!props.enableZoom },
     }
   );
 
@@ -175,7 +182,7 @@ export const useDragAndZoom = (
   }, [active.current])
 
   return {
-    transform: generateTransform(state.current.translate, state.current.scale),
+    transform: generateTransform(state.current.translate, props.enableZoom ? state.current.scale : undefined),
     scale: state.current.scale,
     translate: state.current.translate,
   };
