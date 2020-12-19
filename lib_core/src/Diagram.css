@@ -12,7 +12,7 @@
   box-sizing: border-box;
 }
 
-.react_fast_diagram_Movable {
+.react_fast_diagram_DiagramInner_DraggablePart {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -29,19 +29,25 @@
   pointer-events: none; 
 }
 
-.react_fast_diagram_Movable > * {
+.react_fast_diagram_DiagramInner_DraggablePart > * {
   overflow: visible;
-  pointer-events: auto; 
 }
 
-.react_fast_diagram_DiagramInner:active .react_fast_diagram_Movable {
+.react_fast_diagram_DiagramInner:active .react_fast_diagram_DiagramInner_DraggablePart {
   will-change: transform;
 }
 
-.react_fast_diagram_Node {
+.react_fast_diagram_NodeWrapper {
   position: absolute;
   top: 0;
   left: 0;
+  width: fit-content; 
+  height: fit-content;
+  pointer-events: auto; 
+}
+
+.react_fast_diagram_NodeWrapper:active {
+  will-change: transform;
 }
 
 .react_fast_diagram_Node_Default {
@@ -52,6 +58,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  margin: auto;
+}
+
+.react_fast_diagram_Node_Default * {
+  text-align: center;
+  margin: auto;
 }
 
 .react_fast_diagram_disabled_user_select {

@@ -1,38 +1,40 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { DraggableCore } from 'react-draggable';
-import { useRecoilCallback, useRecoilSnapshot, useRecoilState } from 'recoil';
+import React, { useEffect, useRef } from 'react';
+import { useRecoilCallback, useRecoilValue } from 'recoil';
+import { defaultNodeType } from '..';
 import { useNodeState } from '../hooks/nodeHooks';
 import { useDragAndZoom } from '../hooks/useDragAndZoom';
 import { useNotifyRef } from '../hooks/useNotifyRef';
 import { diagramScaleState } from '../states/diagramState';
-import { nodeWithIdState } from '../states/nodeState';
-import { addPoints, generateTransform, multiplyPoint, roundPoint, subtractPoints } from '../utils';
+import { nodeComponentDefinitionState } from '../states/nodesSettingsState';
 
-export interface NodeProps {
+export interface INodeWrapperProps {
   id: string;
 }
 
-export const Node: React.FC<NodeProps> = (props) => {
+export const NodeWrapper: React.FC<INodeWrapperProps> = (props) => {
   const [node, setNode] = useNodeState(props.id);
+  const nodeComponentDefinition = useRecoilValue(
+    nodeComponentDefinitionState(node.type ?? defaultNodeType)
+  );
   const nodeRef = useNotifyRef<HTMLDivElement | null>(null);
+  const draggableRef = useRef<HTMLElement | null>(null);
 
-  const nodeHasRef = !!node.ref;
   useEffect(() => {
     setNode((curValue) => ({
       ...curValue,
       ref: nodeRef,
     }));
-  }, [nodeRef, nodeHasRef]);
+  }, [nodeRef]);
 
   const getScale = useRecoilCallback(({ snapshot }) => () => {
     const scaleState = snapshot.getLoadable(diagramScaleState).contents;
     return typeof scaleState === 'number' ? scaleState : 1;
   });
 
-  const {transform, translate} = useDragAndZoom({
-    elemToAttachTo: nodeRef,
+  const { transform, translate } = useDragAndZoom({
+    elemToAttachTo: draggableRef,
     parentScale: getScale(),
-    initTranslate: node.position
+    initTranslate: node.position,
   });
 
   useEffect(() => {
@@ -44,22 +46,20 @@ export const Node: React.FC<NodeProps> = (props) => {
   return (
     <div
       id={node.id}
-      className='react_fast_diagram_Node react_fast_diagram_Node_Default'
+      className='react_fast_diagram_NodeWrapper'
       style={{
         transform: transform,
       }}
       ref={nodeRef}
     >
-      <div
-        style={{
-          textAlign: 'center',
-          margin: 'auto',
-        }}
-      >
-        {props.id}
-      </div>
+      <nodeComponentDefinition.component
+        ref={draggableRef}
+        node={node}
+        setNode={setNode}
+        settings={nodeComponentDefinition.settings}
+      />
     </div>
   );
 };
 
-export const NodeMemo = React.memo(Node);
+export const NodeWrapperMemo = React.memo(NodeWrapper);

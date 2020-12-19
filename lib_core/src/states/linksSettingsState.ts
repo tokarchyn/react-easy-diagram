@@ -1,52 +1,40 @@
 import { atom } from 'recoil';
-import { ILinkDefaultSettings, LinkDefault } from '../components/LinkDefault';
+import { LinkDefault } from '../components/LinkDefault';
 import { LinkStateExtended } from '../hooks/linkHooks';
 import { simpleLinkPathConstructor } from '../linkConstructors/simple';
 import { Dictionary } from '../types/common';
 import { libraryPrefix } from './common';
 import { defaultLinkType } from './linkState';
 
-export const linksSettingsState = atom<LinksSettings>({
+export const linksSettingsState = atom<ILinksSettings>({
   key: `${libraryPrefix}_LinksSettings`,
   default: {
     defaultLinkType: defaultLinkType,
-    linkTypeToComponent: {
+    linkComponents: {
       default: LinkDefault,
     },
-    linkTypeToPathConstructor: {
-      simple: simpleLinkPathConstructor,
-    },
-    pathConstructorsSettings: {},
-    linkComponentsSettings: {},
+    pathConstructor: simpleLinkPathConstructor,
   },
 });
 
-export type LinkPathConstructor = (state: LinkStateExtended) => string;
+export interface ILinksSettings {
+  defaultLinkType: string;
+  linkComponents: Dictionary<LinkComponent | ILinkComponentWithSettings>;
+  pathConstructor: ILinkPathConstructor;
+}
 
-export interface ILinkComponentProps<TSettings = object> {
+export type LinkComponent<TSettings = {}> = React.ForwardRefExoticComponent<
+  ILinkComponentProps<TSettings> & React.RefAttributes<any>
+>;
+
+export interface ILinkComponentWithSettings<TSettings = {}> {
+  component: LinkComponent<TSettings>;
+  settings: TSettings;
+}
+
+export interface ILinkComponentProps<TSettings = {}> {
   path: string;
   settings?: TSettings;
 }
 
-export interface IPathConstructorsSettings {
-  simple?: object;
-  curved?: object;
-  [key: string]: object | undefined;
-}
-
-export interface ILinkComponentsSettings {
-  default?: ILinkDefaultSettings;
-  [key: string]: object | undefined;
-}
-
-export interface LinksSettings {
-  defaultLinkType: string;
-  linkTypeToComponent: Dictionary<
-    React.ForwardRefExoticComponent<
-      ILinkComponentProps & React.RefAttributes<any>
-    >
-  >;
-  linkTypeToPathConstructor: Dictionary<LinkPathConstructor>;
-  pathConstructorsSettings: IPathConstructorsSettings;
-  linkComponentsSettings: ILinkComponentsSettings;
-}
+export type ILinkPathConstructor = (state: LinkStateExtended) => string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { nodesIdsState } from '../states/nodeState';
-import { NodeMemo } from './Node';
+import { NodeWrapperMemo } from './NodeWrapper';
 
 const NodesLayer: React.FC = () => {
   const [nodes] = useRecoilState(nodesIdsState);
@@ -9,7 +9,7 @@ const NodesLayer: React.FC = () => {
   return (
     <div>
       {nodes.map((id) => (
-        <NodeMemo key={id} id={id} />
+        <NodeWrapperMemo key={id} id={id} />
       ))}
     </div>
   );

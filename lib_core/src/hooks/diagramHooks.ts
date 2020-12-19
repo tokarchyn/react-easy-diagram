@@ -1,8 +1,8 @@
 import { DiagramApi } from "..";
 import { useNotifyRef } from "./useNotifyRef";
 import { useRecoilState } from "recoil";
-import { diagramSettingsState } from "../states/diagramState";
+import { commonSettingsState } from "../states/diagramState";
 
 export const useDiagramRef = () => useNotifyRef<DiagramApi|null>(null);
 
-export const useDiagramSettingsState = () => useRecoilState(diagramSettingsState);
+export const useDiagramSettingsState = () => useRecoilState(commonSettingsState);

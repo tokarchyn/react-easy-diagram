@@ -27,6 +27,8 @@ export const LinkDefault = forwardRef<any, ILinkDefaultProps>((props, ref) => {
   );
 });
 
+export const createLinkDefault = (props: ILinkDefaultProps & React.RefAttributes<any>) => LinkDefault(props);
+
 // <g>
 //       {/* Main line */}
 //       <path d={points} stroke={linkColor} strokeWidth="3" fill="none" />

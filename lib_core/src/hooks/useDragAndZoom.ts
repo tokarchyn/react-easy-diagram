@@ -10,37 +10,6 @@ import {
 } from '../utils';
 import { useNotifyRef } from './useNotifyRef';
 
-export interface IUseDragAndZoomProps {
-  elemToAttachTo: React.RefObject<HTMLElement>;
-  // transformationState: ITransformation;
-  // setTransformationState: (newState: ITransformation) => any;
-  listenOnlyClass?: string;
-  enableZoom?: boolean;
-  parentScale?: number;
-  initScale?: number;
-  initTranslate?: Point;
-}
-
-export interface IUseDragAndZoomResult {
-  transform: string;
-  scale: number;
-  translate: Point;
-}
-
-interface IPinchState {
-  distance: number;
-  origin: Vector2;
-}
-
-function eventTargetContainsClass(
-  eventTarget: any,
-  className: string
-): boolean {
-  if (eventTarget && 'classList' in eventTarget) {
-    return eventTarget.classList.contains(className);
-  } else return false;
-}
-
 export const useDragAndZoom = (
   props: IUseDragAndZoomProps
 ): IUseDragAndZoomResult => {
@@ -56,18 +25,15 @@ export const useDragAndZoom = (
     origin: [0, 0],
   });
 
-  const gestureStartInAppropriateElem = useRef(false);
-
-  // Should trigger rendering on change, otherwise useEffect will not be invoked 
+  // Should trigger rendering on change, otherwise useEffect will not be invoked
   const active = useNotifyRef(false);
 
-  const {} = useGesture(
+  useGesture(
     {
       onDrag: ({ delta, pinching }) => {
-        if (!active || pinching || !gestureStartInAppropriateElem.current) {
+        if (!active.current || pinching) {
           return;
         }
-
         const parentScale = props.parentScale ?? 1;
 
         state.current = {
@@ -79,16 +45,19 @@ export const useDragAndZoom = (
         };
       },
       onDragStart: ({ event }) => {
-        gestureStartInAppropriateElem.current =
+        const gestureStartInAppropriateElem =
           !props.listenOnlyClass ||
           eventTargetContainsClass(event.target, props.listenOnlyClass);
-        if (gestureStartInAppropriateElem.current) {
+
+        if (gestureStartInAppropriateElem) {
           active.current = true;
         }
       },
-      onDragEnd: () => active.current = false,
+      onDragEnd: () => (active.current = false),
       onPinch: ({ da: [distance], origin }) => {
-        if (!active) { return; }
+        if (!active.current) {
+          return;
+        }
 
         const originDiff = {
           x: origin[0] - pinchState.current.origin[0],
@@ -139,8 +108,11 @@ export const useDragAndZoom = (
         };
         active.current = true;
       },
-      onPinchEnd: () => active.current = false,
-      onWheel: ({direction: [_, yDirection], event: {clientX,clientY}}) => {
+      onPinchEnd: () => (active.current = false),
+      onWheel: ({
+        direction: [_, yDirection],
+        event: { clientX, clientY },
+      }) => {
         if (props.elemToAttachTo.current) {
           let factor = 0.9;
           if (yDirection < 0) {
@@ -165,25 +137,67 @@ export const useDragAndZoom = (
     }
   );
 
-  useEffect(() => {
-    if (!active.current) {
-      return;
-    }
-    const body = props.elemToAttachTo.current?.ownerDocument?.body;
-    if (!body) {
-      return;
-    }
-
-    body.classList.add('react_fast_diagram_disabled_user_select');
-
-    return () => {
-      body.classList.remove('react_fast_diagram_disabled_user_select');
-    };
-  }, [active.current])
+  useUserSelectSwitcher(
+    active.current,
+    props.elemToAttachTo.current?.ownerDocument?.body
+  );
 
   return {
-    transform: generateTransform(state.current.translate, props.enableZoom ? state.current.scale : undefined),
+    transform: generateTransform(
+      state.current.translate,
+      props.enableZoom ? state.current.scale : undefined
+    ),
     scale: state.current.scale,
     translate: state.current.translate,
   };
 };
+
+export interface IUseDragAndZoomProps {
+  elemToAttachTo: React.RefObject<HTMLElement>;
+  listenOnlyClass?: string;
+  enableZoom?: boolean;
+  parentScale?: number;
+  initScale?: number;
+  initTranslate?: Point;
+}
+
+export interface IUseDragAndZoomResult {
+  transform: string;
+  scale: number;
+  translate: Point;
+}
+
+interface IPinchState {
+  distance: number;
+  origin: Vector2;
+}
+
+function eventTargetContainsClass(
+  eventTarget: any,
+  className: string
+): boolean {
+  if (eventTarget && 'classList' in eventTarget) {
+    return eventTarget.classList.contains(className);
+  } else return false;
+}
+
+function useUserSelectSwitcher(
+  active: boolean,
+  elementToSwitchUserSelectOn: HTMLElement | undefined
+) {
+  useEffect(() => {
+    if (!active || !elementToSwitchUserSelectOn) {
+      return;
+    }
+
+    elementToSwitchUserSelectOn.classList.add(
+      'react_fast_diagram_disabled_user_select'
+    );
+
+    return () => {
+      elementToSwitchUserSelectOn.classList.remove(
+        'react_fast_diagram_disabled_user_select'
+      );
+    };
+  }, [active, elementToSwitchUserSelectOn]);
+}

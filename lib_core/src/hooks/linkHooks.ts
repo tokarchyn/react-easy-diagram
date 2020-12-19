@@ -13,6 +13,7 @@ export const useLinksSettings = () => useRecoilState(linksSettingsState);
 
 export const useLinkState = (id: string) => useRecoilState(linkWithIdState(id));
 
+// Use recoil selector instead
 export const useLinkStateExtended = (
   id: string
 ): [LinkStateExtended, SetterOrUpdater<LinkState>] => {

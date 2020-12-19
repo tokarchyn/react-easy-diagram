@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
 import {
-  Diagram,
-  DiagramInitializer,
-  useDiagramRef,
+  IDiagramInitState,
+  useDiagram,
 } from '@react-easy-diagram/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
@@ -26,19 +25,23 @@ const useStyles = makeStyles(() => ({
 
 export const App = () => {
   const classes = useStyles();
-  const diagramRef = useDiagramRef();
+  const { Diagram, apiRef } = useDiagram(
+    {
+    },
+    initState
+  );
 
   return (
     <Box className={classes.diagram}>
-      <Diagram ref={diagramRef} initialState={initDiagram} />
+      <Diagram />
       <Box className={classes.controlPanel}>
-        <ControlPanel reinitState={diagramRef.current?.reinitState} />
+        <ControlPanel reinitState={apiRef.current?.setState} />
       </Box>
     </Box>
   );
 };
 
-const initDiagram: DiagramInitializer = {
+const initState: IDiagramInitState = {
   nodes: [
     {
       id: 'Node 1',
@@ -65,11 +68,11 @@ const initDiagram: DiagramInitializer = {
   links: [
     {
       source: {
-        nodeId: 'Node 2'
+        nodeId: 'Node 2',
       },
       target: {
-        nodeId: 'Node 1'
-      }
-    }
-  ]
+        nodeId: 'Node 1',
+      },
+    },
+  ],
 };

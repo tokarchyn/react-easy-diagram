@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import type { DiagramApi, DiagramInitializer, NodeState } from '@react-easy-diagram/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Tune } from '@material-ui/icons';
 import Card from '@material-ui/core/Card';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
+import { IDiagramInitState } from '@react-easy-diagram/core';
 
 const useStyles = makeStyles(() => ({
   form: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const generateLargeDiagram = (colNum: number, rowNum: number): DiagramInitializer => {
+const generateLargeDiagram = (colNum: number, rowNum: number): IDiagramInitState => {
   const nodes = [];
   const links = [];
   const getNodeId = (i: number,j: number) => `node_${i}_${j}`;
@@ -63,7 +63,7 @@ const generateLargeDiagram = (colNum: number, rowNum: number): DiagramInitialize
 };
 
 export interface ControlPanelProps{
-  reinitState?(initializer: DiagramInitializer): void;
+  reinitState?(initializer: IDiagramInitState): void;
 }
 
 export const ControlPanel = (props: ControlPanelProps) => {
