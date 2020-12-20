@@ -70,18 +70,13 @@ export const useDragAndZoom = (
             props.elemToAttachTo.current.clientWidth * state.current.scale;
           const targetElWidth = elWidth + diff;
           const factor = targetElWidth / elWidth;
-
+          
           const scaleTransformation = computeTransformationOnScale(
             props.elemToAttachTo.current,
             { x: origin[0], y: origin[1] },
-            state.current.translate,
+            addPoints(state.current.translate, originDiff),
             state.current.scale,
             factor
-          );
-
-          scaleTransformation.translate = addPoints(
-            scaleTransformation.translate,
-            originDiff
           );
 
           pinchState.current = {

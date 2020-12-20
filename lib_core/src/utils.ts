@@ -16,6 +16,9 @@ export interface ITransformation {
   translate: Point 
 }
 
+const MIN_SCALE = 0.1;
+const MAX_SCALE = 2;
+
 // See: https://stackoverflow.com/a/30039971/9142642
 export const computeTransformationOnScale = (
   target: Element,
@@ -24,6 +27,8 @@ export const computeTransformationOnScale = (
   scale: number,
   factor: number
 ): ITransformation => {
+  factor = clampFactorForTransformation(factor, scale);
+
   // The upper left corner of the target stays in the same place while the picture is enlarged
   const rect = target.getBoundingClientRect();
 
@@ -41,7 +46,7 @@ export const computeTransformationOnScale = (
   const dy = (mouseYPos - translate.y) * (factor - 1);
 
   return {
-    scale: scale * factor,
+    scale: clampValue(scale * factor, MIN_SCALE, MAX_SCALE),
     translate: {
       // Compensate for the displacement by moving the point back under the cursor
       x: translate.x - dx,
@@ -49,6 +54,16 @@ export const computeTransformationOnScale = (
     },
   };
 };
+
+function clampFactorForTransformation(factor: number, currentScale: number) {
+  if (currentScale * factor < MIN_SCALE) {
+    return MIN_SCALE / currentScale; 
+  }
+  else if (currentScale * factor > MAX_SCALE) {
+    return MAX_SCALE / currentScale;
+  }
+  else return factor;
+}
 
 export const roundPoint = (point: Point) => ({
   x: Math.round(point.x),
@@ -69,3 +84,7 @@ export const multiplyPoint = (a: Point, m: number) : Point => ({
   x: a.x * m,
   y: a.y * m
 })
+
+export function clampValue(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
