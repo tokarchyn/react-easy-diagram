@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import {
+  createCurvedLinkPathConstructor,
   createLinkDefault,
   IDiagramInitState,
   useDiagram,
@@ -32,7 +33,8 @@ export const App = () => {
         linkComponents: {
           default: createLinkDefault(),
           attention: createLinkDefault({color: 'red'})
-        }
+        },
+        pathConstructor: createCurvedLinkPathConstructor()
       }
     },
     initState

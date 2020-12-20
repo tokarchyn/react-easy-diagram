@@ -1,6 +1,8 @@
 import {
   LinkStateExtended,
 } from '../hooks/linkHooks';
+import { Point } from '../types/common';
+import { roundPoint } from '../utils';
 import { getEndpointPoint } from './common';
 
 function curvedLinkPathConstructorInner(
@@ -9,7 +11,7 @@ function curvedLinkPathConstructorInner(
 ): string {
   const fromPoint = getEndpointPoint(state.source);
   const toPoint = getEndpointPoint(state.target);
-  const path = `M ${fromPoint.x} ${fromPoint.y}, ${toPoint.x} ${toPoint.y}`;
+  const path = generateCurvePath(fromPoint, toPoint);
 
   return path;
 }
@@ -18,7 +20,7 @@ export interface ICurvedLinkPathConstructorSettings {}
 
 const defualtSettings: ICurvedLinkPathConstructorSettings = {};
 
-export function curvedLinkPathConstructor(
+export function createCurvedLinkPathConstructor(
   settings?: ICurvedLinkPathConstructorSettings
 ) {
   return (state: LinkStateExtended) =>
@@ -27,3 +29,53 @@ export function curvedLinkPathConstructor(
       settings ? { ...defualtSettings, ...settings } : defualtSettings
     );
 }
+
+const CURVE_FACTOR = 60;
+
+/**
+ * Calculates the offset accordingly to the alignment
+ */
+// const getXOffset = (alignment) => {
+//   if (!alignment || (alignment !== 'left' && alignment !== 'right')) return 0;
+//   return alignment === 'left' ? -CURVE_FACTOR : CURVE_FACTOR;
+// };
+// const getYOffset = (alignment) => {
+//   if (!alignment || (alignment !== 'top' && alignment !== 'bottom')) return 0;
+//   return alignment === 'top' ? CURVE_FACTOR : -CURVE_FACTOR;
+// };
+
+/**
+ * Given a source point and an output point produces the SVG path between them
+ */
+const generateCurvePath = (startPoint: Point, endPoint: Point) => {
+  if (!startPoint || !endPoint) return '';
+  const roundedStart = roundPoint(startPoint);
+  const roundedEnd = roundPoint(endPoint);
+
+  const start = `${roundedStart.x}, ${roundedStart.y}`;
+  const end = `${roundedEnd.x}, ${roundedEnd.y}`;
+
+  // if (options.type === 'bezier' && (options.inputAlignment || options.outputAlignment)) {
+  //   let startControl = end;
+  //   let endControl = start;
+
+  //   if (options.inputAlignment) {
+  //     const offsetX = roundedStart.x + getXOffset(options.inputAlignment);
+  //     const offsetY = roundedStart.y + getYOffset(options.inputAlignment);
+  //     endControl = `${offsetX}, ${offsetY}`;
+  //   }
+
+  //   if (options.outputAlignment) {
+  //     const offsetX = roundedEnd.x + getXOffset(options.outputAlignment);
+  //     const offsetY = roundedEnd.y + getYOffset(options.outputAlignment);
+  //     startControl = `${offsetX}, ${offsetY}`;
+  //   }
+
+  //   return `M ${start} C ${endControl} ${startControl}, ${end}`;
+  // }
+
+  // connecting with a standard curve without any alignment
+  const ctrl = `${roundedEnd.x}, ${roundedStart.y}`;
+
+  return `M ${start} Q ${ctrl}, ${end}`;
+};

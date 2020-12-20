@@ -1,6 +1,7 @@
 import { atom, selector, selectorFamily } from 'recoil';
 import { LinkDefault } from '../components/LinkDefault';
 import { LinkStateExtended } from '../hooks/linkHooks';
+import { createCurvedLinkPathConstructor } from '../linkConstructors/curved';
 import { simpleLinkPathConstructor } from '../linkConstructors/simple';
 import { Dictionary } from '../types/common';
 import { libraryPrefix } from './common';
@@ -13,7 +14,7 @@ export const linksSettingsState = atom<ILinksSettingsInternal>({
     linkComponents: {
       default: LinkDefault,
     },
-    pathConstructor: simpleLinkPathConstructor,
+    pathConstructor: createCurvedLinkPathConstructor(),
   },
 });
 
@@ -25,7 +26,7 @@ export const linkComponentDefinitionState = selectorFamily<
   get: (componentType) => ({ get }) => {
     const settings = get(linksSettingsState);
     componentType = componentType ?? defaultLinkType;
-    
+
     const componentDefinition =
       componentType in settings.linkComponents
         ? settings.linkComponents[componentType]
