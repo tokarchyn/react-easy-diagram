@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom, selector, selectorFamily } from 'recoil';
 import { LinkDefault } from '../components/LinkDefault';
 import { LinkStateExtended } from '../hooks/linkHooks';
 import { simpleLinkPathConstructor } from '../linkConstructors/simple';
@@ -17,9 +17,39 @@ export const linksSettingsState = atom<ILinksSettings>({
   },
 });
 
+export const linkComponentDefinitionState = selectorFamily<
+  ILinkComponentDefinition,
+  string | undefined
+>({
+  key: `${libraryPrefix}_LinkComponentDefinition`,
+  get: (componentType) => ({ get }) => {
+    const settings = get(linksSettingsState);
+    componentType = componentType ?? defaultLinkType;
+
+    const componentDefinition =
+      componentType in settings.linkComponents
+        ? settings.linkComponents[componentType]
+        : settings.linkComponents[defaultLinkType];
+
+    return 'component' in componentDefinition
+      ? componentDefinition
+      : {
+          component: componentDefinition,
+        };
+  },
+});
+
+export const linkPathConstructorState = selector<ILinkPathConstructor>({
+  key: `${libraryPrefix}_LinkPathContructor`,
+  get: ({ get }) => {
+    const settings = get(linksSettingsState);
+    return settings.pathConstructor;
+  },
+});
+
 export interface ILinksSettings {
   defaultLinkType: string;
-  linkComponents: Dictionary<LinkComponent | ILinkComponentWithSettings>;
+  linkComponents: Dictionary<LinkComponent | ILinkComponentDefinition>;
   pathConstructor: ILinkPathConstructor;
 }
 
@@ -27,9 +57,9 @@ export type LinkComponent<TSettings = {}> = React.ForwardRefExoticComponent<
   ILinkComponentProps<TSettings> & React.RefAttributes<any>
 >;
 
-export interface ILinkComponentWithSettings<TSettings = {}> {
+export interface ILinkComponentDefinition<TSettings = {}> {
   component: LinkComponent<TSettings>;
-  settings: TSettings;
+  settings?: TSettings;
 }
 
 export interface ILinkComponentProps<TSettings = {}> {

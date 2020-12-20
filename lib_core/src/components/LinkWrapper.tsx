@@ -1,9 +1,11 @@
 import React from 'react';
-import {
-  useLinksSettings,
-  useLinkStateExtended,
-} from '../hooks/linkHooks';
+import { useRecoilValue } from 'recoil';
+import { useLinkStateExtended } from '../hooks/linkHooks';
 import { useNotifyRef } from '../hooks/useNotifyRef';
+import {
+  linkComponentDefinitionState,
+  linkPathConstructorState,
+} from '../states/linksSettingsState';
 
 export interface LinkWrapperProps {
   id: string;
@@ -11,20 +13,22 @@ export interface LinkWrapperProps {
 
 export const LinkWrapper: React.FC<LinkWrapperProps> = ({ id }) => {
   const [linkStateExtended] = useLinkStateExtended(id);
-  const [linksSettings] = useLinksSettings();
-  const linkRef = useNotifyRef(null);
 
-  const linkType = linkStateExtended.link.type;
-  const path = linksSettings.pathConstructor(linkStateExtended);
-  const linkComponent =
-    linksSettings.linkComponents[linkType] ??
-    linksSettings.linkComponents.default;
-  const Link =
-    'component' in linkComponent ? linkComponent.component : linkComponent;
+  const pathConstructor = useRecoilValue(linkPathConstructorState);
+  const path = pathConstructor(linkStateExtended);
+
+  const linkComponentDefinition = useRecoilValue(
+    linkComponentDefinitionState(linkStateExtended.link.type)
+  );
+  const linkRef = useNotifyRef(null);
 
   return (
     <g>
-      <Link ref={linkRef} path={path} />
+      <linkComponentDefinition.component
+        ref={linkRef}
+        path={path}
+        settings={linkComponentDefinition.settings}
+      />
     </g>
   );
 };
