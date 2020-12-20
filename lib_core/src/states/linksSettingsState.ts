@@ -6,7 +6,7 @@ import { Dictionary } from '../types/common';
 import { libraryPrefix } from './common';
 import { defaultLinkType } from './linkState';
 
-export const linksSettingsState = atom<ILinksSettings>({
+export const linksSettingsState = atom<ILinksSettingsInternal>({
   key: `${libraryPrefix}_LinksSettings`,
   default: {
     defaultLinkType: defaultLinkType,
@@ -25,7 +25,7 @@ export const linkComponentDefinitionState = selectorFamily<
   get: (componentType) => ({ get }) => {
     const settings = get(linksSettingsState);
     componentType = componentType ?? defaultLinkType;
-
+    
     const componentDefinition =
       componentType in settings.linkComponents
         ? settings.linkComponents[componentType]
@@ -47,11 +47,13 @@ export const linkPathConstructorState = selector<ILinkPathConstructor>({
   },
 });
 
-export interface ILinksSettings {
+export interface ILinksSettingsInternal {
   defaultLinkType: string;
   linkComponents: Dictionary<LinkComponent | ILinkComponentDefinition>;
   pathConstructor: ILinkPathConstructor;
 }
+
+export interface ILinksSettings extends Partial<ILinksSettingsInternal> {}
 
 export type LinkComponent<TSettings = {}> = React.ForwardRefExoticComponent<
   ILinkComponentProps<TSettings> & React.RefAttributes<any>

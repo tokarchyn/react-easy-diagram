@@ -44,6 +44,7 @@
   width: fit-content; 
   height: fit-content;
   pointer-events: auto; 
+  user-select: none;
 }
 
 .react_fast_diagram_NodeWrapper:active {

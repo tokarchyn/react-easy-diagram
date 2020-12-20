@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { ILinkComponentProps } from '../states/linksSettingsState';
+import { ILinkComponentDefinition, ILinkComponentProps } from '../states/linksSettingsState';
 
 export interface ILinkDefaultSettings {
   color: string;
@@ -13,8 +13,8 @@ export const LinkDefault = forwardRef<any, ILinkDefaultProps>((props, ref) => {
   const settings = {
     color: 'LightBlue',
     strokeWidth: 3,
-    ... (props.settings ? props.settings : {})
-  }
+    ...(props.settings ? props.settings : {}),
+  };
 
   return (
     <path
@@ -27,7 +27,14 @@ export const LinkDefault = forwardRef<any, ILinkDefaultProps>((props, ref) => {
   );
 });
 
-export const createLinkDefault = (props: ILinkDefaultProps & React.RefAttributes<any>) => LinkDefault(props);
+export function createLinkDefault(
+  settings?: Partial<ILinkDefaultSettings>
+): ILinkComponentDefinition {
+  return {
+    component: LinkDefault,
+    settings,
+  };
+}
 
 // <g>
 //       {/* Main line */}

@@ -11,8 +11,14 @@ import {
   nodeWithIdState,
 } from '..';
 import { v4 as uuidv4 } from 'uuid';
-import { INodesSettings, nodesSettingsState } from './nodesSettingsState';
-import { ILinksSettings, linksSettingsState } from './linksSettingsState';
+import {
+  INodesSettings,
+  nodesSettingsState,
+} from './nodesSettingsState';
+import {
+  ILinksSettings,
+  linksSettingsState,
+} from './linksSettingsState';
 
 export function initializeDiagram(
   snap: MutableSnapshot,
@@ -48,11 +54,17 @@ export function initializeSettings(
   }
 
   if (settings.nodes) {
-    snap.set(nodesSettingsState, settings.nodes);
+    const loadable = snap.getLoadable(nodesSettingsState);
+    if ('defaultNodeType' in loadable.contents) {
+      snap.set(nodesSettingsState, { ...loadable.contents, ...settings.nodes });
+    }
   }
 
   if (settings.links) {
-    snap.set(linksSettingsState, settings.links);
+    const loadable = snap.getLoadable(linksSettingsState);
+    if ('defaultLinkType' in loadable.contents) {
+      snap.set(linksSettingsState, { ...loadable.contents, ...settings.links });
+    }
   }
 }
 

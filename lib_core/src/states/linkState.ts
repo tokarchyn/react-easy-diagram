@@ -12,7 +12,7 @@ export const linkWithIdState = atomFamily<LinkState, string>({
   default: (id) => ({ id: id, type: defaultLinkType }),
 });
 
-export const defaultLinkType = 'simple';
+export const defaultLinkType = 'default';
 
 export interface LinkSegment {
   position: Point;

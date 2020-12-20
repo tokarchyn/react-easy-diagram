@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import {
+  createLinkDefault,
   IDiagramInitState,
   useDiagram,
 } from '@react-easy-diagram/core';
@@ -27,6 +28,12 @@ export const App = () => {
   const classes = useStyles();
   const { Diagram, apiRef } = useDiagram(
     {
+      links: {
+        linkComponents: {
+          default: createLinkDefault(),
+          attention: createLinkDefault({color: 'red'})
+        }
+      }
     },
     initState
   );
@@ -73,6 +80,15 @@ const initState: IDiagramInitState = {
       target: {
         nodeId: 'Node 1',
       },
+      type: 'attention'
+    },
+    {
+      source: {
+        nodeId: 'Node 2',
+      },
+      target: {
+        nodeId: 'Node 3',
+      }
     },
   ],
 };

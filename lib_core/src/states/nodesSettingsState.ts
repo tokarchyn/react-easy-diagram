@@ -1,10 +1,10 @@
 import { atom, selector, selectorFamily, SetterOrUpdater } from 'recoil';
 import { defaultNodeType, NodeState } from '..';
 import { NodeDefault } from '../components/NodeDefault';
-import { Dictionary } from '../types/common';
+import { Dictionary, Optional } from '../types/common';
 import { libraryPrefix } from './common';
 
-export const nodesSettingsState = atom<INodesSettings>({
+export const nodesSettingsState = atom<INodesSettingsInternal>({
   key: `${libraryPrefix}_NodesSettings`,
   default: {
     defaultNodeType: defaultNodeType,
@@ -36,10 +36,12 @@ export const nodeComponentDefinitionState = selectorFamily<
   },
 });
 
-export interface INodesSettings {
+export interface INodesSettingsInternal {
   defaultNodeType: string;
   nodeComponents: Dictionary<NodeComponent | INodeComponentDefinition>;
 }
+
+export interface INodesSettings extends Partial<INodesSettingsInternal> {}
 
 export type NodeComponent<TSettings = {}> = React.ForwardRefExoticComponent<
   INodeProps<TSettings> & React.RefAttributes<any>
