@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
-import { Vector2 } from 'react-use-gesture/dist/types';
+import { Vector2, WebKitGestureEvent } from 'react-use-gesture/dist/types';
 import { Point } from '../types/common';
 import {
   addPoints,
@@ -28,6 +28,34 @@ export const useDragAndZoom = (
   // Should trigger rendering on change, otherwise useEffect will not be invoked
   const active = useNotifyRef(false);
 
+  const checkGestureEventTargetClasses = useCallback(
+    (
+      event:
+        | TouchEvent
+        | React.TouchEvent<Element>
+        | React.WheelEvent<Element>
+        | WheelEvent
+        | WebKitGestureEvent
+        | React.PointerEvent<Element>
+        | PointerEvent
+    ) => {
+      if ('touches' in event) {
+        return allTouchTargetsContainsClass(
+          event,
+          props.listenOnlyClass,
+          props.ignoreClass
+        );
+      } else {
+        return eventTargetContainsClass(
+          event.target,
+          props.listenOnlyClass,
+          props.ignoreClass
+        );
+      }
+    },
+    [props.listenOnlyClass, props.ignoreClass]
+  );
+
   useGesture(
     {
       onDrag: ({ delta, pinching }) => {
@@ -45,11 +73,7 @@ export const useDragAndZoom = (
         };
       },
       onDragStart: ({ event }) => {
-        const gestureStartInAppropriateElem =
-          !props.listenOnlyClass ||
-          eventTargetContainsClass(event.target, props.listenOnlyClass);
-
-        if (gestureStartInAppropriateElem) {
+        if (checkGestureEventTargetClasses(event)) {
           active.current = true;
         }
       },
@@ -70,7 +94,7 @@ export const useDragAndZoom = (
             props.elemToAttachTo.current.clientWidth * state.current.scale;
           const targetElWidth = elWidth + diff;
           const factor = targetElWidth / elWidth;
-          
+
           const scaleTransformation = computeTransformationOnScale(
             props.elemToAttachTo.current,
             { x: origin[0], y: origin[1] },
@@ -96,12 +120,14 @@ export const useDragAndZoom = (
           };
         }
       },
-      onPinchStart: ({ da: [distance], origin }) => {
-        pinchState.current = {
-          distance,
-          origin,
-        };
-        active.current = true;
+      onPinchStart: ({ da: [distance], origin, event }) => {
+        if (checkGestureEventTargetClasses(event)) {
+          pinchState.current = {
+            distance,
+            origin,
+          };
+          active.current = true;
+        }
       },
       onPinchEnd: () => (active.current = false),
       onWheel: ({
@@ -129,6 +155,7 @@ export const useDragAndZoom = (
       eventOptions: { passive: false },
       pinch: { enabled: !!props.enableZoom },
       wheel: { enabled: !!props.enableZoom },
+      enabled: props.enable,
     }
   );
 
@@ -144,22 +171,26 @@ export const useDragAndZoom = (
     ),
     scale: state.current.scale,
     translate: state.current.translate,
+    active: active.current,
   };
 };
 
 export interface IUseDragAndZoomProps {
   elemToAttachTo: React.RefObject<HTMLElement>;
   listenOnlyClass?: string;
+  ignoreClass?: string;
   enableZoom?: boolean;
   parentScale?: number;
   initScale?: number;
   initTranslate?: Point;
+  enable?: boolean;
 }
 
 export interface IUseDragAndZoomResult {
   transform: string;
   scale: number;
   translate: Point;
+  active: boolean;
 }
 
 interface IPinchState {
@@ -167,12 +198,37 @@ interface IPinchState {
   origin: Vector2;
 }
 
+function allTouchTargetsContainsClass(
+  event: TouchEvent | React.TouchEvent<Element>,
+  listenOnlyClass: string | undefined,
+  ignoreClass: string | undefined
+): boolean {
+  for (let i = 0; i < event.touches.length; i++) {
+    if (
+      !eventTargetContainsClass(
+        event.touches[i].target,
+        listenOnlyClass,
+        ignoreClass
+      )
+    ) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 function eventTargetContainsClass(
-  eventTarget: any,
-  className: string
+  eventTarget: EventTarget | null,
+  listenOnlyClass: string | undefined,
+  ignoreClass: string | undefined
 ): boolean {
   if (eventTarget && 'classList' in eventTarget) {
-    return eventTarget.classList.contains(className);
+    const targetElement = eventTarget as Element;
+    return (
+      (!listenOnlyClass || targetElement.classList.contains(listenOnlyClass)) &&
+      (!ignoreClass || !targetElement.classList.contains(ignoreClass))
+    );
   } else return false;
 }
 

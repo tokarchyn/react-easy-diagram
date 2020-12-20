@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
 import { useRecoilCallback, useSetRecoilState } from 'recoil';
 import { LinksLayerMemorized } from './LinksLayer';
 import { NodesLayerMemorized } from './NodesLayer';
