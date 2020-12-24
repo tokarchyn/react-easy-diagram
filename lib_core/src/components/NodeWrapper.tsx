@@ -20,11 +20,15 @@ export const NodeWrapper: React.FC<INodeWrapperProps> = (props) => {
   const draggableRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    setNode((curValue) => ({
-      ...curValue,
-      ref: nodeRef,
-    }));
-  }, [nodeRef]);
+    setNode((curValue) => {
+      if (curValue.ref !== nodeRef) {
+        return {
+          ...curValue,
+          ref: nodeRef,
+        };
+      } else return curValue;
+    });
+  }, [nodeRef, node.ref]);
 
   const getScale = useRecoilCallback(({ snapshot }) => () => {
     const scaleState = snapshot.getLoadable(diagramScaleState).contents;

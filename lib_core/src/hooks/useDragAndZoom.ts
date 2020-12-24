@@ -28,6 +28,22 @@ export const useDragAndZoom = (
   // Should trigger rendering on change, otherwise useEffect will not be invoked
   const active = useNotifyRef(false);
 
+  useEffect(() => {
+    console.log(props);
+    if (
+      !active.current &&
+      (state.current.scale !== props.initScale ||
+        state.current.translate.x !== props.initTranslate?.x ||
+        state.current.translate.y !== props.initTranslate?.y)
+    ) {
+      console.log('Set drag state.')
+      state.current = {
+        scale: props.initScale ?? state.current.scale,
+        translate: props.initTranslate ?? state.current.translate,
+      };
+    }
+  }, [props.initTranslate, props.initScale]);
+
   const checkGestureEventTargetClasses = useCallback(
     (
       event:
