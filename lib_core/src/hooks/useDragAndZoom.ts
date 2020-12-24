@@ -29,18 +29,19 @@ export const useDragAndZoom = (
   const active = useNotifyRef(false);
 
   useEffect(() => {
-    console.log(props);
-    if (
-      !active.current &&
-      (state.current.scale !== props.initScale ||
-        state.current.translate.x !== props.initTranslate?.x ||
-        state.current.translate.y !== props.initTranslate?.y)
-    ) {
-      console.log('Set drag state.')
-      state.current = {
-        scale: props.initScale ?? state.current.scale,
-        translate: props.initTranslate ?? state.current.translate,
-      };
+    if (!active.current) {
+      const scaleIsNotEqual =
+        props.initScale && state.current.scale !== props.initScale;
+      const translateIsNotEqual =
+        props.initTranslate &&
+        (state.current.translate.x !== props.initTranslate.x ||
+        state.current.translate.y !== props.initTranslate.y);
+      if (scaleIsNotEqual || translateIsNotEqual) {
+        state.current = {
+          scale: props.initScale ?? state.current.scale,
+          translate: props.initTranslate ?? state.current.translate,
+        };
+      }
     }
   }, [props.initTranslate, props.initScale]);
 
