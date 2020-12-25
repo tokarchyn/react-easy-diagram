@@ -1,45 +1,37 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
-import { Vector2, WebKitGestureEvent } from 'react-use-gesture/dist/types';
-import { Point } from '../../types/common';
+import { WebKitGestureEvent } from 'react-use-gesture/dist/types';
+import { useRecoilState } from 'recoil';
+import { diagramTransformationState } from '../../states/diagramState';
 import {
-  addPoints,
-  computeTransformationOnScale,
+  areTranformationsEqual,
   generateTransform,
   ITransformation,
 } from '../../utils';
 import { useNotifyRef } from '../useNotifyRef';
-import {
-  allTouchTargetsContainsClass,
-  dragHandlers,
-  eventTargetContainsClass,
-  useTransformationStateUpdating,
-  useUserAbilityToSelectSwitcher,
-} from './common';
+import { useUserAbilityToSelectSwitcher } from './common';
+import { useDragHandlers } from './useDragHandlers';
+import { usePinchHandlers } from './usePinchHandlers';
+import { useWheelHandler } from './useWheelHandler';
 
 export const useDiagramUserInteraction = (
-  props: IUseDragAndZoomProps
+  enable?: boolean
 ): IUseDragAndZoomResult => {
-  // useState instead of reference cause the situation, when multiple gesture callback invocations go before state actually updates,
-  // so those invocations will rely on old state data.
+  const [transformation, setTransformation] = useRecoilState(
+    diagramTransformationState
+  );
   const stateRef = useNotifyRef<ITransformation>({
-    scale: props.scale ?? 1,
-    position: props.position ?? { x: 0, y: 0 },
+    scale: transformation.scale,
+    position: transformation.position,
   });
-
-  const pinchState = useRef<IPinchState>({
-    distance: 0,
-    origin: [0, 0],
-  });
-
-  // Should trigger rendering on change, otherwise useEffect will not be invoked
   const activeRef = useNotifyRef(false);
+  const userInteractionElemRef = useRef<HTMLDivElement>(null);
 
-  useTransformationStateUpdating(
+  useTransformationSync(
     activeRef.current,
     stateRef,
-    props.scale,
-    props.position
+    transformation,
+    setTransformation
   );
 
   const cancelGesture = useCallback(
@@ -52,147 +44,102 @@ export const useDiagramUserInteraction = (
         | WebKitGestureEvent
         | React.PointerEvent<Element>
         | PointerEvent
-    ) => {
-      if ('touches' in event) {
-        return !allTouchTargetsContainsClass(
-          event,
-          props.listenOnlyClass,
-          props.ignoreClass
-        );
-      } else {
-        return !eventTargetContainsClass(
-          event.target,
-          props.listenOnlyClass,
-          props.ignoreClass
-        );
-      }
-    },
-    [props.listenOnlyClass, props.ignoreClass]
+    ) => event.target !== userInteractionElemRef.current,
+    [userInteractionElemRef]
+  );
+
+  const dragHandlers = useDragHandlers(
+    activeRef,
+    stateRef,
+    undefined,
+    cancelGesture
+  );
+
+  const pinchHandlers = usePinchHandlers(
+    userInteractionElemRef,
+    activeRef,
+    stateRef,
+    cancelGesture
+  );
+
+  const wheelHandler = useWheelHandler(
+    userInteractionElemRef,
+    activeRef,
+    stateRef,
+    setTransformation
   );
 
   useGesture(
     {
-      ...dragHandlers(
-        activeRef,
-        stateRef,
-        undefined,
-        cancelGesture
-      ),
-      onPinch: ({ da: [distance], origin }) => {
-        if (!activeRef.current) {
-          return;
-        }
-
-        const originDiff = {
-          x: origin[0] - pinchState.current.origin[0],
-          y: origin[1] - pinchState.current.origin[1],
-        };
-
-        const diff = distance - pinchState.current.distance;
-        if (Math.abs(diff) > 1 && props.elemToAttachTo.current) {
-          const elWidth =
-            props.elemToAttachTo.current.clientWidth * stateRef.current.scale;
-          const targetElWidth = elWidth + diff;
-          const factor = targetElWidth / elWidth;
-
-          const scaleTransformation = computeTransformationOnScale(
-            props.elemToAttachTo.current,
-            { x: origin[0], y: origin[1] },
-            addPoints(stateRef.current.position, originDiff),
-            stateRef.current.scale,
-            factor
-          );
-
-          pinchState.current = {
-            distance,
-            origin,
-          };
-
-          stateRef.current = scaleTransformation;
-        } else {
-          pinchState.current = {
-            distance: pinchState.current.distance,
-            origin,
-          };
-          stateRef.current = {
-            scale: stateRef.current.scale,
-            position: addPoints(stateRef.current.position, originDiff),
-          };
-        }
-      },
-      onPinchStart: ({ da: [distance], origin, event }) => {
-        if (cancelGesture(event)) {
-          pinchState.current = {
-            distance,
-            origin,
-          };
-          activeRef.current = true;
-        }
-      },
-      onPinchEnd: () => (activeRef.current = false),
-      onWheel: ({
-        direction: [_, yDirection],
-        event: { clientX, clientY },
-      }) => {
-        if (props.elemToAttachTo.current) {
-          let factor = 0.9;
-          if (yDirection < 0) {
-            factor = 1 / factor;
-          }
-          const newTransformation = computeTransformationOnScale(
-            props.elemToAttachTo.current,
-            { x: clientX, y: clientY },
-            stateRef.current.position,
-            stateRef.current.scale,
-            factor
-          );
-          stateRef.current = newTransformation;
-        }
-      },
+      ...dragHandlers,
+      ...pinchHandlers,
+      ...wheelHandler,
     },
     {
-      domTarget: props.elemToAttachTo,
+      domTarget: userInteractionElemRef,
       eventOptions: { passive: false },
-      pinch: { enabled: !!props.enableZoom },
-      wheel: { enabled: !!props.enableZoom },
-      enabled: props.enable,
+      enabled: enable,
     }
   );
 
   useUserAbilityToSelectSwitcher(
     activeRef.current,
-    props.elemToAttachTo.current?.ownerDocument?.body
+    userInteractionElemRef.current?.ownerDocument?.body
   );
 
   return {
+    userInteractionElemRef,
     transform: generateTransform(
       stateRef.current.position,
-      props.enableZoom ? stateRef.current.scale : undefined
+      stateRef.current.scale
     ),
-    scale: stateRef.current.scale,
-    position: stateRef.current.position,
     active: activeRef.current,
   };
 };
 
-export interface IUseDragAndZoomProps {
-  elemToAttachTo: React.RefObject<HTMLElement>;
-  listenOnlyClass?: string;
-  ignoreClass?: string;
-  enableZoom?: boolean;
-  scale: number;
-  position: Point;
-  enable?: boolean;
-}
-
 export interface IUseDragAndZoomResult {
+  userInteractionElemRef: React.RefObject<HTMLDivElement>;
   transform: string;
-  scale: number;
-  position: Point;
   active: boolean;
 }
 
-interface IPinchState {
-  distance: number;
-  origin: Vector2;
+function useTransformationSync(
+  active: boolean,
+  internalTransformationRef: React.MutableRefObject<ITransformation>,
+  externalTransformation: ITransformation,
+  setExternalTransformation: (
+    setter: (currentTransformation: ITransformation) => ITransformation
+  ) => void
+) {
+  useEffect(() => {
+    if (!active) {
+      if (
+        !areTranformationsEqual(
+          internalTransformationRef.current,
+          externalTransformation
+        )
+      ) {
+        internalTransformationRef.current = {
+          scale: externalTransformation.scale,
+          position: externalTransformation.position,
+        };
+      }
+    } else {
+      setExternalTransformation((currentTransformation) => {
+        if (
+          !areTranformationsEqual(
+            currentTransformation,
+            internalTransformationRef.current
+          )
+        ) {
+          return internalTransformationRef.current;
+        } else return currentTransformation;
+      });
+    }
+  }, [
+    active,
+    internalTransformationRef.current,
+    externalTransformation,
+    setExternalTransformation,
+  ]);
 }

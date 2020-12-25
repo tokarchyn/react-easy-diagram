@@ -11,7 +11,6 @@ export * from './hooks/diagramHooks';
 export * from './hooks/linkHooks';
 export * from './hooks/nodeHooks';
 export * from './hooks/useDiagram';
-export * from './hooks/useDragAndZoom';
 export * from './hooks/useNotifyRef';
 
 export * from './linkConstructors/common';

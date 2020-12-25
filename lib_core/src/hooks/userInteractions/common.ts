@@ -1,93 +1,37 @@
-import isEqual from 'lodash.isequal';
 import { useEffect } from 'react';
-import { Handler } from 'react-use-gesture/dist/types';
 import { Point } from '../../types/common';
-import { ITransformation } from '../../utils';
-
-type dragEventHandler =
-  | Handler<'drag', React.PointerEvent<Element> | PointerEvent>
-  | undefined;
-
-export function dragHandlers(
-  activeRef: React.MutableRefObject<boolean>,
-  stateRef: React.MutableRefObject<Point | ITransformation>,
-  parentScaleGetter?: () => number,
-  cancel?: (event: React.PointerEvent<Element> | PointerEvent) => boolean
-): {
-  onDrag: dragEventHandler;
-  onDragStart: dragEventHandler;
-  onDragEnd: dragEventHandler;
-} {
-  return {
-    onDrag: ({ pinching, delta }) => {
-      if (!activeRef.current || pinching) {
-        return;
-      }
-
-      const parentScale = parentScaleGetter ? parentScaleGetter() : 1;
-      if ('scale' in stateRef.current) {
-        stateRef.current = {
-          scale: stateRef.current.scale,
-          position: {
-            x: stateRef.current.position.x + delta[0] / parentScale,
-            y: stateRef.current.position.y + delta[1] / parentScale,
-          },
-        };
-      } else {
-        stateRef.current = {
-          x: stateRef.current.x + delta[0] / parentScale,
-          y: stateRef.current.y + delta[1] / parentScale,
-        };
-      }
-    },
-    onDragStart: ({ event }) => {
-      if (cancel && cancel(event)) {
-        return;
-      }
-      activeRef.current = true;
-    },
-    onDragEnd: () => (activeRef.current = false),
-  };
-}
+import {
+  arePointsEqual,
+  areTranformationsEqual,
+  ITransformation,
+} from '../../utils';
 
 // Update internal position if element position was changed programmatically
-export function useInternalPositionUpdating(
+export function usePositionSync(
   active: boolean,
   positionStateRef: React.MutableRefObject<Point>,
-  externalPosition: Point
+  externalPosition: Point,
+  setExternalPosition: (
+    setter: (currentPosition: Point) => Point
+  ) => void
 ) {
   useEffect(() => {
     if (!active) {
-      if (!isEqual(positionStateRef.current, externalPosition)) {
+      if (!arePointsEqual(positionStateRef.current, externalPosition)) {
         positionStateRef.current = externalPosition;
       }
     }
-  }, [active, positionStateRef, externalPosition]);
-}
-
-export function useTransformationStateUpdating(
-  active: boolean,
-  transformationStateRef: React.MutableRefObject<ITransformation>,
-  externalScale: number,
-  externalPosition: Point
-) {
-  useEffect(() => {
-    if (!active) {
-      if (
-        transformationStateRef.current.scale !== externalScale ||
-        !isEqual(transformationStateRef.current.position, externalPosition)
-      ) {
-        console.log(transformationStateRef.current)
-        console.log(externalScale)
-        console.log(externalPosition)
-        console.log('-----------------------');
-        transformationStateRef.current = {
-          scale: externalScale,
-          position: externalPosition,
-        };
-      }
+    else {
+      setExternalPosition(currentPosition => {
+        if (!arePointsEqual(positionStateRef.current, currentPosition)) {
+          return positionStateRef.current;
+        }
+        else {
+          return currentPosition;
+        }
+      })
     }
-  }, [active, transformationStateRef, externalScale, externalPosition]);
+  }, [active, positionStateRef, positionStateRef.current, externalPosition, setExternalPosition]);
 }
 
 export function allTouchTargetsContainsClass(

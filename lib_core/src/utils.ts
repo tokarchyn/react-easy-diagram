@@ -1,20 +1,14 @@
-import { Point } from "./types/common";
+import { Point } from './types/common';
 
 export const generateTransform = (translate: Point, scale?: number): string => {
   const translatePart = `translate(${translate.x}px, ${translate.y}px)`;
   if (scale) {
     const scalePart = `scale(${scale})`;
     return translatePart + ' ' + scalePart;
-  }
-  else {
+  } else {
     return translatePart;
   }
 };
-
-export interface ITransformation { 
-  scale: number; 
-  position: Point 
-}
 
 const MIN_SCALE = 0.1;
 const MAX_SCALE = 2;
@@ -55,35 +49,48 @@ export const computeTransformationOnScale = (
   };
 };
 
+export interface ITransformation {
+  scale: number;
+  position: Point;
+}
+
 function clampFactorForTransformation(factor: number, currentScale: number) {
   if (currentScale * factor < MIN_SCALE) {
-    return MIN_SCALE / currentScale; 
-  }
-  else if (currentScale * factor > MAX_SCALE) {
+    return MIN_SCALE / currentScale;
+  } else if (currentScale * factor > MAX_SCALE) {
     return MAX_SCALE / currentScale;
-  }
-  else return factor;
+  } else return factor;
 }
 
 export const roundPoint = (point: Point) => ({
   x: Math.round(point.x),
   y: Math.round(point.y),
-})
+});
 
-export const addPoints = (a: Point, b: Point) : Point => ({
+export const addPoints = (a: Point, b: Point): Point => ({
   x: a.x + b.x,
-  y: a.y + b.y
-})
+  y: a.y + b.y,
+});
 
-export const subtractPoints = (a: Point, b: Point) : Point => ({
+export const subtractPoints = (a: Point, b: Point): Point => ({
   x: a.x - b.x,
-  y: a.y - b.y
-})
+  y: a.y - b.y,
+});
 
-export const multiplyPoint = (a: Point, m: number) : Point => ({
+export const multiplyPoint = (a: Point, m: number): Point => ({
   x: a.x * m,
-  y: a.y * m
-})
+  y: a.y * m,
+});
+
+export const arePointsEqual = (a: Point, b: Point): boolean =>
+  a === b || (a && b && a.x === b.x && a.y === b.y);
+
+export const areTranformationsEqual = (
+  a: ITransformation,
+  b: ITransformation
+): boolean =>
+  a === b ||
+  (a && b && a.scale === b.scale && arePointsEqual(a.position, b.position));
 
 export function clampValue(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);

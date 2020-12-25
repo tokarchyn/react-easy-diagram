@@ -1,13 +1,11 @@
-import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
-import { useRecoilCallback, useRecoilState, useSetRecoilState } from 'recoil';
+import React, { forwardRef, useImperativeHandle } from 'react';
+import { useRecoilCallback } from 'recoil';
 import { LinksLayerMemorized } from './LinksLayer';
 import { NodesLayerMemorized } from './NodesLayer';
-import { diagramScaleState } from '../states/diagramState';
 import { nodesIdsState, NodeState, nodeWithIdState } from '../states/nodeState';
 import { linksIdsState, linkWithIdState } from '../states/linkState';
-import { useNotifyRef } from '../hooks/useNotifyRef';
-import { useDragAndZoom } from '../hooks/useDragAndZoom';
 import { IDiagramInitState, initializeState } from '../states/initializers';
+import { useDiagramUserInteraction } from '../hooks/userInteractions/useDiagramUserInteraction';
 
 export interface IDiagramInnerProps {
   diagramStyles?: React.CSSProperties;
@@ -15,19 +13,7 @@ export interface IDiagramInnerProps {
 
 export const InnerDiagram = forwardRef<DiagramApi, IDiagramInnerProps>(
   (props, ref) => {
-    const movableElementRef = useNotifyRef<HTMLDivElement | null>(null);
-    const [scale, setScale] = useRecoilState(diagramScaleState);
-    const { transform, scale: newscale } = useDragAndZoom({
-      elemToAttachTo: movableElementRef,
-      enableZoom: true,
-      listenOnlyClass: 'react_fast_diagram_DiagramInner',
-      position: {x: 0, y: 0},
-      scale
-    });
-
-    useEffect(() => {
-      setScale(newscale);
-    }, [newscale]);
+    const { transform, userInteractionElemRef } = useDiagramUserInteraction();
 
     // TODO: Move to states
     const addNode = useRecoilCallback(({ set }) => (newNode: NodeState) => {
@@ -66,7 +52,7 @@ export const InnerDiagram = forwardRef<DiagramApi, IDiagramInnerProps>(
 
     return (
       <div
-        ref={movableElementRef}
+        ref={userInteractionElemRef}
         style={{ touchAction: 'none', ...props.diagramStyles }}
         className='react_fast_diagram_DiagramInner'
       >

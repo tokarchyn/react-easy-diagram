@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
 import { SetterOrUpdater, useRecoilCallback } from 'recoil';
 import { diagramScaleState } from '../../states/diagramState';
@@ -6,7 +6,8 @@ import { NodeState } from '../../states/nodeState';
 import { Point } from '../../types/common';
 import { generateTransform } from '../../utils';
 import { useNotifyRef } from '../useNotifyRef';
-import { dragHandlers, useInternalPositionUpdating, useUserAbilityToSelectSwitcher } from './common';
+import { usePositionSync, useUserAbilityToSelectSwitcher } from './common';
+import { useDragHandlers } from './useDragHandlers';
 
 export const useNodeUserInteraction = (
   node: NodeState,
@@ -28,15 +29,27 @@ export const useNodeUserInteraction = (
     return typeof scaleState === 'number' ? scaleState : 1;
   });
 
-  useInternalPositionUpdating(activeRef.current, positionRef, node.position);
-  useEffect(() => {
-    setNode((currentNode) => {
-      return { ...currentNode, position: positionRef.current };
-    });
-  }, [setNode, positionRef.current]);
+  const nodePositionSetter = useCallback(
+    (getNewPosition: ((currentPosition: Point) => Point)) => {
+      setNode(currentNodeState => {
+        const newNodePosition = getNewPosition(currentNodeState.position);        
+        if (currentNodeState.position !==newNodePosition) {
+          return {
+            ...currentNodeState,
+            position: newNodePosition
+          }
+        }
+        else return currentNodeState;
+      })
+    },
+    [setNode],
+  )   
+  usePositionSync(activeRef.current, positionRef, node.position, nodePositionSetter)
+
+  const dragHandlers = useDragHandlers(activeRef, positionRef, getDiagramScale);
 
   useGesture(
-    {...dragHandlers(activeRef, positionRef, getDiagramScale)},
+    dragHandlers,
     {
       domTarget: userInteractionElemRef,
       eventOptions: { passive: false },
