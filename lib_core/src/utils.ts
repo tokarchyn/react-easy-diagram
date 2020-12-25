@@ -13,7 +13,7 @@ export const generateTransform = (translate: Point, scale?: number): string => {
 
 export interface ITransformation { 
   scale: number; 
-  translate: Point 
+  position: Point 
 }
 
 const MIN_SCALE = 0.1;
@@ -47,7 +47,7 @@ export const computeTransformationOnScale = (
 
   return {
     scale: clampValue(scale * factor, MIN_SCALE, MAX_SCALE),
-    translate: {
+    position: {
       // Compensate for the displacement by moving the point back under the cursor
       x: translate.x - dx,
       y: translate.y - dy,

@@ -21,13 +21,13 @@ export const diagramTransformationState = selector<ITransformation>({
   get: ({ get }) => {
     const scale = get(diagramScaleState);
     const translate = get(diagramTranslateState);
-    return { scale, translate };
+    return { scale, position: translate };
   },
   set: ({ set }, newValue) => {
     if (newValue instanceof DefaultValue) {
     } else {
       set(diagramScaleState, newValue.scale);
-      set(diagramTranslateState, newValue.translate);
+      set(diagramTranslateState, newValue.position);
     }
   },
 });

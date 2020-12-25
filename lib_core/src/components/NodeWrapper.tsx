@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import { useRecoilCallback, useRecoilValue } from 'recoil';
+import React, { useEffect } from 'react';
+import { SetterOrUpdater, useRecoilValue } from 'recoil';
 import { defaultNodeType } from '..';
 import { useNodeState } from '../hooks/nodeHooks';
-import { useDragAndZoom } from '../hooks/useDragAndZoom';
 import { useNotifyRef } from '../hooks/useNotifyRef';
-import { diagramScaleState } from '../states/diagramState';
+import { useNodeUserInteraction } from '../hooks/userInteractions/useNodeUserInteraction';
 import { nodeComponentDefinitionState } from '../states/nodesSettingsState';
+import { NodeState } from '../states/nodeState';
 
 export interface INodeWrapperProps {
   id: string;
@@ -16,36 +16,11 @@ export const NodeWrapper: React.FC<INodeWrapperProps> = (props) => {
   const nodeComponentDefinition = useRecoilValue(
     nodeComponentDefinitionState(node.type ?? defaultNodeType)
   );
-  const nodeRef = useNotifyRef<HTMLDivElement | null>(null);
-  const draggableRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    setNode((curValue) => {
-      if (curValue.ref !== nodeRef) {
-        return {
-          ...curValue,
-          ref: nodeRef,
-        };
-      } else return curValue;
-    });
-  }, [nodeRef, node.ref]);
-
-  const getScale = useRecoilCallback(({ snapshot }) => () => {
-    const scaleState = snapshot.getLoadable(diagramScaleState).contents;
-    return typeof scaleState === 'number' ? scaleState : 1;
-  });
-
-  const { transform, translate } = useDragAndZoom({
-    elemToAttachTo: draggableRef,
-    parentScale: getScale(),
-    initTranslate: node.position,
-  });
-
-  useEffect(() => {
-    setNode((currentNode) => {
-      return { ...currentNode, position: translate };
-    });
-  }, [translate]);
+  const nodeRef = useNodeRef(node, setNode);
+  const { transform, userInteractionElemRef } = useNodeUserInteraction(
+    node,
+    setNode
+  );
 
   return (
     <div
@@ -57,7 +32,7 @@ export const NodeWrapper: React.FC<INodeWrapperProps> = (props) => {
       ref={nodeRef}
     >
       <nodeComponentDefinition.component
-        ref={draggableRef}
+        ref={userInteractionElemRef}
         node={node}
         setNode={setNode}
         settings={nodeComponentDefinition.settings}
@@ -67,3 +42,22 @@ export const NodeWrapper: React.FC<INodeWrapperProps> = (props) => {
 };
 
 export const NodeWrapperMemo = React.memo(NodeWrapper);
+
+function useNodeRef(
+  node: NodeState,
+  setNode: SetterOrUpdater<NodeState>
+): React.MutableRefObject<HTMLDivElement | null> {
+  const nodeRef = useNotifyRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    setNode((curValue) => {
+      if (curValue.ref !== nodeRef) {
+        return {
+          ...curValue,
+          ref: nodeRef,
+        };
+      } else return curValue;
+    });
+  }, [nodeRef, node.ref]);
+
+  return nodeRef;
+}

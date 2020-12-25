@@ -9,15 +9,22 @@ import {
   ITransformation,
 } from '../utils';
 import { useNotifyRef } from './useNotifyRef';
+import {
+  allTouchTargetsContainsClass,
+  dragHandlers,
+  eventTargetContainsClass,
+  useTransformationStateUpdating,
+  useUserAbilityToSelectSwitcher,
+} from './userInteractions/common';
 
 export const useDragAndZoom = (
   props: IUseDragAndZoomProps
 ): IUseDragAndZoomResult => {
   // useState instead of reference cause the situation, when multiple gesture callback invocations go before state actually updates,
   // so those invocations will rely on old state data.
-  const state = useNotifyRef<ITransformation>({
-    scale: props.initScale ?? 1,
-    translate: props.initTranslate ?? { x: 0, y: 0 },
+  const stateRef = useNotifyRef<ITransformation>({
+    scale: props.scale ?? 1,
+    position: props.position ?? { x: 0, y: 0 },
   });
 
   const pinchState = useRef<IPinchState>({
@@ -26,26 +33,16 @@ export const useDragAndZoom = (
   });
 
   // Should trigger rendering on change, otherwise useEffect will not be invoked
-  const active = useNotifyRef(false);
+  const activeRef = useNotifyRef(false);
 
-  useEffect(() => {
-    if (!active.current) {
-      const scaleIsNotEqual =
-        props.initScale && state.current.scale !== props.initScale;
-      const translateIsNotEqual =
-        props.initTranslate &&
-        (state.current.translate.x !== props.initTranslate.x ||
-        state.current.translate.y !== props.initTranslate.y);
-      if (scaleIsNotEqual || translateIsNotEqual) {
-        state.current = {
-          scale: props.initScale ?? state.current.scale,
-          translate: props.initTranslate ?? state.current.translate,
-        };
-      }
-    }
-  }, [props.initTranslate, props.initScale]);
+  useTransformationStateUpdating(
+    activeRef.current,
+    stateRef,
+    props.scale,
+    props.position
+  );
 
-  const checkGestureEventTargetClasses = useCallback(
+  const cancelGesture = useCallback(
     (
       event:
         | TouchEvent
@@ -57,13 +54,13 @@ export const useDragAndZoom = (
         | PointerEvent
     ) => {
       if ('touches' in event) {
-        return allTouchTargetsContainsClass(
+        return !allTouchTargetsContainsClass(
           event,
           props.listenOnlyClass,
           props.ignoreClass
         );
       } else {
-        return eventTargetContainsClass(
+        return !eventTargetContainsClass(
           event.target,
           props.listenOnlyClass,
           props.ignoreClass
@@ -75,28 +72,14 @@ export const useDragAndZoom = (
 
   useGesture(
     {
-      onDrag: ({ delta, pinching }) => {
-        if (!active.current || pinching) {
-          return;
-        }
-        const parentScale = props.parentScale ?? 1;
-
-        state.current = {
-          scale: state.current.scale,
-          translate: {
-            x: state.current.translate.x + delta[0] / parentScale,
-            y: state.current.translate.y + delta[1] / parentScale,
-          },
-        };
-      },
-      onDragStart: ({ event }) => {
-        if (checkGestureEventTargetClasses(event)) {
-          active.current = true;
-        }
-      },
-      onDragEnd: () => (active.current = false),
+      ...dragHandlers(
+        activeRef,
+        stateRef,
+        undefined,
+        cancelGesture
+      ),
       onPinch: ({ da: [distance], origin }) => {
-        if (!active.current) {
+        if (!activeRef.current) {
           return;
         }
 
@@ -108,15 +91,15 @@ export const useDragAndZoom = (
         const diff = distance - pinchState.current.distance;
         if (Math.abs(diff) > 1 && props.elemToAttachTo.current) {
           const elWidth =
-            props.elemToAttachTo.current.clientWidth * state.current.scale;
+            props.elemToAttachTo.current.clientWidth * stateRef.current.scale;
           const targetElWidth = elWidth + diff;
           const factor = targetElWidth / elWidth;
 
           const scaleTransformation = computeTransformationOnScale(
             props.elemToAttachTo.current,
             { x: origin[0], y: origin[1] },
-            addPoints(state.current.translate, originDiff),
-            state.current.scale,
+            addPoints(stateRef.current.position, originDiff),
+            stateRef.current.scale,
             factor
           );
 
@@ -125,28 +108,28 @@ export const useDragAndZoom = (
             origin,
           };
 
-          state.current = scaleTransformation;
+          stateRef.current = scaleTransformation;
         } else {
           pinchState.current = {
             distance: pinchState.current.distance,
             origin,
           };
-          state.current = {
-            scale: state.current.scale,
-            translate: addPoints(state.current.translate, originDiff),
+          stateRef.current = {
+            scale: stateRef.current.scale,
+            position: addPoints(stateRef.current.position, originDiff),
           };
         }
       },
       onPinchStart: ({ da: [distance], origin, event }) => {
-        if (checkGestureEventTargetClasses(event)) {
+        if (cancelGesture(event)) {
           pinchState.current = {
             distance,
             origin,
           };
-          active.current = true;
+          activeRef.current = true;
         }
       },
-      onPinchEnd: () => (active.current = false),
+      onPinchEnd: () => (activeRef.current = false),
       onWheel: ({
         direction: [_, yDirection],
         event: { clientX, clientY },
@@ -159,11 +142,11 @@ export const useDragAndZoom = (
           const newTransformation = computeTransformationOnScale(
             props.elemToAttachTo.current,
             { x: clientX, y: clientY },
-            state.current.translate,
-            state.current.scale,
+            stateRef.current.position,
+            stateRef.current.scale,
             factor
           );
-          state.current = newTransformation;
+          stateRef.current = newTransformation;
         }
       },
     },
@@ -176,19 +159,19 @@ export const useDragAndZoom = (
     }
   );
 
-  useUserSelectSwitcher(
-    active.current,
+  useUserAbilityToSelectSwitcher(
+    activeRef.current,
     props.elemToAttachTo.current?.ownerDocument?.body
   );
 
   return {
     transform: generateTransform(
-      state.current.translate,
-      props.enableZoom ? state.current.scale : undefined
+      stateRef.current.position,
+      props.enableZoom ? stateRef.current.scale : undefined
     ),
-    scale: state.current.scale,
-    translate: state.current.translate,
-    active: active.current,
+    scale: stateRef.current.scale,
+    position: stateRef.current.position,
+    active: activeRef.current,
   };
 };
 
@@ -197,75 +180,19 @@ export interface IUseDragAndZoomProps {
   listenOnlyClass?: string;
   ignoreClass?: string;
   enableZoom?: boolean;
-  parentScale?: number;
-  initScale?: number;
-  initTranslate?: Point;
+  scale: number;
+  position: Point;
   enable?: boolean;
 }
 
 export interface IUseDragAndZoomResult {
   transform: string;
   scale: number;
-  translate: Point;
+  position: Point;
   active: boolean;
 }
 
 interface IPinchState {
   distance: number;
   origin: Vector2;
-}
-
-function allTouchTargetsContainsClass(
-  event: TouchEvent | React.TouchEvent<Element>,
-  listenOnlyClass: string | undefined,
-  ignoreClass: string | undefined
-): boolean {
-  for (let i = 0; i < event.touches.length; i++) {
-    if (
-      !eventTargetContainsClass(
-        event.touches[i].target,
-        listenOnlyClass,
-        ignoreClass
-      )
-    ) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-function eventTargetContainsClass(
-  eventTarget: EventTarget | null,
-  listenOnlyClass: string | undefined,
-  ignoreClass: string | undefined
-): boolean {
-  if (eventTarget && 'classList' in eventTarget) {
-    const targetElement = eventTarget as Element;
-    return (
-      (!listenOnlyClass || targetElement.classList.contains(listenOnlyClass)) &&
-      (!ignoreClass || !targetElement.classList.contains(ignoreClass))
-    );
-  } else return false;
-}
-
-function useUserSelectSwitcher(
-  active: boolean,
-  elementToSwitchUserSelectOn: HTMLElement | undefined
-) {
-  useEffect(() => {
-    if (!active || !elementToSwitchUserSelectOn) {
-      return;
-    }
-
-    elementToSwitchUserSelectOn.classList.add(
-      'react_fast_diagram_disabled_user_select'
-    );
-
-    return () => {
-      elementToSwitchUserSelectOn.classList.remove(
-        'react_fast_diagram_disabled_user_select'
-      );
-    };
-  }, [active, elementToSwitchUserSelectOn]);
 }

@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
-import { useRecoilCallback, useSetRecoilState } from 'recoil';
+import { useRecoilCallback, useRecoilState, useSetRecoilState } from 'recoil';
 import { LinksLayerMemorized } from './LinksLayer';
 import { NodesLayerMemorized } from './NodesLayer';
 import { diagramScaleState } from '../states/diagramState';
@@ -16,16 +16,18 @@ export interface IDiagramInnerProps {
 export const InnerDiagram = forwardRef<DiagramApi, IDiagramInnerProps>(
   (props, ref) => {
     const movableElementRef = useNotifyRef<HTMLDivElement | null>(null);
-    const setScale = useSetRecoilState(diagramScaleState);
-    const { transform, scale } = useDragAndZoom({
+    const [scale, setScale] = useRecoilState(diagramScaleState);
+    const { transform, scale: newscale } = useDragAndZoom({
       elemToAttachTo: movableElementRef,
       enableZoom: true,
       listenOnlyClass: 'react_fast_diagram_DiagramInner',
+      position: {x: 0, y: 0},
+      scale
     });
 
     useEffect(() => {
-      setScale(scale);
-    }, [scale]);
+      setScale(newscale);
+    }, [newscale]);
 
     // TODO: Move to states
     const addNode = useRecoilCallback(({ set }) => (newNode: NodeState) => {
