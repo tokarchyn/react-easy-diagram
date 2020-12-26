@@ -1,7 +1,7 @@
-import { atom, selector, selectorFamily, SetterOrUpdater } from 'recoil';
+import { atom, selectorFamily, SetterOrUpdater } from 'recoil';
 import { defaultNodeType, NodeState } from '..';
 import { NodeDefault } from '../components/NodeDefault';
-import { Dictionary, Optional } from '../types/common';
+import { Dictionary } from '../types/common';
 import { libraryPrefix } from './common';
 
 export const nodesSettingsState = atom<INodesSettingsInternal>({

@@ -2,7 +2,6 @@ import { atom, selector, selectorFamily } from 'recoil';
 import { LinkDefault } from '../components/LinkDefault';
 import { LinkStateExtended } from '../hooks/linkHooks';
 import { createCurvedLinkPathConstructor } from '../linkConstructors/curved';
-import { simpleLinkPathConstructor } from '../linkConstructors/simple';
 import { Dictionary } from '../types/common';
 import { libraryPrefix } from './common';
 import { defaultLinkType } from './linkState';

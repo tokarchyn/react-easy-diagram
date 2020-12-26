@@ -39,4 +39,4 @@ export interface LinkState {
 
 type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
-export interface LinkInitState extends Optional<LinkState, 'id'|'type'> {}
+export interface LinkInitState extends Optional<LinkState, 'id' | 'type'> {}

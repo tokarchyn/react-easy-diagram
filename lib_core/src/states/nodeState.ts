@@ -25,7 +25,7 @@ export interface NodeState {
   ports?: Dictionary<Port>;
   ref?: MutableRefObject<HTMLDivElement | null>;
   type?: string;
-  extra?: any; 
+  extra?: any;
 }
 
 export interface Port {

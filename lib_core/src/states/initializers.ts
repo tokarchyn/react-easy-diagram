@@ -11,14 +11,8 @@ import {
   nodeWithIdState,
 } from '..';
 import { v4 as uuidv4 } from 'uuid';
-import {
-  INodesSettings,
-  nodesSettingsState,
-} from './nodesSettingsState';
-import {
-  ILinksSettings,
-  linksSettingsState,
-} from './linksSettingsState';
+import { INodesSettings, nodesSettingsState } from './nodesSettingsState';
+import { ILinksSettings, linksSettingsState } from './linksSettingsState';
 
 export function initializeDiagram(
   snap: MutableSnapshot,

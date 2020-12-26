@@ -10,12 +10,15 @@ export const useDiagram = (
 ) => {
   const apiRef = useNotifyRef<DiagramApi | null>(null);
 
-  const obj = useMemo(() => ({
-    Diagram: () => (
-      <Diagram ref={apiRef} initState={initState} settings={settings} />
-    ),
-    apiRef,
-  }), [])
+  const obj = useMemo(
+    () => ({
+      Diagram: () => (
+        <Diagram ref={apiRef} initState={initState} settings={settings} />
+      ),
+      apiRef,
+    }),
+    []
+  );
 
   return obj;
 };
