@@ -1,7 +1,4 @@
-export interface Point {
-  x: number;
-  y: number;
-}
+export type Point = [number,number];
 
 export interface Dictionary<TValue> {
   [key: string]: TValue;

@@ -54,24 +54,15 @@ const initState: IDiagramInitState = {
   nodes: [
     {
       id: 'Node 1',
-      position: {
-        x: 300,
-        y: 300,
-      },
+      position: [300, 300],
     },
     {
       id: 'Node 2',
-      position: {
-        x: 520,
-        y: 400,
-      },
+      position: [520, 400],
     },
     {
       id: 'Node 3',
-      position: {
-        x: 520,
-        y: 200,
-      },
+      position: [520, 200],
     },
   ],
   links: [

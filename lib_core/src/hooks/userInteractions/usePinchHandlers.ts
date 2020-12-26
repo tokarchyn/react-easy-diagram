@@ -8,6 +8,7 @@ import {
   addPoints,
   computeTransformationOnScale,
   ITransformation,
+  subtractPoints,
 } from '../../utils';
 
 type PinchEvent =
@@ -43,10 +44,7 @@ export function usePinchHandlers(
           return;
         }
 
-        const originDiff = {
-          x: origin[0] - pinchState.current.origin[0],
-          y: origin[1] - pinchState.current.origin[1],
-        };
+        const originDiff = subtractPoints(origin, pinchState.current.origin);
 
         const diff = distance - pinchState.current.distance;
         if (Math.abs(diff) > 1 && elemToAttachToRef.current) {
@@ -57,7 +55,7 @@ export function usePinchHandlers(
 
           const scaleTransformation = computeTransformationOnScale(
             elemToAttachToRef.current,
-            { x: origin[0], y: origin[1] },
+            origin,
             addPoints(stateRef.current.position, originDiff),
             stateRef.current.scale,
             factor

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Tune } from '@material-ui/icons';
 import Card from '@material-ui/core/Card';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
-import { IDiagramInitState } from '@react-easy-diagram/core';
+import { IDiagramInitState, LinkInitState, NodeInitState } from '@react-easy-diagram/core';
 
 const useStyles = makeStyles(() => ({
   form: {
@@ -26,15 +26,15 @@ const useStyles = makeStyles(() => ({
 }));
 
 const generateLargeDiagram = (colNum: number, rowNum: number): IDiagramInitState => {
-  const nodes = [];
-  const links = [];
+  const nodes : NodeInitState[] = [];
+  const links : LinkInitState[] = [];
   const getNodeId = (i: number,j: number) => `node_${i}_${j}`;
 
   for (let i = 0; i < colNum; i++) {
     for (let j = 0; j < rowNum; j++) {
       nodes.push({
         id: getNodeId(i,j),
-        position: { x: i * 120, y: j * 120 },
+        position: [i * 120, j * 120 ],
       });
       if (i - 1 >= 0) {
         links.push({

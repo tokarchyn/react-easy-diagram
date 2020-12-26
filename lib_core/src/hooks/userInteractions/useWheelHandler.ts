@@ -21,7 +21,7 @@ export function useWheelHandler(
           }
           const newTransformation = computeTransformationOnScale(
             elemToAttachToRef.current,
-            { x: clientX, y: clientY },
+            [clientX, clientY],
             stateRef.current.position,
             stateRef.current.scale,
             factor

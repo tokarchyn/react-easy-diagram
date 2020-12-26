@@ -1,7 +1,7 @@
 import { Point } from './types/common';
 
 export const generateTransform = (translate: Point, scale?: number): string => {
-  const translatePart = `translate(${translate.x}px, ${translate.y}px)`;
+  const translatePart = `translate(${translate[0]}px, ${translate[1]}px)`;
   if (scale) {
     const scalePart = `scale(${scale})`;
     return translatePart + ' ' + scalePart;
@@ -27,8 +27,8 @@ export const computeTransformationOnScale = (
   const rect = target.getBoundingClientRect();
 
   // Get mouse position related to target
-  const mouseXPos = midpoint.x - rect.left;
-  const mouseYPos = midpoint.y - rect.top;
+  const mouseXPos = midpoint[0] - rect.left;
+  const mouseYPos = midpoint[1] - rect.top;
 
   // Now consider the point under the mouse cursor. Every pixel above and to the
   // left of the cursor has become *factor* larger. This displaces the point under the
@@ -36,16 +36,16 @@ export const computeTransformationOnScale = (
   // Note that the target might have been moved in the canvas before the zooming operation, so the
   // cursor's horizontal position in the target is mouseXPos - transformation.translation.x before zooming,
   // and likewise for the vertical position.
-  const dx = (mouseXPos - translate.x) * (factor - 1);
-  const dy = (mouseYPos - translate.y) * (factor - 1);
+  const dx = (mouseXPos - translate[0]) * (factor - 1);
+  const dy = (mouseYPos - translate[1]) * (factor - 1);
 
   return {
     scale: clampValue(scale * factor, MIN_SCALE, MAX_SCALE),
-    position: {
+    position: [
       // Compensate for the displacement by moving the point back under the cursor
-      x: translate.x - dx,
-      y: translate.y - dy,
-    },
+      translate[0] - dx,
+      translate[1] - dy,
+    ],
   };
 };
 
@@ -62,28 +62,28 @@ function clampFactorForTransformation(factor: number, currentScale: number) {
   } else return factor;
 }
 
-export const roundPoint = (point: Point) => ({
-  x: Math.round(point.x),
-  y: Math.round(point.y),
-});
+export const roundPoint = (point: Point) =>  ([
+  Math.round(point[0]),
+  Math.round(point[1]),
+]);
 
-export const addPoints = (a: Point, b: Point): Point => ({
-  x: a.x + b.x,
-  y: a.y + b.y,
-});
+export const addPoints = (a: Point, b: Point): Point => ([
+  a[0] + b[0],
+  a[1] + b[1],
+]);
 
-export const subtractPoints = (a: Point, b: Point): Point => ({
-  x: a.x - b.x,
-  y: a.y - b.y,
-});
+export const subtractPoints = (a: Point, b: Point): Point => ([
+  a[0] - b[0],
+  a[1] - b[1],
+]);
 
-export const multiplyPoint = (a: Point, m: number): Point => ({
-  x: a.x * m,
-  y: a.y * m,
-});
+export const multiplyPoint = (a: Point, m: number): Point => ([
+  a[0] * m,
+  a[1] * m,
+]);
 
 export const arePointsEqual = (a: Point, b: Point): boolean =>
-  a === b || (a && b && a.x === b.x && a.y === b.y);
+  a === b || (a && b && a[0] === b[0] && a[1] === b[1]);
 
 export const areTranformationsEqual = (
   a: ITransformation,

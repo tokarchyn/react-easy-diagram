@@ -5,10 +5,7 @@ import { ITransformation } from '../utils';
 
 export const diagramTranslateState = atom<Point>({
   key: `${libraryPrefix}_DiagramTranslate`,
-  default: {
-    x: 0,
-    y: 0,
-  },
+  default: [0,0]
 });
 
 export const diagramScaleState = atom<number>({

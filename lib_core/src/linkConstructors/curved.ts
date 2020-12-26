@@ -52,8 +52,8 @@ const generateCurvePath = (startPoint: Point, endPoint: Point) => {
   const roundedStart = roundPoint(startPoint);
   const roundedEnd = roundPoint(endPoint);
 
-  const start = `${roundedStart.x}, ${roundedStart.y}`;
-  const end = `${roundedEnd.x}, ${roundedEnd.y}`;
+  const start = `${roundedStart[0]}, ${roundedStart[1]}`;
+  const end = `${roundedEnd[0]}, ${roundedEnd[1]}`;
 
   // if (options.type === 'bezier' && (options.inputAlignment || options.outputAlignment)) {
   //   let startControl = end;
@@ -75,7 +75,7 @@ const generateCurvePath = (startPoint: Point, endPoint: Point) => {
   // }
 
   // connecting with a standard curve without any alignment
-  const ctrl = `${roundedEnd.x}, ${roundedStart.y}`;
+  const ctrl = `${roundedEnd[0]}, ${roundedStart[1]}`;
 
   return `M ${start} Q ${ctrl}, ${end}`;
 };

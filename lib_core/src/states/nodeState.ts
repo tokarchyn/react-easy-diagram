@@ -9,12 +9,13 @@ export const nodesIdsState = atom<string[]>({
 });
 
 export const defaultNodeType = 'default';
+export const defaultPortType = 'default';
 
 export const nodeWithIdState = atomFamily<NodeState, string>({
   key: `${libraryPrefix}_Node`,
   default: (id) => ({
     id: id,
-    position: { x: 0, y: 0 },
+    position: [0,0],
     type: defaultNodeType,
   }),
 });
@@ -30,6 +31,9 @@ export interface NodeState {
 
 export interface Port {
   id: string;
+  label?: string;
+  type?: string;
 }
 
-export interface NodeInitState extends Omit<NodeState, 'ref'> {}
+export interface NodeInitState
+  extends Omit<NodeState, 'ref'> {}

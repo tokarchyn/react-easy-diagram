@@ -30,16 +30,16 @@ export function useDragHandlers(
         if ('scale' in stateRef.current) {
           stateRef.current = {
             scale: stateRef.current.scale,
-            position: {
-              x: stateRef.current.position.x + delta[0] / parentScale,
-              y: stateRef.current.position.y + delta[1] / parentScale,
-            },
+            position: [
+              stateRef.current.position[0] + delta[0] / parentScale,
+              stateRef.current.position[1] + delta[1] / parentScale,
+            ],
           };
         } else {
-          stateRef.current = {
-            x: stateRef.current.x + delta[0] / parentScale,
-            y: stateRef.current.y + delta[1] / parentScale,
-          };
+          stateRef.current = [
+            stateRef.current[0] + delta[0] / parentScale,
+            stateRef.current[1] + delta[1] / parentScale,
+          ];
         }
       },
       onDragStart: ({ event }) => {
