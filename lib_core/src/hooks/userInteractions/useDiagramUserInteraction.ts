@@ -9,9 +9,10 @@ import {
   ITransformation,
 } from '../../utils';
 import { useNotifyRef } from '../useNotifyRef';
-import { useUserAbilityToSelectSwitcher } from './common';
 import { useDragHandlers } from './useDragHandlers';
 import { usePinchHandlers } from './usePinchHandlers';
+import { useRefAndExternalStatesSync } from './useRefAndExternalStatesSync';
+import { useUserAbilityToSelectSwitcher } from './useUserAbilityToSelectSwitcher';
 import { useWheelHandler } from './useWheelHandler';
 
 export const useDiagramUserInteraction = (
@@ -27,11 +28,12 @@ export const useDiagramUserInteraction = (
   const activeRef = useNotifyRef(false);
   const userInteractionElemRef = useRef<HTMLDivElement>(null);
 
-  useTransformationSync(
+  useRefAndExternalStatesSync(
     activeRef.current,
     stateRef,
     transformation,
-    setTransformation
+    setTransformation,
+    areTranformationsEqual
   );
 
   const cancelGesture = useCallback(
@@ -101,45 +103,4 @@ export interface IUseDragAndZoomResult {
   userInteractionElemRef: React.RefObject<HTMLDivElement>;
   transform: string;
   active: boolean;
-}
-
-function useTransformationSync(
-  active: boolean,
-  internalTransformationRef: React.MutableRefObject<ITransformation>,
-  externalTransformation: ITransformation,
-  setExternalTransformation: (
-    setter: (currentTransformation: ITransformation) => ITransformation
-  ) => void
-) {
-  useEffect(() => {
-    if (!active) {
-      if (
-        !areTranformationsEqual(
-          internalTransformationRef.current,
-          externalTransformation
-        )
-      ) {
-        internalTransformationRef.current = {
-          scale: externalTransformation.scale,
-          position: externalTransformation.position,
-        };
-      }
-    } else {
-      setExternalTransformation((currentTransformation) => {
-        if (
-          !areTranformationsEqual(
-            currentTransformation,
-            internalTransformationRef.current
-          )
-        ) {
-          return internalTransformationRef.current;
-        } else return currentTransformation;
-      });
-    }
-  }, [
-    active,
-    internalTransformationRef.current,
-    externalTransformation,
-    setExternalTransformation,
-  ]);
 }
