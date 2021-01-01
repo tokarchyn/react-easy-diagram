@@ -44,8 +44,8 @@
 }
 
 .react_fast_diagram_Node_Default {
-  width: 100px;
-  height: 100px;
+  min-width: 100px;
+  min-height: 100px;
   background-color: white;
   border: 2px solid WhiteSmoke;
   display: flex;
@@ -62,4 +62,13 @@
 
 .react_fast_diagram_disabled_user_select {
   user-select: none;
+}
+
+.react_fast_diagram_Port_Default {
+  height: 25px;
+  width: 25px;
+  border-color: wheat;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
 }
