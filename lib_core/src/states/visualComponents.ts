@@ -22,14 +22,12 @@ export class VisualComponents<
     Object.entries(obj.components).forEach(([key, value]) => {
       if ('component' in value) {
         this.components[key] = {
-          component: value.component,
-          // component: observer(value.component),
+          component: observer(value.component),
           settings: value.settings,
         };
       } else {
         this.components[key] = {
-          component: value,
-          // component: observer(value),
+          component: observer(value),
         };
       }
     });

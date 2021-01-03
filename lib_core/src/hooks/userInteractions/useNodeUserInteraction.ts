@@ -11,7 +11,7 @@ export const useNodeUserInteraction = (
   nodeState: NodeState,
   enable?: boolean
 ): IUseNodeUserInteractionResult => {
-  const { diagramStore } = useRootStore();
+  const { diagramState: diagramStore } = useRootStore();
 
   // Should trigger rendering on change, otherwise useUserSelectSwitcher will not be invoked
   const activeRef = useNotifyRef(false);

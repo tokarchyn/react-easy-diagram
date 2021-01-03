@@ -31,7 +31,7 @@ const linkDefaultSettings: ILinkDefaultSettings = {
 export function createLinkDefault(
   settings?: Partial<ILinkDefaultSettings>
 ): IComponentDefinition<
-  ILinkVisualComponentProps<ILinkDefaultSettings>,
+  ILinkVisualComponentProps,
   ILinkDefaultSettings
 > {
   const finaleSettings = {

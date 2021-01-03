@@ -1,5 +1,5 @@
 import { Point } from '../types/common';
-import { autorun, makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import { RootStore } from './rootStore';
 import { IUserInteractionTransformation } from '../hooks/userInteractions/common';
 import { generateTransform } from '../utils';
@@ -10,12 +10,8 @@ export class DiagramState implements IUserInteractionTransformation {
   rootStore: RootStore;
 
   constructor(rootStore: RootStore) {
+    makeAutoObservable(this)
     this.rootStore = rootStore;
-    makeAutoObservable(this, { rootStore: false })
-
-    autorun(() =>{
-      console.log(`${this.offset}`);
-    });
   }
 
   setOffset = (newOffset: Point) => {

@@ -1,12 +1,13 @@
-import { LinkState } from '../states/linkState';
+import { ILinkPathConstructor } from '../states/linksSettingsState';
 import { Point } from '../types/common';
 import { roundPoint } from '../utils';
 
 function curvedLinkPathConstructorInner(
-  state: LinkState,
+  source: Point,
+  target: Point,
   settings: ICurvedLinkPathConstructorSettings
 ): string {
-  const path = generateCurvePath(state.sourcePoint, state.targetPoint);
+  const path = generateCurvePath(source, target);
 
   return path;
 }
@@ -17,10 +18,11 @@ const defualtSettings: ICurvedLinkPathConstructorSettings = {};
 
 export function createCurvedLinkPathConstructor(
   settings?: ICurvedLinkPathConstructorSettings
-) {
-  return (state: LinkState) =>
+): ILinkPathConstructor {
+  return (source: Point, target: Point) =>
     curvedLinkPathConstructorInner(
-      state,
+      source,
+      target,
       settings ? { ...defualtSettings, ...settings } : defualtSettings
     );
 }

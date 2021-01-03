@@ -7,18 +7,18 @@ import { v4 } from 'uuid';
 export class NodesStore {
   nodes: Dictionary<NodeState> = {};
 
-  // rootStore: RootStore;
+  rootStore: RootStore;
 
-  constructor() {
+  constructor(rootStore: RootStore) {
     makeAutoObservable(this);
-    // this.rootStore = rootStore;
+    this.rootStore = rootStore;
   }
 
   fromJson = (newNodes: INodeState[]) => {
     this.nodes = {};
     if (newNodes) {
       newNodes.forEach(node => {
-        const newNode = new NodeState(node.id);
+        const newNode = new NodeState(this.rootStore, node.id);
         newNode.fromJson(node);
         this.nodes[newNode.id] = newNode;
       });
@@ -29,7 +29,7 @@ export class NodesStore {
     const id = node.id ?? v4();
 
     if (!this.nodes[id]) {
-      this.nodes[id] = new NodeState(id);
+      this.nodes[id] = new NodeState(this.rootStore, id);
     }
     
     this.nodes[id].fromJson(node);

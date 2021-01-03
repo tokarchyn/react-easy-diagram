@@ -12,7 +12,7 @@ import { useWheelHandler } from './useWheelHandler';
 export const useDiagramUserInteraction = (
   enable?: boolean
 ): IUseDragAndZoomResult => {
-  const { diagramStore } = useRootStore();
+  const { diagramState: diagramStore } = useRootStore();
   const activeRef = useNotifyRef(false);
   const userInteractionElemRef = useRef<HTMLDivElement>(null);
 

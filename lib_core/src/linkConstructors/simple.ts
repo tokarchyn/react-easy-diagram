@@ -1,9 +1,10 @@
-import { LinkState } from '../states/linkState';
+import { Point } from '../types/common';
 
-export function simpleLinkPathConstructor(state: LinkState): string {
-  const fromPoint = state.sourcePoint;
-  const toPoint = state.targetPoint;
-  const path = `M ${fromPoint[0]} ${fromPoint[1]}, ${toPoint[0]} ${toPoint[1]}`;
+export function simpleLinkPathConstructor(
+  source: Point,
+  target: Point
+): string {
+  const path = `M ${source[0]} ${source[1]}, ${target[0]} ${target[1]}`;
 
   return path;
 }

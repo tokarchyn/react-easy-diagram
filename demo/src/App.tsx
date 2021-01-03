@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { IDiagramInitState, useDiagram } from '@react-easy-diagram/core';
+import { createCurvedLinkPathConstructor, createLinkDefault, IDiagramInitState, useDiagram } from '@react-easy-diagram/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import { ControlPanel } from './ControlPanel';
@@ -22,7 +22,15 @@ const useStyles = makeStyles(() => ({
 
 export const App = () => {
   const classes = useStyles();
-  const { Diagram, apiRef } = useDiagram(initState);
+  const { Diagram, apiRef } = useDiagram(initState, {
+    links: {
+      components: {
+        default: createLinkDefault(),
+        attention: createLinkDefault({color: 'red'})
+      },
+      pathConstructor: createCurvedLinkPathConstructor()
+    }
+  });
 
   return (
     <Box className={classes.diagram}>
@@ -40,32 +48,32 @@ const initState: IDiagramInitState = {
       id: 'Node 1',
       position: [300, 300],
     },
-    // {
-    //   id: 'Node 2',
-    //   position: [520, 400],
-    // },
-    // {
-    //   id: 'Node 3',
-    //   position: [520, 200],
-    // },
+    {
+      id: 'Node 2',
+      position: [520, 400],
+    },
+    {
+      id: 'Node 3',
+      position: [520, 200],
+    },
   ],
   links: [
-    // {
-    //   source: {
-    //     nodeId: 'Node 2',
-    //   },
-    //   target: {
-    //     nodeId: 'Node 1',
-    //   },
-    //   componentType: 'attention',
-    // },
-    // {
-    //   source: {
-    //     nodeId: 'Node 2',
-    //   },
-    //   target: {
-    //     nodeId: 'Node 3',
-    //   },
-    // },
+    {
+      source: {
+        nodeId: 'Node 2',
+      },
+      target: {
+        nodeId: 'Node 1',
+      },
+      componentType: 'attention',
+    },
+    {
+      source: {
+        nodeId: 'Node 2',
+      },
+      target: {
+        nodeId: 'Node 3',
+      },
+    },
   ],
 };

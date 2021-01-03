@@ -5,9 +5,5 @@ export * from './states';
 export * from './types';
 export * from './utils';
 
-import {enableLogging} from 'mobx-logger';
-
-// optional
-// const config = {...};
-
-enableLogging();
+// import {enableLogging} from 'mobx-logger';
+// enableLogging();

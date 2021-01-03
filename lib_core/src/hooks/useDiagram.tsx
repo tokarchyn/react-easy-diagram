@@ -1,10 +1,9 @@
 import React, { useMemo } from 'react';
 import {
   Diagram,
-  IDiagramInitState,
-  IDiagramSetting,
+  IDiagramInitState
 } from '../components/Diagram';
-import { DiagramApi } from '../states/diagramApi';
+import { DiagramApi, IDiagramSetting } from '../states/diagramApi';
 import { useNotifyRef } from './useNotifyRef';
 
 export const useDiagram = (

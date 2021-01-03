@@ -27,6 +27,11 @@ export class LinkState {
     this.extra = obj.extra;
   }
 
+  get path() : string {
+    const {linksSettings} = this.rootStore;
+    return linksSettings.pathConstructor(this.sourcePoint, this.targetPoint);
+  }
+
   get sourcePoint() : Point {
     return this.getEndpointPoint(this.source);
   }
