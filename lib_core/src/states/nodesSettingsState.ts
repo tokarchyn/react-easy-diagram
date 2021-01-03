@@ -17,7 +17,7 @@ export class NodesSettings {
     makeAutoObservable(this);
   }
 
-  fromJson = (obj: INodesSettingsObject) => {
+  fromJson = (obj: INodesSettings) => {
     this.visualComponents.fromJson(obj);
   }
 }
@@ -27,5 +27,5 @@ export interface INodeVisualComponentProps<TSettings extends {} = {}>
   draggableRef: React.RefObject<any>;
 }
 
-export interface INodesSettingsObject
+export interface INodesSettings
   extends IVisualComponentsObject<INodeVisualComponentProps> {}

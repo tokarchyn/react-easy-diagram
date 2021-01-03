@@ -1,6 +1,6 @@
 import { componentDefaultType, Dictionary, Point } from '../types/common';
 import { makeAutoObservable } from 'mobx';
-import { IPortStateObject, PortState } from './portState';
+import { IPortState, PortState } from './portState';
 import { v4 } from 'uuid';
 import { generateTransform } from '../utils';
 import { RootStore } from './rootStore';
@@ -54,7 +54,7 @@ export class NodeState {
 export interface INodeState {
   id?: string;
   position: Point;
-  ports?: Dictionary<IPortStateObject>;
+  ports?: Dictionary<IPortState>;
   componentType?: string;
   extra?: any;
 }

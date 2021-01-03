@@ -20,7 +20,7 @@ export class LinksSettings {
     makeAutoObservable(this);
   }
 
-  fromJson = (obj: ILinksSettingsObject) => {
+  fromJson = (obj: ILinksSettings) => {
     this.visualComponents.fromJson(obj);
     this.pathConstructor = obj.pathConstructor;
   };
@@ -32,7 +32,7 @@ export interface ILinkVisualComponentProps<TSettings extends {} = {}>
   path: string;
 }
 
-export interface ILinksSettingsObject
+export interface ILinksSettings
   extends IVisualComponentsObject<ILinkVisualComponentProps> {
   pathConstructor: ILinkPathConstructor;
 }

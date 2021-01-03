@@ -1,4 +1,4 @@
-import { ILinksSettingsObject, INodesSettingsObject } from '.';
+import { ILinksSettings, INodesSettings } from '.';
 import { ILinkState } from './linkState';
 import { INodeState } from './nodeState';
 import { RootStore } from './rootStore';
@@ -27,6 +27,6 @@ export class DiagramApi {
 
 export interface IDiagramSetting {
   // common?: ICommonSettings;
-  nodes?: INodesSettingsObject;
-  links?: ILinksSettingsObject;
+  nodes?: INodesSettings;
+  links?: ILinksSettings;
 }
