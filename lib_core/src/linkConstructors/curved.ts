@@ -1,17 +1,12 @@
-import {
-  LinkStateExtended,
-} from '../hooks/linkHooks';
+import { LinkState } from '../states/linkState';
 import { Point } from '../types/common';
 import { roundPoint } from '../utils';
-import { getEndpointPoint } from './common';
 
 function curvedLinkPathConstructorInner(
-  state: LinkStateExtended,
+  state: LinkState,
   settings: ICurvedLinkPathConstructorSettings
 ): string {
-  const fromPoint = getEndpointPoint(state.source);
-  const toPoint = getEndpointPoint(state.target);
-  const path = generateCurvePath(fromPoint, toPoint);
+  const path = generateCurvePath(state.sourcePoint, state.targetPoint);
 
   return path;
 }
@@ -23,7 +18,7 @@ const defualtSettings: ICurvedLinkPathConstructorSettings = {};
 export function createCurvedLinkPathConstructor(
   settings?: ICurvedLinkPathConstructorSettings
 ) {
-  return (state: LinkStateExtended) =>
+  return (state: LinkState) =>
     curvedLinkPathConstructorInner(
       state,
       settings ? { ...defualtSettings, ...settings } : defualtSettings

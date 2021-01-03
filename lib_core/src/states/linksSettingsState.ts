@@ -1,72 +1,39 @@
-import { atom, selector, selectorFamily } from 'recoil';
 import { LinkDefault } from '../components/LinkDefault';
-import { LinkStateExtended } from '../hooks/linkHooks';
+import {
+  IVisualComponentProps,
+  IVisualComponentsObject,
+  VisualComponents,
+} from './visualComponents';
+import { makeAutoObservable } from 'mobx';
+import { LinkState } from './linkState';
 import { createCurvedLinkPathConstructor } from '../linkConstructors/curved';
-import { Dictionary } from '../types/common';
-import { libraryPrefix } from './common';
-import { defaultLinkType } from './linkState';
 
-export const linksSettingsState = atom<ILinksSettingsInternal>({
-  key: `${libraryPrefix}_LinksSettings`,
-  default: {
-    defaultLinkType: defaultLinkType,
-    linkComponents: {
-      default: LinkDefault,
-    },
-    pathConstructor: createCurvedLinkPathConstructor(),
-  },
-});
+export class LinksSettings {
+  pathConstructor: ILinkPathConstructor = createCurvedLinkPathConstructor();
+  visualComponents: VisualComponents<
+    LinkState,
+    ILinkVisualComponentProps
+  > = new VisualComponents<LinkState, ILinkVisualComponentProps>(LinkDefault);
 
-export const linkComponentDefinitionState = selectorFamily<
-  ILinkComponentDefinition,
-  string | undefined
->({
-  key: `${libraryPrefix}_LinkComponentDefinition`,
-  get: (componentType) => ({ get }) => {
-    const settings = get(linksSettingsState);
-    componentType = componentType ?? defaultLinkType;
+  constructor() {
+    makeAutoObservable(this);
+  }
 
-    const componentDefinition =
-      componentType in settings.linkComponents
-        ? settings.linkComponents[componentType]
-        : settings.linkComponents[defaultLinkType];
+  fromJson = (obj: ILinksSettingsObject) => {
+    this.visualComponents.fromJson(obj);
+    this.pathConstructor = obj.pathConstructor;
+  }
+}
 
-    return 'component' in componentDefinition
-      ? componentDefinition
-      : {
-          component: componentDefinition,
-        };
-  },
-});
+export interface ILinkVisualComponentProps<TSettings = {}>
+  extends IVisualComponentProps<LinkState, TSettings> {
+  draggableRef: React.RefObject<any>;
+  path: string;
+}
 
-export const linkPathConstructorState = selector<ILinkPathConstructor>({
-  key: `${libraryPrefix}_LinkPathContructor`,
-  get: ({ get }) => {
-    const settings = get(linksSettingsState);
-    return settings.pathConstructor;
-  },
-});
-
-export interface ILinksSettingsInternal {
-  defaultLinkType: string;
-  linkComponents: Dictionary<LinkComponent | ILinkComponentDefinition>;
+export interface ILinksSettingsObject
+  extends IVisualComponentsObject<ILinkVisualComponentProps> {
   pathConstructor: ILinkPathConstructor;
 }
 
-export interface ILinksSettings extends Partial<ILinksSettingsInternal> {}
-
-export type LinkComponent<TSettings = {}> = React.ForwardRefExoticComponent<
-  ILinkComponentProps<TSettings> & React.RefAttributes<any>
->;
-
-export interface ILinkComponentDefinition<TSettings = {}> {
-  component: LinkComponent<TSettings>;
-  settings?: TSettings;
-}
-
-export interface ILinkComponentProps<TSettings = {}> {
-  path: string;
-  settings?: TSettings;
-}
-
-export type ILinkPathConstructor = (state: LinkStateExtended) => string;
+export type ILinkPathConstructor = (state: LinkState) => string;

@@ -1,40 +1,20 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useContext, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
 import { WebKitGestureEvent } from 'react-use-gesture/dist/types';
-import { useRecoilState } from 'recoil';
-import { diagramTransformationState } from '../../states/diagramState';
-import {
-  areTranformationsEqual,
-  generateTransform,
-  ITransformation,
-} from '../../utils';
+import { RootStoreContext } from '../../components/Diagram';
 import { useNotifyRef } from '../useNotifyRef';
+import { useRootStore } from '../useRootStore';
 import { useDragHandlers } from './useDragHandlers';
 import { usePinchHandlers } from './usePinchHandlers';
-import { useRefAndExternalStatesSync } from './useRefAndExternalStatesSync';
 import { useUserAbilityToSelectSwitcher } from './useUserAbilityToSelectSwitcher';
 import { useWheelHandler } from './useWheelHandler';
 
 export const useDiagramUserInteraction = (
   enable?: boolean
 ): IUseDragAndZoomResult => {
-  const [transformation, setTransformation] = useRecoilState(
-    diagramTransformationState
-  );
-  const stateRef = useNotifyRef<ITransformation>({
-    scale: transformation.scale,
-    position: transformation.position,
-  });
+  const { diagramStore } = useRootStore();
   const activeRef = useNotifyRef(false);
   const userInteractionElemRef = useRef<HTMLDivElement>(null);
-
-  useRefAndExternalStatesSync(
-    activeRef.current,
-    stateRef,
-    transformation,
-    setTransformation,
-    areTranformationsEqual
-  );
 
   const cancelGesture = useCallback(
     (
@@ -52,7 +32,7 @@ export const useDiagramUserInteraction = (
 
   const dragHandlers = useDragHandlers(
     activeRef,
-    stateRef,
+    diagramStore,
     undefined,
     cancelGesture
   );
@@ -60,15 +40,14 @@ export const useDiagramUserInteraction = (
   const pinchHandlers = usePinchHandlers(
     userInteractionElemRef,
     activeRef,
-    stateRef,
+    diagramStore,
     cancelGesture
   );
 
   const wheelHandler = useWheelHandler(
     userInteractionElemRef,
     activeRef,
-    stateRef,
-    setTransformation
+    diagramStore
   );
 
   useGesture(
@@ -91,10 +70,7 @@ export const useDiagramUserInteraction = (
 
   return {
     userInteractionElemRef,
-    transform: generateTransform(
-      stateRef.current.position,
-      stateRef.current.scale
-    ),
+    transform: diagramStore.transformString,
     active: activeRef.current,
   };
 };

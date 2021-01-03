@@ -1,59 +1,31 @@
-import { atom, selectorFamily, SetterOrUpdater } from 'recoil';
-import { defaultNodeType, NodeState } from '..';
+import { makeAutoObservable } from 'mobx';
 import { NodeDefault } from '../components/NodeDefault';
-import { Dictionary } from '../types/common';
-import { libraryPrefix } from './common';
+import { NodeState } from './nodeState';
+import {
+  IVisualComponentProps,
+  IVisualComponentsObject,
+  VisualComponents,
+} from './visualComponents';
 
-export const nodesSettingsState = atom<INodesSettingsInternal>({
-  key: `${libraryPrefix}_NodesSettings`,
-  default: {
-    defaultNodeType: defaultNodeType,
-    nodeComponents: {
-      default: NodeDefault,
-    },
-  },
-});
+export class NodesSettings {
+  visualComponents: VisualComponents<
+    NodeState,
+    INodeVisualComponentProps
+  > = new VisualComponents<NodeState, INodeVisualComponentProps>(NodeDefault);
 
-export const nodeComponentDefinitionState = selectorFamily<
-  INodeComponentDefinition,
-  string | undefined
->({
-  key: `${libraryPrefix}_NodeComponentDefinition`,
-  get: (componentType) => ({ get }) => {
-    const settings = get(nodesSettingsState);
-    componentType = componentType ?? defaultNodeType;
+  constructor() {
+    makeAutoObservable(this);
+  }
 
-    const componentDefinition =
-      componentType in settings.nodeComponents
-        ? settings.nodeComponents[componentType]
-        : settings.nodeComponents[defaultNodeType];
-
-    return 'component' in componentDefinition
-      ? componentDefinition
-      : {
-          component: componentDefinition,
-        };
-  },
-});
-
-export interface INodesSettingsInternal {
-  defaultNodeType: string;
-  nodeComponents: Dictionary<NodeComponent | INodeComponentDefinition>;
+  fromJson = (obj: INodesSettingsObject) => {
+    this.visualComponents.fromJson(obj);
+  }
 }
 
-export interface INodesSettings extends Partial<INodesSettingsInternal> {}
-
-export type NodeComponent<TSettings = {}> = React.ForwardRefExoticComponent<
-  INodeProps<TSettings> & React.RefAttributes<any>
->;
-
-export interface INodeComponentDefinition<TSettings = {}> {
-  component: NodeComponent<TSettings>;
-  settings?: TSettings;
+export interface INodeVisualComponentProps<TSettings extends {} = {}>
+  extends IVisualComponentProps<NodeState, TSettings> {
+  draggableRef: React.RefObject<any>;
 }
 
-export interface INodeProps<TSettings = {}> {
-  node: NodeState;
-  setNode: SetterOrUpdater<NodeState>;
-  settings?: TSettings;
-}
+export interface INodesSettingsObject
+  extends IVisualComponentsObject<INodeVisualComponentProps> {}

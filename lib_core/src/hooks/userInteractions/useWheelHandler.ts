@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 import { Handler } from 'react-use-gesture/dist/types';
 import { computeTransformationOnScale, ITransformation } from '../../utils';
+import { IUserInteractionTransformation } from './common';
 
 export function useWheelHandler(
   elemToAttachToRef: React.RefObject<HTMLElement>,
   activeRef: React.MutableRefObject<boolean>,
-  stateRef: React.MutableRefObject<ITransformation>,
-  setTransformation: (transformation: ITransformation) => any
+  state: IUserInteractionTransformation
 ): IWheelHandler {
   const handlers = useMemo<IWheelHandler>(
     () => ({
@@ -22,15 +22,15 @@ export function useWheelHandler(
           const newTransformation = computeTransformationOnScale(
             elemToAttachToRef.current,
             [clientX, clientY],
-            stateRef.current.position,
-            stateRef.current.scale,
+            state.offset,
+            state.zoom,
             factor
           );
-          setTransformation(newTransformation);
+          state.setTransformation(newTransformation.position, newTransformation.scale);
         }
       },
     }),
-    [elemToAttachToRef, activeRef, stateRef, setTransformation]
+    [elemToAttachToRef, activeRef, state]
   );
 
   return handlers;

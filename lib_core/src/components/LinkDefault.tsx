@@ -1,38 +1,47 @@
 import React, { forwardRef } from 'react';
-import { ILinkComponentDefinition, ILinkComponentProps } from '../states/linksSettingsState';
+import { ILinkVisualComponentProps } from '../states/linksSettingsState';
+import { IComponentDefinition } from '../states/visualComponents';
 
-export interface ILinkDefaultSettings {
-  color: string;
-  strokeWidth: number;
-}
-
-export interface ILinkDefaultProps
-  extends ILinkComponentProps<ILinkDefaultSettings> {}
-
-export const LinkDefault = forwardRef<any, ILinkDefaultProps>((props, ref) => {
-  const settings = {
-    color: 'LightBlue',
-    strokeWidth: 3,
-    ...(props.settings ? props.settings : {}),
-  };
+export const LinkDefault: React.FC<
+  ILinkVisualComponentProps<ILinkDefaultSettings>
+> = (props) => {
+  const settings = props.settings ?? linkDefaultSettings;
 
   return (
     <path
-      ref={ref}
+      ref={props.draggableRef}
       d={props.path}
       stroke={settings.color}
       strokeWidth={settings.strokeWidth}
       fill='none'
     />
   );
-});
+};
+
+export interface ILinkDefaultSettings {
+  color: string;
+  strokeWidth: number;
+}
+
+const linkDefaultSettings: ILinkDefaultSettings = {
+  color: 'LightBlue',
+  strokeWidth: 3,
+};
 
 export function createLinkDefault(
   settings?: Partial<ILinkDefaultSettings>
-): ILinkComponentDefinition {
+): IComponentDefinition<
+  ILinkVisualComponentProps<ILinkDefaultSettings>,
+  ILinkDefaultSettings
+> {
+  const finaleSettings = {
+    ...linkDefaultSettings,
+    ...(settings ? settings : {}),
+  };
+
   return {
     component: LinkDefault,
-    settings,
+    settings: finaleSettings,
   };
 }
 

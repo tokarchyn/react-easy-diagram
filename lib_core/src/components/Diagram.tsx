@@ -1,31 +1,53 @@
-import React, { forwardRef, useCallback } from 'react';
-import { RecoilRoot } from 'recoil';
-import type { MutableSnapshot } from 'recoil';
-import { DiagramApi, InnerDiagram } from './DiagramInner';
-import {
-  IDiagramInitState,
-  IDiagramSetting,
-  initializeDiagram,
-} from '../states/initializers';
+import React, { useEffect, useMemo } from 'react';
+import { InnerDiagram } from './DiagramInner';
 import '../Diagram.css';
+import { RootStore } from '../states/rootStore';
+import { DiagramApi } from '../states/diagramApi';
+import { INodeState } from '../states/nodeState';
+import { ILinkState } from '../states/linkState';
+
+export const RootStoreContext = React.createContext<RootStore | null>(null);
+
+export const Diagram: React.FC<IDiagramProps> = (props) => {
+  const rootStore = useMemo(() => {
+    const store = new RootStore();
+    console.log('new store');
+    store.diagramApi.reinitState(props.initState?.nodes ?? [], props.initState?.links ?? [])
+    return store;
+  }, []);
+
+  useEffect(
+    () => {
+      if (props.apiRef) {
+        console.log('set ref')
+        props.apiRef.current = rootStore.diagramApi
+      }
+    },
+    [rootStore, props.apiRef],
+  )
+
+  return (
+    <RootStoreContext.Provider value={rootStore}>
+      <InnerDiagram />
+    </RootStoreContext.Provider>
+  );
+};
 
 export interface IDiagramProps {
   settings?: IDiagramSetting;
   initState?: IDiagramInitState;
+  apiRef?: React.MutableRefObject<DiagramApi | null>;
 }
 
-export const Diagram = forwardRef<DiagramApi, IDiagramProps>((props, ref) => {
-  const initializeDiagramWrapper = useCallback(
-    (snap: MutableSnapshot) =>
-      initializeDiagram(snap, props.settings, props.initState),
-    []
-  );
+export interface IDiagramSetting {
+  // common?: ICommonSettings;
+  // nodes?: INodesSettings;
+  // links?: ILinksSettings;
+}
 
-  return (
-    <RecoilRoot initializeState={initializeDiagramWrapper}>
-      <InnerDiagram ref={ref} />
-    </RecoilRoot>
-  );
-});
+export interface IDiagramInitState {
+  nodes: INodeState[];
+  links: ILinkState[];
+}
 
 Diagram.displayName = 'Diagram';

@@ -1,19 +1,22 @@
 import React, { useMemo } from 'react';
-import { Diagram } from '../components/Diagram';
-import { DiagramApi } from '../components/DiagramInner';
-import { IDiagramInitState, IDiagramSetting } from '../states/initializers';
+import {
+  Diagram,
+  IDiagramInitState,
+  IDiagramSetting,
+} from '../components/Diagram';
+import { DiagramApi } from '../states/diagramApi';
 import { useNotifyRef } from './useNotifyRef';
 
 export const useDiagram = (
-  settings?: IDiagramSetting,
-  initState?: IDiagramInitState
+  initState?: IDiagramInitState,
+  settings?: IDiagramSetting
 ) => {
   const apiRef = useNotifyRef<DiagramApi | null>(null);
 
   const obj = useMemo(
     () => ({
       Diagram: () => (
-        <Diagram ref={apiRef} initState={initState} settings={settings} />
+        <Diagram apiRef={apiRef} initState={initState} settings={settings} />
       ),
       apiRef,
     }),

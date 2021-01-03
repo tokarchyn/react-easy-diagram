@@ -1,36 +1,28 @@
-import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { useLinkStateExtended } from '../hooks/linkHooks';
+import { observer } from 'mobx-react-lite';
+import React, { useContext } from 'react';
 import { useNotifyRef } from '../hooks/useNotifyRef';
-import {
-  linkComponentDefinitionState,
-  linkPathConstructorState,
-} from '../states/linksSettingsState';
+import { useRootStore } from '../hooks/useRootStore';
+import { LinkState } from '../states/linkState';
+import { RootStoreContext } from './Diagram';
 
-export interface LinkWrapperProps {
-  id: string;
+export interface ILinkWrapperProps {
+  link: LinkState;
 }
 
-export const LinkWrapper: React.FC<LinkWrapperProps> = ({ id }) => {
-  const [linkStateExtended] = useLinkStateExtended(id);
-
-  const pathConstructor = useRecoilValue(linkPathConstructorState);
-  const path = pathConstructor(linkStateExtended);
-
-  const linkComponentDefinition = useRecoilValue(
-    linkComponentDefinitionState(linkStateExtended.link.type)
-  );
-  const linkRef = useNotifyRef(null);
-
+export const LinkWrapper = observer<ILinkWrapperProps>(({ link }) => {
+  const {linksSettings} = useRootStore();
+  const path = linksSettings.pathConstructor(link);
+  const draggableRef = useNotifyRef(null);
+  const Component = link.componentDefinition.component;
+  
   return (
     <g>
-      <linkComponentDefinition.component
-        ref={linkRef}
+      <Component
+        draggableRef={draggableRef}
         path={path}
-        settings={linkComponentDefinition.settings}
+        entity={link}
+        settings={link.componentDefinition.settings}
       />
     </g>
   );
-};
-
-export const LinkWrapperMemo = React.memo(LinkWrapper);
+});

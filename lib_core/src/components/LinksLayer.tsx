@@ -1,18 +1,14 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { linksIdsState } from '../states/linkState';
-import { LinkWrapperMemo } from './LinkWrapper';
+import { LinksStore } from '../states/linksStore';
+import { LinkWrapper } from './LinkWrapper';
 
-const LinksLayer: React.FC = () => {
-  const [links] = useRecoilState(linksIdsState);
-
+export const LinksLayer = observer<{linksStore: LinksStore}>(({linksStore}) => {
   return (
     <svg>
-      {links.map((id) => (
-        <LinkWrapperMemo key={id} id={id} />
+      {Object.values(linksStore.links).map((link) => (
+        <LinkWrapper key={link.id} link={link} />
       ))}
     </svg>
   );
-};
-
-export const LinksLayerMemorized = React.memo(LinksLayer);
+});

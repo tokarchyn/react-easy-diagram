@@ -1,33 +1,38 @@
-import React, { forwardRef } from 'react';
-import {
-  INodeComponentDefinition,
-  INodeProps,
-} from '../states/nodesSettingsState';
+import React, { useEffect } from 'react';
+import { IComponentDefinition } from '../states/visualComponents';
+import { INodeVisualComponentProps } from '../states/nodesSettingsState';
 
 export interface INodeDefaultSettings {
   style: React.CSSProperties;
 }
 
-export const NodeDefault = forwardRef<
-  HTMLDivElement,
-  INodeProps<INodeDefaultSettings>
->((props, draggableRef) => {
+export const NodeDefault: React.FC<
+  INodeVisualComponentProps<INodeDefaultSettings>
+> = ({ entity, settings, draggableRef }) => {
   return (
     <div
       ref={draggableRef}
       className='react_fast_diagram_Node_Default'
-      style={props.settings?.style}
+      style={settings?.style}
     >
-      <span>{props.node.id}</span>
+      <span>{entity.id}</span>
     </div>
   );
-});
+};
 
 export function createNodeDefault(
   settings?: INodeDefaultSettings
-): INodeComponentDefinition {
+): IComponentDefinition<
+  INodeVisualComponentProps<INodeDefaultSettings>,
+  INodeDefaultSettings
+> {
   return {
     component: NodeDefault,
     settings,
   };
 }
+
+// export const NodeDefault = forwardRef<
+//   HTMLDivElement,
+//   IComponentProps<NodeState, INodeDefaultSettings>
+// >(observable(() => {

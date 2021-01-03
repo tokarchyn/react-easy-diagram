@@ -1,3 +1,5 @@
+import { Point } from "../../types/common";
+
 export function allTouchTargetsContainsClass(
   event: TouchEvent | React.TouchEvent<Element>,
   listenOnlyClass: string | undefined,
@@ -30,4 +32,15 @@ export function eventTargetContainsClass(
       (!ignoreClass || !targetElement.classList.contains(ignoreClass))
     );
   } else return false;
+}
+
+export interface IUserInteractionOffset {
+  offset: Point;
+  setOffset: (newOffset: Point) => any;
+}
+
+export interface IUserInteractionTransformation {
+  offset: Point;
+  zoom: number;
+  setTransformation: (newOffset: Point, zoom: number) => any;
 }

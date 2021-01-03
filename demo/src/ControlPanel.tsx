@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Tune } from '@material-ui/icons';
 import Card from '@material-ui/core/Card';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
-import { IDiagramInitState, LinkInitState, NodeInitState } from '@react-easy-diagram/core';
+import { IDiagramInitState, ILinkState, INodeState } from '@react-easy-diagram/core';
 
 const useStyles = makeStyles(() => ({
   form: {
@@ -26,8 +26,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 const generateLargeDiagram = (colNum: number, rowNum: number): IDiagramInitState => {
-  const nodes : NodeInitState[] = [];
-  const links : LinkInitState[] = [];
+  const nodes : INodeState[] = [];
+  const links : ILinkState[] = [];
   const getNodeId = (i: number,j: number) => `node_${i}_${j}`;
 
   for (let i = 0; i < colNum; i++) {
@@ -63,7 +63,7 @@ const generateLargeDiagram = (colNum: number, rowNum: number): IDiagramInitState
 };
 
 export interface ControlPanelProps{
-  reinitState?(initializer: IDiagramInitState): void;
+  reinitState?(nodes: INodeState[], links: ILinkState[]): void;
 }
 
 export const ControlPanel = (props: ControlPanelProps) => {
@@ -75,11 +75,11 @@ export const ControlPanel = (props: ControlPanelProps) => {
   const [visible, setVisible] = useState(true);
 
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    if (props.reinitState) {
-      props.reinitState(generateLargeDiagram(row, col));
-    }
     e.preventDefault();
-    e.stopPropagation();
+    if (props.reinitState) {
+      const newState = generateLargeDiagram(row, col);
+      props.reinitState(newState.nodes, newState.links);
+    }
   };
 
   if (visible) {

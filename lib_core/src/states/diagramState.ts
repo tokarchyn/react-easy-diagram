@@ -1,40 +1,36 @@
 import { Point } from '../types/common';
-import { atom, DefaultValue, selector } from 'recoil';
-import { libraryPrefix } from './common';
-import { ITransformation } from '../utils';
+import { autorun, makeAutoObservable } from 'mobx';
+import { RootStore } from './rootStore';
+import { IUserInteractionTransformation } from '../hooks/userInteractions/common';
+import { generateTransform } from '../utils';
 
-export const diagramTranslateState = atom<Point>({
-  key: `${libraryPrefix}_DiagramTranslate`,
-  default: [0,0]
-});
+export class DiagramState implements IUserInteractionTransformation {
+  offset: Point = [0, 0];
+  zoom: number = 1;
+  rootStore: RootStore;
 
-export const diagramScaleState = atom<number>({
-  key: `${libraryPrefix}_DiagramScale`,
-  default: 1,
-});
+  constructor(rootStore: RootStore) {
+    this.rootStore = rootStore;
+    makeAutoObservable(this, { rootStore: false })
 
-export const diagramTransformationState = selector<ITransformation>({
-  key: `${libraryPrefix}_DiagramTransformation`,
-  get: ({ get }) => {
-    const scale = get(diagramScaleState);
-    const translate = get(diagramTranslateState);
-    return { scale, position: translate };
-  },
-  set: ({ set }, newValue) => {
-    if (newValue instanceof DefaultValue) {
-    } else {
-      set(diagramScaleState, newValue.scale);
-      set(diagramTranslateState, newValue.position);
-    }
-  },
-});
+    autorun(() =>{
+      console.log(`${this.offset}`);
+    });
+  }
 
-export const commonSettingsState = atom<ICommonSettings>({
-  key: `${libraryPrefix}_CommonSettings`,
-  default: {
-    readonly: false,
-  },
-});
+  setOffset = (newOffset: Point) => {
+    this.offset = newOffset
+  }
+
+  setTransformation = (newOffset: Point, newZoom: number) => {
+    this.offset = newOffset;
+    this.zoom = newZoom;
+  }
+
+  get transformString() {
+    return generateTransform(this.offset, this.zoom);
+  }
+}
 
 export interface ICommonSettings {
   readonly: boolean; // TODO: allow to make readonly specific components, such as nodes, links.

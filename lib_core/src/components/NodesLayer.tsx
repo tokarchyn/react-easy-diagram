@@ -1,18 +1,14 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { nodesIdsState } from '../states/nodeState';
-import { NodeWrapperMemo } from './NodeWrapper';
+import { NodesStore } from '../states/nodesStore';
+import { NodeWrapper } from './NodeWrapper';
 
-const NodesLayer: React.FC = () => {
-  const [nodes] = useRecoilState(nodesIdsState);
-
+export const NodesLayer = observer<{nodesStore: NodesStore}>(({nodesStore}) => {
   return (
     <div>
-      {nodes.map((id) => (
-        <NodeWrapperMemo key={id} id={id} />
+      {Object.values(nodesStore.nodes).map((node) => (
+        <NodeWrapper key={node.id} node={node} />
       ))}
     </div>
   );
-};
-
-export const NodesLayerMemorized = React.memo(NodesLayer);
+});

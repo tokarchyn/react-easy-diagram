@@ -10,6 +10,7 @@ import {
   ITransformation,
   subtractPoints,
 } from '../../utils';
+import { IUserInteractionTransformation } from './common';
 
 type PinchEvent =
   | React.TouchEvent
@@ -29,7 +30,7 @@ interface IPinchHandlers {
 export function usePinchHandlers(
   elemToAttachToRef: React.RefObject<HTMLElement>,
   activeRef: React.MutableRefObject<boolean>,
-  stateRef: React.MutableRefObject<ITransformation>,
+  state: IUserInteractionTransformation,
   cancel?: (event: PinchEvent) => boolean
 ): IPinchHandlers {
   const pinchState = useRef<IPinchState>({
@@ -40,43 +41,32 @@ export function usePinchHandlers(
   const handlers = useMemo<IPinchHandlers>(
     () => ({
       onPinch: ({ da: [distance], origin }) => {
-        if (!activeRef.current) {
+        if (!activeRef.current || !elemToAttachToRef.current) {
           return;
         }
 
         const originDiff = subtractPoints(origin, pinchState.current.origin);
 
         const diff = distance - pinchState.current.distance;
-        if (Math.abs(diff) > 1 && elemToAttachToRef.current) {
-          const elWidth =
-            elemToAttachToRef.current.clientWidth * stateRef.current.scale;
-          const targetElWidth = elWidth + diff;
-          const factor = targetElWidth / elWidth;
+        const elWidth =
+          elemToAttachToRef.current.clientWidth * state.zoom;
+        const targetElWidth = elWidth + diff;
+        const factor = targetElWidth / elWidth;
 
-          const scaleTransformation = computeTransformationOnScale(
-            elemToAttachToRef.current,
-            origin,
-            addPoints(stateRef.current.position, originDiff),
-            stateRef.current.scale,
-            factor
-          );
+        const scaleTransformation = computeTransformationOnScale(
+          elemToAttachToRef.current,
+          origin,
+          addPoints(state.offset, originDiff),
+          state.zoom,
+          factor
+        );
 
-          pinchState.current = {
-            distance,
-            origin,
-          };
+        pinchState.current = {
+          distance,
+          origin,
+        };
 
-          stateRef.current = scaleTransformation;
-        } else {
-          pinchState.current = {
-            distance: pinchState.current.distance,
-            origin,
-          };
-          stateRef.current = {
-            scale: stateRef.current.scale,
-            position: addPoints(stateRef.current.position, originDiff),
-          };
-        }
+        state.setTransformation(scaleTransformation.position, scaleTransformation.scale);
       },
       onPinchStart: ({ da: [distance], origin, event }) => {
         if (cancel && cancel(event)) {
@@ -91,7 +81,7 @@ export function usePinchHandlers(
       },
       onPinchEnd: () => (activeRef.current = false),
     }),
-    [elemToAttachToRef, activeRef, stateRef, cancel]
+    [elemToAttachToRef, activeRef, state, cancel]
   );
 
   return handlers;

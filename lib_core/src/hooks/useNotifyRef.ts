@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-export const useNotifyRef = <TValue>(init: TValue): React.MutableRefObject<
-  TValue
-> => {
+export const useNotifyRef = <TValue>(
+  init: TValue
+): React.MutableRefObject<TValue> => {
   const [_, forceUpdate] = useState(0);
   const [ref] = useState(() => ({
     value: init,
