@@ -1,28 +1,10 @@
 import { componentDefaultType, Dictionary, Point } from '../types/common';
-import { MutableRefObject } from 'react';
-import { makeAutoObservable, makeObservable, observable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import { IPortStateObject, PortState } from './portState';
 import { v4 } from 'uuid';
 import { generateTransform } from '../utils';
 import { RootStore } from './rootStore';
-import React from 'react';
-
-export class MutableRefState<T> {
-  currentInternal: T;
-
-  constructor(initValue: T) {
-    this.currentInternal = initValue;
-    makeAutoObservable(this);
-  }
-
-  get current() {
-    return this.currentInternal;
-  }
-
-  set current(value: T) {
-    this.currentInternal = value;
-  }
-}
+import { MutableRefState } from './mutableRefState';
 
 export class NodeState {
   id: string = '';

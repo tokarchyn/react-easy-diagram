@@ -7,6 +7,7 @@ import { generateTransform } from '../utils';
 export class DiagramState implements IUserInteractionTransformation {
   offset: Point = [0, 0];
   zoom: number = 1;
+  
   rootStore: RootStore;
 
   constructor(rootStore: RootStore) {

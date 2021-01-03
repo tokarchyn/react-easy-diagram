@@ -6,17 +6,17 @@ import { RootStore } from './rootStore';
 export class LinkState {
   id: string;
   componentType: string = componentDefaultType;
-  source: LinkEndpoint;
-  target: LinkEndpoint;
-  segments?: ILinkSegment[];
-  extra?: any;
+  source: LinkEndpoint = {position: [0,0]};
+  target: LinkEndpoint = {position: [0,0]};
+  segments?: ILinkSegment[] = [];
+  extra?: any = null;
 
   rootStore: RootStore;
 
   constructor(rootStore: RootStore, id: string = v4()) {
     this.id = id;
+    makeAutoObservable(this);
     this.rootStore = rootStore;
-    makeAutoObservable(this, { rootStore: false });
   }
 
   fromJson = (obj: ILinkState) => {
