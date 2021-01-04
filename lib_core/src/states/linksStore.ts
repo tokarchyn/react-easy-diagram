@@ -1,17 +1,20 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, observable } from 'mobx';
 import { v4 } from 'uuid';
 import { Dictionary } from '../types/common';
+import { LinkCreationState } from './linkCreationState';
 import { ILinkState, LinkState } from './linkState';
+import { PortState } from './portState';
 import { RootStore } from './rootStore';
 
 export class LinksStore {
   links: Dictionary<LinkState> = {};
+  linkCreation: LinkState | null = null;
 
   rootStore: RootStore;
 
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
-    makeAutoObservable(this, { rootStore: false });
+    makeAutoObservable(this);
   }
 
   fromJson = (newLinks: ILinkState[]) => {
@@ -33,5 +36,20 @@ export class LinksStore {
     }
     
     this.links[id].fromJson(link);
+  }
+
+  startLinking(portState: PortState) {
+    this.linkCreation = new LinkState(this.rootStore);
+    this.linkCreation.setSource({
+      nodeId: portState.nodeId,
+      portId: portState.id
+    })
+    this.linkCreation.setTarget({
+      position: this.linkCreation.sourcePoint
+    })
+  }
+
+  stopLinking() {
+    this.linkCreation = null;
   }
 }

@@ -51,10 +51,16 @@ const initState: IDiagramInitState = {
     {
       id: 'Node 2',
       position: [520, 400],
+      ports: {
+        'output': {} 
+      }
     },
     {
       id: 'Node 3',
       position: [520, 200],
+      ports: {
+        'output': {} 
+      }
     },
   ],
   links: [

@@ -34,7 +34,7 @@ export class NodeState {
     this.ports = {};
     if (obj.ports && Object.keys(obj.ports).length > 0) {
       Object.entries(obj.ports).forEach(([portId, portObj]) => {
-        const portState = new PortState(portId);
+        const portState = new PortState(portId, this.id);
         portState.fromJson(portObj);
         this.ports[portId] = portState;
       });

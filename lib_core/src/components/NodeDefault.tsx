@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { IComponentDefinition } from '../states/visualComponents';
 import { INodeVisualComponentProps } from '../states/nodesSettingsState';
+import { PortWrapper } from './PortWrapper';
 
 export interface INodeDefaultSettings {
   style: React.CSSProperties;
@@ -16,6 +17,14 @@ export const NodeDefault: React.FC<
       style={settings?.style}
     >
       <span>{entity.id}</span>
+      <div style={{
+        position: 'absolute',
+        bottom: -8
+      }}>
+        {Object.values(entity.ports).map(port => (
+          <PortWrapper key={port.id} port={port}/>
+        ))}
+      </div>
     </div>
   );
 };

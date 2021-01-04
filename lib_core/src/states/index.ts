@@ -1,5 +1,6 @@
 export * from './diagramApi';
 export * from './diagramState';
+export * from './linkCreationState';
 export * from './linksSettingsState';
 export * from './linksStore';
 export * from './linkState';

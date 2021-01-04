@@ -1,5 +1,22 @@
 import { Point } from "../../types/common";
 
+export const eventPathContainsClass = (event: PointerEvent | React.PointerEvent<Element>, className: string) => {
+  const typedEvent = event as Event;
+  if ('composedPath' in typedEvent) {
+    const targets = typedEvent.composedPath();
+    for (let i = 0; i < targets.length; i++) {
+      const target = targets[i];
+      if ('classList' in target) {
+        if ((target as Element).classList.contains(className)) {
+          return true;
+        }
+      }
+    }
+  }
+
+  return false;
+}
+
 export function allTouchTargetsContainsClass(
   event: TouchEvent | React.TouchEvent<Element>,
   listenOnlyClass: string | undefined,

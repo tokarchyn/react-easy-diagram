@@ -1,7 +1,8 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, trace } from 'mobx';
 import { componentDefaultType, Point } from '../types/common';
 import { v4 } from 'uuid';
 import { RootStore } from './rootStore';
+import { addPoints, multiplyPoint } from '../utils';
 
 export class LinkState {
   id: string;
@@ -26,6 +27,14 @@ export class LinkState {
     this.segments = obj.segments;
     this.extra = obj.extra;
   };
+
+  setSource(source: LinkEndpoint) {
+    this.source = source;
+  }
+
+  setTarget(target: LinkEndpoint) {
+    this.target = target;
+  }
 
   get path(): string {
     const { linksSettings } = this.rootStore;
@@ -55,16 +64,33 @@ export class LinkState {
 
   private getEndpointPointForNode(endpoint: ILinkNodeEndpoint): Point {
     const node = this.rootStore.nodesStore.nodes[endpoint.nodeId];
-    const htmlElem = node?.ref?.current;
-    if (htmlElem) {
-      return [
-        node.offset[0] + (htmlElem.clientWidth ? htmlElem.clientWidth / 2 : 0),
-        node.offset[1] +
-          (htmlElem.clientHeight ? htmlElem.clientHeight / 2 : 0),
-      ];
-    } else {
-      return node.offset;
-    }
+    const nodehtml = node?.ref?.current;
+    if (nodehtml) {
+      if (endpoint.portId) {
+        const porthtml = node.ports[endpoint.portId].ref.current;
+        if (porthtml) {
+          const nodeRect = nodehtml.getBoundingClientRect();
+          const portRect = porthtml.getBoundingClientRect();
+          let diff = [
+            nodeRect.left - portRect.left,
+            nodeRect.top - portRect.top
+          ] as Point;
+          diff = multiplyPoint(diff, -1/this.rootStore.diagramState.zoom)
+          let result = addPoints(node.offset,diff);
+          result = addPoints(result, [portRect.width/2, portRect.height/2]);
+          return result;
+        }
+      } else {
+        return [
+          node.offset[0] +
+            (nodehtml.clientWidth ? nodehtml.clientWidth / 2 : 0),
+          node.offset[1] +
+            (nodehtml.clientHeight ? nodehtml.clientHeight / 2 : 0),
+        ];
+      }
+    } 
+
+    return node.offset;
   }
 }
 

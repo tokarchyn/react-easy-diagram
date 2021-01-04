@@ -1,9 +1,9 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
-import { RootStoreContext } from '../../components/Diagram';
 import { NodeState } from '../../states/nodeState';
 import { useNotifyRef } from '../useNotifyRef';
 import { useRootStore } from '../useRootStore';
+import { eventPathContainsClass } from './common';
 import { useDragHandlers } from './useDragHandlers';
 import { useUserAbilityToSelectSwitcher } from './useUserAbilityToSelectSwitcher';
 
@@ -20,7 +20,10 @@ export const useNodeUserInteraction = (
   const dragHandlers = useDragHandlers(
     activeRef,
     nodeState,
-    () => diagramStore.zoom
+    () => diagramStore.zoom,
+    (e) => {
+      return eventPathContainsClass(e, 'react_fast_diagram_PortWrapper');
+    }
   );
 
   useGesture(dragHandlers, {
