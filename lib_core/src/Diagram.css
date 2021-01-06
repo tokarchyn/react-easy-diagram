@@ -4,6 +4,7 @@
   min-height: 100%;
   position: relative;
   overflow: hidden;
+  touch-action: none;
 }
 
 .react_fast_diagram_DiagramInner * {
@@ -55,7 +56,20 @@
   margin: auto;
 }
 
-.react_fast_diagram_Node_Default * {
+.react_fast_diagram_PortContainer_Default {
+  display: flex;
+  padding: -5px;
+}
+
+.react_fast_diagram_PortContainer_Default > * {
+  margin: 5px;
+}
+
+.react_fast_diagram_PortContainer_Default_Horizontal {
+  flex-direction: row;
+}
+
+.react_fast_diagram_Node_Default > * {
   text-align: center;
   margin: auto;
 }

@@ -47,19 +47,28 @@ const initState: IDiagramInitState = {
     {
       id: 'Node 1',
       position: [300, 300],
+      ports: {
+        'output_1': {},
+      }
     },
     {
       id: 'Node 2',
       position: [520, 400],
       ports: {
-        'output': {} 
+        'input_1': {}, 
+        'input_2': {}, 
+        'output_1': {}, 
+        'output_2': {}, 
+        'output_3': {} 
       }
     },
     {
       id: 'Node 3',
       position: [520, 200],
       ports: {
-        'output': {} 
+        'input_1': {}, 
+        'output_1': {},
+        'output_2': {} 
       }
     },
   ],

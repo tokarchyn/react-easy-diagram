@@ -17,7 +17,7 @@ export const InnerDiagram = observer<IDiagramInnerProps>((props) => {
   return (
     <div
       ref={userInteractionElemRef}
-      style={{ touchAction: 'none', ...props.diagramStyles }}
+      style={{ ...props.diagramStyles }}
       className='react_fast_diagram_DiagramInner'
     >
       <div

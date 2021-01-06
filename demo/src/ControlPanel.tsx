@@ -9,7 +9,10 @@ const useStyles = makeStyles(() => ({
   form: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '7px',
+    margin: '-8px 0',
+    '& > *': {
+      margin: '8px 0'
+    }
   },
   visibilityBtn: {
     borderRadius: '25px',
@@ -21,7 +24,10 @@ const useStyles = makeStyles(() => ({
     marginBottom: '15px',
     display: 'flex',
     alignItems: 'center',
-    gap: '14px',
+    margin: '0 -14px',
+    '& > *': {
+      margin: '0 14px'
+    }
   },
 }));
 

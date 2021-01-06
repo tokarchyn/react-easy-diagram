@@ -8,13 +8,10 @@ export const PortWrapper: React.FC<
   {port: PortState}
 > = ({ port }) => {
   const {userInteractionElemRef} = usePortUserInteraction(port);
-  if (port.ref.current !== userInteractionElemRef.current) {
-    port.ref.current = userInteractionElemRef.current;
-  }
 
   return (
     <div
-      ref={userInteractionElemRef}
+      ref={{set current(value : HTMLDivElement){userInteractionElemRef.current = value; port.ref.current = value}}}
       className='react_fast_diagram_PortWrapper'
     >
       <div style={{

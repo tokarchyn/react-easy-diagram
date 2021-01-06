@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { ILinkVisualComponentProps } from '../states/linksSettingsState';
 import { IComponentDefinition } from '../states/visualComponents';
 
@@ -16,12 +16,15 @@ export const LinkDefault: React.FC<
         strokeWidth={settings.strokeWidth}
         fill='none'
       />
-      <circle
-        cx={props.entity.targetPoint[0] - settings.cirleRadius / 2}
-        cy={props.entity.targetPoint[1] - settings.cirleRadius / 2}
-        r={settings.cirleRadius}
-        fill='orange'
-      />
+      {
+        props.entity.target.hasOnlyPosition &&
+        <circle
+          cx={props.entity.target.point[0] - settings.cirleRadius / 2}
+          cy={props.entity.target.point[1] - settings.cirleRadius / 2}
+          r={settings.cirleRadius}
+          fill='orange'
+        />
+      }
     </g>
   );
 };

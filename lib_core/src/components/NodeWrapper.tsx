@@ -11,7 +11,8 @@ export const NodeWrapper = observer<{node: NodeState}>(({ node }) => {
       id={node.id}
       className='react_fast_diagram_NodeWrapper'
       style={{
-        transform: node.transformString,
+        left: node.offset[0],
+        top: node.offset[1]
       }}
       ref={node.ref}
     >

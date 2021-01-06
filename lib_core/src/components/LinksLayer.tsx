@@ -9,7 +9,7 @@ export const LinksLayer = observer<{linksStore: LinksStore}>(({linksStore}) => {
       {Object.values(linksStore.links).map((link) => (
         <LinkWrapper key={link.id} link={link} />
       ))}
-      {linksStore.linkCreation && <LinkWrapper key={linksStore.linkCreation.id} link={linksStore.linkCreation} />}
+      {linksStore.linkCreation.link && <LinkWrapper key={linksStore.linkCreation.link.id} link={linksStore.linkCreation.link} />}
     </svg>
   );
 });

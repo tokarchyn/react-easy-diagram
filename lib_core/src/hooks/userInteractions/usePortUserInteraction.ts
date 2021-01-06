@@ -9,42 +9,42 @@ export const usePortUserInteraction = (
   portState: PortState,
   enable?: boolean
 ): IUseNodeUserInteractionResult => {
-  const { linksStore, diagramState, nodesStore } = useRootStore();
+  const { linksStore: {linkCreation}, diagramState, nodesStore } = useRootStore();
 
   // Should trigger rendering on change, otherwise useUserSelectSwitcher will not be invoked
   const activeRef = useNotifyRef(false);
-  const userInteractionElemRef = useRef<HTMLDivElement>(null);
+  const userInteractionElemRef = useRef<HTMLDivElement>(null) as React.MutableRefObject<HTMLDivElement | null>;
 
   useGesture(
     {
       onDrag: ({ pinching, delta }) => {
-        if (!activeRef.current || pinching) {
+        if (!activeRef.current || pinching || !linkCreation.link) {
           return;
         }
         const parentScale = diagramState.zoom;
-        linksStore.linkCreation?.setTarget({
+        linkCreation.link.setTarget({
           position: [
-            linksStore.linkCreation.targetPoint[0] + delta[0] / parentScale,
-            linksStore.linkCreation.targetPoint[1] + delta[1] / parentScale,
+            linkCreation.link.target.point[0] + delta[0] / parentScale,
+            linkCreation.link.target.point[1] + delta[1] / parentScale,
           ]
         });
       },
       onDragStart: ({ event }) => {
-        const node = nodesStore.nodes[portState.nodeId];
-        const nodeRect = node.ref.current?.getBoundingClientRect();
+        const nodeRect = nodesStore.nodes[portState.nodeId].ref.getBoundingClientRect(diagramState.zoom);
+        const portHtmlElement = (event.target as Element);
         const portRect = (event.target as Element)?.getBoundingClientRect();
-        
+        portHtmlElement.releasePointerCapture(event.pointerId);
         if (nodeRect && portRect) {
           activeRef.current = true;
-          linksStore.startLinking(portState);
+          linkCreation.startLinking(portState);
         }
       },
       onDragEnd: () => {
         activeRef.current = false;
-        linksStore.stopLinking();
+        linkCreation.stopLinking();
       },
       onPointerEnter: () => {
-        console.log(`onPointerEnter: '${portState.nodeId}':'${portState.id}'`);
+        linkCreation.setTargetPortCandidate(portState);
       }
     }, {
     domTarget: userInteractionElemRef,
@@ -65,5 +65,5 @@ export const usePortUserInteraction = (
 
 export interface IUseNodeUserInteractionResult {
   active: boolean;
-  userInteractionElemRef: React.RefObject<HTMLDivElement>;
+  userInteractionElemRef: React.MutableRefObject<HTMLDivElement | null>;
 }

@@ -11,7 +11,7 @@ export const generateTransform = (translate: Point, scale?: number): string => {
 };
 
 const MIN_SCALE = 0.1;
-const MAX_SCALE = 2;
+const MAX_SCALE = 3;
 
 // See: https://stackoverflow.com/a/30039971/9142642
 export const computeTransformationOnScale = (

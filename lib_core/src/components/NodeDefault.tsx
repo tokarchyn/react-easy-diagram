@@ -17,7 +17,7 @@ export const NodeDefault: React.FC<
       style={settings?.style}
     >
       <span>{entity.id}</span>
-      <div style={{
+      <div className='react_fast_diagram_PortContainer_Default react_fast_diagram_PortContainer_Default_Horizontal' style={{
         position: 'absolute',
         bottom: -8
       }}>

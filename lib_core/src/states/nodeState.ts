@@ -4,13 +4,13 @@ import { IPortState, PortState } from './portState';
 import { v4 } from 'uuid';
 import { generateTransform } from '../utils';
 import { RootStore } from './rootStore';
-import { MutableRefState } from './mutableRefState';
+import { HtmlElementRefState } from './htmlElementRefState';
 
 export class NodeState {
   id: string = '';
   offset: Point = [0,0];
   ports: Dictionary<PortState> = {};
-  ref: MutableRefState<HTMLDivElement | null> = new MutableRefState(null);
+  ref: HtmlElementRefState;
   componentType: string = componentDefaultType;
   extra?: any = null;
 
@@ -18,6 +18,7 @@ export class NodeState {
 
   constructor(rootStore: RootStore, id: string = v4()) { 
     this.id = id;
+    this.ref = new HtmlElementRefState(null);
     makeAutoObservable(this);
     this.rootStore = rootStore;
   }
