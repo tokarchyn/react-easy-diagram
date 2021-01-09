@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { IComponentDefinition } from '../states/visualComponents';
-import { INodeVisualComponentProps } from '../states/nodesSettingsState';
+import { INodeVisualComponentProps } from '../states/nodesSettings';
 import { PortWrapper } from './PortWrapper';
 import { useRootStore } from '../hooks/useRootStore';
-import { PortsSettings } from '../states/portsSettingsState';
+import { PortsSettings } from '../states/portsSettings';
 import { PortState } from '../states';
 import { Dictionary } from '..';
 

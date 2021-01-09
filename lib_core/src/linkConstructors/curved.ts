@@ -1,4 +1,4 @@
-import { ILinkPathConstructor } from '../states/linksSettingsState';
+import { ILinkPathConstructor } from '../states/linksSettings';
 import { Point } from '../types/common';
 import { distanceBetweenPoints, roundPoint } from '../utils';
 

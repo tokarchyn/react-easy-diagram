@@ -1,7 +1,7 @@
 import React from 'react';
 import { IComponentDefinition } from '../states/visualComponents';
 import { PortWrapper } from './PortWrapper';
-import { IPortsContainerVisualComponentProps } from '../states/portsSettingsState';
+import { IPortsContainerVisualComponentProps } from '../states/portsSettings';
 
 export interface IPortsContainerDefaultSettings {
   style?: React.CSSProperties;

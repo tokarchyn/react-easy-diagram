@@ -1,5 +1,5 @@
 import React from 'react';
-import { ILinkVisualComponentProps } from '../states/linksSettingsState';
+import { ILinkVisualComponentProps } from '../states/linksSettings';
 import { IComponentDefinition } from '../states/visualComponents';
 
 export const LinkDefault: React.FC<
