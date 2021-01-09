@@ -43,32 +43,25 @@ export class LinkEndpointState {
   get point(): Point {
     if (this.nodeId) {
       const node = this.rootStore.nodesStore.nodes[this.nodeId];
-      const nodeRect = node.ref.getBoundingClientRect(this.rootStore.diagramState.zoom);
 
-      let portRect; 
       if (this.portId) {
-        portRect = node.ports[this.portId].ref.getBoundingClientRect(this.rootStore.diagramState.zoom);
+        const port = node.ports[this.portId];
+
+        if (port && port.offsetRelativeToNode && port.realSize) {
+          return [
+            node.offset[0] + port.offsetRelativeToNode[0] + port.realSize[0]/2,
+            node.offset[1] + port.offsetRelativeToNode[1] + port.realSize[1]/2
+          ];
+        }
       }
 
-      if (nodeRect && portRect) {
-        let diff = [
-          nodeRect.left - portRect.left,
-          nodeRect.top - portRect.top
-        ] as Point;
-        diff = multiplyPoint(diff, -1/this.rootStore.diagramState.zoom)
-        let result = addPoints(node.offset,diff);
-        result = addPoints(result, [portRect.width/2, portRect.height/2]);
-        return result;
-      }
-      else if (nodeRect) {
+      if (node.realSize) {
         return [
-          node.offset[0] + (nodeRect.width / 2),
-          node.offset[1] + (nodeRect.height / 2)
+          node.offset[0] + (node.realSize[0] / 2),
+          node.offset[1] + (node.realSize[1] / 2)
         ];
       }
-      else {
-        return node.offset;
-      }
+      else return node.offset;
     } 
 
     return this.position ?? [0,0];

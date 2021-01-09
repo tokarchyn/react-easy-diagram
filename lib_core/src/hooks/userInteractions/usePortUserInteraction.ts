@@ -30,14 +30,13 @@ export const usePortUserInteraction = (
         });
       },
       onDragStart: ({ event }) => {
-        const nodeRect = nodesStore.nodes[portState.nodeId].ref.getBoundingClientRect(diagramState.zoom);
+        
+        // Important! Otherwise on touch display onPointerEnter will not work! 
         const portHtmlElement = (event.target as Element);
-        const portRect = (event.target as Element)?.getBoundingClientRect();
         portHtmlElement.releasePointerCapture(event.pointerId);
-        if (nodeRect && portRect) {
-          activeRef.current = true;
-          linkCreation.startLinking(portState);
-        }
+
+        activeRef.current = true;
+        linkCreation.startLinking(portState);
       },
       onDragEnd: () => {
         activeRef.current = false;

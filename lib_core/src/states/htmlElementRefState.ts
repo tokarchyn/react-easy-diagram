@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx';
+import { Point } from '..';
 
 export class HtmlElementRefState {
   currentInternal: HTMLDivElement | null;
@@ -16,25 +17,36 @@ export class HtmlElementRefState {
     this.currentInternal = value;
   }
 
-  getBoundingClientRect(currentZoom: number) : IDomRect | undefined {
-    const realRect = this.current?.getBoundingClientRect();
-    if (realRect) {
-      const rectJson = realRect.toJSON() as IDomRect;
-      rectJson.width /= currentZoom;
-      rectJson.height /= currentZoom;
-      return rectJson;
+  offsetRelativeToParent = (parent: HTMLElement) : Point | null => {
+    if (this.current){
+      let iterElement = this.current as HTMLElement | null;
+      let acumLeft = 0;
+      let acumTop = 0;
+      while(parent !== iterElement && iterElement) {
+        acumLeft += iterElement.offsetLeft;
+        acumTop += iterElement.offsetTop;
+        iterElement = iterElement.parentElement;
+      }
+
+      return [acumLeft, acumTop];
     }
-    else {
-      return undefined;
+    
+    return null;
+  }
+
+  get realSize() : Point | null {
+    if (this.current) {
+      return [this.current.clientWidth, this.current.clientHeight];
+    } else {
+      return null;
     }
   }
+
 }
 
-export interface IDomRect {
+export interface IHtmlElementRect {
   left: number;
   top: number;
-  right: number;
-  bottom: number;
   width: number;
   height: number;
 }

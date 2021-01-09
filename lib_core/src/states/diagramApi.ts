@@ -23,6 +23,10 @@ export class DiagramApi {
     settings.nodes && this.rootStore.nodesSettings.fromJson(settings.nodes);
     settings.links && this.rootStore.linksSettings.fromJson(settings.links);
   }
+
+  recalculatePortPosition = () => {
+    // 
+  }
 }
 
 export interface IDiagramSetting {

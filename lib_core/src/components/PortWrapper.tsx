@@ -14,6 +14,7 @@ export const PortWrapper: React.FC<{ port: PortState }> = observer(({ port }) =>
           port.ref.current = value;
         },
       }}
+      id={port.nodeId + ':' + port.id}
       className='react_fast_diagram_PortWrapper'
     >
       <div

@@ -1,5 +1,5 @@
 import { componentDefaultType, Dictionary, Point } from '../types/common';
-import { makeAutoObservable } from 'mobx';
+import { autorun, makeAutoObservable } from 'mobx';
 import { IPortState, PortState } from './portState';
 import { v4 } from 'uuid';
 import { generateTransform } from '../utils';
@@ -21,6 +21,9 @@ export class NodeState {
     this.ref = new HtmlElementRefState(null);
     makeAutoObservable(this);
     this.rootStore = rootStore;
+    // autorun(() => {
+    //   console.log(`Node '${this.id}'. Offset: ${JSON.stringify(this.offset)}. Size: ${JSON.stringify(this.realSize)}`)
+    // })
   }
 
   setOffset = (newOffset: Point) => {
@@ -35,7 +38,7 @@ export class NodeState {
     this.ports = {};
     if (obj.ports && Object.keys(obj.ports).length > 0) {
       Object.entries(obj.ports).forEach(([portId, portObj]) => {
-        const portState = new PortState(portId, this.id);
+        const portState = new PortState(this.rootStore, portId, this.id);
         portState.fromJson(portObj);
         this.ports[portId] = portState;
       });
@@ -49,6 +52,10 @@ export class NodeState {
   get componentDefinition() {
     const { visualComponents } = this.rootStore.nodesSettings;
     return visualComponents.getComponent(this.componentType);
+  }
+
+  get realSize() : Point | null {
+    return this.ref.realSize;
   }
 }
 
