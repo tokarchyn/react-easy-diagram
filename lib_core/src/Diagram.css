@@ -97,3 +97,14 @@
   border-radius: 50%;
   display: inline-block;
 }
+
+.react_fast_diagram_BackgroundWrapper {
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.react_fast_diagram_Background_Default {
+  height: 100%;
+  width: 100%;
+}

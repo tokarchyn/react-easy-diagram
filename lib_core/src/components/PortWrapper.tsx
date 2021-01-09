@@ -1,8 +1,9 @@
 import React from 'react';
 import { PortState } from '../states';
 import { usePortUserInteraction } from '../hooks/userInteractions/usePortUserInteraction';
+import { observer } from 'mobx-react-lite';
 
-export const PortWrapper: React.FC<{ port: PortState }> = ({ port }) => {
+export const PortWrapper: React.FC<{ port: PortState }> = observer(({ port }) => {
   const { userInteractionElemRef } = usePortUserInteraction(port);
 
   return (
@@ -24,4 +25,4 @@ export const PortWrapper: React.FC<{ port: PortState }> = ({ port }) => {
       ></div>
     </div>
   );
-};
+});

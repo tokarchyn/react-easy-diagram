@@ -1,0 +1,18 @@
+import { observer } from 'mobx-react-lite';
+import React from 'react';
+import { IComponentDefinition, Point } from '..';
+import { useRootStore } from '../hooks/useRootStore';
+
+export const BackgroundWrapper = observer(() => {
+  const { diagramSettings, diagramState } = useRootStore();
+
+  return (
+    <div className='react_fast_diagram_BackgroundWrapper'>
+      <diagramSettings.backgroundComponent.component
+        diagramOffset={diagramState.offset}
+        digramZoom={diagramState.zoom}
+        settings={diagramSettings.backgroundComponent.settings}
+      />
+    </div>
+  );
+});
