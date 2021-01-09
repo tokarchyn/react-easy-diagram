@@ -2,7 +2,7 @@ import { ILinkPathConstructor } from '../states/linksSettingsState';
 import { Point } from '../types/common';
 import { distanceBetweenPoints, roundPoint } from '../utils';
 
-function curvedLinkPathConstructorInner(
+function curvedLinkPathConstructor(
   source: Point,
   target: Point,
   sourcePortType: string | undefined,
@@ -13,18 +13,17 @@ function curvedLinkPathConstructorInner(
   source = roundPoint(source);
   target = roundPoint(target);
 
-  console.log(`Create path for ports ${sourcePortType} ${targetPortType}`)
-
   const sourceStr = `${source[0]}, ${source[1]}`;
   const targetStr = `${target[0]}, ${target[1]}`;
 
   const directionFactor = settings.tweakDirectionFactorBasedOnDistance(
     distanceBetweenPoints(source, target),
     settings.directionFactor
-  )
+  );
 
   function getControl(endpoint: Point, portType: string | undefined): string {
-    const linkDirection = portType && settings.portTypeToLinkDirectionMapping[portType];
+    const linkDirection =
+      portType && settings.portTypeToLinkDirectionMapping[portType];
     switch (linkDirection) {
       case 'left':
         return `${endpoint[0] - directionFactor}, ${endpoint[1]}`;
@@ -53,7 +52,10 @@ export interface ICurvedLinkPathConstructorSettings {
     [key: string]: 'left' | 'right' | 'up' | 'down';
   };
   directionFactor: number;
-  tweakDirectionFactorBasedOnDistance: (distance: number, directionFactor: number) => number;
+  tweakDirectionFactorBasedOnDistance: (
+    distance: number,
+    directionFactor: number
+  ) => number;
 }
 
 const defualtSettings: ICurvedLinkPathConstructorSettings = {
@@ -69,7 +71,7 @@ const defualtSettings: ICurvedLinkPathConstructorSettings = {
       return directionFactor * (distance / 100);
     }
     return directionFactor;
-  }
+  },
 };
 
 export function createCurvedLinkPathConstructor(
@@ -81,7 +83,7 @@ export function createCurvedLinkPathConstructor(
     sourcePortType: string | undefined,
     targetPortType: string | undefined
   ) =>
-    curvedLinkPathConstructorInner(
+    curvedLinkPathConstructor(
       source,
       target,
       sourcePortType,

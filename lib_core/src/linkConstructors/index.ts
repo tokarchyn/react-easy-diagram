@@ -1,2 +1,2 @@
 export * from './curved';
-export * from './simple';
+export * from './straight';
