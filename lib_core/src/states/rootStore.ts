@@ -4,6 +4,7 @@ import { LinksSettings } from './linksSettingsState';
 import { LinksStore } from './linksStore';
 import { NodesSettings } from './nodesSettingsState';
 import { NodesStore } from './nodesStore';
+import { PortsSettings } from './portsSettingsState';
 
 export class RootStore {
   diagramState: DiagramState;
@@ -11,6 +12,7 @@ export class RootStore {
   nodesSettings: NodesSettings;
   linksStore: LinksStore;
   linksSettings: LinksSettings;
+  portsSettings: PortsSettings;
 
   diagramApi: DiagramApi;
 
@@ -20,6 +22,7 @@ export class RootStore {
     this.nodesSettings = new NodesSettings();
     this.linksStore = new LinksStore(this);
     this.linksSettings = new LinksSettings();
+    this.portsSettings = new PortsSettings();
 
     this.diagramApi = new DiagramApi(this);
   }

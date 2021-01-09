@@ -41,24 +41,34 @@ const generateLargeDiagram = (colNum: number, rowNum: number): IDiagramInitState
       nodes.push({
         id: getNodeId(i,j),
         position: [i * 120, j * 120 ],
+        ports: {
+          left: {type: 'left'},
+          top: {type: 'top'},
+          right: {type: 'right'},
+          bottom: {type: 'bottom'},
+        }
       });
       if (i - 1 >= 0) {
         links.push({
           source: {
-            nodeId: getNodeId(i - 1,j)
+            nodeId: getNodeId(i - 1,j),
+            portId: 'right'
           },
           target: {
-            nodeId: getNodeId(i,j)
+            nodeId: getNodeId(i,j),
+            portId: 'left'
           }
         });
       }
       if (j - 1 >= 0) {
         links.push({
           source: {
-            nodeId: getNodeId(i,j - 1)
+            nodeId: getNodeId(i,j - 1),
+            portId: 'bottom'
           },
           target: {
-            nodeId: getNodeId(i,j)
+            nodeId: getNodeId(i,j),
+            portId: 'top'
           }
         });
       }

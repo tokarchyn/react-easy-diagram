@@ -48,27 +48,27 @@ const initState: IDiagramInitState = {
       id: 'Node 1',
       position: [300, 300],
       ports: {
-        'output_1': {},
+        'output_1': {type: 'bottom'}, 
       }
     },
     {
       id: 'Node 2',
       position: [520, 400],
       ports: {
-        'input_1': {}, 
-        'input_2': {}, 
-        'output_1': {}, 
-        'output_2': {}, 
-        'output_3': {} 
+        'input_1': {type: 'top'}, 
+        'input_2': {type: 'top'}, 
+        'output_1': {type: 'right'}, 
+        'output_2': {type: 'right'}, 
+        'output_3': {type: 'right'}, 
       }
     },
     {
       id: 'Node 3',
       position: [520, 200],
       ports: {
-        'input_1': {}, 
-        'output_1': {},
-        'output_2': {} 
+        'input_1': {type: 'top'}, 
+        'output_1': {type: 'bottom'}, 
+        'output_2': {type: 'bottom'}, 
       }
     },
   ],
@@ -81,14 +81,6 @@ const initState: IDiagramInitState = {
         nodeId: 'Node 1',
       },
       componentType: 'attention',
-    },
-    {
-      source: {
-        nodeId: 'Node 2',
-      },
-      target: {
-        nodeId: 'Node 3',
-      },
     },
   ],
 };

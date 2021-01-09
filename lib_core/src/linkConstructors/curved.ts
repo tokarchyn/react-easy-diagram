@@ -1,78 +1,91 @@
 import { ILinkPathConstructor } from '../states/linksSettingsState';
 import { Point } from '../types/common';
-import { roundPoint } from '../utils';
+import { distanceBetweenPoints, roundPoint } from '../utils';
 
 function curvedLinkPathConstructorInner(
   source: Point,
   target: Point,
+  sourcePortType: string | undefined,
+  targetPortType: string | undefined,
   settings: ICurvedLinkPathConstructorSettings
 ): string {
-  const path = generateCurvePath(source, target);
+  if (!source || !target) return '';
+  source = roundPoint(source);
+  target = roundPoint(target);
 
-  return path;
+  console.log(`Create path for ports ${sourcePortType} ${targetPortType}`)
+
+  const sourceStr = `${source[0]}, ${source[1]}`;
+  const targetStr = `${target[0]}, ${target[1]}`;
+
+  const directionFactor = settings.tweakDirectionFactorBasedOnDistance(
+    distanceBetweenPoints(source, target),
+    settings.directionFactor
+  )
+
+  function getControl(endpoint: Point, portType: string | undefined): string {
+    const linkDirection = portType && settings.portTypeToLinkDirectionMapping[portType];
+    switch (linkDirection) {
+      case 'left':
+        return `${endpoint[0] - directionFactor}, ${endpoint[1]}`;
+      case 'up':
+        return `${endpoint[0]}, ${endpoint[1] - directionFactor}`;
+      case 'right':
+        return `${endpoint[0] + directionFactor}, ${endpoint[1]}`;
+      case 'down':
+        return `${endpoint[0]}, ${endpoint[1] + directionFactor}`;
+      default:
+        return `${endpoint[0]}, ${endpoint[1]}`;
+    }
+  }
+
+  if (sourcePortType || targetPortType) {
+    const sourceControl = getControl(source, sourcePortType);
+    const targetControl = getControl(target, targetPortType);
+    return `M ${sourceStr} C ${sourceControl} ${targetControl}, ${targetStr}`;
+  } else {
+    return `M ${sourceStr} Q ${target[0]}, ${source[1]}, ${targetStr}`;
+  }
 }
 
-export interface ICurvedLinkPathConstructorSettings {}
+export interface ICurvedLinkPathConstructorSettings {
+  portTypeToLinkDirectionMapping: {
+    [key: string]: 'left' | 'right' | 'up' | 'down';
+  };
+  directionFactor: number;
+  tweakDirectionFactorBasedOnDistance: (distance: number, directionFactor: number) => number;
+}
 
-const defualtSettings: ICurvedLinkPathConstructorSettings = {};
+const defualtSettings: ICurvedLinkPathConstructorSettings = {
+  portTypeToLinkDirectionMapping: {
+    left: 'left',
+    right: 'right',
+    top: 'up',
+    bottom: 'down',
+  },
+  directionFactor: 60,
+  tweakDirectionFactorBasedOnDistance: (distance, directionFactor) => {
+    if (distance < 100) {
+      return directionFactor * (distance / 100);
+    }
+    return directionFactor;
+  }
+};
 
 export function createCurvedLinkPathConstructor(
-  settings?: ICurvedLinkPathConstructorSettings
+  settings?: Partial<ICurvedLinkPathConstructorSettings>
 ): ILinkPathConstructor {
-  return (source: Point, target: Point) =>
+  return (
+    source: Point,
+    target: Point,
+    sourcePortType: string | undefined,
+    targetPortType: string | undefined
+  ) =>
     curvedLinkPathConstructorInner(
       source,
       target,
+      sourcePortType,
+      targetPortType,
       settings ? { ...defualtSettings, ...settings } : defualtSettings
     );
 }
-
-const CURVE_FACTOR = 60;
-
-/**
- * Calculates the offset accordingly to the alignment
- */
-// const getXOffset = (alignment) => {
-//   if (!alignment || (alignment !== 'left' && alignment !== 'right')) return 0;
-//   return alignment === 'left' ? -CURVE_FACTOR : CURVE_FACTOR;
-// };
-// const getYOffset = (alignment) => {
-//   if (!alignment || (alignment !== 'top' && alignment !== 'bottom')) return 0;
-//   return alignment === 'top' ? CURVE_FACTOR : -CURVE_FACTOR;
-// };
-
-/**
- * Given a source point and an output point produces the SVG path between them
- */
-const generateCurvePath = (startPoint: Point, endPoint: Point) => {
-  if (!startPoint || !endPoint) return '';
-  const roundedStart = roundPoint(startPoint);
-  const roundedEnd = roundPoint(endPoint);
-
-  const start = `${roundedStart[0]}, ${roundedStart[1]}`;
-  const end = `${roundedEnd[0]}, ${roundedEnd[1]}`;
-
-  // if (options.type === 'bezier' && (options.inputAlignment || options.outputAlignment)) {
-  //   let startControl = end;
-  //   let endControl = start;
-
-  //   if (options.inputAlignment) {
-  //     const offsetX = roundedStart.x + getXOffset(options.inputAlignment);
-  //     const offsetY = roundedStart.y + getYOffset(options.inputAlignment);
-  //     endControl = `${offsetX}, ${offsetY}`;
-  //   }
-
-  //   if (options.outputAlignment) {
-  //     const offsetX = roundedEnd.x + getXOffset(options.outputAlignment);
-  //     const offsetY = roundedEnd.y + getYOffset(options.outputAlignment);
-  //     startControl = `${offsetX}, ${offsetY}`;
-  //   }
-
-  //   return `M ${start} C ${endControl} ${startControl}, ${end}`;
-  // }
-
-  // connecting with a standard curve without any alignment
-  const ctrl = `${roundedEnd[0]}, ${roundedStart[1]}`;
-
-  return `M ${start} Q ${ctrl}, ${end}`;
-};

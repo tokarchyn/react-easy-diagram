@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import { Point } from '../types/common';
 import { RootStore } from './rootStore';
 import { addPoints, multiplyPoint } from '../utils';
+import { PortState } from './portState';
 
 export class LinkEndpointState {
   position: Point | null = null;
@@ -27,6 +28,17 @@ export class LinkEndpointState {
       this.portId = obj.portId ?? null;
     }
   };
+
+  get port(): PortState | undefined {
+    if (this.nodeId && this.portId) {
+      const node = this.rootStore.nodesStore.nodes[this.nodeId];
+      if (node?.ports) {
+        return node.ports[this.portId];
+      }
+    }
+
+    return undefined;
+  }
 
   get point(): Point {
     if (this.nodeId) {

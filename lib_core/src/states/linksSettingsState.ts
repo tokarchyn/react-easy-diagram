@@ -7,14 +7,16 @@ import {
 import { makeAutoObservable } from 'mobx';
 import { LinkState } from './linkState';
 import { createCurvedLinkPathConstructor } from '../linkConstructors/curved';
-import { Point } from '../types/common';
+import { componentDefaultType, Point } from '../types/common';
 
 export class LinksSettings {
   pathConstructor: ILinkPathConstructor = createCurvedLinkPathConstructor();
   visualComponents: VisualComponents<
     LinkState,
     ILinkVisualComponentProps
-  > = new VisualComponents<LinkState, ILinkVisualComponentProps>(LinkDefault);
+  > = new VisualComponents<LinkState, ILinkVisualComponentProps>({
+    [componentDefaultType]: LinkDefault,
+  });
 
   constructor() {
     makeAutoObservable(this);
@@ -37,4 +39,9 @@ export interface ILinksSettings
   pathConstructor: ILinkPathConstructor;
 }
 
-export type ILinkPathConstructor = (source: Point, target: Point) => string;
+export type ILinkPathConstructor = (
+  source: Point,
+  target: Point,
+  sourcePortType: string | undefined,
+  targetPortType: string | undefined
+) => string;

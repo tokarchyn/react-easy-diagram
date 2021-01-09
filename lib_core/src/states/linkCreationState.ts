@@ -20,6 +20,7 @@ export class LinkCreationState {
       nodeId: portState.nodeId,
       portId: portState.id,
     });
+    console.log(`Start linking ${portState.id}`);
     this.link.setTarget({
       position: this.link.source.point,
     });

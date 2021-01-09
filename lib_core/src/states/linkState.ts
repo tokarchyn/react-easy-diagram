@@ -33,7 +33,12 @@ export class LinkState {
 
   get path(): string {
     const { linksSettings } = this.rootStore;
-    return linksSettings.pathConstructor(this.source.point, this.target.point);
+    return linksSettings.pathConstructor(
+      this.source.point,
+      this.target.point,
+      this.source.port?.type,
+      this.target.port?.type
+    );
   }
 
   get componentDefinition() {

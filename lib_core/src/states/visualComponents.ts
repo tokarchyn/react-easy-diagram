@@ -7,19 +7,54 @@ export class VisualComponents<
   TComponentProps extends IVisualComponentProps<TEntity>
 > {
   defaultType: string = componentDefaultType;
-  defaultComponent: VisualComponent<TComponentProps>;
+  defaultComponents: Dictionary<
+    IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
+  >;
   components: Dictionary<IComponentDefinition<TComponentProps>>;
 
-  constructor(defaultComponent: VisualComponent<TComponentProps>) {
-    this.defaultComponent = defaultComponent;
+  constructor(
+    defaultComponents: Dictionary<
+      IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
+    >
+  ) {
+    this.defaultComponents = defaultComponents;
     this.initDefaultComponents();
     makeAutoObservable(this);
   }
 
-  fromJson = (obj: IVisualComponentsObject<TComponentProps>) => {
+  fromJson = (
+    obj: IVisualComponentsObject<TComponentProps>,
+    initDefaultComponents: boolean = true
+  ) => {
     this.defaultType = obj.defaultNodeType ?? componentDefaultType;
-    this.initDefaultComponents();
-    Object.entries(obj.components).forEach(([key, value]) => {
+
+    if (initDefaultComponents) {
+      this.initDefaultComponents();
+    } else {
+      this.components = {};
+    }
+
+    this.addComponentsFromJson(obj.components);
+  };
+
+  getComponent = (
+    type: string | undefined | null
+  ): IComponentDefinition<TComponentProps> => {
+    const finalComponentType = type ?? this.defaultType;
+    return (
+      this.components[finalComponentType] ?? this.components[this.defaultType]
+    );
+  };
+
+  private initDefaultComponents() {
+    this.components = {};
+    this.addComponentsFromJson(this.defaultComponents);
+  }
+
+  private addComponentsFromJson(components: Dictionary<
+    IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
+  >) {
+    Object.entries(components).forEach(([key, value]) => {
       if ('component' in value) {
         this.components[key] = {
           component: observer(value.component),
@@ -31,19 +66,6 @@ export class VisualComponents<
         };
       }
     });
-  }
-
-  getComponent = (
-    type: string | undefined | null
-  ): IComponentDefinition<TComponentProps> => {
-    const finalComponentType = type ?? this.defaultType;
-    return this.components[finalComponentType] ?? this.components[this.defaultType];
-  }
-
-  private initDefaultComponents() {
-    this.components = {
-      [componentDefaultType]: { component: observer(this.defaultComponent) },
-    };
   }
 }
 

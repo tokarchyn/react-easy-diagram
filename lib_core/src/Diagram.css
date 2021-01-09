@@ -58,15 +58,26 @@
 
 .react_fast_diagram_PortContainer_Default {
   display: flex;
-  padding: -5px;
+  align-items: center;
+  justify-content: center;
 }
 
-.react_fast_diagram_PortContainer_Default > * {
-  margin: 5px;
+.react_fast_diagram_PortContainer_Default_Horizontal > * {
+  margin: 0 5px;
+}
+
+.react_fast_diagram_PortContainer_Default_Vertical > * {
+  margin: 5px 0;
 }
 
 .react_fast_diagram_PortContainer_Default_Horizontal {
   flex-direction: row;
+  width: 100%;
+}
+
+.react_fast_diagram_PortContainer_Default_Vertical {
+  flex-direction: column;
+  height: 100%;
 }
 
 .react_fast_diagram_Node_Default > * {

@@ -62,10 +62,14 @@ function clampFactorForTransformation(factor: number, currentScale: number) {
   } else return factor;
 }
 
+export const distanceBetweenPoints = (a: Point, b: Point) : number => (
+  Math.sqrt(Math.pow((a[0] - b[0]), 2) + Math.pow((a[1] - b[1]), 2))
+)
+
 export const roundPoint = (point: Point) =>  ([
   Math.round(point[0]),
   Math.round(point[1]),
-]);
+] as Point);
 
 export const addPoints = (a: Point, b: Point): Point => ([
   a[0] + b[0],

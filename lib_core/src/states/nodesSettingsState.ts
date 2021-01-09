@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx';
+import { componentDefaultType } from '..';
 import { NodeDefault } from '../components/NodeDefault';
 import { NodeState } from './nodeState';
 import {
@@ -11,7 +12,9 @@ export class NodesSettings {
   visualComponents: VisualComponents<
     NodeState,
     INodeVisualComponentProps
-  > = new VisualComponents<NodeState, INodeVisualComponentProps>(NodeDefault);
+  > = new VisualComponents<NodeState, INodeVisualComponentProps>({
+    [componentDefaultType]: NodeDefault,
+  });
 
   constructor() {
     makeAutoObservable(this);
@@ -19,7 +22,7 @@ export class NodesSettings {
 
   fromJson = (obj: INodesSettings) => {
     this.visualComponents.fromJson(obj);
-  }
+  };
 }
 
 export interface INodeVisualComponentProps<TSettings extends {} = {}>
