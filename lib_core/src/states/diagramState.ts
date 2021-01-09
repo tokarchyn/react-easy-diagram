@@ -2,7 +2,7 @@ import { Point } from '../types/common';
 import { makeAutoObservable } from 'mobx';
 import { RootStore } from './rootStore';
 import { IUserInteractionTransformation } from '../hooks/userInteractions/common';
-import { generateTransform } from '../utils';
+import { clampValue, generateTransform, MAX_SCALE, MIN_SCALE } from '../utils';
 
 export class DiagramState implements IUserInteractionTransformation {
   offset: Point = [0, 0];
@@ -20,8 +20,12 @@ export class DiagramState implements IUserInteractionTransformation {
   }
 
   setTransformation = (newOffset: Point, newZoom: number) => {
-    this.offset = newOffset;
-    this.zoom = newZoom;
+    this.setOffset(newOffset);
+    this.setZoom(newZoom);
+  }
+
+  setZoom = (newZoom: number) => {
+    this.zoom = clampValue(newZoom, MIN_SCALE, MAX_SCALE);
   }
 
   get transformString() {

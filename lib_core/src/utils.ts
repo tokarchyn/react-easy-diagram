@@ -10,8 +10,8 @@ export const generateTransform = (translate: Point, scale?: number): string => {
   }
 };
 
-const MIN_SCALE = 0.1;
-const MAX_SCALE = 3;
+export const MIN_SCALE = 0.1;
+export const MAX_SCALE = 3;
 
 // See: https://stackoverflow.com/a/30039971/9142642
 export const computeTransformationOnScale = (

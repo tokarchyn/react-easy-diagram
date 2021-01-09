@@ -108,3 +108,31 @@
   height: 100%;
   width: 100%;
 }
+
+.react_fast_diagram_Minicontrol_Default {
+  position: relative;
+  left: 20px;
+  width: 24px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.react_fast_diagram_Minicontrol_Default_Btn {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 1px solid rgb(209, 209, 209);
+  letter-spacing: normal;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: default;
+  user-select: none;
+  font-weight: bold;
+}
+
+.react_fast_diagram_Minicontrol_Default_Btn:hover {
+  background-color: rgb(228, 228, 228);
+  border: 1px solid rgb(209, 209, 209)
+}

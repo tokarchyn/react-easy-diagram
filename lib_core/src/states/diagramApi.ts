@@ -24,6 +24,13 @@ export class DiagramApi {
     settings.links && this.rootStore.linksSettings.fromJson(settings.links);
   }
 
+  zoom = (changeBy: number) => {
+    this.rootStore.diagramState.setZoom(this.rootStore.diagramState.zoom + changeBy);
+  }
+
+  zoomIn = () => this.zoom(0.2);
+  zoomOut = () => this.zoom(-0.2);
+
   recalculatePortPosition = () => {
     // 
   }
