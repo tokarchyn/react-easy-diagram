@@ -6,6 +6,8 @@ import { DiagramApi, IDiagramSetting } from '../states/diagramApi';
 import { INodeState } from '../states/nodeState';
 import { ILinkState } from '../states/linkState';
 
+import '../Diagram.css';
+
 export const RootStoreContext = React.createContext<RootStore | null>(null);
 
 export const Diagram: React.FC<IDiagramProps> = (props) => {

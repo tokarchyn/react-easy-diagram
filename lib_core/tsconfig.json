@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "module": "es2015",
     "target": "es5",
     "lib": ["dom", "esnext", "DOM"],
     "moduleResolution": "node",
@@ -21,5 +21,5 @@
     "outDir": "dist",
     "rootDir": "src",
   },
-  "include": ["src"]
+  "include": ["src/**/*"]
 }
