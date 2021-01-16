@@ -31,5 +31,3 @@ export interface IPortsContainerVisualComponentProps<TSettings extends {} = {}>
 
 export interface IPortsSettings
   extends IVisualComponentsObject<IPortsContainerVisualComponentProps> {}
-
-export type ILinkPathConstructor = (source: Point, target: Point) => string;

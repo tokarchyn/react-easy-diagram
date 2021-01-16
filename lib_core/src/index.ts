@@ -4,6 +4,3 @@ export * from './linkConstructors';
 export * from './states';
 export * from './types';
 export * from './utils';
-
-// import {enableLogging} from 'mobx-logger';
-// enableLogging();

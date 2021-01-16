@@ -13,9 +13,11 @@
     "uuid": "^8.3.1"
   },
   "scripts": {
-    "build": "yarn run del \"dist/*\" && rollup -c --environment NODE_ENV:production",
+    "build:prod": "yarn clear && rollup -c --environment NODE_ENV:production",
+    "build:dev": "yarn clear && rollup -c",
     "start": "rollup -c -w",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix"
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "clear": "yarn run del \"dist/*\""
   },
   "devDependencies": {
     "@types/lodash.isequal": "^4.5.5",

@@ -8,7 +8,7 @@ import { useUserAbilityToSelectSwitcher } from './useUserAbilityToSelectSwitcher
 export const usePortUserInteraction = (
   portState: PortState,
   enable?: boolean
-): IUseNodeUserInteractionResult => {
+): IUsePortUserInteractionResult => {
   const { linksStore: {linkCreation}, diagramState, nodesStore } = useRootStore();
 
   // Should trigger rendering on change, otherwise useUserSelectSwitcher will not be invoked
@@ -62,7 +62,7 @@ export const usePortUserInteraction = (
   };
 };
 
-export interface IUseNodeUserInteractionResult {
+export interface IUsePortUserInteractionResult {
   active: boolean;
   userInteractionElemRef: React.MutableRefObject<HTMLDivElement | null>;
 }

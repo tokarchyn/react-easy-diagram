@@ -3,7 +3,7 @@ import { componentDefaultType, Point } from '../types/common';
 import { v4 } from 'uuid';
 import { RootStore } from './rootStore';
 import { addPoints, multiplyPoint } from '../utils';
-import { LinkEndpointState } from './linkEndpointState';
+import { LinkEndpoint, LinkEndpointState } from './linkEndpointState';
 
 export class LinkState {
   id: string;
@@ -71,14 +71,3 @@ export interface ILinkStateObjectWithId extends ILinkState {
 export interface ILinkSegment {
   position: Point;
 }
-
-export interface ILinkNodeEndpoint {
-  nodeId: string;
-  portId?: string;
-}
-
-export interface ILinkPointEndpoint {
-  position: Point;
-}
-
-export type LinkEndpoint = ILinkNodeEndpoint | ILinkPointEndpoint;

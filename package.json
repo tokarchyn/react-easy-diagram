@@ -10,8 +10,8 @@
     "concurrently": "^5.3.0"
   },
   "scripts": {
-    "start": "concurrently \"yarn workspace @react-easy-diagram/core start\" \"yarn workspace @react-easy-diagram/demo start\"",
-    "build:lib": "yarn workspace @react-easy-diagram/core run build",
+    "start": "yarn workspace @react-easy-diagram/core build:dev && concurrently \"yarn workspace @react-easy-diagram/core start\" \"yarn workspace @react-easy-diagram/demo start\"",
+    "build:lib": "yarn workspace @react-easy-diagram/core run build:prod",
     "build:demo": "yarn workspace @react-easy-diagram/demo run build",
     "build": "yarn build:lib && yarn build:demo"
   }
