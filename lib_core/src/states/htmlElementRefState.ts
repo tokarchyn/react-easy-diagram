@@ -22,6 +22,7 @@ export class HtmlElementRefState {
       let iterElement = this.current as HTMLElement | null;
       let acumLeft = 0;
       let acumTop = 0;
+
       while(parent !== iterElement && iterElement) {
         acumLeft += iterElement.offsetLeft;
         acumTop += iterElement.offsetTop;

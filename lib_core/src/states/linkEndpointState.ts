@@ -1,7 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { Point } from '../types/common';
 import { RootStore } from './rootStore';
-import { addPoints, multiplyPoint } from '../utils';
 import { PortState } from './portState';
 
 export class LinkEndpointState {
