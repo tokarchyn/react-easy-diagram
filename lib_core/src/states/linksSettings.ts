@@ -8,6 +8,7 @@ import { makeAutoObservable } from 'mobx';
 import { LinkState } from './linkState';
 import { createCurvedLinkPathConstructor } from '../linkConstructors/curved';
 import { componentDefaultType, Point } from '../types/common';
+import { ILinkPath } from '.';
 
 export class LinksSettings {
   pathConstructor: ILinkPathConstructor = createCurvedLinkPathConstructor();
@@ -31,7 +32,7 @@ export class LinksSettings {
 export interface ILinkVisualComponentProps<TSettings extends {} = {}>
   extends IVisualComponentProps<LinkState, TSettings> {
   draggableRef: React.RefObject<any>;
-  path: string;
+  path: ILinkPath;
 }
 
 export interface ILinksSettings

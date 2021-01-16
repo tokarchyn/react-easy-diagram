@@ -6,25 +6,25 @@ export const LinkDefault: React.FC<
   ILinkVisualComponentProps<ILinkDefaultSettings>
 > = (props) => {
   const settings = props.settings ?? linkDefaultSettings;
+  const { svgPath: pathStr, target } = props.path;
 
   return (
     <g>
       <path
         ref={props.draggableRef}
-        d={props.path}
+        d={pathStr}
         stroke={settings.color}
         strokeWidth={settings.strokeWidth}
         fill='none'
       />
-      {
-        props.entity.target.hasOnlyPosition &&
+      {props.entity.target.hasOnlyPosition && (
         <circle
-          cx={props.entity.target.point[0] - settings.cirleRadius / 2}
-          cy={props.entity.target.point[1] - settings.cirleRadius / 2}
+          cx={target[0]}
+          cy={target[1]}
           r={settings.cirleRadius}
           fill='orange'
         />
-      }
+      )}
     </g>
   );
 };
@@ -38,7 +38,7 @@ export interface ILinkDefaultSettings {
 const linkDefaultSettings: ILinkDefaultSettings = {
   color: 'LightBlue',
   strokeWidth: 3,
-  cirleRadius: 5,
+  cirleRadius: 3,
 };
 
 export function createLinkDefault(

@@ -31,14 +31,20 @@ export class LinkState {
     this.extra = obj.extra;
   };
 
-  get path(): string {
+  get path(): ILinkPath {
     const { linksSettings } = this.rootStore;
-    return linksSettings.pathConstructor(
+    const pathStr = linksSettings.pathConstructor(
       this.source.point,
       this.target.point,
       this.source.port?.type,
       this.target.port?.type
     );
+
+    return {
+      svgPath: pathStr,
+      source: this.source.point,
+      target: this.target.point
+    }
   }
 
   get componentDefinition() {
@@ -70,4 +76,10 @@ export interface ILinkStateObjectWithId extends ILinkState {
 
 export interface ILinkSegment {
   position: Point;
+}
+
+export interface ILinkPath {
+  svgPath: string,
+  source: Point,
+  target: Point
 }
