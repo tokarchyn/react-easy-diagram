@@ -6,7 +6,7 @@ import { IPortsContainerVisualComponentProps } from '../states/portsSettings';
 export interface IPortsContainerDefaultSettings {
   style?: React.CSSProperties;
   direction: 'horizontal' | 'vertical';
-  gapBetweenPorts: number | string;
+  gapBetweenPorts: string;
 }
 
 export const PortsContainerDefault: React.FC<
@@ -17,16 +17,18 @@ export const PortsContainerDefault: React.FC<
     ...settings,
   };
 
-  let className = 'react_fast_diagram_PortContainer_Default ';
+  let className = 'react_fast_diagram_flex_gap ';
   if (finalSettings.direction === 'horizontal') {
-    className += 'react_fast_diagram_PortContainer_Default_Horizontal'
+    className += 'react_fast_diagram_flex_gap_x'
   }
   else {
-    className += 'react_fast_diagram_PortContainer_Default_Vertical';
+    className += 'react_fast_diagram_flex_gap_y';
   }
 
   return (
     <div className={className} style={{
+      // @ts-ignore
+      '--gap': finalSettings.gapBetweenPorts
     }}>
       {Object.values(entity).map((port) => (
         <PortWrapper key={port.id} port={port} />
@@ -52,5 +54,5 @@ export function createPortsContainerDefault(
 
 const portsContainerDefaultSettings: IPortsContainerDefaultSettings = {
   direction: 'horizontal',
-  gapBetweenPorts: 8,
+  gapBetweenPorts: '8px',
 };

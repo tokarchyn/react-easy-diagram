@@ -51,10 +51,11 @@ export function generatePortsContainer(
         style={{
           position: 'absolute',
           left: position === 'left' ? 0 : undefined,
-          top: position === 'top' ? 0 : undefined,
+          top: (position === 'left' || position === 'right' || position === 'top') ? 0 : undefined,
           right: position === 'right' ? 0 : undefined,
           bottom: position === 'bottom' ? 0 : undefined,
-          height: (position === 'left' || position === 'right') ? '100%' : undefined
+          height: (position === 'left' || position === 'right') ? '100%' : undefined,
+          width: (position === 'top' || position === 'bottom') ? '100%' : undefined
         }}
       >
         <portsContainer.component

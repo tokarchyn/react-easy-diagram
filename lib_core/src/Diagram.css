@@ -136,3 +136,40 @@
   background-color: rgb(228, 228, 228);
   border: 1px solid rgb(209, 209, 209)
 }
+
+/* Containers with gap between items */
+
+.react_fast_diagram_flex_gap {
+  --gap: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.react_fast_diagram_flex_gap_y {
+  flex-direction: column;
+  height: 100%;
+}
+
+.react_fast_diagram_flex_gap_y > * {
+  margin: var(--gap) 0 0 0;
+}
+
+.react_fast_diagram_flex_gap_y > :first-child {
+  margin: 0;
+}
+
+.react_fast_diagram_flex_gap_x {
+  flex-direction: row;
+  width: 100%;
+}
+
+.react_fast_diagram_flex_gap_x > * {
+  margin: 0 0 0 var(--gap);
+}
+
+.react_fast_diagram_flex_gap_x > :first-child {
+  margin: 0;
+}
+
+/* Containers with gap between items */
