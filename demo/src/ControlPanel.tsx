@@ -88,7 +88,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
   const [row, setRow] = useState(10);
   const [col, setCol] = useState(10);
 
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
