@@ -21,7 +21,8 @@ export const PortWrapper: React.FC<{ port: PortState }> = observer(({ port }) =>
         style={{
           width: 10,
           height: 10,
-          backgroundColor: 'green',
+          backgroundColor: '#6eb7ff',
+          border: '1px solid white'
         }}
       ></div>
     </div>
