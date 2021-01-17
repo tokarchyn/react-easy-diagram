@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { IComponentDefinition, Point } from '..';
 import { useRootStore } from '../hooks/useRootStore';
 
 export const BackgroundWrapper = observer(() => {

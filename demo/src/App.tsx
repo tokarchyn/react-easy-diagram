@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { createCurvedLinkPathConstructor, createLinkDefault, IDiagramInitState, useDiagram } from '@react-easy-diagram/core';
+import { createCurvedLinkPathConstructor, createDefaultBackground, createImageWithCrosses, createLinkDefault, createPortsContainerDefault, IDiagramInitState, useDiagram } from '@react-easy-diagram/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import { ControlPanel } from './ControlPanel';
@@ -26,6 +26,12 @@ export const App = () => {
         attention: createLinkDefault({color: 'red'})
       },
       pathConstructor: createCurvedLinkPathConstructor()
+    },
+    diagram: {
+      backgroundComponent: createDefaultBackground({
+        color: '#f0f0f0',
+        imageCreator: createImageWithCrosses
+      })
     }
   });
 

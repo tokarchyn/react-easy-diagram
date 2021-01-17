@@ -4,7 +4,6 @@ import {
   VisualComponents,
 } from './visualComponents';
 import { makeAutoObservable } from 'mobx';
-import { Point } from '../types/common';
 import { PortState } from './portState';
 import { createPortsContainerDefault } from '../components/PortsContainerDefault';
 
@@ -22,12 +21,16 @@ export class PortsSettings {
   }
 
   fromJson = (obj: IPortsSettings) => {
-    this.portsContainerVisualComponents.fromJson(obj);
+    obj.portsContainerComponents &&
+      this.portsContainerVisualComponents.fromJson(
+        obj.portsContainerComponents
+      );
   };
 }
 
 export interface IPortsContainerVisualComponentProps<TSettings extends {} = {}>
   extends IVisualComponentProps<PortState[], TSettings> {}
 
-export interface IPortsSettings
-  extends IVisualComponentsObject<IPortsContainerVisualComponentProps> {}
+export interface IPortsSettings {
+  portsContainerComponents: IVisualComponentsObject<IPortsContainerVisualComponentProps>;
+}

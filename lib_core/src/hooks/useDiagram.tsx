@@ -3,12 +3,12 @@ import {
   Diagram,
   IDiagramInitState
 } from '../components/Diagram';
-import { DiagramApi, IDiagramSetting } from '../states/diagramApi';
+import { DiagramApi, ISettings } from '../states/diagramApi';
 import { useNotifyRef } from './useNotifyRef';
 
 export const useDiagram = (
   initState?: IDiagramInitState,
-  settings?: IDiagramSetting
+  settings?: ISettings
 ) => {
   const apiRef = useNotifyRef<DiagramApi | null>(null);
 

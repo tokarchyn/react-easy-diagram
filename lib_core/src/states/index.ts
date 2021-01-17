@@ -1,5 +1,5 @@
 export * from './diagramApi';
-export * from './diagramsSettings';
+export * from './diagramSettings';
 export * from './diagramState';
 export * from './htmlElementRefState';
 export * from './linkCreationState';

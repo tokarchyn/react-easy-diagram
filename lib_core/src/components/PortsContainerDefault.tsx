@@ -40,7 +40,7 @@ export const PortsContainerDefault: React.FC<
 export function createPortsContainerDefault(
   settings?: Partial<IPortsContainerDefaultSettings>
 ): IComponentDefinition<
-  IPortsContainerVisualComponentProps<IPortsContainerDefaultSettings>,
+  IPortsContainerVisualComponentProps,
   IPortsContainerDefaultSettings
 > {
   return {
