@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { IComponentDefinition } from '../states/visualComponents';
 import { INodeVisualComponentProps } from '../states/nodesSettings';
-import { PortWrapper } from './PortWrapper';
 import { useRootStore } from '../hooks/useRootStore';
 import { PortsSettings } from '../states/portsSettings';
 import { PortState } from '../states';
-import { Dictionary } from '..';
+import { Dictionary, RelativePosition } from '..';
 
 export interface INodeDefaultSettings {
   style: React.CSSProperties;
@@ -36,13 +35,13 @@ export function generatePortsContainer(
   portsSettings: PortsSettings,
   ports: Dictionary<PortState>,
   portsType: string,
-  position: 'left' | 'top' | 'right' | 'bottom'
+  position: RelativePosition
 ) {
   const portsToShow = Object.values(ports).filter(
     (port) => port.type === portsType
   );
   const portsContainer = portsSettings.portsContainerVisualComponents.getComponent(
-    (position === 'left' || position === 'right') ? 'vertical' : 'horizontal'
+    position === 'left' || position === 'right' ? 'vertical' : 'horizontal'
   );
 
   return (
@@ -51,11 +50,16 @@ export function generatePortsContainer(
         style={{
           position: 'absolute',
           left: position === 'left' ? 0 : undefined,
-          top: (position === 'left' || position === 'right' || position === 'top') ? 0 : undefined,
+          top:
+            position === 'left' || position === 'right' || position === 'top'
+              ? 0
+              : undefined,
           right: position === 'right' ? 0 : undefined,
           bottom: position === 'bottom' ? 0 : undefined,
-          height: (position === 'left' || position === 'right') ? '100%' : undefined,
-          width: (position === 'top' || position === 'bottom') ? '100%' : undefined
+          height:
+            position === 'left' || position === 'right' ? '100%' : undefined,
+          width:
+            position === 'top' || position === 'bottom' ? '100%' : undefined,
         }}
       >
         <portsContainer.component
@@ -78,8 +82,3 @@ export function createNodeDefault(
     settings,
   };
 }
-
-// export const NodeDefault = forwardRef<
-//   HTMLDivElement,
-//   IComponentProps<NodeState, INodeDefaultSettings>
-// >(observable(() => {

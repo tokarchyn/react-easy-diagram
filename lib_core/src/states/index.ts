@@ -14,3 +14,4 @@ export * from './portsSettings';
 export * from './portState';
 export * from './rootStore';
 export * from './visualComponents';
+export * from './visualComponentState';

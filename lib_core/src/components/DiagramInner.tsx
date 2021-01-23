@@ -5,7 +5,7 @@ import { useDiagramUserInteraction } from '../hooks/userInteractions/useDiagramU
 import { observer } from 'mobx-react-lite';
 import { useRootStore } from '../hooks/useRootStore';
 import { BackgroundWrapper } from './BackgroundWrapper';
-import { MiniControlDefault } from './MiniControlDefault';
+import { MiniControlWrapper } from './MiniControlWrapper';
 
 export interface IDiagramInnerProps {
   diagramStyles?: React.CSSProperties;
@@ -22,7 +22,6 @@ export const InnerDiagram = observer<IDiagramInnerProps>((props) => {
       className='react_fast_diagram_DiagramInner'
     >
       <BackgroundWrapper />
-      <MiniControlDefault />
       <div
         className='react_fast_diagram_DiagramInner_DraggablePart'
         style={{
@@ -32,6 +31,7 @@ export const InnerDiagram = observer<IDiagramInnerProps>((props) => {
         <LinksLayer linksStore={rootStore.linksStore} />
         <NodesLayer nodesStore={rootStore.nodesStore} />
       </div>
+      <MiniControlWrapper />
     </div>
   );
 });

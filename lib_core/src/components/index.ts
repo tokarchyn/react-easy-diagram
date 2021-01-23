@@ -6,6 +6,7 @@ export * from './LinkDefault';
 export * from './LinksLayer';
 export * from './LinkWrapper';
 export * from './MiniControlDefault';
+export * from './MiniControlWrapper';
 export * from './NodeDefault';
 export * from './NodesLayer';
 export * from './NodeWrapper';

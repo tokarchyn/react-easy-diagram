@@ -1,14 +1,17 @@
 import React from 'react';
 import './App.css';
-import { createCurvedLinkPathConstructor, createDefaultBackground, createImageWithCrosses, createLinkDefault, createPortsContainerDefault, IDiagramInitState, useDiagram } from '@react-easy-diagram/core';
+import { createCurvedLinkPathConstructor, createDefaultBackground, createDefaultMiniControl, createImageWithCrosses, createLinkDefault, IDiagramInitState, useDiagram } from '@react-easy-diagram/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import { ControlPanel } from './ControlPanel';
 
 const useStyles = makeStyles(() => ({
   diagram: {
-    height: '100vh',
-    width: '100vw',
+    position: 'fixed',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
   },
   controlPanel: {
     position: 'absolute',
@@ -28,9 +31,9 @@ export const App = () => {
       pathConstructor: createCurvedLinkPathConstructor()
     },
     diagram: {
-      backgroundComponent: createDefaultBackground({
-        color: '#f0f0f0',
-        imageCreator: createImageWithCrosses
+      miniControlComponent: createDefaultMiniControl({
+        buttonsSize: 30,
+        position: 'left-bottom'
       })
     }
   });

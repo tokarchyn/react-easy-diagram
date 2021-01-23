@@ -7,10 +7,10 @@ export const BackgroundWrapper = observer(() => {
 
   return (
     <div className='react_fast_diagram_BackgroundWrapper'>
-      <diagramSettings.backgroundComponent.component
+      <diagramSettings.backgroundComponentState.component
         diagramOffset={diagramState.offset}
-        digramZoom={diagramState.zoom}
-        settings={diagramSettings.backgroundComponent.settings}
+        diagramZoom={diagramState.zoom}
+        settings={diagramSettings.backgroundComponentState.settings}
       />
     </div>
   );

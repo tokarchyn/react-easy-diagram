@@ -4,7 +4,7 @@ import { IBackgroundComponentProps } from '../states/diagramSettings';
 
 const BackgroundDefault: React.FC<
   IBackgroundComponentProps<IBackgroundDefaultSettings>
-> = ({ diagramOffset, digramZoom, settings }) => {
+> = ({ diagramOffset, diagramZoom: digramZoom, settings }) => {
   settings = settings ?? defaultSettings;
 
   return (
@@ -12,7 +12,10 @@ const BackgroundDefault: React.FC<
       className='react_fast_diagram_Background_Default'
       style={{
         backgroundColor: settings.color,
-        backgroundImage: settings.imageCreator(100 * digramZoom, 100 * digramZoom),
+        backgroundImage: settings.imageCreator(
+          100 * digramZoom,
+          100 * digramZoom
+        ),
         backgroundPosition: `${diagramOffset[0]}px ${diagramOffset[1]}px`,
       }}
     />
@@ -24,7 +27,9 @@ export const createGridImage: ImageCreator = (width, height) => {
 };
 
 export const createImageWithCrosses: ImageCreator = (width, height) => {
-  return `url("data:image/svg+xml,%3Csvg width='${width * .3}' height='${height * .3}' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2395bcbd' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`;
+  return `url("data:image/svg+xml,%3Csvg width='${width * 0.3}' height='${
+    height * 0.3
+  }' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2395bcbd' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`;
 };
 
 const defaultSettings: IBackgroundDefaultSettings = {
@@ -38,22 +43,22 @@ export const createDefaultBackground = (
   IBackgroundComponentProps,
   IBackgroundDefaultSettings
 > => {
-  const finaleSettings = {
+  const finalSettings = {
     ...defaultSettings,
     ...(settings ? settings : {}),
   };
 
   return {
     component: BackgroundDefault,
-    settings: finaleSettings,
+    settings: finalSettings,
   };
 };
 
 export type ImageCreator = (width: number, height: number) => string;
 
 /**
- * @property {function}  imageCreator       - Function to create string for css's backgroundUrl property. 
- * You can use for example services like listed in this article https://css-tricks.com/websites-generate-svg-patterns/ 
+ * @property {function}  imageCreator       - Function to create string for css's backgroundUrl property.
+ * You can use for example services like listed in this article https://css-tricks.com/websites-generate-svg-patterns/
  * to generate this string.
  */
 export interface IBackgroundDefaultSettings {

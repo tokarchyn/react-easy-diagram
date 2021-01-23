@@ -5,12 +5,10 @@ import { LinkState } from '../states/linkState';
 
 export const LinkWrapper = observer<{ link: LinkState }>(({ link }) => {
   const draggableRef = useNotifyRef(null);
-  const Component = link.componentDefinition.component;
-  const path = link.path;
-  
+
   return (
     <g>
-      <Component
+      <link.componentDefinition.component
         draggableRef={draggableRef}
         path={link.path}
         entity={link}
