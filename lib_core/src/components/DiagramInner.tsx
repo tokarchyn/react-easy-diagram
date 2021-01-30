@@ -13,11 +13,11 @@ export interface IDiagramInnerProps {
 
 export const InnerDiagram = observer<IDiagramInnerProps>((props) => {
   const rootStore = useRootStore();
-  const { transform, userInteractionElemRef } = useDiagramUserInteraction();
+  const { transform } = useDiagramUserInteraction();
 
   return (
     <div
-      ref={userInteractionElemRef}
+      ref={rootStore.diagramState.diagramInnerRef}
       style={{ ...props.diagramStyles }}
       className='react_fast_diagram_DiagramInner'
     >

@@ -4,13 +4,8 @@ import {
   Vector2,
   WebKitGestureEvent,
 } from 'react-use-gesture/dist/types';
-import {
-  addPoints,
-  computeTransformationOnScale,
-  ITransformation,
-  subtractPoints,
-} from '../../utils';
-import { IUserInteractionTransformation } from './common';
+import { subtractPoints } from '../../utils';
+import { IUserInteractionTranslateAndZoom } from './common';
 
 type PinchEvent =
   | React.TouchEvent
@@ -30,7 +25,7 @@ interface IPinchHandlers {
 export function usePinchHandlers(
   elemToAttachToRef: React.RefObject<HTMLElement>,
   activeRef: React.MutableRefObject<boolean>,
-  state: IUserInteractionTransformation,
+  state: IUserInteractionTranslateAndZoom,
   cancel?: (event: PinchEvent) => boolean
 ): IPinchHandlers {
   const pinchState = useRef<IPinchState>({
@@ -44,29 +39,24 @@ export function usePinchHandlers(
         if (!activeRef.current || !elemToAttachToRef.current) {
           return;
         }
-
         const originDiff = subtractPoints(origin, pinchState.current.origin);
 
-        const diff = distance - pinchState.current.distance;
-        const elWidth =
-          elemToAttachToRef.current.clientWidth * state.zoom;
-        const targetElWidth = elWidth + diff;
-        const factor = targetElWidth / elWidth;
+        const rect = elemToAttachToRef.current.getBoundingClientRect();
+        const originPositionOnElement = subtractPoints(origin, [
+          rect.left,
+          rect.top,
+        ]);
 
-        const scaleTransformation = computeTransformationOnScale(
-          elemToAttachToRef.current,
-          origin,
-          addPoints(state.offset, originDiff),
-          state.zoom,
-          factor
+        state.tranlsateAndZoomInto(
+          originDiff,
+          originPositionOnElement,
+          distance / pinchState.current.distance
         );
 
         pinchState.current = {
           distance,
           origin,
         };
-
-        state.setTransformation(scaleTransformation.position, scaleTransformation.scale);
       },
       onPinchStart: ({ da: [distance], origin, event }) => {
         if (cancel && cancel(event)) {

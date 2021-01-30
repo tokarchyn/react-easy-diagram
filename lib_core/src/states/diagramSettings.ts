@@ -9,6 +9,7 @@ import { createDefaultMiniControl } from '..';
 export class DiagramSettings {
   backgroundComponentState: VisualComponentState<IBackgroundComponentProps>;
   miniControlComponentState: VisualComponentState<IMiniControlComponentProps>;
+  scaleInterval: Point = defaultScaleInterval;
 
   constructor() {
     this.backgroundComponentState = new VisualComponentState<IBackgroundComponentProps>(
@@ -23,8 +24,11 @@ export class DiagramSettings {
   fromJson(obj: IDiagramSettings) {
     this.backgroundComponentState.fromJson(obj.backgroundComponent);
     this.miniControlComponentState.fromJson(obj.miniControlComponent);
+    this.scaleInterval = obj.scaleInterval ?? defaultScaleInterval;
   }
 }
+
+const defaultScaleInterval: Point = [0.1, 3];
 
 export interface IDiagramSettings {
   backgroundComponent?:
@@ -33,6 +37,7 @@ export interface IDiagramSettings {
   miniControlComponent?:
     | IComponentDefinition<IMiniControlComponentProps>
     | VisualComponent<IMiniControlComponentProps>;
+  scaleInterval?: Point;
 }
 
 export interface IBackgroundComponentProps<TSettings = {}> {

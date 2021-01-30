@@ -1,6 +1,9 @@
-import { Point } from "../../types/common";
+import { Point } from '../../types/common';
 
-export const eventPathContainsClass = (event: PointerEvent | React.PointerEvent<Element>, className: string) => {
+export const eventPathContainsClass = (
+  event: PointerEvent | React.PointerEvent<Element>,
+  className: string
+) => {
   const typedEvent = event as Event;
   if ('composedPath' in typedEvent) {
     const targets = typedEvent.composedPath();
@@ -15,7 +18,7 @@ export const eventPathContainsClass = (event: PointerEvent | React.PointerEvent<
   }
 
   return false;
-}
+};
 
 export function allTouchTargetsContainsClass(
   event: TouchEvent | React.TouchEvent<Element>,
@@ -51,13 +54,17 @@ export function eventTargetContainsClass(
   } else return false;
 }
 
-export interface IUserInteractionOffset {
+export interface IUserInteractionTranslate {
   offset: Point;
   setOffset: (newOffset: Point) => any;
 }
 
-export interface IUserInteractionTransformation {
+export interface IUserInteractionTranslateAndZoom {
   offset: Point;
   zoom: number;
-  setTransformation: (newOffset: Point, zoom: number) => any;
+  tranlsateAndZoomInto: (
+    translateBy: Point,
+    pointToZoomInto: Point,
+    changeZoomBy: number
+  ) => any;
 }

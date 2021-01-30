@@ -42,7 +42,7 @@ export class LinkEndpointState {
   get point(): Point {
     if (this.nodeId) {
       const node = this.rootStore.nodesStore.nodes[this.nodeId];
-
+      // TODO: Use getters
       if (this.portId) {
         const port = node.ports[this.portId];
 

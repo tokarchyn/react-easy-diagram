@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Handler } from 'react-use-gesture/dist/types';
-import { IUserInteractionOffset } from './common';
+import { IUserInteractionTranslate } from './common';
 
 type DragEventHandler =
   | Handler<'drag', React.PointerEvent<Element> | PointerEvent>
@@ -14,7 +14,7 @@ interface IDragHandlers {
 
 export function useDragHandlers(
   activeRef: React.MutableRefObject<boolean>,
-  state: IUserInteractionOffset,
+  state: IUserInteractionTranslate,
   parentScaleGetter?: () => number,
   cancel?: (event: React.PointerEvent<Element> | PointerEvent) => boolean
 ): IDragHandlers {

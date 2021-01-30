@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
 import { WebKitGestureEvent } from 'react-use-gesture/dist/types';
-import { RootStoreContext } from '../../components/Diagram';
 import { useNotifyRef } from '../useNotifyRef';
 import { useRootStore } from '../useRootStore';
 import { useDragHandlers } from './useDragHandlers';
@@ -12,9 +11,8 @@ import { useWheelHandler } from './useWheelHandler';
 export const useDiagramUserInteraction = (
   enable?: boolean
 ): IUseDragAndZoomResult => {
-  const { diagramState: diagramStore } = useRootStore();
+  const { diagramState } = useRootStore();
   const activeRef = useNotifyRef(false);
-  const userInteractionElemRef = useRef<HTMLDivElement>(null);
 
   const cancelGesture = useCallback(
     (
@@ -26,28 +24,28 @@ export const useDiagramUserInteraction = (
         | WebKitGestureEvent
         | React.PointerEvent<Element>
         | PointerEvent
-    ) => event.target !== userInteractionElemRef.current,
-    [userInteractionElemRef]
+    ) => event.target !== diagramState.diagramInnerRef.current,
+    [diagramState.diagramInnerRef]
   );
 
   const dragHandlers = useDragHandlers(
     activeRef,
-    diagramStore,
+    diagramState,
     undefined,
     cancelGesture
   );
 
   const pinchHandlers = usePinchHandlers(
-    userInteractionElemRef,
+    diagramState.diagramInnerRef,
     activeRef,
-    diagramStore,
+    diagramState,
     cancelGesture
   );
 
   const wheelHandler = useWheelHandler(
-    userInteractionElemRef,
+    diagramState.diagramInnerRef,
     activeRef,
-    diagramStore
+    diagramState
   );
 
   useGesture(
@@ -57,7 +55,7 @@ export const useDiagramUserInteraction = (
       ...wheelHandler,
     },
     {
-      domTarget: userInteractionElemRef,
+      domTarget: diagramState.diagramInnerRef,
       eventOptions: { passive: false },
       enabled: enable,
     }
@@ -65,18 +63,16 @@ export const useDiagramUserInteraction = (
 
   useUserAbilityToSelectSwitcher(
     activeRef.current,
-    userInteractionElemRef.current?.ownerDocument?.body
+    diagramState.diagramInnerRef.current?.ownerDocument?.body
   );
 
   return {
-    userInteractionElemRef,
-    transform: diagramStore.transformString,
+    transform: diagramState.transformString,
     active: activeRef.current,
   };
 };
 
 export interface IUseDragAndZoomResult {
-  userInteractionElemRef: React.RefObject<HTMLDivElement>;
   transform: string;
   active: boolean;
 }
