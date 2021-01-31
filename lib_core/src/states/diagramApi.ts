@@ -19,17 +19,16 @@ export class DiagramApi {
     this.rootStore.nodesStore.addNode(node);
   };
 
-  reinitState = (nodes: INodeState[], links: ILinkState[]) => {
+  reinitState = (nodes?: INodeState[], links?: ILinkState[]) => {
     this.rootStore.nodesStore.fromJson(nodes);
     this.rootStore.linksStore.fromJson(links);
   };
 
   reinitSettings = (settings: ISettings) => {
-    settings.diagram &&
-      this.rootStore.diagramSettings.fromJson(settings.diagram);
-    settings.nodes && this.rootStore.nodesSettings.fromJson(settings.nodes);
-    settings.links && this.rootStore.linksSettings.fromJson(settings.links);
-    settings.ports && this.rootStore.portsSettings.fromJson(settings.ports);
+    this.rootStore.diagramSettings.fromJson(settings.diagram);
+    this.rootStore.nodesSettings.fromJson(settings.nodes);
+    this.rootStore.linksSettings.fromJson(settings.links);
+    this.rootStore.portsSettings.fromJson(settings.ports);
   };
 
   zoomIn = () => this.rootStore.diagramState.zoomIntoCenter(1 / 0.8);

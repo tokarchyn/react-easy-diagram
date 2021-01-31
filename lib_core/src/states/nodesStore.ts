@@ -14,7 +14,7 @@ export class NodesStore {
     this.rootStore = rootStore;
   }
 
-  fromJson = (newNodes: INodeState[]) => {
+  fromJson = (newNodes?: INodeState[]) => {
     this.nodes = {};
     if (newNodes) {
       newNodes.forEach(node => {

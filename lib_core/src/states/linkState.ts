@@ -1,8 +1,7 @@
-import { makeAutoObservable, trace } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import { Point } from '../types/common';
 import { v4 } from 'uuid';
 import { RootStore } from './rootStore';
-import { addPoints, multiplyPoint } from '../utils';
 import { LinkEndpoint, LinkEndpointState } from './linkEndpointState';
 import { componentDefaultType } from './visualComponents';
 

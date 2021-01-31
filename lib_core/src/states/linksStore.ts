@@ -17,7 +17,7 @@ export class LinksStore {
     this.rootStore = rootStore;
   }
 
-  fromJson = (newLinks: ILinkState[]) => {
+  fromJson = (newLinks?: ILinkState[]) => {
     this.links = {};
     if (newLinks) {
       newLinks.forEach((linkState) => {
