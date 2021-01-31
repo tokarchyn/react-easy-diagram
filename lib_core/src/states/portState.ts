@@ -1,8 +1,8 @@
-import { componentDefaultType, Point } from '../types/common';
+import { Point } from '../types/common';
 import { v4 } from 'uuid';
 import { autorun, makeAutoObservable } from 'mobx';
 import { HtmlElementRefState } from './htmlElementRefState';
-import { NodeState, RootStore } from '.';
+import { componentDefaultType, NodeState, RootStore } from '.';
 
 export class PortState {
   id: string = '';

@@ -1,10 +1,11 @@
-import { componentDefaultType, Dictionary, Point } from '../types/common';
+import { Dictionary, Point } from '../types/common';
 import { autorun, makeAutoObservable } from 'mobx';
 import { IPortState, PortState } from './portState';
 import { v4 } from 'uuid';
 import { generateTransform } from '../utils';
 import { RootStore } from './rootStore';
 import { HtmlElementRefState } from './htmlElementRefState';
+import { componentDefaultType } from './visualComponents';
 
 export class NodeState {
   id: string = '';

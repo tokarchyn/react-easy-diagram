@@ -4,7 +4,6 @@ import {
   INodesSettings,
   IPortsSettings,
 } from '.';
-import { multiplyPoint } from '../utils';
 import { ILinkState } from './linkState';
 import { INodeState } from './nodeState';
 import { RootStore } from './rootStore';

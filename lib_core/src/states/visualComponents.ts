@@ -1,73 +1,65 @@
 import { makeAutoObservable } from 'mobx';
-import { observer } from 'mobx-react-lite';
-import { componentDefaultType, Dictionary } from '../types/common';
+import {
+  IComponentDefinition,
+  IVisualComponentProps,
+  VisualComponent,
+  VisualComponentState,
+} from '.';
+import { Dictionary } from '../types/common';
 
 export class VisualComponents<
   TEntity,
   TComponentProps extends IVisualComponentProps<TEntity>
 > {
   defaultType: string = componentDefaultType;
-  defaultComponents: Dictionary<
-    IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
-  >;
-  components: Dictionary<IComponentDefinition<TComponentProps>>;
+  defaultComponents: Dictionary<VisualComponentState<TComponentProps>>;
+  components: Dictionary<VisualComponentState<TComponentProps>>;
 
   constructor(
     defaultComponents: Dictionary<
       IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
     >
   ) {
-    this.defaultComponents = defaultComponents;
-    this.initDefaultComponents();
+    this.defaultComponents = this.createComponentCollection(defaultComponents);
+    this.components = { ...this.defaultComponents };
     makeAutoObservable(this);
   }
 
-  fromJson = (
-    obj: IVisualComponentsObject<TComponentProps>,
-    initDefaultComponents: boolean = true
-  ) => {
-    this.defaultType = obj.defaultNodeType ?? componentDefaultType;
+  fromJson = (obj?: IVisualComponentsObject<TComponentProps>) => {
+    this.defaultType = obj?.defaultNodeType ?? componentDefaultType;
 
-    if (initDefaultComponents) {
-      this.initDefaultComponents();
+    if (!obj?.components) {
+      this.components = { ...this.defaultComponents };
     } else {
-      this.components = {};
+      this.components = this.createComponentCollection(obj.components);
     }
-
-    this.addComponentsFromJson(obj.components);
   };
 
   getComponent = (
     type: string | undefined | null
-  ): IComponentDefinition<TComponentProps> => {
+  ): VisualComponentState<TComponentProps> => {
     const finalComponentType = type ?? this.defaultType;
     return (
       this.components[finalComponentType] ?? this.components[this.defaultType]
     );
   };
 
-  private initDefaultComponents() {
-    this.components = {};
-    this.addComponentsFromJson(this.defaultComponents);
-  }
+  private createComponentCollection(
+    componentsObjects: Dictionary<
+      IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
+    >
+  ): Dictionary<VisualComponentState<TComponentProps>> {
+    const collection: Dictionary<VisualComponentState<TComponentProps>> = {};
 
-  private addComponentsFromJson(components: Dictionary<
-    IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
-  >) {
-    Object.entries(components).forEach(([key, value]) => {
-      if ('component' in value) {
-        this.components[key] = {
-          component: observer(value.component),
-          settings: value.settings,
-        };
-      } else {
-        this.components[key] = {
-          component: observer(value),
-        };
-      }
+    Object.entries(componentsObjects).forEach(([key, value]) => {
+      collection[key] = new VisualComponentState<TComponentProps>(value);
     });
+
+    return collection;
   }
 }
+
+export const componentDefaultType = 'default';
 
 export interface IVisualComponentsObject<TComponentProps> {
   defaultNodeType?: string;
@@ -75,20 +67,3 @@ export interface IVisualComponentsObject<TComponentProps> {
     IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
   >;
 }
-
-export interface IComponentDefinition<
-  TComponentProps,
-  TSettings extends {} = {}
-> {
-  component: VisualComponent<TComponentProps>;
-  settings?: TSettings;
-}
-
-export interface IVisualComponentProps<TEntity, TSettings extends {} = {}> {
-  entity: TEntity;
-  settings?: TSettings;
-}
-
-export type VisualComponent<
-  TComponentProps
-> = React.FunctionComponent<TComponentProps>;

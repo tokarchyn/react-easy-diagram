@@ -1,17 +1,17 @@
 import { LinkDefault } from '../components/LinkDefault';
 import {
-  IVisualComponentProps,
+  componentDefaultType,
   IVisualComponentsObject,
   VisualComponents,
 } from './visualComponents';
 import { makeAutoObservable } from 'mobx';
 import { LinkState } from './linkState';
 import { createCurvedLinkPathConstructor } from '../linkConstructors/curved';
-import { componentDefaultType, Point } from '../types/common';
-import { ILinkPath } from '.';
+import { Point } from '../types/common';
+import { ILinkPath, IVisualComponentProps } from '.';
 
 export class LinksSettings {
-  pathConstructor: ILinkPathConstructor = createCurvedLinkPathConstructor();
+  pathConstructor: ILinkPathConstructor = defaultPathConstructor;
   visualComponents: VisualComponents<
     LinkState,
     ILinkVisualComponentProps
@@ -23,11 +23,13 @@ export class LinksSettings {
     makeAutoObservable(this);
   }
 
-  fromJson = (obj: ILinksSettings) => {
+  fromJson = (obj?: ILinksSettings) => {
     this.visualComponents.fromJson(obj);
-    this.pathConstructor = obj.pathConstructor;
+    this.pathConstructor = obj?.pathConstructor ?? defaultPathConstructor;
   };
 }
+
+const defaultPathConstructor = createCurvedLinkPathConstructor();
 
 export interface ILinkVisualComponentProps<TSettings extends {} = {}>
   extends IVisualComponentProps<LinkState, TSettings> {

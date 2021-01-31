@@ -1,9 +1,8 @@
 import React from 'react';
-import { IComponentDefinition } from '../states/visualComponents';
 import { INodeVisualComponentProps } from '../states/nodesSettings';
 import { useRootStore } from '../hooks/useRootStore';
 import { PortsSettings } from '../states/portsSettings';
-import { PortState } from '../states';
+import { IComponentDefinition, PortState } from '../states';
 import { Dictionary, RelativePosition } from '..';
 
 export interface INodeDefaultSettings {

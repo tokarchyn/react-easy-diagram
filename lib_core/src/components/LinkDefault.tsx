@@ -1,6 +1,6 @@
 import React from 'react';
 import { ILinkVisualComponentProps } from '../states/linksSettings';
-import { IComponentDefinition } from '../states/visualComponents';
+import { IComponentDefinition } from '../states/visualComponentState';
 
 export const LinkDefault: React.FC<
   ILinkVisualComponentProps<ILinkDefaultSettings>

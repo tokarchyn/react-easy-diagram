@@ -1,11 +1,11 @@
 import {
-  IVisualComponentProps,
   IVisualComponentsObject,
   VisualComponents,
 } from './visualComponents';
 import { makeAutoObservable } from 'mobx';
 import { PortState } from './portState';
 import { createPortsContainerDefault } from '../components/PortsContainerDefault';
+import { IVisualComponentProps } from './visualComponentState';
 
 export class PortsSettings {
   portsContainerVisualComponents: VisualComponents<
@@ -20,11 +20,8 @@ export class PortsSettings {
     makeAutoObservable(this);
   }
 
-  fromJson = (obj: IPortsSettings) => {
-    obj.portsContainerComponents &&
-      this.portsContainerVisualComponents.fromJson(
-        obj.portsContainerComponents
-      );
+  fromJson = (obj?: IPortsSettings) => {
+    this.portsContainerVisualComponents.fromJson(obj?.portsContainerComponents);
   };
 }
 

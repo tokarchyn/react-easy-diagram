@@ -9,5 +9,3 @@ export type RelativePosition = 'left' | 'top' | 'right' | 'bottom';
 export type CornerPosition = 'left-top' | 'right-top' | 'right-bottom' | 'left-bottom';
 
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
-
-export const componentDefaultType = 'default';

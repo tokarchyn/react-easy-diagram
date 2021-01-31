@@ -1,30 +1,29 @@
-import { IComponentDefinition, VisualComponent } from './visualComponents';
 import { makeAutoObservable } from 'mobx';
 import { Point } from '../types/common';
 import { createDefaultBackground } from '../components/BackgroundDefault';
-import { VisualComponentState } from './visualComponentState';
-import { DiagramApi } from '.';
+import { DiagramApi, IComponentDefinition, VisualComponent } from '.';
 import { createDefaultMiniControl } from '..';
+import { VisualComponentWithDefault } from './visualComponentWithDefault';
 
 export class DiagramSettings {
-  backgroundComponentState: VisualComponentState<IBackgroundComponentProps>;
-  miniControlComponentState: VisualComponentState<IMiniControlComponentProps>;
+  backgroundComponentState: VisualComponentWithDefault<IBackgroundComponentProps>;
+  miniControlComponentState: VisualComponentWithDefault<IMiniControlComponentProps>;
   scaleInterval: Point = defaultScaleInterval;
 
   constructor() {
-    this.backgroundComponentState = new VisualComponentState<IBackgroundComponentProps>(
+    this.backgroundComponentState = new VisualComponentWithDefault<IBackgroundComponentProps>(
       createDefaultBackground()
     );
-    this.miniControlComponentState = new VisualComponentState<IMiniControlComponentProps>(
+    this.miniControlComponentState = new VisualComponentWithDefault<IMiniControlComponentProps>(
       createDefaultMiniControl()
     );
     makeAutoObservable(this);
   }
 
-  fromJson(obj: IDiagramSettings) {
-    this.backgroundComponentState.fromJson(obj.backgroundComponent);
-    this.miniControlComponentState.fromJson(obj.miniControlComponent);
-    this.scaleInterval = obj.scaleInterval ?? defaultScaleInterval;
+  fromJson(obj?: IDiagramSettings) {
+    this.backgroundComponentState.fromJson(obj?.backgroundComponent);
+    this.miniControlComponentState.fromJson(obj?.miniControlComponent);
+    this.scaleInterval = obj?.scaleInterval ?? defaultScaleInterval;
   }
 }
 

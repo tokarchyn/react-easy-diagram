@@ -1,9 +1,10 @@
 import { makeAutoObservable, trace } from 'mobx';
-import { componentDefaultType, Point } from '../types/common';
+import { Point } from '../types/common';
 import { v4 } from 'uuid';
 import { RootStore } from './rootStore';
 import { addPoints, multiplyPoint } from '../utils';
 import { LinkEndpoint, LinkEndpointState } from './linkEndpointState';
+import { componentDefaultType } from './visualComponents';
 
 export class LinkState {
   id: string;
@@ -43,8 +44,8 @@ export class LinkState {
     return {
       svgPath: pathStr,
       source: this.source.point,
-      target: this.target.point
-    }
+      target: this.target.point,
+    };
   }
 
   get componentDefinition() {
@@ -79,7 +80,7 @@ export interface ILinkSegment {
 }
 
 export interface ILinkPath {
-  svgPath: string,
-  source: Point,
-  target: Point
+  svgPath: string;
+  source: Point;
+  target: Point;
 }
