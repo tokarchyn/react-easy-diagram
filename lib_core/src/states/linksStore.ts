@@ -103,9 +103,12 @@ export class LinksStore {
     if (this.nodesLinksCollection[source.nodeId]) {
       return this.nodesLinksCollection[source.nodeId].find(
         (l) =>
-          l.source.portId === source.portId &&
+          (l.source.portId === source.portId &&
           l.target.nodeId === target.nodeId &&
-          l.target.portId === target.portId
+          l.target.portId === target.portId) ||
+          (l.source.portId === target.portId &&
+          l.target.nodeId === source.nodeId &&
+          l.target.portId === source.portId)
       );
     }
   }

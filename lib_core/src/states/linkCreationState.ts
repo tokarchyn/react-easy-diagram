@@ -16,7 +16,7 @@ export class LinkCreationState {
   componentType: string = componentDefaultType;
   source: LinkPortEndpointState | null = null;
   target: LinkPointEndpointState | null = null;
-  linkTargetCandidate: ILinkPortEndpoint | null = null;
+  targetPortCandidate: PortState | null = null;
 
   rootStore: RootStore;
 
@@ -25,10 +25,10 @@ export class LinkCreationState {
     this.rootStore = rootStore;
   }
 
-  startLinking(
+  startLinking = (
     portState: PortState,
     eventOffsetRelativeToTarget: Point | undefined
-  ): boolean {
+  ): boolean => {
     this.resetProps();
     this.source = new LinkPortEndpointState(
       portState.nodeId,
@@ -71,36 +71,32 @@ export class LinkCreationState {
       },
     });
 
+    this.targetPortCandidate = portState;
     if (canAddLink.result) {
-      this.linkTargetCandidate = {
-        nodeId: portState.nodeId,
-        portId: portState.id,
-      };
       portState.validForConnection = true;
     } else {
-      console.log(canAddLink.error);
       portState.validForConnection = false;
     }
   };
 
-  resetTargetPortCandidateIfSame = (portState: PortState) => {
-    if (
-      this.linkTargetCandidate &&
-      this.linkTargetCandidate.nodeId === portState.nodeId &&
-      this.linkTargetCandidate.portId === portState.id
-    ) {
-      this.linkTargetCandidate = null;
+  resetTargetPortCandidate = (portState: PortState) => {
+    if (this.targetPortCandidate === portState) {
+      this.targetPortCandidate = null;
     }
+    portState.validForConnection = true;
   };
 
   stopLinking = () => {
-    if (this.linkTargetCandidate && this.source) {
+    if (this.targetPortCandidate && this.source) {
       this.rootStore.linksStore.addLinkFromData({
         source: {
           nodeId: this.source.nodeId,
           portId: this.source.portId,
         },
-        target: this.linkTargetCandidate,
+        target: {
+          nodeId: this.targetPortCandidate.nodeId,
+          portId: this.targetPortCandidate.id,
+        },
       });
     }
     this.resetProps();
@@ -117,8 +113,14 @@ export class LinkCreationState {
   }
 
   private resetProps = () => {
-    this.source = null;
+    if (this.source) {
+      this.source.port.validForConnection = true;
+      this.source = null;
+    }
     this.target = null;
-    this.linkTargetCandidate = null;
+    if (this.targetPortCandidate) {
+      this.targetPortCandidate.validForConnection = true;
+      this.targetPortCandidate = null;
+    }
   };
 }

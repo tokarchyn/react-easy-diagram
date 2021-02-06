@@ -51,7 +51,7 @@ export const usePortUserInteraction = (
       },
       onPointerLeave: () => {
         portState.stopHover();
-        linkCreation.resetTargetPortCandidateIfSame(portState);
+        linkCreation.resetTargetPortCandidate(portState);
       },
     },
     {

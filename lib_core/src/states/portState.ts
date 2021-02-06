@@ -38,7 +38,6 @@ export class PortState {
 
   stopHover = () => {
     this.hovered = false;
-    this.validForConnection = true;
   }
 
   drag = () => {
