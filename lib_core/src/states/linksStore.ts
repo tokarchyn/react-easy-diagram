@@ -63,7 +63,7 @@ export class LinksStore {
     const isTargetValid = this.isEndpointValid(link.target);
     if (!isTargetValid.result) return isTargetValid;
 
-    if (link.source.nodeId === link.target.portId) {
+    if (link.source.nodeId === link.target.nodeId) {
       return {
         result: false,
         error: `Link's endpoints are located in the same node`,
