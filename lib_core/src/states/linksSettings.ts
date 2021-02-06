@@ -1,4 +1,4 @@
-import { LinkDefault } from '../components/LinkDefault';
+import { createLinkDefault, LinkDefault } from '../components/LinkDefault';
 import {
   componentDefaultType,
   IVisualComponentsObject,
@@ -9,7 +9,7 @@ import { LinkState } from './linkState';
 import { createCurvedLinkPathConstructor } from '../linkConstructors/curved';
 import { Point } from '../types/common';
 import { ILinkPath, IVisualComponentProps } from '.';
-import { LinkCreationState } from './linkCreationState';
+import { linkCreationComponentType, LinkCreationState } from './linkCreationState';
 
 export class LinksSettings {
   pathConstructor = defaultPathConstructor;
@@ -18,6 +18,10 @@ export class LinksSettings {
     ILinkVisualComponentProps
   >({
     [componentDefaultType]: LinkDefault,
+    [linkCreationComponentType]: createLinkDefault({
+      color: '#49f860',
+      strokeWidth: 3
+    })
   });
 
   constructor() {

@@ -13,7 +13,6 @@ import { PortState } from './portState';
 import { RootStore } from './rootStore';
 
 export class LinkCreationState {
-  componentType: string = componentDefaultType;
   source: LinkPortEndpointState | null = null;
   target: LinkPointEndpointState | null = null;
   targetPortCandidate: PortState | null = null;
@@ -104,7 +103,7 @@ export class LinkCreationState {
 
   get componentDefinition() {
     const { visualComponents } = this.rootStore.linksSettings;
-    return visualComponents.getComponent(this.componentType);
+    return visualComponents.getComponent(linkCreationComponentType);
   }
 
   get path(): ILinkPath | undefined {
@@ -124,3 +123,5 @@ export class LinkCreationState {
     }
   };
 }
+
+export const linkCreationComponentType: string = 'linkCreation';

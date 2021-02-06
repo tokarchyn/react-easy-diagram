@@ -28,11 +28,10 @@ export class VisualComponents<
   fromJson = (obj?: IVisualComponentsObject<TComponentProps>) => {
     this.defaultType = obj?.defaultNodeType ?? componentDefaultType;
 
-    if (!obj?.components) {
-      this.components = { ...this.defaultComponents };
-    } else {
-      this.components = this.createComponentCollection(obj.components);
-    }
+    this.components = {
+      ...this.defaultComponents,
+      ...this.createComponentCollection(obj?.components),
+    };
   };
 
   getComponent = (
@@ -45,15 +44,16 @@ export class VisualComponents<
   };
 
   private createComponentCollection(
-    componentsObjects: Dictionary<
+    componentsObjects?: Dictionary<
       IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
     >
   ): Dictionary<VisualComponentState<TComponentProps>> {
     const collection: Dictionary<VisualComponentState<TComponentProps>> = {};
 
-    Object.entries(componentsObjects).forEach(([key, value]) => {
-      collection[key] = new VisualComponentState<TComponentProps>(value);
-    });
+    componentsObjects &&
+      Object.entries(componentsObjects).forEach(([key, value]) => {
+        collection[key] = new VisualComponentState<TComponentProps>(value);
+      });
 
     return collection;
   }
