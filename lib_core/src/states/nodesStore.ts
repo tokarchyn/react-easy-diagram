@@ -34,4 +34,17 @@ export class NodesStore {
     
     this.nodes[id].fromJson(node);
   }
+
+  getNode = (nodeId: string) : NodeState | undefined => {
+    if (nodeId && this.nodes[nodeId]) {
+      return this.nodes[nodeId];
+    }
+    else return undefined;
+  }
+
+  getNodeOrThrowException = (nodeId: string) : NodeState => {
+    const node = this.getNode(nodeId);
+    if (node) return node;
+    else throw `Node with id '${nodeId}' does not exist`;
+  }
 }

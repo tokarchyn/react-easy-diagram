@@ -10,6 +10,9 @@ export class PortState {
   label?: string = '';
   type: string = '';
   ref: HtmlElementRefState;
+  dragging: boolean = false;
+  hovered: boolean = false;
+  validForConnection: boolean = true;
 
   rootStore: RootStore;
 
@@ -29,12 +32,29 @@ export class PortState {
     this.label = obj.label;
   }
 
-  get node() : NodeState | undefined {
-    return this.rootStore.nodesStore.nodes[this.nodeId];
+  hover = () => {
+    this.hovered = true;
+  }
+
+  stopHover = () => {
+    this.hovered = false;
+    this.validForConnection = true;
+  }
+
+  drag = () => {
+    this.dragging = true;
+  }
+
+  stopDrag = () => {
+    this.dragging = false;
+  }
+
+  get node() : NodeState {
+    return this.rootStore.nodesStore.getNodeOrThrowException(this.nodeId);
   }
   
   get offsetRelativeToNode(): Point | null {
-    if (this.node?.ref.current) {
+    if (this.node.ref.current) {
       return this.ref.offsetRelativeToParent(this.node.ref.current);
     }
 

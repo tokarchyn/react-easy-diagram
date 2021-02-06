@@ -2,49 +2,40 @@ import { makeAutoObservable } from 'mobx';
 import { Point } from '../types/common';
 import { v4 } from 'uuid';
 import { RootStore } from './rootStore';
-import { LinkEndpoint, LinkEndpointState } from './linkEndpointState';
+import {
+  LinkPortEndpointState,
+  ILinkPortEndpoint,
+} from './linkPortEndpointState';
 import { componentDefaultType } from './visualComponents';
+import { LinkPointEndpointState } from './LinkPointEndpointState';
 
-export class LinkState {
+export class LinkState implements ILinkState {
   id: string;
-  componentType: string = componentDefaultType;
-  source: LinkEndpointState;
-  target: LinkEndpointState;
-  segments?: ILinkSegment[] = [];
-  extra?: any = null;
+  componentType: string;
+  source: LinkPortEndpointState;
+  target: LinkPortEndpointState;
+  segments: ILinkSegment[];
+  extra: any;
 
   rootStore: RootStore;
 
-  constructor(rootStore: RootStore, id: string = v4()) {
-    this.id = id;
-    this.source = new LinkEndpointState(rootStore);
-    this.target = new LinkEndpointState(rootStore);
-    makeAutoObservable(this);
+  constructor(rootStore: RootStore, data: ILinkState) {
     this.rootStore = rootStore;
+
+    this.id = data.id ?? v4();
+    this.source = this.createEndpointState(data.source);
+    this.target = this.createEndpointState(data.target);
+    this.componentType = data.componentType ?? componentDefaultType;
+    this.segments = data.segments ?? [];
+    this.extra = data.extra;
+
+    makeAutoObservable(this, {
+      rootStore: false,
+    });
   }
 
-  fromJson = (obj: ILinkState) => {
-    this.componentType = obj.componentType ?? componentDefaultType;
-    this.source.fromJson(obj.source);
-    this.target.fromJson(obj.target);
-    this.segments = obj.segments;
-    this.extra = obj.extra;
-  };
-
-  get path(): ILinkPath {
-    const { linksSettings } = this.rootStore;
-    const pathStr = linksSettings.pathConstructor(
-      this.source.point,
-      this.target.point,
-      this.source.port?.type,
-      this.target.port?.type
-    );
-
-    return {
-      svgPath: pathStr,
-      source: this.source.point,
-      target: this.target.point,
-    };
+  get path(): ILinkPath | undefined {
+    return createLinkPath(this.rootStore, this.source, this.target);
   }
 
   get componentDefinition() {
@@ -52,26 +43,48 @@ export class LinkState {
     return visualComponents.getComponent(this.componentType);
   }
 
-  setSource(source: LinkEndpoint) {
-    this.source.fromJson(source);
+  private createEndpointState = (
+    endpoint: ILinkPortEndpoint
+  ): LinkPortEndpointState => {
+    return new LinkPortEndpointState(
+      endpoint.nodeId,
+      endpoint.portId,
+      this.rootStore
+    );
+  };
+}
+
+export function createLinkPath(
+  rootStore: RootStore,
+  source: LinkPortEndpointState,
+  target: LinkPortEndpointState | LinkPointEndpointState
+): ILinkPath | undefined {
+  const { linksSettings } = rootStore;
+  if (!source.point || !target.point) {
+    return undefined;
   }
 
-  setTarget(target: LinkEndpoint) {
-    this.target.fromJson(target);
-  }
+  const pathStr = linksSettings.pathConstructor(
+    source.point,
+    target.point,
+    source.port.type,
+    target instanceof LinkPointEndpointState ? undefined : target.port.type
+  );
+
+  return {
+    svgPath: pathStr,
+    source: source.point,
+    target: target.point,
+  };
 }
 
 export interface ILinkState {
   id?: string;
   componentType?: string;
-  source: LinkEndpoint;
-  target: LinkEndpoint;
+  source: ILinkPortEndpoint;
+  target: ILinkPortEndpoint;
   segments?: ILinkSegment[];
   extra?: any;
-}
-
-export interface ILinkStateObjectWithId extends ILinkState {
-  id: string;
 }
 
 export interface ILinkSegment {

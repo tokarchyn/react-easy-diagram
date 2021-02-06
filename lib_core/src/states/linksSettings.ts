@@ -9,13 +9,14 @@ import { LinkState } from './linkState';
 import { createCurvedLinkPathConstructor } from '../linkConstructors/curved';
 import { Point } from '../types/common';
 import { ILinkPath, IVisualComponentProps } from '.';
+import { LinkCreationState } from './linkCreationState';
 
 export class LinksSettings {
-  pathConstructor: ILinkPathConstructor = defaultPathConstructor;
-  visualComponents: VisualComponents<
-    LinkState,
+  pathConstructor = defaultPathConstructor;
+  visualComponents = new VisualComponents<
+    LinkState | LinkCreationState,
     ILinkVisualComponentProps
-  > = new VisualComponents<LinkState, ILinkVisualComponentProps>({
+  >({
     [componentDefaultType]: LinkDefault,
   });
 
@@ -32,9 +33,8 @@ export class LinksSettings {
 const defaultPathConstructor = createCurvedLinkPathConstructor();
 
 export interface ILinkVisualComponentProps<TSettings extends {} = {}>
-  extends IVisualComponentProps<LinkState, TSettings> {
+  extends IVisualComponentProps<LinkState | LinkCreationState, TSettings> {
   draggableRef: React.RefObject<any>;
-  path: ILinkPath;
 }
 
 export interface ILinksSettings

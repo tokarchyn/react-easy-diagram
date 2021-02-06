@@ -58,6 +58,19 @@ export class NodeState {
   get realSize() : Point | null {
     return this.ref.realSize;
   }
+
+  getPort = (portId: string) : PortState | undefined => {
+    if (portId && this.ports[portId]) {
+      return this.ports[portId];
+    }
+    else return undefined;
+  }
+
+  getPortOrThrowException = (portId: string) : PortState => {
+    const port = this.getPort(portId);
+    if (port) return port;
+    else throw `Port with id '${portId}' does not exist in the node '${this.id}'`;
+  }
 }
 
 export interface INodeState {

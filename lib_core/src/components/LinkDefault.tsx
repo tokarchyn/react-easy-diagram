@@ -1,4 +1,5 @@
 import React from 'react';
+import { LinkCreationState } from '../states';
 import { ILinkVisualComponentProps } from '../states/linksSettings';
 import { IComponentDefinition } from '../states/visualComponentState';
 
@@ -6,21 +7,22 @@ export const LinkDefault: React.FC<
   ILinkVisualComponentProps<ILinkDefaultSettings>
 > = (props) => {
   const settings = props.settings ?? linkDefaultSettings;
-  const { svgPath: pathStr, target } = props.path;
+  const path = props.entity.path;
+  if (!path) return null;
 
   return (
     <g>
       <path
         ref={props.draggableRef}
-        d={pathStr}
+        d={path.svgPath}
         stroke={settings.color}
         strokeWidth={settings.strokeWidth}
         fill='none'
       />
-      {props.entity.target.hasOnlyPosition && (
+      {props.entity instanceof LinkCreationState && (
         <circle
-          cx={target[0]}
-          cy={target[1]}
+          cx={path.target[0]}
+          cy={path.target[1]}
           r={settings.cirleRadius}
           fill='orange'
         />

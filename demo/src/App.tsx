@@ -81,10 +81,12 @@ const initState: IDiagramInitState = {
   links: [
     {
       source: {
-        nodeId: 'Node 2',
+        nodeId: 'Node 1',
+        portId: 'output_1'
       },
       target: {
-        nodeId: 'Node 1',
+        nodeId: 'Node 2',
+        portId: 'input_1'
       },
       componentType: 'attention',
     },
