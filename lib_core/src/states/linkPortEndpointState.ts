@@ -53,3 +53,9 @@ export interface ILinkPortEndpoint {
   nodeId: string;
   portId: string;
 }
+
+export function linkPortEndpointsEquals(
+  a: ILinkPortEndpoint,
+  b: ILinkPortEndpoint) : boolean {
+    return  a.nodeId === b.nodeId && a.portId === b.portId;
+  }

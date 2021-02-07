@@ -8,8 +8,11 @@ import { makeAutoObservable } from 'mobx';
 import { LinkState } from './linkState';
 import { createCurvedLinkPathConstructor } from '../linkConstructors/curved';
 import { Point } from '../types/common';
-import { ILinkPath, IVisualComponentProps } from '.';
-import { linkCreationComponentType, LinkCreationState } from './linkCreationState';
+import { IVisualComponentProps } from '.';
+import {
+  linkCreationComponentType,
+  LinkCreationState,
+} from './linkCreationState';
 
 export class LinksSettings {
   pathConstructor = defaultPathConstructor;
@@ -20,8 +23,8 @@ export class LinksSettings {
     [componentDefaultType]: LinkDefault,
     [linkCreationComponentType]: createLinkDefault({
       color: '#49f860',
-      strokeWidth: 3
-    })
+      strokeWidth: 3,
+    }),
   });
 
   constructor() {

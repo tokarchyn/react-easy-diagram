@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { Dictionary, TrueOrFalseWithError } from '../types/common';
 import { LinkCreationState } from './linkCreationState';
-import { ILinkPortEndpoint } from './linkPortEndpointState';
+import { ILinkPortEndpoint, linkPortEndpointsEquals } from './linkPortEndpointState';
 import { ILinkState, LinkState } from './linkState';
 import { RootStore } from './rootStore';
 
@@ -103,12 +103,8 @@ export class LinksStore {
     if (this.nodesLinksCollection[source.nodeId]) {
       return this.nodesLinksCollection[source.nodeId].find(
         (l) =>
-          (l.source.portId === source.portId &&
-          l.target.nodeId === target.nodeId &&
-          l.target.portId === target.portId) ||
-          (l.source.portId === target.portId &&
-          l.target.nodeId === source.nodeId &&
-          l.target.portId === source.portId)
+          (linkPortEndpointsEquals(l.source, source) && linkPortEndpointsEquals(l.target, target)) ||
+          (linkPortEndpointsEquals(l.target, source) && linkPortEndpointsEquals(l.source, target))
       );
     }
   }
