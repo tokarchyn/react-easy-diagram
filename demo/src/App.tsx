@@ -1,6 +1,12 @@
 import React from 'react';
 import './App.css';
-import { createCurvedLinkPathConstructor, createDefaultBackground, createDefaultMiniControl, createImageWithCrosses, createLinkDefault, IDiagramInitState, useDiagram } from '@react-easy-diagram/core';
+import {
+  createCurvedLinkPathConstructor,
+  createDefaultMiniControl,
+  createLinkDefault,
+  IDiagramInitState,
+  useDiagram,
+} from '@react-easy-diagram/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import { ControlPanel } from './ControlPanel';
@@ -26,15 +32,15 @@ export const App = () => {
     links: {
       components: {
         default: createLinkDefault(),
-        attention: createLinkDefault({color: 'red'})
+        attention: createLinkDefault({ color: 'red' }),
       },
-      pathConstructor: createCurvedLinkPathConstructor()
+      pathConstructor: createCurvedLinkPathConstructor(),
     },
     diagram: {
       miniControlComponent: createDefaultMiniControl({
         buttonsSize: 30,
-        position: 'left-bottom'
-      })
+        position: 'left-bottom',
+      }),
     },
   });
 
@@ -54,39 +60,39 @@ const initState: IDiagramInitState = {
       id: 'Node 1',
       position: [300, 300],
       ports: {
-        'output_1': {type: 'bottom'}, 
-      }
+        output_1: { type: 'bottom' },
+      },
     },
     {
       id: 'Node 2',
       position: [520, 400],
       ports: {
-        'input_1': {type: 'top'}, 
-        'input_2': {type: 'top'}, 
-        'output_1': {type: 'right'}, 
-        'output_2': {type: 'right'}, 
-        'output_3': {type: 'right'}, 
-      }
+        input_1: { type: 'top' },
+        input_2: { type: 'top' },
+        output_1: { type: 'right' },
+        output_2: { type: 'right' },
+        output_3: { type: 'right' },
+      },
     },
     {
       id: 'Node 3',
       position: [520, 200],
       ports: {
-        'input_1': {type: 'top'}, 
-        'output_1': {type: 'bottom'}, 
-        'output_2': {type: 'bottom'}, 
-      }
+        input_1: { type: 'top' },
+        output_1: { type: 'bottom' },
+        output_2: { type: 'bottom' },
+      },
     },
   ],
   links: [
     {
       source: {
         nodeId: 'Node 1',
-        portId: 'output_1'
+        portId: 'output_1',
       },
       target: {
         nodeId: 'Node 2',
-        portId: 'input_1'
+        portId: 'input_1',
       },
       componentType: 'attention',
     },
