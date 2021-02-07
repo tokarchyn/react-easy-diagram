@@ -4,6 +4,7 @@ import {
   INodesSettings,
   IPortsSettings,
 } from '.';
+import { ICallbacks } from './callbacks';
 import { ILinkState } from './linkState';
 import { INodeState } from './nodeState';
 import { RootStore } from './rootStore';
@@ -29,6 +30,7 @@ export class DiagramApi {
     this.rootStore.nodesSettings.fromJson(settings.nodes);
     this.rootStore.linksSettings.fromJson(settings.links);
     this.rootStore.portsSettings.fromJson(settings.ports);
+    this.rootStore.callbacks.setCallbacks(settings.callbacks);
   };
 
   zoomIn = () => this.rootStore.diagramState.zoomIntoCenter(1 / 0.8);
@@ -44,4 +46,5 @@ export interface ISettings {
   nodes?: INodesSettings;
   links?: ILinksSettings;
   ports?: IPortsSettings;
+  callbacks?: ICallbacks;
 }

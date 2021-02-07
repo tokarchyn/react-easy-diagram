@@ -1,3 +1,4 @@
+import { Callbacks } from './callbacks';
 import { DiagramApi } from './diagramApi';
 import { DiagramSettings } from './diagramSettings';
 import { DiagramState } from './diagramState';
@@ -19,6 +20,7 @@ export class RootStore {
   linksSettings: LinksSettings;
   
   diagramApi: DiagramApi;
+  callbacks: Callbacks;
 
   constructor() {
     this.diagramState = new DiagramState(this);
@@ -32,5 +34,6 @@ export class RootStore {
     this.portsSettings = new PortsSettings();
 
     this.diagramApi = new DiagramApi(this);
+    this.callbacks = new Callbacks(this);
   }
 }

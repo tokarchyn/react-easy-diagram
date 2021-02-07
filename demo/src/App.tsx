@@ -35,7 +35,7 @@ export const App = () => {
         buttonsSize: 30,
         position: 'left-bottom'
       })
-    }
+    },
   });
 
   return (

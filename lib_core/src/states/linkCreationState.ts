@@ -1,14 +1,7 @@
-import { makeAutoObservable, observable } from 'mobx';
-import {
-  componentDefaultType,
-  createLinkPath,
-  ILinkPath,
-  LinkPortEndpointState,
-  Point,
-} from '..';
+import { makeAutoObservable } from 'mobx';
+import { createLinkPath, ILinkPath, LinkPortEndpointState, Point } from '..';
 import { addPoints } from '../utils';
 import { LinkPointEndpointState } from './LinkPointEndpointState';
-import { ILinkPortEndpoint } from './linkPortEndpointState';
 import { PortState } from './portState';
 import { RootStore } from './rootStore';
 
@@ -54,7 +47,7 @@ export class LinkCreationState {
     this.target = new LinkPointEndpointState(targetPoint);
 
     return true;
-  }
+  };
 
   setTargetPortCandidate = (portState: PortState) => {
     if (!this.source) return;

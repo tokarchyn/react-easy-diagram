@@ -1,8 +1,12 @@
 import { makeAutoObservable } from 'mobx';
 import { Dictionary, TrueOrFalseWithError } from '../types/common';
 import { LinkCreationState } from './linkCreationState';
-import { ILinkPortEndpoint, linkPortEndpointsEquals } from './linkPortEndpointState';
+import {
+  ILinkPortEndpoint,
+  linkPortEndpointsEquals,
+} from './linkPortEndpointState';
 import { ILinkState, LinkState } from './linkState';
+import { PortState } from './portState';
 import { RootStore } from './rootStore';
 
 export class LinksStore {
@@ -74,19 +78,36 @@ export class LinksStore {
       return { result: false, error: `Link's endpoints are already connected` };
     }
 
+    if (
+      this.rootStore.callbacks.validateLinkEndpoints?.(
+        this.getEndpointPort(link.source),
+        this.getEndpointPort(link.target),
+        this.rootStore
+      ) === false
+    ) {
+      return {
+        result: false,
+        error: `Link's endpoints are not valid according to validation callback`,
+      };
+    }
+
     return { result: true };
   };
 
   isEndpointValid = (endpoint: ILinkPortEndpoint): TrueOrFalseWithError => {
     try {
-      this.rootStore.nodesStore
-        .getNodeOrThrowException(endpoint.nodeId)
-        .getPortOrThrowException(endpoint.portId);
+      this.getEndpointPort(endpoint);
     } catch (ex) {
       return { result: false, error: '' + ex };
     }
 
     return { result: true };
+  };
+
+  getEndpointPort = (endpoint: ILinkPortEndpoint): PortState => {
+    return this.rootStore.nodesStore
+      .getNodeOrThrowException(endpoint.nodeId)
+      .getPortOrThrowException(endpoint.portId);
   };
 
   areEndpointsConnected = (
@@ -103,8 +124,10 @@ export class LinksStore {
     if (this.nodesLinksCollection[source.nodeId]) {
       return this.nodesLinksCollection[source.nodeId].find(
         (l) =>
-          (linkPortEndpointsEquals(l.source, source) && linkPortEndpointsEquals(l.target, target)) ||
-          (linkPortEndpointsEquals(l.target, source) && linkPortEndpointsEquals(l.source, target))
+          (linkPortEndpointsEquals(l.source, source) &&
+            linkPortEndpointsEquals(l.target, target)) ||
+          (linkPortEndpointsEquals(l.target, source) &&
+            linkPortEndpointsEquals(l.source, target))
       );
     }
   }

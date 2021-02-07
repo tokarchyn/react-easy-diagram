@@ -13,11 +13,11 @@ export const RootStoreContext = React.createContext<RootStore | null>(null);
 export const Diagram: React.FC<IDiagramProps> = (props) => {
   const rootStore = useMemo(() => {
     const store = new RootStore();
+    props.settings && store.diagramApi.reinitSettings(props.settings);
     store.diagramApi.reinitState(
       props.initState?.nodes ?? [],
       props.initState?.links ?? []
     );
-    props.settings && store.diagramApi.reinitSettings(props.settings);
     return store;
   }, []);
 
