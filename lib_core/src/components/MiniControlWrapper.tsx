@@ -3,13 +3,13 @@ import React from 'react';
 import { useRootStore } from '../hooks/useRootStore';
 
 export const MiniControlWrapper = observer(() => {
-  const { diagramSettings, diagramApi } = useRootStore();
-
+  const rootStore = useRootStore();
+  const minicontrolComponentState = rootStore.diagramSettings.miniControlComponentState;
   return (
-    diagramSettings.miniControlComponentState.component && (
-      <diagramSettings.miniControlComponentState.component
-        diagramApi={diagramApi}
-        settings={diagramSettings.miniControlComponentState.settings}
+    minicontrolComponentState.component && (
+      <minicontrolComponentState.component
+        rootStore={rootStore}
+        settings={minicontrolComponentState.settings}
       />
     )
   );

@@ -20,12 +20,12 @@ export class LinksStore {
 
   constructor(rootStore: RootStore) {
     this.linkCreation = new LinkCreationState(rootStore);
-    this.importState();
+    this.import();
     makeAutoObservable(this);
     this.rootStore = rootStore;
   }
 
-  importState = (newLinks?: ILinkState[]) => {
+  import = (newLinks?: ILinkState[]) => {
     this._links = {};
     this._nodesLinksCollection = {};
     newLinks && newLinks.forEach(this.addLink);

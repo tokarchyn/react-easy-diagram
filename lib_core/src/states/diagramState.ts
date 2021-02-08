@@ -16,16 +16,22 @@ import { HtmlElementRefState } from './htmlElementRefState';
 
 export class DiagramState
   implements IUserInteractionTranslate, IUserInteractionTranslateAndZoom {
-  offset: Point = [0, 0];
-  zoom: number = 1;
+  offset: Point;
+  zoom: number;
   diagramInnerRef: HtmlElementRefState;
 
   rootStore: RootStore;
 
   constructor(rootStore: RootStore) {
     this.diagramInnerRef = new HtmlElementRefState(null);
+    this.import();
     makeAutoObservable(this);
     this.rootStore = rootStore;
+  }
+
+  import = (state?: IDiagramState) => {
+    this.offset = state?.offset ?? [0,0];
+    this.zoom = state?.zoom ?? 1;
   }
 
   setOffset = (newOffset: Point) => {
@@ -38,6 +44,9 @@ export class DiagramState
       this.rootStore.diagramSettings.scaleInterval
     );
   };
+
+  zoomIn = () => this.rootStore.diagramState.zoomIntoCenter(1 / 0.8);
+  zoomOut = () => this.rootStore.diagramState.zoomIntoCenter(0.8);
 
   setTransformation = (newOffset: Point, newZoom: number) => {
     this.setOffset(newOffset);
@@ -91,6 +100,7 @@ export class DiagramState
   }
 }
 
-export interface ICommonSettings {
-  readonly: boolean; // TODO: allow to make readonly specific components, such as nodes, links.
+export interface IDiagramState {
+  offset: Point,
+  zoom: number
 }

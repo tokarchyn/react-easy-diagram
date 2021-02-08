@@ -3,21 +3,21 @@ import {
   Diagram,
   IDiagramInitState
 } from '../components/Diagram';
-import { DiagramApi, ISettings } from '../states/diagramApi';
+import { ISettings, RootStore } from '../states/rootStore';
 import { useNotifyRef } from './useNotifyRef';
 
 export const useDiagram = (
   initState?: IDiagramInitState,
   settings?: ISettings
 ) => {
-  const apiRef = useNotifyRef<DiagramApi | null>(null);
+  const storeRef = useNotifyRef<RootStore | null>(null);
 
   const obj = useMemo(
     () => ({
       Diagram: () => (
-        <Diagram apiRef={apiRef} initState={initState} settings={settings} />
+        <Diagram storeRef={storeRef} initState={initState} settings={settings} />
       ),
-      apiRef,
+      storeRef,
     }),
     []
   );

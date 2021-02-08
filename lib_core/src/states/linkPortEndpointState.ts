@@ -21,11 +21,6 @@ export class LinkPortEndpointState implements ILinkPortEndpoint {
     this.rootStore = rootStore;
   }
 
-  fromJson = (obj: ILinkPortEndpoint) => {
-    this.nodeId = obj.nodeId;
-    this.portId = obj.portId;
-  };
-
   get node(): NodeState {
     return this.rootStore.nodesStore.getNodeOrThrowException(this.nodeId);
   }

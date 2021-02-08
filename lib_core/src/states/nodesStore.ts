@@ -18,7 +18,7 @@ export class NodesStore {
     return this._nodes;
   }
 
-  importState = (newNodes?: INodeState[]) => {
+  import = (newNodes?: INodeState[]) => {
     this._nodes = {};
     newNodes?.forEach(this.addNode);
   };

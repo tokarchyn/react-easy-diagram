@@ -1,6 +1,5 @@
 import { makeAutoObservable } from 'mobx';
 import { Point } from '../types/common';
-import { v4 } from 'uuid';
 import { RootStore } from './rootStore';
 import {
   LinkPortEndpointState,
@@ -23,20 +22,20 @@ export class LinkState implements ILinkState {
     this.rootStore = rootStore;
 
     this.id = id;
-    this.importState(state);
+    this.import(state);
 
     makeAutoObservable(this, {
       rootStore: false,
     });
   }
 
-  importState = (state: ILinkStateWithoutId) => {
+  import = (state: ILinkStateWithoutId) => {
     this.source = this.createEndpointState(state.source);
     this.target = this.createEndpointState(state.target);
     this.componentType = state.componentType ?? componentDefaultType;
     this.segments = state.segments ?? [];
     this.extra = state.extra ?? null;
-  }
+  };
 
   get path(): ILinkPath | undefined {
     return createLinkPath(this.rootStore, this.source, this.target);

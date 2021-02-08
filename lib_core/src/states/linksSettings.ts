@@ -31,8 +31,8 @@ export class LinksSettings {
     makeAutoObservable(this);
   }
 
-  fromJson = (obj?: ILinksSettings) => {
-    this.visualComponents.fromJson(obj);
+  import = (obj?: ILinksSettings) => {
+    this.visualComponents.import(obj);
     this.pathConstructor = obj?.pathConstructor ?? defaultPathConstructor;
   };
 }

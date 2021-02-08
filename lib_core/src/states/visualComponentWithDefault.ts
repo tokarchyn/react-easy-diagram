@@ -25,7 +25,7 @@ export class VisualComponentWithDefault<TComponentProps> {
     return this._innerComponent.settings;
   }
 
-  fromJson(
+  import(
     newComponent?:
       | IComponentDefinition<TComponentProps>
       | VisualComponent<TComponentProps>

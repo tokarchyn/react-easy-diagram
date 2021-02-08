@@ -9,7 +9,7 @@ export class Callbacks implements ICallbacks {
     this.rootStore = rootStore;
   }
 
-  setCallbacks = (callbacks?: ICallbacks) => {
+  import = (callbacks?: ICallbacks) => {
     this.validateLinkEndpoints = callbacks?.validateLinkEndpoints;
   }
 }

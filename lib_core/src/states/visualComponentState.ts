@@ -10,11 +10,11 @@ export class VisualComponentState<TComponentProps> {
       | IComponentDefinition<TComponentProps>
       | VisualComponent<TComponentProps>
   ) {
-    this.fromJson(newComponent);
+    this.import(newComponent);
     makeAutoObservable(this);
   }
 
-  fromJson(
+  import(
     newComponent:
       | IComponentDefinition<TComponentProps>
       | VisualComponent<TComponentProps>

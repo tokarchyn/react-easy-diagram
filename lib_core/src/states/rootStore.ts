@@ -1,12 +1,13 @@
-import { Callbacks } from './callbacks';
-import { DiagramApi } from './diagramApi';
-import { DiagramSettings } from './diagramSettings';
+import { Callbacks, ICallbacks } from './callbacks';
+import { DiagramSettings, IDiagramSettings } from './diagramSettings';
 import { DiagramState } from './diagramState';
-import { LinksSettings } from './linksSettings';
+import { ILinksSettings, LinksSettings } from './linksSettings';
 import { LinksStore } from './linksStore';
-import { NodesSettings } from './nodesSettings';
+import { ILinkState } from './linkState';
+import { INodesSettings, NodesSettings } from './nodesSettings';
 import { NodesStore } from './nodesStore';
-import { PortsSettings } from './portsSettings';
+import { INodeState } from './nodeState';
+import { IPortsSettings, PortsSettings } from './portsSettings';
 
 export class RootStore {
   diagramState: DiagramState;
@@ -18,8 +19,6 @@ export class RootStore {
   nodesSettings: NodesSettings;
   portsSettings: PortsSettings;
   linksSettings: LinksSettings;
-  
-  diagramApi: DiagramApi;
   callbacks: Callbacks;
 
   constructor() {
@@ -27,13 +26,32 @@ export class RootStore {
 
     this.nodesStore = new NodesStore(this);
     this.linksStore = new LinksStore(this);
-
+    
     this.diagramSettings = new DiagramSettings();
     this.nodesSettings = new NodesSettings();
     this.linksSettings = new LinksSettings();
     this.portsSettings = new PortsSettings();
-
-    this.diagramApi = new DiagramApi(this);
     this.callbacks = new Callbacks(this);
   }
+
+  importState = (nodes?: INodeState[], links?: ILinkState[]) => {
+    this.nodesStore.import(nodes);
+    this.linksStore.import(links);
+  };
+
+  importSettings = (settings: ISettings) => {
+    this.diagramSettings.import(settings.diagram);
+    this.nodesSettings.import(settings.nodes);
+    this.linksSettings.import(settings.links);
+    this.portsSettings.import(settings.ports);
+    this.callbacks.import(settings.callbacks);
+  };
+}
+
+export interface ISettings {
+  diagram?: IDiagramSettings;
+  nodes?: INodesSettings;
+  links?: ILinksSettings;
+  ports?: IPortsSettings;
+  callbacks?: ICallbacks;
 }

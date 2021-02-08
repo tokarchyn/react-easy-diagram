@@ -7,7 +7,7 @@ import {
 
 const MiniControlDefault: React.FC<
   IMiniControlComponentProps<IMiniControlDefaultSettings>
-> = ({ diagramApi, settings }) => {
+> = ({ rootStore, settings }) => {
   settings = settings ?? defaultSettings;
 
   return (
@@ -21,14 +21,14 @@ const MiniControlDefault: React.FC<
       {settings.buttons.zoomIn && (
         <MiniControlButton
           size={settings.buttonsSize}
-          onClick={diagramApi.zoomIn}
+          onClick={rootStore.diagramState.zoomIn}
           children='+'
         />
       )}
       {settings.buttons.zoomOut && (
         <MiniControlButton
           size={settings.buttonsSize}
-          onClick={diagramApi.zoomOut}
+          onClick={rootStore.diagramState.zoomOut}
           children='-'
         />
       )}

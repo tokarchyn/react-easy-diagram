@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
 
 export const App = () => {
   const classes = useStyles();
-  const { Diagram, apiRef } = useDiagram(initState, {
+  const { Diagram, storeRef } = useDiagram(initState, {
     links: {
       components: {
         default: createLinkDefault(),
@@ -48,7 +48,7 @@ export const App = () => {
     <Box className={classes.diagram}>
       <Diagram />
       <Box className={classes.controlPanel}>
-        <ControlPanel reinitState={apiRef.current?.reinitState} />
+        <ControlPanel reinitState={storeRef.current?.importState} />
       </Box>
     </Box>
   );

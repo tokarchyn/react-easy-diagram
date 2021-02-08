@@ -22,7 +22,7 @@ export class NodeState {
 
     this.id = id;
     this.ref = new HtmlElementRefState(null);
-    this.importState(state);
+    this.import(state);
 
     makeAutoObservable(this, {
       rootStore: false,
@@ -33,7 +33,7 @@ export class NodeState {
     this.offset = newOffset;
   }
 
-  importState = (newState?: INodeStateWithoutId) => {
+  import = (newState?: INodeStateWithoutId) => {
     this.offset = newState?.position ?? [0,0];
     this.componentType = newState?.componentType ?? componentDefaultType;
     this.extra = newState?.extra ?? null;

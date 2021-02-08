@@ -1,5 +1,4 @@
 export * from './callbacks';
-export * from './diagramApi';
 export * from './diagramSettings';
 export * from './diagramState';
 export * from './htmlElementRefState';

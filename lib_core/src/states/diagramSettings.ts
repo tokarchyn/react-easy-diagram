@@ -1,9 +1,10 @@
 import { makeAutoObservable } from 'mobx';
 import { Point } from '../types/common';
 import { createDefaultBackground } from '../components/BackgroundDefault';
-import { DiagramApi, IComponentDefinition, VisualComponent } from '.';
+import { IComponentDefinition, VisualComponent } from '.';
 import { createDefaultMiniControl } from '..';
 import { VisualComponentWithDefault } from './visualComponentWithDefault';
+import { RootStore } from './rootStore';
 
 export class DiagramSettings {
   backgroundComponentState: VisualComponentWithDefault<IBackgroundComponentProps>;
@@ -20,9 +21,9 @@ export class DiagramSettings {
     makeAutoObservable(this);
   }
 
-  fromJson(obj?: IDiagramSettings) {
-    this.backgroundComponentState.fromJson(obj?.backgroundComponent);
-    this.miniControlComponentState.fromJson(obj?.miniControlComponent);
+  import(obj?: IDiagramSettings) {
+    this.backgroundComponentState.import(obj?.backgroundComponent);
+    this.miniControlComponentState.import(obj?.miniControlComponent);
     this.scaleInterval = obj?.scaleInterval ?? defaultScaleInterval;
   }
 }
@@ -46,6 +47,6 @@ export interface IBackgroundComponentProps<TSettings = {}> {
 }
 
 export interface IMiniControlComponentProps<TSettings = {}> {
-  diagramApi: DiagramApi;
+  rootStore: RootStore;
   settings?: TSettings;
 }

@@ -20,8 +20,8 @@ export class PortsSettings {
     makeAutoObservable(this);
   }
 
-  fromJson = (obj?: IPortsSettings) => {
-    this.portsContainerVisualComponents.fromJson(obj?.portsContainerComponents);
+  import = (obj?: IPortsSettings) => {
+    this.portsContainerVisualComponents.import(obj?.portsContainerComponents);
   };
 }
 

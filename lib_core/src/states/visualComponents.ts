@@ -25,7 +25,7 @@ export class VisualComponents<
     makeAutoObservable(this);
   }
 
-  fromJson = (obj?: IVisualComponentsObject<TComponentProps>) => {
+  import = (obj?: IVisualComponentsObject<TComponentProps>) => {
     this.defaultType = obj?.defaultNodeType ?? componentDefaultType;
 
     this.components = {

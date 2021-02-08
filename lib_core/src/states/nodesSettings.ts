@@ -19,8 +19,8 @@ export class NodesSettings {
     makeAutoObservable(this);
   }
 
-  fromJson = (obj?: INodesSettings) => {
-    this.visualComponents.fromJson(obj);
+  import = (obj?: INodesSettings) => {
+    this.visualComponents.import(obj);
   };
 }
 

@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { InnerDiagram } from './DiagramInner';
 import '../Diagram.css';
-import { RootStore } from '../states/rootStore';
-import { DiagramApi, ISettings } from '../states/diagramApi';
+import { ISettings, RootStore } from '../states/rootStore';
 import { INodeState } from '../states/nodeState';
 import { ILinkState } from '../states/linkState';
 
@@ -13,8 +12,8 @@ export const RootStoreContext = React.createContext<RootStore | null>(null);
 export const Diagram: React.FC<IDiagramProps> = (props) => {
   const rootStore = useMemo(() => {
     const store = new RootStore();
-    props.settings && store.diagramApi.reinitSettings(props.settings);
-    store.diagramApi.reinitState(
+    props.settings && store.importSettings(props.settings);
+    store.importState(
       props.initState?.nodes ?? [],
       props.initState?.links ?? []
     );
@@ -22,10 +21,10 @@ export const Diagram: React.FC<IDiagramProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    if (props.apiRef) {
-      props.apiRef.current = rootStore.diagramApi;
+    if (props.storeRef) {
+      props.storeRef.current = rootStore;
     }
-  }, [rootStore, props.apiRef]);
+  }, [rootStore, props.storeRef]);
 
   return (
     <RootStoreContext.Provider value={rootStore}>
@@ -37,7 +36,7 @@ export const Diagram: React.FC<IDiagramProps> = (props) => {
 export interface IDiagramProps {
   settings?: ISettings;
   initState?: IDiagramInitState;
-  apiRef?: React.MutableRefObject<DiagramApi | null>;
+  storeRef?: React.MutableRefObject<RootStore | null>;
 }
 
 export interface IDiagramInitState {

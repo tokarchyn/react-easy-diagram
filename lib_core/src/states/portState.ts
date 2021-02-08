@@ -1,5 +1,4 @@
 import { Point } from '../types/common';
-import { v4 } from 'uuid';
 import { makeAutoObservable } from 'mobx';
 import { HtmlElementRefState } from './htmlElementRefState';
 import { componentDefaultType, NodeState, RootStore } from '.';
@@ -16,40 +15,45 @@ export class PortState {
 
   rootStore: RootStore;
 
-  constructor(rootStore: RootStore, id: string, nodeId : string, state?: IPortStateWithoutIds) {
+  constructor(
+    rootStore: RootStore,
+    id: string,
+    nodeId: string,
+    state?: IPortStateWithoutIds
+  ) {
     this.id = id;
     this.nodeId = nodeId;
-    this.importState(state);
-    
+    this.import(state);
+
     makeAutoObservable(this);
     this.rootStore = rootStore;
   }
 
-  importState = (state?: IPortStateWithoutIds) => {
+  import = (state?: IPortStateWithoutIds) => {
     this.type = state?.type ?? componentDefaultType;
     this.label = state?.label ?? '';
-  }
+  };
 
   hover = () => {
     this.hovered = true;
-  }
+  };
 
   stopHover = () => {
     this.hovered = false;
-  }
+  };
 
   drag = () => {
     this.dragging = true;
-  }
+  };
 
   stopDrag = () => {
     this.dragging = false;
-  }
+  };
 
-  get node() : NodeState {
+  get node(): NodeState {
     return this.rootStore.nodesStore.getNodeOrThrowException(this.nodeId);
   }
-  
+
   get offsetRelativeToNode(): Point | null {
     if (this.node.ref.current) {
       return this.ref.offsetRelativeToParent(this.node.ref.current);
@@ -58,7 +62,7 @@ export class PortState {
     return null;
   }
 
-  get realSize() : Point | null {
+  get realSize(): Point | null {
     return this.ref.realSize;
   }
 }
@@ -77,4 +81,3 @@ export interface IPortState extends IPortStateWithoutIds {
   id?: string;
   nodeId?: string;
 }
-
