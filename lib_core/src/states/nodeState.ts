@@ -67,7 +67,7 @@ export class NodeState {
   }
 
   addPort = (port: IPortState) : boolean => {
-    if (port?.id && !this._ports[port.id]) {
+    if (!port || port.id && this._ports[port.id]) {
       return false;
     }
     const newPort = new PortState(this.rootStore, port.id ?? v4(), 

@@ -24,7 +24,7 @@ export class NodesStore {
   };
 
   addNode = (node: INodeState): boolean => {
-    if (node?.id && this._nodes[node.id]) {
+    if (!node || node.id && this._nodes[node.id]) {
       return false;
     }
     const newNode = new NodeState(this.rootStore, node.id ?? v4(), node);

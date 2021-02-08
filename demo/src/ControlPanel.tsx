@@ -41,12 +41,12 @@ const generateLargeDiagram = (colNum: number, rowNum: number): IDiagramInitState
       nodes.push({
         id: getNodeId(i,j),
         position: [i * 120, j * 120 ],
-        ports: {
-          left: {type: 'left'},
-          top: {type: 'top'},
-          right: {type: 'right'},
-          bottom: {type: 'bottom'},
-        }
+        ports: [
+          {id: 'left', type: 'left'},
+          {id: 'top', type: 'top'},
+          {id: 'right', type: 'right'},
+          {id: 'bottom', type: 'bottom'},
+        ]
       });
       if (i - 1 >= 0) {
         links.push({

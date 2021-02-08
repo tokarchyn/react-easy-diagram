@@ -28,11 +28,7 @@ export class LinksStore {
   importState = (newLinks?: ILinkState[]) => {
     this._links = {};
     this._nodesLinksCollection = {};
-    if (newLinks) {
-      newLinks.forEach((linkState) => {
-        this.addLink(linkState);
-      });
-    }
+    newLinks && newLinks.forEach(this.addLink);
   };
 
   get links(): Readonly<Dictionary<LinkState>> {
@@ -98,12 +94,14 @@ export class LinksStore {
   };
 
   canAddLink = (link: ILinkState): TrueOrFalseWithError => {
-    if (link?.id && this._links[link.id]) {
-      return {
-        result: false,
-        error: `Cannot add link with id '${link.id}', as it already exists`,
-      };
+    if (!link) return {
+      result: false,
+      error: `Cannot add empty`,
     }
+    if (link.id && this._links[link.id]) return {
+      result: false,
+      error: `Cannot add link with id '${link.id}', as it already exists`,
+    };
 
     const isSourceValid = this.isEndpointValid(link.source);
     if (!isSourceValid.result) return isSourceValid;
