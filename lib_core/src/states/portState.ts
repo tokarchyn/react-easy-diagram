@@ -1,35 +1,33 @@
 import { Point } from '../types/common';
 import { v4 } from 'uuid';
-import { autorun, makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import { HtmlElementRefState } from './htmlElementRefState';
 import { componentDefaultType, NodeState, RootStore } from '.';
 
 export class PortState {
-  id: string = '';
-  nodeId: string = ''
-  label?: string = '';
-  type: string = '';
-  ref: HtmlElementRefState;
+  id: string;
+  nodeId: string;
+  label?: string;
+  type: string;
+  ref: HtmlElementRefState = new HtmlElementRefState(null);
   dragging: boolean = false;
   hovered: boolean = false;
   validForConnection: boolean = true;
 
   rootStore: RootStore;
 
-  constructor(rootStore: RootStore, id: string = v4(), nodeId : string = v4()) {
+  constructor(rootStore: RootStore, id: string, nodeId : string, state?: IPortStateWithoutIds) {
     this.id = id;
     this.nodeId = nodeId;
-    this.ref = new HtmlElementRefState(null);
+    this.importState(state);
+    
     makeAutoObservable(this);
     this.rootStore = rootStore;
-    // autorun(() => {
-    //   console.log(`Port '${this.nodeId + ' - ' + this.id}'. Offset: ${JSON.stringify(this.offsetRelativeToNode)}. Size: ${JSON.stringify(this.realSize)}`)
-    // })
   }
 
-  fromJson = (obj: IPortState) => {
-    this.type = obj.type ?? componentDefaultType;
-    this.label = obj.label;
+  importState = (state?: IPortStateWithoutIds) => {
+    this.type = state?.type ?? componentDefaultType;
+    this.label = state?.label ?? '';
   }
 
   hover = () => {
@@ -65,7 +63,18 @@ export class PortState {
   }
 }
 
-export interface IPortState {
+export interface IPortStateWithoutIds {
   label?: string;
   type?: string;
 }
+
+export interface IPortStateWithIds extends IPortStateWithoutIds {
+  id: string;
+  nodeId: string;
+}
+
+export interface IPortState extends IPortStateWithoutIds {
+  id?: string;
+  nodeId?: string;
+}
+

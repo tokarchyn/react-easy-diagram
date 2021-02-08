@@ -1,49 +1,49 @@
 import { Dictionary, Point } from '../types/common';
-import { autorun, makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import { IPortState, PortState } from './portState';
-import { v4 } from 'uuid';
 import { generateTransform } from '../utils';
 import { RootStore } from './rootStore';
 import { HtmlElementRefState } from './htmlElementRefState';
 import { componentDefaultType } from './visualComponents';
+import { v4 } from 'uuid';
 
 export class NodeState {
-  id: string = '';
-  offset: Point = [0,0];
-  ports: Dictionary<PortState> = {};
+  id: string;
+  offset: Point;
+  private _ports: Dictionary<PortState>;
   ref: HtmlElementRefState;
-  componentType: string = componentDefaultType;
-  extra?: any = null;
+  componentType: string;
+  extra?: any;
 
   rootStore: RootStore;
 
-  constructor(rootStore: RootStore, id: string = v4()) { 
+  constructor(rootStore: RootStore, id: string, state?: INodeStateWithoutId) {
+    this.rootStore = rootStore;
+
     this.id = id;
     this.ref = new HtmlElementRefState(null);
-    makeAutoObservable(this);
-    this.rootStore = rootStore;
-    // autorun(() => {
-    //   console.log(`Node '${this.id}'. Offset: ${JSON.stringify(this.offset)}. Size: ${JSON.stringify(this.realSize)}`)
-    // })
+    this.importState(state);
+
+    makeAutoObservable(this, {
+      rootStore: false,
+    });
   }
 
   setOffset = (newOffset: Point) => {
     this.offset = newOffset;
   }
 
-  fromJson = (obj: INodeState) => {
-    this.offset = obj.position;
-    this.componentType = obj.componentType ?? componentDefaultType;
-    this.extra = obj.extra;
+  importState = (newState?: INodeStateWithoutId) => {
+    this.offset = newState?.position ?? [0,0];
+    this.componentType = newState?.componentType ?? componentDefaultType;
+    this.extra = newState?.extra ?? null;
 
-    this.ports = {};
-    if (obj.ports && Object.keys(obj.ports).length > 0) {
-      Object.entries(obj.ports).forEach(([portId, portObj]) => {
-        const portState = new PortState(this.rootStore, portId, this.id);
-        portState.fromJson(portObj);
-        this.ports[portId] = portState;
-      });
-    }
+    this._ports = {};
+    newState?.ports && newState.ports.forEach(this.addPort);
+  }
+
+  get ports() : Readonly<Dictionary<PortState>> {
+    return this._ports;
   }
 
   get transformString() {
@@ -60,11 +60,30 @@ export class NodeState {
   }
 
   getPort = (portId: string) : PortState | undefined => {
-    if (portId && this.ports[portId]) {
-      return this.ports[portId];
+    if (portId && this._ports[portId]) {
+      return this._ports[portId];
     }
     else return undefined;
   }
+
+  addPort = (port: IPortState) : boolean => {
+    if (port?.id && !this._ports[port.id]) {
+      return false;
+    }
+    const newPort = new PortState(this.rootStore, port.id ?? v4(), 
+      this.id, port);
+    this._ports[newPort.id] = newPort;
+    return true;
+  }
+
+  removePort = (portId: string): boolean => {
+    if (portId && this._ports[portId]) {
+      delete this._ports[portId];
+      this.rootStore.linksStore.removePortLinks(this.id, portId);
+      return true;
+    }
+    return false;
+  };
 
   getPortOrThrowException = (portId: string) : PortState => {
     const port = this.getPort(portId);
@@ -73,10 +92,17 @@ export class NodeState {
   }
 }
 
-export interface INodeState {
-  id?: string;
+export interface INodeStateWithoutId {
   position: Point;
-  ports?: Dictionary<IPortState>;
+  ports?: IPortState[];
   componentType?: string;
   extra?: any;
+}
+
+export interface INodeStateWithId extends INodeStateWithoutId {
+  id: string;
+}
+
+export interface INodeState extends INodeStateWithoutId {
+  id?: string;
 }

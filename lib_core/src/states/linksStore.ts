@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx';
+import { v4 } from 'uuid';
 import { Dictionary, TrueOrFalseWithError } from '../types/common';
 import { LinkCreationState } from './linkCreationState';
 import {
@@ -10,8 +11,8 @@ import { PortState } from './portState';
 import { RootStore } from './rootStore';
 
 export class LinksStore {
-  links: Dictionary<LinkState> = {};
-  nodesLinksCollection: Dictionary<LinkState[]> = {};
+  private _links: Dictionary<LinkState>;
+  private _nodesLinksCollection: Dictionary<LinkState[]>;
 
   linkCreation: LinkCreationState;
 
@@ -19,43 +20,85 @@ export class LinksStore {
 
   constructor(rootStore: RootStore) {
     this.linkCreation = new LinkCreationState(rootStore);
+    this.importState();
     makeAutoObservable(this);
     this.rootStore = rootStore;
   }
 
-  fromJson = (newLinks?: ILinkState[]) => {
-    this.links = {};
-    this.nodesLinksCollection = {};
+  importState = (newLinks?: ILinkState[]) => {
+    this._links = {};
+    this._nodesLinksCollection = {};
     if (newLinks) {
       newLinks.forEach((linkState) => {
-        this.addLinkFromData(linkState);
+        this.addLink(linkState);
       });
     }
   };
 
+  get links(): Readonly<Dictionary<LinkState>> {
+    return this._links;
+  }
+
   getNodeLinks = (nodeId: string): LinkState[] => {
-    return this.nodesLinksCollection[nodeId] ?? [];
+    return this._nodesLinksCollection[nodeId] ?? [];
   };
 
-  addLinkFromData = (link: ILinkState): TrueOrFalseWithError => {
-    const linkState = new LinkState(this.rootStore, link);
-    return this.addLink(linkState);
+  removeNodeLinks = (nodeId: string) => {
+    const links = this.getNodeLinks(nodeId);
+    links.forEach((l) => this.removeLink(l.id));
   };
 
-  addLink = (link: LinkState): TrueOrFalseWithError => {
+  removePortLinks = (nodeId: string, portId: string) => {
+    if (!nodeId || !portId) return;
+
+    const links = this.getNodeLinks(nodeId);
+    const endpointToRemove = {
+      nodeId,
+      portId,
+    };
+    links.forEach((l) => {
+      if (
+        linkPortEndpointsEquals(l.source, endpointToRemove) ||
+        linkPortEndpointsEquals(l.target, endpointToRemove)
+      ) {
+        this.removeLink(l.id);
+      }
+    });
+  };
+
+  addLink = (link: ILinkState): TrueOrFalseWithError => {
     const canAdd = this.canAddLink(link);
     if (!canAdd.result) return canAdd;
 
-    this.links[link.id] = link;
-
-    this._addLinkToNodeLinksCollection(link, link.source.nodeId);
-    this._addLinkToNodeLinksCollection(link, link.target.nodeId);
+    const newLink = new LinkState(this.rootStore, link.id ?? v4(), link);
+    this._links[newLink.id] = newLink;
+    this._addLinkToNodeLinksCollection(newLink, link.source.nodeId);
+    this._addLinkToNodeLinksCollection(newLink, link.target.nodeId);
 
     return { result: true };
   };
 
+  removeLink = (linkId: string): boolean => {
+    const linkToRemove = this._links[linkId];
+    if (linkToRemove) {
+      this._removeLinkFromNodeLinksCollection(
+        linkToRemove,
+        linkToRemove.source.nodeId
+      );
+      this._removeLinkFromNodeLinksCollection(
+        linkToRemove,
+        linkToRemove.target.nodeId
+      );
+
+      delete this._links[linkId];
+      return true;
+    }
+
+    return false;
+  };
+
   canAddLink = (link: ILinkState): TrueOrFalseWithError => {
-    if (link.id && this.links[link.id]) {
+    if (link?.id && this._links[link.id]) {
       return {
         result: false,
         error: `Cannot add link with id '${link.id}', as it already exists`,
@@ -121,8 +164,8 @@ export class LinksStore {
     source: ILinkPortEndpoint,
     target: ILinkPortEndpoint
   ): LinkState | undefined {
-    if (this.nodesLinksCollection[source.nodeId]) {
-      return this.nodesLinksCollection[source.nodeId].find(
+    if (this._nodesLinksCollection[source.nodeId]) {
+      return this._nodesLinksCollection[source.nodeId].find(
         (l) =>
           (linkPortEndpointsEquals(l.source, source) &&
             linkPortEndpointsEquals(l.target, target)) ||
@@ -133,8 +176,20 @@ export class LinksStore {
   }
 
   private _addLinkToNodeLinksCollection(link: LinkState, nodeId: string) {
-    if (!this.nodesLinksCollection[nodeId])
-      this.nodesLinksCollection[nodeId] = [];
-    this.nodesLinksCollection[nodeId].push(link);
+    if (!this._nodesLinksCollection[nodeId])
+      this._nodesLinksCollection[nodeId] = [];
+    this._nodesLinksCollection[nodeId].push(link);
+  }
+
+  private _removeLinkFromNodeLinksCollection(link: LinkState, nodeId: string) {
+    let collection = this._nodesLinksCollection[nodeId];
+    if (collection) {
+      collection = collection.filter((l) => l.id === link.id);
+      if (collection.length > 0) {
+        this._nodesLinksCollection[nodeId] = collection;
+      } else {
+        delete this._nodesLinksCollection[nodeId];
+      }
+    }
   }
 }

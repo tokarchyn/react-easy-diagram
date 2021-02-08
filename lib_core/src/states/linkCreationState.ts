@@ -80,7 +80,7 @@ export class LinkCreationState {
 
   stopLinking = () => {
     if (this.targetPortCandidate && this.source) {
-      this.rootStore.linksStore.addLinkFromData({
+      this.rootStore.linksStore.addLink({
         source: {
           nodeId: this.source.nodeId,
           portId: this.source.portId,

@@ -19,19 +19,23 @@ export class LinkState implements ILinkState {
 
   rootStore: RootStore;
 
-  constructor(rootStore: RootStore, data: ILinkState) {
+  constructor(rootStore: RootStore, id: string, state: ILinkStateWithoutId) {
     this.rootStore = rootStore;
 
-    this.id = data.id ?? v4();
-    this.source = this.createEndpointState(data.source);
-    this.target = this.createEndpointState(data.target);
-    this.componentType = data.componentType ?? componentDefaultType;
-    this.segments = data.segments ?? [];
-    this.extra = data.extra;
+    this.id = id;
+    this.importState(state);
 
     makeAutoObservable(this, {
       rootStore: false,
     });
+  }
+
+  importState = (state: ILinkStateWithoutId) => {
+    this.source = this.createEndpointState(state.source);
+    this.target = this.createEndpointState(state.target);
+    this.componentType = state.componentType ?? componentDefaultType;
+    this.segments = state.segments ?? [];
+    this.extra = state.extra ?? null;
   }
 
   get path(): ILinkPath | undefined {
@@ -78,13 +82,20 @@ export function createLinkPath(
   };
 }
 
-export interface ILinkState {
-  id?: string;
+export interface ILinkStateWithoutId {
   componentType?: string;
   source: ILinkPortEndpoint;
   target: ILinkPortEndpoint;
   segments?: ILinkSegment[];
   extra?: any;
+}
+
+export interface ILinkStateWithId extends ILinkStateWithoutId {
+  id: string;
+}
+
+export interface ILinkState extends ILinkStateWithoutId {
+  id?: string;
 }
 
 export interface ILinkSegment {

@@ -21,8 +21,8 @@ export class DiagramApi {
   };
 
   reinitState = (nodes?: INodeState[], links?: ILinkState[]) => {
-    this.rootStore.nodesStore.fromJson(nodes);
-    this.rootStore.linksStore.fromJson(links);
+    this.rootStore.nodesStore.importState(nodes);
+    this.rootStore.linksStore.importState(links);
   };
 
   reinitSettings = (settings: ISettings) => {
