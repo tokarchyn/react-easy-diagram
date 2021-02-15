@@ -20,11 +20,11 @@ export class NodesStore {
 
   import = (newNodes?: INodeState[]) => {
     this._nodes = {};
-    newNodes?.forEach(this.addNode);
+    newNodes?.forEach((node) => this.addNode(node, true));
   };
 
-  addNode = (node: INodeState): boolean => {
-    if (!node || node.id && this._nodes[node.id]) {
+  addNode = (node: INodeState, rewriteIfExists: boolean): boolean => {
+    if (!node || (!rewriteIfExists && node.id && this._nodes[node.id])) {
       return false;
     }
     const newNode = new NodeState(this.rootStore, node.id ?? v4(), node);
