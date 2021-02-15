@@ -9,7 +9,7 @@
   "dependencies": {
     "mobx": "^6.0.4",
     "mobx-react-lite": "^3.1.6",
-    "react-use-gesture": "^8.0.1",
+    "react-use-gesture": "9.0.3",
     "uuid": "^8.3.1"
   },
   "scripts": {
