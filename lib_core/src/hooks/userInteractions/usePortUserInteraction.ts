@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
-import { Point } from '../..';
+import { Handler, ReactEventHandlers } from 'react-use-gesture/dist/types';
+import { IDragHandlers, Point } from '../..';
 import { PortState } from '../../states/portState';
 import { multiplyPoint } from '../../utils';
 import { useRootStore } from '../useRootStore';
@@ -14,13 +15,12 @@ export const usePortUserInteraction = (
     linksStore: { linkCreation },
     diagramState,
   } = useRootStore();
-
   const userInteractionElemRef = useRef<HTMLDivElement>(
     null
   ) as React.MutableRefObject<HTMLDivElement | null>;
 
-  useGesture(
-    {
+  const handlers = useMemo<IGestureHandlers>(
+    () => ({
       onDrag: ({ delta }) => {
         if (!portState.dragging) return;
         const parentScale = diagramState.zoom;
@@ -28,8 +28,8 @@ export const usePortUserInteraction = (
       },
       onDragStart: ({ event }) => {
         // Important! Otherwise on touch display onPointerEnter will not work!
-        const portHtmlElement = event.target as Element;
-        portHtmlElement.releasePointerCapture(event.pointerId);
+        // const portHtmlElement = event.target as Element;
+        // portHtmlElement.releasePointerCapture(event.pointerId);
 
         let eventOffsetRelativeToTarget;
         // On the old browser these properties could be not available
@@ -53,13 +53,15 @@ export const usePortUserInteraction = (
         portState.stopHover();
         linkCreation.resetTargetPortCandidate(portState);
       },
-    },
-    {
-      domTarget: userInteractionElemRef,
-      eventOptions: { passive: false },
-      enabled: enable,
-    }
+    }),
+    [portState, linkCreation, userInteractionElemRef]
   );
+
+  // Temporary bug fix when pointer events handlers are not reasigned. See https://github.com/pmndrs/react-use-gesture/issues/263 and https://github.com/pmndrs/react-use-gesture/issues/264
+  const bind = useGesture(handlers, {
+    eventOptions: { passive: false },
+    enabled: enable,
+  });
 
   useUserAbilityToSelectSwitcher(
     portState.dragging,
@@ -69,10 +71,17 @@ export const usePortUserInteraction = (
   return {
     active: portState.dragging,
     userInteractionElemRef,
+    bind,
   };
 };
+
+interface IGestureHandlers extends IDragHandlers {
+  onPointerEnter: () => void;
+  onPointerLeave: () => void;
+}
 
 export interface IUsePortUserInteractionResult {
   active: boolean;
   userInteractionElemRef: React.MutableRefObject<HTMLDivElement | null>;
+  bind: (...args: any[]) => ReactEventHandlers;
 }
