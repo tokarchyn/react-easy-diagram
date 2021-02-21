@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 
 export const PortWrapper: React.FC<{ port: PortState }> = observer(
   ({ port }) => {
-    const { userInteractionElemRef } = usePortUserInteraction(port);
+    const { userInteractionElemRef, bind } = usePortUserInteraction(port);
 
     let color = '#6eb7ff';
     if (port.dragging) color = '#49f860';
@@ -20,6 +20,7 @@ export const PortWrapper: React.FC<{ port: PortState }> = observer(
             port.ref.current = value;
           },
         }}
+        {...bind()}
         id={port.nodeId + ':' + port.id}
         className='react_fast_diagram_PortWrapper'
       >

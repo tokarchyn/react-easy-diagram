@@ -6,7 +6,7 @@ type DragEventHandler =
   | Handler<'drag', React.PointerEvent<Element> | PointerEvent>
   | undefined;
 
-interface IDragHandlers {
+export interface IDragHandlers {
   onDrag: DragEventHandler;
   onDragStart: DragEventHandler;
   onDragEnd: DragEventHandler;

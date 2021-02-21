@@ -4,6 +4,5 @@ export * from './useDragHandlers';
 export * from './useNodeUserInteraction';
 export * from './usePinchHandlers';
 export * from './usePortUserInteraction';
-export * from './useRefAndExternalStatesSync';
 export * from './useUserAbilityToSelectSwitcher';
 export * from './useWheelHandler';
