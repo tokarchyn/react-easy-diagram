@@ -1,14 +1,14 @@
 import { Dictionary, Point } from '../types/common';
 import { makeAutoObservable } from 'mobx';
 import { IPortState, PortState } from './portState';
-import { generateTransform, guidForcedUniqueness } from '../utils';
+import { deepCopy, generateTransform, guidForcedUniqueness } from '../utils';
 import { RootStore } from './rootStore';
 import { HtmlElementRefState } from './htmlElementRefState';
 import { componentDefaultType } from './visualComponents';
 
 export class NodeState {
   id: string;
-  offset: Point;
+  position: Point;
   private _ports: Dictionary<PortState>;
   ref: HtmlElementRefState;
   componentType: string;
@@ -29,11 +29,11 @@ export class NodeState {
   }
 
   setOffset = (newOffset: Point) => {
-    this.offset = newOffset;
+    this.position = newOffset;
   };
 
   import = (newState?: INodeStateWithoutId) => {
-    this.offset = newState?.position ?? [0, 0];
+    this.position = newState?.position ?? [0, 0];
     this.componentType = newState?.componentType ?? componentDefaultType;
     this.extra = newState?.extra ?? null;
 
@@ -41,12 +41,22 @@ export class NodeState {
     newState?.ports && newState.ports.forEach(this.addPort);
   };
 
+  export = () : INodeStateWithId => ({
+    ...deepCopy({
+      id: this.id,
+      position: this.position,
+      componentType: this.componentType,
+      extra: this.extra
+    }),
+    ports: Object.values(this._ports).map(p => p.export())
+  });
+
   get ports(): Readonly<Dictionary<PortState>> {
     return this._ports;
   }
 
   get transformString() {
-    return generateTransform(this.offset);
+    return generateTransform(this.position);
   }
 
   get componentDefinition() {

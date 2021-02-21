@@ -82,3 +82,7 @@ export function guidForcedUniqueness(alreadyExistedItemsWithIdAsKey: object) {
 
   return id;
 }
+
+export function deepCopy<TValue>(value: TValue) : TValue {
+  return JSON.parse(JSON.stringify(value));
+}

@@ -7,6 +7,7 @@ import {
 } from './linkPortEndpointState';
 import { componentDefaultType } from './visualComponents';
 import { LinkPointEndpointState } from './LinkPointEndpointState';
+import { deepCopy } from '../utils';
 
 export class LinkState implements ILinkState {
   id: string;
@@ -36,6 +37,17 @@ export class LinkState implements ILinkState {
     this.segments = state.segments ?? [];
     this.extra = state.extra ?? null;
   };
+
+  export = () : ILinkStateWithId => ({
+    source: this.source.export(),
+    target: this.target.export(),
+    ...deepCopy({
+      id: this.id,
+      componentType: this.componentType,
+      segments: this.segments,
+      extra: this.extra
+    })
+  });
 
   get path(): ILinkPath | undefined {
     return createLinkPath(this.rootStore, this.source, this.target);

@@ -48,7 +48,7 @@ export const App = () => {
     <Box className={classes.diagram}>
       <Diagram />
       <Box className={classes.controlPanel}>
-        <ControlPanel reinitState={storeRef.current?.importState} />
+        <ControlPanel store={storeRef.current} />
       </Box>
     </Box>
   );

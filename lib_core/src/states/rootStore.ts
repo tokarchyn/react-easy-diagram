@@ -39,6 +39,11 @@ export class RootStore {
     this.linksStore.import(links);
   };
 
+  export = () : {nodes: INodeState[], links: ILinkState[]} => ({
+    nodes: this.nodesStore.export(),
+    links: this.linksStore.export()
+  });
+
   importSettings = (settings: ISettings) => {
     this.diagramSettings.import(settings.diagram);
     this.nodesSettings.import(settings.nodes);

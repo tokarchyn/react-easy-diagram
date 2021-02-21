@@ -3,7 +3,7 @@ import { Point } from '../types/common';
 import { RootStore } from './rootStore';
 import { PortState } from './portState';
 import { NodeState } from './nodeState';
-import { addPoints, multiplyPoint } from '../utils';
+import { addPoints, deepCopy, multiplyPoint } from '../utils';
 
 export class LinkPortEndpointState implements ILinkPortEndpoint {
   nodeId: string;
@@ -21,6 +21,11 @@ export class LinkPortEndpointState implements ILinkPortEndpoint {
     this.rootStore = rootStore;
   }
 
+  export = () : ILinkPortEndpoint => deepCopy({
+    nodeId: this.nodeId,
+    portId: this.portId
+  });
+
   get node(): NodeState {
     return this.rootStore.nodesStore.getNodeOrThrowException(this.nodeId);
   }
@@ -32,7 +37,7 @@ export class LinkPortEndpointState implements ILinkPortEndpoint {
   get point(): Point | undefined {
     if (this.port.offsetRelativeToNode && this.port.realSize) {
       return addPoints(
-        this.node.offset,
+        this.node.position,
         addPoints(
           this.port.offsetRelativeToNode,
           multiplyPoint(this.port.realSize, 0.5)

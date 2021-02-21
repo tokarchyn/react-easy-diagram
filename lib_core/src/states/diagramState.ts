@@ -11,6 +11,7 @@ import {
   subtractPoints,
   multiplyPoint,
   addPoints,
+  deepCopy,
 } from '../utils';
 import { HtmlElementRefState } from './htmlElementRefState';
 
@@ -33,6 +34,11 @@ export class DiagramState
     this.offset = state?.offset ?? [0,0];
     this.zoom = state?.zoom ?? 1;
   }
+
+  export = () : IDiagramState => deepCopy({
+    offset: this.offset,
+    zoom: this.zoom
+  });
 
   setOffset = (newOffset: Point) => {
     this.offset = newOffset;

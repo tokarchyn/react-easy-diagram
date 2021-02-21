@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Tune } from '@material-ui/icons';
 import Card from '@material-ui/core/Card';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
-import { IDiagramInitState, ILinkState, INodeState } from '@react-easy-diagram/core';
+import { IDiagramInitState, ILinkState, INodeState, RootStore } from '@react-easy-diagram/core';
 
 const useStyles = makeStyles(() => ({
   form: {
@@ -79,7 +79,7 @@ const generateLargeDiagram = (colNum: number, rowNum: number): IDiagramInitState
 };
 
 export interface ControlPanelProps{
-  reinitState?(nodes: INodeState[], links: ILinkState[]): void;
+  store: RootStore | null
 }
 
 export const ControlPanel = (props: ControlPanelProps) => {
@@ -92,9 +92,9 @@ export const ControlPanel = (props: ControlPanelProps) => {
 
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (props.reinitState) {
+    if (props.store) {
       const newState = generateLargeDiagram(row, col);
-      props.reinitState(newState.nodes, newState.links);
+      props.store.importState(newState.nodes, newState.links);
     }
   };
 
@@ -139,6 +139,13 @@ export const ControlPanel = (props: ControlPanelProps) => {
               Generate new Diagram
             </Button>
           </form>
+          <Button style={{
+            marginTop: 10
+          }} variant='contained' onClick={() => {
+            console.log(props.store?.export())
+          }}>
+            Print state
+          </Button>
         </Card>
       </Box>
     );

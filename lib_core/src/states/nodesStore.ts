@@ -23,6 +23,8 @@ export class NodesStore {
     newNodes?.forEach((node) => this.addNode(node, true));
   };
 
+  export = () : INodeState[] => Object.values(this._nodes).map(n => n.export());
+
   addNode = (node: INodeState, rewriteIfExists: boolean): boolean => {
     if (!node || (!rewriteIfExists && node.id && this._nodes[node.id])) {
       return false;

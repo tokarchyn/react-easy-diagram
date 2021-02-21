@@ -31,6 +31,8 @@ export class LinksStore {
     newLinks && newLinks.forEach(this.addLink);
   };
 
+  export = () : ILinkState[] => Object.values(this._links).map(l => l.export());
+
   get links(): Readonly<Dictionary<LinkState>> {
     return this._links;
   }

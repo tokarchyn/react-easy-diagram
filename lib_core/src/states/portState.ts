@@ -2,12 +2,14 @@ import { Point } from '../types/common';
 import { makeAutoObservable } from 'mobx';
 import { HtmlElementRefState } from './htmlElementRefState';
 import { componentDefaultType, NodeState, RootStore } from '.';
+import { deepCopy } from '../utils';
 
 export class PortState {
   id: string;
   nodeId: string;
   label?: string;
   type: string;
+
   ref: HtmlElementRefState = new HtmlElementRefState(null);
   dragging: boolean = false;
   hovered: boolean = false;
@@ -33,6 +35,13 @@ export class PortState {
     this.type = state?.type ?? componentDefaultType;
     this.label = state?.label ?? '';
   };
+
+  export = () : IPortStateWithIds => deepCopy({
+      id: this.id,
+      nodeId: this.nodeId,
+      label: this.label,
+      type: this.type,
+    });
 
   hover = () => {
     this.hovered = true;

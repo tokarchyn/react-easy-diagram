@@ -31,7 +31,7 @@ export class LinkCreationState {
     let targetPoint: Point;
     if (portState.offsetRelativeToNode && eventOffsetRelativeToTarget) {
       targetPoint = addPoints(
-        addPoints(portState.offsetRelativeToNode, portState.node.offset),
+        addPoints(portState.offsetRelativeToNode, portState.node.position),
         eventOffsetRelativeToTarget
       );
     } else {
