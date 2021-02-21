@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { Handler } from 'react-use-gesture/dist/types';
+import { Point } from '../../types/common';
 import { IUserInteractionTranslate } from './common';
 
 type DragEventHandler =
@@ -14,7 +15,8 @@ export interface IDragHandlers {
 
 export function useDragHandlers(
   activeRef: React.MutableRefObject<boolean>,
-  state: IUserInteractionTranslate,
+  getPosition: () => Point,
+  setPosition: (position: Point) => any,
   parentScaleGetter?: () => number,
   cancel?: (event: React.PointerEvent<Element> | PointerEvent) => boolean
 ): IDragHandlers {
@@ -25,9 +27,10 @@ export function useDragHandlers(
           return;
         }
         const parentScale = parentScaleGetter ? parentScaleGetter() : 1;
-        state.setOffset([
-          state.offset[0] + delta[0] / parentScale,
-          state.offset[1] + delta[1] / parentScale,
+        const currentPosition = getPosition();
+        setPosition([
+          currentPosition[0] + delta[0] / parentScale,
+          currentPosition[1] + delta[1] / parentScale,
         ]);
       },
       onDragStart: ({ event }) => {
@@ -38,7 +41,7 @@ export function useDragHandlers(
       },
       onDragEnd: () => (activeRef.current = false),
     }),
-    [activeRef, state, parentScaleGetter, cancel]
+    [activeRef, getPosition, setPosition, parentScaleGetter, cancel]
   );
 
   return handlers;

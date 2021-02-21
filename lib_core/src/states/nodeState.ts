@@ -28,8 +28,8 @@ export class NodeState {
     });
   }
 
-  setOffset = (newOffset: Point) => {
-    this.position = newOffset;
+  setPosition = (newPosition: Point) => {
+    this.position = newPosition;
   };
 
   import = (newState?: INodeStateWithoutId) => {

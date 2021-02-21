@@ -5,7 +5,7 @@ import {
 } from '../../utils';
 import { IUserInteractionTranslateAndZoom } from './common';
 
-export function useWheelHandler(
+export function useDiagramWheelHandler(
   elemToAttachToRef: React.RefObject<HTMLElement>,
   activeRef: React.MutableRefObject<boolean>,
   state: IUserInteractionTranslateAndZoom

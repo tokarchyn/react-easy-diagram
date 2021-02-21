@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
 import { NodeState } from '../../states/nodeState';
 import { useNotifyRef } from '../useNotifyRef';
@@ -17,13 +17,16 @@ export const useNodeUserInteraction = (
   const activeRef = useNotifyRef(false);
   const userInteractionElemRef = useRef<HTMLElement>(null);
 
+  const getPosition = useCallback(() => nodeState.position, [nodeState]);
+  const setPosition = useCallback(nodeState.setPosition, [nodeState]);
+  const getDiagramZoom = useCallback(() => diagramStore.zoom, [diagramStore]);
+
   const dragHandlers = useDragHandlers(
     activeRef,
-    nodeState,
-    () => diagramStore.zoom,
-    (e) => {
-      return eventPathContainsClass(e, 'react_fast_diagram_PortWrapper');
-    }
+    getPosition,
+    setPosition,
+    getDiagramZoom,
+    cancelPortsEvents
   );
 
   useGesture(dragHandlers, {
@@ -42,6 +45,10 @@ export const useNodeUserInteraction = (
     userInteractionElemRef,
   };
 };
+
+function cancelPortsEvents(event: React.PointerEvent<Element> | PointerEvent) {
+  return eventPathContainsClass(event, 'react_fast_diagram_PortWrapper');
+}
 
 export interface IUseNodeUserInteractionResult {
   active: boolean;

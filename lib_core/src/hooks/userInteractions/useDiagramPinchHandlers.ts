@@ -22,7 +22,7 @@ interface IPinchHandlers {
   onPinchEnd: PinchEventHandler;
 }
 
-export function usePinchHandlers(
+export function useDiagramPinchHandlers(
   elemToAttachToRef: React.RefObject<HTMLElement>,
   activeRef: React.MutableRefObject<boolean>,
   state: IUserInteractionTranslateAndZoom,

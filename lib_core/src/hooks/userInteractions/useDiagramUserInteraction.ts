@@ -4,9 +4,9 @@ import { WebKitGestureEvent } from 'react-use-gesture/dist/types';
 import { useNotifyRef } from '../useNotifyRef';
 import { useRootStore } from '../useRootStore';
 import { useDragHandlers } from './useDragHandlers';
-import { usePinchHandlers } from './usePinchHandlers';
+import { useDiagramPinchHandlers } from './useDiagramPinchHandlers';
 import { useUserAbilityToSelectSwitcher } from './useUserAbilityToSelectSwitcher';
-import { useWheelHandler } from './useWheelHandler';
+import { useDiagramWheelHandler } from './useDiagramWheelHandler';
 
 export const useDiagramUserInteraction = (
   enable?: boolean
@@ -28,21 +28,25 @@ export const useDiagramUserInteraction = (
     [diagramState.diagramInnerRef]
   );
 
+  const getOffset = useCallback(() => diagramState.offset, [diagramState]);
+  const setOffset = useCallback(diagramState.setOffset, [diagramState]);
+
   const dragHandlers = useDragHandlers(
     activeRef,
-    diagramState,
+    getOffset,
+    setOffset,
     undefined,
     cancelGesture
   );
 
-  const pinchHandlers = usePinchHandlers(
+  const pinchHandlers = useDiagramPinchHandlers(
     diagramState.diagramInnerRef,
     activeRef,
     diagramState,
     cancelGesture
   );
 
-  const wheelHandler = useWheelHandler(
+  const wheelHandler = useDiagramWheelHandler(
     diagramState.diagramInnerRef,
     activeRef,
     diagramState

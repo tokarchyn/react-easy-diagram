@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
-import { Handler, ReactEventHandlers } from 'react-use-gesture/dist/types';
+import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 import { IDragHandlers, Point } from '../..';
 import { PortState } from '../../states/portState';
 import { multiplyPoint } from '../../utils';
@@ -54,7 +54,7 @@ export const usePortUserInteraction = (
         linkCreation.resetTargetPortCandidate(portState);
       },
     }),
-    [portState, linkCreation, userInteractionElemRef]
+    [portState, linkCreation]
   );
 
   // Temporary bug fix when pointer events handlers are not reasigned. See https://github.com/pmndrs/react-use-gesture/issues/263 and https://github.com/pmndrs/react-use-gesture/issues/264
