@@ -49,3 +49,36 @@ export const areTranformationsEqual = (
 export function clampValue(value: number, interval: Point) {
   return Math.min(Math.max(value, interval[0]), interval[1]);
 }
+
+function guidS4() {
+  return Math.floor((1 + Math.random()) * 0x10000)
+    .toString(16)
+    .substring(1);
+}
+
+export function guid() {
+  //return id of format 'aaaaaaaa'-'aaaa'-'aaaa'-'aaaa'-'aaaaaaaaaaaa'
+  return (
+    guidS4() +
+    guidS4() +
+    '-' +
+    guidS4() +
+    '-' +
+    guidS4() +
+    '-' +
+    guidS4() +
+    '-' +
+    guidS4() +
+    guidS4() +
+    guidS4()
+  );
+}
+
+export function guidForcedUniqueness(alreadyExistedItemsWithIdAsKey: object) {
+  let id = guid();
+  while (id in alreadyExistedItemsWithIdAsKey) {
+    id = guid();
+  }
+
+  return id;
+}

@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
-import { v4 } from 'uuid';
 import { Dictionary, TrueOrFalseWithError } from '../types/common';
+import { guidForcedUniqueness } from '../utils';
 import { LinkCreationState } from './linkCreationState';
 import {
   ILinkPortEndpoint,
@@ -66,7 +66,11 @@ export class LinksStore {
     const canAdd = this.canAddLink(link);
     if (!canAdd.result) return canAdd;
 
-    const newLink = new LinkState(this.rootStore, link.id ?? v4(), link);
+    const newLink = new LinkState(
+      this.rootStore,
+      link.id ?? guidForcedUniqueness(this._links),
+      link
+    );
     this._links[newLink.id] = newLink;
     this._addLinkToNodeLinksCollection(newLink, link.source.nodeId);
     this._addLinkToNodeLinksCollection(newLink, link.target.nodeId);
@@ -94,14 +98,16 @@ export class LinksStore {
   };
 
   canAddLink = (link: ILinkState): TrueOrFalseWithError => {
-    if (!link) return {
-      result: false,
-      error: `Cannot add empty`,
-    }
-    if (link.id && this._links[link.id]) return {
-      result: false,
-      error: `Cannot add link with id '${link.id}', as it already exists`,
-    };
+    if (!link)
+      return {
+        result: false,
+        error: `Cannot add empty`,
+      };
+    if (link.id && this._links[link.id])
+      return {
+        result: false,
+        error: `Cannot add link with id '${link.id}', as it already exists`,
+      };
 
     const isSourceValid = this.isEndpointValid(link.source);
     if (!isSourceValid.result) return isSourceValid;

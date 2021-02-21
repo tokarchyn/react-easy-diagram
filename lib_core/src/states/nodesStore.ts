@@ -2,7 +2,7 @@ import { Dictionary } from '../types/common';
 import { makeAutoObservable } from 'mobx';
 import { INodeState, NodeState } from './nodeState';
 import { RootStore } from './rootStore';
-import { v4 } from 'uuid';
+import { guidForcedUniqueness } from '../utils';
 
 export class NodesStore {
   private _nodes: Dictionary<NodeState> = {};
@@ -27,7 +27,11 @@ export class NodesStore {
     if (!node || (!rewriteIfExists && node.id && this._nodes[node.id])) {
       return false;
     }
-    const newNode = new NodeState(this.rootStore, node.id ?? v4(), node);
+    const newNode = new NodeState(
+      this.rootStore,
+      node.id ?? guidForcedUniqueness(this._nodes),
+      node
+    );
     this._nodes[newNode.id] = newNode;
     return true;
   };
