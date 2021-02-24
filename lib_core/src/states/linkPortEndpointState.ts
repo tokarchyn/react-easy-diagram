@@ -6,32 +6,41 @@ import { NodeState } from './nodeState';
 import { addPoints, deepCopy, multiplyPoint } from '../utils';
 
 export class LinkPortEndpointState implements ILinkPortEndpoint {
-  nodeId: string;
-  portId: string;
+  private _nodeId: string;
+  private _portId: string;
 
-  rootStore: RootStore;
+  private _rootStore: RootStore;
 
   constructor(nodeId: string, portId: string, rootStore: RootStore) {
-    this.nodeId = nodeId;
-    this.portId = portId;
+    this._nodeId = nodeId;
+    this._portId = portId;
     rootStore.nodesStore
-      .getNodeOrThrowException(this.nodeId)
-      .getPortOrThrowException(this.portId);
+      .getNodeOrThrowException(this._nodeId)
+      .getPortOrThrowException(this._portId);
     makeAutoObservable(this);
-    this.rootStore = rootStore;
+    this._rootStore = rootStore;
   }
 
-  export = () : ILinkPortEndpoint => deepCopy({
-    nodeId: this.nodeId,
-    portId: this.portId
-  });
+  export = (): ILinkPortEndpoint =>
+    deepCopy({
+      nodeId: this._nodeId,
+      portId: this._portId,
+    });
+
+  get nodeId() {
+    return this._nodeId;
+  }
+
+  get portId() {
+    return this._portId;
+  }
 
   get node(): NodeState {
-    return this.rootStore.nodesStore.getNodeOrThrowException(this.nodeId);
+    return this._rootStore.nodesStore.getNodeOrThrowException(this._nodeId);
   }
 
   get port(): PortState {
-    return this.node.getPortOrThrowException(this.portId);
+    return this.node.getPortOrThrowException(this._portId);
   }
 
   get point(): Point | undefined {

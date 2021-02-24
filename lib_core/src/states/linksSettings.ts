@@ -15,8 +15,8 @@ import {
 } from './linkCreationState';
 
 export class LinksSettings {
-  pathConstructor = defaultPathConstructor;
-  visualComponents = new VisualComponents<
+  private _pathConstructor = defaultPathConstructor;
+  private _visualComponents = new VisualComponents<
     LinkState | LinkCreationState,
     ILinkVisualComponentProps
   >({
@@ -32,9 +32,21 @@ export class LinksSettings {
   }
 
   import = (obj?: ILinksSettings) => {
-    this.visualComponents.import(obj);
-    this.pathConstructor = obj?.pathConstructor ?? defaultPathConstructor;
+    this._visualComponents.import(obj);
+    this.setPathConstructor(obj?.pathConstructor);
   };
+
+  get pathConstructor() {
+    return this._pathConstructor;
+  }
+
+  setPathConstructor = (value: ILinkPathConstructor | null | undefined) => {
+    this._pathConstructor = value ?? defaultPathConstructor;
+  }
+
+  get visualComponents() {
+    return this._visualComponents;
+  }
 }
 
 const defaultPathConstructor = createCurvedLinkPathConstructor();

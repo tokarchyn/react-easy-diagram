@@ -1,14 +1,11 @@
-import {
-  IVisualComponentsObject,
-  VisualComponents,
-} from './visualComponents';
+import { IVisualComponentsObject, VisualComponents } from './visualComponents';
 import { makeAutoObservable } from 'mobx';
 import { PortState } from './portState';
 import { createPortsContainerDefault } from '../components/PortsContainerDefault';
 import { IVisualComponentProps } from './visualComponentState';
 
 export class PortsSettings {
-  portsContainerVisualComponents: VisualComponents<
+  private _portsContainerVisualComponents: VisualComponents<
     PortState[],
     IPortsContainerVisualComponentProps
   > = new VisualComponents<PortState[], IPortsContainerVisualComponentProps>({
@@ -18,6 +15,10 @@ export class PortsSettings {
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  get portsContainerVisualComponents() {
+    return this._portsContainerVisualComponents;
   }
 
   import = (obj?: IPortsSettings) => {

@@ -2,13 +2,10 @@ import { makeAutoObservable } from 'mobx';
 import { componentDefaultType, IVisualComponentProps } from '..';
 import { NodeDefault } from '../components/NodeDefault';
 import { NodeState } from './nodeState';
-import {
-  IVisualComponentsObject,
-  VisualComponents,
-} from './visualComponents';
+import { IVisualComponentsObject, VisualComponents } from './visualComponents';
 
 export class NodesSettings {
-  visualComponents: VisualComponents<
+  private _visualComponents: VisualComponents<
     NodeState,
     INodeVisualComponentProps
   > = new VisualComponents<NodeState, INodeVisualComponentProps>({
@@ -19,8 +16,12 @@ export class NodesSettings {
     makeAutoObservable(this);
   }
 
+  get visualComponents() {
+    return this._visualComponents;
+  }
+
   import = (obj?: INodesSettings) => {
-    this.visualComponents.import(obj);
+    this._visualComponents.import(obj);
   };
 }
 

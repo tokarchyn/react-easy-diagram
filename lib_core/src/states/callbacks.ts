@@ -2,18 +2,30 @@ import { PortState } from './portState';
 import { RootStore } from './rootStore';
 
 export class Callbacks implements ICallbacks {
-  validateLinkEndpoints?: (source: PortState, target: PortState, rootStore: RootStore) => boolean; 
-  rootStore: RootStore;
+  private _validateLinkEndpoints?: (
+    source: PortState,
+    target: PortState,
+    rootStore: RootStore
+  ) => boolean;
+  private _rootStore: RootStore;
 
   constructor(rootStore: RootStore) {
-    this.rootStore = rootStore;
+    this._rootStore = rootStore;
   }
 
   import = (callbacks?: ICallbacks) => {
-    this.validateLinkEndpoints = callbacks?.validateLinkEndpoints;
+    this._validateLinkEndpoints = callbacks?.validateLinkEndpoints;
+  };
+
+  export = () => ({
+    validateLinkEndpoints: this._validateLinkEndpoints,
+  });
+
+  get validateLinkEndpoints() {
+    return this._validateLinkEndpoints;
   }
 }
 
 export interface ICallbacks {
-  validateLinkEndpoints?: Callbacks['validateLinkEndpoints']
+  validateLinkEndpoints?: Callbacks['validateLinkEndpoints'];
 }

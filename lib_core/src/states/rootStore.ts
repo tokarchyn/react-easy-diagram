@@ -10,46 +10,78 @@ import { INodeState } from './nodeState';
 import { IPortsSettings, PortsSettings } from './portsSettings';
 
 export class RootStore {
-  diagramState: DiagramState;
-  
-  nodesStore: NodesStore;
-  linksStore: LinksStore;
-  
-  diagramSettings: DiagramSettings;
-  nodesSettings: NodesSettings;
-  portsSettings: PortsSettings;
-  linksSettings: LinksSettings;
-  callbacks: Callbacks;
+  private _diagramState: DiagramState;
+
+  private _nodesStore: NodesStore;
+  private _linksStore: LinksStore;
+
+  private _diagramSettings: DiagramSettings;
+  private _nodesSettings: NodesSettings;
+  private _portsSettings: PortsSettings;
+  private _linksSettings: LinksSettings;
+  private _callbacks: Callbacks;
 
   constructor() {
-    this.diagramState = new DiagramState(this);
+    this._diagramSettings = new DiagramSettings();
+    this._nodesSettings = new NodesSettings();
+    this._linksSettings = new LinksSettings();
+    this._portsSettings = new PortsSettings();
+    this._callbacks = new Callbacks(this);
 
-    this.nodesStore = new NodesStore(this);
-    this.linksStore = new LinksStore(this);
-    
-    this.diagramSettings = new DiagramSettings();
-    this.nodesSettings = new NodesSettings();
-    this.linksSettings = new LinksSettings();
-    this.portsSettings = new PortsSettings();
-    this.callbacks = new Callbacks(this);
+    this._diagramState = new DiagramState(this);
+
+    this._nodesStore = new NodesStore(this);
+    this._linksStore = new LinksStore(this);
+  }
+
+  get diagramState() {
+    return this._diagramState;
+  }
+
+  get nodesStore() {
+    return this._nodesStore;
+  }
+
+  get linksStore() {
+    return this._linksStore;
+  }
+
+  get diagramSettings() {
+    return this._diagramSettings;
+  }
+
+  get nodesSettings() {
+    return this._nodesSettings;
+  }
+
+  get linksSettings() {
+    return this._linksSettings;
+  }
+
+  get portsSettings() {
+    return this._portsSettings;
+  }
+
+  get callbacks() {
+    return this._callbacks;
   }
 
   importState = (nodes?: INodeState[], links?: ILinkState[]) => {
-    this.nodesStore.import(nodes);
-    this.linksStore.import(links);
+    this._nodesStore.import(nodes);
+    this._linksStore.import(links);
   };
 
-  export = () : {nodes: INodeState[], links: ILinkState[]} => ({
-    nodes: this.nodesStore.export(),
-    links: this.linksStore.export()
+  export = (): { nodes: INodeState[]; links: ILinkState[] } => ({
+    nodes: this._nodesStore.export(),
+    links: this._linksStore.export(),
   });
 
   importSettings = (settings: ISettings) => {
-    this.diagramSettings.import(settings.diagram);
-    this.nodesSettings.import(settings.nodes);
-    this.linksSettings.import(settings.links);
-    this.portsSettings.import(settings.ports);
-    this.callbacks.import(settings.callbacks);
+    this._diagramSettings.import(settings.diagram);
+    this._nodesSettings.import(settings.nodes);
+    this._linksSettings.import(settings.links);
+    this._portsSettings.import(settings.ports);
+    this._callbacks.import(settings.callbacks);
   };
 }
 

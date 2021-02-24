@@ -6,26 +6,38 @@ import { PortState } from './portState';
 import { RootStore } from './rootStore';
 
 export class LinkCreationState {
-  source: LinkPortEndpointState | null = null;
-  target: LinkPointEndpointState | null = null;
-  targetPortCandidate: PortState | null = null;
+  private _source: LinkPortEndpointState | null = null;
+  private _target: LinkPointEndpointState | null = null;
+  private _targetPortCandidate: PortState | null = null;
 
-  rootStore: RootStore;
+  private _rootStore: RootStore;
 
   constructor(rootStore: RootStore) {
     makeAutoObservable(this);
-    this.rootStore = rootStore;
+    this._rootStore = rootStore;
+  }
+
+  get source() {
+    return this._source;
+  }
+
+  get target() {
+    return this._target;
+  }
+
+  get targetPortCandidate() {
+    return this._targetPortCandidate;
   }
 
   startLinking = (
     portState: PortState,
     eventOffsetRelativeToTarget: Point | undefined
   ): boolean => {
-    this.resetProps();
-    this.source = new LinkPortEndpointState(
+    this._resetProps();
+    this._source = new LinkPortEndpointState(
       portState.nodeId,
       portState.id,
-      this.rootStore
+      this._rootStore
     );
 
     let targetPoint: Point;
@@ -35,27 +47,27 @@ export class LinkCreationState {
         eventOffsetRelativeToTarget
       );
     } else {
-      const sourcePoint = this.source.point;
+      const sourcePoint = this._source.point;
       if (sourcePoint) {
         targetPoint = sourcePoint;
       } else {
-        this.resetProps();
+        this._resetProps();
         return false;
       }
     }
 
-    this.target = new LinkPointEndpointState(targetPoint);
+    this._target = new LinkPointEndpointState(targetPoint);
 
     return true;
   };
 
   setTargetPortCandidate = (portState: PortState) => {
-    if (!this.source) return;
+    if (!this._source) return;
 
-    const canAddLink = this.rootStore.linksStore.canAddLink({
+    const canAddLink = this._rootStore.linksStore.canAddLink({
       source: {
-        nodeId: this.source.nodeId,
-        portId: this.source.portId,
+        nodeId: this._source.nodeId,
+        portId: this._source.portId,
       },
       target: {
         nodeId: portState.nodeId,
@@ -63,8 +75,8 @@ export class LinkCreationState {
       },
     });
 
-    this.targetPortCandidate = portState;
-    if (canAddLink.result) {
+    this._targetPortCandidate = portState;
+    if (canAddLink.success) {
       portState.validForConnection = true;
     } else {
       portState.validForConnection = false;
@@ -72,47 +84,47 @@ export class LinkCreationState {
   };
 
   resetTargetPortCandidate = (portState: PortState) => {
-    if (this.targetPortCandidate === portState) {
-      this.targetPortCandidate = null;
+    if (this._targetPortCandidate === portState) {
+      this._targetPortCandidate = null;
     }
     portState.validForConnection = true;
   };
 
   stopLinking = () => {
-    if (this.targetPortCandidate && this.source) {
-      this.rootStore.linksStore.addLink({
+    if (this._targetPortCandidate && this._source) {
+      this._rootStore.linksStore.addLink({
         source: {
-          nodeId: this.source.nodeId,
-          portId: this.source.portId,
+          nodeId: this._source.nodeId,
+          portId: this._source.portId,
         },
         target: {
-          nodeId: this.targetPortCandidate.nodeId,
-          portId: this.targetPortCandidate.id,
+          nodeId: this._targetPortCandidate.nodeId,
+          portId: this._targetPortCandidate.id,
         },
       });
     }
-    this.resetProps();
+    this._resetProps();
   };
 
   get componentDefinition() {
-    const { visualComponents } = this.rootStore.linksSettings;
+    const { visualComponents } = this._rootStore.linksSettings;
     return visualComponents.getComponent(linkCreationComponentType);
   }
 
   get path(): ILinkPath | undefined {
-    if (!this.source || !this.target) return undefined;
-    else return createLinkPath(this.rootStore, this.source, this.target);
+    if (!this._source || !this._target) return undefined;
+    else return createLinkPath(this._rootStore, this._source, this._target);
   }
 
-  private resetProps = () => {
-    if (this.source) {
-      this.source.port.validForConnection = true;
-      this.source = null;
+  private _resetProps = () => {
+    if (this._source) {
+      this._source.port.validForConnection = true;
+      this._source = null;
     }
-    this.target = null;
-    if (this.targetPortCandidate) {
-      this.targetPortCandidate.validForConnection = true;
-      this.targetPortCandidate = null;
+    this._target = null;
+    if (this._targetPortCandidate) {
+      this._targetPortCandidate.validForConnection = true;
+      this._targetPortCandidate = null;
     }
   };
 }

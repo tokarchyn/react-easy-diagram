@@ -1,5 +1,10 @@
 import { makeAutoObservable } from 'mobx';
-import { Dictionary, TrueOrFalseWithError } from '../types/common';
+import {
+  Dictionary,
+  ErrorResult,
+  SuccessOrErrorResult,
+  SuccessResult,
+} from '../types/common';
 import { guidForcedUniqueness } from '../utils';
 import { LinkCreationState } from './linkCreationState';
 import {
@@ -13,16 +18,15 @@ import { RootStore } from './rootStore';
 export class LinksStore {
   private _links: Dictionary<LinkState>;
   private _nodesLinksCollection: Dictionary<LinkState[]>;
+  private _linkCreation: LinkCreationState;
 
-  linkCreation: LinkCreationState;
-
-  rootStore: RootStore;
+  private _rootStore: RootStore;
 
   constructor(rootStore: RootStore) {
-    this.linkCreation = new LinkCreationState(rootStore);
+    this._linkCreation = new LinkCreationState(rootStore);
     this.import();
     makeAutoObservable(this);
-    this.rootStore = rootStore;
+    this._rootStore = rootStore;
   }
 
   import = (newLinks?: ILinkState[]) => {
@@ -31,10 +35,15 @@ export class LinksStore {
     newLinks && newLinks.forEach(this.addLink);
   };
 
-  export = () : ILinkState[] => Object.values(this._links).map(l => l.export());
+  export = (): ILinkState[] =>
+    Object.values(this._links).map((l) => l.export());
 
   get links(): Readonly<Dictionary<LinkState>> {
     return this._links;
+  }
+
+  get linkCreation() {
+    return this._linkCreation;
   }
 
   getNodeLinks = (nodeId: string): LinkState[] => {
@@ -64,12 +73,12 @@ export class LinksStore {
     });
   };
 
-  addLink = (link: ILinkState): TrueOrFalseWithError => {
+  addLink = (link: ILinkState): SuccessOrErrorResult => {
     const canAdd = this.canAddLink(link);
-    if (!canAdd.result) return canAdd;
+    if (!canAdd.success) return canAdd;
 
     const newLink = new LinkState(
-      this.rootStore,
+      this._rootStore,
       link.id ?? guidForcedUniqueness(this._links),
       link
     );
@@ -77,7 +86,7 @@ export class LinksStore {
     this._addLinkToNodeLinksCollection(newLink, link.source.nodeId);
     this._addLinkToNodeLinksCollection(newLink, link.target.nodeId);
 
-    return { result: true };
+    return { success: true };
   };
 
   removeLink = (linkId: string): boolean => {
@@ -99,62 +108,51 @@ export class LinksStore {
     return false;
   };
 
-  canAddLink = (link: ILinkState): TrueOrFalseWithError => {
-    if (!link)
-      return {
-        result: false,
-        error: `Cannot add empty`,
-      };
+  canAddLink = (link: ILinkState): SuccessOrErrorResult => {
+    if (!link) return ErrorResult(`Cannot add empty`);
     if (link.id && this._links[link.id])
-      return {
-        result: false,
-        error: `Cannot add link with id '${link.id}', as it already exists`,
-      };
+      return ErrorResult(
+        `Cannot add link with id '${link.id}', as it already exists`
+      );
 
     const isSourceValid = this.isEndpointValid(link.source);
-    if (!isSourceValid.result) return isSourceValid;
+    if (!isSourceValid.success) return isSourceValid;
     const isTargetValid = this.isEndpointValid(link.target);
-    if (!isTargetValid.result) return isTargetValid;
+    if (!isTargetValid.success) return isTargetValid;
 
-    if (link.source.nodeId === link.target.nodeId) {
-      return {
-        result: false,
-        error: `Link's endpoints are located in the same node`,
-      };
-    }
+    if (link.source.nodeId === link.target.nodeId)
+      return ErrorResult(`Link's endpoints are located in the same node`);
 
-    if (this.areEndpointsConnected(link.source, link.target)) {
-      return { result: false, error: `Link's endpoints are already connected` };
-    }
+    if (this.areEndpointsConnected(link.source, link.target))
+      return ErrorResult(`Link's endpoints are already connected`);
 
     if (
-      this.rootStore.callbacks.validateLinkEndpoints?.(
+      this._rootStore.callbacks.validateLinkEndpoints?.(
         this.getEndpointPort(link.source),
         this.getEndpointPort(link.target),
-        this.rootStore
+        this._rootStore
       ) === false
     ) {
-      return {
-        result: false,
-        error: `Link's endpoints are not valid according to validation callback`,
-      };
+      return ErrorResult(
+        `Link's endpoints are not valid according to validation callback`
+      );
     }
 
-    return { result: true };
+    return SuccessResult();
   };
 
-  isEndpointValid = (endpoint: ILinkPortEndpoint): TrueOrFalseWithError => {
+  isEndpointValid = (endpoint: ILinkPortEndpoint): SuccessOrErrorResult => {
     try {
       this.getEndpointPort(endpoint);
     } catch (ex) {
-      return { result: false, error: '' + ex };
+      return ErrorResult('' + ex);
     }
 
-    return { result: true };
+    return SuccessResult();
   };
 
   getEndpointPort = (endpoint: ILinkPortEndpoint): PortState => {
-    return this.rootStore.nodesStore
+    return this._rootStore.nodesStore
       .getNodeOrThrowException(endpoint.nodeId)
       .getPortOrThrowException(endpoint.portId);
   };
@@ -166,10 +164,10 @@ export class LinksStore {
     return !!this.getLinkForEndpointsIfExists(source, target);
   };
 
-  getLinkForEndpointsIfExists(
+  getLinkForEndpointsIfExists = (
     source: ILinkPortEndpoint,
     target: ILinkPortEndpoint
-  ): LinkState | undefined {
+  ): LinkState | undefined => {
     if (this._nodesLinksCollection[source.nodeId]) {
       return this._nodesLinksCollection[source.nodeId].find(
         (l) =>
@@ -181,13 +179,13 @@ export class LinksStore {
     }
   }
 
-  private _addLinkToNodeLinksCollection(link: LinkState, nodeId: string) {
+  private _addLinkToNodeLinksCollection = (link: LinkState, nodeId: string) => {
     if (!this._nodesLinksCollection[nodeId])
       this._nodesLinksCollection[nodeId] = [];
     this._nodesLinksCollection[nodeId].push(link);
   }
 
-  private _removeLinkFromNodeLinksCollection(link: LinkState, nodeId: string) {
+  private _removeLinkFromNodeLinksCollection = (link: LinkState, nodeId: string) => {
     let collection = this._nodesLinksCollection[nodeId];
     if (collection) {
       collection = collection.filter((l) => l.id === link.id);

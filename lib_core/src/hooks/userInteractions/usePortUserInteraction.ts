@@ -28,8 +28,8 @@ export const usePortUserInteraction = (
       },
       onDragStart: ({ event }) => {
         // Important! Otherwise on touch display onPointerEnter will not work!
-        // const portHtmlElement = event.target as Element;
-        // portHtmlElement.releasePointerCapture(event.pointerId);
+        const portHtmlElement = event.target as Element;
+        portHtmlElement.releasePointerCapture(event.pointerId);
 
         let eventOffsetRelativeToTarget;
         // On the old browser these properties could be not available
@@ -38,19 +38,19 @@ export const usePortUserInteraction = (
         }
 
         if (linkCreation.startLinking(portState, eventOffsetRelativeToTarget)) {
-          portState.drag();
+          portState.dragging = true;
         }
       },
       onDragEnd: () => {
-        portState.stopDrag();
+        portState.dragging = false;
         linkCreation.stopLinking();
       },
       onPointerEnter: () => {
-        portState.hover();
+        portState.hovered = true;
         linkCreation.setTargetPortCandidate(portState);
       },
       onPointerLeave: () => {
-        portState.stopHover();
+        portState.hovered = false;
         linkCreation.resetTargetPortCandidate(portState);
       },
     }),

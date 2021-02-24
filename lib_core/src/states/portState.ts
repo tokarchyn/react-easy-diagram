@@ -5,17 +5,17 @@ import { componentDefaultType, NodeState, RootStore } from '.';
 import { deepCopy } from '../utils';
 
 export class PortState {
-  id: string;
-  nodeId: string;
-  label?: string;
-  type: string;
+  private _id: string;
+  private _nodeId: string;
+  private _label: string;
+  private _type: string;
 
-  ref: HtmlElementRefState = new HtmlElementRefState(null);
-  dragging: boolean = false;
-  hovered: boolean = false;
-  validForConnection: boolean = true;
+  private _ref: HtmlElementRefState = new HtmlElementRefState(null);
+  private _dragging: boolean = false;
+  private _hovered: boolean = false;
+  private _validForConnection: boolean = true;
 
-  rootStore: RootStore;
+  private _rootStore: RootStore;
 
   constructor(
     rootStore: RootStore,
@@ -23,56 +23,93 @@ export class PortState {
     nodeId: string,
     state?: IPortStateWithoutIds
   ) {
-    this.id = id;
-    this.nodeId = nodeId;
+    this._id = id;
+    this._nodeId = nodeId;
     this.import(state);
 
     makeAutoObservable(this);
-    this.rootStore = rootStore;
+    this._rootStore = rootStore;
+  }
+
+  get id() {
+    return this._id;
+  }
+
+  get nodeId() {
+    return this._nodeId;
+  }
+
+  get ref() {
+    return this._ref;
+  }
+
+  get dragging() {
+    return this._dragging;
+  }
+
+  set dragging(value: boolean) {
+    this._dragging = value;
+  }
+
+  get hovered() {
+    return this._hovered;
+  }
+
+  set hovered(value: boolean) {
+    this._hovered = value;
+  }
+
+  get validForConnection() {
+    return this._validForConnection;
+  }
+
+  set validForConnection(value: boolean) {
+    this._validForConnection = value;
+  }
+
+  get label() {
+    return this._label;
+  }
+
+  setLabel = (value: string | null | undefined) => {
+    this._label = value ?? '';
+  }
+
+  get type() {
+    return this._type;
+  }
+
+  setType = (value: string | null | undefined) => {
+    this._type = value ?? componentDefaultType;
   }
 
   import = (state?: IPortStateWithoutIds) => {
-    this.type = state?.type ?? componentDefaultType;
-    this.label = state?.label ?? '';
+    this.setType(state?.type);
+    this.setLabel(state?.label);
   };
 
-  export = () : IPortStateWithIds => deepCopy({
-      id: this.id,
-      nodeId: this.nodeId,
-      label: this.label,
-      type: this.type,
+  export = (): IPortStateWithIds =>
+    deepCopy({
+      id: this._id,
+      nodeId: this._nodeId,
+      label: this._label,
+      type: this._type,
     });
 
-  hover = () => {
-    this.hovered = true;
-  };
-
-  stopHover = () => {
-    this.hovered = false;
-  };
-
-  drag = () => {
-    this.dragging = true;
-  };
-
-  stopDrag = () => {
-    this.dragging = false;
-  };
-
   get node(): NodeState {
-    return this.rootStore.nodesStore.getNodeOrThrowException(this.nodeId);
+    return this._rootStore.nodesStore.getNodeOrThrowException(this.nodeId);
   }
 
   get offsetRelativeToNode(): Point | null {
     if (this.node.ref.current) {
-      return this.ref.offsetRelativeToParent(this.node.ref.current);
+      return this._ref.offsetRelativeToParent(this.node.ref.current);
     }
 
     return null;
   }
 
   get realSize(): Point | null {
-    return this.ref.realSize;
+    return this._ref.realSize;
   }
 }
 

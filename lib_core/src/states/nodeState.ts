@@ -7,65 +7,94 @@ import { HtmlElementRefState } from './htmlElementRefState';
 import { componentDefaultType } from './visualComponents';
 
 export class NodeState {
-  id: string;
-  position: Point;
+  private _id: string;
+  private _position: Point;
   private _ports: Dictionary<PortState>;
-  ref: HtmlElementRefState;
-  componentType: string;
-  extra?: any;
+  private _ref: HtmlElementRefState;
+  private _componentType: string;
+  private _extra: any;
 
-  rootStore: RootStore;
+  private _rootStore: RootStore;
 
   constructor(rootStore: RootStore, id: string, state?: INodeStateWithoutId) {
-    this.rootStore = rootStore;
+    this._rootStore = rootStore;
 
-    this.id = id;
-    this.ref = new HtmlElementRefState(null);
+    this._id = id;
+    this._ref = new HtmlElementRefState(null);
     this.import(state);
 
     makeAutoObservable(this, {
-      rootStore: false,
+      // @ts-ignore
+      _rootStore: false,
     });
   }
 
-  setPosition = (newPosition: Point) => {
-    this.position = newPosition;
-  };
-
   import = (newState?: INodeStateWithoutId) => {
-    this.position = newState?.position ?? [0, 0];
-    this.componentType = newState?.componentType ?? componentDefaultType;
-    this.extra = newState?.extra ?? null;
+    this.setPosition(newState?.position);
+    this.setComponentType(newState?.componentType);
+    this.setExtra(newState?.extra);
 
     this._ports = {};
     newState?.ports && newState.ports.forEach(this.addPort);
   };
 
-  export = () : INodeStateWithId => ({
+  export = (): INodeStateWithId => ({
     ...deepCopy({
-      id: this.id,
-      position: this.position,
+      id: this._id,
+      position: this._position,
       componentType: this.componentType,
-      extra: this.extra
+      extra: this.extra,
     }),
-    ports: Object.values(this._ports).map(p => p.export())
+    ports: Object.values(this._ports).map((p) => p.export()),
   });
+
+  get id() {
+    return this._id;
+  }
+
+  get position() {
+    return this._position;
+  }
+
+  setPosition = (value: Point | null | undefined) => {
+    this._position = value ?? [0, 0];
+  };
+
+  get componentType() {
+    return this._componentType;
+  }
+
+  setComponentType = (value: string | null | undefined) => {
+    this._componentType = value ?? componentDefaultType;
+  };
+
+  get extra() {
+    return this._extra;
+  }
+
+  setExtra = (value: any) => {
+    this._extra = value ?? null;
+  };
+
+  get ref() {
+    return this._ref;
+  }
 
   get ports(): Readonly<Dictionary<PortState>> {
     return this._ports;
   }
 
   get transformString() {
-    return generateTransform(this.position);
+    return generateTransform(this._position);
   }
 
   get componentDefinition() {
-    const { visualComponents } = this.rootStore.nodesSettings;
+    const { visualComponents } = this._rootStore.nodesSettings;
     return visualComponents.getComponent(this.componentType);
   }
 
   get realSize(): Point | null {
-    return this.ref.realSize;
+    return this._ref.realSize;
   }
 
   getPort = (portId: string): PortState | undefined => {
@@ -79,9 +108,9 @@ export class NodeState {
       return false;
     }
     const newPort = new PortState(
-      this.rootStore,
+      this._rootStore,
       port.id ?? guidForcedUniqueness(this._ports),
-      this.id,
+      this._id,
       port
     );
     this._ports[newPort.id] = newPort;
@@ -91,7 +120,7 @@ export class NodeState {
   removePort = (portId: string): boolean => {
     if (portId && this._ports[portId]) {
       delete this._ports[portId];
-      this.rootStore.linksStore.removePortLinks(this.id, portId);
+      this._rootStore.linksStore.removePortLinks(this._id, portId);
       return true;
     }
     return false;
@@ -101,7 +130,7 @@ export class NodeState {
     const port = this.getPort(portId);
     if (port) return port;
     else
-      throw `Port with id '${portId}' does not exist in the node '${this.id}'`;
+      throw `Port with id '${portId}' does not exist in the node '${this._id}'`;
   };
 }
 

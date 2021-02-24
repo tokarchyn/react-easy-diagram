@@ -7,11 +7,11 @@ import { guidForcedUniqueness } from '../utils';
 export class NodesStore {
   private _nodes: Dictionary<NodeState> = {};
 
-  rootStore: RootStore;
+  private _rootStore: RootStore;
 
   constructor(rootStore: RootStore) {
     makeAutoObservable(this);
-    this.rootStore = rootStore;
+    this._rootStore = rootStore;
   }
 
   get nodes(): Readonly<Dictionary<NodeState>> {
@@ -23,14 +23,15 @@ export class NodesStore {
     newNodes?.forEach((node) => this.addNode(node, true));
   };
 
-  export = () : INodeState[] => Object.values(this._nodes).map(n => n.export());
+  export = (): INodeState[] =>
+    Object.values(this._nodes).map((n) => n.export());
 
   addNode = (node: INodeState, rewriteIfExists: boolean): boolean => {
     if (!node || (!rewriteIfExists && node.id && this._nodes[node.id])) {
       return false;
     }
     const newNode = new NodeState(
-      this.rootStore,
+      this._rootStore,
       node.id ?? guidForcedUniqueness(this._nodes),
       node
     );
@@ -41,7 +42,7 @@ export class NodesStore {
   removeNode = (nodeId: string): boolean => {
     if (nodeId && this._nodes[nodeId]) {
       delete this._nodes[nodeId];
-      this.rootStore.linksStore.removeNodeLinks(nodeId);
+      this._rootStore.linksStore.removeNodeLinks(nodeId);
       return true;
     }
     return false;

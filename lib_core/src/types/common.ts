@@ -14,6 +14,9 @@ export type CornerPosition =
 
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
-export type TrueOrFalseWithError =
-  | { result: true }
-  | { result: false; error: string };
+export type SuccessOrErrorResult =
+  | { success: true }
+  | { success: false; error: string };
+
+export const SuccessResult = () : SuccessOrErrorResult => ({success: true})
+export const ErrorResult = (error: string) : SuccessOrErrorResult => ({success: false, error})

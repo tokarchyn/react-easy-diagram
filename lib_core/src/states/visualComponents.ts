@@ -11,26 +11,28 @@ export class VisualComponents<
   TEntity,
   TComponentProps extends IVisualComponentProps<TEntity>
 > {
-  defaultType: string = componentDefaultType;
-  defaultComponents: Dictionary<VisualComponentState<TComponentProps>>;
-  components: Dictionary<VisualComponentState<TComponentProps>>;
+  private _defaultType: string = componentDefaultType;
+  private _defaultComponents: Dictionary<VisualComponentState<TComponentProps>>;
+  private _components: Dictionary<VisualComponentState<TComponentProps>>;
 
   constructor(
     defaultComponents: Dictionary<
       IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
     >
   ) {
-    this.defaultComponents = this.createComponentCollection(defaultComponents);
-    this.components = { ...this.defaultComponents };
+    this._defaultComponents = this._createComponentCollection(
+      defaultComponents
+    );
+    this._components = { ...this._defaultComponents };
     makeAutoObservable(this);
   }
 
   import = (obj?: IVisualComponentsObject<TComponentProps>) => {
-    this.defaultType = obj?.defaultNodeType ?? componentDefaultType;
+    this.setDefaultType(obj?.defaultNodeType);
 
-    this.components = {
-      ...this.defaultComponents,
-      ...this.createComponentCollection(obj?.components),
+    this._components = {
+      ...this._defaultComponents,
+      ...this._createComponentCollection(obj?.components),
     };
   };
 
@@ -39,15 +41,23 @@ export class VisualComponents<
   ): VisualComponentState<TComponentProps> => {
     const finalComponentType = type ?? this.defaultType;
     return (
-      this.components[finalComponentType] ?? this.components[this.defaultType]
+      this._components[finalComponentType] ?? this._components[this.defaultType]
     );
   };
 
-  private createComponentCollection(
+  get defaultType() {
+    return this._defaultType;
+  }
+
+  setDefaultType = (value: string | undefined | null) => {
+    this._defaultType = value ?? componentDefaultType;
+  };
+
+  private _createComponentCollection = (
     componentsObjects?: Dictionary<
       IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
     >
-  ): Dictionary<VisualComponentState<TComponentProps>> {
+  ): Dictionary<VisualComponentState<TComponentProps>> => {
     const collection: Dictionary<VisualComponentState<TComponentProps>> = {};
 
     componentsObjects &&
@@ -56,7 +66,7 @@ export class VisualComponents<
       });
 
     return collection;
-  }
+  };
 }
 
 export const componentDefaultType = 'default';

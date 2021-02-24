@@ -2,30 +2,37 @@ import { makeAutoObservable } from 'mobx';
 import { observer } from 'mobx-react-lite';
 
 export class VisualComponentState<TComponentProps> {
-  component: VisualComponent<TComponentProps>;
-  settings: object = {};
+  private _component: VisualComponent<TComponentProps>;
+  private _settings: object = {};
 
   constructor(
-    newComponent:
+    component:
       | IComponentDefinition<TComponentProps>
       | VisualComponent<TComponentProps>
   ) {
-    this.import(newComponent);
+    this.import(component);
     makeAutoObservable(this);
   }
 
-  import(
+  import = (
     newComponent:
       | IComponentDefinition<TComponentProps>
       | VisualComponent<TComponentProps>
-  ) {
+  ) => {
     if ('component' in newComponent) {
-      this.component = observer(newComponent.component);
-      this.settings = newComponent.settings ?? {};
+      this._component = observer(newComponent.component);
+      this._settings = newComponent.settings ?? {};
     } else {
-      this.component = observer(newComponent);
-      this.settings = {};
+      this._component = observer(newComponent);
+      this._settings = {};
     }
+  };
+
+  get component() {
+    return this._component;
+  }
+  get settings() {
+    return this._settings;
   }
 }
 

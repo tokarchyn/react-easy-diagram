@@ -10,61 +10,98 @@ import { LinkPointEndpointState } from './LinkPointEndpointState';
 import { deepCopy } from '../utils';
 
 export class LinkState implements ILinkState {
-  id: string;
-  componentType: string;
-  source: LinkPortEndpointState;
-  target: LinkPortEndpointState;
-  segments: ILinkSegment[];
-  extra: any;
+  private _id: string;
+  private _componentType: string;
+  private _source: LinkPortEndpointState;
+  private _target: LinkPortEndpointState;
+  private _segments: ILinkSegment[];
+  private _extra: any;
 
-  rootStore: RootStore;
+  private _rootStore: RootStore;
 
   constructor(rootStore: RootStore, id: string, state: ILinkStateWithoutId) {
-    this.rootStore = rootStore;
+    this._rootStore = rootStore;
 
-    this.id = id;
+    this._id = id;
     this.import(state);
 
     makeAutoObservable(this, {
-      rootStore: false,
+      // @ts-ignore
+      _rootStore: false,
     });
   }
 
   import = (state: ILinkStateWithoutId) => {
-    this.source = this.createEndpointState(state.source);
-    this.target = this.createEndpointState(state.target);
-    this.componentType = state.componentType ?? componentDefaultType;
-    this.segments = state.segments ?? [];
-    this.extra = state.extra ?? null;
+    this._source = this._createEndpointState(state.source);
+    this._target = this._createEndpointState(state.target);
+    this.setComponentType(state.componentType);
+    this.setSegments(state.segments);
+    this.setExtra(state.extra);
   };
 
-  export = () : ILinkStateWithId => ({
+  export = (): ILinkStateWithId => ({
     source: this.source.export(),
     target: this.target.export(),
     ...deepCopy({
-      id: this.id,
+      id: this._id,
       componentType: this.componentType,
       segments: this.segments,
-      extra: this.extra
-    })
+      extra: this.extra,
+    }),
   });
 
+  get id() {
+    return this._id;
+  }
+
+  get componentType() {
+    return this._componentType;
+  }
+
+  setComponentType = (value: string | null | undefined) => {
+    this._componentType = value ?? componentDefaultType;
+  }
+
+  get segments() {
+    return this._segments;
+  }
+
+  setSegments = (value: ILinkSegment[] | null | undefined) => {
+    this._segments = value ?? [];
+  }
+
   get path(): ILinkPath | undefined {
-    return createLinkPath(this.rootStore, this.source, this.target);
+    return createLinkPath(this._rootStore, this.source, this.target);
   }
 
   get componentDefinition() {
-    const { visualComponents } = this.rootStore.linksSettings;
+    const { visualComponents } = this._rootStore.linksSettings;
     return visualComponents.getComponent(this.componentType);
   }
 
-  private createEndpointState = (
+  get extra() {
+    return this._extra;
+  }
+
+  get source() {
+    return this._source;
+  }
+
+  get target() {
+    return this._target;
+  }
+
+  setExtra = (value: any) => {
+    this._extra = value ?? null;
+  }
+
+  private _createEndpointState = (
     endpoint: ILinkPortEndpoint
   ): LinkPortEndpointState => {
     return new LinkPortEndpointState(
       endpoint.nodeId,
       endpoint.portId,
-      this.rootStore
+      this._rootStore
     );
   };
 }

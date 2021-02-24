@@ -1,4 +1,4 @@
-import { makeAutoObservable, makeObservable, action } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import {
   IComponentDefinition,
   VisualComponent,
@@ -25,13 +25,13 @@ export class VisualComponentWithDefault<TComponentProps> {
     return this._innerComponent.settings;
   }
 
-  import(
+  import = (
     newComponent?:
       | IComponentDefinition<TComponentProps>
       | VisualComponent<TComponentProps>
-  ) {
+  ) => {
     this._innerComponent = newComponent
       ? new VisualComponentState<TComponentProps>(newComponent)
       : this._defaultComponent;
-  }
+  };
 }
