@@ -6,7 +6,10 @@ import { IComponentDefinition } from '../states/visualComponentState';
 export const LinkDefault: React.FC<
   ILinkVisualComponentProps<ILinkDefaultSettings>
 > = (props) => {
-  const settings = props.settings ?? linkDefaultSettings;
+  const settings = {
+    ...linkDefaultSettings,
+    ...(props.settings ? props.settings : {}),
+  };
   const path = props.entity.path;
   if (!path) return null;
 
@@ -32,9 +35,9 @@ export const LinkDefault: React.FC<
 };
 
 export interface ILinkDefaultSettings {
-  color: string;
-  strokeWidth: number;
-  cirleRadius: number;
+  color?: string;
+  strokeWidth?: number;
+  cirleRadius?: number;
 }
 
 const linkDefaultSettings: ILinkDefaultSettings = {
@@ -44,16 +47,11 @@ const linkDefaultSettings: ILinkDefaultSettings = {
 };
 
 export function createLinkDefault(
-  settings?: Partial<ILinkDefaultSettings>
+  settings?: ILinkDefaultSettings
 ): IComponentDefinition<ILinkVisualComponentProps, ILinkDefaultSettings> {
-  const finaleSettings = {
-    ...linkDefaultSettings,
-    ...(settings ? settings : {}),
-  };
-
   return {
     component: LinkDefault,
-    settings: finaleSettings,
+    settings: settings,
   };
 }
 

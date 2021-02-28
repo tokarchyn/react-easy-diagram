@@ -9,7 +9,7 @@ import '../Diagram.css';
 
 export const RootStoreContext = React.createContext<RootStore | null>(null);
 
-export const Diagram: React.FC<IDiagramProps> = (props) => {
+export function Diagram (props: IDiagramProps) {
   const rootStore = useMemo(() => {
     const store = new RootStore();
     props.settings && store.importSettings(props.settings);

@@ -17,6 +17,7 @@ export function useDiagramWheelHandler(
         event: { clientX, clientY },
       }) => {
         if (!elemToAttachToRef.current) return;
+        event?.preventDefault();
         const rect = elemToAttachToRef.current.getBoundingClientRect();
 
         const mousePositionOnElement = subtractPoints(
