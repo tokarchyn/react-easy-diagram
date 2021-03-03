@@ -3,7 +3,6 @@
   "author": "Vitalii Tokarchyn",
   "license": "MIT",
   "workspaces": [
-    "demo",
     "website",
     "lib_core"
   ],
@@ -13,7 +12,7 @@
   "scripts": {
     "start": "yarn workspace @react-easy-diagram/core build:dev && concurrently \"yarn workspace @react-easy-diagram/core start\" \"yarn workspace @react-easy-diagram/website start\"",
     "build:lib": "yarn workspace @react-easy-diagram/core run build:prod",
-    "build:demo": "yarn workspace @react-easy-diagram/demo run build",
+    "build:website": "yarn workspace @react-easy-diagram/website run build",
     "build": "yarn build:lib && yarn build:demo"
   }
 }
