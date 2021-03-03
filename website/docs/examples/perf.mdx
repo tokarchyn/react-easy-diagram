@@ -1,0 +1,81 @@
+---
+title: Performance
+hide_table_of_contents: true
+---
+
+```js live noInline
+const generateState = (colNum, rowNum) => {
+  const nodes = [];
+  const links = [];
+  const getNodeId = (i, j) => `node_${i}_${j}`;
+
+  for (let i = 0; i < colNum; i++) {
+    for (let j = 0; j < rowNum; j++) {
+      nodes.push({
+        id: getNodeId(i, j),
+        position: [i * 120, j * 120],
+        ports: [
+          { id: 'left', type: 'left' },
+          { id: 'top', type: 'top' },
+          { id: 'right', type: 'right' },
+          { id: 'bottom', type: 'bottom' },
+        ],
+      });
+      if (i - 1 >= 0) {
+        links.push({
+          source: {
+            nodeId: getNodeId(i - 1, j),
+            portId: 'right',
+          },
+          target: {
+            nodeId: getNodeId(i, j),
+            portId: 'left',
+          },
+        });
+      }
+      if (j - 1 >= 0) {
+        links.push({
+          source: {
+            nodeId: getNodeId(i, j - 1),
+            portId: 'bottom',
+          },
+          target: {
+            nodeId: getNodeId(i, j),
+            portId: 'top',
+          },
+        });
+      }
+    }
+  }
+
+  return { nodes, links };
+};
+
+const App = () => (
+  <div
+    style={{
+      height: 500,
+    }}
+  >
+    <Diagram
+      initState={generateState(2, 2)}
+      settings={{
+        links: {
+          components: {
+            attention: createLinkDefault({ color: 'red' }),
+          },
+          pathConstructor: createCurvedLinkPathConstructor(),
+        },
+        diagram: {
+          miniControlComponent: createDefaultMiniControl({
+            buttonsSize: 30,
+            position: 'left-bottom',
+          }),
+        },
+      }}
+    />
+  </div>
+);
+
+render(App);
+```

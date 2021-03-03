@@ -17,7 +17,10 @@ module.exports = {
       type: 'category',
       label: 'Examples',
       items: [
+        'examples/simple', 
         'examples/basic', 
+        'examples/perf', 
+        'examples/configureDefaultLink', 
       ],
       collapsed: false
     },
