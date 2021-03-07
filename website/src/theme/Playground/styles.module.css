@@ -25,5 +25,5 @@
 }
 
 .playgroundPreview > div {
-  height: 70vh;
+  height: calc(90vh - var(--ifm-navbar-height));
 }

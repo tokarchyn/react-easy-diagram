@@ -1,6 +1,6 @@
 module.exports = {
   title: 'React Easy Diagram',
-  tagline: 'The tagline of React Easy Diagram',
+  tagline: 'Open source library to build highly customazible fast React diagrams.',
   url: 'https://lucid-ritchie-113206.netlify.app/',
   baseUrl: '/',
   onBrokenLinks: 'throw',

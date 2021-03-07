@@ -59,16 +59,16 @@ function Home() {
   const {siteConfig = {}} = context;
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`Build highly customazible React diagrams`}
+      description="Open source library to build highly customazible fast React diagrams.">
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
-          <h1 className="hero__title">{siteConfig.title}</h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <h1 className={clsx('hero__title', styles.title)}>{siteConfig.title}</h1>
+          <p className={clsx('hero__subtitle', styles.subtitle)}>{siteConfig.tagline}</p>
           <div className={styles.buttons}>
             <Link
               className={clsx(
-                'button button--outline button--secondary button--lg',
+                'button button--primary',
                 styles.getStarted,
               )}
               to={useBaseUrl('docs/')}>
