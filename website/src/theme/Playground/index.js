@@ -20,7 +20,6 @@ export default function Playground({children, theme, transformCode, ...props}) {
       {...props}>
         <div className={styles.playgroundPreview}>
           <LivePreview />
-          <LiveError />
         </div>
         <EditorWithHeader />
     </LiveProvider>
@@ -36,6 +35,7 @@ function EditorWithHeader() {
         text="Live Editor"
       />
       <LiveEditor className={styles.playgroundEditor} />
+      <LiveError />
     </>
   );
 }

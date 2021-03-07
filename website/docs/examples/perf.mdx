@@ -1,6 +1,7 @@
 ---
 title: Performance
 hide_table_of_contents: true
+hide_title: true
 ---
 
 ```js live noInline
@@ -52,29 +53,23 @@ const generateState = (colNum, rowNum) => {
 };
 
 const App = () => (
-  <div
-    style={{
-      height: 500,
+  <Diagram
+    initState={generateState(2, 2)}
+    settings={{
+      links: {
+        components: {
+          attention: createLinkDefault({ color: 'red' }),
+        },
+        pathConstructor: createCurvedLinkPathConstructor(),
+      },
+      diagram: {
+        miniControlComponent: createDefaultMiniControl({
+          buttonsSize: 30,
+          position: 'left-bottom',
+        }),
+      },
     }}
-  >
-    <Diagram
-      initState={generateState(2, 2)}
-      settings={{
-        links: {
-          components: {
-            attention: createLinkDefault({ color: 'red' }),
-          },
-          pathConstructor: createCurvedLinkPathConstructor(),
-        },
-        diagram: {
-          miniControlComponent: createDefaultMiniControl({
-            buttonsSize: 30,
-            position: 'left-bottom',
-          }),
-        },
-      }}
-    />
-  </div>
+  />
 );
 
 render(App);

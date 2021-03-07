@@ -46,8 +46,8 @@
 }
 
 .react_fast_diagram_Node_Default {
-  min-width: 100px;
-  min-height: 100px;
+  min-width: 10px;
+  min-height: 10px;
   background-color: white;
   border: 2px solid WhiteSmoke;
   display: flex;
@@ -55,6 +55,8 @@
   align-items: center;
   text-align: center;
   margin: auto;
+  padding: 15px;
+  font-size: small;
 }
 
 .react_fast_diagram_PortContainer_Default {
