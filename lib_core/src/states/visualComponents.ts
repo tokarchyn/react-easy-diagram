@@ -73,7 +73,7 @@ export const componentDefaultType = 'default';
 
 export interface IVisualComponentsObject<TComponentProps> {
   defaultNodeType?: string;
-  components: Dictionary<
+  components?: Dictionary<
     IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
   >;
 }

@@ -10,5 +10,6 @@ export * from './MiniControlWrapper';
 export * from './NodeDefault';
 export * from './NodesLayer';
 export * from './NodeWrapper';
+export * from './PortDefault';
 export * from './PortsContainerDefault';
 export * from './PortWrapper';

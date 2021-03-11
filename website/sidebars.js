@@ -21,6 +21,7 @@ module.exports = {
         'examples/basic', 
         'examples/perf', 
         'examples/configureDefaultLink', 
+        'examples/configureDefaultPort', 
       ],
       collapsed: false
     },

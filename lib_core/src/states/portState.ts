@@ -111,6 +111,11 @@ export class PortState {
   get realSize(): Point | null {
     return this._ref.realSize;
   }
+
+  get componentDefinition() {
+    const { portVisualComponents } = this._rootStore.portsSettings;
+    return portVisualComponents.getComponent(this.type);
+  }
 }
 
 export interface IPortStateWithoutIds {

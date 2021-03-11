@@ -7,11 +7,6 @@ export const PortWrapper: React.FC<{ port: PortState }> = observer(
   ({ port }) => {
     const { userInteractionElemRef, bind } = usePortUserInteraction(port);
 
-    let color = '#6eb7ff';
-    if (port.dragging) color = '#49f860';
-    else if (port.hovered && port.validForConnection) color = '#49f860';
-    else if (port.hovered && !port.validForConnection) color = '#fa4040';
-
     return (
       <div
         ref={{
@@ -24,13 +19,10 @@ export const PortWrapper: React.FC<{ port: PortState }> = observer(
         id={port.nodeId + ':' + port.id}
         className='react_fast_diagram_PortWrapper'
       >
-        <div
-          style={{
-            width: 10,
-            height: 10,
-            backgroundColor: color,
-          }}
-        ></div>
+        <port.componentDefinition.component
+          entity={port}
+          settings={port.componentDefinition.settings}
+        />
       </div>
     );
   }
