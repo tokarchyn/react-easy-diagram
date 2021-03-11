@@ -47,7 +47,6 @@ const portDefaultSettings: IPortDefaultSettings = {
 export function createPortDefault(
   settings?: Partial<IPortDefaultSettings>
 ): IComponentDefinition<IPortVisualComponentProps, IPortDefaultSettings> {
-  console.log(settings);
   return {
     component: PortDefault,
     settings: {
