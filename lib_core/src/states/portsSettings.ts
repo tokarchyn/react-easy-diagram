@@ -43,7 +43,7 @@ export class PortsSettings {
     });
     this.portVisualComponents.import({
       components: obj?.portComponents,
-      defaultNodeType: obj?.portDefaultType,
+      defaultType: obj?.portDefaultType,
     });
   };
 }
@@ -57,5 +57,5 @@ export interface IPortVisualComponentProps<TSettings extends {} = {}>
 export interface IPortsSettings {
   portsContainerComponents: IVisualComponentsObject<IPortsContainerVisualComponentProps>['components'];
   portComponents: IVisualComponentsObject<IPortVisualComponentProps>['components'];
-  portDefaultType: IVisualComponentsObject<IPortVisualComponentProps>['defaultNodeType'];
+  portDefaultType: IVisualComponentsObject<IPortVisualComponentProps>['defaultType'];
 }

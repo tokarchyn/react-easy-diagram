@@ -28,7 +28,7 @@ export class VisualComponents<
   }
 
   import = (obj?: IVisualComponentsObject<TComponentProps>) => {
-    this.setDefaultType(obj?.defaultNodeType);
+    this.setDefaultType(obj?.defaultType);
 
     this._components = {
       ...this._defaultComponents,
@@ -72,7 +72,7 @@ export class VisualComponents<
 export const componentDefaultType = 'default';
 
 export interface IVisualComponentsObject<TComponentProps> {
-  defaultNodeType?: string;
+  defaultType?: string;
   components?: Dictionary<
     IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
   >;
