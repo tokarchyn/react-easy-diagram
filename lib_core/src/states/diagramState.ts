@@ -51,7 +51,7 @@ export class DiagramState
   setZoom = (newZoom: number | null | undefined) => {
     this._zoom = clampValue(
       newZoom ?? 1,
-      this._rootStore.diagramSettings.scaleInterval
+      this._rootStore.diagramSettings.zoomInterval
     );
   };
 
@@ -67,7 +67,7 @@ export class DiagramState
   zoomInto = (pointToZoomInto: Point, zoomMultiplicator: number) => {
     const newZoom = clampValue(
       this._zoom * zoomMultiplicator,
-      this._rootStore.diagramSettings.scaleInterval
+      this._rootStore.diagramSettings.zoomInterval
     );
 
     const pointDisplacementAfterZoom = multiplyPoint(
@@ -136,9 +136,9 @@ export class DiagramState
     );
 
     // Extend interval to be able to set required zoom
-    this._rootStore.diagramSettings.setScaleInterval([
-      Math.min(this._rootStore.diagramSettings.scaleInterval[0], newZoom),
-      Math.max(this._rootStore.diagramSettings.scaleInterval[1], newZoom),
+    this._rootStore.diagramSettings.setZoomInterval([
+      Math.min(this._rootStore.diagramSettings.zoomInterval[0], newZoom),
+      Math.max(this._rootStore.diagramSettings.zoomInterval[1], newZoom),
     ]);
     this.setZoom(newZoom);
 
@@ -185,6 +185,7 @@ function calculateOffsetToCenterBoundingBox(
   zoom: number,
   boundingBox: BoundingBox
 ) {
+  // Take zoom into account
   const contentSizeWithZoom = multiplyPoint(boundingBox.size, zoom);
   const topLeftCornerWithZoom = multiplyPoint(boundingBox.topLeftCorner, zoom);
   const diffBetweenDiagramAndContentSizes = subtractPoints(
