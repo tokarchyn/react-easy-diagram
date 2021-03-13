@@ -1,4 +1,4 @@
-import { Point } from '../types/common';
+import { BoundingBox, Point } from '../types/common';
 import { makeAutoObservable } from 'mobx';
 import { RootStore } from './rootStore';
 import {
@@ -122,40 +122,79 @@ export class DiagramState
   }
 
   zoomToFit = () => {
-    const nodesBoundingBox = this._rootStore.nodesStore.getNodesBoundingBox();
+    const nodesBoundingBox = this._getNodesBoundingBoxWithPadding();
 
     const diagramSize = this._diagramInnerRef.realSize;
     if (!diagramSize) {
-      console.warn('Cannot retrieve diagram size')
+      console.warn('Cannot retrieve diagram size');
       return;
     }
 
-    // Zoom to fit the largest size, horizontal or vertical
-    const newZoom = Math.min(
-      diagramSize[0] / nodesBoundingBox.size[0],
-      diagramSize[1] / nodesBoundingBox.size[1]
+    const newZoom = calculateNewZoomToFitBoundingBox(
+      diagramSize,
+      nodesBoundingBox
     );
 
     // Extend interval to be able to set required zoom
     this._rootStore.diagramSettings.setScaleInterval([
       Math.min(this._rootStore.diagramSettings.scaleInterval[0], newZoom),
       Math.max(this._rootStore.diagramSettings.scaleInterval[1], newZoom),
-    ])
+    ]);
     this.setZoom(newZoom);
 
-    const contentSizeWithZoom = multiplyPoint(nodesBoundingBox.size, newZoom);
-    const topLeftCornerWithZoom = multiplyPoint(nodesBoundingBox.topLeftCorner, newZoom);
-    const diffBetweenDiagramAndContentSizes = subtractPoints(
-      diagramSize,
-      contentSizeWithZoom
-    );
     this.setOffset(
-      addPoints(
-        multiplyPoint(topLeftCornerWithZoom, -1), // topLeft corner of content will be at topleft corner of diagram
-        multiplyPoint(diffBetweenDiagramAndContentSizes, 1 / 2) // center content
-      )
+      calculateOffsetToCenterBoundingBox(diagramSize, newZoom, nodesBoundingBox)
     );
   };
+
+  private _getNodesBoundingBoxWithPadding = (): BoundingBox => {
+    const nodesBoundingBox = this._rootStore.nodesStore.getNodesBoundingBox();
+    const padding = this._rootStore.diagramSettings.zoomToFitSettings.padding;
+    nodesBoundingBox.topLeftCorner = subtractPoints(
+      nodesBoundingBox.topLeftCorner,
+      padding
+    );
+    nodesBoundingBox.bottomRightCorner = addPoints(
+      nodesBoundingBox.bottomRightCorner,
+      padding
+    );
+    nodesBoundingBox.size = subtractPoints(
+      nodesBoundingBox.bottomRightCorner,
+      nodesBoundingBox.topLeftCorner
+    );
+
+    return nodesBoundingBox;
+  };
+}
+
+function calculateNewZoomToFitBoundingBox(
+  diagramSize: Point,
+  boundingBox: BoundingBox
+) {
+  // Zoom to fit the largest size, horizontal or vertical
+  const newZoom = Math.min(
+    diagramSize[0] / boundingBox.size[0],
+    diagramSize[1] / boundingBox.size[1]
+  );
+
+  return newZoom;
+}
+
+function calculateOffsetToCenterBoundingBox(
+  diagramSize: Point,
+  zoom: number,
+  boundingBox: BoundingBox
+) {
+  const contentSizeWithZoom = multiplyPoint(boundingBox.size, zoom);
+  const topLeftCornerWithZoom = multiplyPoint(boundingBox.topLeftCorner, zoom);
+  const diffBetweenDiagramAndContentSizes = subtractPoints(
+    diagramSize,
+    contentSizeWithZoom
+  );
+  return addPoints(
+    multiplyPoint(topLeftCornerWithZoom, -1), // topLeft corner of content will be at topleft corner of diagram
+    multiplyPoint(diffBetweenDiagramAndContentSizes, 1 / 2) // center content
+  );
 }
 
 export interface IDiagramState {

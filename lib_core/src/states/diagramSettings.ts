@@ -10,6 +10,7 @@ export class DiagramSettings {
   private _backgroundComponentState: VisualComponentWithDefault<IBackgroundComponentProps>;
   private _miniControlComponentState: VisualComponentWithDefault<IMiniControlComponentProps>;
   private _scaleInterval: Point = defaultScaleInterval;
+  private _zoomToFitSettings: IZoomToFitSettings = defaultZoomToFitSettings;
 
   constructor() {
     this._backgroundComponentState = new VisualComponentWithDefault<IBackgroundComponentProps>(
@@ -25,6 +26,10 @@ export class DiagramSettings {
     this._backgroundComponentState.import(obj?.backgroundComponent);
     this._miniControlComponentState.import(obj?.miniControlComponent);
     this.setScaleInterval(obj?.scaleInterval);
+    this._zoomToFitSettings = {
+      ...defaultZoomToFitSettings,
+      ...obj?.zoomToFitSettings
+    }
   }
 
   get backgroundComponentState() {
@@ -39,12 +44,19 @@ export class DiagramSettings {
     return this._scaleInterval;
   }
 
+  get zoomToFitSettings() {
+    return this._zoomToFitSettings;
+  }
+
   setScaleInterval = (value: Point | null | undefined) => {
     this._scaleInterval = value ?? defaultScaleInterval;
   }
 }
 
 const defaultScaleInterval: Point = [0.1, 3];
+const defaultZoomToFitSettings: IZoomToFitSettings = {
+  padding: [30,30]
+};
 
 export interface IDiagramSettings {
   backgroundComponent?:
@@ -54,6 +66,7 @@ export interface IDiagramSettings {
     | IComponentDefinition<IMiniControlComponentProps>
     | VisualComponent<IMiniControlComponentProps>;
   scaleInterval?: Point;
+  zoomToFitSettings: IZoomToFitSettings;
 }
 
 export interface IBackgroundComponentProps<TSettings = {}> {
@@ -65,4 +78,8 @@ export interface IBackgroundComponentProps<TSettings = {}> {
 export interface IMiniControlComponentProps<TSettings = {}> {
   rootStore: RootStore;
   settings?: TSettings;
+}
+
+export interface IZoomToFitSettings {
+  padding: Point;
 }
