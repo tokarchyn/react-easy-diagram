@@ -38,10 +38,14 @@ export function useDiagramDragHandlers(
         if (cancel && cancel(event)) {
           return;
         }
-        rootStore.selectionState.clear();
         activeRef.current = true;
       },
-      onDragEnd: () => (activeRef.current = false),
+      onDragEnd: ({tap}) => {
+        activeRef.current = false;
+        if (tap) {
+          rootStore.selectionState.clear();
+        }
+      },
     }),
     [activeRef, getPosition, setPosition, cancel, rootStore]
   );

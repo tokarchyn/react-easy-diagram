@@ -64,7 +64,6 @@ export function useDiagramPinchHandlers(
         if (cancel(event)) {
           return;
         }
-        rootStore.selectionState.clear();
         pinchState.current = {
           distance,
           origin,
