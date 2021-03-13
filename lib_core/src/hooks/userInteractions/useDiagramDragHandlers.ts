@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import { Handler } from 'react-use-gesture/dist/types';
+import { ISelectableItem } from '../../states/selectionState';
 import { Point } from '../../types/common';
+import { useRootStore } from '../useRootStore';
 import { IUserInteractionTranslate } from './common';
 
 type DragEventHandler =
@@ -13,35 +15,35 @@ export interface IDragHandlers {
   onDragEnd: DragEventHandler;
 }
 
-export function useDragHandlers(
+export function useDiagramDragHandlers(
   activeRef: React.MutableRefObject<boolean>,
   getPosition: () => Point,
   setPosition: (position: Point) => any,
-  parentScaleGetter?: () => number,
   cancel?: (event: React.PointerEvent<Element> | PointerEvent) => boolean
 ): IDragHandlers {
+  const rootStore = useRootStore();
   const handlers = useMemo<IDragHandlers>(
     () => ({
       onDrag: ({ pinching, delta }) => {
         if (!activeRef.current || pinching) {
           return;
         }
-        const parentScale = parentScaleGetter ? parentScaleGetter() : 1;
         const currentPosition = getPosition();
         setPosition([
-          currentPosition[0] + delta[0] / parentScale,
-          currentPosition[1] + delta[1] / parentScale,
+          currentPosition[0] + delta[0],
+          currentPosition[1] + delta[1],
         ]);
       },
       onDragStart: ({ event }) => {
         if (cancel && cancel(event)) {
           return;
         }
+        rootStore.selectionState.clear();
         activeRef.current = true;
       },
       onDragEnd: () => (activeRef.current = false),
     }),
-    [activeRef, getPosition, setPosition, parentScaleGetter, cancel]
+    [activeRef, getPosition, setPosition, cancel, rootStore]
   );
 
   return handlers;

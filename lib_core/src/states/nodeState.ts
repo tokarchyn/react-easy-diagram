@@ -5,13 +5,15 @@ import { deepCopy, generateTransform, guidForcedUniqueness } from '../utils';
 import { RootStore } from './rootStore';
 import { HtmlElementRefState } from './htmlElementRefState';
 import { componentDefaultType } from './visualComponents';
+import { ISelectableItem } from './selectionState';
 
-export class NodeState {
+export class NodeState implements ISelectableItem {
   private _id: string;
   private _position: Point;
   private _ports: Dictionary<PortState>;
   private _ref: HtmlElementRefState;
   private _componentType: string;
+  private _selected: boolean;
   private _extra: any;
 
   private _rootStore: RootStore;
@@ -21,6 +23,7 @@ export class NodeState {
 
     this._id = id;
     this._ref = new HtmlElementRefState(null);
+    this._selected = false;
     this.import(state);
 
     makeAutoObservable(this, {
@@ -67,6 +70,14 @@ export class NodeState {
   setComponentType = (value: string | null | undefined) => {
     this._componentType = value ?? componentDefaultType;
   };
+
+  get selected() {
+    return this._selected;
+  }
+
+  set selected(value: boolean) {
+    this._selected = value;
+  }
 
   get extra() {
     return this._extra;

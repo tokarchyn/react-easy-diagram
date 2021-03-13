@@ -3,7 +3,7 @@ import { useGesture } from 'react-use-gesture';
 import { WebKitGestureEvent } from 'react-use-gesture/dist/types';
 import { useNotifyRef } from '../useNotifyRef';
 import { useRootStore } from '../useRootStore';
-import { useDragHandlers } from './useDragHandlers';
+import { useDiagramDragHandlers } from './useDiagramDragHandlers';
 import { useDiagramPinchHandlers } from './useDiagramPinchHandlers';
 import { useUserAbilityToSelectSwitcher } from './useUserAbilityToSelectSwitcher';
 import { useDiagramWheelHandler } from './useDiagramWheelHandler';
@@ -31,11 +31,10 @@ export const useDiagramUserInteraction = (
   const getOffset = useCallback(() => diagramState.offset, [diagramState]);
   const setOffset = useCallback(diagramState.setOffset, [diagramState]);
 
-  const dragHandlers = useDragHandlers(
+  const dragHandlers = useDiagramDragHandlers(
     activeRef,
     getOffset,
     setOffset,
-    undefined,
     cancelGesture
   );
 

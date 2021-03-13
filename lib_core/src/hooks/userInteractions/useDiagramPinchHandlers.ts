@@ -5,6 +5,7 @@ import {
   WebKitGestureEvent,
 } from 'react-use-gesture/dist/types';
 import { subtractPoints } from '../../utils';
+import { useRootStore } from '../useRootStore';
 import { IUserInteractionTranslateAndZoom } from './common';
 
 type PinchEvent =
@@ -26,8 +27,9 @@ export function useDiagramPinchHandlers(
   elemToAttachToRef: React.RefObject<HTMLElement>,
   activeRef: React.MutableRefObject<boolean>,
   state: IUserInteractionTranslateAndZoom,
-  cancel?: (event: PinchEvent) => boolean
+  cancel: (event: PinchEvent) => boolean
 ): IPinchHandlers {
+  const rootStore = useRootStore();
   const pinchState = useRef<IPinchState>({
     distance: 0,
     origin: [0, 0],
@@ -59,10 +61,10 @@ export function useDiagramPinchHandlers(
         };
       },
       onPinchStart: ({ da: [distance], origin, event }) => {
-        if (cancel && cancel(event)) {
+        if (cancel(event)) {
           return;
         }
-
+        rootStore.selectionState.clear();
         pinchState.current = {
           distance,
           origin,
@@ -71,7 +73,7 @@ export function useDiagramPinchHandlers(
       },
       onPinchEnd: () => (activeRef.current = false),
     }),
-    [elemToAttachToRef, activeRef, state, cancel]
+    [elemToAttachToRef, activeRef, state, cancel, rootStore]
   );
 
   return handlers;

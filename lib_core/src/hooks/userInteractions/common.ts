@@ -1,3 +1,4 @@
+import { EventTypes, NativeHandlers, UserHandlers, Vector2 } from 'react-use-gesture/dist/types';
 import { Point } from '../../types/common';
 
 export const eventPathContainsClass = (
@@ -54,6 +55,16 @@ export function eventTargetContainsClass(
   } else return false;
 }
 
+/**
+ * Does gesture can be potentially a tap/click event?
+ * Drag gesture will be tap/click gesture on mouse or touch release only when the drag displacement is inferior to 3 pixels.
+ * See useGestures documetation for more information.
+ * @param movement - state value of gesture, represent gesture offset
+ */
+export function canDragGestureBeTapInstead(movement: Vector2): boolean {
+  return Math.max(Math.abs(movement[0]), Math.abs(movement[1])) < 3;
+}
+
 export interface IUserInteractionTranslate {
   offset: Point;
   setOffset: (newOffset: Point) => any;
@@ -68,3 +79,5 @@ export interface IUserInteractionTranslateAndZoom {
     changeZoomBy: number
   ) => any;
 }
+
+export type GestureHandlers = Partial<UserHandlers<EventTypes> & NativeHandlers<EventTypes>>

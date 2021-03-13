@@ -5,20 +5,24 @@ import { PortsSettings } from '../states/portsSettings';
 import { IComponentDefinition, PortState } from '../states';
 import { Dictionary, RelativePosition } from '..';
 
-export interface INodeDefaultSettings {
-  style: React.CSSProperties;
-}
-
 export const NodeDefault: React.FC<
   INodeVisualComponentProps<INodeDefaultSettings>
 > = ({ entity, settings, draggableRef }) => {
   const { portsSettings } = useRootStore();
+  const finalSettings = {
+    ...defaultNodeDefaultSettings,
+    ...settings,
+  };
+  const finalStyles = {
+    ...finalSettings.style,
+    ...(entity.selected ? finalSettings.selectedStyle : undefined),
+  };
 
   return (
     <div
       ref={draggableRef}
       className='react_fast_diagram_Node_Default'
-      style={settings?.style}
+      style={finalStyles}
     >
       <span>{entity.id}</span>
 
@@ -29,6 +33,17 @@ export const NodeDefault: React.FC<
     </div>
   );
 };
+
+const defaultNodeDefaultSettings: INodeDefaultSettings = {
+  selectedStyle: {
+    outline: '#6eb7ff solid 1px',
+  },
+};
+
+export interface INodeDefaultSettings {
+  style?: React.CSSProperties;
+  selectedStyle?: React.CSSProperties;
+}
 
 export function generatePortsContainer(
   portsSettings: PortsSettings,

@@ -14,6 +14,7 @@ export * from './nodeState';
 export * from './portsSettings';
 export * from './portState';
 export * from './rootStore';
+export * from './selectionState';
 export * from './visualComponents';
 export * from './visualComponentState';
 export * from './visualComponentWithDefault';
