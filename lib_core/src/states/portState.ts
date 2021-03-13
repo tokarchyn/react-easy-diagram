@@ -108,6 +108,10 @@ export class PortState {
     return null;
   }
 
+  /**
+   * @returns Value is calculated without zoom taking into account, that is, the same as zoom would be '1'.
+   * Value can be @type {null} in case reference to real DOM object is not set.
+   */
   get realSize(): Point | null {
     return this._ref.realSize;
   }

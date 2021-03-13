@@ -32,6 +32,13 @@ const MiniControlDefault: React.FC<
           children='-'
         />
       )}
+      {(
+        <MiniControlButton
+          size={settings.buttonsSize}
+          onClick={rootStore.diagramState.zoomToFit}
+          children='[ ]'
+        />
+      )}
     </div>
   );
 };

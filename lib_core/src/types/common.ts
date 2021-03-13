@@ -1,4 +1,9 @@
 export type Point = [number, number];
+export type BoundingBox = {
+  topLeftCorner: Point;
+  bottomRightCorner: Point; 
+  size: Point;
+}
 
 export interface Dictionary<TValue> {
   [key: string]: TValue;
