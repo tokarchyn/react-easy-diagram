@@ -41,9 +41,11 @@ export function useDiagramDragHandlers(
         activeRef.current = true;
       },
       onDragEnd: ({tap}) => {
-        activeRef.current = false;
-        if (tap) {
-          rootStore.selectionState.clear();
+        if (activeRef.current) {
+          activeRef.current = false;
+          if (tap) {
+            rootStore.selectionState.clear();
+          }
         }
       },
     }),

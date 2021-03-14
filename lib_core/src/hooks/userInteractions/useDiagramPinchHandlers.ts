@@ -29,7 +29,6 @@ export function useDiagramPinchHandlers(
   state: IUserInteractionTranslateAndZoom,
   cancel: (event: PinchEvent) => boolean
 ): IPinchHandlers {
-  const rootStore = useRootStore();
   const pinchState = useRef<IPinchState>({
     distance: 0,
     origin: [0, 0],
@@ -72,7 +71,7 @@ export function useDiagramPinchHandlers(
       },
       onPinchEnd: () => (activeRef.current = false),
     }),
-    [elemToAttachToRef, activeRef, state, cancel, rootStore]
+    [elemToAttachToRef, activeRef, state, cancel]
   );
 
   return handlers;

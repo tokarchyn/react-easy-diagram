@@ -28,12 +28,13 @@ export const useNodeUserInteraction = (
   const handlers = useMemo<GestureHandlers>(
     () => ({
       onDrag: ({ pinching, delta, ctrlKey, movement, elapsedTime }) => {
-        if (!activeRef.current || pinching || canDragGestureBeTapInstead(movement)) {
-          return;
-        } else if (
-          !nodeState.selected &&
-          !selectionHandledRef.current
+        if (
+          !activeRef.current ||
+          pinching ||
+          canDragGestureBeTapInstead(movement)
         ) {
+          return;
+        } else if (!nodeState.selected && !selectionHandledRef.current) {
           rootStore.selectionState.select(nodeState, ctrlKey);
           selectionHandledRef.current = true;
         } else if (nodeState.selected) {
