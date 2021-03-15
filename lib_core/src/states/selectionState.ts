@@ -1,4 +1,6 @@
 import { makeAutoObservable } from 'mobx';
+import { LinkState } from './linkState';
+import { NodeState } from './nodeState';
 import { RootStore } from './rootStore';
 
 export class SelectionState {
@@ -18,8 +20,7 @@ export class SelectionState {
   select = (item: ISelectableItem, multipleActivated: boolean) => {
     if (multipleActivated) {
       if (this._selectedItems.includes(item)) {
-        item.selected = false;
-        this._selectedItems = this._selectedItems.filter((i) => i !== item);
+        this.unselect(item);
       } else {
         item.selected = true;
         this._selectedItems.push(item);
@@ -31,9 +32,35 @@ export class SelectionState {
     }
   };
 
+  unselect = (item: ISelectableItem) => {
+    item.selected = false;
+    this._selectedItems = this._selectedItems.filter((i) => i !== item);
+  };
+
   clear = () => {
     this._selectedItems.forEach((i) => (i.selected = false));
     this._selectedItems = [];
+  };
+
+  removeSelected = () => {
+    this.removeSelectedNodes();
+    this.removeSelectedLinks();
+  };
+
+  removeSelectedNodes = () => {
+    this._selectedItems
+      .filter((i) => i instanceof NodeState)
+      .forEach((node: NodeState) => {
+        this._rootStore.nodesStore.removeNode(node.id);
+      });
+  };
+
+  removeSelectedLinks = () => {
+    this._selectedItems
+      .filter((i) => i instanceof LinkState)
+      .forEach((link: LinkState) => {
+        this._rootStore.linksStore.removeLink(link.id);
+      });
   };
 }
 

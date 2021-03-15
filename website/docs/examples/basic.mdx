@@ -38,6 +38,7 @@ function App() {
         ],
         links: [
           {
+            id: 'Node 1 - Node 2',
             source: {
               nodeId: 'Node 1',
               portId: 'output_1',
@@ -47,6 +48,28 @@ function App() {
               portId: 'input_1',
             },
             componentType: 'attention',
+          },
+          {
+            id: 'Node 1 - Node 3',
+            source: {
+              nodeId: 'Node 1',
+              portId: 'output_1',
+            },
+            target: {
+              nodeId: 'Node 3',
+              portId: 'input_1',
+            },
+          },
+          {
+            id: 'Node 3 - Node 2',
+            source: {
+              nodeId: 'Node 3',
+              portId: 'output_1',
+            },
+            target: {
+              nodeId: 'Node 2',
+              portId: 'input_1',
+            },
           },
         ],
       }}

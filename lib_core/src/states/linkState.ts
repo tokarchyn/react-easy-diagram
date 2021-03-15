@@ -8,13 +8,15 @@ import {
 import { componentDefaultType } from './visualComponents';
 import { LinkPointEndpointState } from './LinkPointEndpointState';
 import { deepCopy } from '../utils';
+import { ISelectableItem } from './selectionState';
 
-export class LinkState implements ILinkState {
+export class LinkState implements ILinkState, ISelectableItem {
   private _id: string;
   private _componentType: string;
   private _source: LinkPortEndpointState;
   private _target: LinkPortEndpointState;
   private _segments: ILinkSegment[];
+  private _selected: boolean;
   private _extra: any;
 
   private _rootStore: RootStore;
@@ -23,6 +25,7 @@ export class LinkState implements ILinkState {
     this._rootStore = rootStore;
 
     this._id = id;
+    this._selected = false;
     this.import(state);
 
     makeAutoObservable(this, {
@@ -60,7 +63,7 @@ export class LinkState implements ILinkState {
 
   setComponentType = (value: string | null | undefined) => {
     this._componentType = value ?? componentDefaultType;
-  }
+  };
 
   get segments() {
     return this._segments;
@@ -68,7 +71,7 @@ export class LinkState implements ILinkState {
 
   setSegments = (value: ILinkSegment[] | null | undefined) => {
     this._segments = value ?? [];
-  }
+  };
 
   get path(): ILinkPath | undefined {
     return createLinkPath(this._rootStore, this.source, this.target);
@@ -77,6 +80,14 @@ export class LinkState implements ILinkState {
   get componentDefinition() {
     const { visualComponents } = this._rootStore.linksSettings;
     return visualComponents.getComponent(this.componentType);
+  }
+
+  get selected() {
+    return this._selected;
+  }
+
+  set selected(value: boolean) {
+    this._selected = value;
   }
 
   get extra() {
@@ -93,7 +104,7 @@ export class LinkState implements ILinkState {
 
   setExtra = (value: any) => {
     this._extra = value ?? null;
-  }
+  };
 
   private _createEndpointState = (
     endpoint: ILinkPortEndpoint

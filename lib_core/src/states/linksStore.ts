@@ -16,8 +16,8 @@ import { PortState } from './portState';
 import { RootStore } from './rootStore';
 
 export class LinksStore {
-  private _links: Dictionary<LinkState>;
-  private _nodesLinksCollection: Dictionary<LinkState[]>;
+  private _links: Map<string, LinkState>;
+  private _nodesLinksCollection: Map<string, LinkState[]>;
   private _linkCreation: LinkCreationState;
 
   private _rootStore: RootStore;
@@ -30,15 +30,15 @@ export class LinksStore {
   }
 
   import = (newLinks?: ILinkState[]) => {
-    this._links = {};
-    this._nodesLinksCollection = {};
+    this._links = new Map();
+    this._nodesLinksCollection = new Map();
     newLinks && newLinks.forEach(this.addLink);
   };
 
   export = (): ILinkState[] =>
-    Object.values(this._links).map((l) => l.export());
+    Array.from(this._links).map(([key,value]) => value.export());
 
-  get links(): Readonly<Dictionary<LinkState>> {
+  get links(): ReadonlyMap<string, LinkState> {
     return this._links;
   }
 
@@ -47,7 +47,7 @@ export class LinksStore {
   }
 
   getNodeLinks = (nodeId: string): LinkState[] => {
-    return this._nodesLinksCollection[nodeId] ?? [];
+    return this._nodesLinksCollection.get(nodeId) ?? [];
   };
 
   removeNodeLinks = (nodeId: string) => {
@@ -82,15 +82,16 @@ export class LinksStore {
       link.id ?? guidForcedUniqueness(this._links),
       link
     );
-    this._links[newLink.id] = newLink;
+    this._links.set(newLink.id, newLink);
     this._addLinkToNodeLinksCollection(newLink, link.source.nodeId);
     this._addLinkToNodeLinksCollection(newLink, link.target.nodeId);
 
     return { success: true };
   };
 
-  removeLink = (linkId: string): boolean => {
-    const linkToRemove = this._links[linkId];
+  removeLink = 
+  (linkId: string): boolean => {
+    const linkToRemove = this._links.get(linkId);
     if (linkToRemove) {
       this._removeLinkFromNodeLinksCollection(
         linkToRemove,
@@ -101,7 +102,8 @@ export class LinksStore {
         linkToRemove.target.nodeId
       );
 
-      delete this._links[linkId];
+      this._rootStore.selectionState.unselect(linkToRemove);
+      this._links.delete(linkId);
       return true;
     }
 
@@ -110,7 +112,7 @@ export class LinksStore {
 
   canAddLink = (link: ILinkState): SuccessOrErrorResult => {
     if (!link) return ErrorResult(`Cannot add empty`);
-    if (link.id && this._links[link.id])
+    if (link.id && this._links.has(link.id))
       return ErrorResult(
         `Cannot add link with id '${link.id}', as it already exists`
       );
@@ -168,8 +170,9 @@ export class LinksStore {
     source: ILinkPortEndpoint,
     target: ILinkPortEndpoint
   ): LinkState | undefined => {
-    if (this._nodesLinksCollection[source.nodeId]) {
-      return this._nodesLinksCollection[source.nodeId].find(
+    const links = this._nodesLinksCollection.get(source.nodeId);
+    if (links) {
+      return links.find(
         (l) =>
           (linkPortEndpointsEquals(l.source, source) &&
             linkPortEndpointsEquals(l.target, target)) ||
@@ -180,19 +183,23 @@ export class LinksStore {
   }
 
   private _addLinkToNodeLinksCollection = (link: LinkState, nodeId: string) => {
-    if (!this._nodesLinksCollection[nodeId])
-      this._nodesLinksCollection[nodeId] = [];
-    this._nodesLinksCollection[nodeId].push(link);
+    let links = this._nodesLinksCollection.get(nodeId);
+    if (!links) {
+      this._nodesLinksCollection.set(nodeId, [link]);
+    }
+    else {
+      links.push(link);
+    }
   }
 
   private _removeLinkFromNodeLinksCollection = (link: LinkState, nodeId: string) => {
-    let collection = this._nodesLinksCollection[nodeId];
+    let collection = this._nodesLinksCollection.get(nodeId);
     if (collection) {
-      collection = collection.filter((l) => l.id === link.id);
+      collection = collection.filter((l) => l.id !== link.id);
       if (collection.length > 0) {
-        this._nodesLinksCollection[nodeId] = collection;
+        this._nodesLinksCollection.set(nodeId, collection);
       } else {
-        delete this._nodesLinksCollection[nodeId];
+        this._nodesLinksCollection.delete(nodeId);
       }
     }
   }

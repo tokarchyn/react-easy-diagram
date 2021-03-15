@@ -1,11 +1,11 @@
 import { BoundingBox, Dictionary, Point } from '../types/common';
 import { makeAutoObservable } from 'mobx';
-import { INodeState, NodeState } from './nodeState';
+import { INodeState, INodeStateWithId, NodeState } from './nodeState';
 import { RootStore } from './rootStore';
 import { guidForcedUniqueness, subtractPoints } from '../utils';
 
 export class NodesStore {
-  private _nodes: Dictionary<NodeState> = {};
+  private _nodes: Map<string, NodeState> = new Map();
 
   private _rootStore: RootStore;
 
@@ -14,20 +14,20 @@ export class NodesStore {
     this._rootStore = rootStore;
   }
 
-  get nodes(): Readonly<Dictionary<NodeState>> {
+  get nodes(): ReadonlyMap<string, NodeState> {
     return this._nodes;
   }
 
   import = (newNodes?: INodeState[]) => {
-    this._nodes = {};
+    this._nodes = new Map();
     newNodes?.forEach((node) => this.addNode(node, true));
   };
 
-  export = (): INodeState[] =>
-    Object.values(this._nodes).map((n) => n.export());
+  export = (): INodeStateWithId[] =>
+    Array.from(this._nodes).map(([key,value]) => value.export());
 
   addNode = (node: INodeState, rewriteIfExists: boolean): boolean => {
-    if (!node || (!rewriteIfExists && node.id && this._nodes[node.id])) {
+    if (!node || (!rewriteIfExists && node.id && this._nodes.has(node.id))) {
       return false;
     }
     const newNode = new NodeState(
@@ -35,23 +35,23 @@ export class NodesStore {
       node.id ?? guidForcedUniqueness(this._nodes),
       node
     );
-    this._nodes[newNode.id] = newNode;
+    this._nodes.set(newNode.id, newNode);
     return true;
   };
 
   removeNode = (nodeId: string): boolean => {
-    if (nodeId && this._nodes[nodeId]) {
-      delete this._nodes[nodeId];
+    const node = this._nodes.get(nodeId);
+    if (node) {
       this._rootStore.linksStore.removeNodeLinks(nodeId);
+      this._rootStore.selectionState.unselect(node);
+      this._nodes.delete(nodeId);
       return true;
     }
     return false;
   };
 
   getNode = (nodeId: string): NodeState | undefined => {
-    if (nodeId && this._nodes[nodeId]) {
-      return this._nodes[nodeId];
-    } else return undefined;
+    return this._nodes.get(nodeId);
   };
 
   getNodeOrThrowException = (nodeId: string): NodeState => {
@@ -73,7 +73,7 @@ export class NodesStore {
       Number.NEGATIVE_INFINITY,
     ];
 
-    Object.values(this._rootStore.nodesStore.nodes).forEach((node) => {
+    this._nodes.forEach((node) => {
       const pos = node.position;
       const size = node.realSize ?? [1, 1];
 

@@ -13,7 +13,7 @@ export const NodesLayer = observer<{nodesStore: NodesStore}>(({nodesStore}) => {
 
   return (
     <div>
-      {Object.values(nodesStore.nodes).map((node) => (
+      {Array.from(nodesStore.nodes).map(([id, node]) => (
         <NodeWrapper key={node.id} node={node} />
       ))}
     </div>

@@ -1,7 +1,5 @@
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
-import { Vector2 } from 'react-use-gesture/dist/types';
-import { IDragHandlers } from '.';
 import { NodeState } from '../../states/nodeState';
 import { addPoints, multiplyPoint } from '../../utils';
 import { useNotifyRef } from '../useNotifyRef';
