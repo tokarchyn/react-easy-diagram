@@ -36,7 +36,7 @@ export const NodeDefault: React.FC<
 
 const defaultNodeDefaultSettings: INodeDefaultSettings = {
   selectedStyle: {
-    outline: '#6eb7ff solid 1px',
+    border: '#6eb7ff solid 1px ', // outline does not support radius corner
   },
 };
 

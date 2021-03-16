@@ -15,7 +15,6 @@ export const LinkDefault: React.FC<
 
   let color = finalSettings.color;
   if (entity.selected) color = finalSettings.selectedColor;
-  else if (entity.hovered) color = finalSettings.hoveredColor;
 
   return (
     <g>
@@ -33,7 +32,7 @@ export const LinkDefault: React.FC<
         {...bind()}
         fill="none"
         strokeLinecap="round"
-        strokeOpacity={entity.hovered ? 0.3 : 0}
+        strokeOpacity={entity.hovered ? 0.22 : 0}
       />
       {entity instanceof LinkCreationState && (
         <circle
@@ -49,7 +48,6 @@ export const LinkDefault: React.FC<
 
 export interface ILinkDefaultSettings {
   color: string;
-  hoveredColor: string;
   selectedColor: string;
   strokeWidth: number;
   cirleRadius: number;
@@ -57,7 +55,6 @@ export interface ILinkDefaultSettings {
 
 const linkDefaultSettings: ILinkDefaultSettings = {
   color: '#a8a8a8',
-  hoveredColor: '#a8a8a8',
   selectedColor: '#6eb7ff',
   strokeWidth: 1,
   cirleRadius: 3,

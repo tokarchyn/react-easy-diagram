@@ -28,7 +28,7 @@ export const PortsContainerDefault: React.FC<
   return (
     <div className={className} style={{
       // @ts-ignore
-      '--gap': finalSettings.gapBetweenPorts
+      '--gap': finalSettings.gapBetweenPorts,
     }}>
       {Object.values(entity).map((port) => (
         <PortWrapper key={port.id} port={port} />

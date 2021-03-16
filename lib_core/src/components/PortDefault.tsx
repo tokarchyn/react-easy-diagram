@@ -31,6 +31,7 @@ export const PortDefault: React.FC<
         width: finalSettings.size[0],
         height: finalSettings.size[1],
         backgroundColor: color,
+        borderRadius: '2px'
       }}
     ></div>
   );
