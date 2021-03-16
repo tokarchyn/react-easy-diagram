@@ -30,6 +30,7 @@ export const LinkDefault: React.FC<
         stroke={color}
         strokeWidth={finalSettings.strokeWidth + 5}
         {...bind()}
+        pointerEvents='auto'
         fill="none"
         strokeLinecap="round"
         strokeOpacity={entity.hovered ? 0.22 : 0}
@@ -54,7 +55,7 @@ export interface ILinkDefaultSettings {
 }
 
 const linkDefaultSettings: ILinkDefaultSettings = {
-  color: '#a8a8a8',
+  color: '#c2c2c2',
   selectedColor: '#6eb7ff',
   strokeWidth: 1,
   cirleRadius: 3,
