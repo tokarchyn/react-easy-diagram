@@ -13,6 +13,7 @@ import {
   linkCreationComponentType,
   LinkCreationState,
 } from './linkCreationState';
+import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 
 export class LinksSettings {
   private _pathConstructor = defaultPathConstructor;
@@ -21,10 +22,7 @@ export class LinksSettings {
     ILinkVisualComponentProps
   >({
     [componentDefaultType]: LinkDefault,
-    [linkCreationComponentType]: createLinkDefault({
-      color: '#49f860',
-      strokeWidth: 3,
-    }),
+    [linkCreationComponentType]: LinkDefault,
   });
 
   constructor() {
@@ -53,7 +51,7 @@ const defaultPathConstructor = createCurvedLinkPathConstructor();
 
 export interface ILinkVisualComponentProps<TSettings extends {} = {}>
   extends IVisualComponentProps<LinkState | LinkCreationState, TSettings> {
-  draggableRef: React.RefObject<any>;
+    bind: (...args: any[]) => ReactEventHandlers;
 }
 
 export interface ILinksSettings

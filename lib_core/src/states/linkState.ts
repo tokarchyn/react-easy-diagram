@@ -10,13 +10,14 @@ import { LinkPointEndpointState } from './LinkPointEndpointState';
 import { deepCopy } from '../utils';
 import { ISelectableItem } from './selectionState';
 
-export class LinkState implements ILinkState, ISelectableItem {
+export class LinkState implements ILinkState, ISelectableItem, ILinkInteractionState {
   private _id: string;
   private _componentType: string;
   private _source: LinkPortEndpointState;
   private _target: LinkPortEndpointState;
   private _segments: ILinkSegment[];
   private _selected: boolean;
+  private _hovered: boolean;
   private _extra: any;
 
   private _rootStore: RootStore;
@@ -26,6 +27,7 @@ export class LinkState implements ILinkState, ISelectableItem {
 
     this._id = id;
     this._selected = false;
+    this._hovered = false;
     this.import(state);
 
     makeAutoObservable(this, {
@@ -90,6 +92,14 @@ export class LinkState implements ILinkState, ISelectableItem {
     this._selected = value;
   }
 
+  get hovered() {
+    return this._hovered;
+  }
+
+  set hovered(value: boolean) {
+    this._hovered = value;
+  }
+
   get extra() {
     return this._extra;
   }
@@ -139,6 +149,11 @@ export function createLinkPath(
     source: source.point,
     target: target.point,
   };
+}
+
+export interface ILinkInteractionState {
+  selected: boolean;
+  hovered: boolean;
 }
 
 export interface ILinkStateWithoutId {

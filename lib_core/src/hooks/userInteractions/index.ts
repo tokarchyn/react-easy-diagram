@@ -3,6 +3,7 @@ export * from './useDiagramDragHandlers';
 export * from './useDiagramPinchHandlers';
 export * from './useDiagramUserInteraction';
 export * from './useDiagramWheelHandler';
+export * from './useLinkUserInteraction';
 export * from './useNodeUserInteraction';
 export * from './usePortUserInteraction';
 export * from './useUserAbilityToSelectSwitcher';

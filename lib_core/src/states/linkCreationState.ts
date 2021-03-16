@@ -1,11 +1,11 @@
 import { makeAutoObservable } from 'mobx';
-import { createLinkPath, ILinkPath, LinkPortEndpointState, Point } from '..';
+import { createLinkPath, ILinkInteractionState, ILinkPath, LinkPortEndpointState, Point } from '..';
 import { addPoints } from '../utils';
 import { LinkPointEndpointState } from './LinkPointEndpointState';
 import { PortState } from './portState';
 import { RootStore } from './rootStore';
 
-export class LinkCreationState {
+export class LinkCreationState implements ILinkInteractionState {
   private _source: LinkPortEndpointState | null = null;
   private _target: LinkPointEndpointState | null = null;
   private _targetPortCandidate: PortState | null = null;
@@ -15,6 +15,14 @@ export class LinkCreationState {
   constructor(rootStore: RootStore) {
     makeAutoObservable(this);
     this._rootStore = rootStore;
+  }
+
+  get selected() {
+    return true;
+  }
+
+  get hovered() {
+    return true;
   }
 
   get source() {

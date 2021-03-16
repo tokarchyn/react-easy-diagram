@@ -25,7 +25,7 @@ export const useNodeUserInteraction = (
 
   const handlers = useMemo<GestureHandlers>(
     () => ({
-      onDrag: ({ pinching, delta, ctrlKey, movement, elapsedTime }) => {
+      onDrag: ({ pinching, delta, ctrlKey, movement }) => {
         if (
           !activeRef.current ||
           pinching ||
@@ -93,7 +93,7 @@ export const useNodeUserInteraction = (
   };
 };
 
-const selectDelay: number = 1000;
+const selectDelay: number = 500;
 
 function cancelPortsEvents(event: React.PointerEvent<Element> | PointerEvent) {
   return eventPathContainsClass(event, 'react_fast_diagram_PortWrapper');

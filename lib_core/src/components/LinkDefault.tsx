@@ -4,29 +4,42 @@ import { ILinkVisualComponentProps } from '../states/linksSettings';
 import { IComponentDefinition } from '../states/visualComponentState';
 
 export const LinkDefault: React.FC<
-  ILinkVisualComponentProps<ILinkDefaultSettings>
-> = (props) => {
-  const settings = {
+  ILinkVisualComponentProps<Partial<ILinkDefaultSettings>>
+> = ({entity, settings, bind}) => {
+  const finalSettings = {
     ...linkDefaultSettings,
-    ...(props.settings ? props.settings : {}),
+    ...settings,
   };
-  const path = props.entity.path;
+  const path = entity.path;
   if (!path) return null;
+
+  let color = finalSettings.color;
+  if (entity.selected) color = finalSettings.selectedColor;
+  else if (entity.hovered) color = finalSettings.hoveredColor;
 
   return (
     <g>
       <path
-        ref={props.draggableRef}
         d={path.svgPath}
-        stroke={settings.color}
-        strokeWidth={settings.strokeWidth}
+        stroke={color}
+        strokeWidth={finalSettings.strokeWidth}
         fill='none'
+        strokeLinecap="round"        
       />
-      {props.entity instanceof LinkCreationState && (
+      <path
+        d={path.svgPath}
+        stroke={color}
+        strokeWidth={finalSettings.strokeWidth + 5}
+        {...bind()}
+        fill="none"
+        strokeLinecap="round"
+        strokeOpacity={entity.hovered ? 0.3 : 0}
+      />
+      {entity instanceof LinkCreationState && (
         <circle
           cx={path.target[0]}
           cy={path.target[1]}
-          r={settings.cirleRadius}
+          r={finalSettings.cirleRadius}
           fill='orange'
         />
       )}
@@ -35,42 +48,26 @@ export const LinkDefault: React.FC<
 };
 
 export interface ILinkDefaultSettings {
-  color?: string;
-  strokeWidth?: number;
-  cirleRadius?: number;
+  color: string;
+  hoveredColor: string;
+  selectedColor: string;
+  strokeWidth: number;
+  cirleRadius: number;
 }
 
 const linkDefaultSettings: ILinkDefaultSettings = {
-  color: 'LightBlue',
-  strokeWidth: 3,
+  color: '#a8a8a8',
+  hoveredColor: '#a8a8a8',
+  selectedColor: '#6eb7ff',
+  strokeWidth: 1,
   cirleRadius: 3,
 };
 
 export function createLinkDefault(
-  settings?: ILinkDefaultSettings
-): IComponentDefinition<ILinkVisualComponentProps, ILinkDefaultSettings> {
+  settings?: Partial<ILinkDefaultSettings>
+): IComponentDefinition<ILinkVisualComponentProps, Partial<ILinkDefaultSettings>> {
   return {
     component: LinkDefault,
     settings: settings,
   };
 }
-
-// <g>
-//       {/* Main line */}
-//       <path d={points} stroke={linkColor} strokeWidth="3" fill="none" />
-//       {/* Thick line to make selection easier */}
-//       <path
-//         d={points}
-//         stroke={linkColor}
-//         strokeWidth="20"
-//         fill="none"
-//         strokeLinecap="round"
-//         strokeOpacity={isHovered || isSelected ? 0.1 : 0}
-//         onMouseEnter={() => onLinkMouseEnter({ config, linkId: link.id })}
-//         onMouseLeave={() => onLinkMouseLeave({ config, linkId: link.id })}
-//         onClick={(e) => {
-//           onLinkClick({ config, linkId: link.id })
-//           e.stopPropagation()
-//         }}
-//       />
-//     </g>

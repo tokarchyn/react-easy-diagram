@@ -5,7 +5,9 @@ import { LinkWrapper } from './LinkWrapper';
 
 export const LinksLayer = observer<{linksStore: LinksStore}>(({linksStore}) => {
   return (
-    <svg>
+    <svg style={{
+      pointerEvents: 'auto'
+    }}>
       {Array.from(linksStore.links).map(([id, link]) => (
         <LinkWrapper key={link.id} link={link} />
       ))}
