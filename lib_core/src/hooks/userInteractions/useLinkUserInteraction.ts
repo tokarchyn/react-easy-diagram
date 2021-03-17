@@ -25,7 +25,7 @@ export const useLinkUserInteraction = (
             onPointerLeave: () => {
               linkState.hovered = false;
             },
-            onDragStart: ({ event }) => {
+            onDragStart: () => {
               activeRef.current = true;
               selectionHandledRef.current = false;
               selectionTimeoutRef.current = setTimeout(() => {
