@@ -5,6 +5,7 @@
   position: relative;
   overflow: hidden;
   touch-action: none;
+  user-select: none;
 }
 
 .react_fast_diagram_DiagramInner * {
@@ -118,7 +119,6 @@
   text-align: center;
   align-items: center;
   cursor: pointer;
-  user-select: none;
   font-weight: bold;
 }
 
