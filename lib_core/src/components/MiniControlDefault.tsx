@@ -81,15 +81,10 @@ export const RubbishBinButton: React.FC<{
       width: props.size + 'px',
       height: props.size + 'px',
       padding: 5,
-      backgroundColor: '#fa4040'
+      backgroundColor: '#fa4040',
     }}
   >
-    <svg
-      x='0px'
-      y='0px'
-      width="488.936px" height="488.936px" viewBox="0 0 488.936 488.936"
-      fill="white"
-    >
+    <svg viewBox='0 0 488.936 488.936' fill='white'>
       <g>
         <path
           d='M381.16,111.948H107.376c-6.468,0-12.667,2.819-17.171,7.457c-4.504,4.649-6.934,11.014-6.738,17.477l9.323,307.69
