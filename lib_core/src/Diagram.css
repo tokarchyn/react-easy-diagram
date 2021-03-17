@@ -41,8 +41,7 @@
   left: 0;
   width: fit-content; 
   height: fit-content;
-  pointer-events: auto; 
-  user-select: none;
+  pointer-events: auto;
 }
 
 .react_fast_diagram_Node_Default {
@@ -91,16 +90,6 @@
 
 .react_fast_diagram_disabled_user_select {
   user-select: none;
-}
-
-.react_fast_diagram_Port_Default {
-  height: 25px;
-  width: 25px;
-  border-radius: 3px;
-  border-color: wheat;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
 }
 
 .react_fast_diagram_BackgroundWrapper {
