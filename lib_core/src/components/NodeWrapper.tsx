@@ -12,7 +12,8 @@ export const NodeWrapper = observer<{node: NodeState}>(({ node }) => {
       className='react_fast_diagram_NodeWrapper'
       style={{
         left: node.position[0],
-        top: node.position[1]
+        top: node.position[1],
+        zIndex: node.selected ? 10 : undefined
       }}
       ref={node.ref}
     >
