@@ -43,10 +43,7 @@ export class LinkCreationState implements ILinkInteractionState {
     return this._targetPortCandidate;
   }
 
-  startLinking = (
-    portState: PortState,
-    eventOffsetRelativeToTarget: Point
-  ): boolean => {
+  startLinking = (portState: PortState, pointOnPort: Point): boolean => {
     this._resetProps();
     this._source = new LinkPortEndpointState(
       portState.nodeId,
@@ -57,7 +54,7 @@ export class LinkCreationState implements ILinkInteractionState {
     const sourcePoint = this._source.point;
     const portSize = this._source.port.realSize;
     if (sourcePoint && portSize) {
-      // endpoint port is calculated for center of port
+      // endpoint point is calculated for center of port
       const topLeftCornerPoint = subtractPoints(
         sourcePoint,
         multiplyPoint(portSize, 0.5)
@@ -65,10 +62,7 @@ export class LinkCreationState implements ILinkInteractionState {
       this._target = new LinkPointEndpointState(
         addPoints(
           topLeftCornerPoint,
-          multiplyPoint(
-            eventOffsetRelativeToTarget,
-            1 / this._rootStore.diagramState.zoom
-          )
+          multiplyPoint(pointOnPort, 1 / this._rootStore.diagramState.zoom)
         )
       );
     } else {

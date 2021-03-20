@@ -31,12 +31,12 @@ export const usePortUserInteraction = (
         const portHtmlElement = event.target as Element;
         portHtmlElement.releasePointerCapture(event.pointerId);
 
-        let eventOffsetRelativeToTarget = subtractPoints(xy, [
+        let pointOnPort = subtractPoints(xy, [
           portHtmlElement.getBoundingClientRect().x,
           portHtmlElement.getBoundingClientRect().y,
         ]);
 
-        if (linkCreation.startLinking(portState, eventOffsetRelativeToTarget)) {
+        if (linkCreation.startLinking(portState, pointOnPort)) {
           portState.dragging = true;
         }
       },
