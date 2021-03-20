@@ -3,7 +3,7 @@ import { useGesture } from 'react-use-gesture';
 import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 import { IDragHandlers, Point } from '../..';
 import { PortState } from '../../states/portState';
-import { multiplyPoint } from '../../utils';
+import { multiplyPoint, subtractPoints } from '../../utils';
 import { useRootStore } from '../useRootStore';
 import { useUserAbilityToSelectSwitcher } from './useUserAbilityToSelectSwitcher';
 
@@ -26,16 +26,15 @@ export const usePortUserInteraction = (
         const parentScale = diagramState.zoom;
         linkCreation.target?.translateBy(multiplyPoint(delta, 1 / parentScale));
       },
-      onDragStart: ({ event }) => {
+      onDragStart: ({ event, xy }) => {
         // Important! Otherwise on touch display onPointerEnter will not work!
         const portHtmlElement = event.target as Element;
         portHtmlElement.releasePointerCapture(event.pointerId);
 
-        let eventOffsetRelativeToTarget;
-        // On the old browser these properties could be not available
-        if ('offsetX' in event && 'offsetY' in event) {
-          eventOffsetRelativeToTarget = [event.offsetX, event.offsetY] as Point;
-        }
+        let eventOffsetRelativeToTarget = subtractPoints(xy, [
+          portHtmlElement.getBoundingClientRect().x,
+          portHtmlElement.getBoundingClientRect().y,
+        ]);
 
         if (linkCreation.startLinking(portState, eventOffsetRelativeToTarget)) {
           portState.dragging = true;

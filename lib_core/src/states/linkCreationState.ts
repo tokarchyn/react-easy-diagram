@@ -6,7 +6,7 @@ import {
   LinkPortEndpointState,
   Point,
 } from '..';
-import { addPoints } from '../utils';
+import { addPoints, multiplyPoint, subtractPoints } from '../utils';
 import { LinkPointEndpointState } from './LinkPointEndpointState';
 import { PortState } from './portState';
 import { RootStore } from './rootStore';
@@ -45,7 +45,7 @@ export class LinkCreationState implements ILinkInteractionState {
 
   startLinking = (
     portState: PortState,
-    eventOffsetRelativeToTarget: Point | undefined
+    eventOffsetRelativeToTarget: Point
   ): boolean => {
     this._resetProps();
     this._source = new LinkPortEndpointState(
@@ -54,23 +54,27 @@ export class LinkCreationState implements ILinkInteractionState {
       this._rootStore
     );
 
-    let targetPoint: Point;
-    if (portState.offsetRelativeToNode && eventOffsetRelativeToTarget) {
-      targetPoint = addPoints(
-        addPoints(portState.offsetRelativeToNode, portState.node.position),
-        eventOffsetRelativeToTarget
+    const sourcePoint = this._source.point;
+    const portSize = this._source.port.realSize;
+    if (sourcePoint && portSize) {
+      // endpoint port is calculated for center of port
+      const topLeftCornerPoint = subtractPoints(
+        sourcePoint,
+        multiplyPoint(portSize, 0.5)
+      );
+      this._target = new LinkPointEndpointState(
+        addPoints(
+          topLeftCornerPoint,
+          multiplyPoint(
+            eventOffsetRelativeToTarget,
+            1 / this._rootStore.diagramState.zoom
+          )
+        )
       );
     } else {
-      const sourcePoint = this._source.point;
-      if (sourcePoint) {
-        targetPoint = sourcePoint;
-      } else {
-        this._resetProps();
-        return false;
-      }
+      this._resetProps();
+      return false;
     }
-
-    this._target = new LinkPointEndpointState(targetPoint);
 
     return true;
   };
