@@ -1,5 +1,11 @@
 import { makeAutoObservable } from 'mobx';
-import { createLinkPath, ILinkInteractionState, ILinkPath, LinkPortEndpointState, Point } from '..';
+import {
+  createLinkPath,
+  ILinkInteractionState,
+  ILinkPath,
+  LinkPortEndpointState,
+  Point,
+} from '..';
 import { addPoints } from '../utils';
 import { LinkPointEndpointState } from './LinkPointEndpointState';
 import { PortState } from './portState';
@@ -100,7 +106,7 @@ export class LinkCreationState implements ILinkInteractionState {
 
   stopLinking = () => {
     if (this._targetPortCandidate && this._source) {
-      this._rootStore.linksStore.addLink({
+      const result = this._rootStore.linksStore.addLink({
         source: {
           nodeId: this._source.nodeId,
           portId: this._source.portId,
@@ -110,6 +116,9 @@ export class LinkCreationState implements ILinkInteractionState {
           portId: this._targetPortCandidate.id,
         },
       });
+      if (result.success) {
+        this._rootStore.selectionState.select(result.value, false);
+      }
     }
     this._resetProps();
   };

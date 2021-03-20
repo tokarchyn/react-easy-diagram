@@ -1,9 +1,9 @@
 import { makeAutoObservable } from 'mobx';
 import {
   Dictionary,
-  ErrorResult,
+  errorResult,
   SuccessOrErrorResult,
-  SuccessResult,
+  successResult,
 } from '../types/common';
 import { guidForcedUniqueness } from '../utils';
 import { LinkCreationState } from './linkCreationState';
@@ -36,7 +36,7 @@ export class LinksStore {
   };
 
   export = (): ILinkState[] =>
-    Array.from(this._links).map(([key,value]) => value.export());
+    Array.from(this._links).map(([key, value]) => value.export());
 
   get links(): ReadonlyMap<string, LinkState> {
     return this._links;
@@ -73,7 +73,7 @@ export class LinksStore {
     });
   };
 
-  addLink = (link: ILinkState): SuccessOrErrorResult => {
+  addLink = (link: ILinkState): SuccessOrErrorResult<LinkState> => {
     const canAdd = this.canAddLink(link);
     if (!canAdd.success) return canAdd;
 
@@ -86,11 +86,10 @@ export class LinksStore {
     this._addLinkToNodeLinksCollection(newLink, link.source.nodeId);
     this._addLinkToNodeLinksCollection(newLink, link.target.nodeId);
 
-    return { success: true };
+    return successResult(newLink);
   };
 
-  removeLink = 
-  (linkId: string): boolean => {
+  removeLink = (linkId: string): boolean => {
     const linkToRemove = this._links.get(linkId);
     if (linkToRemove) {
       this._removeLinkFromNodeLinksCollection(
@@ -111,9 +110,9 @@ export class LinksStore {
   };
 
   canAddLink = (link: ILinkState): SuccessOrErrorResult => {
-    if (!link) return ErrorResult(`Cannot add empty`);
+    if (!link) return errorResult(`Cannot add empty`);
     if (link.id && this._links.has(link.id))
-      return ErrorResult(
+      return errorResult(
         `Cannot add link with id '${link.id}', as it already exists`
       );
 
@@ -123,10 +122,10 @@ export class LinksStore {
     if (!isTargetValid.success) return isTargetValid;
 
     if (link.source.nodeId === link.target.nodeId)
-      return ErrorResult(`Link's endpoints are located in the same node`);
+      return errorResult(`Link's endpoints are located in the same node`);
 
     if (this.areEndpointsConnected(link.source, link.target))
-      return ErrorResult(`Link's endpoints are already connected`);
+      return errorResult(`Link's endpoints are already connected`);
 
     if (
       this._rootStore.callbacks.validateLinkEndpoints?.(
@@ -135,22 +134,22 @@ export class LinksStore {
         this._rootStore
       ) === false
     ) {
-      return ErrorResult(
+      return errorResult(
         `Link's endpoints are not valid according to validation callback`
       );
     }
 
-    return SuccessResult();
+    return successResult();
   };
 
   isEndpointValid = (endpoint: ILinkPortEndpoint): SuccessOrErrorResult => {
     try {
       this.getEndpointPort(endpoint);
     } catch (ex) {
-      return ErrorResult('' + ex);
+      return errorResult('' + ex);
     }
 
-    return SuccessResult();
+    return successResult();
   };
 
   getEndpointPort = (endpoint: ILinkPortEndpoint): PortState => {
@@ -180,19 +179,21 @@ export class LinksStore {
             linkPortEndpointsEquals(l.source, target))
       );
     }
-  }
+  };
 
   private _addLinkToNodeLinksCollection = (link: LinkState, nodeId: string) => {
     let links = this._nodesLinksCollection.get(nodeId);
     if (!links) {
       this._nodesLinksCollection.set(nodeId, [link]);
-    }
-    else {
+    } else {
       links.push(link);
     }
-  }
+  };
 
-  private _removeLinkFromNodeLinksCollection = (link: LinkState, nodeId: string) => {
+  private _removeLinkFromNodeLinksCollection = (
+    link: LinkState,
+    nodeId: string
+  ) => {
     let collection = this._nodesLinksCollection.get(nodeId);
     if (collection) {
       collection = collection.filter((l) => l.id !== link.id);
@@ -202,5 +203,5 @@ export class LinksStore {
         this._nodesLinksCollection.delete(nodeId);
       }
     }
-  }
+  };
 }

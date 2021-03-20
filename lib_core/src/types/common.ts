@@ -1,9 +1,9 @@
 export type Point = [number, number];
 export type BoundingBox = {
   topLeftCorner: Point;
-  bottomRightCorner: Point; 
+  bottomRightCorner: Point;
   size: Point;
-}
+};
 
 export interface Dictionary<TValue> {
   [key: string]: TValue;
@@ -19,9 +19,26 @@ export type CornerPosition =
 
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
-export type SuccessOrErrorResult =
-  | { success: true }
+export type SuccessOrErrorResult<TValue = undefined> =
+  | ({ success: true } & (TValue extends undefined
+      ? {}
+      : {
+          value: TValue;
+        }))
   | { success: false; error: string };
 
-export const SuccessResult = () : SuccessOrErrorResult => ({success: true})
-export const ErrorResult = (error: string) : SuccessOrErrorResult => ({success: false, error})
+export function successResult<TValue = undefined>(
+  value?: TValue
+): SuccessOrErrorResult<TValue> {
+  if (value === undefined) {
+    return { success: true } as SuccessOrErrorResult;
+  }
+  return { success: true, value } as SuccessOrErrorResult<TValue>;
+}
+
+export function errorResult(error: string): SuccessOrErrorResult {
+  return {
+    success: false,
+    error,
+  };
+}
