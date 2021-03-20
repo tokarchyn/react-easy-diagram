@@ -4,6 +4,7 @@ import {
   errorResult,
   SuccessOrErrorResult,
   successResult,
+  successValueResult,
 } from '../types/common';
 import { guidForcedUniqueness } from '../utils';
 import { LinkCreationState } from './linkCreationState';
@@ -86,7 +87,7 @@ export class LinksStore {
     this._addLinkToNodeLinksCollection(newLink, link.source.nodeId);
     this._addLinkToNodeLinksCollection(newLink, link.target.nodeId);
 
-    return successResult(newLink);
+    return successValueResult(newLink);
   };
 
   removeLink = (linkId: string): boolean => {

@@ -1,4 +1,4 @@
-import { BoundingBox, Dictionary, Point } from '../types/common';
+import { BoundingBox, Dictionary, errorResult, Point, SuccessOrErrorResult, successResult, successValueResult } from '../types/common';
 import { makeAutoObservable } from 'mobx';
 import { INodeState, INodeStateWithId, NodeState } from './nodeState';
 import { RootStore } from './rootStore';
@@ -26,9 +26,9 @@ export class NodesStore {
   export = (): INodeStateWithId[] =>
     Array.from(this._nodes).map(([key,value]) => value.export());
 
-  addNode = (node: INodeState, rewriteIfExists: boolean): boolean => {
+  addNode = (node: INodeState, rewriteIfExists: boolean): SuccessOrErrorResult<NodeState> => {
     if (!node || (!rewriteIfExists && node.id && this._nodes.has(node.id))) {
-      return false;
+      return errorResult('');
     }
     const newNode = new NodeState(
       this._rootStore,
@@ -36,7 +36,7 @@ export class NodesStore {
       node
     );
     this._nodes.set(newNode.id, newNode);
-    return true;
+    return successValueResult(newNode);
   };
 
   removeNode = (nodeId: string): boolean => {

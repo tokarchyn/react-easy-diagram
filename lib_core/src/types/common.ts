@@ -19,24 +19,29 @@ export type CornerPosition =
 
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
+export type ErrorResult = { success: false; error: string };
 export type SuccessOrErrorResult<TValue = undefined> =
-  | ({ success: true } & (TValue extends undefined
-      ? {}
-      : {
-          value: TValue;
-        }))
-  | { success: false; error: string };
+  | ErrorResult
+  | SuccessResult<TValue>;
 
-export function successResult<TValue = undefined>(
-  value?: TValue
-): SuccessOrErrorResult<TValue> {
-  if (value === undefined) {
-    return { success: true } as SuccessOrErrorResult;
-  }
-  return { success: true, value } as SuccessOrErrorResult<TValue>;
+export type SuccessResult<TValue = undefined> = TValue extends undefined
+  ? { success: true }
+  : {
+      success: true;
+      value: TValue;
+    };
+
+export function successResult(): SuccessResult {
+  return { success: true };
 }
 
-export function errorResult(error: string): SuccessOrErrorResult {
+export function successValueResult<TValue>(
+  value: TValue
+): SuccessResult<TValue> {
+  return { success: true, value: value } as SuccessResult<TValue>;
+}
+
+export function errorResult(error: string): ErrorResult {
   return {
     success: false,
     error,
