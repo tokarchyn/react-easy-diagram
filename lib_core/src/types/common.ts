@@ -9,8 +9,12 @@ export interface Dictionary<TValue> {
   [key: string]: TValue;
 }
 
-export type RelativePosition = 'left' | 'top' | 'right' | 'bottom';
-
+export enum RelativePosition {
+  left = 'left',
+  top = 'top',
+  right = 'right',
+  bottom = 'bottom',
+}
 export type CornerPosition =
   | 'left-top'
   | 'right-top'

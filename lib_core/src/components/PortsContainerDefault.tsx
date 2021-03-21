@@ -41,10 +41,7 @@ const PortsContainerDefault: React.FC<
   const offsetFromOriginPositionStyle = {};
   if (
     offsetFromOriginPosition &&
-    (position === 'left' ||
-      position === 'right' ||
-      position === 'top' ||
-      position === 'bottom')
+    (Object.values(RelativePosition).includes(position))
   ) {
     offsetFromOriginPositionStyle[position] = -offsetFromOriginPosition;
   }
