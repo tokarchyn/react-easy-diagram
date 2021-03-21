@@ -19,21 +19,18 @@ export const NodeDefault: React.FC<
     ...(entity.selected ? finalSettings.selectedStyle : undefined),
   };
 
-  const groupPorts = () => {
-    const groupedPorts = new Map<RelativePosition, PortState[]>();
-    Object.values(entity.ports).forEach((p) => {
-      let position = portTypeToPosition(
-        p.type,
-        finalSettings.portTypeToPositionMapping
-      );
-      if (position) {
-        groupedPorts.has(position)
-          ? groupedPorts.get(position)?.push(p)
-          : groupedPorts.set(position, [p]);
-      }
-    });
-    return groupedPorts;
-  };
+  const groupedPorts = new Map<RelativePosition, PortState[]>();
+  Object.values(entity.ports).forEach((p) => {
+    let position = portTypeToPosition(
+      p.type,
+      finalSettings.portTypeToPositionMapping
+    );
+    if (position) {
+      groupedPorts.has(position)
+        ? groupedPorts.get(position)?.push(p)
+        : groupedPorts.set(position, [p]);
+    }
+  });
 
   return (
     <div
@@ -43,7 +40,7 @@ export const NodeDefault: React.FC<
     >
       <span>{entity.id}</span>
 
-      {Array.from(groupPorts()).map(([k, v]) => (
+      {Array.from(groupedPorts).map(([k, v]) => (
         <finalSettings.nodeContainer
           ports={v}
           position={k as RelativePosition}
