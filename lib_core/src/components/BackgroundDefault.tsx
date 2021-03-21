@@ -87,32 +87,27 @@ export const createDotsImageGenerator = (
     dotsRadius
   );
 
-  const crossesImageGenerator = (
-    width: number,
-    height: number,
-    sizeMultiplicator: number,
-    color: string,
-    opacity: number
-  ) => {
+const crossesImageGenerator = (
+  width: number,
+  height: number,
+  sizeMultiplicator: number,
+  color: string,
+  opacity: number
+) => {
   color = color.replace('#', '%23');
-  return `url("data:image/svg+xml,%3Csvg width='${width * sizeMultiplicator}' height='${
+  return `url("data:image/svg+xml,%3Csvg width='${
+    width * sizeMultiplicator
+  }' height='${
     height * sizeMultiplicator
   }' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='${color}' fill-opacity='${opacity}'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`;
 };
-
 
 export const createCrossesImageGenerator = (
   sizeMultiplicator: number,
   color: string,
   opacity: number
 ): BackgroundImageGenerator => (width: number, height: number) =>
-  crossesImageGenerator(
-    width,
-    height,
-    sizeMultiplicator,
-    color,
-    opacity
-  );
+  crossesImageGenerator(width, height, sizeMultiplicator, color, opacity);
 
 const defaultSettings: IBackgroundDefaultSettings = {
   imageGenerator: createCrossesImageGenerator(0.2, '#858585', 0.1),
