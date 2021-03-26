@@ -1,0 +1,112 @@
+---
+title: Calculator
+hide_table_of_contents: true
+hide_title: true
+---
+
+```js live noInline
+const NumberProvider = observer(({ node }) => {
+  return (
+    <div>
+      <div>Number input</div>
+      <span>
+        <input
+          type='number'
+          onChange={(event) =>
+            node.ports['number'].setExtra(parseInt(event.target.value))
+          }
+        />
+      </span>
+    </div>
+  );
+});
+
+const AddNumbers = observer(({ node }) => {
+  const numPort1 = node.ports['number_1'];
+  const numPort2 = node.ports['number_2'];
+
+  let num1 = 0;
+  let num2 = 0;
+  if (
+    (numPort1.connectedPorts.length > 0) &&
+    (numPort2.connectedPorts.length > 0)
+  ) {
+    num1 = numPort1.connectedPorts[0].extra;
+    num2 = numPort2.connectedPorts[0].extra;
+  }
+
+  useEffect(() => {
+      node.ports['output'].setExtra(num1 + num2)
+  }, [num1, num2])
+
+  return (
+    <div>
+      <div>Add numbers</div>
+      <span>Result: {node.ports['output'].extra}</span>
+    </div>
+  );
+});
+
+const App = () => {
+  return (
+    <Diagram
+      initState={{
+        nodes: [
+          {
+            id: 'Num1',
+            position: [100, 100],
+            ports: [{ id: 'number', type: 'right' }],
+            componentType: 'number',
+          },
+          {
+            id: 'Num2',
+            position: [100, 300],
+            ports: [{ id: 'number', type: 'right' }],
+            componentType: 'number',
+          },
+          {
+            id: 'Num3',
+            position: [420, 250],
+            ports: [{ id: 'number', type: 'right' }],
+            componentType: 'number',
+          },
+          {
+            id: 'add1',
+            position: [420, 150],
+            ports: [
+              { id: 'number_1', type: 'left' },
+              { id: 'number_2', type: 'left' },
+              { id: 'output', type: 'right' },
+            ],
+            componentType: 'addnumbers',
+          },
+          {
+            id: 'add2',
+            position: [700, 200],
+            ports: [
+              { id: 'number_1', type: 'left' },
+              { id: 'number_2', type: 'left' },
+              { id: 'output', type: 'right' },
+            ],
+            componentType: 'addnumbers',
+          },
+        ],
+      }}
+      settings={{
+        nodes: {
+          components: {
+            number: createNodeDefault({
+              innerNode: NumberProvider,
+            }),
+            addnumbers: createNodeDefault({
+              innerNode: AddNumbers,
+            }),
+          },
+        },
+      }}
+    />
+  );
+};
+
+render(<App />);
+```

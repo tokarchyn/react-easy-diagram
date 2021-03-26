@@ -22,6 +22,7 @@ module.exports = {
         'examples/perf', 
         'examples/configureDefaultLink', 
         'examples/configureDefaultPort', 
+        'examples/calculator', 
       ],
       collapsed: false
     },
