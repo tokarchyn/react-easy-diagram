@@ -3,12 +3,14 @@ import { makeAutoObservable } from 'mobx';
 import { HtmlElementRefState } from './htmlElementRefState';
 import { componentDefaultType, NodeState, RootStore } from '.';
 import { deepCopy } from '../utils';
+import { LinkState } from './linkState';
 
 export class PortState {
   private _id: string;
   private _nodeId: string;
   private _label: string;
   private _type: string;
+  private _extra: any;
 
   private _ref: HtmlElementRefState = new HtmlElementRefState(null);
   private _dragging: boolean = false;
@@ -37,6 +39,10 @@ export class PortState {
 
   get nodeId() {
     return this._nodeId;
+  }
+
+  get fullId() {
+    return createFullPortId(this.nodeId, this.id);
   }
 
   get ref() {
@@ -73,7 +79,7 @@ export class PortState {
 
   setLabel = (value: string | null | undefined) => {
     this._label = value ?? '';
-  }
+  };
 
   get type() {
     return this._type;
@@ -81,11 +87,12 @@ export class PortState {
 
   setType = (value: string | null | undefined) => {
     this._type = value ?? componentDefaultType;
-  }
+  };
 
   import = (state?: IPortStateWithoutIds) => {
     this.setType(state?.type);
     this.setLabel(state?.label);
+    this.setExtra(state?.extra);
   };
 
   export = (): IPortStateWithIds =>
@@ -95,6 +102,14 @@ export class PortState {
       label: this._label,
       type: this._type,
     });
+
+  get extra() {
+    return this._extra;
+  }
+
+  setExtra = (value: any) => {
+    this._extra = value ?? null;
+  };
 
   get node(): NodeState {
     return this._rootStore.nodesStore.getNodeOrThrowException(this.nodeId);
@@ -120,11 +135,22 @@ export class PortState {
     const { portVisualComponents } = this._rootStore.portsSettings;
     return portVisualComponents.getComponent(this.type);
   }
+
+  get connectedLinks(): LinkState[] {
+    return this._rootStore.linksStore.getPortLinks(this.nodeId, this.id);
+  }
+
+  get connectedPorts(): PortState[] {
+    return this.connectedLinks.map((v) =>
+      v.source.portId === this._id ? v.target.port : v.source.port
+    );
+  }
 }
 
 export interface IPortStateWithoutIds {
   label?: string;
   type?: string;
+  extra?: any;
 }
 
 export interface IPortStateWithIds extends IPortStateWithoutIds {
@@ -135,4 +161,8 @@ export interface IPortStateWithIds extends IPortStateWithoutIds {
 export interface IPortState extends IPortStateWithoutIds {
   id?: string;
   nodeId?: string;
+}
+
+export function createFullPortId(nodeId: string, portId: string) {
+  return `${nodeId}-${portId}`;
 }

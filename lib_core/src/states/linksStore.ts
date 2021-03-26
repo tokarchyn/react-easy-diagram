@@ -1,6 +1,5 @@
 import { makeAutoObservable } from 'mobx';
 import {
-  Dictionary,
   errorResult,
   SuccessOrErrorResult,
   successResult,
@@ -13,7 +12,7 @@ import {
   linkPortEndpointsEquals,
 } from './linkPortEndpointState';
 import { ILinkState, LinkState } from './linkState';
-import { PortState } from './portState';
+import { createFullPortId, PortState } from './portState';
 import { RootStore } from './rootStore';
 
 export class LinksStore {
@@ -49,6 +48,16 @@ export class LinksStore {
 
   getNodeLinks = (nodeId: string): LinkState[] => {
     return this._nodesLinksCollection.get(nodeId) ?? [];
+  };
+
+  getPortLinks = (nodeId: string, portId: string): LinkState[] => {
+    const nodeLinks = this.getNodeLinks(nodeId);
+    const fullPortId = createFullPortId(nodeId, portId);
+    return nodeLinks.filter(
+      (l) =>
+        l.source.port.fullId === fullPortId ||
+        l.target.port.fullId === fullPortId
+    );
   };
 
   removeNodeLinks = (nodeId: string) => {

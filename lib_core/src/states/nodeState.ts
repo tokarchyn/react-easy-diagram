@@ -158,6 +158,18 @@ export class NodeState implements ISelectableItem {
     else
       throw `Port with id '${portId}' does not exist in the node '${this._id}'`;
   };
+
+  get connectedExternalPorts(): Dictionary<PortState[]> {
+    const keyValues = Object.values(this.ports).map((p) => [
+      p.id,
+      p.connectedPorts,
+    ]);
+    return Object.fromEntries(keyValues);
+  }
+
+  get connectedLinks(): LinkState[] {
+    return this._rootStore.linksStore.getNodeLinks(this._id);
+  }
 }
 
 export interface INodeStateWithoutId {
