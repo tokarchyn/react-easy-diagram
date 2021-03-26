@@ -6,9 +6,11 @@ import { RootStore } from './rootStore';
 import { HtmlElementRefState } from './htmlElementRefState';
 import { componentDefaultType } from './visualComponents';
 import { ISelectableItem } from './selectionState';
+import { LinkState } from './linkState';
 
 export class NodeState implements ISelectableItem {
   private _id: string;
+  private _label: string;
   private _position: Point;
   private _ports: Dictionary<PortState>;
   private _ref: HtmlElementRefState;
@@ -36,7 +38,7 @@ export class NodeState implements ISelectableItem {
     this.setPosition(newState?.position);
     this.setComponentType(newState?.componentType);
     this.setExtra(newState?.extra);
-
+    this.label = newState?.label ?? '';
     this._ports = {};
     newState?.ports && newState.ports.forEach(this.addPort);
   };
@@ -44,6 +46,7 @@ export class NodeState implements ISelectableItem {
   export = (): INodeStateWithId => ({
     ...deepCopy({
       id: this._id,
+      label: this._label,
       position: this._position,
       componentType: this.componentType,
       extra: this.extra,
@@ -53,6 +56,14 @@ export class NodeState implements ISelectableItem {
 
   get id() {
     return this._id;
+  }
+
+  get label() {
+    return this._label;
+  }
+
+  set label(value: string) {
+    this._label = value;
   }
 
   get position() {
@@ -150,6 +161,7 @@ export class NodeState implements ISelectableItem {
 }
 
 export interface INodeStateWithoutId {
+  label?: string;
   position: Point;
   ports?: IPortState[];
   componentType?: string;

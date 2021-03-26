@@ -1,11 +1,12 @@
 import React from 'react';
 import { INodeVisualComponentProps } from '../states/nodesSettings';
-import { IComponentDefinition, PortState, VisualComponent } from '../states';
+import { IComponentDefinition, NodeState, PortState, VisualComponent } from '../states';
 import {
   createPortsContainerDefault,
   IPortsContainerDefaultProps,
 } from './PortsContainerDefault';
 import { Dictionary, RelativePosition } from '../types';
+import { NodeLabel } from './NodeLabel';
 
 export const NodeDefault: React.FC<
   INodeVisualComponentProps<INodeDefaultSettings>
@@ -38,12 +39,13 @@ export const NodeDefault: React.FC<
       className='react_fast_diagram_Node_Default'
       style={finalStyles}
     >
-      <span>{entity.id}</span>
+      <finalSettings.innerNode node={entity}/>
 
       {Array.from(groupedPorts).map(([k, v]) => (
         <finalSettings.nodeContainer
           ports={v}
           position={k as RelativePosition}
+          key={k}
         />
       ))}
     </div>
@@ -74,6 +76,7 @@ const defaultNodeDefaultSettings: INodeDefaultSettings = {
   nodeContainer: createPortsContainerDefault({
     offsetFromOriginPosition: 5,
   }),
+  innerNode: NodeLabel
 };
 
 export interface INodeDefaultSettings {
@@ -81,6 +84,7 @@ export interface INodeDefaultSettings {
   selectedStyle: React.CSSProperties;
   nodeContainer: VisualComponent<IPortsContainerDefaultProps>;
   portTypeToPositionMapping?: Dictionary<RelativePosition>;
+  innerNode: VisualComponent<{node: NodeState}>;
 }
 
 export function createNodeDefault(
