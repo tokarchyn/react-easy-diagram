@@ -1,11 +1,12 @@
----
-title: Basic
-hide_table_of_contents: true
-hide_title: true
----
+import React from 'react';
+import {
+  createCurvedLinkPathConstructor,
+  createDefaultMiniControl,
+  createLinkDefault,
+  Diagram,
+} from '@react-easy-diagram/core';
 
-```js live
-function App() {
+export default function () {
   return (
     <Diagram
       initState={{
@@ -90,4 +91,3 @@ function App() {
     />
   );
 }
-```

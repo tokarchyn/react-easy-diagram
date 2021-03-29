@@ -24,6 +24,36 @@ module.exports = {
           position: 'right',
         },
         {
+          label: 'Examples',
+          position: 'right', // or 'right'
+          items: [
+            {
+              label: 'Basic',
+              to: 'examples/basic',
+            },
+            {
+              label: 'Simple',
+              to: 'examples/simple',
+            },
+            {
+              label: 'Calculator',
+              to: 'examples/calculator',
+            },
+            {
+              label: 'Configure Default Link',
+              to: 'examples/configureDefaultLink',
+            },
+            {
+              label: 'Configure Default Port',
+              to: 'examples/configureDefaultPort',
+            },
+            {
+              label: 'Performance',
+              to: 'examples/performance',
+            },
+          ],
+        },
+        {
           href: 'https://github.com/tokarchyn/react-easy-diagram',
           label: 'GitHub',
           position: 'right',

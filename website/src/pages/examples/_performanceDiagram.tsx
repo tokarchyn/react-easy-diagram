@@ -1,14 +1,17 @@
----
-title: Performance
-hide_table_of_contents: true
-hide_title: true
----
+import React from 'react';
+import {
+  createCurvedLinkPathConstructor,
+  createDefaultMiniControl,
+  createLinkDefault,
+  Diagram,
+  ILinkState,
+  INodeState,
+} from '@react-easy-diagram/core';
 
-```js live noInline
-const generateState = (colNum, rowNum) => {
-  const nodes = [];
-  const links = [];
-  const getNodeId = (i, j) => `node_${i}_${j}`;
+const generateState = (colNum: number, rowNum: number) => {
+  const nodes: INodeState[] = [];
+  const links: ILinkState[] = [];
+  const getNodeId = (i: number, j: number) => `node_${i}_${j}`;
 
   for (let i = 0; i < colNum; i++) {
     for (let j = 0; j < rowNum; j++) {
@@ -52,7 +55,7 @@ const generateState = (colNum, rowNum) => {
   return { nodes, links };
 };
 
-const App = () => (
+export default () => (
   <Diagram
     initState={generateState(10, 10)}
     settings={{
@@ -71,6 +74,3 @@ const App = () => (
     }}
   />
 );
-
-render(App);
-```
