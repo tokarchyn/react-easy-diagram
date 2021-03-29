@@ -1,10 +1,11 @@
+import { observer } from 'mobx-react-lite';
 import React, { useMemo } from 'react';
 import { IComponentDefinition } from '..';
 import { IBackgroundComponentProps } from '../states/diagramSettings';
 
 const BackgroundDefault: React.FC<
   IBackgroundComponentProps<IBackgroundDefaultSettings>
-> = ({ diagramOffset, diagramZoom, settings }) => {
+> = observer(({ diagramOffset, diagramZoom, settings }) => {
   const finalSettings = settings ?? defaultSettings;
 
   const backgroundImage = useMemo(
@@ -25,7 +26,7 @@ const BackgroundDefault: React.FC<
       }}
     />
   );
-};
+});
 
 const gridImageGenerator = (
   width: number,

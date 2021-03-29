@@ -1,9 +1,17 @@
 import { Point } from '../types/common';
 import { makeAutoObservable } from 'mobx';
 import { HtmlElementRefState } from './htmlElementRefState';
-import { componentDefaultType, NodeState, RootStore } from '.';
+import {
+  componentDefaultType,
+  IPortVisualComponentProps,
+  NodeState,
+  RootStore,
+  VisualComponentState,
+} from '.';
 import { deepCopy } from '../utils';
 import { LinkState } from './linkState';
+import { VisualComponent } from './visualComponentState';
+import React from 'react';
 
 export class PortState {
   private _id: string;
@@ -11,6 +19,7 @@ export class PortState {
   private _label: string;
   private _type: string;
   private _extra: any;
+  private _component: VisualComponentState<IPortVisualComponentProps> | null = null;
 
   private _ref: HtmlElementRefState = new HtmlElementRefState(null);
   private _dragging: boolean = false;
@@ -93,6 +102,7 @@ export class PortState {
     this.setType(state?.type);
     this.setLabel(state?.label);
     this.setExtra(state?.extra);
+    this.setComponent(state?.component);
   };
 
   export = (): IPortStateWithIds =>
@@ -131,7 +141,18 @@ export class PortState {
     return this._ref.realSize;
   }
 
+  setComponent(value?: VisualComponent<IPortVisualComponentProps> | null) {
+    if (!value) {
+      this._component = null;
+    } else {
+      this._component = new VisualComponentState<IPortVisualComponentProps>(
+        value
+      );
+    }
+  }
+
   get componentDefinition() {
+    if (this._component) return this._component;
     const { portVisualComponents } = this._rootStore.portsSettings;
     return portVisualComponents.getComponent(this.type);
   }
@@ -151,6 +172,7 @@ export interface IPortStateWithoutIds {
   label?: string;
   type?: string;
   extra?: any;
+  component?: VisualComponent<IPortVisualComponentProps>;
 }
 
 export interface IPortStateWithIds extends IPortStateWithoutIds {
@@ -158,11 +180,10 @@ export interface IPortStateWithIds extends IPortStateWithoutIds {
   nodeId: string;
 }
 
-export interface IPortState extends IPortStateWithoutIds {
-  id?: string;
-  nodeId?: string;
-}
-
 export function createFullPortId(nodeId: string, portId: string) {
   return `${nodeId}-${portId}`;
+}
+
+class Test extends React.Component{
+  
 }

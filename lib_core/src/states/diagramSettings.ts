@@ -66,7 +66,7 @@ export interface IDiagramSettings {
     | IComponentDefinition<IMiniControlComponentProps>
     | VisualComponent<IMiniControlComponentProps>;
   zoomInterval?: Point;
-  zoomToFitSettings: IZoomToFitSettings;
+  zoomToFitSettings?: IZoomToFitSettings;
 }
 
 export interface IBackgroundComponentProps<TSettings = {}> {

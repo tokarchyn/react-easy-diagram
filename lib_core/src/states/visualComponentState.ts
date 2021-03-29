@@ -1,5 +1,4 @@
 import { makeAutoObservable } from 'mobx';
-import { observer } from 'mobx-react-lite';
 
 export class VisualComponentState<TComponentProps> {
   private _component: VisualComponent<TComponentProps>;
@@ -20,10 +19,10 @@ export class VisualComponentState<TComponentProps> {
       | VisualComponent<TComponentProps>
   ) => {
     if ('component' in newComponent) {
-      this._component = observer(newComponent.component);
+      this._component = newComponent.component;
       this._settings = newComponent.settings ?? {};
     } else {
-      this._component = observer(newComponent);
+      this._component = newComponent;
       this._settings = {};
     }
   };
@@ -43,7 +42,7 @@ export interface IVisualComponentProps<TEntity, TSettings extends {} = {}> {
 
 export type VisualComponent<
   TComponentProps
-> = React.FunctionComponent<TComponentProps>;
+> =  React.FunctionComponent<TComponentProps>;
 
 export interface IComponentDefinition<
   TComponentProps,

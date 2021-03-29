@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { IComponentDefinition, IPortVisualComponentProps } from '../states';
 import { Point } from '../types';
@@ -12,7 +13,7 @@ export interface IPortDefaultSettings {
 
 export const PortDefault: React.FC<
   IPortVisualComponentProps<IPortDefaultSettings>
-> = ({ entity: port, settings }) => {
+> = observer(({ entity: port, settings }) => {
   const finalSettings = {
     ...portDefaultSettings,
     ...settings,
@@ -31,11 +32,11 @@ export const PortDefault: React.FC<
         width: finalSettings.size[0],
         height: finalSettings.size[1],
         backgroundColor: color,
-        borderRadius: '2px'
+        borderRadius: '2px',
       }}
     ></div>
   );
-};
+});
 
 const portDefaultSettings: IPortDefaultSettings = {
   size: [10, 10],

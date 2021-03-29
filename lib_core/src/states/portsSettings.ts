@@ -37,6 +37,6 @@ export interface IPortVisualComponentProps<TSettings extends {} = {}>
   extends IVisualComponentProps<PortState, TSettings> {}
 
 export interface IPortsSettings {
-  portComponents: IVisualComponentsObject<IPortVisualComponentProps>['components'];
-  portDefaultType: IVisualComponentsObject<IPortVisualComponentProps>['defaultType'];
+  portComponents?: IVisualComponentsObject<IPortVisualComponentProps>['components'];
+  portDefaultType?: IVisualComponentsObject<IPortVisualComponentProps>['defaultType'];
 }

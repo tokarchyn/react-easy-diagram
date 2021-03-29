@@ -16,7 +16,7 @@ import {
 import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 
 export class LinksSettings {
-  private _pathConstructor = defaultPathConstructor;
+  private _pathConstructor: ILinkPathConstructor = defaultPathConstructor;
   private _visualComponents = new VisualComponents<
     LinkState | LinkCreationState,
     ILinkVisualComponentProps
@@ -56,7 +56,7 @@ export interface ILinkVisualComponentProps<TSettings extends {} = {}>
 
 export interface ILinksSettings
   extends IVisualComponentsObject<ILinkVisualComponentProps> {
-  pathConstructor: ILinkPathConstructor;
+  pathConstructor?: ILinkPathConstructor;
 }
 
 export type ILinkPathConstructor = (

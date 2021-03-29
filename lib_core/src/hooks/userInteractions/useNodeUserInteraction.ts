@@ -19,8 +19,8 @@ export const useNodeUserInteraction = (
 
   // Should trigger rendering on change, otherwise useUserSelectSwitcher will not be invoked
   const activeRef = useNotifyRef(false);
-  const selectionHandledRef = useNotifyRef(false);
-  const selectionTimeoutRef = useNotifyRef<NodeJS.Timeout | null>(null);
+  const selectionHandledRef = useRef(false);
+  const selectionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const userInteractionElemRef = useRef<HTMLElement>(null);
 
   const handlers = useMemo<GestureHandlers>(
@@ -96,7 +96,7 @@ export const useNodeUserInteraction = (
 const selectDelay: number = 500;
 
 function cancelPortsEvents(event: React.PointerEvent<Element> | PointerEvent) {
-  return eventPathContainsClass(event, 'react_fast_diagram_PortWrapper');
+  return eventPathContainsClass(event, 'react_fast_diagram_port');
 }
 
 export interface IUseNodeUserInteractionResult {

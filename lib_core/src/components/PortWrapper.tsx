@@ -4,25 +4,24 @@ import { usePortUserInteraction } from '../hooks/userInteractions/usePortUserInt
 import { observer } from 'mobx-react-lite';
 
 export const PortWrapper: React.FC<{ port: PortState }> = observer(
-  ({ port }) => {
-    const { userInteractionElemRef, bind } = usePortUserInteraction(port);
+  ({ port, children }) => {
+    const { bind } = usePortUserInteraction(port);
+
+    children = children ?? (
+      <port.componentDefinition.component
+        entity={port}
+        settings={port.componentDefinition.settings}
+      />
+    );
 
     return (
       <div
-        ref={{
-          set current(value: HTMLDivElement) {
-            userInteractionElemRef.current = value;
-            port.ref.current = value;
-          },
-        }}
+        ref={port.ref}
         {...bind()}
-        id={port.nodeId + ':' + port.id}
-        className='react_fast_diagram_PortWrapper'
+        id={port.fullId}
+        className='react_fast_diagram_port'
       >
-        <port.componentDefinition.component
-          entity={port}
-          settings={port.componentDefinition.settings}
-        />
+        {children}
       </div>
     );
   }

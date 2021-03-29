@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { LinkCreationState } from '../states';
 import { ILinkVisualComponentProps } from '../states/linksSettings';
@@ -5,7 +6,7 @@ import { IComponentDefinition } from '../states/visualComponentState';
 
 export const LinkDefault: React.FC<
   ILinkVisualComponentProps<Partial<ILinkDefaultSettings>>
-> = ({entity, settings, bind}) => {
+> = observer(({entity, settings, bind}) => {
   const finalSettings = {
     ...linkDefaultSettings,
     ...settings,
@@ -45,7 +46,7 @@ export const LinkDefault: React.FC<
       )}
     </g>
   );
-};
+});
 
 export interface ILinkDefaultSettings {
   color: string;

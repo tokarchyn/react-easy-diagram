@@ -12,8 +12,8 @@ export const useLinkUserInteraction = (
   const rootStore = useRootStore();
 
   const activeRef = useNotifyRef(false);
-  const selectionHandledRef = useNotifyRef(false);
-  const selectionTimeoutRef = useNotifyRef<NodeJS.Timeout | null>(null);
+  const selectionHandledRef = useRef(false);
+  const selectionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handlers = useMemo<GestureHandlers>(
     () =>

@@ -1,16 +1,22 @@
 import React from 'react';
 import { INodeVisualComponentProps } from '../states/nodesSettings';
-import { IComponentDefinition, NodeState, PortState, VisualComponent } from '../states';
+import {
+  IComponentDefinition,
+  NodeState,
+  PortState,
+  VisualComponent,
+} from '../states';
 import {
   createPortsContainerDefault,
   IPortsContainerDefaultProps,
 } from './PortsContainerDefault';
 import { Dictionary, RelativePosition } from '../types';
 import { NodeLabel } from './NodeLabel';
+import { observer } from 'mobx-react-lite';
 
 export const NodeDefault: React.FC<
   INodeVisualComponentProps<INodeDefaultSettings>
-> = ({ entity, settings, draggableRef }) => {
+> = observer(({ entity, settings, draggableRef }) => {
   const finalSettings = {
     ...defaultNodeDefaultSettings,
     ...settings,
@@ -39,7 +45,7 @@ export const NodeDefault: React.FC<
       className='react_fast_diagram_Node_Default'
       style={finalStyles}
     >
-      <finalSettings.innerNode node={entity}/>
+      <finalSettings.innerNode node={entity} />
 
       {Array.from(groupedPorts).map(([k, v]) => (
         <finalSettings.nodeContainer
@@ -50,7 +56,7 @@ export const NodeDefault: React.FC<
       ))}
     </div>
   );
-};
+});
 
 function portTypeToPosition(
   portType: string,
@@ -76,7 +82,7 @@ const defaultNodeDefaultSettings: INodeDefaultSettings = {
   nodeContainer: createPortsContainerDefault({
     offsetFromOriginPosition: 5,
   }),
-  innerNode: NodeLabel
+  innerNode: NodeLabel,
 };
 
 export interface INodeDefaultSettings {
@@ -84,7 +90,7 @@ export interface INodeDefaultSettings {
   selectedStyle: React.CSSProperties;
   nodeContainer: VisualComponent<IPortsContainerDefaultProps>;
   portTypeToPositionMapping?: Dictionary<RelativePosition>;
-  innerNode: VisualComponent<{node: NodeState}>;
+  innerNode: VisualComponent<{ node: NodeState }>;
 }
 
 export function createNodeDefault(

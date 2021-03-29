@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import {
   CornerPosition,
@@ -7,7 +8,7 @@ import {
 
 const MiniControlDefault: React.FC<
   IMiniControlComponentProps<IMiniControlDefaultSettings>
-> = ({ rootStore, settings }) => {
+> = observer(({ rootStore, settings }) => {
   settings = settings ?? defaultSettings;
 
   return (
@@ -47,7 +48,7 @@ const MiniControlDefault: React.FC<
       }
     </div>
   );
-};
+});
 
 function getOffsetStyles(settings: IMiniControlDefaultSettings) {
   return {

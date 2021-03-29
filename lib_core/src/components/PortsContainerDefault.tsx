@@ -1,13 +1,19 @@
 import React from 'react';
 import { PortWrapper } from './PortWrapper';
 import { VisualComponent } from '../states/visualComponentState';
-import { RelativePosition } from '../types/common';
+import { Point, RelativePosition } from '../types/common';
 import { PortState } from '../states/portState';
+import { useRelativePositionStyles } from '../hooks/useRelativePositionStyles';
+import { observer } from 'mobx-react-lite';
 
 export interface IPortsContainerDefaultSettings {
   style?: React.CSSProperties;
   gapBetweenPorts: string;
-  offsetFromOriginPosition?: number;
+  /**
+   * If number - offset from origin position in direction from the center of parent element.
+   * If Point - horizontal offset and vertical offset.
+   */
+  offsetFromOriginPosition?: number | Point;
 }
 
 export interface IPortsContainerDefaultProps {
@@ -17,50 +23,37 @@ export interface IPortsContainerDefaultProps {
 
 const PortsContainerDefault: React.FC<
   IPortsContainerDefaultProps & IPortsContainerDefaultSettings
-> = ({ position, ports, style, gapBetweenPorts, offsetFromOriginPosition }) => {
-  let className = 'react_fast_diagram_flex_gap ';
-  if (position === 'top' || position === 'bottom') {
-    className += 'react_fast_diagram_flex_gap_x';
-  } else {
-    className += 'react_fast_diagram_flex_gap_y';
+> = observer(
+  ({ position, ports, style, gapBetweenPorts, offsetFromOriginPosition }) => {
+    let className = 'react_fast_diagram_flex_gap ';
+    if (position === 'top' || position === 'bottom') {
+      className += 'react_fast_diagram_flex_gap_x';
+    } else {
+      className += 'react_fast_diagram_flex_gap_y';
+    }
+
+    const positionStyles = useRelativePositionStyles(
+      position,
+      offsetFromOriginPosition,
+      true
+    );
+
+    return (
+      <div
+        className={className}
+        style={{
+          // @ts-ignore
+          '--gap': gapBetweenPorts,
+          ...style,
+          ...positionStyles,
+        }}
+      >
+        {ports &&
+          ports.map((port) => <PortWrapper key={port.id} port={port} />)}
+      </div>
+    );
   }
-
-  const positionStyle = {
-    position: 'absolute',
-    left: position === 'left' ? 0 : undefined,
-    top:
-      position === 'left' || position === 'right' || position === 'top'
-        ? 0
-        : undefined,
-    right: position === 'right' ? 0 : undefined,
-    bottom: position === 'bottom' ? 0 : undefined,
-    height: position === 'left' || position === 'right' ? '100%' : undefined,
-    width: position === 'top' || position === 'bottom' ? '100%' : undefined,
-  };
-
-  const offsetFromOriginPositionStyle = {};
-  if (
-    offsetFromOriginPosition &&
-    (Object.values(RelativePosition).includes(position))
-  ) {
-    offsetFromOriginPositionStyle[position] = -offsetFromOriginPosition;
-  }
-
-  return (
-    <div
-      className={className}
-      style={{
-        // @ts-ignore
-        '--gap': gapBetweenPorts,
-        ...style,
-        ...positionStyle,
-        ...offsetFromOriginPositionStyle,
-      }}
-    >
-      {ports && ports.map((port) => <PortWrapper key={port.id} port={port} />)}
-    </div>
-  );
-};
+);
 
 export function createPortsContainerDefault(
   settings?: Partial<IPortsContainerDefaultSettings>

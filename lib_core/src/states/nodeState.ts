@@ -1,6 +1,6 @@
-import { Dictionary, Point } from '../types/common';
+import { Dictionary, errorResult, Point, SuccessOrErrorResult, successResult, successValueResult } from '../types/common';
 import { makeAutoObservable } from 'mobx';
-import { IPortState, PortState } from './portState';
+import { IPortStateWithoutIds, PortState } from './portState';
 import { deepCopy, generateTransform, guidForcedUniqueness } from '../utils';
 import { RootStore } from './rootStore';
 import { HtmlElementRefState } from './htmlElementRefState';
@@ -129,9 +129,9 @@ export class NodeState implements ISelectableItem {
     } else return undefined;
   };
 
-  addPort = (port: IPortState): boolean => {
+  addPort = (port: INodePortState): SuccessOrErrorResult<PortState> => {
     if (!port || (port.id && this._ports[port.id])) {
-      return false;
+      return errorResult();
     }
     const newPort = new PortState(
       this._rootStore,
@@ -140,7 +140,7 @@ export class NodeState implements ISelectableItem {
       port
     );
     this._ports[newPort.id] = newPort;
-    return true;
+    return successValueResult(newPort);
   };
 
   removePort = (portId: string): boolean => {
@@ -175,9 +175,13 @@ export class NodeState implements ISelectableItem {
 export interface INodeStateWithoutId {
   label?: string;
   position: Point;
-  ports?: IPortState[];
+  ports?: INodePortState[];
   componentType?: string;
   extra?: any;
+}
+
+export interface INodePortState extends IPortStateWithoutIds {
+  id: string;
 }
 
 export interface INodeStateWithId extends INodeStateWithoutId {
