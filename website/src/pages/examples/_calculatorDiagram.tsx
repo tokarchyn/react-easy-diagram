@@ -3,7 +3,6 @@ import {
   Diagram,
   INodeVisualComponentProps,
   Port,
-  RelativePosition,
 } from '@react-easy-diagram/core';
 import { observer } from 'mobx-react-lite';
 
@@ -21,7 +20,7 @@ const NumberProvider = observer<INodeVisualComponentProps>(({ entity, draggableR
           defaultValue={port && port.extra}
         />
       </span>
-      <Port id='number' position={RelativePosition.right} />
+      <Port id='number' position='right-center' />
     </div>
   );
 });
@@ -53,9 +52,9 @@ const AddNumbers = observer<INodeVisualComponentProps>(({ entity, draggableRef }
     <div className="react_fast_diagram_Node_Default" ref={draggableRef}>
       <div>Add numbers</div>
       <span>Result: {outputPort ? outputPort.extra : ''}</span>
-      <Port id='number_1' position={RelativePosition.left} offsetFromOrigin={10}/>
-      <Port id='number_2' position={RelativePosition.left} />
-      <Port id='output' position={RelativePosition.right} />
+      <Port id='number_1' position='left-center' offsetFromOrigin={[0,-15]}/>
+      <Port id='number_2' position='left-center' offsetFromOrigin={[0,15]}/>
+      <Port id='output' position='right-center' />
     </div>
   );
 });

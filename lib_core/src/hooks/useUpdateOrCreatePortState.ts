@@ -1,26 +1,32 @@
-import { useMemo } from 'react';
-import { useRootStore } from '.';
+import { useEffect } from 'react';
+import { useNotifyRef, useRootStore } from '.';
 import { IPortStateWithIds, PortState } from '..';
 
 export function useUpdateOrCreatePortState(
   port: IPortStateWithIds
 ): PortState | undefined {
   const { nodesStore } = useRootStore();
-  return useMemo<PortState | undefined>(() => {
+  const portRef = useNotifyRef<PortState|undefined>(undefined);
+  useEffect(() => {
     const node = nodesStore.getNode(port.nodeId);
-    if (!node) return undefined;
+    if (!node){
+      portRef.current = undefined;
+      return;
+    };
 
     const portState = node.getPort(port.id);
     if (portState) {
       portState.import(port);
-      return portState;
+      portRef.current = portState;
     } else {
       const result = node.addPort(port);
       if (result.success) {
-        return result.value;
+        portRef.current = result.value;
       } else {
-        return undefined;
+        portRef.current = undefined;
       }
     }
   }, Object.values(port));
+
+  return portRef.current;
 }

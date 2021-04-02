@@ -10,7 +10,11 @@ import {
   createPortsContainerDefault,
   IPortsContainerDefaultProps,
 } from './PortsContainerDefault';
-import { Dictionary, RelativePosition } from '../types';
+import {
+  Dictionary,
+  Position,
+  positionValues,
+} from '../types';
 import { NodeLabel } from './NodeLabel';
 import { observer } from 'mobx-react-lite';
 
@@ -26,7 +30,7 @@ export const NodeDefault: React.FC<
     ...(entity.selected ? finalSettings.selectedStyle : undefined),
   };
 
-  const groupedPorts = new Map<RelativePosition, PortState[]>();
+  const groupedPorts = new Map<Position, PortState[]>();
   Object.values(entity.ports).forEach((p) => {
     let position = portTypeToPosition(
       p.type,
@@ -50,7 +54,7 @@ export const NodeDefault: React.FC<
       {Array.from(groupedPorts).map(([k, v]) => (
         <finalSettings.nodeContainer
           ports={v}
-          position={k as RelativePosition}
+          position={k}
           key={k}
         />
       ))}
@@ -60,17 +64,15 @@ export const NodeDefault: React.FC<
 
 function portTypeToPosition(
   portType: string,
-  mapping?: Dictionary<RelativePosition>
-): RelativePosition | undefined {
+  mapping?: Dictionary<Position>
+): Position | undefined {
   if (!portType) return undefined;
 
-  if (mapping) {
-    return mapping[portType] ?? (portType as RelativePosition);
+  if (mapping && mapping[portType]) {
+    return mapping[portType];
   } else {
-    return Object.values(RelativePosition).includes(
-      portType as RelativePosition
-    )
-      ? (portType as RelativePosition)
+    return positionValues.includes(portType as Position)
+      ? (portType as Position)
       : undefined;
   }
 }
@@ -89,7 +91,7 @@ export interface INodeDefaultSettings {
   style?: React.CSSProperties;
   selectedStyle: React.CSSProperties;
   nodeContainer: VisualComponent<IPortsContainerDefaultProps>;
-  portTypeToPositionMapping?: Dictionary<RelativePosition>;
+  portTypeToPositionMapping?: Dictionary<Position>;
   innerNode: VisualComponent<{ node: NodeState }>;
 }
 

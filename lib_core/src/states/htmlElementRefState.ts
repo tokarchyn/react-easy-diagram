@@ -24,8 +24,9 @@ export class HtmlElementRefState {
       let acumTop = 0;
 
       while (parent !== iterElement && iterElement) {
-        acumLeft += iterElement.offsetLeft;
-        acumTop += iterElement.offsetTop;
+        const translate = getTranslate(iterElement);
+        acumLeft += iterElement.offsetLeft + translate[0];
+        acumTop += iterElement.offsetTop + translate[1];
         iterElement = iterElement.parentElement;
       }
 
@@ -46,6 +47,26 @@ export class HtmlElementRefState {
       return null;
     }
   }
+}
+
+// https://stackoverflow.com/questions/21912684/how-to-get-value-of-translatex-and-translatey
+// https://gist.github.com/aderaaij/a6b666bf756b2db1596b366da921755d
+function getTranslate(item: HTMLElement): Point {
+  const transArr: Point = [0, 0];
+  if (!window.getComputedStyle) {
+    return transArr;
+  }
+  const style = window.getComputedStyle(item);
+  const transform = style.transform || style.webkitTransform;
+  // matrix(a, b, c, d, tx, ty)
+  // consider also to add matrix3d(a, b, 0, 0, c, d, 0, 0, 0, 0, 1, 0, tx, ty, 0, 1)
+  let mat = transform.match(/^matrix\((.+)\)$/);
+  if (mat) {
+    transArr[0] = parseInt(mat[1].split(', ')[4], 10);
+    transArr[1] = parseInt(mat[1].split(', ')[5], 10);
+  }
+
+  return transArr;
 }
 
 export interface IHtmlElementRect {

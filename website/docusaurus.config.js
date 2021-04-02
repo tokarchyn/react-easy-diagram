@@ -25,7 +25,7 @@ module.exports = {
         },
         {
           label: 'Examples',
-          position: 'right', // or 'right'
+          position: 'right',
           items: [
             {
               label: 'Basic',
@@ -50,6 +50,10 @@ module.exports = {
             {
               label: 'Performance',
               to: 'examples/performance',
+            },
+            {
+              label: 'Port Position',
+              to: 'examples/portPosition',
             },
           ],
         },

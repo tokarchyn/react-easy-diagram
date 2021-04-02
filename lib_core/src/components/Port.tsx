@@ -4,12 +4,13 @@ import { usePortUserInteraction } from '../hooks/userInteractions/usePortUserInt
 import { observer } from 'mobx-react-lite';
 import { NodeContext } from './NodeWrapper';
 import { useUpdateOrCreatePortState } from '../hooks/useUpdateOrCreatePortState';
-import { useRelativePositionStyles } from '../hooks/useRelativePositionStyles';
-import { Point, RelativePosition } from '..';
+import { PortPosition, useRelativePositionStyles } from '../hooks/useRelativePositionStyles';
+import { Point } from '..';
 
 export interface IPortProps extends INodePortState {
-  position: RelativePosition,
-  offsetFromOrigin?: number | Point
+  position: PortPosition,
+  offsetFromNodeCenter?: number,
+  offsetFromOrigin?: Point
 }
 
 export const Port: React.FC<IPortProps> = observer((props) => {
@@ -24,7 +25,7 @@ export const Port: React.FC<IPortProps> = observer((props) => {
     nodeId: node.id,
   });
   const { bind } = usePortUserInteraction(portState);
-  const positionStyles = useRelativePositionStyles(props.position, props.offsetFromOrigin)
+  const positionStyles = useRelativePositionStyles(props.position, props.offsetFromNodeCenter, props.offsetFromOrigin)
 
   if (!portState) {
     return null;
