@@ -1,13 +1,10 @@
-import { ILinkPathConstructor } from '..';
-import { Point } from '../types/common';
+import { ILinkPathConstructor, ILinkPathConstructorEndpointInfo } from '..';
 
 function straightLinkPathConstructor(
-  source: Point,
-  target: Point,
-  sourcePortType: string | undefined,
-  targetPortType: string | undefined
+  source: ILinkPathConstructorEndpointInfo,
+  target: ILinkPathConstructorEndpointInfo
 ): string {
-  const path = `M ${source[0]} ${source[1]}, ${target[0]} ${target[1]}`;
+  const path = `M ${source.point[0]} ${source.point[1]}, ${target.point[0]} ${target.point[1]}`;
 
   return path;
 }

@@ -10,11 +10,11 @@ import { Point } from '..';
 export interface IPortProps extends INodePortState {
   position: PortPosition,
   offsetFromNodeCenter?: number,
-  offsetFromOrigin?: Point
+  offsetFromOrigin?: Point,
 }
 
 export const Port: React.FC<IPortProps> = observer((props) => {
-  const { id, label, extra, type, component } = props;
+  const { id, label, extra, type, component, linkDirection } = props;
   const node = useContext(NodeContext) as NodeState; // node should already exist
   const portState = useUpdateOrCreatePortState({
     id,
@@ -23,6 +23,7 @@ export const Port: React.FC<IPortProps> = observer((props) => {
     type,
     component,
     nodeId: node.id,
+    linkDirection
   });
   const { bind } = usePortUserInteraction(portState);
   const positionStyles = useRelativePositionStyles(props.position, props.offsetFromNodeCenter, props.offsetFromOrigin)

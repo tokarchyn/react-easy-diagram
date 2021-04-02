@@ -1,30 +1,26 @@
-import { ILinkPathConstructor } from '../states/linksSettings';
-import { Point } from '../types/common';
+import { ILinkPathConstructor, ILinkPathConstructorEndpointInfo } from '../states/linksSettings';
+import { Direction, DirectionWithDiagonals, Point } from '../types/common';
 import { distanceBetweenPoints, roundPoint } from '../utils';
 
 function curvedLinkPathConstructor(
-  source: Point,
-  target: Point,
-  sourcePortType: string | undefined,
-  targetPortType: string | undefined,
+  source: ILinkPathConstructorEndpointInfo,
+  target: ILinkPathConstructorEndpointInfo,
   settings: ICurvedLinkPathConstructorSettings
 ): string {
   if (!source || !target) return '';
-  source = roundPoint(source);
-  target = roundPoint(target);
+  const sourcePoint = roundPoint(source.point);
+  const targetPoint = roundPoint(target.point);
 
-  const sourceStr = `${source[0]}, ${source[1]}`;
-  const targetStr = `${target[0]}, ${target[1]}`;
+  const sourceStr = `${source.point[0]}, ${source.point[1]}`;
+  const targetStr = `${target.point[0]}, ${target.point[1]}`;
 
   const directionFactor = settings.tweakDirectionFactorBasedOnDistance(
-    distanceBetweenPoints(source, target),
+    distanceBetweenPoints(sourcePoint, targetPoint),
     settings.directionFactor
   );
 
-  function getControl(endpoint: Point, portType: string | undefined): string {
-    const linkDirection =
-      portType && settings.portTypeToLinkDirectionMapping[portType];
-    switch (linkDirection) {
+  function getControl(endpoint: Point, direction: DirectionWithDiagonals | undefined): string {
+    switch (direction) {
       case 'left':
         return `${endpoint[0] - directionFactor}, ${endpoint[1]}`;
       case 'up':
@@ -38,19 +34,16 @@ function curvedLinkPathConstructor(
     }
   }
 
-  if (sourcePortType || targetPortType) {
-    const sourceControl = getControl(source, sourcePortType);
-    const targetControl = getControl(target, targetPortType);
+  if (source.direction || target.direction) {
+    const sourceControl = getControl(sourcePoint, source.direction);
+    const targetControl = getControl(targetPoint, target.direction);
     return `M ${sourceStr} C ${sourceControl} ${targetControl}, ${targetStr}`;
   } else {
-    return `M ${sourceStr} Q ${target[0]}, ${source[1]}, ${targetStr}`;
+    return `M ${sourceStr} Q ${target.point[0]}, ${source.point[1]}, ${targetStr}`;
   }
 }
 
 export interface ICurvedLinkPathConstructorSettings {
-  portTypeToLinkDirectionMapping: {
-    [key: string]: 'left' | 'right' | 'up' | 'down';
-  };
   directionFactor: number;
   tweakDirectionFactorBasedOnDistance: (
     distance: number,
@@ -59,12 +52,6 @@ export interface ICurvedLinkPathConstructorSettings {
 }
 
 const defualtSettings: ICurvedLinkPathConstructorSettings = {
-  portTypeToLinkDirectionMapping: {
-    left: 'left',
-    right: 'right',
-    top: 'up',
-    bottom: 'down',
-  },
   directionFactor: 60,
   tweakDirectionFactorBasedOnDistance: (distance, directionFactor) => {
     if (distance < 100) {
@@ -78,16 +65,12 @@ export function createCurvedLinkPathConstructor(
   settings?: Partial<ICurvedLinkPathConstructorSettings>
 ): ILinkPathConstructor {
   return (
-    source: Point,
-    target: Point,
-    sourcePortType: string | undefined,
-    targetPortType: string | undefined
+    source: ILinkPathConstructorEndpointInfo,
+    target: ILinkPathConstructorEndpointInfo
   ) =>
     curvedLinkPathConstructor(
       source,
       target,
-      sourcePortType,
-      targetPortType,
       settings ? { ...defualtSettings, ...settings } : defualtSettings
     );
 }

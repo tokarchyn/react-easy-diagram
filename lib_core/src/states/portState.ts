@@ -1,4 +1,4 @@
-import { Point } from '../types/common';
+import { DirectionWithDiagonals, Point } from '../types/common';
 import { makeAutoObservable } from 'mobx';
 import { HtmlElementRefState } from './htmlElementRefState';
 import {
@@ -8,7 +8,7 @@ import {
   RootStore,
   VisualComponentState,
 } from '.';
-import { deepCopy } from '../utils';
+import { deepCopy, multiplyPoint } from '../utils';
 import { LinkState } from './linkState';
 import { VisualComponent } from './visualComponentState';
 import React from 'react';
@@ -19,7 +19,8 @@ export class PortState {
   private _label: string;
   private _type: string;
   private _extra: any;
-  private _component: VisualComponentState<IPortVisualComponentProps> | null = null;
+  private _component: VisualComponentState<IPortVisualComponentProps> | null;
+  private _linkDirection: DirectionWithDiagonals | null;
 
   private _ref: HtmlElementRefState = new HtmlElementRefState(null);
   private _dragging: boolean = false;
@@ -103,6 +104,7 @@ export class PortState {
     this.setLabel(state?.label);
     this.setExtra(state?.extra);
     this.setComponent(state?.component);
+    this._linkDirection = state?.linkDirection ?? null;
   };
 
   export = (): IPortStateWithIds =>
@@ -166,6 +168,28 @@ export class PortState {
       v.source.portId === this._id ? v.target.port : v.source.port
     );
   }
+
+  get linkDirection(): DirectionWithDiagonals | undefined {
+    if (this._linkDirection) return this._linkDirection;
+
+    // Try to guess
+    if (!this.offsetRelativeToNode) return undefined;
+
+    const nodeCenter =
+      this.node.realSize && multiplyPoint(this.node.realSize, 0.5);
+    if (!nodeCenter) return undefined;
+
+    if (this._rootStore.linksSettings.preferLinksDirection === 'horizontal') {
+      return this.offsetRelativeToNode[0] < nodeCenter[0] ? 'left' : 'right';
+    } else if (
+      this._rootStore.linksSettings.preferLinksDirection === 'vertical'
+    ) {
+      return this.offsetRelativeToNode[1] < nodeCenter[1] ? 'up' : 'down';
+    }
+    else {
+      
+    }
+  }
 }
 
 export interface IPortStateWithoutIds {
@@ -173,6 +197,7 @@ export interface IPortStateWithoutIds {
   type?: string;
   extra?: any;
   component?: VisualComponent<IPortVisualComponentProps>;
+  linkDirection?: DirectionWithDiagonals;
 }
 
 export interface IPortStateWithIds extends IPortStateWithoutIds {
@@ -182,8 +207,4 @@ export interface IPortStateWithIds extends IPortStateWithoutIds {
 
 export function createFullPortId(nodeId: string, portId: string) {
   return `${nodeId}-${portId}`;
-}
-
-class Test extends React.Component{
-  
 }

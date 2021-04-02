@@ -9,7 +9,10 @@ export interface Dictionary<TValue> {
   [key: string]: TValue;
 }
 
-export const positionValues = <const> ['left','top','right','bottom'];
+export type Direction = 'left' | 'right' | 'up' | 'down';
+export type DirectionWithDiagonals = Direction | 'left-down' | 'left-up' | 'right-down' | 'right-up';
+
+export const positionValues = <const>['left', 'top', 'right', 'bottom'];
 export type Position = typeof positionValues[number];
 
 export type RelativeXPosition = 'left' | 'center' | 'right';

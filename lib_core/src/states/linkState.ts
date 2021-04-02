@@ -10,7 +10,8 @@ import { LinkPointEndpointState } from './LinkPointEndpointState';
 import { deepCopy } from '../utils';
 import { ISelectableItem } from './selectionState';
 
-export class LinkState implements ILinkState, ISelectableItem, ILinkInteractionState {
+export class LinkState
+  implements ILinkState, ISelectableItem, ILinkInteractionState {
   private _id: string;
   private _componentType: string;
   private _source: LinkPortEndpointState;
@@ -138,10 +139,20 @@ export function createLinkPath(
   }
 
   const pathStr = linksSettings.pathConstructor(
-    source.point,
-    target.point,
-    source.port.type,
-    target instanceof LinkPointEndpointState ? undefined : target.port.type
+    {
+      point: source.point,
+      portType: source.port.type,
+      direction: source.port.linkDirection,
+    },
+    {
+      point: target.point,
+      portType:
+        target instanceof LinkPointEndpointState ? undefined : target.port.type,
+      direction:
+        target instanceof LinkPointEndpointState
+          ? undefined
+          : target.port.linkDirection,
+    }
   );
 
   return {
