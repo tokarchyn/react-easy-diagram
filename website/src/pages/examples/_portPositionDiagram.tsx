@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  createPortDefault,
+  createPortInnerDefault,
   Diagram,
   INodeVisualComponentProps,
   Point,
@@ -133,7 +133,7 @@ export default () => (
       },
       ports: {
         portComponents: {
-          custom_port: createPortDefault({
+          custom_port: createPortInnerDefault({
             color: 'yellow',
           }),
         },

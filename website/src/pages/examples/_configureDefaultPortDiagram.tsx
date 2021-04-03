@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  createPortDefault,
+  createPortInnerDefault,
   Diagram,
 } from '@react-easy-diagram/core';
 
@@ -32,14 +32,14 @@ export default () => (
     settings={{
       ports: {
         portComponents: {
-          default: createPortDefault({
+          default: createPortInnerDefault({
             size: [10, 10],
             color: '#6eb7ff',
             dragColor: '#49f860',
             hoverColor: '#49f860',
             invalidColor: '#fa4040',
           }),
-          left: createPortDefault({
+          left: createPortInnerDefault({
             size: [7, 15],
           }),
         },

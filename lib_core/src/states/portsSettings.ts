@@ -6,7 +6,7 @@ import {
 import { makeAutoObservable } from 'mobx';
 import { PortState } from './portState';
 import { IVisualComponentProps } from './visualComponentState';
-import { createPortDefault } from '../components/PortDefault';
+import { createPortInnerDefault } from '../components/PortInnerDefault';
 
 export class PortsSettings {
 
@@ -14,7 +14,7 @@ export class PortsSettings {
     PortState,
     IPortVisualComponentProps
   > = new VisualComponents<PortState, IPortVisualComponentProps>({
-    [componentDefaultType]: createPortDefault(),
+    [componentDefaultType]: createPortInnerDefault(),
   });
 
   constructor() {

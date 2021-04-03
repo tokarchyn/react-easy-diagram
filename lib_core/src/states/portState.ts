@@ -143,7 +143,9 @@ export class PortState {
     return this._ref.realSize;
   }
 
-  setComponent(value?: VisualComponent<IPortVisualComponentProps> | null) {
+  setComponent = (
+    value?: VisualComponent<IPortVisualComponentProps> | null
+  ) => {
     if (!value) {
       this._component = null;
     } else {
@@ -151,7 +153,7 @@ export class PortState {
         value
       );
     }
-  }
+  };
 
   get componentDefinition() {
     if (this._component) return this._component;
@@ -186,10 +188,11 @@ export class PortState {
     ) {
       return this.offsetRelativeToNode[1] < nodeCenter[1] ? 'up' : 'down';
     }
-    else {
-      
-    }
   }
+
+  setLinkDirectionIfNotYet = (direction: DirectionWithDiagonals) => {
+    this._linkDirection = this._linkDirection ?? direction;
+  };
 }
 
 export interface IPortStateWithoutIds {

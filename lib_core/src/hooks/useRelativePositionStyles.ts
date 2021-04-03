@@ -30,7 +30,7 @@ export const useRelativePositionStyles = (
   } else if (position === 'left-center') {
     positionStyle.left = offsetFromCenter[0] + offsetFromOrigin[0];
     positionStyle.top = '50%';
-    positionStyle.transform = `translateY(calc(-50% + ${offsetFromOrigin[0]}px))`;
+    positionStyle.transform = `translateY(calc(-50% + ${offsetFromOrigin[1]}px))`;
   } else if (position === 'left-bottom') {
     positionStyle.left = offsetFromCenter[0] + offsetFromOrigin[0];
     positionStyle.bottom = offsetFromCenter[1] + offsetFromOrigin[1];
@@ -53,7 +53,7 @@ export const useRelativePositionStyles = (
     positionStyle.right = offsetFromCenter[0] - offsetFromOrigin[0];
     positionStyle.bottom = offsetFromCenter[1] - offsetFromOrigin[1];
   }
-
+  
   return positionStyle;
 };
 

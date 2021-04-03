@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 
 export const NodeContext = React.createContext<NodeState | null>(null);
 
-export const NodeWrapper = observer<{node: NodeState}>(({ node }) => {
+export const NodeWrapper = observer<{ node: NodeState }>(({ node }) => {
   const { userInteractionElemRef } = useNodeUserInteraction(node);
 
   return (
@@ -16,7 +16,7 @@ export const NodeWrapper = observer<{node: NodeState}>(({ node }) => {
         style={{
           left: node.position[0],
           top: node.position[1],
-          zIndex: node.selected ? 10 : undefined
+          zIndex: node.selected ? 10 : undefined,
         }}
         ref={node.ref}
       >

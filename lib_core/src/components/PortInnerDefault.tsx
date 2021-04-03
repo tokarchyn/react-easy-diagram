@@ -11,7 +11,7 @@ export interface IPortDefaultSettings {
   invalidColor: string;
 }
 
-export const PortDefault: React.FC<
+export const PortInnerDefault: React.FC<
   IPortVisualComponentProps<IPortDefaultSettings>
 > = observer(({ entity: port, settings }) => {
   const finalSettings = {
@@ -46,11 +46,11 @@ const portDefaultSettings: IPortDefaultSettings = {
   invalidColor: '#fa4040',
 };
 
-export function createPortDefault(
+export function createPortInnerDefault(
   settings?: Partial<IPortDefaultSettings>
 ): IComponentDefinition<IPortVisualComponentProps, IPortDefaultSettings> {
   return {
-    component: PortDefault,
+    component: PortInnerDefault,
     settings: {
       ...portDefaultSettings,
       ...settings,

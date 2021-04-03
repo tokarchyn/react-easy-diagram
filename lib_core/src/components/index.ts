@@ -12,6 +12,6 @@ export * from './NodeLabel';
 export * from './NodesLayer';
 export * from './NodeWrapper';
 export * from './Port';
-export * from './PortDefault';
+export * from './PortInnerDefault';
 export * from './PortsContainerDefault';
-export * from './PortWrapper';
+export * from './PortInnerWrapper';

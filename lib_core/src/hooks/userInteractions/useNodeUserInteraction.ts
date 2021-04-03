@@ -96,7 +96,7 @@ export const useNodeUserInteraction = (
 const selectDelay: number = 500;
 
 function cancelPortsEvents(event: React.PointerEvent<Element> | PointerEvent) {
-  return eventPathContainsClass(event, 'react_fast_diagram_port');
+  return eventPathContainsClass(event, 'react_easy_diagram_port');
 }
 
 export interface IUseNodeUserInteractionResult {

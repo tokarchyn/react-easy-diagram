@@ -4,13 +4,17 @@ import { usePortUserInteraction } from '../hooks/userInteractions/usePortUserInt
 import { observer } from 'mobx-react-lite';
 import { NodeContext } from './NodeWrapper';
 import { useUpdateOrCreatePortState } from '../hooks/useUpdateOrCreatePortState';
-import { PortPosition, useRelativePositionStyles } from '../hooks/useRelativePositionStyles';
+import {
+  PortPosition,
+  useRelativePositionStyles,
+} from '../hooks/useRelativePositionStyles';
 import { Point } from '..';
+import { PortInnerWrapper } from './PortInnerWrapper';
 
 export interface IPortProps extends INodePortState {
-  position: PortPosition,
-  offsetFromNodeCenter?: number,
-  offsetFromOrigin?: Point,
+  position: PortPosition;
+  offsetFromNodeCenter?: number;
+  offsetFromOrigin?: Point;
 }
 
 export const Port: React.FC<IPortProps> = observer((props) => {
@@ -23,28 +27,22 @@ export const Port: React.FC<IPortProps> = observer((props) => {
     type,
     component,
     nodeId: node.id,
-    linkDirection
+    linkDirection,
   });
-  const { bind } = usePortUserInteraction(portState);
-  const positionStyles = useRelativePositionStyles(props.position, props.offsetFromNodeCenter, props.offsetFromOrigin)
+
+  const positionStyles = useRelativePositionStyles(
+    props.position,
+    props.offsetFromNodeCenter,
+    props.offsetFromOrigin
+  );
 
   if (!portState) {
     return null;
   }
 
   return (
-    <div style={positionStyles}>
-      <div
-        ref={portState.ref}
-        {...bind()}
-        id={portState.fullId}
-        className='react_fast_diagram_port'
-      >
-        <portState.componentDefinition.component
-          entity={portState}
-          settings={portState.componentDefinition.settings}
-        />
-      </div>
-    </div>
+    <>
+      <PortInnerWrapper port={portState} styles={positionStyles} />
+    </>
   );
 });

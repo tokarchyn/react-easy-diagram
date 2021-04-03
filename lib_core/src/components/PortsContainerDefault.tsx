@@ -1,7 +1,7 @@
-import React from 'react';
-import { PortWrapper } from './PortWrapper';
+import React, { useEffect } from 'react';
+import { PortInnerWrapper } from './PortInnerWrapper';
 import { VisualComponent } from '../states/visualComponentState';
-import { positionValues, Position } from '../types/common';
+import { positionValues, Position, Direction } from '../types/common';
 import { PortState } from '../states/portState';
 import { observer } from 'mobx-react-lite';
 
@@ -24,6 +24,12 @@ const PortsContainerDefault: React.FC<
   IPortsContainerDefaultProps & IPortsContainerDefaultSettings
 > = observer(
   ({ position, ports, style, gapBetweenPorts, offsetFromOriginPosition }) => {
+    useEffect(() => {
+      ports.forEach((p) =>
+        p.setLinkDirectionIfNotYet(positionToDirection[position] as Direction)
+      );
+    }, [position, ports]);
+
     let className = 'react_fast_diagram_flex_gap ';
     if (position === 'top' || position === 'bottom') {
       className += 'react_fast_diagram_flex_gap_x';
@@ -61,11 +67,18 @@ const PortsContainerDefault: React.FC<
         }}
       >
         {ports &&
-          ports.map((port) => <PortWrapper key={port.id} port={port} />)}
+          ports.map((port) => <PortInnerWrapper key={port.id} port={port} />)}
       </div>
     );
   }
 );
+
+const positionToDirection = {
+  left: 'left',
+  top: 'up',
+  right: 'right',
+  bottom: 'down',
+};
 
 export function createPortsContainerDefault(
   settings?: Partial<IPortsContainerDefaultSettings>
