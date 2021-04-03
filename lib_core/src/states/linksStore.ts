@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { SuccessOrErrorResult, successValueResult, errorResult, successResult } from 'types/result';
-import { guidForcedUniqueness } from 'utils';
+import { guidForcedUniqueness } from 'utils/guid';
 import { LinkCreationState } from 'states/linkCreationState';
 import { linkPortEndpointsEquals, ILinkPortEndpoint } from 'states/linkPortEndpointState';
 import { LinkState, ILinkState } from 'states/linkState';
@@ -81,7 +81,7 @@ export class LinksStore {
 
     const newLink = new LinkState(
       this._rootStore,
-      link.id ?? guidForcedUniqueness(this._links),
+      link.id ?? guidForcedUniqueness(id => this._links.has(id)),
       link
     );
     this._links.set(newLink.id, newLink);

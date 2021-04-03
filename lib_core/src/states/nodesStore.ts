@@ -1,7 +1,8 @@
 import { makeAutoObservable } from 'mobx';
 import { BoundingBox, Point } from 'types/common';
 import { SuccessOrErrorResult, errorResult, successValueResult } from 'types/result';
-import { guidForcedUniqueness, subtractPoints } from 'utils';
+import { subtractPoints } from 'utils';
+import { guidForcedUniqueness } from 'utils/guid';
 import { NodeState, INodeState, INodeStateWithId } from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
 
@@ -33,7 +34,7 @@ export class NodesStore {
     }
     const newNode = new NodeState(
       this._rootStore,
-      node.id ?? guidForcedUniqueness(this._nodes),
+      node.id ?? guidForcedUniqueness(id => this._nodes.has(id)),
       node
     );
     this._nodes.set(newNode.id, newNode);

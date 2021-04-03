@@ -5,7 +5,8 @@ import {
   errorResult,
   successValueResult,
 } from 'types/result';
-import { deepCopy, generateTransform, guidForcedUniqueness } from 'utils';
+import { deepCopy, generateTransform } from 'utils';
+import { guidForcedUniqueness } from 'utils/guid';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { LinkState } from 'states/linkState';
 import { PortState, IPortStateWithoutIds } from 'states/portState';
@@ -140,7 +141,7 @@ export class NodeState implements ISelectableItem {
     }
     const newPort = new PortState(
       this._rootStore,
-      port.id ?? guidForcedUniqueness(this._ports),
+      port.id ?? guidForcedUniqueness(id => !!this._ports[id]),
       this._id,
       port
     );
