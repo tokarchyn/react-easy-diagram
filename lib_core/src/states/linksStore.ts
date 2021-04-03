@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { SuccessOrErrorResult, successValueResult, errorResult, successResult } from 'types/result';
+import { SuccessOrErrorResult, successValueResult, errorResult, successResult } from 'utils/result';
 import { guidForcedUniqueness } from 'utils/guid';
 import { LinkCreationState } from 'states/linkCreationState';
 import { linkPortEndpointsEquals, ILinkPortEndpoint } from 'states/linkPortEndpointState';

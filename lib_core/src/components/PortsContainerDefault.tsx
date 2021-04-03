@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { PortInnerWrapper } from 'components/PortInnerWrapper';
 import { VisualComponent } from 'states/visualComponentState';
-import { positionValues, Position, Direction } from 'types/position';
+import { positionValues, Position, Direction } from 'utils/position';
 import { PortState } from 'states/portState';
 
 export interface IPortsContainerDefaultSettings {

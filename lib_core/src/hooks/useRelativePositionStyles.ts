@@ -3,7 +3,7 @@ import { Point } from 'types/common';
 import {
   RelativeXYPosition,
   splitRelativeXYPostionByAxis,
-} from 'types/position';
+} from 'utils/position';
 
 export type PortPosition = Exclude<RelativeXYPosition, 'center-center'>;
 

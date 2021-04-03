@@ -3,7 +3,7 @@ import { makeAutoObservable } from 'mobx';
 import { LinkDefault } from 'components/LinkDefault';
 import { createCurvedLinkPathConstructor } from 'linkConstructors/curved';
 import { Point } from 'types/common';
-import { DirectionWithDiagonals } from 'types/position';
+import { DirectionWithDiagonals } from 'utils/position';
 import { LinkCreationState, linkCreationComponentType } from 'states/linkCreationState';
 import { LinkState } from 'states/linkState';
 import { VisualComponents, componentDefaultType, IVisualComponentsObject } from 'states/visualComponents';

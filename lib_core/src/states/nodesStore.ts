@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { BoundingBox, Point } from 'types/common';
-import { SuccessOrErrorResult, errorResult, successValueResult } from 'types/result';
+import { SuccessOrErrorResult, errorResult, successValueResult } from 'utils/result';
 import { subtractPoints } from 'utils';
 import { guidForcedUniqueness } from 'utils/guid';
 import { NodeState, INodeState, INodeStateWithId } from 'states/nodeState';

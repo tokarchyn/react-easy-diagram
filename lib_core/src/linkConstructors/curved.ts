@@ -1,5 +1,5 @@
 import { ILinkPathConstructor, ILinkPathConstructorEndpointInfo } from '../states/linksSettings';
-import { DirectionWithDiagonals } from 'types/position';
+import { DirectionWithDiagonals } from 'utils/position';
 import { distanceBetweenPoints, roundPoint } from 'utils';
 import { Point } from 'types/common';
 

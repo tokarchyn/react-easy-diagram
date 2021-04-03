@@ -10,7 +10,7 @@ import {
   VisualComponent,
 } from 'states/visualComponentState';
 import { NodeState } from 'states/nodeState';
-import { Position, positionValues } from 'types/position';
+import { Position, positionValues } from 'utils/position';
 import { Dictionary } from 'types/common';
 
 export const NodeDefault: React.FC<

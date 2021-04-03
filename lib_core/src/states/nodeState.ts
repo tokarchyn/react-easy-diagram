@@ -4,7 +4,7 @@ import {
   SuccessOrErrorResult,
   errorResult,
   successValueResult,
-} from 'types/result';
+} from 'utils/result';
 import { deepCopy, generateTransform } from 'utils';
 import { guidForcedUniqueness } from 'utils/guid';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
