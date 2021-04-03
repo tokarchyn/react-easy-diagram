@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Handler } from 'react-use-gesture/dist/types';
-import { subtractPoints } from 'utils';
+import { subtractPoints } from 'utils/point';
 import type { IUserInteractionTranslateAndZoom } from 'hooks/userInteractions/common';
 
 export function useDiagramWheelHandler(

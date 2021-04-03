@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { Dictionary } from 'types/common';
+import { Dictionary } from 'utils/common';
 import {
   IVisualComponentProps,
   VisualComponentState,

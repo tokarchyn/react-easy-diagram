@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
-import { Point } from 'types/common';
+import { multiplyPoint, Point } from 'utils/point';
 import { DirectionWithDiagonals } from 'utils/position';
-import { deepCopy, multiplyPoint } from 'utils';
+import { deepCopy } from 'utils';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { LinkState } from 'states/linkState';
 import { NodeState } from 'states/nodeState';

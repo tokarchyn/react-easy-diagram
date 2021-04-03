@@ -1,10 +1,14 @@
 import { makeAutoObservable } from 'mobx';
-import { BoundingBox, Point } from 'types/common';
-import { SuccessOrErrorResult, errorResult, successValueResult } from 'utils/result';
-import { subtractPoints } from 'utils';
+import { BoundingBox } from 'utils/common';
+import {
+  SuccessOrErrorResult,
+  errorResult,
+  successValueResult,
+} from 'utils/result';
 import { guidForcedUniqueness } from 'utils/guid';
 import { NodeState, INodeState, INodeStateWithId } from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
+import { Point, subtractPoints } from 'utils/point';
 
 export class NodesStore {
   private _nodes: Map<string, NodeState> = new Map();
@@ -26,15 +30,18 @@ export class NodesStore {
   };
 
   export = (): INodeStateWithId[] =>
-    Array.from(this._nodes).map(([key,value]) => value.export());
+    Array.from(this._nodes).map(([key, value]) => value.export());
 
-  addNode = (node: INodeState, rewriteIfExists: boolean): SuccessOrErrorResult<NodeState> => {
+  addNode = (
+    node: INodeState,
+    rewriteIfExists: boolean
+  ): SuccessOrErrorResult<NodeState> => {
     if (!node || (!rewriteIfExists && node.id && this._nodes.has(node.id))) {
       return errorResult('');
     }
     const newNode = new NodeState(
       this._rootStore,
-      node.id ?? guidForcedUniqueness(id => this._nodes.has(id)),
+      node.id ?? guidForcedUniqueness((id) => this._nodes.has(id)),
       node
     );
     this._nodes.set(newNode.id, newNode);

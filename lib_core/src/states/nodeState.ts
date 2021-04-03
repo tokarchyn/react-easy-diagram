@@ -1,11 +1,11 @@
 import { makeAutoObservable } from 'mobx';
-import { Point, Dictionary } from 'types/common';
+import { Dictionary } from 'utils/common';
 import {
   SuccessOrErrorResult,
   errorResult,
   successValueResult,
 } from 'utils/result';
-import { deepCopy, generateTransform } from 'utils';
+import { deepCopy } from 'utils';
 import { guidForcedUniqueness } from 'utils/guid';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { LinkState } from 'states/linkState';
@@ -13,6 +13,8 @@ import { PortState, IPortStateWithoutIds } from 'states/portState';
 import { RootStore } from 'states/rootStore';
 import { ISelectableItem } from 'states/selectionState';
 import { componentDefaultType } from 'states/visualComponents';
+import { Point } from 'utils/point';
+import { generateTransform } from 'utils/transformation';
 
 export class NodeState implements ISelectableItem {
   private _id: string;
@@ -141,7 +143,7 @@ export class NodeState implements ISelectableItem {
     }
     const newPort = new PortState(
       this._rootStore,
-      port.id ?? guidForcedUniqueness(id => !!this._ports[id]),
+      port.id ?? guidForcedUniqueness((id) => !!this._ports[id]),
       this._id,
       port
     );

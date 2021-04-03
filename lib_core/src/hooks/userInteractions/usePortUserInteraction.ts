@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useGesture } from 'react-use-gesture';
 import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 import { PortState } from 'states/portState';
-import { multiplyPoint, subtractPoints } from 'utils';
+import { multiplyPoint, subtractPoints } from 'utils/point';
 import { useRootStore } from 'hooks/useRootStore';
 import type { IDragHandlers } from 'hooks/userInteractions/useDiagramDragHandlers';
 import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
@@ -14,7 +14,7 @@ export const usePortUserInteraction = (
   const {
     linksStore: { linkCreation },
     diagramState,
-  } = useRootStore(); 
+  } = useRootStore();
   const handlers = useMemo<IGestureHandlers | {}>(
     () => ({
       onDrag: ({ delta }) => {
@@ -36,7 +36,6 @@ export const usePortUserInteraction = (
         if (linkCreation.startLinking(portState, pointOnPort)) {
           portState.dragging = true;
         }
-
       },
       onDragEnd: () => {
         if (!portState) return;

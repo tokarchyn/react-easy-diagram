@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { Point } from 'types/common';
+import { Point } from 'utils/point';
 import { createDefaultBackground } from 'components/BackgroundDefault';
 import { VisualComponentWithDefault } from 'states/visualComponentWithDefault';
 import { RootStore } from 'states/rootStore';

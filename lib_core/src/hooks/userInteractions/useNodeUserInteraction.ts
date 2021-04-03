@@ -1,7 +1,7 @@
 import React, { useMemo, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
 import { NodeState } from 'states/nodeState';
-import { addPoints, multiplyPoint } from 'utils';
+import { addPoints, multiplyPoint } from 'utils/point';
 import { useNotifyRef } from 'hooks/useNotifyRef';
 import { useRootStore } from 'hooks/useRootStore';
 import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';

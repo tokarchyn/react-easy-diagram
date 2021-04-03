@@ -11,7 +11,7 @@ import {
 } from 'states/visualComponentState';
 import { NodeState } from 'states/nodeState';
 import { Position, positionValues } from 'utils/position';
-import { Dictionary } from 'types/common';
+import { Dictionary } from 'utils/common';
 
 export const NodeDefault: React.FC<
   INodeVisualComponentProps<INodeDefaultSettings>

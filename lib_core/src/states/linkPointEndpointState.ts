@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
-import { Point } from 'types/common';
-import { addPoints } from 'utils';
+import { Point } from 'utils/point';
+import { addPoints } from 'utils/point';
 
 export class LinkPointEndpointState {
   private _point: Point;

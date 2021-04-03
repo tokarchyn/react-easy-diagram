@@ -1,5 +1,5 @@
 import React from 'react';
-import { Point } from 'types/common';
+import { Point } from 'utils/point';
 import {
   RelativeXYPosition,
   splitRelativeXYPostionByAxis,

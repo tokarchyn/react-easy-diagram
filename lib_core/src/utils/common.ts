@@ -1,4 +1,5 @@
-export type Point = [number, number];
+import { Point } from 'utils/point';
+
 export type BoundingBox = {
   topLeftCorner: Point;
   bottomRightCorner: Point;

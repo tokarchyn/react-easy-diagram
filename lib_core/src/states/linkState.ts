@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { Point } from 'types/common';
+import { Point } from 'utils/point';
 import { deepCopy } from 'utils';
 import { LinkPointEndpointState } from 'states/LinkPointEndpointState';
 import { LinkPortEndpointState, ILinkPortEndpoint } from 'states/linkPortEndpointState';

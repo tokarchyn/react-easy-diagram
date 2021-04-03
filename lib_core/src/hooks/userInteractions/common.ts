@@ -4,7 +4,7 @@ import {
   UserHandlers,
   Vector2,
 } from 'react-use-gesture/dist/types';
-import { Point } from 'types/common';
+import { Point } from 'utils/point';
 
 export const eventPathContainsClass = (
   event: PointerEvent | React.PointerEvent<Element>,

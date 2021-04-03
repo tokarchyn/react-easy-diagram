@@ -8,7 +8,7 @@ import {
   PortPosition,
   useRelativePositionStyles,
 } from 'hooks/useRelativePositionStyles';
-import { Point } from 'types/common';
+import { Point } from 'utils/point';
 import { PortInnerWrapper } from 'components/PortInnerWrapper';
 
 export interface IPortProps extends INodePortState {

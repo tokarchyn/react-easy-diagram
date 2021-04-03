@@ -5,15 +5,10 @@ import {
 } from 'hooks/userInteractions/common';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { RootStore } from 'states/rootStore';
-import { BoundingBox, Point } from 'types/common';
-import {
-  addPoints,
-  clampValue,
-  deepCopy,
-  generateTransform,
-  multiplyPoint,
-  subtractPoints,
-} from 'utils';
+import { BoundingBox } from 'utils/common';
+import { clampValue, deepCopy } from 'utils';
+import { addPoints, multiplyPoint, Point, subtractPoints } from 'utils/point';
+import { generateTransform } from 'utils/transformation';
 
 export class DiagramState
   implements IUserInteractionTranslate, IUserInteractionTranslateAndZoom {

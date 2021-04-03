@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Handler } from 'react-use-gesture/dist/types';
-import { Point } from 'types/common';
+import { Point } from 'utils/point';
 import { useRootStore } from 'hooks/useRootStore';
 
 type DragEventHandler =

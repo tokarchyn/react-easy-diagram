@@ -1,7 +1,7 @@
 import { ILinkPathConstructor, ILinkPathConstructorEndpointInfo } from '../states/linksSettings';
 import { DirectionWithDiagonals } from 'utils/position';
-import { distanceBetweenPoints, roundPoint } from 'utils';
-import { Point } from 'types/common';
+import { distanceBetweenPoints, roundPoint } from 'utils/point';
+import { Point } from 'utils/point';
 
 function curvedLinkPathConstructor(
   source: ILinkPathConstructorEndpointInfo,
