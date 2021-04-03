@@ -4,7 +4,7 @@ import {
   SuccessOrErrorResult,
   successResult,
   successValueResult,
-} from '../types/common';
+} from '../types/index';
 import { guidForcedUniqueness } from '../utils';
 import { LinkCreationState } from './linkCreationState';
 import {

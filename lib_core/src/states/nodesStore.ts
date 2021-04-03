@@ -1,4 +1,4 @@
-import { BoundingBox, Dictionary, errorResult, Point, SuccessOrErrorResult, successResult, successValueResult } from '../types/common';
+import { BoundingBox, errorResult, Point, SuccessOrErrorResult, successValueResult } from '../types/index';
 import { makeAutoObservable } from 'mobx';
 import { INodeState, INodeStateWithId, NodeState } from './nodeState';
 import { RootStore } from './rootStore';

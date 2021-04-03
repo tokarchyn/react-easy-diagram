@@ -1,4 +1,4 @@
-import { createLinkDefault, LinkDefault } from '../components/LinkDefault';
+import { LinkDefault } from '../components/LinkDefault';
 import {
   componentDefaultType,
   IVisualComponentsObject,
@@ -7,7 +7,7 @@ import {
 import { makeAutoObservable } from 'mobx';
 import { LinkState } from './linkState';
 import { createCurvedLinkPathConstructor } from '../linkConstructors/curved';
-import { DirectionWithDiagonals, Point } from '../types/common';
+import { DirectionWithDiagonals, Point } from '../types/index';
 import { IVisualComponentProps } from '.';
 import {
   linkCreationComponentType,

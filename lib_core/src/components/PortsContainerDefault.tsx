@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { PortInnerWrapper } from './PortInnerWrapper';
 import { VisualComponent } from '../states/visualComponentState';
-import { positionValues, Position, Direction } from '../types/common';
+import { positionValues, Position, Direction } from '../types/index';
 import { PortState } from '../states/portState';
 import { observer } from 'mobx-react-lite';
 

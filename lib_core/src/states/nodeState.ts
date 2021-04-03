@@ -1,4 +1,4 @@
-import { Dictionary, errorResult, Point, SuccessOrErrorResult, successResult, successValueResult } from '../types/common';
+import { Dictionary, errorResult, Point, SuccessOrErrorResult, successValueResult } from '../types/index';
 import { makeAutoObservable } from 'mobx';
 import { IPortStateWithoutIds, PortState } from './portState';
 import { deepCopy, generateTransform, guidForcedUniqueness } from '../utils';

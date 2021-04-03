@@ -1,4 +1,4 @@
-import { DirectionWithDiagonals, Point } from '../types/common';
+import { DirectionWithDiagonals, Point } from '../types/index';
 import { makeAutoObservable } from 'mobx';
 import { HtmlElementRefState } from './htmlElementRefState';
 import {
