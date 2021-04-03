@@ -1,15 +1,14 @@
+import { makeAutoObservable } from 'mobx';
+import { createPortInnerDefault } from 'components/PortInnerDefault';
+import { PortState } from 'states/portState';
 import {
+  VisualComponents,
   componentDefaultType,
   IVisualComponentsObject,
-  VisualComponents,
-} from './visualComponents';
-import { makeAutoObservable } from 'mobx';
-import { PortState } from './portState';
-import { IVisualComponentProps } from './visualComponentState';
-import { createPortInnerDefault } from '../components/PortInnerDefault';
+} from 'states/visualComponents';
+import { IVisualComponentProps } from 'states/visualComponentState';
 
 export class PortsSettings {
-
   private _portVisualComponents: VisualComponents<
     PortState,
     IPortVisualComponentProps

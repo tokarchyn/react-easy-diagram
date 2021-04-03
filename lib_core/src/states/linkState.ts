@@ -1,14 +1,11 @@
 import { makeAutoObservable } from 'mobx';
-import { Point } from '../types/common';
-import { RootStore } from './rootStore';
-import {
-  LinkPortEndpointState,
-  ILinkPortEndpoint,
-} from './linkPortEndpointState';
-import { componentDefaultType } from './visualComponents';
-import { LinkPointEndpointState } from './LinkPointEndpointState';
-import { deepCopy } from '../utils';
-import { ISelectableItem } from './selectionState';
+import { Point } from 'types/common';
+import { deepCopy } from 'utils';
+import { LinkPointEndpointState } from 'states/LinkPointEndpointState';
+import { LinkPortEndpointState, ILinkPortEndpoint } from 'states/linkPortEndpointState';
+import { RootStore } from 'states/rootStore';
+import { ISelectableItem } from 'states/selectionState';
+import { componentDefaultType } from 'states/visualComponents';
 
 export class LinkState
   implements ILinkState, ISelectableItem, ILinkInteractionState {

@@ -1,22 +1,17 @@
 import React from 'react';
 import { INodeVisualComponentProps } from '../states/nodesSettings';
-import {
-  IComponentDefinition,
-  NodeState,
-  PortState,
-  VisualComponent,
-} from '../states';
-import {
-  createPortsContainerDefault,
-  IPortsContainerDefaultProps,
-} from './PortsContainerDefault';
-import {
-  Dictionary,
-  Position,
-  positionValues,
-} from '../types';
+import { createPortsContainerDefault } from 'components/PortsContainerDefault';
+import type { IPortsContainerDefaultProps } from 'components/PortsContainerDefault';
 import { NodeLabel } from './NodeLabel';
 import { observer } from 'mobx-react-lite';
+import { PortState } from 'states/portState';
+import {
+  IComponentDefinition,
+  VisualComponent,
+} from 'states/visualComponentState';
+import { NodeState } from 'states/nodeState';
+import { Position, positionValues } from 'types/position';
+import { Dictionary } from 'types/common';
 
 export const NodeDefault: React.FC<
   INodeVisualComponentProps<INodeDefaultSettings>
@@ -52,11 +47,7 @@ export const NodeDefault: React.FC<
       <finalSettings.innerNode node={entity} />
 
       {Array.from(groupedPorts).map(([k, v]) => (
-        <finalSettings.nodeContainer
-          ports={v}
-          position={k}
-          key={k}
-        />
+        <finalSettings.nodeContainer ports={v} position={k} key={k} />
       ))}
     </div>
   );

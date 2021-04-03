@@ -4,9 +4,8 @@ import {
   Vector2,
   WebKitGestureEvent,
 } from 'react-use-gesture/dist/types';
-import { subtractPoints } from '../../utils';
-import { useRootStore } from '../useRootStore';
-import { IUserInteractionTranslateAndZoom } from './common';
+import { subtractPoints } from 'utils';
+import type { IUserInteractionTranslateAndZoom } from 'hooks/userInteractions/common';
 
 type PinchEvent =
   | React.TouchEvent

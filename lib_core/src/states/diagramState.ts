@@ -1,19 +1,19 @@
-import { BoundingBox, Point } from '../types/common';
 import { makeAutoObservable } from 'mobx';
-import { RootStore } from './rootStore';
 import {
-  IUserInteractionTranslateAndZoom,
   IUserInteractionTranslate,
-} from '../hooks/userInteractions/common';
+  IUserInteractionTranslateAndZoom,
+} from 'hooks/userInteractions/common';
+import { HtmlElementRefState } from 'states/htmlElementRefState';
+import { RootStore } from 'states/rootStore';
+import { BoundingBox, Point } from 'types/common';
 import {
-  clampValue,
-  generateTransform,
-  subtractPoints,
-  multiplyPoint,
   addPoints,
+  clampValue,
   deepCopy,
-} from '../utils';
-import { HtmlElementRefState } from './htmlElementRefState';
+  generateTransform,
+  multiplyPoint,
+  subtractPoints,
+} from 'utils';
 
 export class DiagramState
   implements IUserInteractionTranslate, IUserInteractionTranslateAndZoom {

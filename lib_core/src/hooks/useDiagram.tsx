@@ -1,10 +1,9 @@
 import React, { useMemo } from 'react';
-import {
-  Diagram,
-  IDiagramInitState
-} from '../components/Diagram';
-import { ISettings, RootStore } from '../states/rootStore';
-import { useNotifyRef } from './useNotifyRef';
+import { Diagram } from 'components/Diagram';
+import type { IDiagramInitState } from 'components/Diagram';
+import { RootStore } from 'states/rootStore';
+import type { ISettings } from 'states/rootStore';
+import { useNotifyRef } from 'hooks/useNotifyRef';
 
 export const useDiagram = (
   initState?: IDiagramInitState,
@@ -15,7 +14,11 @@ export const useDiagram = (
   const obj = useMemo(
     () => ({
       Diagram: () => (
-        <Diagram storeRef={storeRef} initState={initState} settings={settings} />
+        <Diagram
+          storeRef={storeRef}
+          initState={initState}
+          settings={settings}
+        />
       ),
       storeRef,
     }),

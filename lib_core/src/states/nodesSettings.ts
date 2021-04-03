@@ -1,8 +1,12 @@
+import { NodeDefault } from 'components/NodeDefault';
 import { makeAutoObservable } from 'mobx';
-import { componentDefaultType, IVisualComponentProps } from '..';
-import { NodeDefault } from '../components/NodeDefault';
-import { NodeState } from './nodeState';
-import { IVisualComponentsObject, VisualComponents } from './visualComponents';
+import { NodeState } from 'states/nodeState';
+import {
+  VisualComponents,
+  componentDefaultType,
+  IVisualComponentsObject,
+} from 'states/visualComponents';
+import { IVisualComponentProps } from 'states/visualComponentState';
 
 export class NodesSettings {
   private _visualComponents: VisualComponents<

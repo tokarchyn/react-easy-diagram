@@ -3,7 +3,7 @@ import postcss from 'rollup-plugin-postcss';
 import pkg from './package.json';
 import autoprefixer from 'autoprefixer';
 import bundleSize from 'rollup-plugin-bundle-size';
-import { terser } from "rollup-plugin-terser";
+// import { terser } from "rollup-plugin-terser";
 
 const isProd = process.env.NODE_ENV === 'production';
 

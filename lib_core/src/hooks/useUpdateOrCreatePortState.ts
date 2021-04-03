@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { useNotifyRef, useRootStore } from '.';
-import { IPortStateWithIds, PortState } from '..';
+import { useNotifyRef } from 'hooks/useNotifyRef';
+import { useRootStore } from 'hooks/useRootStore';
+import { IPortStateWithIds, PortState } from 'states/portState';
 
 export function useUpdateOrCreatePortState(
   port: IPortStateWithIds

@@ -1,15 +1,12 @@
 import { makeAutoObservable } from 'mobx';
-import {
-  createLinkPath,
-  ILinkInteractionState,
-  ILinkPath,
-  LinkPortEndpointState,
-  Point,
-} from '..';
-import { addPoints, multiplyPoint, subtractPoints } from '../utils';
-import { LinkPointEndpointState } from './LinkPointEndpointState';
-import { PortState } from './portState';
-import { RootStore } from './rootStore';
+import { Point } from 'types/common';
+import { subtractPoints, multiplyPoint, addPoints } from 'utils';
+import { LinkPointEndpointState } from 'states/LinkPointEndpointState';
+import { LinkPortEndpointState } from 'states/linkPortEndpointState';
+import { ILinkInteractionState, ILinkPath, createLinkPath } from 'states/linkState';
+import { PortState } from 'states/portState';
+import { RootStore } from 'states/rootStore';
+
 
 export class LinkCreationState implements ILinkInteractionState {
   private _source: LinkPortEndpointState | null = null;

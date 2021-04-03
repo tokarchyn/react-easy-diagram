@@ -1,5 +1,10 @@
-import { EventTypes, NativeHandlers, UserHandlers, Vector2 } from 'react-use-gesture/dist/types';
-import { Point } from '../../types/common';
+import {
+  EventTypes,
+  NativeHandlers,
+  UserHandlers,
+  Vector2,
+} from 'react-use-gesture/dist/types';
+import { Point } from 'types/common';
 
 export const eventPathContainsClass = (
   event: PointerEvent | React.PointerEvent<Element>,
@@ -80,4 +85,6 @@ export interface IUserInteractionTranslateAndZoom {
   ) => any;
 }
 
-export type GestureHandlers = Partial<UserHandlers<EventTypes> & NativeHandlers<EventTypes>>
+export type GestureHandlers = Partial<
+  UserHandlers<EventTypes> & NativeHandlers<EventTypes>
+>;

@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
-import { LinkState } from './linkState';
-import { NodeState } from './nodeState';
-import { RootStore } from './rootStore';
+import { LinkState } from 'states/linkState';
+import { NodeState } from 'states/nodeState';
+import { RootStore } from 'states/rootStore';
 
 export class SelectionState {
   private _selectedItems: ISelectableItem[] = [];

@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo } from 'react';
-import { InnerDiagram } from './DiagramInner';
-import '../Diagram.css';
-import { ISettings, RootStore } from '../states/rootStore';
-import { INodeState } from '../states/nodeState';
-import { ILinkState } from '../states/linkState';
+import { InnerDiagram } from 'components/DiagramInner';
+import type { ISettings } from 'states/rootStore';
+import { RootStore } from 'states/rootStore';
+import type { INodeState } from 'states/nodeState';
+import type { ILinkState } from 'states/linkState';
 
 import '../Diagram.css';
 

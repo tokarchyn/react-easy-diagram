@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { useMemo } from 'react';
-import { IComponentDefinition } from '..';
-import { IBackgroundComponentProps } from '../states/diagramSettings';
+import type { IComponentDefinition } from 'states/visualComponentState';
+import type { IBackgroundComponentProps } from 'states/diagramSettings';
 
 const BackgroundDefault: React.FC<
   IBackgroundComponentProps<IBackgroundDefaultSettings>

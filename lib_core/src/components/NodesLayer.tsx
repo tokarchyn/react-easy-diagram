@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
-import { useRootStore } from '../hooks/useRootStore';
-import { NodesStore } from '../states/nodesStore';
-import { NodeWrapper } from './NodeWrapper';
+import { useRootStore } from 'hooks/useRootStore';
+import { NodesStore } from 'states/nodesStore';
+import { NodeWrapper } from 'components/NodeWrapper';
 
 export const NodesLayer = observer<{nodesStore: NodesStore}>(({nodesStore}) => {
   const rootStore = useRootStore();

@@ -1,11 +1,11 @@
 import { makeAutoObservable } from 'mobx';
+import { Dictionary } from 'types/common';
 import {
-  IComponentDefinition,
   IVisualComponentProps,
-  VisualComponent,
   VisualComponentState,
-} from '.';
-import { Dictionary } from '../types/common';
+  IComponentDefinition,
+  VisualComponent,
+} from 'states/visualComponentState';
 
 export class VisualComponents<
   TEntity,

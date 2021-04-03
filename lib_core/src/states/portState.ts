@@ -1,17 +1,17 @@
-import { DirectionWithDiagonals, Point } from '../types/index';
 import { makeAutoObservable } from 'mobx';
-import { HtmlElementRefState } from './htmlElementRefState';
+import { Point } from 'types/common';
+import { DirectionWithDiagonals } from 'types/position';
+import { deepCopy, multiplyPoint } from 'utils';
+import { HtmlElementRefState } from 'states/htmlElementRefState';
+import { LinkState } from 'states/linkState';
+import { NodeState } from 'states/nodeState';
+import { IPortVisualComponentProps } from 'states/portsSettings';
+import { RootStore } from 'states/rootStore';
+import { componentDefaultType } from 'states/visualComponents';
 import {
-  componentDefaultType,
-  IPortVisualComponentProps,
-  NodeState,
-  RootStore,
   VisualComponentState,
-} from '.';
-import { deepCopy, multiplyPoint } from '../utils';
-import { LinkState } from './linkState';
-import { VisualComponent } from './visualComponentState';
-import React from 'react';
+  VisualComponent,
+} from 'states/visualComponentState';
 
 export class PortState {
   private _id: string;

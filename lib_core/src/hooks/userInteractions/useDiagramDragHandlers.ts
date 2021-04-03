@@ -1,9 +1,7 @@
 import { useMemo } from 'react';
 import { Handler } from 'react-use-gesture/dist/types';
-import { ISelectableItem } from '../../states/selectionState';
-import { Point } from '../../types/common';
-import { useRootStore } from '../useRootStore';
-import { IUserInteractionTranslate } from './common';
+import { Point } from 'types/common';
+import { useRootStore } from 'hooks/useRootStore';
 
 type DragEventHandler =
   | Handler<'drag', React.PointerEvent<Element> | PointerEvent>
@@ -40,7 +38,7 @@ export function useDiagramDragHandlers(
         }
         activeRef.current = true;
       },
-      onDragEnd: ({tap}) => {
+      onDragEnd: ({ tap }) => {
         if (activeRef.current) {
           activeRef.current = false;
           if (tap) {

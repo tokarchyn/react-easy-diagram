@@ -1,12 +1,12 @@
-import React, { useCallback, useContext, useRef } from 'react';
+import React, { useCallback } from 'react';
 import { useGesture } from 'react-use-gesture';
 import { WebKitGestureEvent } from 'react-use-gesture/dist/types';
-import { useNotifyRef } from '../useNotifyRef';
-import { useRootStore } from '../useRootStore';
-import { useDiagramDragHandlers } from './useDiagramDragHandlers';
-import { useDiagramPinchHandlers } from './useDiagramPinchHandlers';
-import { useUserAbilityToSelectSwitcher } from './useUserAbilityToSelectSwitcher';
-import { useDiagramWheelHandler } from './useDiagramWheelHandler';
+import { useNotifyRef } from 'hooks/useNotifyRef';
+import { useRootStore } from 'hooks/useRootStore';
+import { useDiagramDragHandlers } from 'hooks/userInteractions/useDiagramDragHandlers';
+import { useDiagramPinchHandlers } from 'hooks/userInteractions/useDiagramPinchHandlers';
+import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
+import { useDiagramWheelHandler } from 'hooks/userInteractions/useDiagramWheelHandler';
 
 export const useDiagramUserInteraction = (
   enable?: boolean

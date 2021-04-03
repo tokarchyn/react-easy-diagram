@@ -1,19 +1,13 @@
-import { LinkDefault } from '../components/LinkDefault';
-import {
-  componentDefaultType,
-  IVisualComponentsObject,
-  VisualComponents,
-} from './visualComponents';
-import { makeAutoObservable } from 'mobx';
-import { LinkState } from './linkState';
-import { createCurvedLinkPathConstructor } from '../linkConstructors/curved';
-import { DirectionWithDiagonals, Point } from '../types/index';
-import { IVisualComponentProps } from '.';
-import {
-  linkCreationComponentType,
-  LinkCreationState,
-} from './linkCreationState';
 import { ReactEventHandlers } from 'react-use-gesture/dist/types';
+import { makeAutoObservable } from 'mobx';
+import { LinkDefault } from 'components/LinkDefault';
+import { createCurvedLinkPathConstructor } from 'linkConstructors/curved';
+import { Point } from 'types/common';
+import { DirectionWithDiagonals } from 'types/position';
+import { LinkCreationState, linkCreationComponentType } from 'states/linkCreationState';
+import { LinkState } from 'states/linkState';
+import { VisualComponents, componentDefaultType, IVisualComponentsObject } from 'states/visualComponents';
+import { IVisualComponentProps } from 'states/visualComponentState';
 
 export class LinksSettings {
   private _pathConstructor: ILinkPathConstructor;

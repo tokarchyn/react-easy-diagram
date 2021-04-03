@@ -1,12 +1,17 @@
-import { Dictionary, errorResult, Point, SuccessOrErrorResult, successValueResult } from '../types/index';
 import { makeAutoObservable } from 'mobx';
-import { IPortStateWithoutIds, PortState } from './portState';
-import { deepCopy, generateTransform, guidForcedUniqueness } from '../utils';
-import { RootStore } from './rootStore';
-import { HtmlElementRefState } from './htmlElementRefState';
-import { componentDefaultType } from './visualComponents';
-import { ISelectableItem } from './selectionState';
-import { LinkState } from './linkState';
+import { Point, Dictionary } from 'types/common';
+import {
+  SuccessOrErrorResult,
+  errorResult,
+  successValueResult,
+} from 'types/result';
+import { deepCopy, generateTransform, guidForcedUniqueness } from 'utils';
+import { HtmlElementRefState } from 'states/htmlElementRefState';
+import { LinkState } from 'states/linkState';
+import { PortState, IPortStateWithoutIds } from 'states/portState';
+import { RootStore } from 'states/rootStore';
+import { ISelectableItem } from 'states/selectionState';
+import { componentDefaultType } from 'states/visualComponents';
 
 export class NodeState implements ISelectableItem {
   private _id: string;

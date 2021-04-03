@@ -1,11 +1,11 @@
 import React from 'react';
-import { LinksLayer } from './LinksLayer';
-import { NodesLayer } from './NodesLayer';
-import { useDiagramUserInteraction } from '../hooks/userInteractions/useDiagramUserInteraction';
+import { LinksLayer } from 'components/LinksLayer';
+import { NodesLayer } from 'components/NodesLayer';
+import { useDiagramUserInteraction } from 'hooks/userInteractions/useDiagramUserInteraction';
 import { observer } from 'mobx-react-lite';
-import { useRootStore } from '../hooks/useRootStore';
-import { BackgroundWrapper } from './BackgroundWrapper';
-import { MiniControlWrapper } from './MiniControlWrapper';
+import { useRootStore } from 'hooks/useRootStore';
+import { BackgroundWrapper } from 'components/BackgroundWrapper';
+import { MiniControlWrapper } from 'components/MiniControlWrapper';
 
 export interface IDiagramInnerProps {
   diagramStyles?: React.CSSProperties;

@@ -1,15 +1,15 @@
 import React, { useMemo, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
-import { NodeState } from '../../states/nodeState';
-import { addPoints, multiplyPoint } from '../../utils';
-import { useNotifyRef } from '../useNotifyRef';
-import { useRootStore } from '../useRootStore';
+import { NodeState } from 'states/nodeState';
+import { addPoints, multiplyPoint } from 'utils';
+import { useNotifyRef } from 'hooks/useNotifyRef';
+import { useRootStore } from 'hooks/useRootStore';
+import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
 import {
   canDragGestureBeTapInstead,
   eventPathContainsClass,
   GestureHandlers,
-} from './common';
-import { useUserAbilityToSelectSwitcher } from './useUserAbilityToSelectSwitcher';
+} from 'hooks/userInteractions/common';
 
 export const useNodeUserInteraction = (
   nodeState: NodeState,

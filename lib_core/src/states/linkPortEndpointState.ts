@@ -1,9 +1,9 @@
 import { makeAutoObservable } from 'mobx';
-import { Point } from '../types/common';
-import { RootStore } from './rootStore';
-import { PortState } from './portState';
-import { NodeState } from './nodeState';
-import { addPoints, deepCopy, multiplyPoint } from '../utils';
+import { Point } from 'types/common';
+import { deepCopy, addPoints, multiplyPoint } from 'utils';
+import { NodeState } from 'states/nodeState';
+import { PortState } from 'states/portState';
+import { RootStore } from 'states/rootStore';
 
 export class LinkPortEndpointState implements ILinkPortEndpoint {
   private _nodeId: string;

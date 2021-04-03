@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { useGesture } from 'react-use-gesture';
 import { ReactEventHandlers } from 'react-use-gesture/dist/types';
-import { IDragHandlers } from '../..';
-import { PortState } from '../../states/portState';
-import { multiplyPoint, subtractPoints } from '../../utils';
-import { useRootStore } from '../useRootStore';
-import { useUserAbilityToSelectSwitcher } from './useUserAbilityToSelectSwitcher';
+import { PortState } from 'states/portState';
+import { multiplyPoint, subtractPoints } from 'utils';
+import { useRootStore } from 'hooks/useRootStore';
+import type { IDragHandlers } from 'hooks/userInteractions/useDiagramDragHandlers';
+import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
 
 export const usePortUserInteraction = (
   portState?: PortState,

@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
-import { INodePortState, NodeState } from '../states';
-import { usePortUserInteraction } from '../hooks/userInteractions/usePortUserInteraction';
+import type { INodePortState } from 'states/nodeState';
+import { NodeState } from 'states/nodeState';
 import { observer } from 'mobx-react-lite';
-import { NodeContext } from './NodeWrapper';
-import { useUpdateOrCreatePortState } from '../hooks/useUpdateOrCreatePortState';
+import { NodeContext } from 'components/NodeWrapper';
+import { useUpdateOrCreatePortState } from 'hooks/useUpdateOrCreatePortState';
 import {
   PortPosition,
   useRelativePositionStyles,
-} from '../hooks/useRelativePositionStyles';
-import { Point } from '..';
-import { PortInnerWrapper } from './PortInnerWrapper';
+} from 'hooks/useRelativePositionStyles';
+import { Point } from 'types/common';
+import { PortInnerWrapper } from 'components/PortInnerWrapper';
 
 export interface IPortProps extends INodePortState {
   position: PortPosition;

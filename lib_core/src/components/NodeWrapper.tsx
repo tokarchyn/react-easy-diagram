@@ -1,6 +1,6 @@
 import React from 'react';
-import { useNodeUserInteraction } from '../hooks/userInteractions/useNodeUserInteraction';
-import { NodeState } from '../states/nodeState';
+import { useNodeUserInteraction } from 'hooks/userInteractions/useNodeUserInteraction';
+import { NodeState } from 'states/nodeState';
 import { observer } from 'mobx-react-lite';
 
 export const NodeContext = React.createContext<NodeState | null>(null);

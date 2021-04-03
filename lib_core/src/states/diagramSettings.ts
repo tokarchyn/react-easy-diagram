@@ -1,10 +1,10 @@
 import { makeAutoObservable } from 'mobx';
-import { Point } from '../types/common';
-import { createDefaultBackground } from '../components/BackgroundDefault';
-import { IComponentDefinition, VisualComponent } from '.';
-import { createDefaultMiniControl } from '..';
-import { VisualComponentWithDefault } from './visualComponentWithDefault';
-import { RootStore } from './rootStore';
+import { Point } from 'types/common';
+import { createDefaultBackground } from 'components/BackgroundDefault';
+import { VisualComponentWithDefault } from 'states/visualComponentWithDefault';
+import { RootStore } from 'states/rootStore';
+import { createDefaultMiniControl } from 'components/MiniControlDefault';
+import { IComponentDefinition, VisualComponent } from 'states/visualComponentState';
 
 export class DiagramSettings {
   private _backgroundComponentState: VisualComponentWithDefault<IBackgroundComponentProps>;

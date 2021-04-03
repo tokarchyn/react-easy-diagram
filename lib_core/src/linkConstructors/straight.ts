@@ -1,4 +1,4 @@
-import { ILinkPathConstructor, ILinkPathConstructorEndpointInfo } from '..';
+import { ILinkPathConstructor, ILinkPathConstructorEndpointInfo } from "states/linksSettings";
 
 function straightLinkPathConstructor(
   source: ILinkPathConstructorEndpointInfo,

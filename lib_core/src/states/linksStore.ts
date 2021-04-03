@@ -1,19 +1,11 @@
 import { makeAutoObservable } from 'mobx';
-import {
-  errorResult,
-  SuccessOrErrorResult,
-  successResult,
-  successValueResult,
-} from '../types/index';
-import { guidForcedUniqueness } from '../utils';
-import { LinkCreationState } from './linkCreationState';
-import {
-  ILinkPortEndpoint,
-  linkPortEndpointsEquals,
-} from './linkPortEndpointState';
-import { ILinkState, LinkState } from './linkState';
-import { createFullPortId, PortState } from './portState';
-import { RootStore } from './rootStore';
+import { SuccessOrErrorResult, successValueResult, errorResult, successResult } from 'types/result';
+import { guidForcedUniqueness } from 'utils';
+import { LinkCreationState } from 'states/linkCreationState';
+import { linkPortEndpointsEquals, ILinkPortEndpoint } from 'states/linkPortEndpointState';
+import { LinkState, ILinkState } from 'states/linkState';
+import { createFullPortId, PortState } from 'states/portState';
+import { RootStore } from 'states/rootStore';
 
 export class LinksStore {
   private _links: Map<string, LinkState>;

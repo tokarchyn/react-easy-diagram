@@ -12,11 +12,12 @@
     "react-use-gesture": "^8.0.1"
   },
   "scripts": {
-    "build:prod": "yarn clear && rollup -c --environment NODE_ENV:production",
-    "build:dev": "yarn clear && rollup -c",
+    "build:prod": "yarn prebuild && yarn clear && rollup -c --environment NODE_ENV:production",
+    "build:dev": "yarn prebuild && yarn clear && rollup -c",
     "start": "rollup -c -w",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
-    "clear": "yarn run del \"dist/*\""
+    "clear": "yarn run del \"dist/*\"",
+    "prebuild": "yarn cti entrypoint ./src -o index.ts -b"
   },
   "devDependencies": {
     "@types/react": "^16.9.53",
@@ -26,6 +27,7 @@
     "autoprefixer": "^10.2.1",
     "copy-and-watch": "^0.1.5",
     "copyfiles": "^2.4.0",
+    "create-ts-index": "^1.13.6",
     "del-cli": "^3.0.1",
     "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",

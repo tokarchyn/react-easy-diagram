@@ -1,9 +1,7 @@
 import { useMemo } from 'react';
 import { Handler } from 'react-use-gesture/dist/types';
-import {
-  subtractPoints,
-} from '../../utils';
-import { IUserInteractionTranslateAndZoom } from './common';
+import { subtractPoints } from 'utils';
+import type { IUserInteractionTranslateAndZoom } from 'hooks/userInteractions/common';
 
 export function useDiagramWheelHandler(
   elemToAttachToRef: React.RefObject<HTMLElement>,
@@ -30,11 +28,7 @@ export function useDiagramWheelHandler(
           factor = 1 / factor;
         }
 
-        state.tranlsateAndZoomInto(
-          [0, 0],
-          mousePositionOnElement,
-          factor
-        );
+        state.tranlsateAndZoomInto([0, 0], mousePositionOnElement, factor);
       },
     }),
     [elemToAttachToRef, activeRef, state]

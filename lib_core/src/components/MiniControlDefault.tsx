@@ -1,10 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import {
-  CornerPosition,
-  IComponentDefinition,
-  IMiniControlComponentProps,
-} from '..';
+import type { IMiniControlComponentProps } from 'states/diagramSettings';
+import { IComponentDefinition } from 'states/visualComponentState';
+import { CornerPosition } from 'types/position';
 
 const MiniControlDefault: React.FC<
   IMiniControlComponentProps<IMiniControlDefaultSettings>

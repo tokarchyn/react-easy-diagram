@@ -1,8 +1,9 @@
-import { BoundingBox, errorResult, Point, SuccessOrErrorResult, successValueResult } from '../types/index';
 import { makeAutoObservable } from 'mobx';
-import { INodeState, INodeStateWithId, NodeState } from './nodeState';
-import { RootStore } from './rootStore';
-import { guidForcedUniqueness, subtractPoints } from '../utils';
+import { BoundingBox, Point } from 'types/common';
+import { SuccessOrErrorResult, errorResult, successValueResult } from 'types/result';
+import { guidForcedUniqueness, subtractPoints } from 'utils';
+import { NodeState, INodeState, INodeStateWithId } from 'states/nodeState';
+import { RootStore } from 'states/rootStore';
 
 export class NodesStore {
   private _nodes: Map<string, NodeState> = new Map();

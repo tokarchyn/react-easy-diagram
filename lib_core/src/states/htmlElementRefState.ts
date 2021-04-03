@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { Point } from '..';
+import { Point } from 'types/common';
 
 export class HtmlElementRefState {
   private _currentInternal: HTMLDivElement | null;

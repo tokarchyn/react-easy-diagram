@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { useRootStore } from '../hooks/useRootStore';
+import { useRootStore } from 'hooks/useRootStore';
 
 export const BackgroundWrapper = observer(() => {
   const { diagramSettings, diagramState } = useRootStore();

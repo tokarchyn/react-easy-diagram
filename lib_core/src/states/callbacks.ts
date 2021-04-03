@@ -1,5 +1,5 @@
-import { PortState } from './portState';
-import { RootStore } from './rootStore';
+import { PortState } from 'states/portState';
+import { RootStore } from 'states/rootStore';
 
 export class Callbacks implements ICallbacks {
   private _validateLinkEndpoints?: (

@@ -1,9 +1,9 @@
 import React from 'react';
+import { Point } from 'types/common';
 import {
-  Point,
   RelativeXYPosition,
   splitRelativeXYPostionByAxis,
-} from '../types';
+} from 'types/position';
 
 export type PortPosition = Exclude<RelativeXYPosition, 'center-center'>;
 

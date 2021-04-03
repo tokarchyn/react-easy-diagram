@@ -1,10 +1,12 @@
-import React, { useMemo, useRef } from 'react';
+import { useNotifyRef } from 'hooks/useNotifyRef';
+import { useRootStore } from 'hooks/useRootStore';
+import { useMemo, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
 import { ReactEventHandlers } from 'react-use-gesture/dist/types';
-import { useNotifyRef, useRootStore, useUserAbilityToSelectSwitcher } from '..';
-import { LinkCreationState } from '../../states';
-import { LinkState } from '../../states/linkState';
-import { GestureHandlers } from './common';
+import { LinkCreationState } from 'states/linkCreationState';
+import { LinkState } from 'states/linkState';
+import { GestureHandlers } from 'hooks/userInteractions/common';
+import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
 
 export const useLinkUserInteraction = (
   linkState: LinkState | LinkCreationState

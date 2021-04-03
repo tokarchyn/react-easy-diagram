@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { IComponentDefinition, IPortVisualComponentProps } from '../states';
-import { Point } from '../types';
+import type { IPortVisualComponentProps } from 'states/portsSettings';
+import type { IComponentDefinition } from 'states/visualComponentState';
+import { Point } from 'types/common';
 
 export interface IPortDefaultSettings {
   size: Point;

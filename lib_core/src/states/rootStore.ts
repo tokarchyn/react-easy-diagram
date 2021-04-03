@@ -1,14 +1,14 @@
-import { Callbacks, ICallbacks } from './callbacks';
-import { DiagramSettings, IDiagramSettings } from './diagramSettings';
-import { DiagramState } from './diagramState';
-import { ILinksSettings, LinksSettings } from './linksSettings';
-import { LinksStore } from './linksStore';
-import { ILinkState } from './linkState';
-import { INodesSettings, NodesSettings } from './nodesSettings';
-import { NodesStore } from './nodesStore';
-import { INodeState } from './nodeState';
-import { IPortsSettings, PortsSettings } from './portsSettings';
-import { SelectionState } from './selectionState';
+import { Callbacks, ICallbacks } from 'states/callbacks';
+import { DiagramSettings, IDiagramSettings } from 'states/diagramSettings';
+import { DiagramState } from 'states/diagramState';
+import { LinksSettings, ILinksSettings } from 'states/linksSettings';
+import { LinksStore } from 'states/linksStore';
+import { ILinkState } from 'states/linkState';
+import { NodesSettings, INodesSettings } from 'states/nodesSettings';
+import { NodesStore } from 'states/nodesStore';
+import { INodeState } from 'states/nodeState';
+import { PortsSettings, IPortsSettings } from 'states/portsSettings';
+import { SelectionState } from 'states/selectionState';
 
 export class RootStore {
   private _diagramState: DiagramState;

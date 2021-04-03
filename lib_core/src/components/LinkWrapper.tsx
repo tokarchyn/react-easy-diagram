@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { useLinkUserInteraction } from '../hooks';
-import { LinkCreationState } from '../states';
-import { LinkState } from '../states/linkState';
+import { useLinkUserInteraction } from 'hooks/userInteractions/useLinkUserInteraction';
+import { LinkCreationState } from 'states/linkCreationState';
+import { LinkState } from 'states/linkState';
 
 export const LinkWrapper = observer<{ link: LinkState | LinkCreationState }>(
   ({ link }) => {

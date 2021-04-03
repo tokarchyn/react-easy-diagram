@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { PortInnerWrapper } from './PortInnerWrapper';
-import { VisualComponent } from '../states/visualComponentState';
-import { positionValues, Position, Direction } from '../types/index';
-import { PortState } from '../states/portState';
 import { observer } from 'mobx-react-lite';
+import { PortInnerWrapper } from 'components/PortInnerWrapper';
+import { VisualComponent } from 'states/visualComponentState';
+import { positionValues, Position, Direction } from 'types/position';
+import { PortState } from 'states/portState';
 
 export interface IPortsContainerDefaultSettings {
   style?: React.CSSProperties;

@@ -1,4 +1,4 @@
-import { Point } from './types/common';
+import { Point } from 'types/common';
 
 export const generateTransform = (translate: Point, scale?: number): string => {
   const translatePart = `translate(${translate[0]}px, ${translate[1]}px)`;

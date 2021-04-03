@@ -3,7 +3,7 @@ import {
   IComponentDefinition,
   VisualComponent,
   VisualComponentState,
-} from './visualComponentState';
+} from 'states/visualComponentState';
 
 export class VisualComponentWithDefault<TComponentProps> {
   private _innerComponent: VisualComponentState<TComponentProps>;
