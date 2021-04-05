@@ -58,7 +58,7 @@ export interface ILinkVisualComponentProps<TSettings = any>
 export interface ILinksSettings
   extends IVisualComponentsObject<ILinkVisualComponentProps> {
   pathConstructor?: ILinkPathConstructor;
-  preferLinksDirection: LinksSettings['preferLinksDirection'];
+  preferLinksDirection?: LinksSettings['preferLinksDirection'];
 }
 
 export interface ILinkPathConstructorEndpointInfo {
