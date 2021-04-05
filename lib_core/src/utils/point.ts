@@ -6,15 +6,15 @@ export const distanceBetweenPoints = (a: Point, b: Point): number =>
 export const roundPoint = (point: Point) =>
   [Math.round(point[0]), Math.round(point[1])] as Point;
 
-export const addPoints = (a: Point, b: Point): Point => [
-  a[0] + b[0],
-  a[1] + b[1],
-];
+export const addPoints = (...points: Point[]): Point =>
+  points.reduce((prev, curr) =>
+    curr ? [prev[0] + curr[0], prev[1] + curr[1]] : prev
+  );
 
-export const subtractPoints = (a: Point, b: Point): Point => [
-  a[0] - b[0],
-  a[1] - b[1],
-];
+export const subtractPoints = (...points: Point[]): Point =>
+  points.reduce((prev, curr) =>
+    curr ? [prev[0] - curr[0], prev[1] - curr[1]] : prev
+  );
 
 export const multiplyPoint = (a: Point, m: number): Point => [
   a[0] * m,

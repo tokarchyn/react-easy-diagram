@@ -1,7 +1,7 @@
 import React, { useMemo, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
 import { NodeState } from 'states/nodeState';
-import { addPoints, multiplyPoint } from 'utils/point';
+import { addPoints, multiplyPoint, Point } from 'utils/point';
 import { useNotifyRef } from 'hooks/useNotifyRef';
 import { useRootStore } from 'hooks/useRootStore';
 import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
@@ -19,6 +19,10 @@ export const useNodeUserInteraction = (
 
   // Should trigger rendering on change, otherwise useUserSelectSwitcher will not be invoked
   const activeRef = useNotifyRef(false);
+  // In case the snap to grid option is enabled in settings
+  const remainderFromPreviousDragEventRef = useRef<
+    Map<NodeState, Point | undefined>
+  >(new Map());
   const selectionHandledRef = useRef(false);
   const selectionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const userInteractionElemRef = useRef<HTMLElement>(null);
@@ -40,14 +44,15 @@ export const useNodeUserInteraction = (
           selectionHandledRef.current = true;
           rootStore.selectionState.selectedItems
             .filter((i) => i instanceof NodeState)
-            .forEach((n: NodeState) =>
-              n.setPosition(
-                addPoints(
-                  n.position,
-                  multiplyPoint(delta, 1 / rootStore.diagramState.zoom)
-                )
-              )
-            );
+            .forEach((n: NodeState) => {
+              const newPosition = addPoints(
+                n.position,
+                multiplyPoint(delta, 1 / rootStore.diagramState.zoom),
+                remainderFromPreviousDragEventRef.current.get(n) ?? [0, 0]
+              );
+              const newRemainder = n.setPosition(newPosition);
+              remainderFromPreviousDragEventRef.current.set(n, newRemainder);
+            });
         }
       },
       onDragStart: ({ event }) => {
@@ -71,6 +76,7 @@ export const useNodeUserInteraction = (
         if (tap && !selectionHandledRef.current) {
           rootStore.selectionState.select(nodeState, ctrlKey);
         }
+        remainderFromPreviousDragEventRef.current.clear();
       },
     }),
     [activeRef, nodeState, rootStore]

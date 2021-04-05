@@ -40,11 +40,11 @@ module.exports = {
               to: 'examples/calculator',
             },
             {
-              label: 'Configure Default Link',
+              label: 'Configure default link',
               to: 'examples/configureDefaultLink',
             },
             {
-              label: 'Configure Default Port',
+              label: 'Configure default port',
               to: 'examples/configureDefaultPort',
             },
             {
@@ -52,8 +52,12 @@ module.exports = {
               to: 'examples/performance',
             },
             {
-              label: 'Port Position',
+              label: 'Port position',
               to: 'examples/portPosition',
+            },
+            {
+              label: 'Position snapping',
+              to: 'examples/positionSnapping',
             },
           ],
         },

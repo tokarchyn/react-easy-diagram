@@ -78,8 +78,22 @@ export class NodeState implements ISelectableItem {
     return this._position;
   }
 
-  setPosition = (value: Point | null | undefined) => {
-    this._position = value ?? [0, 0];
+  /**
+   * @param newPosition - new position
+   * @param force - do not take into account snapping to grid
+   * @returns remainder in case snap to grid is turned on. For example if newPosition would be [22,17] and snap [10,10], 
+   * the node position would be set to [20,20] and remainder equals [2,-3]
+   */
+  setPosition = (newPosition: Point | null | undefined, force: boolean = false) : Point | undefined => {
+    newPosition = newPosition ?? [0,0]
+    if (!this._position || force) {
+      this._position = newPosition;
+      return undefined;
+    }
+      
+    const result = snapPositionToGrid(newPosition, this._rootStore.nodesSettings.gridSnap);
+    this._position = result.position;
+    return result.remainder;
   };
 
   get componentType() {
@@ -178,6 +192,35 @@ export class NodeState implements ISelectableItem {
   get connectedLinks(): LinkState[] {
     return this._rootStore.linksStore.getNodeLinks(this._id);
   }
+}
+
+function snapPositionToGrid(position: Point, snap: Point | null) {
+  if (!snap) return {
+    position,
+    remainder: undefined
+  };
+  
+  const resultX = snapPositionValueToGridValue(position[0], snap[0]);
+  const resultY = snapPositionValueToGridValue(position[1], snap[1]);
+  
+  return {
+    position: [resultX.value, resultY.value] as Point,
+    remainder: [resultX.remainder, resultY.remainder] as Point
+  };
+}
+
+function snapPositionValueToGridValue(value: number, snapValue: number) {
+  const mod = value % snapValue;
+  let remainder = 0;
+  let newValue = value;
+  if (snapValue / 2 > mod) {
+    newValue -= mod;
+    remainder = mod;
+  } else {
+    newValue += snapValue - mod;
+    remainder = -(snapValue - mod);
+  }
+  return {value: newValue, remainder};
 }
 
 export interface INodeStateWithoutId {
