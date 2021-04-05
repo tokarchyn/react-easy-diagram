@@ -2,7 +2,10 @@ import { makeAutoObservable } from 'mobx';
 import { Point } from 'utils/point';
 import { deepCopy } from 'utils';
 import { LinkPointEndpointState } from 'states/LinkPointEndpointState';
-import { LinkPortEndpointState, ILinkPortEndpoint } from 'states/linkPortEndpointState';
+import {
+  LinkPortEndpointState,
+  ILinkPortEndpoint,
+} from 'states/linkPortEndpointState';
 import { RootStore } from 'states/rootStore';
 import { ISelectableItem } from 'states/selectionState';
 import { componentDefaultType } from 'states/visualComponents';
@@ -131,7 +134,12 @@ export function createLinkPath(
   target: LinkPortEndpointState | LinkPointEndpointState
 ): ILinkPath | undefined {
   const { linksSettings } = rootStore;
-  if (!source.point || !target.point) {
+  if (
+    !source.port ||
+    (target instanceof LinkPortEndpointState && !target.port) ||
+    !source.point ||
+    !target.point
+  ) {
     return undefined;
   }
 
@@ -144,11 +152,13 @@ export function createLinkPath(
     {
       point: target.point,
       portType:
-        target instanceof LinkPointEndpointState ? undefined : target.port.type,
+        target instanceof LinkPointEndpointState
+          ? undefined
+          : target.port!.type,
       direction:
         target instanceof LinkPointEndpointState
           ? undefined
-          : target.port.linkDirection,
+          : target.port!.linkDirection,
     }
   );
 

@@ -14,9 +14,6 @@ export class LinkPortEndpointState implements ILinkPortEndpoint {
   constructor(nodeId: string, portId: string, rootStore: RootStore) {
     this._nodeId = nodeId;
     this._portId = portId;
-    rootStore.nodesStore
-      .getNodeOrThrowException(this._nodeId)
-      .getPortOrThrowException(this._portId);
     makeAutoObservable(this);
     this._rootStore = rootStore;
   }
@@ -39,12 +36,12 @@ export class LinkPortEndpointState implements ILinkPortEndpoint {
     return this._rootStore.nodesStore.getNodeOrThrowException(this._nodeId);
   }
 
-  get port(): PortState {
-    return this.node.getPortOrThrowException(this._portId);
+  get port(): PortState | undefined {
+    return this.node.getPort(this._portId);
   }
 
   get point(): Point | undefined {
-    if (this.port.offsetRelativeToNode && this.port.realSize) {
+    if (this.port && this.port.offsetRelativeToNode && this.port.realSize) {
       return addPoints(
         this.node.position,
         addPoints(

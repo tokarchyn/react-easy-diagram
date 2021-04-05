@@ -166,9 +166,11 @@ export class PortState {
   }
 
   get connectedPorts(): PortState[] {
-    return this.connectedLinks.map((v) =>
-      v.source.portId === this._id ? v.target.port : v.source.port
-    );
+    return this.connectedLinks
+      .map((v) =>
+        v.source.portId === this._id ? v.target.port : v.source.port
+      )
+      .filter((p) => p) as PortState[]; // cast because typescript cannot deal with undefined check 
   }
 
   get linkDirection(): DirectionWithDiagonals | undefined {

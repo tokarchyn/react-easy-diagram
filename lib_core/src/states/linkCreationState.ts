@@ -52,7 +52,7 @@ export class LinkCreationState implements ILinkInteractionState {
     );
 
     const sourcePoint = this._source.point;
-    const portSize = this._source.port.realSize;
+    const portSize = this._source.port!.realSize;
     if (sourcePoint && portSize) {
       // endpoint point is calculated for center of port
       const topLeftCornerPoint = subtractPoints(
@@ -133,7 +133,9 @@ export class LinkCreationState implements ILinkInteractionState {
 
   private _resetProps = () => {
     if (this._source) {
-      this._source.port.validForConnection = true;
+      if (this._source.port) {
+        this._source.port.validForConnection = true;
+      }
       this._source = null;
     }
     this._target = null;
