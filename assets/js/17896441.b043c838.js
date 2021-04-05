@@ -12,10 +12,10 @@ var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
 // EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/Link.js + 1 modules
-var Link = __webpack_require__(93);
+var Link = __webpack_require__(97);
 
 // EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/Translate.js + 1 modules
-var Translate = __webpack_require__(90);
+var Translate = __webpack_require__(91);
 
 // CONCATENATED MODULE: ../node_modules/@docusaurus/theme-classic/lib-next/theme/DocPaginator/index.js
 /**
@@ -28,10 +28,10 @@ var Translate = __webpack_require__(90);
 var useDocusaurusContext = __webpack_require__(16);
 
 // EXTERNAL MODULE: ../node_modules/@docusaurus/theme-classic/lib-next/theme/hooks/useDocs.js
-var useDocs = __webpack_require__(91);
+var useDocs = __webpack_require__(94);
 
 // EXTERNAL MODULE: ../node_modules/@docusaurus/theme-common/lib/index.js
-var lib = __webpack_require__(88);
+var lib = __webpack_require__(89);
 
 // CONCATENATED MODULE: ../node_modules/@docusaurus/theme-classic/lib-next/theme/DocVersionSuggestions/index.js
 /**
@@ -44,7 +44,7 @@ if(!latestVersionSuggestion){return/*#__PURE__*/react_default.a.createElement(re
 // fallback to main doc of latest version
 const latestVersionSuggestedDoc=latestDocSuggestion!==null&&latestDocSuggestion!==void 0?latestDocSuggestion:getVersionMainDoc(latestVersionSuggestion);return/*#__PURE__*/react_default.a.createElement("div",{className:"alert alert--warning margin-bottom--md",role:"alert"},/*#__PURE__*/react_default.a.createElement("div",null,activeVersion.name==='current'?/*#__PURE__*/react_default.a.createElement(UnreleasedVersionLabel,{siteTitle:siteTitle,versionLabel:activeVersion.label}):/*#__PURE__*/react_default.a.createElement(UnmaintainedVersionLabel,{siteTitle:siteTitle,versionLabel:activeVersion.label})),/*#__PURE__*/react_default.a.createElement("div",{className:"margin-top--md"},/*#__PURE__*/react_default.a.createElement(LatestVersionSuggestionLabel,{versionLabel:latestVersionSuggestion.label,to:latestVersionSuggestedDoc.path,onClick:()=>savePreferredVersionName(latestVersionSuggestion.name)})));}/* harmony default export */ var theme_DocVersionSuggestions = (DocVersionSuggestions);
 // EXTERNAL MODULE: ../node_modules/@docusaurus/theme-classic/lib-next/theme/Seo/index.js
-var Seo = __webpack_require__(130);
+var Seo = __webpack_require__(131);
 
 // EXTERNAL MODULE: ../node_modules/@docusaurus/theme-classic/lib-next/theme/LastUpdated/styles.module.css
 var styles_module = __webpack_require__(65);
@@ -58,7 +58,7 @@ var styles_module_default = /*#__PURE__*/__webpack_require__.n(styles_module);
  * LICENSE file in the root directory of this source tree.
  */function LastUpdatedAtDate({lastUpdatedAt,formattedLastUpdatedAt}){return/*#__PURE__*/react_default.a.createElement(Translate["a" /* default */],{id:"theme.lastUpdated.atDate",description:"The words used to describe on which date a page has been last updated",values:{date:/*#__PURE__*/react_default.a.createElement("time",{dateTime:new Date(lastUpdatedAt*1000).toISOString(),className:styles_module_default.a.lastUpdatedDate},formattedLastUpdatedAt)}},' on {date}');}function LastUpdatedByUser({lastUpdatedBy}){return/*#__PURE__*/react_default.a.createElement(Translate["a" /* default */],{id:"theme.lastUpdated.byUser",description:"The words used to describe by who the page has been last updated",values:{user:/*#__PURE__*/react_default.a.createElement("strong",null,lastUpdatedBy)}},' by {user}');}function LastUpdated({lastUpdatedAt,formattedLastUpdatedAt,lastUpdatedBy}){return/*#__PURE__*/react_default.a.createElement("div",{className:"col text--right"},/*#__PURE__*/react_default.a.createElement("em",null,/*#__PURE__*/react_default.a.createElement("small",null,/*#__PURE__*/react_default.a.createElement(Translate["a" /* default */],{id:"theme.lastUpdated.lastUpdatedAtBy",description:"The sentence used to display when a page has been last updated, and by who",values:{atDate:lastUpdatedAt&&formattedLastUpdatedAt?/*#__PURE__*/react_default.a.createElement(LastUpdatedAtDate,{lastUpdatedAt:lastUpdatedAt,formattedLastUpdatedAt:formattedLastUpdatedAt}):'',byUser:lastUpdatedBy?/*#__PURE__*/react_default.a.createElement(LastUpdatedByUser,{lastUpdatedBy:lastUpdatedBy}):''}},'Last updated{atDate}{byUser}'), false&&/*#__PURE__*/false)));}
 // EXTERNAL MODULE: ../node_modules/clsx/dist/clsx.m.js
-var clsx_m = __webpack_require__(89);
+var clsx_m = __webpack_require__(90);
 
 // CONCATENATED MODULE: ../node_modules/@docusaurus/theme-classic/lib-next/theme/hooks/useTOCHighlight.js
 /**
