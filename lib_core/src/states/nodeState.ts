@@ -232,7 +232,7 @@ export interface INodeStateWithoutId {
 }
 
 export interface INodePortState extends IPortStateWithoutIds {
-  id: string;
+  id?: string;
 }
 
 export interface INodeStateWithId extends INodeStateWithoutId {

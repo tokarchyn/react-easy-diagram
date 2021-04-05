@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import {
+  createNodeDefault,
   createPortInnerDefault,
   Diagram,
-  INodeVisualComponentProps,
+  NodeState,
   Point,
   Port,
 } from '@react-easy-diagram/core';
 import { observer } from 'mobx-react-lite';
 
-const SomeNode = observer<INodeVisualComponentProps>(({ draggableRef }) => {
+const SomeNode = observer<{node: NodeState}>(() => {
   const [
     portOffsetFromNodeCenter,
     setPortOffsetFromNodeCenter,
@@ -20,7 +21,7 @@ const SomeNode = observer<INodeVisualComponentProps>(({ draggableRef }) => {
   ] = useState<Point>([0, 0]);
 
   return (
-    <div className='react_fast_diagram_Node_Default' ref={draggableRef}>
+    <>
       <div>Offset from center of node:</div>
       <span>
         <input
@@ -61,56 +62,47 @@ const SomeNode = observer<INodeVisualComponentProps>(({ draggableRef }) => {
         />
       </span>
       <Port
-        id='port_1'
         position='left-top'
         offsetFromNodeCenter={portOffsetFromNodeCenter}
       />
       <Port
-        id='port_5'
         position='left-top'
         offsetFromNodeCenter={portOffsetFromNodeCenter}
         offsetFromOrigin={[0, 15]}
       />
       <Port
-        id='port_2'
         position='left-center'
         offsetFromNodeCenter={portOffsetFromNodeCenter}
       />
       <Port
-        id='port_3'
         position='left-bottom'
         offsetFromNodeCenter={portOffsetFromNodeCenter}
       />
       <Port
-        id='port_4'
         position='center-top'
         offsetFromNodeCenter={portOffsetFromNodeCenter}
         linkDirection='up'
       />
       <Port
-        id='port_6'
         position='center-bottom'
         offsetFromNodeCenter={portOffsetFromNodeCenter}
         linkDirection='down'
       />
       <Port
-        id='port_7'
         position='right-top'
         offsetFromNodeCenter={portOffsetFromNodeCenter}
       />
       <Port
-        id='port_8'
         position='right-center'
         offsetFromNodeCenter={portOffsetFromNodeCenter}
         offsetFromOrigin={yellowPortOffsetFromOrigin}
         type='custom_port'
       />
       <Port
-        id='port_9'
         position='right-bottom'
         offsetFromNodeCenter={portOffsetFromNodeCenter}
       />
-    </div>
+    </>
   );
 });
 
@@ -128,7 +120,7 @@ export default () => (
     settings={{
       nodes: {
         components: {
-          default: SomeNode,
+          default: createNodeDefault({innerNode: SomeNode}),
         },
       },
       ports: {

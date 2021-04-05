@@ -1,10 +1,15 @@
 import { useEffect } from 'react';
 import { useNotifyRef } from 'hooks/useNotifyRef';
 import { useRootStore } from 'hooks/useRootStore';
-import { IPortStateWithIds, PortState } from 'states/portState';
+import { PortState } from 'states/portState';
+import { INodePortState } from 'states/nodeState';
+
+interface IPortStateWithNodeId extends INodePortState {
+  nodeId: string
+}
 
 export function useUpdateOrCreatePortState(
-  port: IPortStateWithIds
+  port: IPortStateWithNodeId
 ): PortState | undefined {
   const { nodesStore } = useRootStore();
   const portRef = useNotifyRef<PortState|undefined>(undefined);
@@ -15,7 +20,7 @@ export function useUpdateOrCreatePortState(
       return;
     };
 
-    const portState = node.getPort(port.id);
+    const portState = port.id && node.getPort(port.id);
     if (portState) {
       portState.import(port);
       portRef.current = portState;
