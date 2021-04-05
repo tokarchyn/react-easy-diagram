@@ -40,8 +40,8 @@ export interface IDiagramProps {
 }
 
 export interface IDiagramInitState {
-  nodes: INodeState[];
-  links: ILinkState[];
+  nodes?: INodeState[];
+  links?: ILinkState[];
 }
 
 Diagram.displayName = 'Diagram';
