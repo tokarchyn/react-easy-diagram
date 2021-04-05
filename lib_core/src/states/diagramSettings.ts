@@ -69,13 +69,13 @@ export interface IDiagramSettings {
   zoomToFitSettings?: IZoomToFitSettings;
 }
 
-export interface IBackgroundComponentProps<TSettings = {}> {
+export interface IBackgroundComponentProps<TSettings = any> {
   diagramOffset: Point;
   diagramZoom: number;
   settings?: TSettings;
 }
 
-export interface IMiniControlComponentProps<TSettings = {}> {
+export interface IMiniControlComponentProps<TSettings = any> {
   rootStore: RootStore;
   settings?: TSettings;
 }

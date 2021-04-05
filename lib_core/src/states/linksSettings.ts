@@ -50,7 +50,7 @@ export class LinksSettings {
 
 const defaultPathConstructor = createCurvedLinkPathConstructor();
 
-export interface ILinkVisualComponentProps<TSettings extends {} = {}>
+export interface ILinkVisualComponentProps<TSettings = any>
   extends IVisualComponentProps<LinkState | LinkCreationState, TSettings> {
   bind: (...args: any[]) => ReactEventHandlers;
 }

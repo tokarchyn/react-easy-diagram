@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 
 export class VisualComponentState<TComponentProps> {
   private _component: VisualComponent<TComponentProps>;
-  private _settings: object = {};
+  private _settings: any = null;
 
   constructor(
     component:
@@ -35,7 +35,7 @@ export class VisualComponentState<TComponentProps> {
   }
 }
 
-export interface IVisualComponentProps<TEntity, TSettings extends {} = {}> {
+export interface IVisualComponentProps<TEntity, TSettings = any> {
   entity: TEntity;
   settings?: TSettings;
 }
@@ -45,8 +45,7 @@ export type VisualComponent<
 > =  React.FunctionComponent<TComponentProps>;
 
 export interface IComponentDefinition<
-  TComponentProps,
-  TSettings extends {} = {}
+  TComponentProps, TSettings = any
 > {
   component: VisualComponent<TComponentProps>;
   settings?: TSettings;

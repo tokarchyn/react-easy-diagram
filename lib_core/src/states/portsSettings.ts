@@ -32,7 +32,7 @@ export class PortsSettings {
   };
 }
 
-export interface IPortVisualComponentProps<TSettings extends {} = {}>
+export interface IPortVisualComponentProps<TSettings = any>
   extends IVisualComponentProps<PortState, TSettings> {}
 
 export interface IPortsSettings {
