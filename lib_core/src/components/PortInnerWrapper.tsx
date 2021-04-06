@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { PortState } from 'states/portState';
 import { usePortUserInteraction } from 'hooks/userInteractions/usePortUserInteraction';
@@ -8,6 +8,10 @@ export const PortInnerWrapper: React.FC<{
   styles?: React.CSSProperties;
 }> = observer(({ port, styles }) => {
   const { bind } = usePortUserInteraction(port);
+
+  useEffect(() => {
+    port.ref.recalculateSizeAndPosition();
+  }, [port, port.ref, port.sizeAndPositionRecalculationWithDelay])
 
   return (
     <div

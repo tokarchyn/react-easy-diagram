@@ -3,6 +3,7 @@ import { Point } from 'utils/point';
 
 export class HtmlElementRefState {
   private _currentInternal: HTMLDivElement | null;
+  private _triggerSizePositionRecalculation: number = 0;
 
   constructor(initValue: HTMLDivElement | null) {
     this._currentInternal = initValue;
@@ -18,6 +19,7 @@ export class HtmlElementRefState {
   }
 
   offsetRelativeToParent = (parent: HTMLElement): Point | null => {
+    this._triggerSizePositionRecalculation | 1;
     if (this.current) {
       let iterElement = this.current as HTMLElement | null;
       let acumLeft = 0;
@@ -41,11 +43,16 @@ export class HtmlElementRefState {
    * Value can be @type {null} in case reference to real DOM object is not set.
    */
   get realSize(): Point | null {
+    this._triggerSizePositionRecalculation | 1;
     if (this.current) {
       return [this.current.clientWidth, this.current.clientHeight];
     } else {
       return null;
     }
+  }
+
+  recalculateSizeAndPosition = () => {
+    this._triggerSizePositionRecalculation += 1; 
   }
 }
 

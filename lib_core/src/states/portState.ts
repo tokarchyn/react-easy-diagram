@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { autorun, makeAutoObservable, reaction } from 'mobx';
 import { multiplyPoint, Point } from 'utils/point';
 import { DirectionWithDiagonals } from 'utils/position';
 import { deepCopy } from 'utils';
@@ -26,6 +26,7 @@ export class PortState {
   private _dragging: boolean = false;
   private _hovered: boolean = false;
   private _validForConnection: boolean = true;
+  private _sizeAndPositionRecalculationWithDelay: number = 0;
 
   private _rootStore: RootStore;
 
@@ -41,6 +42,20 @@ export class PortState {
 
     makeAutoObservable(this);
     this._rootStore = rootStore;
+
+    reaction(
+      () => [
+        this._id,
+        this._nodeId,
+        this._label,
+        this._type,
+        this._extra,
+        this._component,
+      ],
+      () => {
+        this.recalculateSizeAndPosition();
+      }
+    );
   }
 
   get id() {
@@ -170,7 +185,7 @@ export class PortState {
       .map((v) =>
         v.source.portId === this._id ? v.target.port : v.source.port
       )
-      .filter((p) => p) as PortState[]; // cast because typescript cannot deal with undefined check 
+      .filter((p) => p) as PortState[]; // cast because typescript cannot deal with undefined check
   }
 
   get linkDirection(): DirectionWithDiagonals | undefined {
@@ -195,6 +210,18 @@ export class PortState {
   setLinkDirectionIfNotYet = (direction: DirectionWithDiagonals) => {
     this._linkDirection = this._linkDirection ?? direction;
   };
+
+  recalculateSizeAndPosition = () => {
+    this._sizeAndPositionRecalculationWithDelay += 1;
+  };
+
+  recalculateSizeAndPositionWithoutDelay = () => {
+    this._ref.recalculateSizeAndPosition();
+  };
+
+  get sizeAndPositionRecalculationWithDelay() {
+    return this._sizeAndPositionRecalculationWithDelay;
+  }
 }
 
 export interface IPortStateWithoutIds {

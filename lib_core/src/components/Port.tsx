@@ -18,16 +18,10 @@ export interface IPortProps extends INodePortState {
 }
 
 export const Port: React.FC<IPortProps> = observer((props) => {
-  const { id, label, extra, type, component, linkDirection } = props;
   const node = useContext(NodeContext) as NodeState; // node should already exist
   const portState = useUpdateOrCreatePortState({
-    id,
-    label,
-    extra,
-    type,
-    component,
+    ...props,
     nodeId: node.id,
-    linkDirection,
   });
 
   const positionStyles = useRelativePositionStyles(

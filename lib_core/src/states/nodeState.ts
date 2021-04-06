@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, reaction } from 'mobx';
 import { Dictionary } from 'utils/common';
 import {
   SuccessOrErrorResult,
@@ -40,6 +40,13 @@ export class NodeState implements ISelectableItem {
       // @ts-ignore
       _rootStore: false,
     });
+
+    reaction(
+      () => [this._id, this._label, this._extra, this._componentType],
+      () => {
+        this.recalculatePortsSizeAndPosition();
+      }
+    );
   }
 
   import = (newState?: INodeStateWithoutId) => {
@@ -81,17 +88,23 @@ export class NodeState implements ISelectableItem {
   /**
    * @param newPosition - new position
    * @param force - do not take into account snapping to grid
-   * @returns remainder in case snap to grid is turned on. For example if newPosition would be [22,17] and snap [10,10], 
+   * @returns remainder in case snap to grid is turned on. For example if newPosition would be [22,17] and snap [10,10],
    * the node position would be set to [20,20] and remainder equals [2,-3]
    */
-  setPosition = (newPosition: Point | null | undefined, force: boolean = false) : Point | undefined => {
-    newPosition = newPosition ?? [0,0]
+  setPosition = (
+    newPosition: Point | null | undefined,
+    force: boolean = false
+  ): Point | undefined => {
+    newPosition = newPosition ?? [0, 0];
     if (!this._position || force) {
       this._position = newPosition;
       return undefined;
     }
-      
-    const result = snapPositionToGrid(newPosition, this._rootStore.nodesSettings.gridSnap);
+
+    const result = snapPositionToGrid(
+      newPosition,
+      this._rootStore.nodesSettings.gridSnap
+    );
     this._position = result.position;
     return result.remainder;
   };
@@ -192,20 +205,25 @@ export class NodeState implements ISelectableItem {
   get connectedLinks(): LinkState[] {
     return this._rootStore.linksStore.getNodeLinks(this._id);
   }
+
+  recalculatePortsSizeAndPosition = () => {
+    Object.values(this._ports).forEach((p) => p.recalculateSizeAndPosition());
+  };
 }
 
 function snapPositionToGrid(position: Point, snap: Point | null) {
-  if (!snap) return {
-    position,
-    remainder: undefined
-  };
-  
+  if (!snap)
+    return {
+      position,
+      remainder: undefined,
+    };
+
   const resultX = snapPositionValueToGridValue(position[0], snap[0]);
   const resultY = snapPositionValueToGridValue(position[1], snap[1]);
-  
+
   return {
     position: [resultX.value, resultY.value] as Point,
-    remainder: [resultX.remainder, resultY.remainder] as Point
+    remainder: [resultX.remainder, resultY.remainder] as Point,
   };
 }
 
@@ -220,7 +238,7 @@ function snapPositionValueToGridValue(value: number, snapValue: number) {
     newValue += snapValue - mod;
     remainder = -(snapValue - mod);
   }
-  return {value: newValue, remainder};
+  return { value: newValue, remainder };
 }
 
 export interface INodeStateWithoutId {

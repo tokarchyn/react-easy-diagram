@@ -59,6 +59,10 @@ module.exports = {
               label: 'Position snapping',
               to: 'examples/positionSnapping',
             },
+            {
+              label: 'Update ports position',
+              to: 'examples/updatePortsPosition',
+            },
           ],
         },
         {

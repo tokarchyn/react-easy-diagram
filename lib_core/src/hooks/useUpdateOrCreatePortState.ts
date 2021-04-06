@@ -5,7 +5,7 @@ import { PortState } from 'states/portState';
 import { INodePortState } from 'states/nodeState';
 
 interface IPortStateWithNodeId extends INodePortState {
-  nodeId: string
+  nodeId: string;
 }
 
 export function useUpdateOrCreatePortState(
