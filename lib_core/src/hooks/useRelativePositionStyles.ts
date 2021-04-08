@@ -1,5 +1,6 @@
 import React from 'react';
-import { Point } from 'utils/point';
+import { isNumber } from 'utils/common';
+import { isPoint, Point } from 'utils/point';
 import {
   RelativeXYPosition,
   splitRelativeXYPostionByAxis,
@@ -9,10 +10,13 @@ export type PortPosition = Exclude<RelativeXYPosition, 'center-center'>;
 
 export const useRelativePositionStyles = (
   position?: PortPosition,
-  offsetFromParentCenter: number = 0,
-  offsetFromOrigin: Point = [0, 0]
+  offsetFromParentCenter?: number,
+  offsetFromOrigin?: Point
 ): RelativePositionStyles => {
   if (!position) return {};
+
+  if (!isNumber(offsetFromParentCenter)) offsetFromParentCenter = 0;
+  if (!isPoint(offsetFromOrigin)) offsetFromOrigin = [0,0];
 
   const [positionX, positionY] = splitRelativeXYPostionByAxis(
     position as RelativeXYPosition

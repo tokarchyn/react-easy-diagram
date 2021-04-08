@@ -1,5 +1,13 @@
 export type Point = [number, number];
 
+export function isPoint(value: any): value is Point {
+  return (
+    Array.isArray(value) &&
+    value.length === 2 &&
+    value.every((v) => Number.isFinite(v))
+  );
+}
+
 export const distanceBetweenPoints = (a: Point, b: Point): number =>
   Math.sqrt(Math.pow(a[0] - b[0], 2) + Math.pow(a[1] - b[1], 2));
 

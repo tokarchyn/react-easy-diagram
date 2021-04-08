@@ -27,7 +27,7 @@ const SomeNode = observer<{node: NodeState}>(() => {
         <input
           type='number'
           onChange={(event) =>
-            setPortOffsetFromNodeCenter(parseInt(event.target.value))
+            setPortOffsetFromNodeCenter(parseInt(event.target.value) ?? 0)
           }
           defaultValue={0} 
         />
