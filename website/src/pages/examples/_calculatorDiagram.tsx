@@ -6,58 +6,62 @@ import {
 } from '@react-easy-diagram/core';
 import { observer } from 'mobx-react-lite';
 
-const NumberProvider = observer<INodeVisualComponentProps>(({ entity, draggableRef }) => {
-  const port = entity.ports['number'];
-  return (
-    <div className="react_fast_diagram_Node_Default" ref={draggableRef}>
-      <div>Number input</div>
-      <span>
-        <input
-          type='number'
-          onChange={(event) =>
-            port?.setExtra(parseInt(event.target.value))
-          }
-          defaultValue={port && port.extra}
-        />
-      </span>
-      <Port id='number' position='right-center' />
-    </div>
-  );
-});
-
-const AddNumbers = observer<INodeVisualComponentProps>(({ entity, draggableRef }) => {
-  const numPort1 = entity.ports['number_1'];
-  const numPort2 = entity.ports['number_2'];
-  const outputPort = entity.ports['output'];
-
-  let num1 = 0;
-  let num2 = 0;
-  if (
-    numPort1 &&
-    numPort1.connectedPorts.length > 0 &&
-    numPort2 &&
-    numPort2.connectedPorts.length > 0
-  ) {
-    num1 = numPort1.connectedPorts[0].extra;
-    num2 = numPort2.connectedPorts[0].extra;
+const NumberProvider = observer<INodeVisualComponentProps>(
+  ({ entity, draggableRef }) => {
+    const port = entity.ports['number'];
+    return (
+      <div className='react_fast_diagram_Node_Default' ref={draggableRef}>
+        <div>Number input</div>
+        <span>
+          <input
+            type='number'
+            onChange={(event) => port?.setExtra(parseInt(event.target.value))}
+            defaultValue={port && port.extra}
+          />
+        </span>
+        <Port id='number' position='right-center' />
+      </div>
+    );
   }
+);
 
-  useEffect(() => {
-    if (outputPort) {
-      outputPort.setExtra(num1 + num2);
+const AddNumbers = observer<INodeVisualComponentProps>(
+  ({ entity, draggableRef }) => {
+    const numPort1 = entity.ports['number_1'];
+    const numPort2 = entity.ports['number_2'];
+    const outputPort = entity.ports['output'];
+
+    let num1 = 0;
+    if (numPort1 && numPort1.connectedPorts.length > 0) {
+      num1 = numPort1.connectedPorts[0].extra;
     }
-  }, [num1, num2, outputPort]);
+    
+    let num2 = 0;
+    if (numPort2 && numPort2.connectedPorts.length > 0) {
+      num2 = numPort2.connectedPorts[0].extra;
+    }
 
-  return (
-    <div className="react_fast_diagram_Node_Default" ref={draggableRef}>
-      <div>Add numbers</div>
-      <span>Result: {outputPort ? outputPort.extra : ''}</span>
-      <Port id='number_1' position='left-center' offsetFromOrigin={[0,-15]}/>
-      <Port id='number_2' position='left-center' offsetFromOrigin={[0,15]}/>
-      <Port id='output' position='right-center' />
-    </div>
-  );
-});
+    useEffect(() => {
+      if (outputPort) {
+        outputPort.setExtra(num1 + num2);
+      }
+    }, [num1, num2, outputPort]);
+
+    return (
+      <div className='react_fast_diagram_Node_Default' ref={draggableRef}>
+        <div>Add numbers</div>
+        <span>Result: {outputPort ? outputPort.extra : ''}</span>
+        <Port
+          id='number_1'
+          position='left-center'
+          offsetFromOrigin={[0, -15]}
+        />
+        <Port id='number_2' position='left-center' offsetFromOrigin={[0, 15]} />
+        <Port id='output' position='right-center' />
+      </div>
+    );
+  }
+);
 
 export default () => (
   <Diagram
