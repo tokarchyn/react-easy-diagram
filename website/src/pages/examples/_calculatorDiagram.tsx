@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Diagram,
   INodeVisualComponentProps,
@@ -15,6 +15,7 @@ const NumberProvider = observer<INodeVisualComponentProps>(
         <span>
           <input
             type='number'
+            // You can set extra using api, like this. Or pass extra right in props to Port component like it is done in AddNumbers
             onChange={(event) => port?.setExtra(parseInt(event.target.value))}
             defaultValue={port && port.extra}
           />
@@ -27,25 +28,16 @@ const NumberProvider = observer<INodeVisualComponentProps>(
 
 const AddNumbers = observer<INodeVisualComponentProps>(
   ({ entity, draggableRef }) => {
-    const numPort1 = entity.ports['number_1'];
-    const numPort2 = entity.ports['number_2'];
     const outputPort = entity.ports['output'];
 
-    let num1 = 0;
-    if (numPort1 && numPort1.connectedPorts.length > 0) {
-      num1 = numPort1.connectedPorts[0].extra;
-    }
-    
-    let num2 = 0;
-    if (numPort2 && numPort2.connectedPorts.length > 0) {
-      num2 = numPort2.connectedPorts[0].extra;
-    }
-
-    useEffect(() => {
-      if (outputPort) {
-        outputPort.setExtra(num1 + num2);
-      }
-    }, [num1, num2, outputPort]);
+    const getInputNumber = (portName: string): number => {
+      const port = entity.ports[portName];
+      if (port && port.connectedPorts.length > 0) {
+        return port.connectedPorts[0].extra;
+      } else return 0;
+    };
+    const num1 = getInputNumber('number_1');
+    const num2 = getInputNumber('number_2');
 
     return (
       <div className='react_fast_diagram_Node_Default' ref={draggableRef}>
@@ -55,9 +47,15 @@ const AddNumbers = observer<INodeVisualComponentProps>(
           id='number_1'
           position='left-center'
           offsetFromOrigin={[0, -15]}
+          type='single_connection'
         />
-        <Port id='number_2' position='left-center' offsetFromOrigin={[0, 15]} />
-        <Port id='output' position='right-center' />
+        <Port
+          id='number_2'
+          position='left-center'
+          offsetFromOrigin={[0, 15]}
+          type='single_connection'
+        />
+        <Port id='output' position='right-center' extra={num1 + num2} />
       </div>
     );
   }
@@ -100,6 +98,15 @@ export default () => (
         components: {
           number: NumberProvider,
           addnumbers: AddNumbers,
+        },
+      },
+      callbacks: {
+        validateLinkEndpoints: (source, target, rootStore) => {
+          if (target.type === 'single_connection') {
+            // allow connection only if target port is still unconnected
+            return target.connectedLinks.length === 0;
+          }
+          return true;
         },
       },
     }}
