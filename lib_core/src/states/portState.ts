@@ -119,7 +119,7 @@ export class PortState {
     this.setLabel(state?.label);
     this.setExtra(state?.extra);
     this.setComponent(state?.component);
-    this._linkDirection = state?.linkDirection ?? null;
+    this.setLinkDirection(state?.linkDirection);
   };
 
   export = (): IPortStateWithIds =>
@@ -205,6 +205,10 @@ export class PortState {
     ) {
       return this.offsetRelativeToNode[1] < nodeCenter[1] ? 'up' : 'down';
     }
+  }
+
+  setLinkDirection = (value: DirectionWithDiagonals|undefined) => {
+    this._linkDirection = value ?? null;
   }
 
   setLinkDirectionIfNotYet = (direction: DirectionWithDiagonals) => {

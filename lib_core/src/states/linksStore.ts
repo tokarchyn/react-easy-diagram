@@ -1,8 +1,16 @@
 import { makeAutoObservable } from 'mobx';
-import { SuccessOrErrorResult, successValueResult, errorResult, successResult } from 'utils/result';
+import {
+  SuccessOrErrorResult,
+  successValueResult,
+  errorResult,
+  successResult,
+} from 'utils/result';
 import { guidForcedUniqueness } from 'utils/guid';
 import { LinkCreationState } from 'states/linkCreationState';
-import { linkPortEndpointsEquals, ILinkPortEndpoint } from 'states/linkPortEndpointState';
+import {
+  linkPortEndpointsEquals,
+  ILinkPortEndpoint,
+} from 'states/linkPortEndpointState';
 import { LinkState, ILinkState } from 'states/linkState';
 import { createFullPortId, PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';
@@ -24,7 +32,7 @@ export class LinksStore {
   import = (newLinks?: ILinkState[]) => {
     this._links = new Map();
     this._nodesLinksCollection = new Map();
-    newLinks && newLinks.forEach((link) => this.addLink(link, false)); // do not check existence of link's ports as they could be added after first rendering of node 
+    newLinks && newLinks.forEach((link) => this.addLink(link, false)); // do not check existence of link's ports as they could be added after first rendering of node
   };
 
   export = (): ILinkState[] =>
@@ -75,13 +83,16 @@ export class LinksStore {
     });
   };
 
-  addLink = (link: ILinkState, checkPortsExistence: boolean = true): SuccessOrErrorResult<LinkState> => {
+  addLink = (
+    link: ILinkState,
+    checkPortsExistence: boolean = true
+  ): SuccessOrErrorResult<LinkState> => {
     const canAdd = this.canAddLink(link, checkPortsExistence);
     if (!canAdd.success) return canAdd;
 
     const newLink = new LinkState(
       this._rootStore,
-      link.id ?? guidForcedUniqueness(id => this._links.has(id)),
+      link.id ?? guidForcedUniqueness((id) => this._links.has(id)),
       link
     );
     this._links.set(newLink.id, newLink);
@@ -111,7 +122,10 @@ export class LinksStore {
     return false;
   };
 
-  canAddLink = (link: ILinkState, checkPortsExistence: boolean = true): SuccessOrErrorResult => {
+  canAddLink = (
+    link: ILinkState,
+    checkPortsExistence: boolean = true
+  ): SuccessOrErrorResult => {
     if (!link) return errorResult(`Cannot add empty`);
     if (link.id && this._links.has(link.id))
       return errorResult(
@@ -146,7 +160,9 @@ export class LinksStore {
     return successResult();
   };
 
-  doesEndpointPortExist = (endpoint: ILinkPortEndpoint): SuccessOrErrorResult => {
+  doesEndpointPortExist = (
+    endpoint: ILinkPortEndpoint
+  ): SuccessOrErrorResult => {
     try {
       this.getEndpointPort(endpoint);
     } catch (ex) {
