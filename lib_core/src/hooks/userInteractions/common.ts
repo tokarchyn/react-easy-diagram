@@ -6,9 +6,16 @@ import {
 } from 'react-use-gesture/dist/types';
 import { Point } from 'utils/point';
 
+/**
+ * Check each element starting from the first one in composedPath() (see https://developer.mozilla.org/en-US/docs/Web/API/Event/composedPath),
+ * if exceptClassName is the first class found -> return false,
+ * if className is the first class found -> return true,
+ * if neither exceptClassName nor className were found -> return false
+ */
 export const eventPathContainsClass = (
   event: PointerEvent | React.PointerEvent<Element>,
-  className: string
+  className: string,
+  exceptClassName?: string
 ) => {
   const typedEvent = event as Event;
   if ('composedPath' in typedEvent) {
@@ -16,7 +23,10 @@ export const eventPathContainsClass = (
     for (let i = 0; i < targets.length; i++) {
       const target = targets[i];
       if ('classList' in target) {
-        if ((target as Element).classList.contains(className)) {
+        const classList = (target as Element).classList;
+        if (exceptClassName && classList.contains(exceptClassName)) {
+          return false;
+        } else if (classList.contains(className)) {
           return true;
         }
       }
@@ -25,40 +35,6 @@ export const eventPathContainsClass = (
 
   return false;
 };
-
-export function allTouchTargetsContainsClass(
-  event: TouchEvent | React.TouchEvent<Element>,
-  listenOnlyClass: string | undefined,
-  ignoreClass: string | undefined
-): boolean {
-  for (let i = 0; i < event.touches.length; i++) {
-    if (
-      !eventTargetContainsClass(
-        event.touches[i].target,
-        listenOnlyClass,
-        ignoreClass
-      )
-    ) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-export function eventTargetContainsClass(
-  eventTarget: EventTarget | null,
-  listenOnlyClass: string | undefined,
-  ignoreClass: string | undefined
-): boolean {
-  if (eventTarget && 'classList' in eventTarget) {
-    const targetElement = eventTarget as Element;
-    return (
-      (!listenOnlyClass || targetElement.classList.contains(listenOnlyClass)) &&
-      (!ignoreClass || !targetElement.classList.contains(ignoreClass))
-    );
-  } else return false;
-}
 
 /**
  * Does gesture can be potentially a tap/click event?

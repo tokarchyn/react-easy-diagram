@@ -1,5 +1,8 @@
 import React from 'react';
-import { useNodeUserInteraction } from 'hooks/userInteractions/useNodeUserInteraction';
+import {
+  enableNodeUserInteractionClassName,
+  useNodeUserInteraction,
+} from 'hooks/userInteractions/useNodeUserInteraction';
 import { NodeState } from 'states/nodeState';
 import { observer } from 'mobx-react-lite';
 
@@ -12,7 +15,7 @@ export const NodeWrapper = observer<{ node: NodeState }>(({ node }) => {
     <NodeContext.Provider value={node}>
       <div
         id={node.id}
-        className='react_fast_diagram_NodeWrapper'
+        className={`react_fast_diagram_NodeWrapper ${enableNodeUserInteractionClassName}`}
         style={{
           left: node.position[0],
           top: node.position[1],

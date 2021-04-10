@@ -56,7 +56,7 @@ export const useNodeUserInteraction = (
         }
       },
       onDragStart: ({ event }) => {
-        if (cancelPortsEvents(event)) {
+        if (!allowNodeInteraction(event)) {
           return;
         }
         activeRef.current = true;
@@ -101,9 +101,18 @@ export const useNodeUserInteraction = (
 
 const selectDelay: number = 500;
 
-function cancelPortsEvents(event: React.PointerEvent<Element> | PointerEvent) {
-  return eventPathContainsClass(event, 'react_easy_diagram_port');
+function allowNodeInteraction(event: React.PointerEvent<Element> | PointerEvent) {
+  return eventPathContainsClass(
+    event,
+    enableNodeUserInteractionClassName,
+    disableNodeUserInteractionClassName
+  );
 }
+
+export const enableNodeUserInteractionClassName =
+  'react_easy_diagram_enable_node_user_interaction';
+export const disableNodeUserInteractionClassName =
+  'react_easy_diagram_disable_node_user_interaction';
 
 export interface IUseNodeUserInteractionResult {
   active: boolean;

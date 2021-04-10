@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Diagram,
+  disableNodeUserInteractionClassName,
   INodeVisualComponentProps,
   Port,
 } from '@react-easy-diagram/core';
@@ -18,6 +19,7 @@ const NumberProvider = observer<INodeVisualComponentProps>(
             // You can set extra using api, like this. Or pass extra right in props to Port component like it is done in AddNumbers
             onChange={(event) => port?.setExtra(parseInt(event.target.value))}
             defaultValue={port && port.extra}
+            className={disableNodeUserInteractionClassName}
           />
         </span>
         <Port id='number' position='right-center' />
