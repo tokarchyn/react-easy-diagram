@@ -43,6 +43,10 @@ export class LinkCreationState implements ILinkInteractionState {
     return this._targetPortCandidate;
   }
 
+  get isLinking() {
+    return !!this._source;
+  }
+
   startLinking = (portState: PortState, pointOnPort: Point): boolean => {
     this._resetProps();
     this._source = new LinkPortEndpointState(

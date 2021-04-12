@@ -36,10 +36,17 @@ export const useNodeUserInteraction = (
           canDragGestureBeTapInstead(movement)
         ) {
           return;
-        } else if (!nodeState.selected && !selectionHandledRef.current) {
+        } else if (
+          nodeState.isSelectionEnabled &&
+          !nodeState.selected &&
+          !selectionHandledRef.current
+        ) {
           rootStore.selectionState.select(nodeState, ctrlKey);
           selectionHandledRef.current = true;
-        } else if (nodeState.selected) {
+        } else if (
+          nodeState.isDragEnabled &&
+          nodeState.selected
+        ) {
           // prevent canceling selection on timeout
           selectionHandledRef.current = true;
           rootStore.selectionState.selectedItems
@@ -60,20 +67,28 @@ export const useNodeUserInteraction = (
           return;
         }
         activeRef.current = true;
+
         selectionHandledRef.current = false;
-        selectionTimeoutRef.current = setTimeout(() => {
-          if (activeRef.current && !selectionHandledRef.current) {
-            selectionHandledRef.current = true;
-            rootStore.selectionState.select(nodeState, true);
-          }
-        }, selectDelay);
+        if (nodeState.isSelectionEnabled) {
+          selectionTimeoutRef.current = setTimeout(() => {
+            if (activeRef.current && !selectionHandledRef.current) {
+              selectionHandledRef.current = true;
+              rootStore.selectionState.select(nodeState, true);
+            }
+          }, selectDelay);
+        }
       },
       onDragEnd: ({ tap, ctrlKey }) => {
         if (selectionTimeoutRef.current) {
           clearTimeout(selectionTimeoutRef.current);
         }
         activeRef.current = false;
-        if (tap && !selectionHandledRef.current) {
+
+        if (
+          nodeState.isSelectionEnabled &&
+          tap &&
+          !selectionHandledRef.current
+        ) {
           rootStore.selectionState.select(nodeState, ctrlKey);
         }
         remainderFromPreviousDragEventRef.current.clear();
@@ -101,7 +116,9 @@ export const useNodeUserInteraction = (
 
 const selectDelay: number = 500;
 
-function allowNodeInteraction(event: React.PointerEvent<Element> | PointerEvent) {
+function allowNodeInteraction(
+  event: React.PointerEvent<Element> | PointerEvent
+) {
   return eventPathContainsClass(
     event,
     enableNodeUserInteractionClassName,

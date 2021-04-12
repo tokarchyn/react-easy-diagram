@@ -2,24 +2,28 @@ import { useMemo } from 'react';
 import { Handler } from 'react-use-gesture/dist/types';
 import { subtractPoints } from 'utils/point';
 import type { IUserInteractionTranslateAndZoom } from 'hooks/userInteractions/common';
+import { useRootStore } from 'hooks/useRootStore';
 
 export function useDiagramWheelHandler(
   elemToAttachToRef: React.RefObject<HTMLElement>,
   activeRef: React.MutableRefObject<boolean>,
   state: IUserInteractionTranslateAndZoom
 ): IWheelHandler {
+  const { diagramSettings } = useRootStore();
+
   const handlers = useMemo<IWheelHandler>(
     () => ({
-      onWheel: ({
-        direction: [_, yDirection],
-        event: { clientX, clientY },
-      }) => {
-        if (!elemToAttachToRef.current) return;
+      onWheel: ({ direction: [_, yDirection], event }) => {
+        if (
+          !elemToAttachToRef.current ||
+          !diagramSettings.userInteraction.diagramZoom
+        )
+          return;
         event?.preventDefault();
         const rect = elemToAttachToRef.current.getBoundingClientRect();
 
         const mousePositionOnElement = subtractPoints(
-          [clientX, clientY],
+          [event.clientX, event.clientY],
           [rect.left, rect.top]
         );
 
@@ -31,7 +35,7 @@ export function useDiagramWheelHandler(
         state.tranlsateAndZoomInto([0, 0], mousePositionOnElement, factor);
       },
     }),
-    [elemToAttachToRef, activeRef, state]
+    [elemToAttachToRef, activeRef, state, diagramSettings]
   );
 
   return handlers;

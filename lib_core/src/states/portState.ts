@@ -12,6 +12,7 @@ import {
   VisualComponentState,
   VisualComponent,
 } from 'states/visualComponentState';
+import { isBoolean } from 'utils/common';
 
 export class PortState {
   private _id: string;
@@ -21,6 +22,7 @@ export class PortState {
   private _extra: any;
   private _component: VisualComponentState<IPortVisualComponentProps> | null;
   private _linkDirection: DirectionWithDiagonals | null;
+  private _isConnectionEnabled: boolean | null;
 
   private _ref: HtmlElementRefState = new HtmlElementRefState(null);
   private _dragging: boolean = false;
@@ -120,6 +122,7 @@ export class PortState {
     this.setExtra(state?.extra);
     this.setComponent(state?.component);
     this.setLinkDirection(state?.linkDirection);
+    this.setIsConnectionEnabled(state?.isConnectionEnabled);
   };
 
   export = (): IPortStateWithIds =>
@@ -128,6 +131,8 @@ export class PortState {
       nodeId: this._nodeId,
       label: this._label,
       type: this._type,
+      linkDirection: this._linkDirection ?? undefined,
+      isConnectionEnabled: this._isConnectionEnabled ?? undefined,
     });
 
   get extra() {
@@ -226,6 +231,16 @@ export class PortState {
   get sizeAndPositionRecalculationWithDelay() {
     return this._sizeAndPositionRecalculationWithDelay;
   }
+
+  get isConnectionEnabled(): boolean {
+    return this._isConnectionEnabled === null
+      ? this._rootStore.diagramSettings.userInteraction.portConnection
+      : this._isConnectionEnabled;
+  }
+
+  setIsConnectionEnabled = (value: boolean | null | undefined) => {
+    this._isConnectionEnabled = isBoolean(value) ? value : null;
+  };
 }
 
 export interface IPortStateWithoutIds {
@@ -234,6 +249,7 @@ export interface IPortStateWithoutIds {
   extra?: any;
   component?: VisualComponent<IPortVisualComponentProps>;
   linkDirection?: DirectionWithDiagonals;
+  isConnectionEnabled?: boolean;
 }
 
 export interface IPortStateWithIds extends IPortStateWithoutIds {

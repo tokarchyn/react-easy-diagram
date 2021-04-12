@@ -15,6 +15,7 @@ export const usePortUserInteraction = (
     linksStore: { linkCreation },
     diagramState,
   } = useRootStore();
+
   const handlers = useMemo<IGestureHandlers | {}>(
     () => ({
       onDrag: ({ delta }) => {
@@ -23,7 +24,8 @@ export const usePortUserInteraction = (
         linkCreation.target?.translateBy(multiplyPoint(delta, 1 / parentScale));
       },
       onDragStart: ({ event, xy }) => {
-        if (!portState) return;
+        if (!portState || !portState.isConnectionEnabled) return;
+
         // Important! Otherwise on touch display onPointerEnter will not work!
         const portHtmlElement = event.target as Element;
         portHtmlElement.releasePointerCapture(event.pointerId);
@@ -44,8 +46,14 @@ export const usePortUserInteraction = (
       },
       onPointerEnter: () => {
         if (!portState) return;
-        portState.hovered = true;
-        linkCreation.setTargetPortCandidate(portState);
+
+        if (portState.isConnectionEnabled || !linkCreation.isLinking) {
+          portState.hovered = true;
+        }
+
+        if (portState.isConnectionEnabled) {
+          linkCreation.setTargetPortCandidate(portState);
+        }
       },
       onPointerLeave: () => {
         if (!portState) return;
@@ -53,7 +61,7 @@ export const usePortUserInteraction = (
         linkCreation.resetTargetPortCandidate(portState);
       },
     }),
-    [portState, linkCreation]
+    [portState, linkCreation, diagramState]
   );
 
   // Temporary bug fix when pointer events handlers are not reasigned.

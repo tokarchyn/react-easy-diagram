@@ -9,6 +9,7 @@ import {
 import { RootStore } from 'states/rootStore';
 import { ISelectableItem } from 'states/selectionState';
 import { componentDefaultType } from 'states/visualComponents';
+import { isBoolean } from 'utils/common';
 
 export class LinkState
   implements ILinkState, ISelectableItem, ILinkInteractionState {
@@ -20,7 +21,8 @@ export class LinkState
   private _selected: boolean;
   private _hovered: boolean;
   private _extra: any;
-
+  private _isSelectionEnabled: boolean | null;
+  
   private _rootStore: RootStore;
 
   constructor(rootStore: RootStore, id: string, state: ILinkStateWithoutId) {
@@ -36,15 +38,26 @@ export class LinkState
       _rootStore: false,
     });
   }
-
+  
   import = (state: ILinkStateWithoutId) => {
     this._source = this._createEndpointState(state.source);
     this._target = this._createEndpointState(state.target);
     this.setComponentType(state.componentType);
     this.setSegments(state.segments);
     this.setExtra(state.extra);
+    this.setIsSelectionEnabled(state?.isSelectionEnabled);
   };
-
+  
+  private _createEndpointState = (
+    endpoint: ILinkPortEndpoint
+  ): LinkPortEndpointState => {
+    return new LinkPortEndpointState(
+      endpoint.nodeId,
+      endpoint.portId,
+      this._rootStore
+    );
+  };
+  
   export = (): ILinkStateWithId => ({
     source: this.source.export(),
     target: this.target.export(),
@@ -53,6 +66,7 @@ export class LinkState
       componentType: this.componentType,
       segments: this.segments,
       extra: this.extra,
+      isSelectionEnabled: this._isSelectionEnabled ?? undefined,
     }),
   });
 
@@ -117,14 +131,14 @@ export class LinkState
     this._extra = value ?? null;
   };
 
-  private _createEndpointState = (
-    endpoint: ILinkPortEndpoint
-  ): LinkPortEndpointState => {
-    return new LinkPortEndpointState(
-      endpoint.nodeId,
-      endpoint.portId,
-      this._rootStore
-    );
+  get isSelectionEnabled(): boolean {
+    return this._isSelectionEnabled === null
+      ? this._rootStore.diagramSettings.userInteraction.linkSelection
+      : this._isSelectionEnabled;
+  }
+
+  setIsSelectionEnabled = (value: boolean | null | undefined) => {
+    this._isSelectionEnabled = isBoolean(value) ? value : null;
   };
 }
 
@@ -180,6 +194,7 @@ export interface ILinkStateWithoutId {
   target: ILinkPortEndpoint;
   segments?: ILinkSegment[];
   extra?: any;
+  isSelectionEnabled?: boolean;
 }
 
 export interface ILinkStateWithId extends ILinkStateWithoutId {

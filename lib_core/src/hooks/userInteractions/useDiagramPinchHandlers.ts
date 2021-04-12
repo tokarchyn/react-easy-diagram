@@ -6,6 +6,7 @@ import {
 } from 'react-use-gesture/dist/types';
 import { subtractPoints } from 'utils/point';
 import type { IUserInteractionTranslateAndZoom } from 'hooks/userInteractions/common';
+import { useRootStore } from 'hooks/useRootStore';
 
 type PinchEvent =
   | React.TouchEvent
@@ -28,6 +29,7 @@ export function useDiagramPinchHandlers(
   state: IUserInteractionTranslateAndZoom,
   cancel: (event: PinchEvent) => boolean
 ): IPinchHandlers {
+  const { diagramSettings } = useRootStore();
   const pinchState = useRef<IPinchState>({
     distance: 0,
     origin: [0, 0],
@@ -59,7 +61,7 @@ export function useDiagramPinchHandlers(
         };
       },
       onPinchStart: ({ da: [distance], origin, event }) => {
-        if (cancel(event)) {
+        if (!diagramSettings.userInteraction.diagramZoom || cancel(event)) {
           return;
         }
         pinchState.current = {
@@ -70,7 +72,7 @@ export function useDiagramPinchHandlers(
       },
       onPinchEnd: () => (activeRef.current = false),
     }),
-    [elemToAttachToRef, activeRef, state, cancel]
+    [elemToAttachToRef, activeRef, state, cancel, diagramSettings]
   );
 
   return handlers;

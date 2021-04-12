@@ -1,5 +1,5 @@
 import { makeAutoObservable, reaction } from 'mobx';
-import { Dictionary } from 'utils/common';
+import { Dictionary, isBoolean } from 'utils/common';
 import {
   SuccessOrErrorResult,
   errorResult,
@@ -25,6 +25,8 @@ export class NodeState implements ISelectableItem {
   private _componentType: string;
   private _selected: boolean;
   private _extra: any;
+  private _isSelectionEnabled: boolean | null;
+  private _isDragEnabled: boolean | null;
 
   private _rootStore: RootStore;
 
@@ -56,6 +58,8 @@ export class NodeState implements ISelectableItem {
     this.label = newState?.label ?? '';
     this._ports = {};
     newState?.ports && newState.ports.forEach(this.addPort);
+    this.setIsSelectionEnabled(newState?.isSelectionEnabled);
+    this.setIsDragEnabled(newState?.isDragEnabled);
   };
 
   export = (): INodeStateWithId => ({
@@ -65,6 +69,8 @@ export class NodeState implements ISelectableItem {
       position: this._position,
       componentType: this.componentType,
       extra: this.extra,
+      isSelectionEnabled: this._isSelectionEnabled ?? undefined,
+      isDragEnabled: this._isDragEnabled ?? undefined,
     }),
     ports: Object.values(this._ports).map((p) => p.export()),
   });
@@ -209,6 +215,26 @@ export class NodeState implements ISelectableItem {
   recalculatePortsSizeAndPosition = () => {
     Object.values(this._ports).forEach((p) => p.recalculateSizeAndPosition());
   };
+
+  get isSelectionEnabled(): boolean {
+    return this._isSelectionEnabled === null
+      ? this._rootStore.diagramSettings.userInteraction.nodeSelection
+      : this._isSelectionEnabled;
+  }
+
+  setIsSelectionEnabled = (value: boolean | null | undefined) => {
+    this._isSelectionEnabled = isBoolean(value) ? value : null;
+  };
+
+  get isDragEnabled(): boolean {
+    return this._isDragEnabled === null
+      ? this._rootStore.diagramSettings.userInteraction.nodeDrag
+      : this._isDragEnabled;
+  }
+
+  setIsDragEnabled = (value: boolean | null | undefined) => {
+    this._isDragEnabled = isBoolean(value) ? value : null;
+  };
 }
 
 function snapPositionToGrid(position: Point, snap: Point | null) {
@@ -247,6 +273,8 @@ export interface INodeStateWithoutId {
   ports?: INodePortState[];
   componentType?: string;
   extra?: any;
+  isSelectionEnabled?: boolean;
+  isDragEnabled?: boolean;
 }
 
 export interface INodePortState extends IPortStateWithoutIds {

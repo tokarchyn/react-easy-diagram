@@ -17,7 +17,7 @@ export function useDiagramDragHandlers(
   activeRef: React.MutableRefObject<boolean>,
   getPosition: () => Point,
   setPosition: (position: Point) => any,
-  cancel?: (event: React.PointerEvent<Element> | PointerEvent) => boolean
+  cancelEvent?: (event: React.PointerEvent<Element> | PointerEvent) => boolean
 ): IDragHandlers {
   const rootStore = useRootStore();
   const handlers = useMemo<IDragHandlers>(
@@ -32,22 +32,25 @@ export function useDiagramDragHandlers(
           currentPosition[1] + delta[1],
         ]);
       },
-      onDragStart: ({ event }) => {
-        if (cancel && cancel(event)) {
+      onDragStart: ({ event, cancel }) => {
+        if (cancelEvent && cancelEvent(event)) {
+          cancel();
+          return;
+        }
+        // Do not activate so drag will not be performed, but also don't cancel, as it would not be posseble to clear selection
+        if (!rootStore.diagramSettings.userInteraction.diagramPan) {
           return;
         }
         activeRef.current = true;
       },
       onDragEnd: ({ tap }) => {
-        if (activeRef.current) {
-          activeRef.current = false;
-          if (tap) {
-            rootStore.selectionState.clear();
-          }
+        if (tap) {
+          rootStore.selectionState.clear();
         }
+        activeRef.current = false;
       },
     }),
-    [activeRef, getPosition, setPosition, cancel, rootStore]
+    [activeRef, getPosition, setPosition, cancelEvent, rootStore]
   );
 
   return handlers;

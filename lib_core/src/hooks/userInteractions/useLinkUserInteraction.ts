@@ -30,26 +30,34 @@ export const useLinkUserInteraction = (
             onDragStart: () => {
               activeRef.current = true;
               selectionHandledRef.current = false;
-              selectionTimeoutRef.current = setTimeout(() => {
-                if (!selectionHandledRef.current) {
-                  selectionHandledRef.current = true;
-                  rootStore.selectionState.select(linkState, true);
-                }
-              }, selectDelay);
+
+              if (linkState.isSelectionEnabled) {
+                selectionTimeoutRef.current = setTimeout(() => {
+                  if (!selectionHandledRef.current) {
+                    selectionHandledRef.current = true;
+                    rootStore.selectionState.select(linkState, true);
+                  }
+                }, selectDelay);
+              }
             },
             onDragEnd: ({ tap, ctrlKey }) => {
               activeRef.current = false;
               if (selectionTimeoutRef.current) {
                 clearTimeout(selectionTimeoutRef.current);
               }
-              if (tap && !selectionHandledRef.current) {
+
+              if (
+                linkState.isSelectionEnabled &&
+                tap &&
+                !selectionHandledRef.current
+              ) {
                 selectionHandledRef.current = true;
                 rootStore.selectionState.select(linkState, ctrlKey);
               }
             },
           }
         : {},
-    [linkState]
+    [linkState, rootStore]
   );
 
   const bind = useGesture(handlers, {

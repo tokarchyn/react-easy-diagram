@@ -63,6 +63,10 @@ module.exports = {
               label: 'Update ports position',
               to: 'examples/updatePortsPosition',
             },
+            {
+              label: 'Configure user interaction',
+              to: 'examples/configureUserInteraction',
+            },
           ],
         },
         {
