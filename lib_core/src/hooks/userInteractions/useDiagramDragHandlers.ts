@@ -36,7 +36,10 @@ export function useDiagramDragHandlers(
           return;
         }
         // Do not activate so drag will not be performed, but also don't cancel, as it would not be possible to clear selection
-        if (!rootStore.diagramSettings.userInteraction.diagramPan) {
+        if (
+          !rootStore.diagramSettings.userInteraction.diagramPan ||
+          event.buttons !== 1
+        ) {
           return;
         }
         activeRef.current = true;
