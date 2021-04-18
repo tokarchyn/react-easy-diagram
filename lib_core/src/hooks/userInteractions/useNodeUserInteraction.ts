@@ -12,8 +12,7 @@ import {
 } from 'hooks/userInteractions/common';
 
 export const useNodeUserInteraction = (
-  nodeState: NodeState,
-  enable?: boolean
+  nodeState: NodeState
 ): IUseNodeUserInteractionResult => {
   const rootStore = useRootStore();
 
@@ -43,10 +42,7 @@ export const useNodeUserInteraction = (
         ) {
           rootStore.selectionState.select(nodeState, ctrlKey);
           selectionHandledRef.current = true;
-        } else if (
-          nodeState.isDragEnabled &&
-          nodeState.selected
-        ) {
+        } else if (nodeState.isDragEnabled && nodeState.selected) {
           // prevent canceling selection on timeout
           selectionHandledRef.current = true;
           rootStore.selectionState.selectedItems
@@ -100,7 +96,6 @@ export const useNodeUserInteraction = (
   useGesture(handlers, {
     domTarget: userInteractionElemRef,
     eventOptions: { passive: false },
-    enabled: enable,
   });
 
   useUserAbilityToSelectSwitcher(

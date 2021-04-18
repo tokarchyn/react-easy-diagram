@@ -1,12 +1,9 @@
 import { useMemo, useRef } from 'react';
-import {
-  Handler,
-  Vector2,
-  WebKitGestureEvent,
-} from 'react-use-gesture/dist/types';
-import { subtractPoints } from 'utils/point';
-import type { IUserInteractionTranslateAndZoom } from 'hooks/userInteractions/common';
+import { Handler, WebKitGestureEvent } from 'react-use-gesture/dist/types';
+import { Point, subtractPoints } from 'utils/point';
 import { useRootStore } from 'hooks/useRootStore';
+import { useNotifyRef } from 'hooks/useNotifyRef';
+import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
 
 type PinchEvent =
   | React.TouchEvent
@@ -24,32 +21,33 @@ interface IPinchHandlers {
 }
 
 export function useDiagramPinchHandlers(
-  elemToAttachToRef: React.RefObject<HTMLElement>,
-  activeRef: React.MutableRefObject<boolean>,
-  state: IUserInteractionTranslateAndZoom,
   cancel: (event: PinchEvent) => boolean
 ): IPinchHandlers {
-  const { diagramSettings } = useRootStore();
+  const { diagramState, diagramSettings } = useRootStore();
+
+  const activeRef = useNotifyRef(false);
   const pinchState = useRef<IPinchState>({
     distance: 0,
     origin: [0, 0],
+    elementLeftTop: [0, 0],
   });
 
   const handlers = useMemo<IPinchHandlers>(
     () => ({
       onPinch: ({ da: [distance], origin }) => {
-        if (!activeRef.current || !elemToAttachToRef.current) {
+        if (!activeRef.current || !diagramState.diagramInnerRef.current) {
           return;
         }
-        const originDiff = subtractPoints(origin, pinchState.current.origin);
+        const originDiff = diagramSettings.userInteraction.diagramPan
+          ? subtractPoints(origin, pinchState.current.origin)
+          : ([0, 0] as Point);
 
-        const rect = elemToAttachToRef.current.getBoundingClientRect();
-        const originPositionOnElement = subtractPoints(origin, [
-          rect.left,
-          rect.top,
-        ]);
+        const originPositionOnElement = subtractPoints(
+          origin,
+          pinchState.current.elementLeftTop
+        );
 
-        state.tranlsateAndZoomInto(
+        diagramState.tranlsateAndZoomInto(
           originDiff,
           originPositionOnElement,
           distance / pinchState.current.distance
@@ -58,21 +56,40 @@ export function useDiagramPinchHandlers(
         pinchState.current = {
           distance,
           origin,
+          elementLeftTop: pinchState.current.elementLeftTop,
         };
       },
       onPinchStart: ({ da: [distance], origin, event }) => {
-        if (!diagramSettings.userInteraction.diagramZoom || cancel(event)) {
+        if (
+          !diagramSettings.userInteraction.diagramZoom ||
+          cancel(event) ||
+          !diagramState.diagramInnerRef.current
+        ) {
           return;
         }
+
+        const rect = diagramState.diagramInnerRef.current.getBoundingClientRect();
         pinchState.current = {
           distance,
           origin,
+          elementLeftTop: [rect.left, rect.top],
         };
         activeRef.current = true;
       },
       onPinchEnd: () => (activeRef.current = false),
     }),
-    [elemToAttachToRef, activeRef, state, cancel, diagramSettings]
+    [
+      diagramState.diagramInnerRef.current,
+      activeRef,
+      diagramState,
+      cancel,
+      diagramSettings,
+    ]
+  );
+
+  useUserAbilityToSelectSwitcher(
+    activeRef.current,
+    diagramState.diagramInnerRef.current?.ownerDocument?.body
   );
 
   return handlers;
@@ -80,5 +97,6 @@ export function useDiagramPinchHandlers(
 
 interface IPinchState {
   distance: number;
-  origin: Vector2;
+  origin: Point;
+  elementLeftTop: Point;
 }
