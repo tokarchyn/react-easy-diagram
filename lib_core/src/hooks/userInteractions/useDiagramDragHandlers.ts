@@ -3,6 +3,7 @@ import { Handler } from 'react-use-gesture/dist/types';
 import { useRootStore } from 'hooks/useRootStore';
 import { useNotifyRef } from 'hooks/useNotifyRef';
 import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
+import { addPoints } from 'utils/point';
 
 type DragEventHandler =
   | Handler<'drag', React.PointerEvent<Element> | PointerEvent>
@@ -27,10 +28,7 @@ export function useDiagramDragHandlers(
         if (!activeRef.current || pinching) {
           return;
         }
-        diagramState.setOffset([
-          diagramState.offset[0] + delta[0],
-          diagramState.offset[1] + delta[1],
-        ]);
+        diagramState.setOffset(addPoints(diagramState.offset, delta));
       },
       onDragStart: ({ event, cancel }) => {
         if (cancelEvent && cancelEvent(event)) {
