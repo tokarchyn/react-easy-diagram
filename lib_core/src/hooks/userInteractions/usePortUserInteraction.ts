@@ -28,11 +28,8 @@ export const usePortUserInteraction = (
         // Important! Otherwise on touch display onPointerEnter will not work!
         const portHtmlElement = event.target as Element;
         portHtmlElement.releasePointerCapture(event.pointerId);
-
-        let pointOnPort = subtractPoints(xy, [
-          portHtmlElement.getBoundingClientRect().x,
-          portHtmlElement.getBoundingClientRect().y,
-        ]);
+        const clientRect = portHtmlElement.getBoundingClientRect();
+        let pointOnPort = subtractPoints(xy, [clientRect.x, clientRect.y]);
 
         if (linkCreation.startLinking(portState, pointOnPort)) {
           portState.dragging = true;
@@ -48,9 +45,6 @@ export const usePortUserInteraction = (
 
         if (portState.isConnectionEnabled) {
           portState.hovered = true;
-        }
-
-        if (portState.isConnectionEnabled) {
           linkCreation.setTargetPortCandidate(portState);
         }
       },
