@@ -8,7 +8,7 @@ import type { IDragHandlers } from 'hooks/userInteractions/useDiagramDragHandler
 import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
 
 export const usePortUserInteraction = (
-  portState?: PortState,
+  portState?: PortState
 ): IUsePortUserInteractionResult => {
   const {
     linksStore: { linkCreation },
@@ -46,7 +46,7 @@ export const usePortUserInteraction = (
       onPointerEnter: () => {
         if (!portState) return;
 
-        if (portState.isConnectionEnabled || !linkCreation.isLinking) {
+        if (portState.isConnectionEnabled) {
           portState.hovered = true;
         }
 
@@ -67,7 +67,7 @@ export const usePortUserInteraction = (
   // See https://github.com/pmndrs/react-use-gesture/issues/263 and https://github.com/pmndrs/react-use-gesture/issues/264
   // There could be some other bugs related to handlers object replacing
   const bind = useGesture(handlers, {
-    eventOptions: { passive: false }
+    eventOptions: { passive: false },
   });
 
   useUserAbilityToSelectSwitcher(
