@@ -112,28 +112,17 @@
 }
 
 .react_fast_diagram_Minicontrol_Default_Btn {
-  background-color: white;
+  background-color: white; 
   border: 1px solid rgb(209, 209, 209);
-  letter-spacing: normal;
-  display: inline-flex;
-  text-align: center;
-  align-items: center;
+  color: black; 
+  padding: 2px;
+  font-size: 16px;
   cursor: pointer;
-  font-weight: bold;
-}
-
-.react_fast_diagram_Minicontrol_Default_Btn > * {
   text-align: center;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
 }
 
-@media (hover: hover) {
-  .react_fast_diagram_Minicontrol_Default_Btn:hover {
-    background-color: rgb(228, 228, 228);
-    border: 1px solid rgb(209, 209, 209);
-  }
+.react_fast_diagram_Minicontrol_Default_Btn:hover {
+  background-color: rgb(228, 228, 228);
 }
 
 .react_fast_diagram_PortInnerWrapper {

@@ -12,12 +12,14 @@ export default function () {
       initState={{
         nodes: [
           {
-            id: 'Node 1',
+            id: 'node_1',
+            label: 'Node 1',
             position: [300, 300],
             ports: [{ id: 'output_1', type: 'bottom' }],
           },
           {
-            id: 'Node 2',
+            id: 'node_2',
+            label: 'Node 2',
             position: [520, 400],
             ports: [
               { id: 'input_1', type: 'top' },
@@ -28,7 +30,8 @@ export default function () {
             ],
           },
           {
-            id: 'Node 3',
+            id: 'node_3',
+            label: 'Node 3',
             position: [520, 200],
             ports: [
               { id: 'input_1', type: 'top' },
@@ -40,32 +43,32 @@ export default function () {
         links: [
           {
             source: {
-              nodeId: 'Node 1',
+              nodeId: 'node_1',
               portId: 'output_1',
             },
             target: {
-              nodeId: 'Node 2',
+              nodeId: 'node_2',
               portId: 'input_1',
             },
             componentType: 'attention',
           },
           {
             source: {
-              nodeId: 'Node 1',
+              nodeId: 'node_1',
               portId: 'output_1',
             },
             target: {
-              nodeId: 'Node 3',
+              nodeId: 'node_3',
               portId: 'input_1',
             },
           },
           {
             source: {
-              nodeId: 'Node 3',
+              nodeId: 'node_3',
               portId: 'output_1',
             },
             target: {
-              nodeId: 'Node 2',
+              nodeId: 'node_2',
               portId: 'input_1',
             },
           },

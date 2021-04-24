@@ -4,6 +4,7 @@ export * from './components/BackgroundDefault';
 export * from './components/BackgroundWrapper';
 export * from './components/Diagram';
 export * from './components/DiagramInner';
+export * from './components/Icons';
 export * from './components/LinkDefault';
 export * from './components/LinkWrapper';
 export * from './components/LinksLayer';

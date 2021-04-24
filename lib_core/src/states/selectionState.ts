@@ -1,7 +1,8 @@
 import { makeAutoObservable } from 'mobx';
 import { LinkState } from 'states/linkState';
-import { NodeState } from 'states/nodeState';
+import { INodeState, NodeState } from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
+import { addPoints } from 'utils/point';
 
 export class SelectionState {
   private _selectedItems: ISelectableItem[] = [];
@@ -60,6 +61,18 @@ export class SelectionState {
       .filter((i) => i instanceof LinkState)
       .forEach((link: LinkState) => {
         this._rootStore.linksStore.removeLink(link.id);
+      });
+  };
+
+  cloneSelectedNodes = () => {
+    this._selectedItems
+      .filter((i) => i instanceof NodeState)
+      .forEach((node: NodeState) => {
+        const nodeObj = node.export() as INodeState;
+        nodeObj.id = undefined;
+        nodeObj.label = [nodeObj.label, 'copy'].join(' ');
+        nodeObj.position = addPoints(nodeObj.position, [50, 50]);
+        this._rootStore.nodesStore.addNode(nodeObj, false);
       });
   };
 }
