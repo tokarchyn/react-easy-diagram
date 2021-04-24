@@ -1,8 +1,5 @@
 import React from 'react';
 import {
-  createCurvedLinkPathConstructor,
-  createDefaultMiniControl,
-  createLinkDefault,
   Diagram,
   ILinkState,
   INodeState,
@@ -55,22 +52,4 @@ const generateState = (colNum: number, rowNum: number) => {
   return { nodes, links };
 };
 
-export default () => (
-  <Diagram
-    initState={generateState(10, 10)}
-    settings={{
-      links: {
-        components: {
-          attention: createLinkDefault({ color: 'red' }),
-        },
-        pathConstructor: createCurvedLinkPathConstructor(),
-      },
-      diagram: {
-        miniControlComponent: createDefaultMiniControl({
-          buttonsSize: 30,
-          position: 'left-bottom',
-        }),
-      },
-    }}
-  />
-);
+export default () => <Diagram initState={generateState(10, 10)} />;
