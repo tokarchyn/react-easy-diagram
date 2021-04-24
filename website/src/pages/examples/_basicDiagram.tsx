@@ -39,7 +39,6 @@ export default function () {
         ],
         links: [
           {
-            id: 'Node 1 - Node 2',
             source: {
               nodeId: 'Node 1',
               portId: 'output_1',
@@ -51,7 +50,6 @@ export default function () {
             componentType: 'attention',
           },
           {
-            id: 'Node 1 - Node 3',
             source: {
               nodeId: 'Node 1',
               portId: 'output_1',
@@ -62,7 +60,6 @@ export default function () {
             },
           },
           {
-            id: 'Node 3 - Node 2',
             source: {
               nodeId: 'Node 3',
               portId: 'output_1',
@@ -78,15 +75,8 @@ export default function () {
         links: {
           components: {
             attention: createLinkDefault({ color: 'red' }),
-          },
-          pathConstructor: createCurvedLinkPathConstructor(),
-        },
-        diagram: {
-          miniControlComponent: createDefaultMiniControl({
-            buttonsSize: 30,
-            position: 'left-bottom',
-          }),
-        },
+          }
+        }
       }}
     />
   );

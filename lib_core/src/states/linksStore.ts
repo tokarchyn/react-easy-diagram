@@ -32,7 +32,13 @@ export class LinksStore {
   import = (newLinks?: ILinkState[]) => {
     this._links = new Map();
     this._nodesLinksCollection = new Map();
-    newLinks && newLinks.forEach((link) => this.addLink(link, false)); // do not check existence of link's ports as they could be added after first rendering of node
+    // do not check existence of link's ports as they could be added after first node rendering
+    newLinks &&
+      newLinks.forEach((link) => {
+        if (this.validateLinkProperties(link)) {
+          this.addLink(link);
+        }
+      });
   };
 
   export = (): ILinkState[] =>
@@ -83,13 +89,7 @@ export class LinksStore {
     });
   };
 
-  addLink = (
-    link: ILinkState,
-    checkPortsExistence: boolean = true
-  ): SuccessOrErrorResult<LinkState> => {
-    const canAdd = this.canAddLink(link, checkPortsExistence);
-    if (!canAdd.success) return canAdd;
-
+  addLink = (link: ILinkState): LinkState => {
     const newLink = new LinkState(
       this._rootStore,
       link.id ?? guidForcedUniqueness((id) => this._links.has(id)),
@@ -99,7 +99,16 @@ export class LinksStore {
     this._addLinkToNodeLinksCollection(newLink, link.source.nodeId);
     this._addLinkToNodeLinksCollection(newLink, link.target.nodeId);
 
-    return successValueResult(newLink);
+    return newLink;
+  };
+
+  validateAndAddLink = (link: ILinkState): SuccessOrErrorResult<LinkState> => {
+    const canAdd = this.validateLink(link);
+    if (!canAdd.success) return canAdd;
+
+    const newlyCreatedLink = this.addLink(link);
+
+    return successValueResult(newlyCreatedLink);
   };
 
   removeLink = (linkId: string): boolean => {
@@ -122,33 +131,22 @@ export class LinksStore {
     return false;
   };
 
-  canAddLink = (
-    link: ILinkState,
-    checkPortsExistence: boolean = true
-  ): SuccessOrErrorResult => {
-    if (!link) return errorResult(`Cannot add empty`);
-    if (link.id && this._links.has(link.id))
-      return errorResult(
-        `Cannot add link with id '${link.id}', as it already exists`
-      );
+  validateLink = (link: ILinkState): SuccessOrErrorResult => {
+    const propsValidationResult = this.validateLinkProperties(link);
+    if (!propsValidationResult.success) return propsValidationResult;
 
-    if (checkPortsExistence) {
-      const isSourceValid = this.doesEndpointPortExist(link.source);
-      if (!isSourceValid.success) return isSourceValid;
-      const isTargetValid = this.doesEndpointPortExist(link.target);
-      if (!isTargetValid.success) return isTargetValid;
-    }
-
-    if (link.source.nodeId === link.target.nodeId)
-      return errorResult(`Link's endpoints are located in the same node`);
+    const sourcePortResult = this.getEndpointPortOrError(link.source);
+    if (!sourcePortResult.success) return sourcePortResult;
+    const targetPortResult = this.getEndpointPortOrError(link.target);
+    if (!targetPortResult.success) return targetPortResult;
 
     if (this.areEndpointsConnected(link.source, link.target))
       return errorResult(`Link's endpoints are already connected`);
 
     if (
       this._rootStore.callbacks.validateLinkEndpoints?.(
-        this.getEndpointPort(link.source),
-        this.getEndpointPort(link.target),
+        sourcePortResult.value,
+        targetPortResult.value,
         this._rootStore
       ) === false
     ) {
@@ -160,22 +158,44 @@ export class LinksStore {
     return successResult();
   };
 
-  doesEndpointPortExist = (
-    endpoint: ILinkPortEndpoint
-  ): SuccessOrErrorResult => {
-    try {
-      this.getEndpointPort(endpoint);
-    } catch (ex) {
-      return errorResult('' + ex);
-    }
+  validateLinkProperties = (link: ILinkState): SuccessOrErrorResult => {
+    if (!link) return errorResult(`Cannot add empty`);
+    if (link.id && typeof link !== 'string')
+      return errorResult(
+        `Cannot add link with id '${link.id}' of type different than 'string'`
+      );
+    if (link.id && this._links.has(link.id))
+      return errorResult(
+        `Cannot add link with id '${link.id}', as it already exists`
+      );
+
+    if (link.source.nodeId === link.target.nodeId)
+      return errorResult(`Link's endpoints are located in the same node`);
 
     return successResult();
   };
 
-  getEndpointPort = (endpoint: ILinkPortEndpoint): PortState => {
+  getEndpointPortOrError = (
+    endpoint: ILinkPortEndpoint
+  ): SuccessOrErrorResult<PortState> => {
+    const node = this._rootStore.nodesStore.getNode(endpoint.nodeId);
+    if (!node)
+      return errorResult(
+        `Node '${endpoint.nodeId}' of link's endpoint does not exist`
+      );
+    const port = node.getPort(endpoint.portId);
+    if (!port)
+      return errorResult(
+        `Port with id '${endpoint.portId}' does not exist in the node '${endpoint.nodeId}'`
+      );
+
+    return successValueResult(port);
+  };
+
+  getEndpointPort = (endpoint: ILinkPortEndpoint): PortState | undefined => {
     return this._rootStore.nodesStore
-      .getNodeOrThrowException(endpoint.nodeId)
-      .getPortOrThrowException(endpoint.portId);
+      .getNode(endpoint.nodeId)
+      ?.getPort(endpoint.portId);
   };
 
   areEndpointsConnected = (

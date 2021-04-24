@@ -32,16 +32,21 @@ export class LinkPortEndpointState implements ILinkPortEndpoint {
     return this._portId;
   }
 
-  get node(): NodeState {
-    return this._rootStore.nodesStore.getNodeOrThrowException(this._nodeId);
+  get node(): NodeState | undefined {
+    return this._rootStore.nodesStore.getNode(this._nodeId);
   }
 
   get port(): PortState | undefined {
-    return this.node.getPort(this._portId);
+    return this.node?.getPort(this._portId);
   }
 
   get point(): Point | undefined {
-    if (this.port && this.port.offsetRelativeToNode && this.port.realSize) {
+    if (
+      this.node &&
+      this.port &&
+      this.port.offsetRelativeToNode &&
+      this.port.realSize
+    ) {
       return addPoints(
         this.node.position,
         addPoints(

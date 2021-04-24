@@ -68,17 +68,17 @@ export default () => (
     initState={{
       nodes: [
         {
-          id: 'Num1',
+          id: 'num1',
           position: [100, 100],
           componentType: 'number',
         },
         {
-          id: 'Num2',
+          id: 'num2',
           position: [100, 300],
           componentType: 'number',
         },
         {
-          id: 'Num3',
+          id: 'num3',
           position: [420, 250],
           componentType: 'number',
         },
@@ -93,7 +93,48 @@ export default () => (
           componentType: 'addnumbers',
         },
       ],
-      links: [],
+      links: [
+        {
+          source: {
+            nodeId: 'num1',
+            portId: 'number',
+          },
+          target: {
+            nodeId: 'add1',
+            portId: 'number_1',
+          },
+        },
+        {
+          source: {
+            nodeId: 'num2',
+            portId: 'number',
+          },
+          target: {
+            nodeId: 'add1',
+            portId: 'number_2',
+          },
+        },
+        {
+          source: {
+            nodeId: 'num3',
+            portId: 'number',
+          },
+          target: {
+            nodeId: 'add2',
+            portId: 'number_2',
+          },
+        },
+        {
+          source: {
+            nodeId: 'add1',
+            portId: 'output',
+          },
+          target: {
+            nodeId: 'add2',
+            portId: 'number_1',
+          },
+        },
+      ],
     }}
     settings={{
       nodes: {

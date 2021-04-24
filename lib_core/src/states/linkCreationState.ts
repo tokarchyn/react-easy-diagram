@@ -80,7 +80,7 @@ export class LinkCreationState implements ILinkInteractionState {
   setTargetPortCandidate = (portState: PortState) => {
     if (!this._source) return;
 
-    const canAddLink = this._rootStore.linksStore.canAddLink({
+    const canAddLink = this._rootStore.linksStore.validateLink({
       source: {
         nodeId: this._source.nodeId,
         portId: this._source.portId,
@@ -108,7 +108,7 @@ export class LinkCreationState implements ILinkInteractionState {
 
   stopLinking = () => {
     if (this._targetPortCandidate && this._source) {
-      const result = this._rootStore.linksStore.addLink({
+      const result = this._rootStore.linksStore.validateAndAddLink({
         source: {
           nodeId: this._source.nodeId,
           portId: this._source.portId,
