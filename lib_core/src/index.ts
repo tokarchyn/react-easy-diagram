@@ -23,6 +23,7 @@ export * from './hooks/useRelativePositionStyles';
 export * from './hooks/useRootStore';
 export * from './hooks/useUpdateOrCreatePortState';
 export * from './hooks/userInteractions/common';
+export * from './hooks/userInteractions/useCursor';
 export * from './hooks/userInteractions/useDiagramDragHandlers';
 export * from './hooks/userInteractions/useDiagramPinchHandlers';
 export * from './hooks/userInteractions/useDiagramUserInteraction';

@@ -10,6 +10,7 @@ import {
   eventPathContainsClass,
   GestureHandlers,
 } from 'hooks/userInteractions/common';
+import { useCursor, useDiagramCursor } from 'hooks/userInteractions/useCursor';
 
 export const useNodeUserInteraction = (
   nodeState: NodeState
@@ -102,6 +103,9 @@ export const useNodeUserInteraction = (
     activeRef.current,
     userInteractionElemRef.current?.ownerDocument?.body
   );
+
+  useDiagramCursor(activeRef.current, 'move');
+  useCursor(activeRef.current, 'move', nodeState.ref.current);
 
   return {
     active: activeRef.current,

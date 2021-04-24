@@ -6,6 +6,7 @@ import { multiplyPoint, subtractPoints } from 'utils/point';
 import { useRootStore } from 'hooks/useRootStore';
 import type { IDragHandlers } from 'hooks/userInteractions/useDiagramDragHandlers';
 import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
+import { useDiagramCursor } from 'hooks/userInteractions/useCursor';
 
 export const usePortUserInteraction = (
   portState?: PortState
@@ -68,6 +69,8 @@ export const usePortUserInteraction = (
     !!portState?.dragging,
     portState?.ref.current?.ownerDocument?.body
   );
+
+  useDiagramCursor(!!portState?.dragging, 'pointer');
 
   return {
     active: !!portState?.dragging,

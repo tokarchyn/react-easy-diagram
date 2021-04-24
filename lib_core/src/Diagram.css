@@ -29,7 +29,7 @@
   so we should set this property to Movable, otherwise if user put 
   one finger above Movable and another above DiagramInner, the hook 
   will not trigger pinch gesture */
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .react_fast_diagram_DiagramInner_DraggablePart > * {
@@ -40,7 +40,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: fit-content; 
+  width: fit-content;
   height: fit-content;
   pointer-events: auto;
 }
@@ -132,8 +132,12 @@
 @media (hover: hover) {
   .react_fast_diagram_Minicontrol_Default_Btn:hover {
     background-color: rgb(228, 228, 228);
-    border: 1px solid rgb(209, 209, 209)
+    border: 1px solid rgb(209, 209, 209);
   }
+}
+
+.react_fast_diagram_PortInnerWrapper {
+  cursor: pointer;
 }
 
 /* Containers with gap between items */

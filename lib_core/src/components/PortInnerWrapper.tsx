@@ -4,6 +4,8 @@ import { PortState } from 'states/portState';
 import { usePortUserInteraction } from 'hooks/userInteractions/usePortUserInteraction';
 import { disableNodeUserInteractionClassName } from 'hooks/userInteractions/useNodeUserInteraction';
 
+const className = `react_fast_diagram_PortInnerWrapper ${disableNodeUserInteractionClassName}`;
+
 export const PortInnerWrapper: React.FC<{
   port: PortState;
   styles?: React.CSSProperties;
@@ -18,7 +20,7 @@ export const PortInnerWrapper: React.FC<{
     <div
       style={styles}
       id={port.fullId}
-      className={disableNodeUserInteractionClassName}
+      className={className}
       ref={port.ref}
       {...bind()}
     >

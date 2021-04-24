@@ -4,6 +4,7 @@ import { useRootStore } from 'hooks/useRootStore';
 import { useNotifyRef } from 'hooks/useNotifyRef';
 import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
 import { addPoints } from 'utils/point';
+import { useDiagramCursor } from 'hooks/userInteractions/useCursor';
 
 type DragEventHandler =
   | Handler<'drag', React.PointerEvent<Element> | PointerEvent>
@@ -58,6 +59,8 @@ export function useDiagramDragHandlers(
     activeRef.current,
     diagramState.diagramInnerRef.current?.ownerDocument?.body
   );
+
+  useDiagramCursor(activeRef.current, 'grabbing');
 
   return handlers;
 }
