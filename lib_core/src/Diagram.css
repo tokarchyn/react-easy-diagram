@@ -121,8 +121,10 @@
   text-align: center;
 }
 
-.react_fast_diagram_Minicontrol_Default_Btn:hover {
-  background-color: rgb(228, 228, 228);
+@media(hover: hover) and (pointer: fine) {
+  .react_fast_diagram_Minicontrol_Default_Btn:hover {
+    background-color: rgb(228, 228, 228);
+  }
 }
 
 .react_fast_diagram_PortInnerWrapper {
