@@ -16,7 +16,6 @@ export * from './components/NodeWrapper';
 export * from './components/NodesLayer';
 export * from './components/Port';
 export * from './components/PortInnerDefault';
-export * from './components/PortInnerWrapper';
 export * from './components/PortsContainerDefault';
 export * from './hooks/useDiagram';
 export * from './hooks/useNotifyRef';

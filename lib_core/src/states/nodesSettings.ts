@@ -1,4 +1,13 @@
-import { NodeDefault } from 'components/NodeDefault';
+import {
+  createInputHorizontalNode,
+  createInputOutputHorizontalNode,
+  createInputOutputVerticalNode,
+  createInputVerticalNode,
+  createNodeDefault,
+  createOutputHorizontalNode,
+  createOutputVerticalNode,
+  createStarNode,
+} from 'components/NodeDefault';
 import { makeAutoObservable } from 'mobx';
 import { NodeState } from 'states/nodeState';
 import {
@@ -14,7 +23,14 @@ export class NodesSettings {
     NodeState,
     INodeVisualComponentProps
   > = new VisualComponents<NodeState, INodeVisualComponentProps>({
-    [componentDefaultType]: NodeDefault,
+    [componentDefaultType]: createNodeDefault({ ports: {} }),
+    input_output_horizontal: createInputOutputHorizontalNode(),
+    input_output_vertical: createInputOutputVerticalNode(),
+    input_vertical: createInputVerticalNode(),
+    input_horizontal: createInputHorizontalNode(),
+    output_vertical: createOutputVerticalNode(),
+    output_horizontal: createOutputHorizontalNode(),
+    star: createStarNode(),
   });
   private _gridSnap: Point | null;
 

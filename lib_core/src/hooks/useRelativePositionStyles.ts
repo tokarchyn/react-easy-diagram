@@ -13,7 +13,9 @@ export const useRelativePositionStyles = (
   offsetFromParentCenter?: number,
   offsetFromOrigin?: Point
 ): RelativePositionStyles => {
-  if (!position) return {};
+  const positionStyle: RelativePositionStyles = { position: 'absolute' };
+
+  if (!position) return positionStyle;
 
   if (!isNumber(offsetFromParentCenter)) offsetFromParentCenter = 0;
   if (!isPoint(offsetFromOrigin)) offsetFromOrigin = [0,0];
@@ -25,8 +27,6 @@ export const useRelativePositionStyles = (
     positionX === 'center' ? 0 : -offsetFromParentCenter,
     positionY === 'center' ? 0 : -offsetFromParentCenter,
   ];
-
-  const positionStyle: RelativePositionStyles = { position: 'absolute' };
 
   if (position === 'left-top') {
     positionStyle.left = offsetFromCenter[0] + offsetFromOrigin[0];

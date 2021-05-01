@@ -1,18 +1,22 @@
-import React, { useContext } from 'react';
-import type { INodePortState } from 'states/nodeState';
+import React, { useContext, useEffect } from 'react';
 import { NodeState } from 'states/nodeState';
 import { observer } from 'mobx-react-lite';
-import { NodeContext } from 'components/NodeWrapper';
+import {
+  NodeContext,
+  RenderedPortsComponentsContext,
+} from 'components/NodeWrapper';
 import { useUpdateOrCreatePortState } from 'hooks/useUpdateOrCreatePortState';
 import {
   PortPosition,
   useRelativePositionStyles,
 } from 'hooks/useRelativePositionStyles';
 import { Point } from 'utils/point';
-import { PortInnerWrapper } from 'components/PortInnerWrapper';
+import { IPortState } from 'states/portState';
+import { usePortUserInteraction } from 'hooks/userInteractions/usePortUserInteraction';
+import { disableNodeUserInteractionClassName } from 'hooks/userInteractions/useNodeUserInteraction';
 
-export interface IPortProps extends INodePortState {
-  position: PortPosition;
+export interface IPortProps extends IPortState {
+  position?: PortPosition;
   offsetFromNodeCenter?: number;
   offsetFromOrigin?: Point;
 }
@@ -30,13 +34,49 @@ export const Port: React.FC<IPortProps> = observer((props) => {
     props.offsetFromOrigin
   );
 
+  useRenderingReport(props.id);
+
+  const { bind } = usePortUserInteraction(portState);
+
+  useEffect(() => {
+    portState?.ref.recalculateSizeAndPosition();
+  }, [
+    portState,
+    portState?.ref,
+    portState?.sizeAndPositionRecalculationWithDelay,
+  ]);
+
   if (!portState) {
     return null;
   }
 
   return (
-    <>
-      <PortInnerWrapper port={portState} styles={positionStyles} />
-    </>
+    <div
+      style={positionStyles}
+      id={portState.fullId}
+      className={className}
+      ref={portState.ref}
+      key={portState.fullId}
+      {...bind()}
+    >
+      <portState.componentDefinition.component
+        entity={portState}
+        settings={portState.componentDefinition.settings}
+      />
+    </div>
   );
 });
+
+const className = `react_fast_diagram_Port ${disableNodeUserInteractionClassName}`;
+
+/**
+ * Report to NodeWrapper that port was rendered so it can clean up the old ports
+ * @param id - port id
+ */
+const useRenderingReport = (id: string) => {
+  const { render, unrender } = useContext(RenderedPortsComponentsContext);
+  useEffect(() => {
+    render(id);
+    return () => unrender(id);
+  }, [id]);
+}

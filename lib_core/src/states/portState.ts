@@ -1,4 +1,4 @@
-import { autorun, makeAutoObservable, reaction } from 'mobx';
+import { makeAutoObservable, reaction } from 'mobx';
 import { multiplyPoint, Point } from 'utils/point';
 import { DirectionWithDiagonals } from 'utils/position';
 import { deepCopy } from 'utils';
@@ -250,6 +250,10 @@ export interface IPortStateWithoutIds {
   component?: VisualComponent<IPortVisualComponentProps>;
   linkDirection?: DirectionWithDiagonals;
   isConnectionEnabled?: boolean;
+}
+
+export interface IPortState extends IPortStateWithoutIds {
+  id: string;
 }
 
 export interface IPortStateWithIds extends IPortStateWithoutIds {

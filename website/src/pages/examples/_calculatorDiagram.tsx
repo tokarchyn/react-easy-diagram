@@ -1,67 +1,56 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
+  createNodeDefault,
+  createOutputHorizontalNode,
   Diagram,
   disableNodeUserInteractionClassName,
   INodeVisualComponentProps,
+  NodeState,
   Port,
 } from '@react-easy-diagram/core';
 import { observer } from 'mobx-react-lite';
 
-const NumberProvider = observer<INodeVisualComponentProps>(
-  ({ entity, draggableRef }) => {
-    const port = entity.ports['number'];
-    return (
-      <div className='react_fast_diagram_Node_Default' ref={draggableRef}>
-        <div>Number input</div>
-        <span>
-          <input
-            type='number'
-            // You can set extra using api, like this. Or pass extra right in props to Port component like it is done in AddNumbers
-            onChange={(event) => port?.setExtra(parseInt(event.target.value))}
-            defaultValue={port && port.extra}
-            className={disableNodeUserInteractionClassName}
-          />
-        </span>
-        <Port id='number' position='right-center' />
-      </div>
-    );
-  }
-);
-
-const AddNumbers = observer<INodeVisualComponentProps>(
-  ({ entity, draggableRef }) => {
-    const outputPort = entity.ports['output'];
-
-    const getInputNumber = (portName: string): number => {
-      const port = entity.ports[portName];
-      if (port && port.connectedPorts.length > 0) {
-        return port.connectedPorts[0].extra;
-      } else return 0;
-    };
-    const num1 = getInputNumber('number_1');
-    const num2 = getInputNumber('number_2');
-
-    return (
-      <div className='react_fast_diagram_Node_Default' ref={draggableRef}>
-        <div>Add numbers</div>
-        <span>Result: {outputPort ? outputPort.extra : ''}</span>
-        <Port
-          id='number_1'
-          position='left-center'
-          offsetFromOrigin={[0, -15]}
-          type='single_connection'
+const NumberProvider = observer<{ node: NodeState }>(({ node }) => {
+  const port = node.ports['output'];
+  return (
+    <>
+      <div>Number input</div>
+      <span>
+        <input
+          type='number'
+          onChange={(event) =>
+            port?.setExtra(parseInt(event.target.value) || 0)
+          }
+          defaultValue={port && port.extra}
+          className={disableNodeUserInteractionClassName}
         />
-        <Port
-          id='number_2'
-          position='left-center'
-          offsetFromOrigin={[0, 15]}
-          type='single_connection'
-        />
-        <Port id='output' position='right-center' extra={num1 + num2} />
-      </div>
-    );
-  }
-);
+      </span>
+    </>
+  );
+});
+
+const AddNumbers = observer<{ node: NodeState }>(({ node }) => {
+  const outputPort = node.ports['output'];
+
+  const getInputNumber = (portName: string): number => {
+    const port = node.ports[portName];
+    if (port && port.connectedPorts.length > 0) {
+      return port.connectedPorts[0].extra;
+    } else return 0;
+  };
+  const num1 = getInputNumber('number_1');
+  const num2 = getInputNumber('number_2');
+  const sum = num1 + num2;
+
+  useEffect(() => outputPort?.setExtra(sum), [outputPort, sum]);
+
+  return (
+    <>
+      <div>Add numbers</div>
+      <span>Result: {outputPort ? outputPort.extra : ''}</span>
+    </>
+  );
+});
 
 export default () => (
   <Diagram
@@ -97,7 +86,7 @@ export default () => (
         {
           source: {
             nodeId: 'num1',
-            portId: 'number',
+            portId: 'output',
           },
           target: {
             nodeId: 'add1',
@@ -107,7 +96,7 @@ export default () => (
         {
           source: {
             nodeId: 'num2',
-            portId: 'number',
+            portId: 'output',
           },
           target: {
             nodeId: 'add1',
@@ -117,7 +106,7 @@ export default () => (
         {
           source: {
             nodeId: 'num3',
-            portId: 'number',
+            portId: 'output',
           },
           target: {
             nodeId: 'add2',
@@ -139,8 +128,29 @@ export default () => (
     settings={{
       nodes: {
         components: {
-          number: NumberProvider,
-          addnumbers: AddNumbers,
+          number: createOutputHorizontalNode({
+            innerNode: NumberProvider,
+          }),
+          addnumbers: createNodeDefault({
+            ports: {
+              left: [
+                {
+                  id: 'number_1',
+                  type: 'single_connection',
+                },
+                {
+                  id: 'number_2',
+                  type: 'single_connection',
+                },
+              ],
+              right: [
+                {
+                  id: 'output',
+                },
+              ],
+            },
+            innerNode: AddNumbers,
+          }),
         },
       },
       callbacks: {

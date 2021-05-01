@@ -15,71 +15,53 @@ export default function () {
             id: 'node_1',
             label: 'Node 1',
             position: [300, 300],
-            ports: [{ id: 'output_1', type: 'bottom' }],
+            componentType: 'output_horizontal'
           },
           {
             id: 'node_2',
             label: 'Node 2',
             position: [520, 400],
-            ports: [
-              { id: 'input_1', type: 'top' },
-              { id: 'input_2', type: 'top' },
-              { id: 'output_1', type: 'right' },
-              { id: 'output_2', type: 'right' },
-              { id: 'output_3', type: 'right' },
-            ],
+            componentType: 'input_output_horizontal'
           },
           {
             id: 'node_3',
             label: 'Node 3',
             position: [520, 200],
-            ports: [
-              { id: 'input_1', type: 'top' },
-              { id: 'output_1', type: 'bottom' },
-              { id: 'output_2', type: 'bottom' },
-            ],
+            componentType: 'input_horizontal'
           },
         ],
         links: [
           {
             source: {
               nodeId: 'node_1',
-              portId: 'output_1',
+              portId: 'output',
             },
             target: {
               nodeId: 'node_2',
-              portId: 'input_1',
-            },
-            componentType: 'attention',
+              portId: 'input',
+            }
           },
           {
             source: {
               nodeId: 'node_1',
-              portId: 'output_1',
+              portId: 'output',
             },
             target: {
               nodeId: 'node_3',
-              portId: 'input_1',
+              portId: 'input',
             },
           },
           {
             source: {
               nodeId: 'node_3',
-              portId: 'output_1',
+              portId: 'input',
             },
             target: {
               nodeId: 'node_2',
-              portId: 'input_1',
+              portId: 'output',
             },
           },
         ],
-      }}
-      settings={{
-        links: {
-          components: {
-            attention: createLinkDefault({ color: 'red' }),
-          }
-        }
       }}
     />
   );

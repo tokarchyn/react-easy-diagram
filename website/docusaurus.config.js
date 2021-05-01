@@ -32,10 +32,6 @@ module.exports = {
               to: 'examples/basic',
             },
             {
-              label: 'Simple',
-              to: 'examples/simple',
-            },
-            {
               label: 'Calculator',
               to: 'examples/calculator',
             },
@@ -63,9 +59,13 @@ module.exports = {
               label: 'Update ports position',
               to: 'examples/updatePortsPosition',
             },
+            // {
+            //   label: 'Configure user interaction',
+            //   to: 'examples/configureUserInteraction',
+            // },
             {
-              label: 'Configure user interaction',
-              to: 'examples/configureUserInteraction',
+              label: 'Dynamic ports',
+              to: 'examples/dynamicPorts',
             },
           ],
         },

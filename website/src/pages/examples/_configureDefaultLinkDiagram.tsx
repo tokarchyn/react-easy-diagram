@@ -11,21 +11,23 @@ export default () => (
         {
           id: 'Node 1',
           position: [100, 100],
-          ports: [{ id: 'port', type: 'right' }],
+          componentType: 'input_output_horizontal'
         },
         {
           id: 'Node 2',
           position: [420, 300],
-          ports: [
-            { id: 'port_1', type: 'left' },
-            { id: 'port_2', type: 'right' },
-          ],
+          componentType: 'input_output_horizontal'
+        },
+        {
+          id: 'Node 3',
+          position: [420, 100],
+          componentType: 'input_output_horizontal'
         },
       ],
       links: [
         {
-          source: { nodeId: 'Node 1', portId: 'port' },
-          target: { nodeId: 'Node 2', portId: 'port_1' },
+          source: { nodeId: 'Node 1', portId: 'output' },
+          target: { nodeId: 'Node 2', portId: 'input' },
         },
       ],
     }}

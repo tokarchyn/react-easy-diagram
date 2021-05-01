@@ -22,13 +22,17 @@ export class HtmlElementRefState {
     this._triggerSizePositionRecalculation | 1;
     if (this.current) {
       let iterElement = this.current as HTMLElement | null;
+      let nextOffsetParent = null as Element | null;
       let acumLeft = 0;
       let acumTop = 0;
 
       while (parent !== iterElement && iterElement) {
-        const translate = getTranslate(iterElement);
-        acumLeft += iterElement.offsetLeft + translate[0];
-        acumTop += iterElement.offsetTop + translate[1];
+        if (!nextOffsetParent || nextOffsetParent === iterElement) {
+          const translate = getTranslate(iterElement);
+          acumLeft += iterElement.offsetLeft + translate[0];
+          acumTop += iterElement.offsetTop + translate[1];
+          nextOffsetParent = iterElement.offsetParent;
+        }
         iterElement = iterElement.parentElement;
       }
 

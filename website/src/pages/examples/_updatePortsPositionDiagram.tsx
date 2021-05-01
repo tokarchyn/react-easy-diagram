@@ -1,42 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import {
   Diagram,
+  disableNodeUserInteractionClassName,
   INodeVisualComponentProps,
   Port,
 } from '@react-easy-diagram/core';
 import { observer } from 'mobx-react-lite';
-import { action } from 'mobx';
 
 const NodeWithExternalData = observer<INodeVisualComponentProps>(
-  ({ draggableRef, entity }) => {
-    const [fieldsNumber, setFieldsNumber] = useState<number>(0);
+  ({ draggableRef, entity: node }) => {
+    const [linesNumber, setLinesNumber] = useState<number>(0);
 
     useEffect(() => {
       // Size and position changes in DOM element are not reported to the library, so it is
       // required to trigger recalculation if you think size or position is changed. There is also
       // possibility to store your data that could change size or position in port's or node's "extra" property,
       // changes in these properties along with the other are already handled by library.
-      entity.recalculatePortsSizeAndPosition();
-    }, [fieldsNumber]);
+      node.recalculatePortsSizeAndPosition();
+    }, [linesNumber]);
 
     return (
-      <div className='react_fast_diagram_Node_Default' ref={draggableRef}>
+      <div
+        className='react_fast_diagram_Node_Default'
+        ref={draggableRef}
+        style={{ padding: 15, border: node.selected ? '#6eb7ff solid 1px' : '' }}
+      >
         <div>Node with external state that cause node resize</div>
         <div>Fields:</div>
 
-        {[...Array(fieldsNumber)].map((v, i) => (
-          <span key={i}>
-            <input
-              type='number'
-              style={{ width: 100 }}
-              defaultValue={`Text field #${i}`}
-            />
-          </span>
+        {[...Array(linesNumber)].map((v, i) => (
+          <span key={i}>Line {i}</span>
         ))}
 
         <div>
-          <button type='button' onClick={() => setFieldsNumber((c) => c + 1)}>
-            Add field
+          <button
+            className={disableNodeUserInteractionClassName}
+            type='button'
+            onClick={() => setLinesNumber((c) => c + 1)}
+          >
+            Add line
           </button>
         </div>
 
@@ -51,25 +53,27 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
 
 const NodeWithInternalData = observer<INodeVisualComponentProps>(
   ({ draggableRef, entity: node }) => {
-    const fieldsNumber = node.extra ?? 0;
+    const linesNumber = node.extra ?? 0;
     return (
-      <div className='react_fast_diagram_Node_Default' ref={draggableRef}>
+      <div
+        className='react_fast_diagram_Node_Default'
+        ref={draggableRef}
+        style={{ padding: 15, border: node.selected ? '#6eb7ff solid 1px' : '' }}
+      >
         <div>Node with internal state that cause node resize</div>
         <div>Fields:</div>
 
-        {[...Array(fieldsNumber)].map((v, i) => (
-          <span key={i}>
-            <input
-              type='number'
-              style={{ width: 100 }}
-              defaultValue={`Text field #${i}`}
-            />
-          </span>
+        {[...Array(linesNumber)].map((v, i) => (
+          <span key={i}>Line {i}</span>
         ))}
 
         <div>
-          <button type='button' onClick={() => node.setExtra(fieldsNumber + 1)}>
-            Add field
+          <button
+            className={disableNodeUserInteractionClassName}
+            type='button'
+            onClick={() => node.setExtra(linesNumber + 1)}
+          >
+            Add line
           </button>
         </div>
 
@@ -99,42 +103,22 @@ export default () => (
         {
           id: 'left_node',
           position: [-200, 100],
-          ports: [
-            {
-              id: 'port',
-              type: 'right',
-            },
-          ],
+          componentType: 'output_horizontal',
         },
         {
           id: 'top_node',
           position: [300, -200],
-          ports: [
-            {
-              id: 'port',
-              type: 'bottom',
-            },
-          ],
+          componentType: 'output_vertical',
         },
         {
           id: 'right_node',
           position: [800, 100],
-          ports: [
-            {
-              id: 'port',
-              type: 'left',
-            },
-          ],
+          componentType: 'input_horizontal',
         },
         {
           id: 'bottom_node',
           position: [300, 300],
-          ports: [
-            {
-              id: 'port',
-              type: 'top',
-            },
-          ],
+          componentType: 'input_vertical',
         },
       ],
       links: [
@@ -155,7 +139,7 @@ export default () => (
           },
           target: {
             nodeId: 'top_node',
-            portId: 'port',
+            portId: 'output',
           },
         },
         {
@@ -165,7 +149,7 @@ export default () => (
           },
           target: {
             nodeId: 'right_node',
-            portId: 'port',
+            portId: 'input',
           },
         },
         {
@@ -175,7 +159,7 @@ export default () => (
           },
           target: {
             nodeId: 'bottom_node',
-            portId: 'port',
+            portId: 'input',
           },
         },
 
@@ -186,7 +170,7 @@ export default () => (
           },
           target: {
             nodeId: 'left_node',
-            portId: 'port',
+            portId: 'output',
           },
         },
         {
@@ -196,7 +180,7 @@ export default () => (
           },
           target: {
             nodeId: 'top_node',
-            portId: 'port',
+            portId: 'output',
           },
         },
         {
@@ -206,7 +190,7 @@ export default () => (
           },
           target: {
             nodeId: 'bottom_node',
-            portId: 'port',
+            portId: 'input',
           },
         },
       ],

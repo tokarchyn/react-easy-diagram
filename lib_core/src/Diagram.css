@@ -56,7 +56,6 @@
   align-items: center;
   text-align: center;
   margin: auto;
-  padding: 15px;
   font-size: small;
 }
 
@@ -64,24 +63,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.react_fast_diagram_PortContainer_Default_Horizontal > * {
-  margin: 0 5px;
-}
-
-.react_fast_diagram_PortContainer_Default_Vertical > * {
-  margin: 5px 0;
-}
-
-.react_fast_diagram_PortContainer_Default_Horizontal {
-  flex-direction: row;
-  width: 100%;
-}
-
-.react_fast_diagram_PortContainer_Default_Vertical {
-  flex-direction: column;
-  height: 100%;
 }
 
 .react_fast_diagram_Node_Default > * {
@@ -127,7 +108,7 @@
   }
 }
 
-.react_fast_diagram_PortInnerWrapper {
+.react_fast_diagram_Port {
   cursor: pointer;
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  createNodeDefault,
   createPortInnerDefault,
   Diagram,
 } from '@react-easy-diagram/core';
@@ -11,21 +12,18 @@ export default () => (
         {
           id: 'Node 1',
           position: [100, 100],
-          ports: [{ id: 'port', type: 'right' }],
+          componentType: 'output_horizontal',
         },
         {
           id: 'Node 2',
           position: [420, 300],
-          ports: [
-            { id: 'port_1', type: 'left' },
-            { id: 'port_2', type: 'right' },
-          ],
+          componentType: 'custom',
         },
       ],
       links: [
         {
-          source: { nodeId: 'Node 1', portId: 'port' },
-          target: { nodeId: 'Node 2', portId: 'port_1' },
+          source: { nodeId: 'Node 1', portId: 'output' },
+          target: { nodeId: 'Node 2', portId: 'input' },
         },
       ],
     }}
@@ -34,13 +32,23 @@ export default () => (
         portComponents: {
           default: createPortInnerDefault({
             size: [10, 10],
-            color: '#6eb7ff',
-            dragColor: '#49f860',
-            hoverColor: '#49f860',
-            invalidColor: '#fa4040',
+            color: '#ee6eff',
+            dragColor: '#f849d2',
+            hoverColor: '#f849d2',
+            invalidColor: '#cccccc',
           }),
-          left: createPortInnerDefault({
-            size: [7, 15],
+          big_yellow: createPortInnerDefault({
+            size: [10, 20],
+            color: '#ffe657',
+          }),
+        },
+      },
+      nodes: {
+        components: {
+          custom: createNodeDefault({
+            ports: {
+              left: [{ id: 'input', type: 'big_yellow' }],
+            },
           }),
         },
       },

@@ -3,12 +3,12 @@ import { ExampleWrapper } from './_exampleWrapper';
 import CodeBlock from "@theme/CodeBlock"
 import {DiagramContainer} from './_diagramContainer'
 
-import DiagramExampleSource from '!!raw-loader!./_simpleDiagram';
-import DiagramExample from './_simpleDiagram'
+import DiagramExampleSource from '!!raw-loader!./_dynamicPortsDiagram';
+import DiagramExample from './_dynamicPortsDiagram'
 
 export default function Example() {
   return (
-    <ExampleWrapper title='Simple example'>
+    <ExampleWrapper title='Dynamic Ports Example'>
       <DiagramContainer><DiagramExample/></DiagramContainer>
       <CodeBlock className="language-jsx">{DiagramExampleSource}</CodeBlock>
     </ExampleWrapper>

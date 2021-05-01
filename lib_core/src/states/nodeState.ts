@@ -1,4 +1,4 @@
-import { makeAutoObservable, reaction } from 'mobx';
+import { autorun, makeAutoObservable, reaction } from 'mobx';
 import { Dictionary, isBoolean } from 'utils/common';
 import {
   SuccessOrErrorResult,
@@ -57,7 +57,6 @@ export class NodeState implements ISelectableItem {
     this.setExtra(newState?.extra);
     this.label = newState?.label ?? '';
     this._ports = {};
-    newState?.ports && newState.ports.forEach(this.addPort);
     this.setIsSelectionEnabled(newState?.isSelectionEnabled);
     this.setIsDragEnabled(newState?.isDragEnabled);
   };
@@ -72,7 +71,6 @@ export class NodeState implements ISelectableItem {
       isSelectionEnabled: this._isSelectionEnabled ?? undefined,
       isDragEnabled: this._isDragEnabled ?? undefined,
     }),
-    ports: Object.values(this._ports).map((p) => p.export()),
   });
 
   get id() {
@@ -270,7 +268,6 @@ function snapPositionValueToGridValue(value: number, snapValue: number) {
 export interface INodeStateWithoutId {
   label?: string;
   position: Point;
-  ports?: INodePortState[];
   componentType?: string;
   extra?: any;
   isSelectionEnabled?: boolean;
