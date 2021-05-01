@@ -2373,7 +2373,6 @@ hr:after {
   }
 
 .navbar--fixed-top {
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: var(--ifm-z-index-fixed);
@@ -3481,6 +3480,82 @@ body {
  * LICENSE file in the root directory of this source tree.
  */
 
+.lastUpdatedDate_Xku4 {
+  font-weight: bold;
+}
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.tableOfContents_3J2a {
+  max-height: calc(100vh - (var(--ifm-navbar-height) + 2rem));
+  overflow-y: auto;
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 2rem);
+}
+
+@media only screen and (max-width: 996px) {
+  .tableOfContents_3J2a {
+    display: none;
+  }
+
+  .docItemContainer_2VRk {
+    padding: 0 0.3rem;
+  }
+}
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.iconEdit_1CBY {
+  margin-right: 0.3em;
+  vertical-align: sub;
+}
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.docTitle_33JP {
+  font-size: 3rem;
+  margin-bottom: calc(var(--ifm-leading-desktop) * var(--ifm-leading));
+}
+
+.docItemContainer_3nUq {
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
+
+@media only screen and (min-width: 997px) {
+  .docItemCol_1o9i {
+    max-width: 75% !important;
+  }
+}
+
+@media only screen and (max-width: 996px) {
+  .docItemContainer_3nUq {
+    padding: 0 0.3rem;
+  }
+}
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 :root {
   --collapse-button-bg-color-dark: #2e333a;
 }
@@ -3491,7 +3566,6 @@ body {
     flex-direction: column;
     max-height: 100vh;
     height: 100%;
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
     padding-top: var(--ifm-navbar-height);
@@ -3546,7 +3620,6 @@ body {
     display: block !important;
     background-color: var(--ifm-button-background-color);
     height: 40px;
-    position: -webkit-sticky;
     position: sticky;
     bottom: 0;
     border-radius: 0;
@@ -3803,7 +3876,6 @@ body {
   }
 
   .collapsedDocSidebar_KeEu {
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
     height: 100%;
@@ -3903,80 +3975,3 @@ body {
 .subtitle_3Hk7 {
   color: white;
 }
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-.lastUpdatedDate_Xku4 {
-  font-weight: bold;
-}
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-.tableOfContents_3J2a {
-  max-height: calc(100vh - (var(--ifm-navbar-height) + 2rem));
-  overflow-y: auto;
-  position: -webkit-sticky;
-  position: sticky;
-  top: calc(var(--ifm-navbar-height) + 2rem);
-}
-
-@media only screen and (max-width: 996px) {
-  .tableOfContents_3J2a {
-    display: none;
-  }
-
-  .docItemContainer_2VRk {
-    padding: 0 0.3rem;
-  }
-}
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-.iconEdit_1CBY {
-  margin-right: 0.3em;
-  vertical-align: sub;
-}
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-.docTitle_33JP {
-  font-size: 3rem;
-  margin-bottom: calc(var(--ifm-leading-desktop) * var(--ifm-leading));
-}
-
-.docItemContainer_3nUq {
-  margin: 0 auto;
-  padding: 0 0.5rem;
-}
-
-@media only screen and (min-width: 997px) {
-  .docItemCol_1o9i {
-    max-width: 75% !important;
-  }
-}
-
-@media only screen and (max-width: 996px) {
-  .docItemContainer_3nUq {
-    padding: 0 0.3rem;
-  }
-}
-
