@@ -18,8 +18,8 @@ var react = __webpack_require__(7378);
 var _exampleWrapper = __webpack_require__(1713);
 // EXTERNAL MODULE: ../node_modules/@docusaurus/theme-live-codeblock/src/theme/CodeBlock/index.js + 11 modules
 var CodeBlock = __webpack_require__(842);
-// EXTERNAL MODULE: ./src/pages/examples/_diagramContainer.jsx
-var _diagramContainer = __webpack_require__(7709);
+// EXTERNAL MODULE: ./src/pages/examples/_diagramContainer.jsx + 1 modules
+var _diagramContainer = __webpack_require__(9339);
 ;// CONCATENATED MODULE: ../node_modules/raw-loader/dist/cjs.js!./src/pages/examples/_configureDefaultLinkDiagram.tsx
 /* harmony default export */ var _configureDefaultLinkDiagram = ("import React from 'react';\r\nimport {\r\n  createLinkDefault,\r\n  Diagram,\r\n} from '@react-easy-diagram/core';\r\n\r\nexport default () => (\r\n  <Diagram\r\n    initState={{\r\n      nodes: [\r\n        {\r\n          id: 'Node 1',\r\n          position: [100, 100],\r\n          componentType: 'input_output_horizontal'\r\n        },\r\n        {\r\n          id: 'Node 2',\r\n          position: [420, 300],\r\n          componentType: 'input_output_horizontal'\r\n        },\r\n        {\r\n          id: 'Node 3',\r\n          position: [420, 100],\r\n          componentType: 'input_output_horizontal'\r\n        },\r\n      ],\r\n      links: [\r\n        {\r\n          source: { nodeId: 'Node 1', portId: 'output' },\r\n          target: { nodeId: 'Node 2', portId: 'input' },\r\n        },\r\n      ],\r\n    }}\r\n    settings={{\r\n      links: {\r\n        components: {\r\n          default: createLinkDefault({\r\n            color: 'grey',\r\n            strokeWidth: 1,\r\n          }),\r\n          linkCreation: createLinkDefault({\r\n            color: 'green',\r\n            strokeWidth: 3,\r\n            cirleRadius: 3,\r\n          }),\r\n        },\r\n      },\r\n    }}\r\n  />\r\n);\r\n");
 // EXTERNAL MODULE: ../lib_core/dist/index.esm.js + 1 modules

@@ -18,8 +18,8 @@ var react = __webpack_require__(7378);
 var _exampleWrapper = __webpack_require__(1713);
 // EXTERNAL MODULE: ../node_modules/@docusaurus/theme-live-codeblock/src/theme/CodeBlock/index.js + 11 modules
 var CodeBlock = __webpack_require__(842);
-// EXTERNAL MODULE: ./src/pages/examples/_diagramContainer.jsx
-var _diagramContainer = __webpack_require__(7709);
+// EXTERNAL MODULE: ./src/pages/examples/_diagramContainer.jsx + 1 modules
+var _diagramContainer = __webpack_require__(9339);
 ;// CONCATENATED MODULE: ../node_modules/raw-loader/dist/cjs.js!./src/pages/examples/_performanceDiagram.tsx
 /* harmony default export */ var _performanceDiagram = ("import React from 'react';\r\nimport {\r\n  Diagram,\r\n  ILinkState,\r\n  INodeState,\r\n} from '@react-easy-diagram/core';\r\n\r\nconst generateState = (colNum: number, rowNum: number) => {\r\n  const nodes: INodeState[] = [];\r\n  const links: ILinkState[] = [];\r\n  const getNodeId = (i: number, j: number) => `node_${i}_${j}`;\r\n\r\n  for (let i = 0; i < colNum; i++) {\r\n    for (let j = 0; j < rowNum; j++) {\r\n      nodes.push({\r\n        id: getNodeId(i, j),\r\n        position: [i * 120, j * 120],\r\n        componentType: 'star'\r\n      });\r\n      if (i - 1 >= 0) {\r\n        links.push({\r\n          source: {\r\n            nodeId: getNodeId(i - 1, j),\r\n            portId: 'right',\r\n          },\r\n          target: {\r\n            nodeId: getNodeId(i, j),\r\n            portId: 'left',\r\n          },\r\n        });\r\n      }\r\n      if (j - 1 >= 0) {\r\n        links.push({\r\n          source: {\r\n            nodeId: getNodeId(i, j - 1),\r\n            portId: 'bottom',\r\n          },\r\n          target: {\r\n            nodeId: getNodeId(i, j),\r\n            portId: 'top',\r\n          },\r\n        });\r\n      }\r\n    }\r\n  }\r\n\r\n  return { nodes, links };\r\n};\r\n\r\nexport default () => <Diagram initState={generateState(10, 10)} />;\r\n");
 // EXTERNAL MODULE: ../lib_core/dist/index.esm.js + 1 modules
