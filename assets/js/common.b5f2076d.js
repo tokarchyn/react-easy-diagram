@@ -5235,7 +5235,7 @@ var ExecutionEnvironment = __webpack_require__(2218);
  * LICENSE file in the root directory of this source tree.
  */function BrowserOnly(_ref){var children=_ref.children,fallback=_ref.fallback;if(!ExecutionEnvironment/* default.canUseDOM */.Z.canUseDOM||children==null){return fallback||null;}return/*#__PURE__*/react.createElement(react.Fragment,null,children());}/* harmony default export */ var exports_BrowserOnly = (BrowserOnly);
 ;// CONCATENATED MODULE: ./src/pages/examples/_diagramContainer.jsx
-function DiagramContainer(props){return/*#__PURE__*/react.createElement(exports_BrowserOnly,null,function(){return/*#__PURE__*/react.createElement("div",{style:{height:'calc(90vh - var(--ifm-navbar-height))'}},props.children);});}
+function DiagramContainer(props){return/*#__PURE__*/react.createElement("div",{style:{height:'calc(90vh - var(--ifm-navbar-height))'}},/*#__PURE__*/react.createElement(exports_BrowserOnly,null,function(){return props.children;}));}
 
 /***/ }),
 
