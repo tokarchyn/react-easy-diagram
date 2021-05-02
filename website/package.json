@@ -11,9 +11,9 @@
     "publish": "gh-pages -d build"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.72",
-    "@docusaurus/preset-classic": "2.0.0-alpha.72",
-    "@docusaurus/theme-live-codeblock": "2.0.0-alpha.72",
+    "@docusaurus/core": "^2.0.0-alpha.75",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.75",
+    "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.75",
     "@mdx-js/react": "^1.6.21",
     "@react-easy-diagram/core": "1.0.0",
     "clsx": "^1.1.1",
