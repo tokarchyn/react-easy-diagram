@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  createNodeDefault,
+  createNode,
   createOutputHorizontalNode,
   Diagram,
   disableNodeUserInteractionClassName,
@@ -131,24 +131,25 @@ export default () => (
           number: createOutputHorizontalNode({
             innerNode: NumberProvider,
           }),
-          addnumbers: createNodeDefault({
-            ports: {
-              left: [
-                {
-                  id: 'number_1',
-                  type: 'single_connection',
-                },
-                {
-                  id: 'number_2',
-                  type: 'single_connection',
-                },
-              ],
-              right: [
-                {
-                  id: 'output',
-                },
-              ],
-            },
+          addnumbers: createNode({
+            ports: [
+              {
+                id: 'number_1',
+                type: 'single_connection',
+                position: 'left-center',
+                offsetFromOrigin: [0, -15],
+              },
+              {
+                id: 'number_2',
+                type: 'single_connection',
+                position: 'left-center',
+                offsetFromOrigin: [0, 15],
+              },
+              {
+                id: 'output',
+                position: 'right-center',
+              },
+            ],
             innerNode: AddNumbers,
           }),
         },

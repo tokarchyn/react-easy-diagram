@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  createNode,
   Diagram,
   INodeVisualComponentProps,
   IUserInteraction,
@@ -15,27 +16,27 @@ export default () => (
           id: 'Node 1',
           label: 'Node with drag disabled',
           position: [450, 50],
-          ports: [{ id: 'port_top', type: 'top' }, { id: 'port_bottom', type: 'bottom' }],
+          componentType: 'input_output_vertical',
           isDragEnabled: false, // specifying this property in the element overrides diagram settings
         },
         {
           id: 'Node 2',
           label: 'Node with selection disabled',
           position: [450, -100],
-          ports: [{ id: 'port', type: 'bottom' }],
+          componentType: 'output_vertical',
           isSelectionEnabled: false,
         },
         {
           id: 'Node 3',
           label: 'Node that use default diagram settings',
           position: [450, 200],
-          ports: [{ id: 'port', type: 'top' }],
+          componentType: 'input_vertical',
         },
         {
           id: 'Node 4',
           label: 'Node with disabled port',
           position: [100, 200],
-          ports: [{ id: 'port', type: 'right', isConnectionEnabled: false }],
+          componentType: 'disabled_port',
         },
         {
           id: 'Node 5',
@@ -52,12 +53,12 @@ export default () => (
       ],
       links: [
         {
-          source: { nodeId: 'Node 1', portId: 'port_bottom' },
-          target: { nodeId: 'Node 3', portId: 'port' },
+          source: { nodeId: 'Node 1', portId: 'output' },
+          target: { nodeId: 'Node 3', portId: 'input' },
         },
         {
-          source: { nodeId: 'Node 1', portId: 'port_top' },
-          target: { nodeId: 'Node 2', portId: 'port' },
+          source: { nodeId: 'Node 1', portId: 'input' },
+          target: { nodeId: 'Node 2', portId: 'output' },
           isSelectionEnabled: false,
         },
       ],
@@ -66,6 +67,9 @@ export default () => (
       nodes: {
         components: {
           config: Configurator,
+          disabled_port: createNode({
+            ports: [{ id: 'port', position: 'right-center', isConnectionEnabled: false }],
+          })
         },
       },
     }}

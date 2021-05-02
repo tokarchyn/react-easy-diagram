@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  createNodeDefault,
+  createNode,
   createPortInnerDefault,
   Diagram,
   disableNodeUserInteractionClassName,

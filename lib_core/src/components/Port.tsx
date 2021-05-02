@@ -14,6 +14,7 @@ import { Point } from 'utils/point';
 import { IPortState } from 'states/portState';
 import { usePortUserInteraction } from 'hooks/userInteractions/usePortUserInteraction';
 import { disableNodeUserInteractionClassName } from 'hooks/userInteractions/useNodeUserInteraction';
+import { DirectionWithDiagonals } from 'utils/position';
 
 export interface IPortProps extends IPortState {
   position?: PortPosition;
@@ -24,6 +25,7 @@ export interface IPortProps extends IPortState {
 export const Port: React.FC<IPortProps> = observer((props) => {
   const node = useContext(NodeContext) as NodeState; // node should already exist
   const portState = useUpdateOrCreatePortState({
+    linkDirection: props.position && positionToLinkDirection[props.position],
     ...props,
     nodeId: node.id,
   });
@@ -79,4 +81,17 @@ const useRenderingReport = (id: string) => {
     render(id);
     return () => unrender(id);
   }, [id]);
-}
+};
+
+const positionToLinkDirection: {
+  [key in PortPosition]: DirectionWithDiagonals;
+} = {
+  'center-bottom': 'down',
+  'center-top': 'up',
+  'left-center': 'left',
+  'left-bottom': 'left-down',
+  'left-top': 'left-up',
+  'right-center': 'right',
+  'right-bottom': 'right-down',
+  'right-top': 'right-up',
+};

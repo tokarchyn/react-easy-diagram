@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  createNodeDefault,
+  createNode,
   createPortInnerDefault,
   Diagram,
 } from '@react-easy-diagram/core';
@@ -45,10 +45,10 @@ export default () => (
       },
       nodes: {
         components: {
-          custom: createNodeDefault({
-            ports: {
-              left: [{ id: 'input', type: 'big_yellow' }],
-            },
+          custom: createNode({
+            ports: [
+              { id: 'input', type: 'big_yellow', position: 'left-center' },
+            ],
           }),
         },
       },

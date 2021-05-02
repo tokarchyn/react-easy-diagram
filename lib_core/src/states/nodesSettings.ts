@@ -3,11 +3,11 @@ import {
   createInputOutputHorizontalNode,
   createInputOutputVerticalNode,
   createInputVerticalNode,
-  createNodeDefault,
+  createNode,
   createOutputHorizontalNode,
   createOutputVerticalNode,
   createStarNode,
-} from 'components/NodeDefault';
+} from 'components/Node';
 import { makeAutoObservable } from 'mobx';
 import { NodeState } from 'states/nodeState';
 import {
@@ -23,7 +23,7 @@ export class NodesSettings {
     NodeState,
     INodeVisualComponentProps
   > = new VisualComponents<NodeState, INodeVisualComponentProps>({
-    [componentDefaultType]: createNodeDefault({ ports: {} }),
+    [componentDefaultType]: createNode({ ports: [] }),
     input_output_horizontal: createInputOutputHorizontalNode(),
     input_output_vertical: createInputOutputVerticalNode(),
     input_vertical: createInputVerticalNode(),

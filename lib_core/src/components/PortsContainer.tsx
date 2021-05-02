@@ -5,7 +5,7 @@ import { positionValues, Position } from 'utils/position';
 import { IPortState } from 'states/portState';
 import { Port } from './Port';
 
-export interface IPortsContainerDefaultSettings {
+export interface IPortsContainerSettings {
   style?: React.CSSProperties;
   gapBetweenPorts: string;
   /**
@@ -15,13 +15,13 @@ export interface IPortsContainerDefaultSettings {
   offsetFromOriginPosition?: number;
 }
 
-export interface IPortsContainerDefaultProps {
+export interface IPortsContainerProps {
   position: Position;
   ports?: IPortState[];
 }
 
-const PortsContainerDefault: React.FC<
-  IPortsContainerDefaultProps & IPortsContainerDefaultSettings
+const PortsContainer: React.FC<
+  IPortsContainerProps & IPortsContainerSettings
 > = observer(
   ({ position, ports, style, gapBetweenPorts, offsetFromOriginPosition }) => {
     const portsModified = useMemo(
@@ -36,6 +36,8 @@ const PortsContainerDefault: React.FC<
         ),
       [position, ports]
     );
+
+    if (!portsModified || portsModified.length === 0) return null;
 
     let className = 'react_fast_diagram_flex_gap ';
     if (position === 'top' || position === 'bottom') {
@@ -87,17 +89,17 @@ const positionToDirection = {
   bottom: 'down',
 };
 
-export function createPortsContainerDefault(
-  settings?: Partial<IPortsContainerDefaultSettings>
-): VisualComponent<IPortsContainerDefaultProps> {
-  return (props: IPortsContainerDefaultProps) => (
-    <PortsContainerDefault
-      {...{ ...portsContainerDefaultSettings, ...settings }}
+export function createPortsContainer(
+  settings?: Partial<IPortsContainerSettings>
+): VisualComponent<IPortsContainerProps> {
+  return (props: IPortsContainerProps) => (
+    <PortsContainer
+      {...{ ...defaultPortsContainerSettings, ...settings }}
       {...props}
     />
   );
 }
 
-const portsContainerDefaultSettings: IPortsContainerDefaultSettings = {
+const defaultPortsContainerSettings: IPortsContainerSettings = {
   gapBetweenPorts: '8px',
 };

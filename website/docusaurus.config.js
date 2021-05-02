@@ -59,14 +59,14 @@ module.exports = {
               label: 'Update ports position',
               to: 'examples/updatePortsPosition',
             },
-            // {
-            //   label: 'Configure user interaction',
-            //   to: 'examples/configureUserInteraction',
-            // },
             {
-              label: 'Dynamic ports',
-              to: 'examples/dynamicPorts',
+              label: 'Configure user interaction',
+              to: 'examples/configureUserInteraction',
             },
+            // {
+            //   label: 'Dynamic ports',
+            //   to: 'examples/dynamicPorts',
+            // },
           ],
         },
         {
