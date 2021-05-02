@@ -1,6 +1,6 @@
 (self["webpackChunkwebsite"] = self["webpackChunkwebsite"] || []).push([[918],{
 
-/***/ 1169:
+/***/ 9745:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14,10 +14,10 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ../node_modules/react/index.js
 var react = __webpack_require__(7378);
-// EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/Link.js + 1 modules
-var Link = __webpack_require__(9559);
-// EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/Translate.js + 1 modules
-var Translate = __webpack_require__(639);
+// EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/Link.js + 1 modules
+var Link = __webpack_require__(4142);
+// EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/Translate.js + 1 modules
+var Translate = __webpack_require__(1787);
 ;// CONCATENATED MODULE: ../node_modules/@docusaurus/theme-classic/lib-next/theme/DocPaginator/index.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -25,8 +25,8 @@ var Translate = __webpack_require__(639);
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */function DocPaginator(props){var metadata=props.metadata;return/*#__PURE__*/react.createElement("nav",{className:"pagination-nav","aria-label":(0,Translate/* translate */.I)({id:'theme.docs.paginator.navAriaLabel',message:'Docs pages navigation',description:'The ARIA label for the docs pagination'})},/*#__PURE__*/react.createElement("div",{className:"pagination-nav__item"},metadata.previous&&/*#__PURE__*/react.createElement(Link/* default */.Z,{className:"pagination-nav__link",to:metadata.previous.permalink},/*#__PURE__*/react.createElement("div",{className:"pagination-nav__sublabel"},/*#__PURE__*/react.createElement(Translate/* default */.Z,{id:"theme.docs.paginator.previous",description:"The label used to navigate to the previous doc"},"Previous")),/*#__PURE__*/react.createElement("div",{className:"pagination-nav__label"},"\xAB ",metadata.previous.title))),/*#__PURE__*/react.createElement("div",{className:"pagination-nav__item pagination-nav__item--next"},metadata.next&&/*#__PURE__*/react.createElement(Link/* default */.Z,{className:"pagination-nav__link",to:metadata.next.permalink},/*#__PURE__*/react.createElement("div",{className:"pagination-nav__sublabel"},/*#__PURE__*/react.createElement(Translate/* default */.Z,{id:"theme.docs.paginator.next",description:"The label used to navigate to the next doc"},"Next")),/*#__PURE__*/react.createElement("div",{className:"pagination-nav__label"},metadata.next.title," \xBB"))));}/* harmony default export */ var theme_DocPaginator = (DocPaginator);
-// EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/useDocusaurusContext.js
-var useDocusaurusContext = __webpack_require__(5638);
+// EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/useDocusaurusContext.js
+var useDocusaurusContext = __webpack_require__(353);
 // EXTERNAL MODULE: ../node_modules/@docusaurus/theme-classic/lib-next/theme/hooks/useDocs.js
 var useDocs = __webpack_require__(6889);
 // EXTERNAL MODULE: ../node_modules/@docusaurus/theme-common/lib/index.js
@@ -110,10 +110,12 @@ var objectWithoutPropertiesLoose = __webpack_require__(120);
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */function DocItem(props){var _clsx;var DocContent=props.content;var metadata=DocContent.metadata,_DocContent$frontMatt=DocContent.frontMatter,image=_DocContent$frontMatt.image,keywords=_DocContent$frontMatt.keywords,hideTitle=_DocContent$frontMatt.hide_title,hideTableOfContents=_DocContent$frontMatt.hide_table_of_contents;var description=metadata.description,title=metadata.title,editUrl=metadata.editUrl,lastUpdatedAt=metadata.lastUpdatedAt,formattedLastUpdatedAt=metadata.formattedLastUpdatedAt,lastUpdatedBy=metadata.lastUpdatedBy;var _useActivePlugin=(0,useDocs.useActivePlugin)({failfast:true}),pluginId=_useActivePlugin.pluginId;var versions=(0,useDocs.useVersions)(pluginId);var version=(0,useDocs.useActiveVersion)(pluginId);// If site is not versioned or only one version is included
+ */function DocItem(props){var _clsx;var DocContent=props.content;var metadata=DocContent.metadata,frontMatter=DocContent.frontMatter;var image=frontMatter.image,keywords=frontMatter.keywords,hideTitle=frontMatter.hide_title,hideTableOfContents=frontMatter.hide_table_of_contents;var description=metadata.description,title=metadata.title,editUrl=metadata.editUrl,lastUpdatedAt=metadata.lastUpdatedAt,formattedLastUpdatedAt=metadata.formattedLastUpdatedAt,lastUpdatedBy=metadata.lastUpdatedBy;var _useActivePlugin=(0,useDocs.useActivePlugin)({failfast:true}),pluginId=_useActivePlugin.pluginId;var versions=(0,useDocs.useVersions)(pluginId);var version=(0,useDocs.useActiveVersion)(pluginId);// If site is not versioned or only one version is included
 // we don't show the version badge
 // See https://github.com/facebook/docusaurus/issues/3362
-var showVersionBadge=versions.length>1;return/*#__PURE__*/react.createElement(react.Fragment,null,/*#__PURE__*/react.createElement(Seo/* default */.Z,{title:title,description:description,keywords:keywords,image:image}),/*#__PURE__*/react.createElement("div",{className:"row"},/*#__PURE__*/react.createElement("div",{className:(0,clsx_m/* default */.Z)('col',(_clsx={},_clsx[DocItem_styles_module.docItemCol]=!hideTableOfContents,_clsx))},/*#__PURE__*/react.createElement(theme_DocVersionSuggestions,null),/*#__PURE__*/react.createElement("div",{className:DocItem_styles_module.docItemContainer},/*#__PURE__*/react.createElement("article",null,showVersionBadge&&/*#__PURE__*/react.createElement("div",null,/*#__PURE__*/react.createElement("span",{className:"badge badge--secondary"},"Version: ",version.label)),!hideTitle&&/*#__PURE__*/react.createElement("header",null,/*#__PURE__*/react.createElement("h1",{className:DocItem_styles_module.docTitle},title)),/*#__PURE__*/react.createElement("div",{className:"markdown"},/*#__PURE__*/react.createElement(DocContent,null))),(editUrl||lastUpdatedAt||lastUpdatedBy)&&/*#__PURE__*/react.createElement("div",{className:"margin-vert--xl"},/*#__PURE__*/react.createElement("div",{className:"row"},/*#__PURE__*/react.createElement("div",{className:"col"},editUrl&&/*#__PURE__*/react.createElement(EditThisPage,{editUrl:editUrl})),(lastUpdatedAt||lastUpdatedBy)&&/*#__PURE__*/react.createElement(LastUpdated,{lastUpdatedAt:lastUpdatedAt,formattedLastUpdatedAt:formattedLastUpdatedAt,lastUpdatedBy:lastUpdatedBy}))),/*#__PURE__*/react.createElement("div",{className:"margin-vert--lg"},/*#__PURE__*/react.createElement(theme_DocPaginator,{metadata:metadata})))),!hideTableOfContents&&DocContent.toc&&/*#__PURE__*/react.createElement("div",{className:"col col--3"},/*#__PURE__*/react.createElement(theme_TOC,{toc:DocContent.toc}))));}/* harmony default export */ var theme_DocItem = (DocItem);
+var showVersionBadge=versions.length>1;// For meta title, using frontMatter.title in priority over a potential # title found in markdown
+// See https://github.com/facebook/docusaurus/issues/4665#issuecomment-825831367
+var metaTitle=frontMatter.title||title;return/*#__PURE__*/react.createElement(react.Fragment,null,/*#__PURE__*/react.createElement(Seo/* default */.Z,{title:metaTitle,description:description,keywords:keywords,image:image}),/*#__PURE__*/react.createElement("div",{className:"row"},/*#__PURE__*/react.createElement("div",{className:(0,clsx_m/* default */.Z)('col',(_clsx={},_clsx[DocItem_styles_module.docItemCol]=!hideTableOfContents,_clsx))},/*#__PURE__*/react.createElement(theme_DocVersionSuggestions,null),/*#__PURE__*/react.createElement("div",{className:DocItem_styles_module.docItemContainer},/*#__PURE__*/react.createElement("article",null,showVersionBadge&&/*#__PURE__*/react.createElement("div",null,/*#__PURE__*/react.createElement("span",{className:"badge badge--secondary"},"Version: ",version.label)),!hideTitle&&/*#__PURE__*/react.createElement("header",null,/*#__PURE__*/react.createElement("h1",{className:DocItem_styles_module.docTitle},title)),/*#__PURE__*/react.createElement("div",{className:"markdown"},/*#__PURE__*/react.createElement(DocContent,null))),(editUrl||lastUpdatedAt||lastUpdatedBy)&&/*#__PURE__*/react.createElement("div",{className:"margin-vert--xl"},/*#__PURE__*/react.createElement("div",{className:"row"},/*#__PURE__*/react.createElement("div",{className:"col"},editUrl&&/*#__PURE__*/react.createElement(EditThisPage,{editUrl:editUrl})),(lastUpdatedAt||lastUpdatedBy)&&/*#__PURE__*/react.createElement(LastUpdated,{lastUpdatedAt:lastUpdatedAt,formattedLastUpdatedAt:formattedLastUpdatedAt,lastUpdatedBy:lastUpdatedBy}))),/*#__PURE__*/react.createElement("div",{className:"margin-vert--lg"},/*#__PURE__*/react.createElement(theme_DocPaginator,{metadata:metadata})))),!hideTableOfContents&&DocContent.toc&&/*#__PURE__*/react.createElement("div",{className:"col col--3"},/*#__PURE__*/react.createElement(theme_TOC,{toc:DocContent.toc}))));}/* harmony default export */ var theme_DocItem = (DocItem);
 
 /***/ })
 

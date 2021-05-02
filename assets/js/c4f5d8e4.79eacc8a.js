@@ -5,24 +5,25 @@
 
 "use strict";
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
-/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8944);
-/* harmony import */ var _theme_SkipToContent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8994);
-/* harmony import */ var _theme_AnnouncementBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3263);
-/* harmony import */ var _theme_Navbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1269);
-/* harmony import */ var _theme_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9781);
-/* harmony import */ var _theme_LayoutProviders__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3619);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8944);
+/* harmony import */ var _theme_SkipToContent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8608);
+/* harmony import */ var _theme_AnnouncementBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4200);
+/* harmony import */ var _theme_Navbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9234);
+/* harmony import */ var _theme_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2955);
+/* harmony import */ var _theme_LayoutProviders__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6395);
 /* harmony import */ var _theme_LayoutHead__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(7707);
 /* harmony import */ var _theme_hooks_useKeyboardNavigation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3471);
+/* harmony import */ var _docusaurus_theme_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(4801);
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */function Layout(props){var children=props.children,noFooter=props.noFooter,wrapperClassName=props.wrapperClassName;(0,_theme_hooks_useKeyboardNavigation__WEBPACK_IMPORTED_MODULE_7__/* .default */ .Z)();return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_LayoutProviders__WEBPACK_IMPORTED_MODULE_5__/* .default */ .Z,null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_LayoutHead__WEBPACK_IMPORTED_MODULE_6__/* .default */ .Z,props),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_SkipToContent__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z,null),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_AnnouncementBar__WEBPACK_IMPORTED_MODULE_2__/* .default */ .Z,null),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_Navbar__WEBPACK_IMPORTED_MODULE_3__/* .default */ .Z,null),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{className:(0,clsx__WEBPACK_IMPORTED_MODULE_8__/* .default */ .Z)('main-wrapper',wrapperClassName)},children),!noFooter&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_Footer__WEBPACK_IMPORTED_MODULE_4__/* .default */ .Z,null));}/* harmony default export */ __webpack_exports__["Z"] = (Layout);
+ */function Layout(props){var children=props.children,noFooter=props.noFooter,wrapperClassName=props.wrapperClassName,pageClassName=props.pageClassName;(0,_theme_hooks_useKeyboardNavigation__WEBPACK_IMPORTED_MODULE_7__/* .default */ .Z)();return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_LayoutProviders__WEBPACK_IMPORTED_MODULE_5__/* .default */ .Z,null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_LayoutHead__WEBPACK_IMPORTED_MODULE_6__/* .default */ .Z,props),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_SkipToContent__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z,null),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_AnnouncementBar__WEBPACK_IMPORTED_MODULE_2__/* .default */ .Z,null),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_Navbar__WEBPACK_IMPORTED_MODULE_3__/* .default */ .Z,null),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{className:(0,clsx__WEBPACK_IMPORTED_MODULE_9__/* .default */ .Z)(_docusaurus_theme_common__WEBPACK_IMPORTED_MODULE_8__/* .ThemeClassNames.wrapper.main */ .kM.wrapper.main,wrapperClassName,pageClassName)},children),!noFooter&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_Footer__WEBPACK_IMPORTED_MODULE_4__/* .default */ .Z,null));}/* harmony default export */ __webpack_exports__["Z"] = (Layout);
 
 /***/ }),
 
-/***/ 5305:
+/***/ 1018:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42,12 +43,12 @@ var react = __webpack_require__(7378);
 var clsx_m = __webpack_require__(8944);
 // EXTERNAL MODULE: ../node_modules/@docusaurus/theme-classic/lib-next/theme/Layout/index.js
 var Layout = __webpack_require__(6562);
-// EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/Link.js + 1 modules
-var Link = __webpack_require__(9559);
-// EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/useDocusaurusContext.js
-var useDocusaurusContext = __webpack_require__(5638);
-// EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/useBaseUrl.js
-var useBaseUrl = __webpack_require__(1142);
+// EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/Link.js + 1 modules
+var Link = __webpack_require__(4142);
+// EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/useDocusaurusContext.js
+var useDocusaurusContext = __webpack_require__(353);
+// EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/useBaseUrl.js
+var useBaseUrl = __webpack_require__(8948);
 ;// CONCATENATED MODULE: ./src/pages/styles.module.css
 // extracted by mini-css-extract-plugin
 /* harmony default export */ var styles_module = ({"heroBanner":"heroBanner_3P7f","buttons":"buttons_1r9m","features":"features_3azU","featureImage":"featureImage_ZtzX","title":"title_3dbr","subtitle":"subtitle_3Hk7"});

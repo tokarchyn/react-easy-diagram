@@ -80,56 +80,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 /***/ }),
 
-/***/ 2360:
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-"use strict";
-function _inheritsLoose(subClass,superClass){subClass.prototype=Object.create(superClass.prototype);subClass.prototype.constructor=subClass;subClass.__proto__=superClass;}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}function _extends(){_extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};return _extends.apply(this,arguments);}var React=__webpack_require__(7378);var PropTypes=__webpack_require__(3615);var ALL_INITIALIZERS=[];var READY_INITIALIZERS=[];function isWebpackReady(getModuleIds){if(false){}return getModuleIds().every(function(moduleId){return typeof moduleId!=="undefined"&&typeof __webpack_require__.m[moduleId]!=="undefined";});}function load(loader){var promise=loader();var state={loading:true,loaded:null,error:null};state.promise=promise.then(function(loaded){state.loading=false;state.loaded=loaded;return loaded;}).catch(function(err){state.loading=false;state.error=err;throw err;});return state;}function loadMap(obj){var state={loading:false,loaded:{},error:null};var promises=[];try{Object.keys(obj).forEach(function(key){var result=load(obj[key]);if(!result.loading){state.loaded[key]=result.loaded;state.error=result.error;}else{state.loading=true;}promises.push(result.promise);result.promise.then(function(res){state.loaded[key]=res;}).catch(function(err){state.error=err;});});}catch(err){state.error=err;}state.promise=Promise.all(promises).then(function(res){state.loading=false;return res;}).catch(function(err){state.loading=false;throw err;});return state;}function resolve(obj){return obj&&obj.__esModule?obj.default:obj;}function render(loaded,props){return React.createElement(resolve(loaded),props);}function createLoadableComponent(loadFn,options){var _class,_temp;if(!options.loading){throw new Error("react-loadable requires a `loading` component");}var opts=_extends({loader:null,loading:null,delay:200,timeout:null,render:render,webpack:null,modules:null},options);var res=null;function init(){if(!res){res=loadFn(opts.loader);}return res.promise;}ALL_INITIALIZERS.push(init);if(typeof opts.webpack==="function"){READY_INITIALIZERS.push(function(){if(isWebpackReady(opts.webpack)){return init();}});}return _temp=_class=/*#__PURE__*/function(_React$Component){_inheritsLoose(LoadableComponent,_React$Component);function LoadableComponent(props){var _this;_this=_React$Component.call(this,props)||this;_defineProperty(_assertThisInitialized(_assertThisInitialized(_this)),"retry",function(){_this.setState({error:null,loading:true,timedOut:false});res=loadFn(opts.loader);_this._loadModule();});init();_this.state={error:res.error,pastDelay:false,timedOut:false,loading:res.loading,loaded:res.loaded};return _this;}LoadableComponent.preload=function preload(){return init();};var _proto=LoadableComponent.prototype;_proto.UNSAFE_componentWillMount=function UNSAFE_componentWillMount(){this._loadModule();};_proto.componentDidMount=function componentDidMount(){this._mounted=true;};_proto._loadModule=function _loadModule(){var _this2=this;if(this.context.loadable&&Array.isArray(opts.modules)){opts.modules.forEach(function(moduleName){_this2.context.loadable.report(moduleName);});}if(!res.loading){return;}var setStateWithMountCheck=function setStateWithMountCheck(newState){if(!_this2._mounted){return;}_this2.setState(newState);};if(typeof opts.delay==='number'){if(opts.delay===0){this.setState({pastDelay:true});}else{this._delay=setTimeout(function(){setStateWithMountCheck({pastDelay:true});},opts.delay);}}if(typeof opts.timeout==="number"){this._timeout=setTimeout(function(){setStateWithMountCheck({timedOut:true});},opts.timeout);}var update=function update(){setStateWithMountCheck({error:res.error,loaded:res.loaded,loading:res.loading});_this2._clearTimeouts();};res.promise.then(function(){update();return null;}).catch(function(err){update();return null;});};_proto.componentWillUnmount=function componentWillUnmount(){this._mounted=false;this._clearTimeouts();};_proto._clearTimeouts=function _clearTimeouts(){clearTimeout(this._delay);clearTimeout(this._timeout);};_proto.render=function render(){if(this.state.loading||this.state.error){return React.createElement(opts.loading,{isLoading:this.state.loading,pastDelay:this.state.pastDelay,timedOut:this.state.timedOut,error:this.state.error,retry:this.retry});}else if(this.state.loaded){return opts.render(this.state.loaded,this.props);}else{return null;}};return LoadableComponent;}(React.Component),_defineProperty(_class,"contextTypes",{loadable:PropTypes.shape({report:PropTypes.func.isRequired})}),_temp;}function Loadable(opts){return createLoadableComponent(load,opts);}function LoadableMap(opts){if(typeof opts.render!=="function"){throw new Error("LoadableMap requires a `render(loaded, props)` function");}return createLoadableComponent(loadMap,opts);}Loadable.Map=LoadableMap;var Capture=/*#__PURE__*/function(_React$Component2){_inheritsLoose(Capture,_React$Component2);function Capture(){return _React$Component2.apply(this,arguments)||this;}var _proto2=Capture.prototype;_proto2.getChildContext=function getChildContext(){return{loadable:{report:this.props.report}};};_proto2.render=function render(){return React.Children.only(this.props.children);};return Capture;}(React.Component);_defineProperty(Capture,"propTypes",{report:PropTypes.func.isRequired});_defineProperty(Capture,"childContextTypes",{loadable:PropTypes.shape({report:PropTypes.func.isRequired}).isRequired});Loadable.Capture=Capture;function flushInitializers(initializers){var promises=[];while(initializers.length){var init=initializers.pop();promises.push(init());}return Promise.all(promises).then(function(){if(initializers.length){return flushInitializers(initializers);}});}Loadable.preloadAll=function(){return new Promise(function(resolve,reject){flushInitializers(ALL_INITIALIZERS).then(resolve,reject);});};Loadable.preloadReady=function(){return new Promise(function(resolve,reject){// We always will resolve, errors should be handled within loading UIs.
-flushInitializers(READY_INITIALIZERS).then(resolve,resolve);});};module.exports=Loadable;
-
-/***/ }),
-
-/***/ 8536:
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
-
-// EXTERNAL MODULE: ../node_modules/prism-react-renderer/prism/index.js
-var prism = __webpack_require__(2349);
-// EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/ExecutionEnvironment.js
-var ExecutionEnvironment = __webpack_require__(2218);
-// EXTERNAL MODULE: ./.docusaurus/docusaurus.config.js
-var docusaurus_config = __webpack_require__(6611);
-;// CONCATENATED MODULE: ../node_modules/@docusaurus/theme-classic/lib-next/theme/prism-include-languages.js
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */var prismIncludeLanguages=function prismIncludeLanguages(PrismObject){if(ExecutionEnvironment/* default.canUseDOM */.Z.canUseDOM){var _siteConfig$themeConf=docusaurus_config.default.themeConfig.prism;_siteConfig$themeConf=_siteConfig$themeConf===void 0?{}:_siteConfig$themeConf;var _siteConfig$themeConf2=_siteConfig$themeConf.additionalLanguages,additionalLanguages=_siteConfig$themeConf2===void 0?[]:_siteConfig$themeConf2;window.Prism=PrismObject;additionalLanguages.forEach(function(lang){__webpack_require__(3392)("./prism-"+lang);// eslint-disable-line
-});delete window.Prism;}};/* harmony default export */ var prism_include_languages = (prismIncludeLanguages);
-;// CONCATENATED MODULE: ../node_modules/@docusaurus/theme-classic/lib/prism-include-languages.js
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */prism_include_languages(prism/* default */.Z);
-
-/***/ }),
-
-/***/ 6611:
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({"title":"React Easy Diagram","tagline":"Open source library to build highly customazible fast React diagrams.","url":"https://lucid-ritchie-113206.netlify.app/","baseUrl":"/","onBrokenLinks":"throw","onBrokenMarkdownLinks":"warn","favicon":"img/favicon.ico","organizationName":"tokarchyn","projectName":"react-easy-diagram","themeConfig":{"hideableSidebar":true,"navbar":{"title":"React Easy Diagram","logo":{"alt":"React Easy Diagram","src":"img/logo.svg"},"items":[{"to":"docs/","activeBasePath":"docs","label":"Docs","position":"right"},{"label":"Examples","position":"right","items":[{"label":"Basic","to":"examples/basic"},{"label":"Calculator","to":"examples/calculator"},{"label":"Configure default link","to":"examples/configureDefaultLink"},{"label":"Configure default port","to":"examples/configureDefaultPort"},{"label":"Performance","to":"examples/performance"},{"label":"Port position","to":"examples/portPosition"},{"label":"Position snapping","to":"examples/positionSnapping"},{"label":"Update ports position","to":"examples/updatePortsPosition"},{"label":"Configure user interaction","to":"examples/configureUserInteraction"}]},{"href":"https://github.com/tokarchyn/react-easy-diagram","label":"GitHub","position":"right"}],"hideOnScroll":false},"footer":{"style":"dark","copyright":"Copyright © 2021 Tokarchyn Vitalii.","links":[]},"colorMode":{"defaultMode":"light","disableSwitch":false,"respectPrefersColorScheme":false,"switchConfig":{"darkIcon":"🌜","darkIconStyle":{},"lightIcon":"🌞","lightIconStyle":{}}},"docs":{"versionPersistence":"localStorage"},"metadatas":[],"prism":{"additionalLanguages":[]},"liveCodeBlock":{"playgroundPosition":"bottom"}},"presets":[["@docusaurus/preset-classic",{"docs":{"sidebarPath":"C:\\Users\\tokar\\Desktop\\react-easy-diagram\\website\\sidebars.js","editUrl":"https://github.com/tokarchyn/react-easy-diagram/edit/main/website"},"theme":{"customCss":"C:\\Users\\tokar\\Desktop\\react-easy-diagram\\website\\src\\css\\custom.css"}}]],"themes":["@docusaurus/theme-live-codeblock"],"baseUrlIssueBanner":true,"i18n":{"defaultLocale":"en","locales":["en"],"localeConfigs":{}},"onDuplicateRoutes":"warn","customFields":{},"plugins":[],"titleDelimiter":"|","noIndex":false});
-
-/***/ }),
-
-/***/ 2011:
+/***/ 6861:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -143,7 +94,7 @@ var react_router_dom = __webpack_require__(4289);
 // EXTERNAL MODULE: ../node_modules/@docusaurus/react-loadable/lib/index.js
 var lib = __webpack_require__(2360);
 var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/theme-fallback/Loading/index.js
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/theme-fallback/Loading/index.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -153,8 +104,8 @@ var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 ;// CONCATENATED MODULE: ./.docusaurus/routesChunkNames.json
 var routesChunkNames_namespaceObject = JSON.parse('{"/-deb":{"component":"c4f5d8e4","config":"5e9f5e1a"},"/examples/basic-d5a":{"component":"aa3c789d","config":"5e9f5e1a"},"/examples/calculator-a21":{"component":"315cfba4","config":"5e9f5e1a"},"/examples/configureDefaultLink-48d":{"component":"fb72e560","config":"5e9f5e1a"},"/examples/configureDefaultPort-b78":{"component":"9e7a0641","config":"5e9f5e1a"},"/examples/configureUserInteraction-29e":{"component":"812c8586","config":"5e9f5e1a"},"/examples/dynamicPorts-ef5":{"component":"cf959e9c","config":"5e9f5e1a"},"/examples/performance-718":{"component":"af557546","config":"5e9f5e1a"},"/examples/portPosition-313":{"component":"c2a627a4","config":"5e9f5e1a"},"/examples/positionSnapping-bc0":{"component":"fcdae9f6","config":"5e9f5e1a"},"/examples/updatePortsPosition-c77":{"component":"ce59fbe4","config":"5e9f5e1a"},"/docs-76e":{"component":"1be78505","versionMetadata":"935f2afb"},"/docs/-5df":{"component":"17896441","content":"f8409a7e"}}');
 ;// CONCATENATED MODULE: ./.docusaurus/registry.js
-/* harmony default export */ var registry = ({'17896441':[function(){return Promise.all(/* import() | 17896441 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(918)]).then(__webpack_require__.bind(__webpack_require__, 1169));},"@theme/DocItem",/*require.resolve*/(1169)],'1be78505':[function(){return Promise.all(/* import() | 1be78505 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(514)]).then(__webpack_require__.bind(__webpack_require__, 9874));},"@theme/DocPage",/*require.resolve*/(9874)],'315cfba4':[function(){return Promise.all(/* import() | 315cfba4 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(915)]).then(__webpack_require__.bind(__webpack_require__, 3841));},"@site/src/pages/examples/calculator.jsx",/*require.resolve*/(3841)],'5e9f5e1a':[function(){return Promise.resolve(/* import() */).then(__webpack_require__.bind(__webpack_require__, 6611));},"@generated/docusaurus.config",/*require.resolve*/(6611)],'812c8586':[function(){return Promise.all(/* import() | 812c8586 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(542)]).then(__webpack_require__.bind(__webpack_require__, 6875));},"@site/src/pages/examples/configureUserInteraction.jsx",/*require.resolve*/(6875)],'935f2afb':[function(){return __webpack_require__.e(/* import() | 935f2afb */ 53).then(__webpack_require__.t.bind(__webpack_require__, 9054, 19));},"~docs/default/version-current-metadata-prop-751.json",/*require.resolve*/(9054)],'9e7a0641':[function(){return Promise.all(/* import() | 9e7a0641 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(901)]).then(__webpack_require__.bind(__webpack_require__, 2824));},"@site/src/pages/examples/configureDefaultPort.jsx",/*require.resolve*/(2824)],'aa3c789d':[function(){return Promise.all(/* import() | aa3c789d */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(829)]).then(__webpack_require__.bind(__webpack_require__, 9858));},"@site/src/pages/examples/basic.jsx",/*require.resolve*/(9858)],'af557546':[function(){return Promise.all(/* import() | af557546 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(976)]).then(__webpack_require__.bind(__webpack_require__, 369));},"@site/src/pages/examples/performance.jsx",/*require.resolve*/(369)],'c2a627a4':[function(){return Promise.all(/* import() | c2a627a4 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(409)]).then(__webpack_require__.bind(__webpack_require__, 7541));},"@site/src/pages/examples/portPosition.jsx",/*require.resolve*/(7541)],'c4f5d8e4':[function(){return Promise.all(/* import() | c4f5d8e4 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(195)]).then(__webpack_require__.bind(__webpack_require__, 5305));},"@site/src/pages/index.js",/*require.resolve*/(5305)],'ce59fbe4':[function(){return Promise.all(/* import() | ce59fbe4 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(132)]).then(__webpack_require__.bind(__webpack_require__, 7116));},"@site/src/pages/examples/updatePortsPosition.jsx",/*require.resolve*/(7116)],'cf959e9c':[function(){return Promise.all(/* import() | cf959e9c */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(317)]).then(__webpack_require__.bind(__webpack_require__, 7207));},"@site/src/pages/examples/dynamicPorts.jsx",/*require.resolve*/(7207)],'f8409a7e':[function(){return __webpack_require__.e(/* import() | f8409a7e */ 206).then(__webpack_require__.bind(__webpack_require__, 1246));},"@site/docs/intro.mdx",/*require.resolve*/(1246)],'fb72e560':[function(){return Promise.all(/* import() | fb72e560 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(99)]).then(__webpack_require__.bind(__webpack_require__, 5525));},"@site/src/pages/examples/configureDefaultLink.jsx",/*require.resolve*/(5525)],'fcdae9f6':[function(){return Promise.all(/* import() | fcdae9f6 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(651)]).then(__webpack_require__.bind(__webpack_require__, 4301));},"@site/src/pages/examples/positionSnapping.jsx",/*require.resolve*/(4301)]});
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/flat.js
+/* harmony default export */ var registry = ({'17896441':[function(){return Promise.all(/* import() | 17896441 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(918)]).then(__webpack_require__.bind(__webpack_require__, 9745));},"@theme/DocItem",/*require.resolve*/(9745)],'1be78505':[function(){return Promise.all(/* import() | 1be78505 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(514)]).then(__webpack_require__.bind(__webpack_require__, 8345));},"@theme/DocPage",/*require.resolve*/(8345)],'315cfba4':[function(){return Promise.all(/* import() | 315cfba4 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(915)]).then(__webpack_require__.bind(__webpack_require__, 3841));},"@site/src/pages/examples/calculator.jsx",/*require.resolve*/(3841)],'5e9f5e1a':[function(){return Promise.resolve(/* import() */).then(__webpack_require__.bind(__webpack_require__, 6611));},"@generated/docusaurus.config",/*require.resolve*/(6611)],'812c8586':[function(){return Promise.all(/* import() | 812c8586 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(542)]).then(__webpack_require__.bind(__webpack_require__, 6875));},"@site/src/pages/examples/configureUserInteraction.jsx",/*require.resolve*/(6875)],'935f2afb':[function(){return __webpack_require__.e(/* import() | 935f2afb */ 53).then(__webpack_require__.t.bind(__webpack_require__, 9054, 19));},"~docs/default/version-current-metadata-prop-751.json",/*require.resolve*/(9054)],'9e7a0641':[function(){return Promise.all(/* import() | 9e7a0641 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(901)]).then(__webpack_require__.bind(__webpack_require__, 2824));},"@site/src/pages/examples/configureDefaultPort.jsx",/*require.resolve*/(2824)],'aa3c789d':[function(){return Promise.all(/* import() | aa3c789d */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(829)]).then(__webpack_require__.bind(__webpack_require__, 9858));},"@site/src/pages/examples/basic.jsx",/*require.resolve*/(9858)],'af557546':[function(){return Promise.all(/* import() | af557546 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(976)]).then(__webpack_require__.bind(__webpack_require__, 369));},"@site/src/pages/examples/performance.jsx",/*require.resolve*/(369)],'c2a627a4':[function(){return Promise.all(/* import() | c2a627a4 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(409)]).then(__webpack_require__.bind(__webpack_require__, 7541));},"@site/src/pages/examples/portPosition.jsx",/*require.resolve*/(7541)],'c4f5d8e4':[function(){return Promise.all(/* import() | c4f5d8e4 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(195)]).then(__webpack_require__.bind(__webpack_require__, 1018));},"@site/src/pages/index.js",/*require.resolve*/(1018)],'ce59fbe4':[function(){return Promise.all(/* import() | ce59fbe4 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(132)]).then(__webpack_require__.bind(__webpack_require__, 7116));},"@site/src/pages/examples/updatePortsPosition.jsx",/*require.resolve*/(7116)],'cf959e9c':[function(){return Promise.all(/* import() | cf959e9c */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(317)]).then(__webpack_require__.bind(__webpack_require__, 7207));},"@site/src/pages/examples/dynamicPorts.jsx",/*require.resolve*/(7207)],'f8409a7e':[function(){return __webpack_require__.e(/* import() | f8409a7e */ 206).then(__webpack_require__.bind(__webpack_require__, 1246));},"@site/docs/intro.mdx",/*require.resolve*/(1246)],'fb72e560':[function(){return Promise.all(/* import() | fb72e560 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(99)]).then(__webpack_require__.bind(__webpack_require__, 5525));},"@site/src/pages/examples/configureDefaultLink.jsx",/*require.resolve*/(5525)],'fcdae9f6':[function(){return Promise.all(/* import() | fcdae9f6 */[__webpack_require__.e(532), __webpack_require__.e(592), __webpack_require__.e(651)]).then(__webpack_require__.bind(__webpack_require__, 4301));},"@site/src/pages/examples/positionSnapping.jsx",/*require.resolve*/(4301)]});
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/flat.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -162,7 +113,7 @@ var routesChunkNames_namespaceObject = JSON.parse('{"/-deb":{"component":"c4f5d8
  * LICENSE file in the root directory of this source tree.
  */ // Too dynamic
 /* eslint-disable @typescript-eslint/no-explicit-any */function flat(target){var delimiter='.';var output={};function step(object,prev){Object.keys(object).forEach(function(key){var value=object[key];var type=typeof value;var isObject=type==='object'&&!!value;var newKey=prev?prev+delimiter+key:key;if(isObject&&Object.keys(value).length){step(value,newKey);return;}output[newKey]=value;});}step(target);return output;}/* harmony default export */ var client_flat = (flat);
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/exports/ComponentCreator.js
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/exports/ComponentCreator.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -183,8 +134,8 @@ if(path==='*'){return lib_default()({loading:Loading,loader:function loader(){re
 var loadedModules=JSON.parse(JSON.stringify(chunkNames));Object.keys(loaded).forEach(function(key){var val=loadedModules;var keyPath=key.split('.');for(var i=0;i<keyPath.length-1;i+=1){val=val[keyPath[i]];}val[keyPath[keyPath.length-1]]=loaded[key].default;var nonDefaultKeys=Object.keys(loaded[key]).filter(function(k){return k!=='default';});if(nonDefaultKeys&&nonDefaultKeys.length){nonDefaultKeys.forEach(function(nonDefaultKey){val[keyPath[keyPath.length-1]][nonDefaultKey]=loaded[key][nonDefaultKey];});}});var Component=loadedModules.component;delete loadedModules.component;return/*#__PURE__*/react.createElement(Component,Object.assign({},loadedModules,props));}});}/* harmony default export */ var exports_ComponentCreator = (ComponentCreator);
 ;// CONCATENATED MODULE: ./.docusaurus/routes.js
 /* harmony default export */ var routes = ([{path:'/',component:exports_ComponentCreator('/','deb'),exact:true},{path:'/examples/basic',component:exports_ComponentCreator('/examples/basic','d5a'),exact:true},{path:'/examples/calculator',component:exports_ComponentCreator('/examples/calculator','a21'),exact:true},{path:'/examples/configureDefaultLink',component:exports_ComponentCreator('/examples/configureDefaultLink','48d'),exact:true},{path:'/examples/configureDefaultPort',component:exports_ComponentCreator('/examples/configureDefaultPort','b78'),exact:true},{path:'/examples/configureUserInteraction',component:exports_ComponentCreator('/examples/configureUserInteraction','29e'),exact:true},{path:'/examples/dynamicPorts',component:exports_ComponentCreator('/examples/dynamicPorts','ef5'),exact:true},{path:'/examples/performance',component:exports_ComponentCreator('/examples/performance','718'),exact:true},{path:'/examples/portPosition',component:exports_ComponentCreator('/examples/portPosition','313'),exact:true},{path:'/examples/positionSnapping',component:exports_ComponentCreator('/examples/positionSnapping','bc0'),exact:true},{path:'/examples/updatePortsPosition',component:exports_ComponentCreator('/examples/updatePortsPosition','c77'),exact:true},{path:'/docs',component:exports_ComponentCreator('/docs','76e'),routes:[{path:'/docs/',component:exports_ComponentCreator('/docs/','5df'),exact:true}]},{path:'*',component:exports_ComponentCreator('*')}]);
-// EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/ExecutionEnvironment.js
-var ExecutionEnvironment = __webpack_require__(2218);
+// EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/ExecutionEnvironment.js
+var ExecutionEnvironment = __webpack_require__(161);
 // EXTERNAL MODULE: ./.docusaurus/docusaurus.config.js
 var docusaurus_config = __webpack_require__(6611);
 ;// CONCATENATED MODULE: ./.docusaurus/globalData.json
@@ -194,11 +145,11 @@ var i18n_namespaceObject = JSON.parse('{"defaultLocale":"en","locales":["en"],"c
 // EXTERNAL MODULE: ./.docusaurus/codeTranslations.json
 var codeTranslations = __webpack_require__(4644);
 ;// CONCATENATED MODULE: ./.docusaurus/site-metadata.json
-var site_metadata_namespaceObject = JSON.parse('{"docusaurusVersion":"2.0.0-alpha.75","siteVersion":"0.0.0","pluginVersions":{"docusaurus-plugin-content-docs":{"type":"package","name":"@docusaurus/plugin-content-docs","version":"2.0.0-alpha.72"},"docusaurus-plugin-content-blog":{"type":"package","name":"@docusaurus/plugin-content-blog","version":"2.0.0-alpha.72"},"docusaurus-plugin-content-pages":{"type":"package","name":"@docusaurus/plugin-content-pages","version":"2.0.0-alpha.72"},"docusaurus-plugin-sitemap":{"type":"package","name":"@docusaurus/plugin-sitemap","version":"2.0.0-alpha.72"},"docusaurus-theme-classic":{"type":"package","name":"@docusaurus/theme-classic","version":"2.0.0-alpha.72"},"docusaurus-theme-live-codeblock":{"type":"package","name":"@docusaurus/theme-live-codeblock","version":"2.0.0-alpha.72"}}}');
-// EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/renderRoutes.js
-var renderRoutes = __webpack_require__(1930);
-// EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/context.js
-var context = __webpack_require__(4629);
+var site_metadata_namespaceObject = JSON.parse('{"docusaurusVersion":"2.0.0-alpha.75","siteVersion":"0.0.0","pluginVersions":{"docusaurus-plugin-content-docs":{"type":"package","name":"@docusaurus/plugin-content-docs","version":"2.0.0-alpha.75"},"docusaurus-plugin-content-blog":{"type":"package","name":"@docusaurus/plugin-content-blog","version":"2.0.0-alpha.75"},"docusaurus-plugin-content-pages":{"type":"package","name":"@docusaurus/plugin-content-pages","version":"2.0.0-alpha.75"},"docusaurus-plugin-sitemap":{"type":"package","name":"@docusaurus/plugin-sitemap","version":"2.0.0-alpha.75"},"docusaurus-theme-classic":{"type":"package","name":"@docusaurus/theme-classic","version":"2.0.0-alpha.75"},"docusaurus-theme-live-codeblock":{"type":"package","name":"@docusaurus/theme-live-codeblock","version":"2.0.0-alpha.75"}}}');
+// EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/renderRoutes.js
+var renderRoutes = __webpack_require__(6028);
+// EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/context.js
+var context = __webpack_require__(6720);
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js + 1 modules
 var inheritsLoose = __webpack_require__(656);
 // EXTERNAL MODULE: ../node_modules/react-router/esm/react-router.js + 1 modules
@@ -207,8 +158,8 @@ var react_router = __webpack_require__(9635);
 var nprogress = __webpack_require__(8504);
 var nprogress_default = /*#__PURE__*/__webpack_require__.n(nprogress);
 ;// CONCATENATED MODULE: ./.docusaurus/client-modules.js
-/* harmony default export */ var client_modules = ([__webpack_require__(7799),__webpack_require__(7799),__webpack_require__(7799),__webpack_require__(9288),__webpack_require__(8536),__webpack_require__(5318)]);
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/client-lifecycles-dispatcher.js
+/* harmony default export */ var client_modules = ([__webpack_require__(2811),__webpack_require__(2811),__webpack_require__(2811),__webpack_require__(142),__webpack_require__(8536),__webpack_require__(6222)]);
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/client-lifecycles-dispatcher.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -218,7 +169,7 @@ var nprogress_default = /*#__PURE__*/__webpack_require__.n(nprogress);
 /* eslint-disable @typescript-eslint/no-explicit-any */function dispatchLifecycleAction(lifecycleAction){for(var _len=arguments.length,args=new Array(_len>1?_len-1:0),_key=1;_key<_len;_key++){args[_key-1]=arguments[_key];}client_modules.forEach(function(clientModule){var _a,_b;var lifecycleFunction=(_b=(_a=clientModule===null||clientModule===void 0?void 0:clientModule.default)===null||_a===void 0?void 0:_a[lifecycleAction])!==null&&_b!==void 0?_b:clientModule[lifecycleAction];if(lifecycleFunction){lifecycleFunction.apply(void 0,args);}});}var clientLifecyclesDispatchers={onRouteUpdate:function onRouteUpdate(){for(var _len2=arguments.length,args=new Array(_len2),_key2=0;_key2<_len2;_key2++){args[_key2]=arguments[_key2];}dispatchLifecycleAction.apply(void 0,['onRouteUpdate'].concat(args));},onRouteUpdateDelayed:function onRouteUpdateDelayed(){for(var _len3=arguments.length,args=new Array(_len3),_key3=0;_key3<_len3;_key3++){args[_key3]=arguments[_key3];}dispatchLifecycleAction.apply(void 0,['onRouteUpdateDelayed'].concat(args));}};/* harmony default export */ var client_lifecycles_dispatcher = (clientLifecyclesDispatchers);
 // EXTERNAL MODULE: ../node_modules/react-router-config/esm/react-router-config.js
 var react_router_config = __webpack_require__(5473);
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/preload.js
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/preload.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -234,7 +185,7 @@ var react_router_config = __webpack_require__(5473);
  */function preload_preload(routes,pathname){var matches=(0,react_router_config/* matchRoutes */.f)(routes,pathname);return Promise.all(matches.map(function(match){var component=match.route.component;// @ts-expect-error: ComponentCreator injected this method.
 if(component&&component.preload){// @ts-expect-error: checked above.
 return component.preload();}return undefined;}));}
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/normalizeLocation.js
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/normalizeLocation.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -242,7 +193,7 @@ return component.preload();}return undefined;}));}
  * LICENSE file in the root directory of this source tree.
  */ // Memoize previously normalized pathnames.
 var pathnames={};function normalizeLocation(location){if(pathnames[location.pathname]){return Object.assign({},location,{pathname:pathnames[location.pathname]});}var pathname=location.pathname||'/';pathname=pathname.trim().replace(/\/index\.html$/,'');if(pathname===''){pathname='/';}pathnames[location.pathname]=pathname;return Object.assign({},location,{pathname:pathname});}/* harmony default export */ var client_normalizeLocation = (normalizeLocation);
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/PendingNavigation.js
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/PendingNavigation.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -259,11 +210,11 @@ preload_preload(routes,nextLocation.pathname).then(function(){client_lifecycles_
 _this2.previousLocation=null;_this2.setState({nextRouteHasLoaded:true},_this2.stopProgressBar);var hash=nextLocation.hash;if(!hash){window.scrollTo(0,0);}else{var id=decodeURIComponent(hash.substring(1));var element=document.getElementById(id);if(element){element.scrollIntoView();}}}).catch(function(e){return console.warn(e);});return false;}// There's a pending route transition. Don't update until it's done.
 if(!nextState.nextRouteHasLoaded){return false;}// Route has loaded, we can update now.
 return true;};_proto.clearProgressBarTimeout=function clearProgressBarTimeout(){if(this.progressBarTimeout){clearTimeout(this.progressBarTimeout);this.progressBarTimeout=null;}};_proto.startProgressBar=function startProgressBar(delay){var _this3=this;this.clearProgressBarTimeout();this.progressBarTimeout=setTimeout(function(){client_lifecycles_dispatcher.onRouteUpdateDelayed({location:client_normalizeLocation(_this3.props.location)});nprogress_default().start();},delay);};_proto.stopProgressBar=function stopProgressBar(){this.clearProgressBarTimeout();nprogress_default().done();};_proto.render=function render(){var _this$props2=this.props,children=_this$props2.children,location=_this$props2.location;return/*#__PURE__*/react.createElement(react_router/* Route */.AW,{location:client_normalizeLocation(location),render:function render(){return children;}});};return PendingNavigation;}(react.Component);/* harmony default export */ var client_PendingNavigation = ((0,react_router/* withRouter */.EN)(PendingNavigation));
-// EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/Head.js + 1 modules
-var Head = __webpack_require__(4142);
-// EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/useDocusaurusContext.js
-var useDocusaurusContext = __webpack_require__(5638);
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/baseUrlIssueBanner/BaseUrlIssueBanner.js
+// EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/Head.js + 1 modules
+var Head = __webpack_require__(5361);
+// EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/useDocusaurusContext.js
+var useDocusaurusContext = __webpack_require__(353);
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/baseUrlIssueBanner/BaseUrlIssueBanner.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -286,7 +237,7 @@ function createInlineScript(baseUrl){return"\nwindow['"+InsertBannerWindowAttrib
 // See https://github.com/facebook/docusaurus/pull/3621
 function BaseUrlIssueBanner(){var _useDocusaurusContext2=(0,useDocusaurusContext.default)(),_useDocusaurusContext3=_useDocusaurusContext2.siteConfig,baseUrl=_useDocusaurusContext3.baseUrl,baseUrlIssueBanner=_useDocusaurusContext3.baseUrlIssueBanner;var _useLocation=(0,react_router/* useLocation */.TH)(),pathname=_useLocation.pathname;// returns true for the homepage during SRR
 var isHomePage=pathname===baseUrl;var enabled=baseUrlIssueBanner&&isHomePage;return enabled?/*#__PURE__*/react.createElement(BaseUrlIssueBannerEnabled,null):null;}
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/theme-fallback/Root/index.js
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/theme-fallback/Root/index.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -300,14 +251,14 @@ var isHomePage=pathname===baseUrl;var enabled=baseUrlIssueBanner&&isHomePage;ret
 //
 // See https://github.com/facebook/docusaurus/issues/3919
 function Root(_ref){var children=_ref.children;return/*#__PURE__*/react.createElement(react.Fragment,null,children);}/* harmony default export */ var theme_fallback_Root = (Root);
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/App.js
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/App.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */function App(){var _useState=(0,react.useState)(false),isClient=_useState[0],setIsClient=_useState[1];(0,react.useEffect)(function(){setIsClient(true);},[]);return/*#__PURE__*/react.createElement(context/* default.Provider */.Z.Provider,{value:{siteConfig:docusaurus_config.default,siteMetadata:site_metadata_namespaceObject,globalData:globalData_namespaceObject,i18n:i18n_namespaceObject,codeTranslations:codeTranslations,isClient:isClient}},/*#__PURE__*/react.createElement(theme_fallback_Root,null,/*#__PURE__*/react.createElement(BaseUrlIssueBanner,null),/*#__PURE__*/react.createElement(client_PendingNavigation,{routes:routes},(0,renderRoutes/* default */.Z)(routes))));}/* harmony default export */ var client_App = (App);
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/prefetch.js
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/prefetch.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -316,7 +267,7 @@ function Root(_ref){var children=_ref.children;return/*#__PURE__*/react.createEl
  */function support(feature){if(typeof document==='undefined'){return false;}var fakeLink=document.createElement('link');try{if(fakeLink.relList&&typeof fakeLink.relList.supports==='function'){return fakeLink.relList.supports(feature);}}catch(err){return false;}return false;}function linkPrefetchStrategy(url){return new Promise(function(resolve,reject){if(typeof document==='undefined'){reject();return;}var link=document.createElement('link');link.setAttribute('rel','prefetch');link.setAttribute('href',url);link.onload=resolve;link.onerror=reject;var parentElement=document.getElementsByTagName('head')[0]||document.getElementsByName('script')[0].parentNode;parentElement.appendChild(link);});}function xhrPrefetchStrategy(url){return new Promise(function(resolve,reject){var req=new XMLHttpRequest();req.open('GET',url,true);req.withCredentials=true;req.onload=function(){if(req.status===200){resolve();}else{reject();}};req.send(null);});}var supportedPrefetchStrategy=support('prefetch')?linkPrefetchStrategy:xhrPrefetchStrategy;var preFetched={};function prefetch(url){return new Promise(function(resolve){if(preFetched[url]){resolve();return;}supportedPrefetchStrategy(url).then(function(){resolve();preFetched[url]=true;})// eslint-disable-next-line @typescript-eslint/no-empty-function
 .catch(function(){});// 404s are logged to the console anyway.
 });}/* harmony default export */ var client_prefetch = (prefetch);
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/docusaurus.js
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/docusaurus.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -336,7 +287,7 @@ chunkNamesNeeded.forEach(function(chunkName){// "__webpack_require__.gca" is a c
 var chunkAsset=__webpack_require__.gca(chunkName);// In some cases, webpack might decide to optimize further & hence the chunk assets are merged to another chunk/previous chunk.
 // Hence, we can safely filter it out/don't need to load it.
 if(chunkAsset&&!/undefined/.test(chunkAsset)){client_prefetch(chunkAsset);}});return true;},preload:function preload(routePath){if(!canPreload(routePath)){return false;}loaded[routePath]=true;preload_preload(routes,routePath);return true;}};/* harmony default export */ var client_docusaurus = (docusaurus);
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/clientEntry.js
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/clientEntry.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -351,7 +302,7 @@ if(false){}}
 
 /***/ }),
 
-/***/ 2218:
+/***/ 161:
 /***/ (function(__unused_webpack_module, __webpack_exports__) {
 
 "use strict";
@@ -366,7 +317,7 @@ canUseDOM&&!!(window.addEventListener||window.attachEvent),canUseIntersectionObs
 
 /***/ }),
 
-/***/ 4142:
+/***/ 5361:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1291,7 +1242,7 @@ HelmetExport.renderStatic = HelmetExport.rewind;
 /* harmony default export */ var es_Helmet = ((/* unused pure expression or super */ null && (HelmetExport)));
 
 
-;// CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/exports/Head.js
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/core/lib/client/exports/Head.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -1301,7 +1252,7 @@ HelmetExport.renderStatic = HelmetExport.rewind;
 
 /***/ }),
 
-/***/ 4629:
+/***/ 6720:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1315,7 +1266,7 @@ HelmetExport.renderStatic = HelmetExport.rewind;
 
 /***/ }),
 
-/***/ 1930:
+/***/ 6028:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1329,13 +1280,13 @@ HelmetExport.renderStatic = HelmetExport.rewind;
 
 /***/ }),
 
-/***/ 5638:
+/***/ 353:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4629);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6720);
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -1343,6 +1294,55 @@ __webpack_require__.r(__webpack_exports__);
  * LICENSE file in the root directory of this source tree.
  */function useDocusaurusContext(){var docusaurusContext=(0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z);if(docusaurusContext===null){// should not happen normally
 throw new Error('Docusaurus context not provided');}return docusaurusContext;}/* harmony default export */ __webpack_exports__["default"] = (useDocusaurusContext);
+
+/***/ }),
+
+/***/ 2360:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+function _inheritsLoose(subClass,superClass){subClass.prototype=Object.create(superClass.prototype);subClass.prototype.constructor=subClass;subClass.__proto__=superClass;}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}function _extends(){_extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};return _extends.apply(this,arguments);}var React=__webpack_require__(7378);var PropTypes=__webpack_require__(3615);var ALL_INITIALIZERS=[];var READY_INITIALIZERS=[];function isWebpackReady(getModuleIds){if(false){}return getModuleIds().every(function(moduleId){return typeof moduleId!=="undefined"&&typeof __webpack_require__.m[moduleId]!=="undefined";});}function load(loader){var promise=loader();var state={loading:true,loaded:null,error:null};state.promise=promise.then(function(loaded){state.loading=false;state.loaded=loaded;return loaded;}).catch(function(err){state.loading=false;state.error=err;throw err;});return state;}function loadMap(obj){var state={loading:false,loaded:{},error:null};var promises=[];try{Object.keys(obj).forEach(function(key){var result=load(obj[key]);if(!result.loading){state.loaded[key]=result.loaded;state.error=result.error;}else{state.loading=true;}promises.push(result.promise);result.promise.then(function(res){state.loaded[key]=res;}).catch(function(err){state.error=err;});});}catch(err){state.error=err;}state.promise=Promise.all(promises).then(function(res){state.loading=false;return res;}).catch(function(err){state.loading=false;throw err;});return state;}function resolve(obj){return obj&&obj.__esModule?obj.default:obj;}function render(loaded,props){return React.createElement(resolve(loaded),props);}function createLoadableComponent(loadFn,options){var _class,_temp;if(!options.loading){throw new Error("react-loadable requires a `loading` component");}var opts=_extends({loader:null,loading:null,delay:200,timeout:null,render:render,webpack:null,modules:null},options);var res=null;function init(){if(!res){res=loadFn(opts.loader);}return res.promise;}ALL_INITIALIZERS.push(init);if(typeof opts.webpack==="function"){READY_INITIALIZERS.push(function(){if(isWebpackReady(opts.webpack)){return init();}});}return _temp=_class=/*#__PURE__*/function(_React$Component){_inheritsLoose(LoadableComponent,_React$Component);function LoadableComponent(props){var _this;_this=_React$Component.call(this,props)||this;_defineProperty(_assertThisInitialized(_assertThisInitialized(_this)),"retry",function(){_this.setState({error:null,loading:true,timedOut:false});res=loadFn(opts.loader);_this._loadModule();});init();_this.state={error:res.error,pastDelay:false,timedOut:false,loading:res.loading,loaded:res.loaded};return _this;}LoadableComponent.preload=function preload(){return init();};var _proto=LoadableComponent.prototype;_proto.UNSAFE_componentWillMount=function UNSAFE_componentWillMount(){this._loadModule();};_proto.componentDidMount=function componentDidMount(){this._mounted=true;};_proto._loadModule=function _loadModule(){var _this2=this;if(this.context.loadable&&Array.isArray(opts.modules)){opts.modules.forEach(function(moduleName){_this2.context.loadable.report(moduleName);});}if(!res.loading){return;}var setStateWithMountCheck=function setStateWithMountCheck(newState){if(!_this2._mounted){return;}_this2.setState(newState);};if(typeof opts.delay==='number'){if(opts.delay===0){this.setState({pastDelay:true});}else{this._delay=setTimeout(function(){setStateWithMountCheck({pastDelay:true});},opts.delay);}}if(typeof opts.timeout==="number"){this._timeout=setTimeout(function(){setStateWithMountCheck({timedOut:true});},opts.timeout);}var update=function update(){setStateWithMountCheck({error:res.error,loaded:res.loaded,loading:res.loading});_this2._clearTimeouts();};res.promise.then(function(){update();return null;}).catch(function(err){update();return null;});};_proto.componentWillUnmount=function componentWillUnmount(){this._mounted=false;this._clearTimeouts();};_proto._clearTimeouts=function _clearTimeouts(){clearTimeout(this._delay);clearTimeout(this._timeout);};_proto.render=function render(){if(this.state.loading||this.state.error){return React.createElement(opts.loading,{isLoading:this.state.loading,pastDelay:this.state.pastDelay,timedOut:this.state.timedOut,error:this.state.error,retry:this.retry});}else if(this.state.loaded){return opts.render(this.state.loaded,this.props);}else{return null;}};return LoadableComponent;}(React.Component),_defineProperty(_class,"contextTypes",{loadable:PropTypes.shape({report:PropTypes.func.isRequired})}),_temp;}function Loadable(opts){return createLoadableComponent(load,opts);}function LoadableMap(opts){if(typeof opts.render!=="function"){throw new Error("LoadableMap requires a `render(loaded, props)` function");}return createLoadableComponent(loadMap,opts);}Loadable.Map=LoadableMap;var Capture=/*#__PURE__*/function(_React$Component2){_inheritsLoose(Capture,_React$Component2);function Capture(){return _React$Component2.apply(this,arguments)||this;}var _proto2=Capture.prototype;_proto2.getChildContext=function getChildContext(){return{loadable:{report:this.props.report}};};_proto2.render=function render(){return React.Children.only(this.props.children);};return Capture;}(React.Component);_defineProperty(Capture,"propTypes",{report:PropTypes.func.isRequired});_defineProperty(Capture,"childContextTypes",{loadable:PropTypes.shape({report:PropTypes.func.isRequired}).isRequired});Loadable.Capture=Capture;function flushInitializers(initializers){var promises=[];while(initializers.length){var init=initializers.pop();promises.push(init());}return Promise.all(promises).then(function(){if(initializers.length){return flushInitializers(initializers);}});}Loadable.preloadAll=function(){return new Promise(function(resolve,reject){flushInitializers(ALL_INITIALIZERS).then(resolve,reject);});};Loadable.preloadReady=function(){return new Promise(function(resolve,reject){// We always will resolve, errors should be handled within loading UIs.
+flushInitializers(READY_INITIALIZERS).then(resolve,resolve);});};module.exports=Loadable;
+
+/***/ }),
+
+/***/ 8536:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: ../node_modules/prism-react-renderer/prism/index.js
+var prism = __webpack_require__(2349);
+// EXTERNAL MODULE: ../node_modules/@docusaurus/core/lib/client/exports/ExecutionEnvironment.js
+var ExecutionEnvironment = __webpack_require__(161);
+// EXTERNAL MODULE: ./.docusaurus/docusaurus.config.js
+var docusaurus_config = __webpack_require__(6611);
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/theme-classic/lib-next/theme/prism-include-languages.js
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var prismIncludeLanguages=function prismIncludeLanguages(PrismObject){if(ExecutionEnvironment/* default.canUseDOM */.Z.canUseDOM){var _siteConfig$themeConf=docusaurus_config.default.themeConfig.prism;_siteConfig$themeConf=_siteConfig$themeConf===void 0?{}:_siteConfig$themeConf;var _siteConfig$themeConf2=_siteConfig$themeConf.additionalLanguages,additionalLanguages=_siteConfig$themeConf2===void 0?[]:_siteConfig$themeConf2;window.Prism=PrismObject;additionalLanguages.forEach(function(lang){__webpack_require__(3392)("./prism-"+lang);// eslint-disable-line
+});delete window.Prism;}};/* harmony default export */ var prism_include_languages = (prismIncludeLanguages);
+;// CONCATENATED MODULE: ../node_modules/@docusaurus/theme-classic/lib/prism-include-languages.js
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */prism_include_languages(prism/* default */.Z);
+
+/***/ }),
+
+/***/ 6611:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({"title":"React Easy Diagram","tagline":"Open source library to build highly customazible fast React diagrams.","url":"https://lucid-ritchie-113206.netlify.app/","baseUrl":"/","onBrokenLinks":"throw","onBrokenMarkdownLinks":"warn","favicon":"img/favicon.ico","organizationName":"tokarchyn","projectName":"react-easy-diagram","themeConfig":{"hideableSidebar":true,"navbar":{"title":"React Easy Diagram","logo":{"alt":"React Easy Diagram","src":"img/logo.svg"},"items":[{"to":"docs/","activeBasePath":"docs","label":"Docs","position":"right"},{"label":"Examples","position":"right","items":[{"label":"Basic","to":"examples/basic"},{"label":"Calculator","to":"examples/calculator"},{"label":"Configure default link","to":"examples/configureDefaultLink"},{"label":"Configure default port","to":"examples/configureDefaultPort"},{"label":"Performance","to":"examples/performance"},{"label":"Port position","to":"examples/portPosition"},{"label":"Position snapping","to":"examples/positionSnapping"},{"label":"Update ports position","to":"examples/updatePortsPosition"},{"label":"Configure user interaction","to":"examples/configureUserInteraction"}]},{"href":"https://github.com/tokarchyn/react-easy-diagram","label":"GitHub","position":"right"}],"hideOnScroll":false},"footer":{"style":"dark","copyright":"Copyright © 2021 Tokarchyn Vitalii.","links":[]},"colorMode":{"defaultMode":"light","disableSwitch":false,"respectPrefersColorScheme":false,"switchConfig":{"darkIcon":"🌜","darkIconStyle":{},"lightIcon":"🌞","lightIconStyle":{}}},"docs":{"versionPersistence":"localStorage"},"metadatas":[],"prism":{"additionalLanguages":[]},"liveCodeBlock":{"playgroundPosition":"bottom"}},"presets":[["@docusaurus/preset-classic",{"docs":{"sidebarPath":"C:\\Users\\tokar\\Desktop\\react-easy-diagram\\website\\sidebars.js","editUrl":"https://github.com/tokarchyn/react-easy-diagram/edit/main/website"},"theme":{"customCss":"C:\\Users\\tokar\\Desktop\\react-easy-diagram\\website\\src\\css\\custom.css"}}]],"themes":["@docusaurus/theme-live-codeblock"],"baseUrlIssueBanner":true,"i18n":{"defaultLocale":"en","locales":["en"],"localeConfigs":{}},"onDuplicateRoutes":"warn","customFields":{},"plugins":[],"titleDelimiter":"|","noIndex":false});
 
 /***/ }),
 
@@ -2517,7 +2517,17 @@ module.exports = hoistNonReactStatics;
 
 /***/ }),
 
-/***/ 9288:
+/***/ 5182:
+/***/ (function(module) {
+
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+
+/***/ 142:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2527,7 +2537,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 7799:
+/***/ 2811:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2537,7 +2547,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 5318:
+/***/ 6222:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8388,20 +8398,10 @@ if (false) { var secondaryBuildName, initialBuildName, buildNames, key, global; 
 
 /***/ }),
 
-/***/ 5243:
-/***/ (function(module) {
-
-module.exports = Array.isArray || function (arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-
 /***/ 4039:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
-var isarray = __webpack_require__(5243)
+var isarray = __webpack_require__(5182)
 
 /**
  * Expose `pathToRegexp`.
@@ -9084,7 +9084,7 @@ module.exports = {};
 /******/ "use strict";
 /******/ 
 /******/ var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-/******/ __webpack_require__.O(0, [532], function() { return __webpack_exec__(2011); });
+/******/ __webpack_require__.O(0, [532], function() { return __webpack_exec__(6861); });
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
