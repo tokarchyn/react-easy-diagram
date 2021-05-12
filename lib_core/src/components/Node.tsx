@@ -1,7 +1,5 @@
 import React from 'react';
 import { INodeVisualComponentProps } from '../states/nodesSettings';
-import { createPortsContainer } from 'components/PortsContainer';
-import type { IPortsContainerProps } from 'components/PortsContainer';
 import { NodeLabel } from './NodeLabel';
 import { observer } from 'mobx-react-lite';
 import {
@@ -11,7 +9,6 @@ import {
 import { NodeState } from 'states/nodeState';
 import { Optional } from 'utils/common';
 import { IPortProps, Port } from './Port';
-import { PortsSettings } from 'states/portsSettings';
 
 export const Node: React.FC<
   INodeVisualComponentProps<INodeSettings>
@@ -72,12 +69,12 @@ export function createNode(
   };
 }
 
-type INodeSettings = Optional<
+export type INodeSettings = Optional<
   INodeFinalSettings,
   'innerNode' | 'selectedStyle'
 >;
 
-type INodeDefaultSettingsWithoutPorts = Omit<INodeSettings, 'ports'>;
+export type INodeDefaultSettingsWithoutPorts = Omit<INodeSettings, 'ports'>;
 
 export const createInputOutputHorizontalNode = (
   settings?: INodeDefaultSettingsWithoutPorts
