@@ -23,7 +23,10 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
       <div
         className='react_fast_diagram_Node_Default'
         ref={draggableRef}
-        style={{ padding: 15, border: node.selected ? '#6eb7ff solid 1px' : '' }}
+        style={{
+          padding: 15,
+          border: node.selected ? '#6eb7ff solid 1px' : '',
+        }}
       >
         <div>Node with external state that cause node resize</div>
         <div>Fields:</div>
@@ -43,9 +46,9 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
         </div>
 
         <Port id='left' position='left-center' />
-        <Port id='top' position='center-top' linkDirection='up' />
+        <Port id='top' position='top-center' />
         <Port id='right' position='right-center' />
-        <Port id='bottom' position='center-bottom' linkDirection='down' />
+        <Port id='bottom' position='bottom-center' />
       </div>
     );
   }
@@ -58,7 +61,10 @@ const NodeWithInternalData = observer<INodeVisualComponentProps>(
       <div
         className='react_fast_diagram_Node_Default'
         ref={draggableRef}
-        style={{ padding: 15, border: node.selected ? '#6eb7ff solid 1px' : '' }}
+        style={{
+          padding: 15,
+          border: node.selected ? '#6eb7ff solid 1px' : '',
+        }}
       >
         <div>Node with internal state that cause node resize</div>
         <div>Fields:</div>
@@ -78,9 +84,9 @@ const NodeWithInternalData = observer<INodeVisualComponentProps>(
         </div>
 
         <Port id='left' position='left-center' />
-        <Port id='top' position='center-top' linkDirection='up' />
+        <Port id='top' position='top-center' />
         <Port id='right' position='right-center' />
-        <Port id='bottom' position='center-bottom' linkDirection='down' />
+        <Port id='bottom' position='bottom-center' />
       </div>
     );
   }
