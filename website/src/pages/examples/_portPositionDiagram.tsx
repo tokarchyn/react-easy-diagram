@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import {
-  createNode,
   createPortInnerDefault,
   Diagram,
   disableNodeUserInteractionClassName,
   INodeVisualComponentProps,
-  NodeState,
   Point,
   Port,
 } from '@react-easy-diagram/core';
@@ -16,7 +14,7 @@ const SomeNode = observer<INodeVisualComponentProps>(
     const [
       portOffsetFromNodeCenter,
       setPortOffsetFromNodeCenter,
-    ] = useState<number>();
+    ] = useState<number>(6);
 
     const [
       yellowPortOffsetFromOrigin,
@@ -40,7 +38,7 @@ const SomeNode = observer<INodeVisualComponentProps>(
             onChange={(event) =>
               setPortOffsetFromNodeCenter(parseInt(event.target.value) ?? 0)
             }
-            defaultValue={0}
+            defaultValue={portOffsetFromNodeCenter}
           />
         </span>
         <div>Yellow port's offset from origin position:</div>
@@ -57,7 +55,7 @@ const SomeNode = observer<INodeVisualComponentProps>(
                 current[1],
               ]);
             }}
-            defaultValue={0}
+            defaultValue={yellowPortOffsetFromOrigin[0]}
           />
           Y:{' '}
           <input
@@ -71,57 +69,93 @@ const SomeNode = observer<INodeVisualComponentProps>(
                 parseInt(event.target.value),
               ]);
             }}
-            defaultValue={0}
+            defaultValue={yellowPortOffsetFromOrigin[1]}
           />
         </span>
         <Port
-          id='1'
+          id='left-top'
           position='left-top'
           offsetFromNodeCenter={portOffsetFromNodeCenter}
         />
         <Port
-          id='2'
-          position='left-top'
-          offsetFromNodeCenter={portOffsetFromNodeCenter}
-          offsetFromOrigin={[0, 15]}
-        />
-        <Port
-          id='3'
+          id='left-center'
           position='left-center'
           offsetFromNodeCenter={portOffsetFromNodeCenter}
         />
         <Port
-          id='4'
+          id='left-bottom'
           position='left-bottom'
           offsetFromNodeCenter={portOffsetFromNodeCenter}
         />
+
         <Port
-          id='5'
-          position='center-top'
+          id='top-left'
+          position='top-left'
           offsetFromNodeCenter={portOffsetFromNodeCenter}
-          linkDirection='up'
         />
         <Port
-          id='6'
-          position='center-bottom'
+          id='top-center'
+          position='top-center'
           offsetFromNodeCenter={portOffsetFromNodeCenter}
-          linkDirection='down'
         />
         <Port
-          id='7'
+          id='top-right'
+          position='top-right'
+          offsetFromNodeCenter={portOffsetFromNodeCenter}
+        />
+
+        <Port
+          id='right-top'
           position='right-top'
           offsetFromNodeCenter={portOffsetFromNodeCenter}
         />
         <Port
-          id='8'
+          id='right-center'
           position='right-center'
           offsetFromNodeCenter={portOffsetFromNodeCenter}
           offsetFromOrigin={yellowPortOffsetFromOrigin}
           type='custom_port'
         />
         <Port
-          id='9'
+          id='right-bottom'
           position='right-bottom'
+          offsetFromNodeCenter={portOffsetFromNodeCenter}
+        />
+
+        <Port
+          id='bottom-left'
+          position='bottom-left'
+          offsetFromNodeCenter={portOffsetFromNodeCenter}
+        />
+        <Port
+          id='bottom-center'
+          position='bottom-center'
+          offsetFromNodeCenter={portOffsetFromNodeCenter}
+        />
+        <Port
+          id='bottom-right'
+          position='bottom-right'
+          offsetFromNodeCenter={portOffsetFromNodeCenter}
+        />
+
+        <Port
+          id='diagonal-left-top'
+          position='diagonal-left-top'
+          offsetFromNodeCenter={portOffsetFromNodeCenter}
+        />
+        <Port
+          id='diagonal-right-top'
+          position='diagonal-right-top'
+          offsetFromNodeCenter={portOffsetFromNodeCenter}
+        />
+        <Port
+          id='diagonal-right-bottom'
+          position='diagonal-right-bottom'
+          offsetFromNodeCenter={portOffsetFromNodeCenter}
+        />
+        <Port
+          id='diagonal-left-bottom'
+          position='diagonal-left-bottom'
           offsetFromNodeCenter={portOffsetFromNodeCenter}
         />
       </div>

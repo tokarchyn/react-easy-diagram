@@ -11,7 +11,6 @@ export * from './components/LinksLayer';
 export * from './components/MiniControlDefault';
 export * from './components/MiniControlWrapper';
 export * from './components/Node';
-export * from './components/NodeDefault';
 export * from './components/NodeLabel';
 export * from './components/NodeWrapper';
 export * from './components/NodesLayer';

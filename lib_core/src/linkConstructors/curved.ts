@@ -30,6 +30,14 @@ function curvedLinkPathConstructor(
         return `${endpoint[0] + directionFactor}, ${endpoint[1]}`;
       case 'down':
         return `${endpoint[0]}, ${endpoint[1] + directionFactor}`;
+      case 'left-up':
+        return `${endpoint[0] - directionFactor}, ${endpoint[1] - directionFactor}`;
+      case 'right-up':
+        return `${endpoint[0] + directionFactor}, ${endpoint[1] - directionFactor}`;
+      case 'right-down':
+        return `${endpoint[0] + directionFactor}, ${endpoint[1] + directionFactor}`;
+      case 'left-down':
+        return `${endpoint[0] - directionFactor}, ${endpoint[1] + directionFactor}`;
       default:
         return `${endpoint[0]}, ${endpoint[1]}`;
     }

@@ -1,12 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { isNumber } from 'utils/common';
 import { isPoint, Point } from 'utils/point';
-import {
-  RelativeXYPosition,
-  splitRelativeXYPostionByAxis,
-} from 'utils/position';
-
-export type PortPosition = Exclude<RelativeXYPosition, 'center-center'>;
 
 export const useRelativePositionStyles = (
   position?: PortPosition,
@@ -14,61 +8,98 @@ export const useRelativePositionStyles = (
   offsetFromOrigin?: Point,
   usePortCenterPivot: boolean = true
 ): RelativePositionStyles => {
-  if (!position) return {};
+  return useMemo(() => {
+    if (!position) return {};
+    
+    const positionStyle: RelativePositionStyles = { position: 'absolute' };
 
-  const positionStyle: RelativePositionStyles = { position: 'absolute' };
+    if (!isNumber(offsetFromParentCenter)) offsetFromParentCenter = 0;
+    if (!isPoint(offsetFromOrigin)) offsetFromOrigin = [0, 0];
 
-  if (!isNumber(offsetFromParentCenter)) offsetFromParentCenter = 0;
-  if (!isPoint(offsetFromOrigin)) offsetFromOrigin = [0, 0];
-  // const center = usePortCenterPivot ? '50%';
+    if (position === 'left-top') {
+      positionStyle.left = offsetFromOrigin[0] - offsetFromParentCenter;
+      positionStyle.top = offsetFromOrigin[1];
+      if (usePortCenterPivot) positionStyle.transform = `translateX(-50%)`;
+    } else if (position === 'left-center') {
+      positionStyle.left = offsetFromOrigin[0] - offsetFromParentCenter;
+      positionStyle.top = '50%';
+      positionStyle.transform = `translate(${
+        usePortCenterPivot ? '-50%' : 0
+      }, calc(-50% + ${offsetFromOrigin[1]}px))`;
+    } else if (position === 'left-bottom') {
+      positionStyle.left = offsetFromOrigin[0] - offsetFromParentCenter;
+      positionStyle.bottom = -offsetFromOrigin[1];
+      if (usePortCenterPivot) positionStyle.transform = `translateX(-50%)`;
+    }
 
-  const [positionX, positionY] = splitRelativeXYPostionByAxis(
-    position as RelativeXYPosition
-  );
-  const offsetFromCenter = [
-    positionX === 'center' ? 0 : -offsetFromParentCenter,
-    positionY === 'center' ? 0 : -offsetFromParentCenter,
-  ];
+    if (position === 'top-left') {
+      positionStyle.left = offsetFromOrigin[0];
+      positionStyle.top = offsetFromOrigin[1] - offsetFromParentCenter;
+      if (usePortCenterPivot) positionStyle.transform = `translateY(-50%)`;
+    } else if (position === 'top-center') {
+      positionStyle.left = '50%';
+      positionStyle.transform = `translate(calc(-50% + ${
+        offsetFromOrigin[0]
+      }px), ${usePortCenterPivot ? '-50%' : 0})`;
+      positionStyle.top = offsetFromOrigin[1] - offsetFromParentCenter;
+    } else if (position === 'top-right') {
+      positionStyle.right = -offsetFromOrigin[0];
+      positionStyle.top = offsetFromOrigin[1] - offsetFromParentCenter;
+      if (usePortCenterPivot) positionStyle.transform = `translateY(-50%)`;
+    }
 
-  if (position === 'left-top') {
-    positionStyle.left = offsetFromCenter[0] + offsetFromOrigin[0];
-    positionStyle.top = offsetFromCenter[1] + offsetFromOrigin[1];
-    if (usePortCenterPivot) positionStyle.transform = `translateX(-50%)`;
-  } else if (position === 'left-center') {
-    positionStyle.left = offsetFromCenter[0] + offsetFromOrigin[0];
-    positionStyle.top = '50%';
-    positionStyle.transform = `translate(${
-      usePortCenterPivot ? '-50%' : 0
-    }, calc(-50% + ${offsetFromOrigin[1]}px))`;
-  } else if (position === 'left-bottom') {
-    positionStyle.left = offsetFromCenter[0] + offsetFromOrigin[0];
-    positionStyle.bottom = offsetFromCenter[1] + offsetFromOrigin[1];
-    if (usePortCenterPivot) positionStyle.transform = `translateX(-50%)`;
-  } else if (position === 'center-top') {
-    positionStyle.left = '50%';
-    positionStyle.transform = `translate(calc(-50% + ${offsetFromOrigin[0]}px), ${usePortCenterPivot ? '-50%' : 0})`;
-    positionStyle.top = offsetFromCenter[1] + offsetFromOrigin[1];
-  } else if (position === 'center-bottom') {
-    positionStyle.left = '50%';
-    positionStyle.transform = `translate(calc(-50% + ${offsetFromOrigin[0]}px), ${usePortCenterPivot ? '50%' : 0})`;
-    positionStyle.bottom = offsetFromCenter[1] - offsetFromOrigin[1];
-  } else if (position === 'right-top') {
-    positionStyle.right = offsetFromCenter[0] - offsetFromOrigin[0];
-    positionStyle.top = offsetFromCenter[1] + offsetFromOrigin[1];
-    if (usePortCenterPivot) positionStyle.transform = `translateX(50%)`;
-  } else if (position === 'right-center') {
-    positionStyle.right = offsetFromCenter[0] - offsetFromOrigin[0];
-    positionStyle.top = '50%';
-    positionStyle.transform = `translate(${
-      usePortCenterPivot ? '50%' : 0
-    }, calc(-50% + ${offsetFromOrigin[1]}px))`;
-  } else if (position === 'right-bottom') {
-    positionStyle.right = offsetFromCenter[0] - offsetFromOrigin[0];
-    positionStyle.bottom = offsetFromCenter[1] - offsetFromOrigin[1];
-    if (usePortCenterPivot) positionStyle.transform = `translateX(50%)`;
-  }
+    if (position === 'right-top') {
+      positionStyle.right = -offsetFromOrigin[0] - offsetFromParentCenter;
+      positionStyle.top = offsetFromOrigin[1];
+      if (usePortCenterPivot) positionStyle.transform = `translateX(50%)`;
+    } else if (position === 'right-center') {
+      positionStyle.right = -offsetFromOrigin[0] - offsetFromParentCenter;
+      positionStyle.top = '50%';
+      positionStyle.transform = `translate(${
+        usePortCenterPivot ? '50%' : 0
+      }, calc(-50% + ${offsetFromOrigin[1]}px))`;
+    } else if (position === 'right-bottom') {
+      positionStyle.right = -offsetFromOrigin[0] - offsetFromParentCenter;
+      positionStyle.bottom = -offsetFromOrigin[1];
+      if (usePortCenterPivot) positionStyle.transform = `translateX(50%)`;
+    }
 
-  return positionStyle;
+    if (position === 'bottom-left') {
+      positionStyle.left = offsetFromOrigin[0];
+      positionStyle.bottom = -offsetFromOrigin[1] - offsetFromParentCenter;
+      if (usePortCenterPivot) positionStyle.transform = `translateY(50%)`;
+    } else if (position === 'bottom-center') {
+      positionStyle.left = '50%';
+      positionStyle.transform = `translate(calc(-50% + ${
+        offsetFromOrigin[0]
+      }px), ${usePortCenterPivot ? '50%' : 0})`;
+      positionStyle.bottom = -offsetFromOrigin[1] - offsetFromParentCenter;
+    } else if (position === 'bottom-right') {
+      positionStyle.right = -offsetFromOrigin[0];
+      positionStyle.bottom = -offsetFromOrigin[1] - offsetFromParentCenter;
+      if (usePortCenterPivot) positionStyle.transform = `translateY(50%)`;
+    }
+
+    if (position === 'diagonal-left-top') {
+      positionStyle.left = offsetFromOrigin[0] - offsetFromParentCenter;
+      positionStyle.top = offsetFromOrigin[1] - offsetFromParentCenter;
+      if (usePortCenterPivot) positionStyle.transform = `translate(-50%, -50%)`;
+    } else if (position === 'diagonal-right-top') {
+      positionStyle.right = -offsetFromOrigin[0] - offsetFromParentCenter;
+      positionStyle.top = offsetFromOrigin[1] - offsetFromParentCenter;
+      if (usePortCenterPivot) positionStyle.transform = `translate(50%, -50%)`;
+    } else if (position === 'diagonal-right-bottom') {
+      positionStyle.right = -offsetFromOrigin[0] - offsetFromParentCenter;
+      positionStyle.bottom = -offsetFromOrigin[1] - offsetFromParentCenter;
+      if (usePortCenterPivot) positionStyle.transform = `translate(50%, 50%)`;
+    } else if (position === 'diagonal-left-bottom') {
+      positionStyle.left = offsetFromOrigin[0] - offsetFromParentCenter;
+      positionStyle.bottom = -offsetFromOrigin[1] - offsetFromParentCenter;
+      if (usePortCenterPivot) positionStyle.transform = `translate(-50%, 50%)`;
+    }
+
+    return positionStyle;
+  }, [position, offsetFromParentCenter, offsetFromOrigin, usePortCenterPivot]);
 };
 
 type RelativePositionStyles = Pick<
@@ -82,3 +113,27 @@ type RelativePositionStyles = Pick<
   | 'height'
   | 'transform'
 >;
+
+export const portPositionValues = <const>[
+  'left-top',
+  'left-center',
+  'left-bottom',
+
+  'top-left',
+  'top-center',
+  'top-right',
+
+  'right-top',
+  'right-center',
+  'right-bottom',
+
+  'bottom-left',
+  'bottom-center',
+  'bottom-right',
+
+  'diagonal-left-top',
+  'diagonal-right-top',
+  'diagonal-right-bottom',
+  'diagonal-left-bottom',
+];
+export type PortPosition = typeof portPositionValues[number];

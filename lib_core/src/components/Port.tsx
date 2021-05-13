@@ -86,12 +86,24 @@ const useRenderingReport = (id: string) => {
 const positionToLinkDirection: {
   [key in PortPosition]: DirectionWithDiagonals;
 } = {
-  'center-bottom': 'down',
-  'center-top': 'up',
   'left-center': 'left',
-  'left-bottom': 'left-down',
-  'left-top': 'left-up',
+  'left-bottom': 'left',
+  'left-top': 'left',
+
+  'top-left': 'up',
+  'top-center': 'up',
+  'top-right': 'up',
+
   'right-center': 'right',
-  'right-bottom': 'right-down',
-  'right-top': 'right-up',
+  'right-bottom': 'right',
+  'right-top': 'right',
+
+  'bottom-left': 'down',
+  'bottom-center': 'down',
+  'bottom-right': 'down',
+
+  'diagonal-left-top': 'left-up',
+  'diagonal-right-top': 'right-up',
+  'diagonal-right-bottom': 'right-down',
+  'diagonal-left-bottom': 'left-down',
 };
