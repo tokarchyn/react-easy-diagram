@@ -1,4 +1,7 @@
-import { ILinkPathConstructor, ILinkPathConstructorEndpointInfo } from '../states/linksSettings';
+import {
+  ILinkPathConstructor,
+  ILinkPathConstructorEndpointInfo,
+} from '../states/linksSettings';
 import { DirectionWithDiagonals } from 'utils/position';
 import { distanceBetweenPoints, roundPoint } from 'utils/point';
 import { Point } from 'utils/point';
@@ -20,35 +23,50 @@ function curvedLinkPathConstructor(
     settings.directionFactor
   );
 
-  function getControl(endpoint: Point, direction: DirectionWithDiagonals | undefined): string {
+  function getControl(
+    endpoint: Point,
+    direction: DirectionWithDiagonals | undefined
+  ): string {
     switch (direction) {
       case 'left':
-        return `${endpoint[0] - directionFactor}, ${endpoint[1]}`;
+        return createControl(endpoint[0] - directionFactor, endpoint[1]);
       case 'up':
-        return `${endpoint[0]}, ${endpoint[1] - directionFactor}`;
+        return createControl(endpoint[0], endpoint[1] - directionFactor);
       case 'right':
-        return `${endpoint[0] + directionFactor}, ${endpoint[1]}`;
+        return createControl(endpoint[0] + directionFactor, endpoint[1]);
       case 'down':
-        return `${endpoint[0]}, ${endpoint[1] + directionFactor}`;
+        return createControl(endpoint[0], endpoint[1] + directionFactor);
       case 'left-up':
-        return `${endpoint[0] - directionFactor}, ${endpoint[1] - directionFactor}`;
+        return createControl(
+          endpoint[0] - directionFactor,
+          endpoint[1] - directionFactor
+        );
       case 'right-up':
-        return `${endpoint[0] + directionFactor}, ${endpoint[1] - directionFactor}`;
+        return createControl(
+          endpoint[0] + directionFactor,
+          endpoint[1] - directionFactor
+        );
       case 'right-down':
-        return `${endpoint[0] + directionFactor}, ${endpoint[1] + directionFactor}`;
+        return createControl(
+          endpoint[0] + directionFactor,
+          endpoint[1] + directionFactor
+        );
       case 'left-down':
-        return `${endpoint[0] - directionFactor}, ${endpoint[1] + directionFactor}`;
+        return createControl(
+          endpoint[0] - directionFactor,
+          endpoint[1] + directionFactor
+        );
       default:
-        return `${endpoint[0]}, ${endpoint[1]}`;
+        return createControl(endpoint[0], endpoint[1]);
     }
   }
 
   if (source.direction || target.direction) {
     const sourceControl = getControl(sourcePoint, source.direction);
     const targetControl = getControl(targetPoint, target.direction);
-    return `M ${sourceStr} C ${sourceControl} ${targetControl}, ${targetStr}`;
+    return `M ${sourceStr} C ${sourceControl} ${targetControl} ${targetStr}`;
   } else {
-    return `M ${sourceStr} Q ${target.point[0]}, ${source.point[1]}, ${targetStr}`;
+    return `M ${sourceStr} Q ${target.point[0]} ${source.point[1]} ${targetStr}`;
   }
 }
 
@@ -82,4 +100,8 @@ export function createCurvedLinkPathConstructor(
       target,
       settings ? { ...defualtSettings, ...settings } : defualtSettings
     );
+}
+
+function createControl(x: number, y: number) {
+  return `${x} ${y}`;
 }
