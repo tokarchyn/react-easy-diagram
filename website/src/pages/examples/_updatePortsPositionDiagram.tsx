@@ -4,6 +4,7 @@ import {
   disableNodeUserInteractionClassName,
   INodeVisualComponentProps,
   Port,
+  useLinkUserInteraction,
 } from '@react-easy-diagram/core';
 import { observer } from 'mobx-react-lite';
 
@@ -19,6 +20,8 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
       node.recalculatePortsSizeAndPosition();
     }, [linesNumber]);
 
+    const lines = useLines(linesNumber);
+
     return (
       <div
         className='react_fast_diagram_Node_Default'
@@ -31,9 +34,7 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
         <div>Node with external state that cause node resize</div>
         <div>Fields:</div>
 
-        {[...Array(linesNumber)].map((v, i) => (
-          <span key={i}>Line {i}</span>
-        ))}
+        {lines.map(l => l)}
 
         <div>
           <button
@@ -57,6 +58,9 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
 const NodeWithInternalData = observer<INodeVisualComponentProps>(
   ({ draggableRef, entity: node }) => {
     const linesNumber = node.extra ?? 0;
+
+    const lines = useLines(linesNumber);
+
     return (
       <div
         className='react_fast_diagram_Node_Default'
@@ -69,9 +73,7 @@ const NodeWithInternalData = observer<INodeVisualComponentProps>(
         <div>Node with internal state that cause node resize</div>
         <div>Fields:</div>
 
-        {[...Array(linesNumber)].map((v, i) => (
-          <span key={i}>Line {i}</span>
-        ))}
+        {lines.map(l => l)}
 
         <div>
           <button
@@ -91,6 +93,14 @@ const NodeWithInternalData = observer<INodeVisualComponentProps>(
     );
   }
 );
+
+function useLines(count: number) {
+  const lines = []
+  for (let i = 0; i < count; i++) {
+    lines.push(<span key={i}>Line {i}</span>);
+  }
+  return lines;
+}
 
 export default () => (
   <Diagram
