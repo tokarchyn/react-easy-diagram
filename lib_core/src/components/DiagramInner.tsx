@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { LinksLayer } from 'components/LinksLayer';
 import { NodesLayer } from 'components/NodesLayer';
 import { useDiagramUserInteraction } from 'hooks/userInteractions/useDiagramUserInteraction';
@@ -14,6 +14,12 @@ export interface IDiagramInnerProps {
 export const InnerDiagram = observer<IDiagramInnerProps>((props) => {
   const rootStore = useRootStore();
   const { transform } = useDiagramUserInteraction();
+
+  useEffect(() => {
+    const resizeHandler = () => rootStore.nodesStore.nodes.forEach(n => n.recalculatePortsSizeAndPosition());
+    window.addEventListener('resize', resizeHandler)
+    return () => window.removeEventListener('resize', resizeHandler)
+  }, [rootStore])
 
   return (
     <div
