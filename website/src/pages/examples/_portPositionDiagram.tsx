@@ -8,6 +8,7 @@ import {
   Port,
 } from '@react-easy-diagram/core';
 import { observer } from 'mobx-react-lite';
+import styles from '../styles.module.css'; 
 
 const SomeNode = observer<INodeVisualComponentProps>(
   ({ draggableRef, entity }) => {
@@ -33,7 +34,7 @@ const SomeNode = observer<INodeVisualComponentProps>(
         <div>Offset from center of node:</div>
         <span>
           <input
-            className={disableNodeUserInteractionClassName}
+            className={`${styles.textInput} ${disableNodeUserInteractionClassName}`}
             type='number'
             onChange={(event) =>
               setPortOffsetFromNodeCenter(parseInt(event.target.value) ?? 0)
@@ -45,7 +46,7 @@ const SomeNode = observer<INodeVisualComponentProps>(
         <span>
           X:{' '}
           <input
-            className={disableNodeUserInteractionClassName}
+            className={`${styles.textInput} ${disableNodeUserInteractionClassName}`}
             type='number'
             style={{ width: 50, marginRight: 10 }}
             onChange={(event) => {
@@ -59,7 +60,7 @@ const SomeNode = observer<INodeVisualComponentProps>(
           />
           Y:{' '}
           <input
-            className={disableNodeUserInteractionClassName}
+            className={`${styles.textInput} ${disableNodeUserInteractionClassName}`}
             type='number'
             style={{ width: 50 }}
             onChange={(event) => {

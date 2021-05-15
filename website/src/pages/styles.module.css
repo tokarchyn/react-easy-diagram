@@ -44,3 +44,17 @@
 .subtitle {
   color: white;
 }
+
+.textInput {
+  outline: none;
+  border: 1px solid #c2c2c2;
+  border-radius: 2px;
+}
+
+.textInput:hover {
+  border: 1px solid rgb(110, 183, 255);
+}
+
+.textInput:focus {
+  border: 1px solid rgb(110, 183, 255);
+}

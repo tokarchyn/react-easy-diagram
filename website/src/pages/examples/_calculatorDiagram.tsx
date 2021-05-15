@@ -4,11 +4,10 @@ import {
   createOutputHorizontalNode,
   Diagram,
   disableNodeUserInteractionClassName,
-  INodeVisualComponentProps,
   NodeState,
-  Port,
 } from '@react-easy-diagram/core';
 import { observer } from 'mobx-react-lite';
+import styles from '../styles.module.css'; 
 
 const NumberProvider = observer<{ node: NodeState }>(({ node }) => {
   const port = node.ports['output'];
@@ -22,14 +21,14 @@ const NumberProvider = observer<{ node: NodeState }>(({ node }) => {
             port?.setExtra(parseInt(event.target.value) || 0)
           }
           defaultValue={port && port.extra}
-          className={disableNodeUserInteractionClassName}
+          className={`${styles.textInput} ${disableNodeUserInteractionClassName}`}
         />
       </span>
     </>
   );
 });
 
-const AddNumbers = observer<{ node: NodeState }>(({ node }) => {
+const Sum = observer<{ node: NodeState }>(({ node }) => {
   const outputPort = node.ports['output'];
 
   const getInputNumber = (portName: string): number => {
@@ -46,8 +45,7 @@ const AddNumbers = observer<{ node: NodeState }>(({ node }) => {
 
   return (
     <>
-      <div>Add numbers</div>
-      <span>Result: {outputPort ? outputPort.extra : ''}</span>
+      <div>Sum: {outputPort ? outputPort.extra : ''}</div>
     </>
   );
 });
@@ -74,12 +72,12 @@ export default () => (
         {
           id: 'add1',
           position: [420, 150],
-          componentType: 'addnumbers',
+          componentType: 'sum',
         },
         {
           id: 'add2',
           position: [700, 200],
-          componentType: 'addnumbers',
+          componentType: 'sum',
         },
       ],
       links: [
@@ -131,35 +129,39 @@ export default () => (
           number: createOutputHorizontalNode({
             innerNode: NumberProvider,
           }),
-          addnumbers: createNode({
+          sum: createNode({
             ports: [
               {
                 id: 'number_1',
-                type: 'single_connection',
+                type: 'input',
                 position: 'left-center',
                 offsetFromOrigin: [0, -15],
               },
               {
                 id: 'number_2',
-                type: 'single_connection',
+                type: 'input',
                 position: 'left-center',
                 offsetFromOrigin: [0, 15],
               },
               {
                 id: 'output',
+                type: 'output',
                 position: 'right-center',
               },
             ],
-            innerNode: AddNumbers,
+            innerNode: Sum,
           }),
         },
       },
       callbacks: {
         validateLinkEndpoints: (source, target, rootStore) => {
-          if (target.type === 'single_connection') {
-            // allow connection only if target port is still unconnected
-            return target.connectedLinks.length === 0;
-          }
+          // allow connection only if target port is still unconnected
+          if (target.type === 'input' && target.connectedLinks.length > 0) return false;
+          if (source.type === 'input' && source.connectedLinks.length > 0) return false;
+
+          if (source.type === 'input' && target.type === 'input') return false;
+          if (source.type === 'output' && target.type === 'output') return false;
+          
           return true;
         },
       },
