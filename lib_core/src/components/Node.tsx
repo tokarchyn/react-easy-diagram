@@ -82,8 +82,8 @@ export const createInputOutputHorizontalNode = (
   createNode({
     ...settings,
     ports: [
-      { id: 'input', position: 'left-center' },
-      { id: 'output', position: 'right-center' },
+      { id: 'input', type: 'input', position: 'left-center' },
+      { id: 'output', type: 'output', position: 'right-center' },
     ],
   });
 
@@ -93,8 +93,8 @@ export const createInputOutputVerticalNode = (
   createNode({
     ...settings,
     ports: [
-      { id: 'input', position: 'top-center' },
-      { id: 'output', position: 'bottom-center' },
+      { id: 'input', type: 'input', position: 'top-center' },
+      { id: 'output', type: 'output', position: 'bottom-center' },
     ],
   });
 
@@ -103,7 +103,7 @@ export const createInputHorizontalNode = (
 ) =>
   createNode({
     ...settings,
-    ports: [{ id: 'input', position: 'left-center' }],
+    ports: [{ id: 'input', type: 'input', position: 'left-center' }],
   });
 
 export const createInputVerticalNode = (
@@ -111,7 +111,7 @@ export const createInputVerticalNode = (
 ) =>
   createNode({
     ...settings,
-    ports: [{ id: 'input', position: 'top-center' }],
+    ports: [{ id: 'input', type: 'input', position: 'top-center' }],
   });
 
 export const createOutputHorizontalNode = (
@@ -119,7 +119,7 @@ export const createOutputHorizontalNode = (
 ) =>
   createNode({
     ...settings,
-    ports: [{ id: 'output', position: 'right-center' }],
+    ports: [{ id: 'output', type: 'output', position: 'right-center' }],
   });
 
 export const createOutputVerticalNode = (
@@ -127,7 +127,7 @@ export const createOutputVerticalNode = (
 ) =>
   createNode({
     ...settings,
-    ports: [{ id: 'output', position: 'bottom-center' }],
+    ports: [{ id: 'output', type: 'output', position: 'bottom-center' }],
   });
 
 export const createStarNode = (settings?: INodeDefaultSettingsWithoutPorts) =>
