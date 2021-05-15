@@ -21,8 +21,7 @@ export const NodeWrapper = observer<{ node: NodeState }>(({ node }) => {
           id={node.id}
           className={className}
           style={{
-            left: node.position[0],
-            top: node.position[1],
+            transform: `translate(${node.position[0]}px, ${node.position[1]}px)`,
             zIndex: node.selected ? 10 : undefined,
           }}
           ref={node.ref}

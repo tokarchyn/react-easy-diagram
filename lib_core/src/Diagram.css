@@ -37,9 +37,6 @@
 }
 
 .react_fast_diagram_NodeWrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: fit-content;
   height: fit-content;
   pointer-events: auto;
