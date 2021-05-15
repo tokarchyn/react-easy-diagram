@@ -3998,3 +3998,17 @@ body {
 .subtitle_3Hk7 {
   color: white;
 }
+
+.textInput_11m- {
+  outline: none;
+  border: 1px solid #c2c2c2;
+  border-radius: 2px;
+}
+
+.textInput_11m-:hover {
+  border: 1px solid rgb(110, 183, 255);
+}
+
+.textInput_11m-:focus {
+  border: 1px solid rgb(110, 183, 255);
+}
