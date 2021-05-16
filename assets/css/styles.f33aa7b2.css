@@ -3960,23 +3960,38 @@ body {
  */
 
 .heroBanner_3P7f {
-  padding: 4rem 0;
-  text-align: center;
+  padding: 2rem 1rem;
+  text-align: left;
   position: relative;
   overflow: hidden;
   --ifm-hero-background-color: #2b3137;
 }
 
+.headerContainer_3hB5 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 @media screen and (max-width: 966px) {
-  .heroBanner_3P7f {
-    padding: 2rem;
+  .headerContainer_3hB5 {
+    flex-direction: column;
   }
+}
+
+.headerDemoImage_1LU4 {
+  padding: 1rem;
+}
+
+.headerDemoImage_1LU4 img {
+  max-width:100%;
+  max-height:100%;
 }
 
 .buttons_1r9m {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 }
 
 .features_3azU {
