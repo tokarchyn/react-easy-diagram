@@ -8,32 +8,37 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: 'Easy to Use',
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
+    title: 'Customization',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        The library was designed from the ground up to be easily customizable so 
+        you can change any component you like or customize existing ones.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
+    title: 'Advanced API',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Entire diagram state with all its methods and types are available so you are aware about 
+        everything that is going on in library and can manipulate the state as you want.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    imageUrl: 'img/undraw_docusaurus_react.svg',
+    title: 'Performance',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Thanks to <code>MobX</code> all components are rerendered only when it strictly needed.
+      </>
+    ),
+  },
+  {
+    title: 'Touch devices support',
+    description: (
+      <>
+        User interaction is implemented with helps of <code>UseGesture</code> library that
+        enables you to use diagrams not only on PC but also on touch devices, use pinch & zoom gesture.
       </>
     ),
   },
@@ -60,7 +65,7 @@ function Home() {
   return (
     <Layout
       title={`Build highly customazible React diagrams`}
-      description="Open source library to build highly customazible fast React diagrams.">
+      description="Open source library to build highly customazible interactive React diagrams with easy.">
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className={clsx('hero__title', styles.title)}>{siteConfig.title}</h1>
