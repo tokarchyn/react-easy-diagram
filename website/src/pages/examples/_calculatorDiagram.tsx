@@ -34,7 +34,7 @@ const Sum = observer<{ node: NodeState }>(({ node }) => {
   const getInputNumber = (portName: string): number => {
     const port = node.ports[portName];
     if (port && port.connectedPorts.length > 0) {
-      return port.connectedPorts[0].extra;
+      return port.connectedPorts[0].extra ?? 0;
     } else return 0;
   };
   const num1 = getInputNumber('number_1');

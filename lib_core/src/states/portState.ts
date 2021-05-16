@@ -63,7 +63,7 @@ export class PortState {
   get id() {
     return this._id;
   }
-
+  
   get nodeId() {
     return this._nodeId;
   }
@@ -116,6 +116,9 @@ export class PortState {
     this._type = value ?? componentDefaultType;
   };
 
+  /**
+   * Update all properties. If some property missing in `state` parameter, the default one will be used.
+   */
   import = (state?: IPortStateWithoutIds) => {
     this.setType(state?.type);
     this.setLabel(state?.label);
@@ -123,6 +126,20 @@ export class PortState {
     this.setComponent(state?.component);
     this.setLinkDirection(state?.linkDirection);
     this.setIsConnectionEnabled(state?.isConnectionEnabled);
+  };
+
+  /**
+   * Update only those properties presented in `state` parameter
+   */
+  update = (state?: IPortStateWithoutIds) => {
+    if(!state) return;
+
+    state.type && this.setType(state.type);
+    state.label && this.setLabel(state.label);
+    state.extra && this.setExtra(state.extra);
+    state.component && this.setComponent(state.component);
+    state.linkDirection && this.setLinkDirection(state.linkDirection);
+    state.isConnectionEnabled && this.setIsConnectionEnabled(state.isConnectionEnabled);
   };
 
   export = (): IPortStateWithIds =>
@@ -212,9 +229,9 @@ export class PortState {
     }
   }
 
-  setLinkDirection = (value: DirectionWithDiagonals|undefined) => {
+  setLinkDirection = (value: DirectionWithDiagonals | undefined) => {
     this._linkDirection = value ?? null;
-  }
+  };
 
   setLinkDirectionIfNotYet = (direction: DirectionWithDiagonals) => {
     this._linkDirection = this._linkDirection ?? direction;
