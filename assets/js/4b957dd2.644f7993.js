@@ -1,4 +1,4 @@
-(self["webpackChunkwebsite"] = self["webpackChunkwebsite"] || []).push([[206],{
+(self["webpackChunkwebsite"] = self["webpackChunkwebsite"] || []).push([[579],{
 
 /***/ 5318:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
@@ -212,7 +212,7 @@ function createElement (type, props) {
 
 /***/ }),
 
-/***/ 1246:
+/***/ 8610:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -227,7 +227,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var C_Users_tokar_Desktop_react_easy_diagram_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(120);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
 /* harmony import */ var _mdx_js_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5318);
-var frontMatter={title:'Introduction',id:'introduction',slug:'/'};var metadata={"unversionedId":"introduction","id":"introduction","isDocsHomePage":false,"title":"Introduction","description":"Hello world!","source":"@site/docs/intro.mdx","sourceDirName":".","slug":"/","permalink":"/docs/","editUrl":"https://github.com/tokarchyn/react-easy-diagram/edit/main/website/docs/intro.mdx","version":"current","frontMatter":{"title":"Introduction","id":"introduction","slug":"/"},"sidebar":"docs"};/* @jsxRuntime classic */ /* @jsx mdx */var toc=[];var layoutProps={toc:toc};var MDXLayout="wrapper";function MDXContent(_ref){var components=_ref.components,props=(0,C_Users_tokar_Desktop_react_easy_diagram_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_2__/* .default */ .Z)(_ref,["components"]);return (0,_mdx_js_react__WEBPACK_IMPORTED_MODULE_1__/* .mdx */ .kt)(MDXLayout,(0,C_Users_tokar_Desktop_react_easy_diagram_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_3__/* .default */ .Z)({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),(0,_mdx_js_react__WEBPACK_IMPORTED_MODULE_1__/* .mdx */ .kt)("p",null,"Hello world!"));};MDXContent.isMDXComponent=true;
+var frontMatter={title:'Getting started',id:'gettingStarted',slug:'/'};var metadata={"unversionedId":"gettingStarted","id":"gettingStarted","isDocsHomePage":false,"title":"Getting started","description":"TBA","source":"@site/docs/getStarted.mdx","sourceDirName":".","slug":"/","permalink":"/react-easy-diagram/docs/","editUrl":"https://github.com/tokarchyn/react-easy-diagram/edit/main/website/docs/getStarted.mdx","version":"current","frontMatter":{"title":"Getting started","id":"gettingStarted","slug":"/"},"sidebar":"docs"};/* @jsxRuntime classic */ /* @jsx mdx */var toc=[];var layoutProps={toc:toc};var MDXLayout="wrapper";function MDXContent(_ref){var components=_ref.components,props=(0,C_Users_tokar_Desktop_react_easy_diagram_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_2__/* .default */ .Z)(_ref,["components"]);return (0,_mdx_js_react__WEBPACK_IMPORTED_MODULE_1__/* .mdx */ .kt)(MDXLayout,(0,C_Users_tokar_Desktop_react_easy_diagram_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_3__/* .default */ .Z)({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),(0,_mdx_js_react__WEBPACK_IMPORTED_MODULE_1__/* .mdx */ .kt)("p",null,"TBA"));};MDXContent.isMDXComponent=true;
 
 /***/ })
 

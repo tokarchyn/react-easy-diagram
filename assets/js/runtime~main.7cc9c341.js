@@ -141,7 +141,7 @@
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = function(chunkId) {
 /******/ 			// return url for filenames based on template
-/******/ 			return "assets/js/" + ({"53":"935f2afb","99":"fb72e560","132":"ce59fbe4","195":"c4f5d8e4","206":"f8409a7e","317":"cf959e9c","409":"c2a627a4","514":"1be78505","542":"812c8586","592":"common","651":"fcdae9f6","829":"aa3c789d","901":"9e7a0641","915":"315cfba4","918":"17896441","976":"af557546"}[chunkId] || chunkId) + "." + {"53":"997bba8b","99":"cf365459","119":"b4ca9f61","132":"982de992","195":"773ac41e","206":"73f0da69","317":"8ffd238f","409":"cdb69fbe","514":"086c3b8a","542":"b306bf5f","592":"5c5d02e8","651":"3eb7500a","829":"fcca6b00","901":"78a599f4","915":"56725b1a","918":"c0d6fb15","976":"04d8f738"}[chunkId] + ".js";
+/******/ 			return "assets/js/" + ({"53":"935f2afb","99":"fb72e560","132":"ce59fbe4","195":"c4f5d8e4","317":"cf959e9c","409":"c2a627a4","514":"1be78505","542":"812c8586","579":"4b957dd2","592":"common","651":"fcdae9f6","829":"aa3c789d","901":"9e7a0641","915":"315cfba4","918":"17896441","976":"af557546"}[chunkId] || chunkId) + "." + {"53":"78f352e1","99":"cf365459","119":"b4ca9f61","132":"982de992","195":"5cdf4c78","317":"8ffd238f","409":"cdb69fbe","514":"086c3b8a","542":"b306bf5f","579":"644f7993","592":"5c5d02e8","651":"3eb7500a","829":"fcca6b00","901":"78a599f4","915":"56725b1a","918":"c0d6fb15","976":"04d8f738"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	}();
 /******/ 	
@@ -230,13 +230,13 @@
 /******/ 	
 /******/ 	/* webpack/runtime/publicPath */
 /******/ 	!function() {
-/******/ 		__webpack_require__.p = "/";
+/******/ 		__webpack_require__.p = "/react-easy-diagram/";
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	// function to get chunk asset
-/******/ 	__webpack_require__.gca = function(chunkId) { chunkId = {"17896441":"918","935f2afb":"53","fb72e560":"99","ce59fbe4":"132","c4f5d8e4":"195","f8409a7e":"206","cf959e9c":"317","c2a627a4":"409","1be78505":"514","812c8586":"542","common":"592","fcdae9f6":"651","aa3c789d":"829","9e7a0641":"901","315cfba4":"915","af557546":"976"}[chunkId]||chunkId; return __webpack_require__.p + __webpack_require__.u(chunkId); };/* webpack/runtime/jsonp chunk loading */
+/******/ 	__webpack_require__.gca = function(chunkId) { chunkId = {"17896441":"918","935f2afb":"53","fb72e560":"99","ce59fbe4":"132","c4f5d8e4":"195","cf959e9c":"317","c2a627a4":"409","1be78505":"514","812c8586":"542","4b957dd2":"579","common":"592","fcdae9f6":"651","aa3c789d":"829","9e7a0641":"901","315cfba4":"915","af557546":"976"}[chunkId]||chunkId; return __webpack_require__.p + __webpack_require__.u(chunkId); };/* webpack/runtime/jsonp chunk loading */
 /******/ 	!function() {
 /******/ 		// no baseURI
 /******/ 		
