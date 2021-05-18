@@ -41,9 +41,9 @@ jobs:
           cp -r dist package/
 
       - name: Publish
-        working-directory: lib/package
-        run: |
-          npm adduser tokarchyn
-          npm publish
+        uses: pascalgn/npm-publish-action@1.3.8
+        with:
+          workspace: "lib/package"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} # You need to set this in your repo settings
