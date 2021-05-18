@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { Point } from 'utils/point';
 import { subtractPoints, multiplyPoint, addPoints } from 'utils/point';
-import { LinkPointEndpointState } from 'states/LinkPointEndpointState';
+import { LinkPointEndpointState } from 'states/linkPointEndpointState';
 import { LinkPortEndpointState } from 'states/linkPortEndpointState';
 import {
   ILinkInteractionState,
