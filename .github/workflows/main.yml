@@ -8,14 +8,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  publish_library:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
       - name: Install dependencies
         working-directory: lib
-        run: yarn install
+        run: |
+          cp ../yarn.lock /
+          yarn install
       - name: Build
         working-directory: lib
         run: yarn build:prod
