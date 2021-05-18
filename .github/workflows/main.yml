@@ -44,6 +44,7 @@ jobs:
         uses: pascalgn/npm-publish-action@1.3.8
         with:
           workspace: ./lib/package
+          publish_command: "npm"
         env:
           GITHUB_WORKSPACE: ./lib/package
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
