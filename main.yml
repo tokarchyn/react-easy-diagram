@@ -1,0 +1,32 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: cd lib
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build:prod
+      - name: Prepare package
+        run: |
+          mkdir package
+          cp ../README.md package/
+          cp ../LICENSE package/
+          cp package.json package/
+          cp dist package/
+          ls -la package
+      - name: Publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
