@@ -42,6 +42,8 @@ jobs:
 
       - name: Publish
         working-directory: lib/package
-        run: npm publish
+        run: |
+          npm adduser tokarchyn
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
