@@ -4,14 +4,14 @@
   "license": "MIT",
   "workspaces": [
     "website",
-    "lib_core"
+    "lib"
   ],
   "devDependencies": {
     "concurrently": "^5.3.0"
   },
   "scripts": {
-    "start": "yarn workspace @react-easy-diagram/core build:dev && concurrently \"yarn workspace @react-easy-diagram/core start\" \"yarn workspace website start\"",
-    "build:lib": "yarn workspace @react-easy-diagram/core run build:prod",
+    "start": "yarn workspace react-easy-diagram build:dev && concurrently \"yarn workspace react-easy-diagram start\" \"yarn workspace website start\"",
+    "build:lib": "yarn workspace react-easy-diagram run build:prod",
     "build:website": "yarn workspace website run build",
     "build": "yarn build:lib && yarn build:website"
   },

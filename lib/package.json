@@ -1,6 +1,6 @@
 {
-  "name": "@react-easy-diagram/core",
-  "version": "1.0.0",
+  "name": "react-easy-diagram",
+  "version": "0.8.0",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
