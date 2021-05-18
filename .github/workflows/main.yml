@@ -13,12 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - run: cd lib
       - name: Install dependencies
+        working-directory: lib
         run: yarn install
       - name: Build
+        working-directory: lib
         run: yarn build:prod
       - name: Prepare package
+        working-directory: lib
         run: |
           mkdir package
           cp ../README.md package/
@@ -27,6 +29,7 @@ jobs:
           cp dist package/
           ls -la package
       - name: Publish
+        working-directory: lib
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
