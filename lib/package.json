@@ -1,6 +1,7 @@
 {
   "name": "react-easy-diagram",
   "version": "0.8.0",
+  "repository": "https://github.com/tokarchyn/react-easy-diagram.git",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

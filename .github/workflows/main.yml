@@ -39,10 +39,9 @@ jobs:
           cp ../LICENSE package/
           cp package.json package/
           cp -r dist package/
-          ls -la package
-          
+
       - name: Publish
-        working-directory: lib
+        working-directory: lib/package
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
