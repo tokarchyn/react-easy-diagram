@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         working-directory: lib
         run: |
-          cp ../yarn.lock /
+          cp ../yarn.lock ./
           yarn install
       - name: Build
         working-directory: lib
