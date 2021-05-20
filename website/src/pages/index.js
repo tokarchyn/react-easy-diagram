@@ -50,8 +50,8 @@ const features = [
     title: 'Touch devices support',
     description: (
       <>
-        User interaction is implemented with helps of <code>UseGesture</code>
-        library that enables you to use diagrams not only on PC but also on
+        User interaction is implemented with helps of <code>UseGesture</code> library 
+        that enables you to use diagrams not only on PC but also on
         touch devices, use pinch & zoom gesture.
       </>
     ),
