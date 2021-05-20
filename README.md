@@ -64,4 +64,4 @@ const YourDiagram = () => (
       }} />
 );
 ```
-Right now you can use examples in the [website](https://tokarchyn.github.io/react-easy-diagram) to see how you can customize, change settings and do other things.Also, thanks to typescript you can explore API right in the code editor. Documentation is a top priority and will be provided as soon as possible.
+Right now you can use examples in the [website](https://tokarchyn.github.io/react-easy-diagram) to see how you can customize, change settings and do other things. Also, thanks to typescript you can explore API right in the code editor. Documentation is a top priority and will be provided as soon as possible.
