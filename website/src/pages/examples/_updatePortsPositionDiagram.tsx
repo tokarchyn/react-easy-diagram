@@ -4,8 +4,7 @@ import {
   disableNodeUserInteractionClassName,
   INodeVisualComponentProps,
   Port,
-  useLinkUserInteraction,
-} from '@react-easy-diagram/core';
+} from 'react-easy-diagram';
 import { observer } from 'mobx-react-lite';
 
 const NodeWithExternalData = observer<INodeVisualComponentProps>(

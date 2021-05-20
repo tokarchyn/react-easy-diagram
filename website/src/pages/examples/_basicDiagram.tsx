@@ -1,10 +1,7 @@
 import React from 'react';
 import {
-  createCurvedLinkPathConstructor,
-  createDefaultMiniControl,
-  createLinkDefault,
   Diagram,
-} from '@react-easy-diagram/core';
+} from 'react-easy-diagram';
 
 export default function () {
   return (

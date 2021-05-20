@@ -2,7 +2,7 @@ import React from 'react';
 import {
   createLinkDefault,
   Diagram,
-} from '@react-easy-diagram/core';
+} from 'react-easy-diagram';
 
 export default () => (
   <Diagram

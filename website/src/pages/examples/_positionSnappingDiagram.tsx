@@ -1,5 +1,5 @@
 import React from 'react';
-import { Diagram } from '@react-easy-diagram/core';
+import { Diagram } from 'react-easy-diagram';
 
 export default () => (
   <Diagram

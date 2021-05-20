@@ -3,7 +3,7 @@ import {
   Diagram,
   ILinkState,
   INodeState,
-} from '@react-easy-diagram/core';
+} from 'react-easy-diagram';
 
 const generateState = (colNum: number, rowNum: number) => {
   const nodes: INodeState[] = [];

@@ -3,7 +3,7 @@ import {
   createNode,
   createPortInnerDefault,
   Diagram,
-} from '@react-easy-diagram/core';
+} from 'react-easy-diagram';
 
 export default () => (
   <Diagram

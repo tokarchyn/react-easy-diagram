@@ -1,12 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   Diagram,
   disableNodeUserInteractionClassName,
   INodeVisualComponentProps,
-  Port,
-  usePorts,
-  usePortUserInteraction,
-} from '@react-easy-diagram/core';
+  Port
+} from 'react-easy-diagram';
 import { observer } from 'mobx-react-lite';
 
 const PortWithLabel: React.FC<{

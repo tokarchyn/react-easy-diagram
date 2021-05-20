@@ -5,7 +5,7 @@ import {
   INodeVisualComponentProps,
   IUserInteraction,
   useRootStore,
-} from '@react-easy-diagram/core';
+} from 'react-easy-diagram';
 import { observer } from 'mobx-react-lite';
 
 export default () => (

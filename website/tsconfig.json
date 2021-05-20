@@ -17,5 +17,5 @@
     "jsx": "react"
   },
   "include": ["src/**/*", "docs/**/*", "src/pages/examples/.tsx"],
-  "references": [{ "path": "../lib_core" }]
+  "references": [{ "path": "../lib" }]
 }

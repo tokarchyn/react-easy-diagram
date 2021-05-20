@@ -6,14 +6,14 @@
  */
 
 import React from 'react';
-import * as lib_core from '@react-easy-diagram/core';
+import * as lib from 'react-easy-diagram';
 import { observer } from 'mobx-react-lite';
 
 // Add react-live imports you need here
 const ReactLiveScope = {
   React,
   ...React,
-  ...lib_core,
+  ...lib,
   observer
 };
 
