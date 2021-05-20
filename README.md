@@ -16,6 +16,15 @@ Open source library to build highly customazible interactive React diagrams with
 - **Performance** - Thanks to `MobX` all components are rerendered only when it strictly needed.
 - **Touch devices support** - User interaction is implemented with helps of `UseGesture` library that enables you to use diagrams not only on PC but also on touch devices, use pinch & zoom gesture.
 
+## Roadmap
+There are several top priority things right now:
+- Write basic documentation.
+- Add link's label.
+- Add callbacks for better control over library.
+- Test code as much as possible.
+- Add better way to customize `css` of buil-in components (right now it is done by styles props).
+- Prepare repository for contribution by other developers (issues templates, commit messages template, discussion section). 
+
 ## Installation
 Using `npm`:
 ```
