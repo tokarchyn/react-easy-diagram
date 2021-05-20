@@ -17,6 +17,17 @@ const features = [
     ),
   },
   {
+    title: 'HTML nodes',
+    description: (
+      <>
+        Nodes are represented as <code>HTML</code>, so you can define them at any 
+        level of complexity. (Because of this, if expected nodes number exceeds 
+        hundreds of them then it is better to use libraries with other approaches, 
+        for example diagrams that use Canvas).
+      </>
+    ),
+  },
+  {
     title: 'Advanced API',
     description: (
       <>
@@ -39,7 +50,7 @@ const features = [
     title: 'Touch devices support',
     description: (
       <>
-        User interaction is implemented with helps of <code>UseGesture</code>{' '}
+        User interaction is implemented with helps of <code>UseGesture</code>
         library that enables you to use diagrams not only on PC but also on
         touch devices, use pinch & zoom gesture.
       </>
