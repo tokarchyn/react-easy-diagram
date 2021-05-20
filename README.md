@@ -28,7 +28,9 @@ yarn add react-easy-diagram
 
 ## Getting started
 There are three main entities in library: `node`, `port`, `link`.
+
 <img src="https://github.com/tokarchyn/react-easy-diagram/blob/main/repo/entities.png?raw=true" alt="Entities" height="130">
+
 To create simple diagram import `Diagram`:
 ```
 import { Diagram } from "react-easy-diagram";
