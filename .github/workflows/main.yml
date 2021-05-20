@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 on:
@@ -27,11 +25,10 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Build
-        working-directory: lib
-        run: yarn build:prod
+      - name: Build package&website
+        run: yarn build
 
-      - name: Prepare package
+      - name: Prepare package to publish
         working-directory: lib
         run: |
           mkdir package
@@ -40,17 +37,14 @@ jobs:
           cp package.json package/
           cp -r dist package/
 
-      # - name: Publish
-      #   uses: pascalgn/npm-publish-action@1.3.8
-      #   with:
-      #     workspace: ./lib/package
-      #     publish_command: "npm"
-      #   env:
-      #     GITHUB_WORKSPACE: ./lib/package
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
-      #     NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # You need to set this in your repo settings
-
-      - uses: JS-DevTools/npm-publish@v1
+      - name: Publish package
+        uses: JS-DevTools/npm-publish@v1
         with:
-          package: ./lib/package/package.json
+          package: lib/package/package.json
           token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Deploy website
+        uses: JamesIves/github-pages-deploy-action@4.1.3
+        with:
+          branch: gh-pages
+          folder: website/build
