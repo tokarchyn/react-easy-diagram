@@ -22,7 +22,7 @@ There are several top priority things right now:
 - Add link's label.
 - Add callbacks for better control over library.
 - Test code as much as possible.
-- Add better way to customize `css` of buil-in components (right now it is done by styles props).
+- Add better way to customize `css` of built-in components (right now it is done by styles props).
 - Prepare repository for contribution by other developers (issues templates, commit messages template, discussion section). 
 
 ## Installation
@@ -52,7 +52,7 @@ const YourDiagram = () => (
           {
             id: "node_1",
             position: [300, 300],
-            type: "output_horizontal" // there are also other built-in types such as input_output_horizontal, input_output_vertical, input_vertical, input_horizontal, output_vertical, output_horizontal, star
+            type: "output_horizontal" // there are also other built-in types such as input_output_horizontal, input_output_vertical, input_vertical, input_horizontal, output_vertical, star
           },
           {
             id: "node_2",
