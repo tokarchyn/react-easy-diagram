@@ -69,7 +69,7 @@ export default () => (
         {
           id: 'node_1',
           position: [100, 100],
-          componentType: 'dynamic',
+          type: 'dynamic',
         },
       ],
     }}

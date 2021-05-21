@@ -12,12 +12,12 @@ export default () => (
         {
           id: 'Node 1',
           position: [100, 100],
-          componentType: 'output_horizontal',
+          type: 'output_horizontal',
         },
         {
           id: 'Node 2',
           position: [420, 300],
-          componentType: 'custom',
+          type: 'custom',
         },
       ],
       links: [

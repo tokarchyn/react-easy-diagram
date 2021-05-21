@@ -108,32 +108,32 @@ export default () => (
         {
           id: 'external',
           position: [0, 0],
-          componentType: 'external',
+          type: 'external',
         },
         {
           id: 'internal',
           position: [400, 0],
-          componentType: 'internal',
+          type: 'internal',
         },
         {
           id: 'left_node',
           position: [-200, 100],
-          componentType: 'output_horizontal',
+          type: 'output_horizontal',
         },
         {
           id: 'top_node',
           position: [300, -200],
-          componentType: 'output_vertical',
+          type: 'output_vertical',
         },
         {
           id: 'right_node',
           position: [800, 100],
-          componentType: 'input_horizontal',
+          type: 'input_horizontal',
         },
         {
           id: 'bottom_node',
           position: [300, 300],
-          componentType: 'input_vertical',
+          type: 'input_vertical',
         },
       ],
       links: [

@@ -12,19 +12,19 @@ export default function () {
             id: 'node_1',
             label: 'Node 1',
             position: [300, 300],
-            componentType: 'output_horizontal'
+            type: 'output_horizontal'
           },
           {
             id: 'node_2',
             label: 'Node 2',
             position: [520, 400],
-            componentType: 'input_output_horizontal'
+            type: 'input_output_horizontal'
           },
           {
             id: 'node_3',
             label: 'Node 3',
             position: [520, 200],
-            componentType: 'input_horizontal'
+            type: 'input_horizontal'
           },
         ],
         links: [

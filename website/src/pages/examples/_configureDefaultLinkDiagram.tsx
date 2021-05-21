@@ -11,17 +11,17 @@ export default () => (
         {
           id: 'Node 1',
           position: [100, 100],
-          componentType: 'input_output_horizontal'
+          type: 'input_output_horizontal'
         },
         {
           id: 'Node 2',
           position: [420, 300],
-          componentType: 'input_output_horizontal'
+          type: 'input_output_horizontal'
         },
         {
           id: 'Node 3',
           position: [420, 100],
-          componentType: 'input_output_horizontal'
+          type: 'input_output_horizontal'
         },
       ],
       links: [

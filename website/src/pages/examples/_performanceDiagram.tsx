@@ -15,7 +15,7 @@ const generateState = (colNum: number, rowNum: number) => {
       nodes.push({
         id: getNodeId(i, j),
         position: [i * 120, j * 120],
-        componentType: 'star'
+        type: 'star'
       });
       if (i - 1 >= 0) {
         links.push({

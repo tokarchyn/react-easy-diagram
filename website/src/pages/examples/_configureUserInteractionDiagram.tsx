@@ -16,27 +16,27 @@ export default () => (
           id: 'Node 1',
           label: 'Node with drag disabled',
           position: [450, 50],
-          componentType: 'input_output_vertical',
+          type: 'input_output_vertical',
           isDragEnabled: false, // specifying this property in the element overrides diagram settings
         },
         {
           id: 'Node 2',
           label: 'Node with selection disabled',
           position: [450, -100],
-          componentType: 'output_vertical',
+          type: 'output_vertical',
           isSelectionEnabled: false,
         },
         {
           id: 'Node 3',
           label: 'Node that use default diagram settings',
           position: [450, 200],
-          componentType: 'input_vertical',
+          type: 'input_vertical',
         },
         {
           id: 'Node 4',
           label: 'Node with disabled port',
           position: [100, 200],
-          componentType: 'disabled_port',
+          type: 'disabled_port',
         },
         {
           id: 'Node 5',
@@ -47,7 +47,7 @@ export default () => (
         {
           id: 'Configurator',
           position: [100, -100],
-          componentType: 'config',
+          type: 'config',
           isSelectionEnabled: false,
         },
       ],

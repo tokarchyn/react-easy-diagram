@@ -14,7 +14,7 @@ import { isBoolean } from 'utils/common';
 export class LinkState
   implements ILinkState, ISelectableItem, ILinkInteractionState {
   private _id: string;
-  private _componentType: string;
+  private _type: string;
   private _source: LinkPortEndpointState;
   private _target: LinkPortEndpointState;
   private _segments: ILinkSegment[];
@@ -42,7 +42,7 @@ export class LinkState
   import = (state: ILinkStateWithoutId) => {
     this._source = this._createEndpointState(state.source);
     this._target = this._createEndpointState(state.target);
-    this.setComponentType(state.componentType);
+    this.setType(state.type);
     this.setSegments(state.segments);
     this.setExtra(state.extra);
     this.setIsSelectionEnabled(state?.isSelectionEnabled);
@@ -63,7 +63,7 @@ export class LinkState
     target: this.target.export(),
     ...deepCopy({
       id: this._id,
-      componentType: this.componentType,
+      type: this.type,
       segments: this.segments,
       extra: this.extra,
       isSelectionEnabled: this._isSelectionEnabled ?? undefined,
@@ -74,12 +74,12 @@ export class LinkState
     return this._id;
   }
 
-  get componentType() {
-    return this._componentType;
+  get type() {
+    return this._type;
   }
 
-  setComponentType = (value: string | null | undefined) => {
-    this._componentType = value ?? componentDefaultType;
+  setType = (value: string | null | undefined) => {
+    this._type = value ?? componentDefaultType;
   };
 
   get segments() {
@@ -96,7 +96,7 @@ export class LinkState
 
   get componentDefinition() {
     const { visualComponents } = this._rootStore.linksSettings;
-    return visualComponents.getComponent(this.componentType);
+    return visualComponents.getComponent(this.type);
   }
 
   get selected() {
@@ -189,7 +189,7 @@ export interface ILinkInteractionState {
 }
 
 export interface ILinkStateWithoutId {
-  componentType?: string;
+  type?: string;
   source: ILinkPortEndpoint;
   target: ILinkPortEndpoint;
   segments?: ILinkSegment[];

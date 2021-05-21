@@ -57,27 +57,27 @@ export default () => (
         {
           id: 'num1',
           position: [100, 100],
-          componentType: 'number',
+          type: 'number',
         },
         {
           id: 'num2',
           position: [100, 300],
-          componentType: 'number',
+          type: 'number',
         },
         {
           id: 'num3',
           position: [420, 250],
-          componentType: 'number',
+          type: 'number',
         },
         {
           id: 'add1',
           position: [420, 150],
-          componentType: 'sum',
+          type: 'sum',
         },
         {
           id: 'add2',
           position: [700, 200],
-          componentType: 'sum',
+          type: 'sum',
         },
       ],
       links: [

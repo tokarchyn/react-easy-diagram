@@ -22,7 +22,7 @@ export class NodeState implements ISelectableItem {
   private _position: Point;
   private _ports: Dictionary<PortState>;
   private _ref: HtmlElementRefState;
-  private _componentType: string;
+  private _type: string;
   private _selected: boolean;
   private _extra: any;
   private _isSelectionEnabled: boolean | null;
@@ -44,7 +44,7 @@ export class NodeState implements ISelectableItem {
     });
 
     reaction(
-      () => [this._id, this._label, this._extra, this._componentType],
+      () => [this._id, this._label, this._extra, this._type],
       () => {
         this.recalculatePortsSizeAndPosition();
       }
@@ -53,7 +53,7 @@ export class NodeState implements ISelectableItem {
 
   import = (newState?: INodeStateWithoutId) => {
     this.setPosition(newState?.position);
-    this.setComponentType(newState?.componentType);
+    this.setType(newState?.type);
     this.setExtra(newState?.extra);
     this.label = newState?.label ?? '';
     this._ports = {};
@@ -66,7 +66,7 @@ export class NodeState implements ISelectableItem {
       id: this._id,
       label: this._label,
       position: this._position,
-      componentType: this.componentType,
+      type: this._type,
       extra: this.extra,
       isSelectionEnabled: this._isSelectionEnabled ?? undefined,
       isDragEnabled: this._isDragEnabled ?? undefined,
@@ -113,12 +113,12 @@ export class NodeState implements ISelectableItem {
     return result.remainder;
   };
 
-  get componentType() {
-    return this._componentType;
+  get type() {
+    return this._type;
   }
 
-  setComponentType = (value: string | null | undefined) => {
-    this._componentType = value ?? componentDefaultType;
+  setType = (value: string | null | undefined) => {
+    this._type = value ?? componentDefaultType;
   };
 
   get selected() {
@@ -151,7 +151,7 @@ export class NodeState implements ISelectableItem {
 
   get componentDefinition() {
     const { visualComponents } = this._rootStore.nodesSettings;
-    return visualComponents.getComponent(this.componentType);
+    return visualComponents.getComponent(this.type);
   }
 
   /**
@@ -268,7 +268,7 @@ function snapPositionValueToGridValue(value: number, snapValue: number) {
 export interface INodeStateWithoutId {
   label?: string;
   position: Point;
-  componentType?: string;
+  type?: string;
   extra?: any;
   isSelectionEnabled?: boolean;
   isDragEnabled?: boolean;
