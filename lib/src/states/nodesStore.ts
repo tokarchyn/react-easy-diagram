@@ -26,19 +26,52 @@ export class NodesStore {
 
   import = (newNodes?: INodeState[]) => {
     this._nodes = new Map();
-    newNodes?.forEach((node) => this.addNode(node, true));
+    if (newNodes) {
+      let results = this._addNodesInternal(newNodes, true);
+      this._rootStore.callbacks.nodesAdded?.(results, true, this._rootStore);
+    }
   };
 
   export = (): INodeStateWithId[] =>
     Array.from(this._nodes).map(([key, value]) => value.export());
 
+  addNodes = (
+    nodes: INodeState[],
+    rewriteIfExists: boolean
+  ): SuccessOrErrorResult<NodeState>[] => {
+    let results = this._addNodesInternal(nodes, rewriteIfExists);
+    this._rootStore.callbacks.nodesAdded?.(results, false, this._rootStore);
+    return results;
+  };
+
+  private _addNodesInternal = (
+    nodes: INodeState[],
+    rewriteIfExists: boolean
+  ): SuccessOrErrorResult<NodeState>[] => {
+    let results = nodes?.map((node) =>
+      this._addNodeInternal(node, rewriteIfExists)
+    );
+    return results;
+  };
+
   addNode = (
     node: INodeState,
     rewriteIfExists: boolean
   ): SuccessOrErrorResult<NodeState> => {
-    if (!node || (!rewriteIfExists && node.id && this._nodes.has(node.id))) {
-      return errorResult('');
-    }
+    let result = this._addNodeInternal(node, rewriteIfExists);
+    this._rootStore.callbacks.nodesAdded?.([result], false, this._rootStore);
+    return result;
+  };
+
+  private _addNodeInternal = (
+    node: INodeState,
+    rewriteIfExists: boolean
+  ): SuccessOrErrorResult<NodeState> => {
+    if (!node) return errorResult('Node object is null or undefined');
+
+    if (!rewriteIfExists && node.id && this._nodes.has(node.id))
+      return errorResult(`Node with id '${node.id}' already exists`);
+
     const newNode = new NodeState(
       this._rootStore,
       node.id ?? guidForcedUniqueness((id) => this._nodes.has(id)),

@@ -63,6 +63,10 @@ module.exports = {
               label: 'Configure user interaction',
               to: 'examples/configureUserInteraction',
             },
+            {
+              label: 'Callbacks',
+              to: 'examples/callbacks',
+            },
             // {
             //   label: 'Dynamic ports',
             //   to: 'examples/dynamicPorts',
