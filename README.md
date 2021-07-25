@@ -2,7 +2,7 @@
 
 ---
 
-Open source library to build highly customazible interactive React diagrams with easy.
+Open source library to build highly customizable interactive React diagrams with easy.
 ![React Easy Digram demo image](https://github.com/tokarchyn/react-easy-diagram/blob/main/website/static/img/demo.png?raw=true)
 
 - **Website**: https://tokarchyn.github.io/react-easy-diagram
