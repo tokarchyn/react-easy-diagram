@@ -21,9 +21,11 @@
     "start": "rollup -c -w",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "clear": "yarn run del \"dist/*\"",
-    "prebuild": "yarn cti entrypoint ./src -o index.ts -b"
+    "prebuild": "yarn cti entrypoint ./src -o index.ts -b",
+    "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.24",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^4.7.0",
@@ -37,6 +39,8 @@
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.0.6",
     "mobx-logger": "^0.7.1",
     "postcss": "^8.2.4",
     "prettier": "^2.1.2",
@@ -46,6 +50,7 @@
     "rollup-plugin-sizes": "^1.0.3",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.29.0",
+    "ts-jest": "^27.0.4",
     "typescript": "~4.0.5"
   },
   "peerDependencies": {

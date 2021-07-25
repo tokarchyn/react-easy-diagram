@@ -67,7 +67,7 @@ export const useNodeUserInteraction = (
 
         selectionHandledRef.current = false;
         if (nodeState.isSelectionEnabled) {
-          selectionTimeoutRef.current = setTimeout(() => {
+          selectionTimeoutRef.current = global.setTimeout(() => {
             if (activeRef.current && !selectionHandledRef.current) {
               selectionHandledRef.current = true;
               rootStore.selectionState.select(nodeState, true);
