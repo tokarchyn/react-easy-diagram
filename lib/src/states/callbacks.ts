@@ -3,13 +3,13 @@ import { RootStore } from 'states/rootStore';
 import { NodeState } from 'states/nodeState';
 import { SuccessOrErrorResult } from 'utils/result';
 
-export class Callbacks implements ICallbacks {
-  private _validateLinkEndpoints?: (
+export class Callbacks implements Required<ICallbacks> {
+  private _validateLinkEndpoints: (
     source: PortState,
     target: PortState,
     rootStore: RootStore
   ) => boolean;
-  private _nodesAdded?: (
+  private _nodesAdded: (
     addResults: SuccessOrErrorResult<NodeState>[],
     importing: boolean,
     rootStore: RootStore
@@ -19,11 +19,12 @@ export class Callbacks implements ICallbacks {
 
   constructor(rootStore: RootStore) {
     this._rootStore = rootStore;
+    this.import();
   }
 
   import = (callbacks?: ICallbacks) => {
-    this._validateLinkEndpoints = callbacks?.validateLinkEndpoints;
-    this._nodesAdded = callbacks?.nodesAdded;
+    this._validateLinkEndpoints = callbacks?.validateLinkEndpoints ?? (() => true);
+    this._nodesAdded = callbacks?.nodesAdded ?? (() => undefined);
   };
 
   export = () => ({

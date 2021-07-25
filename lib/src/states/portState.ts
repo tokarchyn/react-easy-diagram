@@ -161,7 +161,9 @@ export class PortState {
   };
 
   get node(): NodeState {
-    return this._rootStore.nodesStore.getNodeOrThrowException(this.nodeId);
+    const node = this._rootStore.nodesStore.getNode(this.nodeId);
+    if (node) return node;
+    else throw `Node with id '${this.nodeId}' does not exist`;
   }
 
   get offsetRelativeToNode(): Point | null {

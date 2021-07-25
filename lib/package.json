@@ -22,7 +22,8 @@
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "clear": "yarn run del \"dist/*\"",
     "prebuild": "yarn cti entrypoint ./src -o index.ts -b",
-    "test": "jest"
+    "test": "jest",
+    "test-with-coverage": "jest --coverage"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",

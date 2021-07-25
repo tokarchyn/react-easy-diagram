@@ -19,7 +19,7 @@ export class HtmlElementRefState {
   }
 
   offsetRelativeToParent = (parent: HTMLElement): Point | null => {
-    this._triggerSizePositionRecalculation | 1;
+    this._triggerSizePositionRecalculation | 1; // to make offsetRelativeToParent dependend on _triggerSizePositionRecalculation
     if (this.current) {
       let iterElement = this.current as HTMLElement | null;
       let nextOffsetParent = null as Element | null;
@@ -47,7 +47,7 @@ export class HtmlElementRefState {
    * Value can be @type {null} in case reference to real DOM object is not set.
    */
   get realSize(): Point | null {
-    this._triggerSizePositionRecalculation | 1;
+    this._triggerSizePositionRecalculation | 1; // to make realSize dependend on _triggerSizePositionRecalculation
     if (this.current) {
       return [this.current.clientWidth, this.current.clientHeight];
     } else {
