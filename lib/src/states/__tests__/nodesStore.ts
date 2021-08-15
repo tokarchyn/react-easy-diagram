@@ -179,7 +179,7 @@ describe('Nodes store', () => {
       expect(box.size).toEqual([120, 130]);
     });
 
-    test('Node without without html reference', () => {
+    test('Node without html reference', () => {
       store.nodesStore.import([{ position: [-10, -15] }]);
 
       const box = store.nodesStore.getNodesBoundingBox();
