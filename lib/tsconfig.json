@@ -23,5 +23,5 @@
     "baseUrl": "src",
     "plugins": [{ "transform": "@zerollup/ts-transform-paths" }]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "src/states/__tests__/.ts"]
 }

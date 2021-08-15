@@ -1,4 +1,10 @@
-import { makeAutoObservable } from 'mobx';
+import {
+  action,
+  computed,
+  makeAutoObservable,
+  makeObservable,
+  observable,
+} from 'mobx';
 
 export class VisualComponentState<TComponentProps> {
   private _component: VisualComponent<TComponentProps>;
@@ -10,7 +16,13 @@ export class VisualComponentState<TComponentProps> {
       | VisualComponent<TComponentProps>
   ) {
     this.import(component);
-    makeAutoObservable(this);
+    makeObservable<VisualComponentState<TComponentProps>, '_component' | '_settings'>(this, {
+      _component: observable.ref,
+      _settings: observable,
+      component: computed,
+      settings: computed,
+      import: action,
+    });
   }
 
   import = (
@@ -42,11 +54,9 @@ export interface IVisualComponentProps<TEntity, TSettings = any> {
 
 export type VisualComponent<
   TComponentProps
-> =  React.FunctionComponent<TComponentProps>;
+> = React.FunctionComponent<TComponentProps>;
 
-export interface IComponentDefinition<
-  TComponentProps, TSettings = any
-> {
+export interface IComponentDefinition<TComponentProps, TSettings = any> {
   component: VisualComponent<TComponentProps>;
   settings?: TSettings;
 }
