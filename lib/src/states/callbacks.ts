@@ -15,10 +15,7 @@ export class Callbacks implements Required<ICallbacks> {
     rootStore: RootStore
   ) => any;
 
-  private _rootStore: RootStore;
-
-  constructor(rootStore: RootStore) {
-    this._rootStore = rootStore;
+  constructor() {
     this.import();
   }
 

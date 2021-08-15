@@ -1,29 +1,21 @@
-import { RootStore } from 'states/rootStore';
+import { Callbacks } from 'states/callbacks';
 
 describe('Callbacks import', () => {
-  let store: RootStore;
+  let callbacks: Callbacks;
 
   beforeEach(() => {
-    store = new RootStore();
+    callbacks = new Callbacks();
   });
 
-  test('Import validateLinkEndpoints callback', () => {
+  test('Import/Export', () => {
     let callback = () => true;
-    store.importSettings({
-      callbacks: {
-        validateLinkEndpoints: callback,
-      },
+    callbacks.import({
+      validateLinkEndpoints: callback,
+      nodesAdded: callback
     });
-    expect(store.callbacks.validateLinkEndpoints).toBe(callback);
-  });
 
-  test('Import nodesAdded callback', () => {
-    let callback = () => undefined;
-    store.importSettings({
-      callbacks: {
-        nodesAdded: callback,
-      },
-    });
-    expect(store.callbacks.nodesAdded).toBe(callback);
+    const exportedCallbacks = callbacks.export();
+    expect(exportedCallbacks.validateLinkEndpoints).toBe(callback);
+    expect(exportedCallbacks.nodesAdded).toBe(callback);
   });
 });
