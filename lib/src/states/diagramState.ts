@@ -50,13 +50,8 @@ export class DiagramState
     );
   };
 
-  zoomIn = () => this._rootStore.diagramState.zoomIntoCenter(1 / 0.8);
-  zoomOut = () => this._rootStore.diagramState.zoomIntoCenter(0.8);
-
-  setTransformation = (newOffset: Point, newZoom: number) => {
-    this.setOffset(newOffset);
-    this.setZoom(newZoom);
-  };
+  zoomIn = () => this.zoomIntoCenter(1 / 0.8);
+  zoomOut = () => this.zoomIntoCenter(0.8);
 
   // See: https://stackoverflow.com/a/30039971/9142642
   zoomInto = (pointToZoomInto: Point, zoomMultiplicator: number) => {
@@ -77,6 +72,11 @@ export class DiagramState
     );
   };
 
+  setTransformation = (newOffset: Point, newZoom: number) => {
+    this.setOffset(newOffset);
+    this.setZoom(newZoom);
+  };
+
   translate = (translateBy: Point) => {
     this.setOffset(addPoints(this._offset, translateBy));
   };
@@ -94,7 +94,7 @@ export class DiagramState
     const diagramRealSize = this._diagramInnerRef.realSize;
     if (!diagramRealSize) return;
 
-    this._rootStore.diagramState.zoomInto(
+    this.zoomInto(
       multiplyPoint(diagramRealSize, 0.5),
       zoomMultiplicator
     );
