@@ -10,7 +10,7 @@ import { observer } from 'mobx-react-lite';
 import styles from '../styles.module.css'; 
 
 const NumberProvider = observer<{ node: NodeState }>(({ node }) => {
-  const port = node.ports['output'];
+  const port = node.ports.get('output');
   return (
     <>
       <div>Number input</div>
@@ -29,10 +29,10 @@ const NumberProvider = observer<{ node: NodeState }>(({ node }) => {
 });
 
 const Sum = observer<{ node: NodeState }>(({ node }) => {
-  const outputPort = node.ports['output'];
+  const outputPort = node.ports.get('output');
 
   const getInputNumber = (portName: string): number => {
-    const port = node.ports[portName];
+    const port = node.ports.get(portName);
     if (port && port.connectedPorts.length > 0) {
       return port.connectedPorts[0].extra ?? 0;
     } else return 0;
