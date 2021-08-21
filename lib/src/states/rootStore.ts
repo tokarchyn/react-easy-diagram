@@ -28,7 +28,7 @@ export class RootStore {
     this._nodesSettings = new NodesSettings();
     this._linksSettings = new LinksSettings();
     this._portsSettings = new PortsSettings();
-    this._callbacks = new Callbacks();
+    this._callbacks = new Callbacks(this);
 
     this._diagramState = new DiagramState(this);
 

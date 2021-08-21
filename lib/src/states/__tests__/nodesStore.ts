@@ -1,4 +1,4 @@
-import { Callbacks, ICallbacks } from 'states/callbacks';
+import { ICallbacks } from 'states/callbacks';
 import { INodeState, NodeState } from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
 import { SuccessOrErrorResult, SuccessResult } from 'utils/result';
@@ -12,12 +12,12 @@ describe('Nodes store', () => {
 
   describe('Nodes added callback', () => {
     let mockNodesAddedCallback: jest.Mock<
-      ReturnType<Callbacks['nodesAdded']>,
-      Parameters<Callbacks['nodesAdded']>
+      void,
+      [SuccessOrErrorResult<NodeState>[], boolean, RootStore]
     >;
 
     beforeEach(() => {
-      mockNodesAddedCallback = jest.fn((a, b, c) => undefined);
+      mockNodesAddedCallback = jest.fn((a, b, c) => {});
       store.callbacks.import({
         nodesAdded: mockNodesAddedCallback,
       });

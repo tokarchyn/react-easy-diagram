@@ -146,8 +146,7 @@ export class LinksStore {
     if (
       this._rootStore.callbacks.validateLinkEndpoints?.(
         sourcePortResult.value,
-        targetPortResult.value,
-        this._rootStore
+        targetPortResult.value
       ) === false
     ) {
       return errorResult(

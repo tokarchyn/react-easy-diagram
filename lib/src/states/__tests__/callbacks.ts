@@ -1,10 +1,12 @@
 import { Callbacks } from 'states/callbacks';
+import { RootStore } from 'states/rootStore';
 
 describe('Callbacks import', () => {
   let callbacks: Callbacks;
 
   beforeEach(() => {
-    callbacks = new Callbacks();
+    const rootStore = new RootStore();
+    callbacks = rootStore.callbacks;
   });
 
   test('Import/Export', () => {

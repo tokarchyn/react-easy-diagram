@@ -29,7 +29,7 @@ export class NodesStore {
     if (newNodes) {
       let results = this._addNodesInternal(newNodes, true);
       results.length != 0 &&
-        this._rootStore.callbacks.nodesAdded(results, true, this._rootStore);
+        this._rootStore.callbacks.nodesAdded(results, true);
     }
   };
 
@@ -42,7 +42,7 @@ export class NodesStore {
   ): SuccessOrErrorResult<NodeState>[] => {
     let results = this._addNodesInternal(nodes, rewriteIfExists);
     results.length != 0 &&
-      this._rootStore.callbacks.nodesAdded(results, false, this._rootStore);
+      this._rootStore.callbacks.nodesAdded(results, false);
     return results;
   };
 
@@ -63,7 +63,7 @@ export class NodesStore {
     rewriteIfExists: boolean
   ): SuccessOrErrorResult<NodeState> => {
     let result = this._addNodeInternal(node, rewriteIfExists);
-    this._rootStore.callbacks.nodesAdded([result], false, this._rootStore);
+    this._rootStore.callbacks.nodesAdded([result], false);
     return result;
   };
 
