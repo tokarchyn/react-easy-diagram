@@ -20,7 +20,7 @@ export class NodeState implements ISelectableItem {
   private _id: string;
   private _label: string;
   private _position: Point;
-  private _ports: Dictionary<PortState>;
+  private _ports: Map<string, PortState>;
   private _ref: HtmlElementRefState;
   private _type: string;
   private _selected: boolean;
@@ -56,7 +56,7 @@ export class NodeState implements ISelectableItem {
     this.setType(newState?.type);
     this.setExtra(newState?.extra);
     this.label = newState?.label ?? '';
-    this._ports = {};
+    this._ports = new Map();
     this.setIsSelectionEnabled(newState?.isSelectionEnabled);
     this.setIsDragEnabled(newState?.isDragEnabled);
   };
@@ -150,7 +150,7 @@ export class NodeState implements ISelectableItem {
     return this._ref;
   }
 
-  get ports(): Readonly<Dictionary<PortState>> {
+  get ports(): ReadonlyMap<string, PortState> {
     return this._ports;
   }
 
@@ -172,28 +172,28 @@ export class NodeState implements ISelectableItem {
   }
 
   getPort = (portId: string): PortState | undefined => {
-    if (portId && this._ports[portId]) {
-      return this._ports[portId];
+    if (portId) {
+      return this._ports.get(portId);
     } else return undefined;
   };
 
   addPort = (port: INodePortState): SuccessOrErrorResult<PortState> => {
-    if (!port || (port.id && this._ports[port.id])) {
+    if (!port || (port.id && this._ports.get(port.id))) {
       return errorResult();
     }
     const newPort = new PortState(
       this._rootStore,
-      port.id ?? guidForcedUniqueness((id) => !!this._ports[id]),
+      port.id ?? guidForcedUniqueness((id) => !!this._ports.get(id)),
       this._id,
       port
     );
-    this._ports[newPort.id] = newPort;
+    this._ports.set(newPort.id, newPort);
     return successValueResult(newPort);
   };
 
   removePort = (portId: string): boolean => {
-    if (portId && this._ports[portId]) {
-      delete this._ports[portId];
+    if (portId && this._ports.get(portId)) {
+      this._ports.delete(portId);
       this._rootStore.linksStore.removePortLinks(this._id, portId);
       return true;
     }
@@ -220,7 +220,7 @@ export class NodeState implements ISelectableItem {
   }
 
   recalculatePortsSizeAndPosition = () => {
-    Object.values(this._ports).forEach((p) => p.recalculateSizeAndPosition());
+    this._ports.forEach((p) => p.recalculateSizeAndPosition());
   };
 
   get isSelectionEnabled(): boolean {
