@@ -22,8 +22,8 @@ var CodeBlock = __webpack_require__(1642);
 var _diagramContainer = __webpack_require__(1353);
 ;// CONCATENATED MODULE: ../node_modules/raw-loader/dist/cjs.js!./src/pages/examples/_positionSnappingDiagram.tsx
 /* harmony default export */ var _positionSnappingDiagram = ("import React from 'react';\nimport { Diagram } from 'react-easy-diagram';\n\nexport default () => (\n  <Diagram\n    initState={{\n      nodes: [\n        {\n          id: 'Node 1',\n          position: [100, 100],\n          type: 'output_horizontal'\n        },\n        {\n          id: 'Node 2',\n          position: [420, 300],\n          type: 'input_horizontal'\n        },\n      ],\n      links: [\n        {\n          source: { nodeId: 'Node 1', portId: 'output' },\n          target: { nodeId: 'Node 2', portId: 'input' },\n        },\n      ],\n    }}\n    settings={{\n      nodes:{\n        gridSnap: 35 // or [10, 20] to set x and y snap separately\n      }\n    }}\n  />\n);\n");
-// EXTERNAL MODULE: ./node_modules/react-easy-diagram/dist/index.esm.js + 1 modules
-var index_esm = __webpack_require__(9919);
+// EXTERNAL MODULE: ../lib/dist/index.esm.js + 1 modules
+var index_esm = __webpack_require__(4714);
 ;// CONCATENATED MODULE: ./src/pages/examples/_positionSnappingDiagram.tsx
 /* harmony default export */ var examples_positionSnappingDiagram = (function(){return/*#__PURE__*/react.createElement(index_esm.Diagram,{initState:{nodes:[{id:'Node 1',position:[100,100],type:'output_horizontal'},{id:'Node 2',position:[420,300],type:'input_horizontal'}],links:[{source:{nodeId:'Node 1',portId:'output'},target:{nodeId:'Node 2',portId:'input'}}]},settings:{nodes:{gridSnap:35// or [10, 20] to set x and y snap separately
 }}});});
