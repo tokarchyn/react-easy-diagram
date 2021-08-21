@@ -10763,15 +10763,6 @@ react-dom@^16.8.4:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
-react-easy-diagram@0.8.2:
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/react-easy-diagram/-/react-easy-diagram-0.8.2.tgz#d31ee18aa465893e04beb5e6f9c35e364d079c15"
-  integrity sha512-xLuAhCJbBPbEMQVDPz15XP8i6ucO4mVldtN1bat723HaAHqdEIzcYIqZrA9CX/XolfMEDfCOXRylrrPtgruHGQ==
-  dependencies:
-    mobx "^6.0.4"
-    mobx-react-lite "^3.1.6"
-    react-use-gesture "^8.0.1"
-
 react-error-overlay@^6.0.9:
   version "6.0.9"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"

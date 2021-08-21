@@ -14,6 +14,9 @@ export default function () {
                 .map((r) => (r as SuccessResult<NodeState>).value.export())
             );
           },
+          nodePositionChanged: (node, oldPos, newPos, store) => {
+            console.log(`Position of node '${node.id}' changed from '${oldPos.toString()}' to '${newPos.toString()}'`);
+          }
         },
       }}
       initState={{

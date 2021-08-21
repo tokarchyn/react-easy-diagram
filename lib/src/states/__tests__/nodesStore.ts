@@ -12,8 +12,8 @@ describe('Nodes store', () => {
 
   describe('Nodes added callback', () => {
     let mockNodesAddedCallback: jest.Mock<
-      void,
-      [SuccessOrErrorResult<NodeState>[], boolean, RootStore]
+      ReturnType<NonNullable<ICallbacks['nodesAdded']>>,
+      Parameters<NonNullable<ICallbacks['nodesAdded']>>
     >;
 
     beforeEach(() => {

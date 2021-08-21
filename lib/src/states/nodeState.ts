@@ -13,7 +13,7 @@ import { PortState, IPortStateWithoutIds } from 'states/portState';
 import { RootStore } from 'states/rootStore';
 import { ISelectableItem } from 'states/selectionState';
 import { componentDefaultType } from 'states/visualComponents';
-import { Point } from 'utils/point';
+import { arePointsEqual, Point } from 'utils/point';
 import { generateTransform } from 'utils/transformation';
 
 export class NodeState implements ISelectableItem {
@@ -91,26 +91,35 @@ export class NodeState implements ISelectableItem {
 
   /**
    * @param newPosition - new position
-   * @param force - do not take into account snapping to grid
+   * @param ignoreSnapping - do not take into account snapping to grid
    * @returns remainder in case snap to grid is turned on. For example if newPosition would be [22,17] and snap [10,10],
    * the node position would be set to [20,20] and remainder equals [2,-3]
    */
   setPosition = (
     newPosition: Point | null | undefined,
-    force: boolean = false
+    ignoreSnapping: boolean = false
   ): Point | undefined => {
     newPosition = newPosition ?? [0, 0];
-    if (!this._position || force) {
-      this._position = newPosition;
-      return undefined;
+    
+    let remainder = undefined;
+    if (!ignoreSnapping) {
+      const result = snapPositionToGrid(
+        newPosition,
+        this._rootStore.nodesSettings.gridSnap
+      );
+      newPosition = result.position;
+      remainder = result.remainder
     }
-
-    const result = snapPositionToGrid(
-      newPosition,
-      this._rootStore.nodesSettings.gridSnap
-    );
-    this._position = result.position;
-    return result.remainder;
+      
+    if (arePointsEqual(newPosition, this._position)) return undefined;
+    
+    const lastPos = this._position;
+    this._position = newPosition;
+    // Do not notify if position was not initialized before 
+    if (lastPos){
+      this._rootStore.callbacks.nodePositionChanged(this, lastPos, this._position);
+    }
+    return remainder;
   };
 
   get type() {

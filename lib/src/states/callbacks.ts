@@ -2,10 +2,12 @@ import { PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';
 import { NodeState } from 'states/nodeState';
 import { SuccessOrErrorResult } from 'utils/result';
+import { Point } from 'utils/point';
 
-export class Callbacks implements Required<ICallbacks> {
+export class Callbacks {
   private _validateLinkEndpoints?: ICallbacks['validateLinkEndpoints'];
   private _nodesAdded?: ICallbacks['nodesAdded'];
+  private _nodePositionChanged?: ICallbacks['nodePositionChanged'];
 
   private _rootStore: RootStore;
 
@@ -17,11 +19,13 @@ export class Callbacks implements Required<ICallbacks> {
   import = (callbacks?: ICallbacks) => {
     this._validateLinkEndpoints = callbacks?.validateLinkEndpoints;
     this._nodesAdded = callbacks?.nodesAdded;
+    this._nodePositionChanged = callbacks?.nodePositionChanged;
   };
 
   export = () => ({
     validateLinkEndpoints: this._validateLinkEndpoints,
     nodesAdded: this._nodesAdded,
+    nodePositionChanged: this._nodePositionChanged,
   });
 
   validateLinkEndpoints = (source: PortState, target: PortState) => {
@@ -33,9 +37,17 @@ export class Callbacks implements Required<ICallbacks> {
   nodesAdded = (
     addResults: SuccessOrErrorResult<NodeState>[],
     importing: boolean
-  ) =>
+  ) => 
     this._nodesAdded &&
     this._nodesAdded(addResults, importing, this._rootStore);
+
+  nodePositionChanged = (
+    node: NodeState,
+    oldPosition: Point,
+    newPosition: Point
+  ) =>
+    this._nodePositionChanged &&
+    this._nodePositionChanged(node, oldPosition, newPosition, this._rootStore);
 }
 
 export interface ICallbacks {
@@ -47,6 +59,12 @@ export interface ICallbacks {
   nodesAdded?: (
     addResults: SuccessOrErrorResult<NodeState>[],
     importing: boolean,
+    rootStore: RootStore
+  ) => void;
+  nodePositionChanged?: (
+    node: NodeState,
+    oldPosition: Point,
+    newPosition: Point,
     rootStore: RootStore
   ) => void;
 }

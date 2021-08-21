@@ -29,5 +29,5 @@ export const multiplyPoint = (a: Point, m: number): Point => [
   a[1] * m,
 ];
 
-export const arePointsEqual = (a: Point, b: Point): boolean =>
-  a === b || (a && b && a[0] === b[0] && a[1] === b[1]);
+export const arePointsEqual = (a?: Point, b?: Point): boolean =>
+  a === b || (isPoint(a) && isPoint(b) && a[0] === b[0] && a[1] === b[1]);
