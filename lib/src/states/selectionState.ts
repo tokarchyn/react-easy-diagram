@@ -18,6 +18,12 @@ export class SelectionState {
     return this._selectedItems;
   }
 
+  get selectedNodes(): Readonly<NodeState[]> {
+    return this.selectedItems.filter(
+      (i) => i instanceof NodeState
+    ) as NodeState[];
+  }
+
   select = (item: ISelectableItem, multipleActivated: boolean) => {
     if (multipleActivated) {
       if (this._selectedItems.includes(item)) {

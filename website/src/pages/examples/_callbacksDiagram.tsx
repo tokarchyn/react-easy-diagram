@@ -14,8 +14,11 @@ export default function () {
                 .map((r) => (r as SuccessResult<NodeState>).value.export())
             );
           },
-          nodePositionChanged: (node, oldPos, newPos, store) => {
+          nodePositionChanged: (node, oldPos, newPos, isDragActive, store) => {
             console.log(`Position of node '${node.id}' changed from '${oldPos.toString()}' to '${newPos.toString()}'`);
+          },
+          nodeDragStateChanged: (node, isDragActive) => {
+            console.log(`${isDragActive ? 'Start' : 'Finish'} dragging of node with id '${node.id}'`)
           }
         },
       }}
