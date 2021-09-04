@@ -27,6 +27,7 @@ export class NodeState implements ISelectableItem {
   private _extra: any;
   private _isSelectionEnabled: boolean | null;
   private _isDragEnabled: boolean | null;
+  private _isDragActive: boolean = false;
 
   private _rootStore: RootStore;
 
@@ -100,7 +101,7 @@ export class NodeState implements ISelectableItem {
     ignoreSnapping: boolean = false
   ): Point | undefined => {
     newPosition = newPosition ?? [0, 0];
-    
+
     let remainder = undefined;
     if (!ignoreSnapping) {
       const result = snapPositionToGrid(
@@ -108,16 +109,21 @@ export class NodeState implements ISelectableItem {
         this._rootStore.nodesSettings.gridSnap
       );
       newPosition = result.position;
-      remainder = result.remainder
+      remainder = result.remainder;
     }
-      
+
     if (arePointsEqual(newPosition, this._position)) return undefined;
-    
+
     const lastPos = this._position;
     this._position = newPosition;
-    // Do not notify if position was not initialized before 
-    if (lastPos){
-      this._rootStore.callbacks.nodePositionChanged(this, lastPos, this._position);
+    // Do not notify if position was not initialized before
+    if (lastPos) {
+      this._rootStore.callbacks.nodePositionChanged(
+        this,
+        lastPos,
+        this._position,
+        this.isDragActive
+      );
     }
     return remainder;
   };
@@ -136,6 +142,9 @@ export class NodeState implements ISelectableItem {
 
   set selected(value: boolean) {
     this._selected = value;
+    if (!value) {
+      this.isDragActive = false;
+    }
   }
 
   get extra() {
@@ -242,6 +251,15 @@ export class NodeState implements ISelectableItem {
   setIsDragEnabled = (value: boolean | null | undefined) => {
     this._isDragEnabled = isBoolean(value) ? value : null;
   };
+
+  get isDragActive() {
+    return this._isDragActive;
+  }
+
+  set isDragActive(value) {
+    this._isDragActive = value;
+    this._rootStore.callbacks.nodeDragStateChanged(this);
+  }
 }
 
 function snapPositionToGrid(position: Point, snap: Point | null) {

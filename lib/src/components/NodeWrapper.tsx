@@ -9,7 +9,7 @@ import { useNotifyRef } from 'hooks/useNotifyRef';
 import { action } from 'mobx';
 
 export const NodeWrapper = observer<{ node: NodeState }>(({ node }) => {
-  const { userInteractionElemRef } = useNodeUserInteraction(node);
+  const userInteractionElemRef = useNodeUserInteraction(node);
   const renderedPortsContextValue = usePortsCleanUp(node);
 
   return (
