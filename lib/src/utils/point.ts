@@ -14,10 +14,16 @@ export const distanceBetweenPoints = (a: Point, b: Point): number =>
 export const roundPoint = (point: Point) =>
   [Math.round(point[0]), Math.round(point[1])] as Point;
 
-export const addPoints = (...points: Point[]): Point =>
-  points.reduce((prev, curr) =>
-    curr ? [prev[0] + curr[0], prev[1] + curr[1]] : prev
-  );
+export const addPoints = (...points: (Point | undefined)[]): Point =>
+  points.reduce((prev, curr) => {
+    if (curr) {
+      return [
+        (prev ? prev[0] : 0) + curr[0], 
+        (prev ? prev[1] : 0) + curr[1]];
+    } else {
+      return prev;
+    }
+  }) ?? [0, 0];
 
 export const subtractPoints = (...points: Point[]): Point =>
   points.reduce((prev, curr) =>

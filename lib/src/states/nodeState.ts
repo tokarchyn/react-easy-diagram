@@ -112,7 +112,7 @@ export class NodeState implements ISelectableItem {
       remainder = result.remainder;
     }
 
-    if (arePointsEqual(newPosition, this._position)) return undefined;
+    if (arePointsEqual(newPosition, this._position)) return remainder;
 
     const lastPos = this._position;
     this._position = newPosition;

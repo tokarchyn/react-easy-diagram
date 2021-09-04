@@ -18,7 +18,7 @@ export const useNodeUserInteraction = (
 
   // In case the snap to grid option is enabled in settings
   const remainderFromPreviousDragEventRef = useRef<
-    Map<NodeState, Point | undefined>
+    Map<string, Point | undefined>
   >(new Map());
   const dragAllowedRef = useRef<boolean>(false);
   const selectOnLongTapRef = useRef<NodeJS.Timeout | null>(null);
@@ -65,10 +65,10 @@ export const useNodeUserInteraction = (
             const newPosition = addPoints(
               n.position,
               multiplyPoint(delta, 1 / rootStore.diagramState.zoom),
-              remainderFromPreviousDragEventRef.current.get(n) ?? [0, 0]
+              remainderFromPreviousDragEventRef.current.get(n.id)
             );
             const newRemainder = n.setPosition(newPosition);
-            remainderFromPreviousDragEventRef.current.set(n, newRemainder);
+            remainderFromPreviousDragEventRef.current.set(n.id, newRemainder);
           });
         }
       },
