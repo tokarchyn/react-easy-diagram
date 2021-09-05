@@ -257,8 +257,10 @@ export class NodeState implements ISelectableItem {
   }
 
   set isDragActive(value) {
-    this._isDragActive = value;
-    this._rootStore.callbacks.nodeDragStateChanged(this);
+    if (this._isDragActive != value) {
+      this._isDragActive = value;
+      this._rootStore.callbacks.nodeDragStateChanged(this);
+    }
   }
 }
 
