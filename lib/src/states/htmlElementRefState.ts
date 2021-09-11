@@ -18,28 +18,13 @@ export class HtmlElementRefState {
     this._currentInternal = value;
   }
 
-  offsetRelativeToParent = (parent: HTMLElement): Point | null => {
+  offsetRelativeToParent = (parent: HTMLElement, zoom: number): Point | null => {
     this._triggerSizePositionRecalculation | 1; // to make offsetRelativeToParent dependend on _triggerSizePositionRecalculation
-    if (this.current) {
-      let iterElement = this.current as HTMLElement | null;
-      let nextOffsetParent = null as Element | null;
-      let acumLeft = 0;
-      let acumTop = 0;
-
-      while (parent !== iterElement && iterElement) {
-        if (!nextOffsetParent || nextOffsetParent === iterElement) {
-          const translate = getTranslate(iterElement);
-          acumLeft += iterElement.offsetLeft + translate[0];
-          acumTop += iterElement.offsetTop + translate[1];
-          nextOffsetParent = iterElement.offsetParent;
-        }
-        iterElement = iterElement.parentElement;
-      }
-
-      return [acumLeft, acumTop];
-    }
-
-    return null;
+    const curr = this.current as HTMLElement;
+    if (!curr) return null;
+    const boundingRect = curr.getBoundingClientRect();
+    const parentBoundingRect = parent.getBoundingClientRect();
+    return [(boundingRect.x - parentBoundingRect.x) / zoom, (boundingRect.y - parentBoundingRect.y) / zoom];
   };
 
   /**
@@ -58,26 +43,6 @@ export class HtmlElementRefState {
   recalculateSizeAndPosition = () => {
     this._triggerSizePositionRecalculation += 1; 
   }
-}
-
-// https://stackoverflow.com/questions/21912684/how-to-get-value-of-translatex-and-translatey
-// https://gist.github.com/aderaaij/a6b666bf756b2db1596b366da921755d
-function getTranslate(item: HTMLElement): Point {
-  const transArr: Point = [0, 0];
-  if (!window.getComputedStyle) {
-    return transArr;
-  }
-  const style = window.getComputedStyle(item);
-  const transform = style.transform || style.webkitTransform;
-  // matrix(a, b, c, d, tx, ty)
-  // consider also to add matrix3d(a, b, 0, 0, c, d, 0, 0, 0, 0, 1, 0, tx, ty, 0, 1)
-  let mat = transform.match(/^matrix\((.+)\)$/);
-  if (mat) {
-    transArr[0] = parseInt(mat[1].split(', ')[4], 10);
-    transArr[1] = parseInt(mat[1].split(', ')[5], 10);
-  }
-
-  return transArr;
 }
 
 export interface IHtmlElementRect {

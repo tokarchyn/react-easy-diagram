@@ -8,18 +8,21 @@ import { RootStore } from 'states/rootStore';
 import { BoundingBox } from 'utils/common';
 import { clampValue, deepCopy } from 'utils';
 import { addPoints, multiplyPoint, Point, subtractPoints } from 'utils/point';
-import { generateTransform } from 'utils/transformation';
 
 export class DiagramState
   implements IUserInteractionTranslate, IUserInteractionTranslateAndZoom {
   private _offset: Point;
   private _zoom: number;
+  private _renderedOffset: Point;
+  private _renderedZoom: number;
   private _diagramInnerRef: HtmlElementRefState;
   private _rootStore: RootStore;
 
   constructor(rootStore: RootStore) {
     this._diagramInnerRef = new HtmlElementRefState(null);
     this._rootStore = rootStore;
+    this._renderedOffset = [0, 0];
+    this._renderedZoom = 1;
     this.import();
 
     makeAutoObservable(this, {
@@ -94,15 +97,8 @@ export class DiagramState
     const diagramRealSize = this._diagramInnerRef.realSize;
     if (!diagramRealSize) return;
 
-    this.zoomInto(
-      multiplyPoint(diagramRealSize, 0.5),
-      zoomMultiplicator
-    );
+    this.zoomInto(multiplyPoint(diagramRealSize, 0.5), zoomMultiplicator);
   };
-
-  get transformString() {
-    return generateTransform(this._offset, this._zoom);
-  }
 
   get diagramInnerRef() {
     return this._diagramInnerRef;
@@ -115,6 +111,22 @@ export class DiagramState
   get zoom() {
     return this._zoom;
   }
+
+  get renderedOffset() {
+    return this._renderedOffset;
+  }
+
+  get renderedZoom() {
+    return this._renderedZoom;
+  }
+
+  /**
+   * Set offset and zoom values that were already rendered.
+   */
+  renderOffsetAndZoom = (offset: Point, zoom: number) => {
+    this._renderedOffset = offset;
+    this._renderedZoom = zoom;
+  };
 
   zoomToFit = () => {
     const nodesBoundingBox = this._getNodesBoundingBoxWithPadding();

@@ -6,7 +6,7 @@ import { useDiagramDragHandlers } from 'hooks/userInteractions/useDiagramDragHan
 import { useDiagramPinchHandlers } from 'hooks/userInteractions/useDiagramPinchHandlers';
 import { useDiagramWheelHandler } from 'hooks/userInteractions/useDiagramWheelHandler';
 
-export const useDiagramUserInteraction = (): IUseDragAndZoomResult => {
+export const useDiagramUserInteraction = () => {
   const { diagramState } = useRootStore();
 
   const cancelGesture = useCallback(
@@ -38,12 +38,4 @@ export const useDiagramUserInteraction = (): IUseDragAndZoomResult => {
       eventOptions: { passive: false },
     }
   );
-
-  return {
-    transform: diagramState.transformString,
-  };
 };
-
-export interface IUseDragAndZoomResult {
-  transform: string;
-}

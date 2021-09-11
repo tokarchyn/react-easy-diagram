@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite';
 import { useRootStore } from 'hooks/useRootStore';
 import { BackgroundWrapper } from 'components/BackgroundWrapper';
 import { MiniControlWrapper } from 'components/MiniControlWrapper';
+import { generateTransform } from 'utils/transformation';
 
 export interface IDiagramInnerProps {
   diagramStyles?: React.CSSProperties;
@@ -13,13 +14,23 @@ export interface IDiagramInnerProps {
 
 export const InnerDiagram = observer<IDiagramInnerProps>((props) => {
   const rootStore = useRootStore();
-  const { transform } = useDiagramUserInteraction();
+  useDiagramUserInteraction();
+
+  const offset = rootStore.diagramState.offset;
+  const zoom = rootStore.diagramState.zoom;
+  // Notify state about already rendered zoom and offset.
+  useEffect(() => {
+    rootStore.diagramState.renderOffsetAndZoom(offset, zoom);
+  }, [offset, zoom]);
 
   useEffect(() => {
-    const resizeHandler = () => rootStore.nodesStore.nodes.forEach(n => n.recalculatePortsSizeAndPosition());
-    window.addEventListener('resize', resizeHandler)
-    return () => window.removeEventListener('resize', resizeHandler)
-  }, [rootStore])
+    const resizeHandler = () =>
+      rootStore.nodesStore.nodes.forEach((n) =>
+        n.recalculatePortsSizeAndPosition()
+      );
+    window.addEventListener('resize', resizeHandler);
+    return () => window.removeEventListener('resize', resizeHandler);
+  }, [rootStore]);
 
   return (
     <div
@@ -31,7 +42,7 @@ export const InnerDiagram = observer<IDiagramInnerProps>((props) => {
       <div
         className='react_fast_diagram_DiagramInner_DraggablePart'
         style={{
-          transform: transform,
+          transform: generateTransform(offset, zoom),
         }}
       >
         <LinksLayer linksStore={rootStore.linksStore} />

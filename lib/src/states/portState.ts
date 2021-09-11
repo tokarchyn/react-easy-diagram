@@ -63,7 +63,7 @@ export class PortState {
   get id() {
     return this._id;
   }
-  
+
   get nodeId() {
     return this._nodeId;
   }
@@ -132,14 +132,15 @@ export class PortState {
    * Update only those properties presented in `state` parameter
    */
   update = (state?: IPortStateWithoutIds) => {
-    if(!state) return;
+    if (!state) return;
 
     state.type && this.setType(state.type);
     state.label && this.setLabel(state.label);
     state.extra && this.setExtra(state.extra);
     state.component && this.setComponent(state.component);
     state.linkDirection && this.setLinkDirection(state.linkDirection);
-    state.isConnectionEnabled && this.setIsConnectionEnabled(state.isConnectionEnabled);
+    state.isConnectionEnabled &&
+      this.setIsConnectionEnabled(state.isConnectionEnabled);
   };
 
   export = (): IPortStateWithIds =>
@@ -168,7 +169,12 @@ export class PortState {
 
   get offsetRelativeToNode(): Point | null {
     if (this.node.ref.current) {
-      return this._ref.offsetRelativeToParent(this.node.ref.current);
+      return this._ref.offsetRelativeToParent(
+        this.node.ref.current,
+        // Zoom property cannot be used here because to calculate offset we use real
+        // html elements that have not been rendered with the new zoom at this time
+        this._rootStore.diagramState.renderedZoom
+      );
     }
 
     return null;

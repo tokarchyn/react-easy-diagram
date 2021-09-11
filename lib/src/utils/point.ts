@@ -14,7 +14,7 @@ export const distanceBetweenPoints = (a: Point, b: Point): number =>
 export const roundPoint = (point: Point) =>
   [Math.round(point[0]), Math.round(point[1])] as Point;
 
-export const addPoints = (...points: (Point | undefined)[]): Point =>
+export const addPoints = (...points: (Point | undefined | null)[]): Point =>
   points.reduce((prev, curr) => {
     if (curr) {
       return [
