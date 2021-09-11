@@ -5,7 +5,7 @@ import { LinkWrapper } from 'components/LinkWrapper';
 
 export const LinksLayer = observer<{linksStore: LinksStore}>(({linksStore}) => {
   return (
-    <svg>
+    <svg className="react_fast_diagram_Layer">
       {Array.from(linksStore.links).map(([id, link]) => (
         <LinkWrapper key={link.id} link={link} />
       ))}

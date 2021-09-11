@@ -23,8 +23,6 @@
   transform-origin: 0px 0px;
   top: 0px;
   left: 0px;
-  right: 0px;
-  bottom: 0px;
   /* useGestures hook use targetTouches instead of simply touches, 
   so we should set this property to Movable, otherwise if user put 
   one finger above Movable and another above DiagramInner, the hook 
@@ -32,7 +30,12 @@
   pointer-events: none;
 }
 
-.react_fast_diagram_DiagramInner_DraggablePart > * {
+.react_fast_diagram_Layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;  
   overflow: visible;
 }
 

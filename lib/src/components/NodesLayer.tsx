@@ -12,7 +12,7 @@ export const NodesLayer = observer<{nodesStore: NodesStore}>(({nodesStore}) => {
   }, [])
 
   return (
-    <div>
+    <div className="react_fast_diagram_Layer">
       {Array.from(nodesStore.nodes).map(([id, node]) => (
         <NodeWrapper key={node.id} node={node} />
       ))}
