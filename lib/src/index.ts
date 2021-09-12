@@ -34,6 +34,7 @@ export * from './hooks/userInteractions/usePortUserInteraction';
 export * from './hooks/userInteractions/useUserAbilityToSelectSwitcher';
 export * from './linkConstructors/curved';
 export * from './linkConstructors/straight';
+export * from './linkConstructors/utils';
 export * from './states/callbacks';
 export * from './states/diagramSettings';
 export * from './states/diagramState';

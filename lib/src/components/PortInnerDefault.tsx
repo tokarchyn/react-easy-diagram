@@ -6,6 +6,7 @@ import { Point } from 'utils/point';
 
 export interface IPortDefaultSettings {
   size: Point;
+  opacity?: number;
   color: string;
   dragColor: string;
   hoverColor: string;
@@ -32,6 +33,7 @@ export const PortInnerDefault: React.FC<
       style={{
         width: finalSettings.size[0],
         height: finalSettings.size[1],
+        opacity: finalSettings.opacity,
         backgroundColor: color,
         borderRadius: '2px',
       }}

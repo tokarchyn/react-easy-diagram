@@ -6,7 +6,7 @@ import type { IComponentDefinition } from 'states/visualComponentState';
 
 export const LinkDefault: React.FC<
   ILinkVisualComponentProps<Partial<ILinkDefaultSettings>>
-> = observer(({entity, settings, bind}) => {
+> = observer(({ entity, settings, bind }) => {
   const finalSettings = {
     ...linkDefaultSettings,
     ...settings,
@@ -15,7 +15,10 @@ export const LinkDefault: React.FC<
   if (!path) return null;
 
   let color = finalSettings.color;
-  if (entity.selected) color = finalSettings.selectedColor;
+  if (entity.selected && finalSettings.selectedColor)
+    color = finalSettings.selectedColor;
+  else if (entity.hovered && finalSettings.hoveredColor)
+    color = finalSettings.hoveredColor;
 
   return (
     <g>
@@ -24,47 +27,81 @@ export const LinkDefault: React.FC<
         stroke={color}
         strokeWidth={finalSettings.strokeWidth}
         fill='none'
-        strokeLinecap="round"        
+        strokeLinecap='round'
+        markerStart={getMarkerBasedOnState(
+          finalSettings.markerStart,
+          entity.selected,
+          entity.hovered
+        )}
+        markerEnd={getMarkerBasedOnState(
+          finalSettings.markerEnd,
+          entity.selected,
+          entity.hovered
+        )}
       />
       <path
         d={path.svgPath}
-        stroke={color}
-        strokeWidth={finalSettings.strokeWidth + 5}
+        stroke='white'
+        strokeWidth='5'
         {...bind()}
         pointerEvents='auto'
-        fill="none"
-        strokeLinecap="round"
-        strokeOpacity={entity.hovered ? 0.22 : 0}
+        fill='none'
+        strokeOpacity='0'
       />
-      {entity instanceof LinkCreationState && (
-        <circle
-          cx={path.target[0]}
-          cy={path.target[1]}
-          r={finalSettings.cirleRadius}
-          fill='orange'
-        />
-      )}
     </g>
   );
 });
 
+function getMarkerBasedOnState(
+  marker: ILinkSvgMarker | undefined,
+  selected: boolean,
+  hovered: boolean
+): string | undefined {
+  if (!marker) return undefined;
+
+  let id = undefined;
+  if (typeof marker === 'string') {
+    id = marker;
+  } else {
+    id = marker.default;
+    if (selected && marker.selected) id = marker.selected;
+    else if (hovered && marker.hovered) id = marker.hovered;
+  }
+  return `url(#${id})`;
+}
+
 export interface ILinkDefaultSettings {
   color: string;
-  selectedColor: string;
+  selectedColor?: string;
+  hoveredColor?: string;
   strokeWidth: number;
   cirleRadius: number;
+  markerStart?: ILinkSvgMarker;
+  markerEnd?: ILinkSvgMarker;
 }
+
+type ILinkSvgMarker =
+  | {
+      default: string;
+      hovered?: string;
+      selected?: string;
+    }
+  | string;
 
 const linkDefaultSettings: ILinkDefaultSettings = {
   color: '#c2c2c2',
   selectedColor: '#6eb7ff',
+  hoveredColor: '#a1d0ff',
   strokeWidth: 1,
   cirleRadius: 3,
 };
 
 export function createLinkDefault(
   settings?: Partial<ILinkDefaultSettings>
-): IComponentDefinition<ILinkVisualComponentProps, Partial<ILinkDefaultSettings>> {
+): IComponentDefinition<
+  ILinkVisualComponentProps,
+  Partial<ILinkDefaultSettings>
+> {
   return {
     component: LinkDefault,
     settings: settings,

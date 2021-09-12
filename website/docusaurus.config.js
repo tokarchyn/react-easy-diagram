@@ -67,6 +67,10 @@ module.exports = {
               label: 'Callbacks',
               to: 'examples/callbacks',
             },
+            {
+              label: 'Link Markers',
+              to: 'examples/linkMarkers',
+            },
             // {
             //   label: 'Dynamic ports',
             //   to: 'examples/dynamicPorts',

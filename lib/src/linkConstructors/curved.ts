@@ -5,6 +5,7 @@ import {
 import { DirectionWithDiagonals } from 'utils/position';
 import { distanceBetweenPoints, roundPoint } from 'utils/point';
 import { Point } from 'utils/point';
+import { commandC, createVector, getRadian } from 'linkConstructors/utils';
 
 function curvedLinkPathConstructor(
   source: ILinkPathConstructorEndpointInfo,
@@ -12,62 +13,18 @@ function curvedLinkPathConstructor(
   settings: ICurvedLinkPathConstructorSettings
 ): string {
   if (!source || !target) return '';
-  const sourcePoint = roundPoint(source.point);
-  const targetPoint = roundPoint(target.point);
-
-  const sourceStr = `${source.point[0]}, ${source.point[1]}`;
-  const targetStr = `${target.point[0]}, ${target.point[1]}`;
 
   const directionFactor = settings.tweakDirectionFactorBasedOnDistance(
-    distanceBetweenPoints(sourcePoint, targetPoint),
+    distanceBetweenPoints(source.point, target.point),
     settings.directionFactor
   );
 
-  function getControl(
-    endpoint: Point,
-    direction: DirectionWithDiagonals | undefined
-  ): string {
-    switch (direction) {
-      case 'left':
-        return createControl(endpoint[0] - directionFactor, endpoint[1]);
-      case 'up':
-        return createControl(endpoint[0], endpoint[1] - directionFactor);
-      case 'right':
-        return createControl(endpoint[0] + directionFactor, endpoint[1]);
-      case 'down':
-        return createControl(endpoint[0], endpoint[1] + directionFactor);
-      case 'left-up':
-        return createControl(
-          endpoint[0] - directionFactor,
-          endpoint[1] - directionFactor
-        );
-      case 'right-up':
-        return createControl(
-          endpoint[0] + directionFactor,
-          endpoint[1] - directionFactor
-        );
-      case 'right-down':
-        return createControl(
-          endpoint[0] + directionFactor,
-          endpoint[1] + directionFactor
-        );
-      case 'left-down':
-        return createControl(
-          endpoint[0] - directionFactor,
-          endpoint[1] + directionFactor
-        );
-      default:
-        return createControl(endpoint[0], endpoint[1]);
-    }
-  }
-
-  if (source.direction || target.direction) {
-    const sourceControl = getControl(sourcePoint, source.direction);
-    const targetControl = getControl(targetPoint, target.direction);
-    return `M ${sourceStr} C ${sourceControl} ${targetControl} ${targetStr}`;
-  } else {
-    return `M ${sourceStr} Q ${target.point[0]} ${source.point[1]} ${targetStr}`;
-  }
+  return commandC(
+    source.point,
+    createVector(source.point, directionFactor, getRadian(source.direction)),
+    createVector(target.point, directionFactor, getRadian(target.direction)),
+    target.point
+  );
 }
 
 export interface ICurvedLinkPathConstructorSettings {
@@ -100,8 +57,4 @@ export function createCurvedLinkPathConstructor(
       target,
       settings ? { ...defualtSettings, ...settings } : defualtSettings
     );
-}
-
-function createControl(x: number, y: number) {
-  return `${x} ${y}`;
 }
