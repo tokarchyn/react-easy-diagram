@@ -8,6 +8,7 @@ export * from './components/Icons';
 export * from './components/LinkDefault';
 export * from './components/LinkWrapper';
 export * from './components/LinksLayer';
+export * from './components/Markers';
 export * from './components/MiniControlDefault';
 export * from './components/MiniControlWrapper';
 export * from './components/Node';

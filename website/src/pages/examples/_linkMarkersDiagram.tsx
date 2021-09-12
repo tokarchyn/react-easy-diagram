@@ -88,6 +88,8 @@ export default function () {
               },
               // Or just using one marker for all states
               markerStart: 'default_circle_marker',
+              // If you use markers it can be more attractive to disable hover effect
+              enableHoverEffect: false
             }),
             custom_arrow_link: createLinkDefault({
               markerEnd: 'custom_arrow',

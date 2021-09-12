@@ -41,12 +41,12 @@ export const LinkDefault: React.FC<
       />
       <path
         d={path.svgPath}
-        stroke='white'
+        stroke={color}
         strokeWidth='5'
         {...bind()}
         pointerEvents='auto'
         fill='none'
-        strokeOpacity='0'
+        strokeOpacity={entity.hovered && finalSettings.enableHoverEffect ? 0.22 : 0}
       />
     </g>
   );
@@ -74,6 +74,7 @@ export interface ILinkDefaultSettings {
   color: string;
   selectedColor?: string;
   hoveredColor?: string;
+  enableHoverEffect: boolean;
   strokeWidth: number;
   cirleRadius: number;
   markerStart?: ILinkSvgMarker;
@@ -94,6 +95,7 @@ const linkDefaultSettings: ILinkDefaultSettings = {
   hoveredColor: '#a1d0ff',
   strokeWidth: 1,
   cirleRadius: 3,
+  enableHoverEffect: true
 };
 
 export function createLinkDefault(
