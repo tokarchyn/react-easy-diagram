@@ -37,7 +37,7 @@ export function createVector(
   return [
     point1[0] +
       length * (angleInRadian !== undefined ? Math.cos(angleInRadian) : 0),
-    point1[1] + length * (angleInRadian !== undefined ? Math.sin(angleInRadian) : 0),
+    point1[1] + length * (angleInRadian !== undefined ? -Math.sin(angleInRadian) : 0),
   ];
 }
 
