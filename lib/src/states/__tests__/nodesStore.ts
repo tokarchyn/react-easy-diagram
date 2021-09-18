@@ -1,6 +1,7 @@
 import { ICallbacks } from 'states/callbacks';
 import { INodeState, NodeState } from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
+import { Point } from 'utils/point';
 import { SuccessOrErrorResult, SuccessResult } from 'utils/result';
 
 describe('Nodes store', () => {
@@ -17,7 +18,7 @@ describe('Nodes store', () => {
     >;
 
     beforeEach(() => {
-      mockNodesAddedCallback = jest.fn((a, b, c) => {});
+      mockNodesAddedCallback = jest.fn((a, b, c, d) => {});
       store.callbacks.import({
         nodesAdded: mockNodesAddedCallback,
       });
@@ -25,7 +26,8 @@ describe('Nodes store', () => {
 
     test('Import new nodes', () => {
       const nodes: INodeState[] = [
-        { position: [0, 10] },
+        { id: 'first', position: [0, 10] },
+        { id: 'first', position: [10, 20] },
         { position: [100, 110] },
       ];
 
@@ -35,20 +37,18 @@ describe('Nodes store', () => {
 
       const callbackCalls = mockNodesAddedCallback.mock.calls;
       expect(callbackCalls.length).toBe(1);
-      expect(callbackCalls[0][1]).toBe(true);
-      expect(callbackCalls[0][2]).toBe(store);
+      expect(callbackCalls[0][2]).toBe(true);
+      expect(callbackCalls[0][3]).toBe(store);
 
-      const addNodedResults = callbackCalls[0][0];
+      const addedNodes = callbackCalls[0][0];
+      expect(addedNodes.length).toBe(2);
+      expect(addedNodes[0].position).toEqual([0, 10]);
+      expect(addedNodes[1].position).toEqual([100, 110]);
 
-      expect(addNodedResults[0].success).toBeTruthy();
-      expect(
-        (addNodedResults[0] as SuccessResult<NodeState>).value.position
-      ).toEqual([0, 10]);
-
-      expect(addNodedResults[1].success).toBeTruthy();
-      expect(
-        (addNodedResults[1] as SuccessResult<NodeState>).value.position
-      ).toEqual([100, 110]);
+      const failedToAdd = callbackCalls[0][1];
+      expect(failedToAdd.length).toBe(1);
+      expect(failedToAdd[0].success).toBe(false);
+      expect(failedToAdd[0].value).toBe(nodes[1]);
     });
 
     test('Import should not call callback if there are not any nodes', () => {
@@ -64,15 +64,17 @@ describe('Nodes store', () => {
     test('Add nodes should call callback', () => {
       store.nodesStore.addNodes([{ position: [0, 10] }], false);
 
-      expect(mockNodesAddedCallback.mock.calls.length).toBe(1);
-      expect(mockNodesAddedCallback.mock.calls[0][1]).toBe(false);
-      expect(mockNodesAddedCallback.mock.calls[0][2]).toBe(store);
+      const callbackCalls = mockNodesAddedCallback.mock.calls;
+      expect(callbackCalls.length).toBe(1);
+      expect(callbackCalls[0][2]).toBe(false);
+      expect(callbackCalls[0][3]).toBe(store);
 
-      const addedNodeResult = mockNodesAddedCallback.mock.calls[0][0][0];
-      expect(addedNodeResult.success).toBeTruthy();
-      expect(
-        addedNodeResult.success && addedNodeResult.value.position
-      ).toEqual([0, 10]);
+      const addedNodes = callbackCalls[0][0];
+      expect(addedNodes.length).toBe(1);
+      expect(addedNodes[0].position).toEqual([0, 10]);
+
+      const failedToAdd = callbackCalls[0][1];
+      expect(failedToAdd.length).toBe(0);
     });
 
     test('Add nodes should not call callback if nodes parameter is empty', () => {
@@ -83,30 +85,38 @@ describe('Nodes store', () => {
     test('Add node should call callback', () => {
       store.nodesStore.addNode({ position: [0, 10] }, false);
 
-      expect(mockNodesAddedCallback.mock.calls.length).toBe(1);
-      expect(mockNodesAddedCallback.mock.calls[0][1]).toBe(false);
-      expect(mockNodesAddedCallback.mock.calls[0][2]).toBe(store);
+      const callbackCalls = mockNodesAddedCallback.mock.calls;
+      expect(callbackCalls.length).toBe(1);
+      expect(callbackCalls[0][2]).toBe(false);
+      expect(callbackCalls[0][3]).toBe(store);
 
-      const addedNodeResult = mockNodesAddedCallback.mock.calls[0][0][0];
-      expect(addedNodeResult.success).toBeTruthy();
-      expect(
-        addedNodeResult.success && addedNodeResult.value.position
-      ).toEqual([0, 10]);
+      const addedNodes = callbackCalls[0][0];
+      expect(addedNodes.length).toBe(1);
+      expect(addedNodes[0].position).toEqual([0, 10]);
+
+      const failedToAdd = callbackCalls[0][1];
+      expect(failedToAdd.length).toBe(0);
     });
 
     test('Add existed node should failed', () => {
       store.nodesStore.addNode({ id: 'mynode', position: [0, 10] }, false);
 
-      const result = store.nodesStore.addNode(
-        { id: 'mynode', position: [0, 100] },
-        false
-      );
-
+      const nodeToAdd: INodeState = { id: 'mynode', position: [0, 100] };
+      const result = store.nodesStore.addNode(nodeToAdd, false);
+      
       expect(result.success).toBeFalsy();
-      expect(mockNodesAddedCallback.mock.calls.length).toBe(2);
-      expect(mockNodesAddedCallback.mock.calls[1][0][0].success).toBeFalsy();
-      expect(mockNodesAddedCallback.mock.calls[1][1]).toBe(false);
-      expect(mockNodesAddedCallback.mock.calls[1][2]).toBe(store);
+      
+      const callbackCalls = mockNodesAddedCallback.mock.calls;
+      expect(callbackCalls.length).toBe(2);
+      expect(callbackCalls[1][2]).toBe(false);
+      expect(callbackCalls[1][3]).toBe(store);
+
+      const addedNodes = callbackCalls[1][0];
+      expect(addedNodes.length).toBe(0);
+
+      const failedToAdd = callbackCalls[1][1];
+      expect(failedToAdd.length).toBe(1);
+      expect(failedToAdd[0].value).toBe(nodeToAdd);
     });
   });
 
@@ -196,5 +206,35 @@ describe('Nodes store', () => {
       expect(box.bottomRightCorner).toEqual([100, 100]);
       expect(box.size).toEqual([100, 100]);
     });
+  });
+
+  test('Existed node is not rewritten on adding by default', () => {
+    store.nodesStore.import([{ id: 'mynode', position: [0, 10] }]);
+
+    const nodeToAdd: INodeState = { id: 'mynode', position: [0, 11] };
+    const result = store.nodesStore.addNode(nodeToAdd);
+
+    expect(result.success).toBe(false);
+    expect(result.value).toBe(nodeToAdd);
+    expect(store.nodesStore.getNode('mynode')?.position).toEqual([0, 10]);
+  });
+
+  test('Existed node is not rewritten on adding many nodes by default', () => {
+    store.nodesStore.import([{ id: 'mynode', position: [0, 10] }]);
+
+    const nodeToAdd1: INodeState = { id: 'mynode', position: [0, 11] };
+    const nodeToAdd2: INodeState = { id: 'mynode2', position: [0, 12] };
+    const result = store.nodesStore.addNodes([nodeToAdd1,nodeToAdd2]);
+
+    expect(result.length).toBe(2);
+
+    expect(result[0].success).toBe(false);
+    expect(result[0].value).toBe(nodeToAdd1);
+    expect(store.nodesStore.getNode('mynode')?.position).toEqual([0, 10]);
+
+    expect(result[1].success).toBe(true);
+    const addedNode = store.nodesStore.getNode('mynode2');
+    expect(result[1].value).toBe(addedNode);
+    expect(addedNode?.position).toEqual([0, 12]);
   });
 });

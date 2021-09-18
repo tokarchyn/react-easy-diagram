@@ -1,7 +1,12 @@
 import { PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';
-import { NodeState } from 'states/nodeState';
-import { SuccessOrErrorResult } from 'utils/result';
+import { INodeState, NodeState } from 'states/nodeState';
+import {
+  ErrorResult,
+  isError,
+  isSuccess,
+  SuccessOrErrorResult,
+} from 'utils/result';
 import { Point } from 'utils/point';
 
 export class Callbacks {
@@ -38,11 +43,16 @@ export class Callbacks {
   };
 
   nodesAdded = (
-    addResults: SuccessOrErrorResult<NodeState>[],
+    addResults: SuccessOrErrorResult<NodeState, INodeState>[],
     importing: boolean
   ) =>
     this._nodesAdded &&
-    this._nodesAdded(addResults, importing, this._rootStore);
+    this._nodesAdded(
+      addResults.filter(isSuccess).map((r) => r.value),
+      addResults.filter(isError),
+      importing,
+      this._rootStore
+    );
 
   nodePositionChanged = (
     node: NodeState,
@@ -71,7 +81,8 @@ export interface ICallbacks {
     rootStore: RootStore
   ) => boolean;
   nodesAdded?: (
-    addResults: SuccessOrErrorResult<NodeState>[],
+    addedNodes: NodeState[],
+    failedToAdd: ErrorResult<INodeState>[],
     importing: boolean,
     rootStore: RootStore
   ) => void;

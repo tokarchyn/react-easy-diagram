@@ -1,25 +1,29 @@
 import React from 'react';
-import { Diagram, NodeState, SuccessResult } from 'react-easy-diagram';
+import { Diagram } from 'react-easy-diagram';
 
 export default function () {
   return (
     <Diagram
       settings={{
         callbacks: {
-          nodesAdded: (addResults, importing, store) => {
+          nodesAdded: (addResults, failedToAdd, importing, store) => {
             console.log('Added nodes:');
-            console.log(
-              addResults
-                .filter((r) => r.success)
-                .map((r) => (r as SuccessResult<NodeState>).value.export())
-            );
+            console.log(addResults.map((r) => r.export()));
           },
           nodePositionChanged: (node, oldPos, newPos, isDragActive, store) => {
-            console.log(`Position of node '${node.id}' changed from '${oldPos.toString()}' to '${newPos.toString()}'`);
+            console.log(
+              `Position of node '${
+                node.id
+              }' changed from '${oldPos.toString()}' to '${newPos.toString()}'`
+            );
           },
           nodeDragStateChanged: (node, isDragActive) => {
-            console.log(`${isDragActive ? 'Start' : 'Finish'} dragging of node with id '${node.id}'`)
-          }
+            console.log(
+              `${isDragActive ? 'Start' : 'Finish'} dragging of node with id '${
+                node.id
+              }'`
+            );
+          },
         },
       }}
       initState={{

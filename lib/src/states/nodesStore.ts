@@ -4,6 +4,7 @@ import {
   SuccessOrErrorResult,
   errorResult,
   successValueResult,
+  errorValueResult,
 } from 'utils/result';
 import { guidForcedUniqueness } from 'utils/guid';
 import { NodeState, INodeState, INodeStateWithId } from 'states/nodeState';
@@ -27,7 +28,7 @@ export class NodesStore {
   import = (newNodes?: INodeState[]) => {
     this._nodes = new Map();
     if (newNodes) {
-      let results = this._addNodesInternal(newNodes, true);
+      let results = this._addNodesInternal(newNodes, false);
       results.length != 0 &&
         this._rootStore.callbacks.nodesAdded(results, true);
     }
@@ -38,8 +39,8 @@ export class NodesStore {
 
   addNodes = (
     nodes: INodeState[],
-    rewriteIfExists: boolean
-  ): SuccessOrErrorResult<NodeState>[] => {
+    rewriteIfExists: boolean = false
+  ): SuccessOrErrorResult<NodeState, INodeState>[] => {
     let results = this._addNodesInternal(nodes, rewriteIfExists);
     results.length != 0 &&
       this._rootStore.callbacks.nodesAdded(results, false);
@@ -49,7 +50,7 @@ export class NodesStore {
   private _addNodesInternal = (
     nodes: INodeState[],
     rewriteIfExists: boolean
-  ): SuccessOrErrorResult<NodeState>[] => {
+  ): SuccessOrErrorResult<NodeState, INodeState>[] => {
     if (!Array.isArray(nodes) || nodes.length == 0) return [];
 
     let results = nodes.map((node) =>
@@ -60,8 +61,8 @@ export class NodesStore {
 
   addNode = (
     node: INodeState,
-    rewriteIfExists: boolean
-  ): SuccessOrErrorResult<NodeState> => {
+    rewriteIfExists: boolean = false
+  ): SuccessOrErrorResult<NodeState, INodeState> => {
     let result = this._addNodeInternal(node, rewriteIfExists);
     this._rootStore.callbacks.nodesAdded([result], false);
     return result;
@@ -70,11 +71,11 @@ export class NodesStore {
   private _addNodeInternal = (
     node: INodeState,
     rewriteIfExists: boolean
-  ): SuccessOrErrorResult<NodeState> => {
-    if (!node) return errorResult('Node object is null or undefined');
+  ): SuccessOrErrorResult<NodeState, INodeState> => {
+    if (!node) return errorValueResult(node, 'Node object is null or undefined');
 
     if (!rewriteIfExists && node.id && this._nodes.has(node.id))
-      return errorResult(`Node with id '${node.id}' already exists`);
+      return errorValueResult(node, `Node with id '${node.id}' already exists`);
 
     const newNode = new NodeState(
       this._rootStore,
