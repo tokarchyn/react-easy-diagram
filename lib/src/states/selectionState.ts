@@ -30,11 +30,11 @@ export class SelectionState {
     } else return false;
   };
 
-  switch = (item: SelectableItem): boolean => {
+  switch = (item: SelectableItem) => {
     if (item.selected) {
-      return this.unselect(item);
+      this.unselect(item);
     } else {
-      return this.select(item);
+      this.select(item);
     }
   };
 
