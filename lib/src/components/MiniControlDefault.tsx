@@ -1,13 +1,15 @@
-import { observer } from 'mobx-react-lite';
-import React from 'react';
-import type { IMiniControlComponentProps } from 'states/diagramSettings';
-import { IComponentDefinition } from 'states/visualComponentState';
-import { CornerPosition } from 'utils/position';
+import { cloneSelectedNodesCommand } from 'commands/clone';
+import { removeSelectedCommand } from 'commands/remove';
 import {
   CopyIcon,
   FilterCenterFocusIcon,
   RubbishBinIcon,
 } from 'components/Icons';
+import { observer } from 'mobx-react-lite';
+import React from 'react';
+import type { IMiniControlComponentProps } from 'states/diagramSettings';
+import { IComponentDefinition } from 'states/visualComponentState';
+import { CornerPosition } from 'utils/position';
 
 const MiniControlDefault: React.FC<
   IMiniControlComponentProps<IMiniControlDefaultSettings>
@@ -28,7 +30,9 @@ const MiniControlDefault: React.FC<
         rootStore.selectionState.selectedItems.length > 0 && (
           <Button
             size={settings.buttonsSize}
-            onClick={rootStore.selectionState.removeSelected}
+            onClick={() =>
+              rootStore.commandExecutor.execute(removeSelectedCommand)
+            }
           >
             <RubbishBinIcon />
           </Button>
@@ -37,7 +41,9 @@ const MiniControlDefault: React.FC<
         rootStore.selectionState.selectedItems.length > 0 && (
           <Button
             size={settings.buttonsSize}
-            onClick={rootStore.selectionState.cloneSelectedNodes}
+            onClick={() =>
+              rootStore.commandExecutor.execute(cloneSelectedNodesCommand)
+            }
           >
             <CopyIcon />
           </Button>
@@ -132,7 +138,7 @@ const defaultSettings: IMiniControlDefaultSettings = {
     zoomOut: true,
     deleteSelection: true,
     cloneSelectedNodes: true,
-    zoomToFit: true
+    zoomToFit: true,
   },
   parentOffset: 20,
 };

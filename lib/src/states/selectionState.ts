@@ -1,17 +1,12 @@
 import { makeAutoObservable } from 'mobx';
 import { LinkState } from 'states/linkState';
-import { INodeState, NodeState } from 'states/nodeState';
-import { RootStore } from 'states/rootStore';
-import { addPoints } from 'utils/point';
+import { NodeState } from 'states/nodeState';
 
 export class SelectionState {
   private _selectedItems: SelectableItem[] = [];
 
-  private _rootStore: RootStore;
-
-  constructor(rootStore: RootStore) {
+  constructor() {
     makeAutoObservable(this);
-    this._rootStore = rootStore;
   }
 
   get selectedItems(): Readonly<SelectableItem[]> {
@@ -58,39 +53,6 @@ export class SelectionState {
 
   unselectItems = (itemsToClear: Readonly<SelectableItem[]>) => {
     itemsToClear.forEach((i) => this.unselect(i));
-  };
-
-  removeSelected = () => {
-    this.removeSelectedNodes();
-    this.removeSelectedLinks();
-  };
-
-  removeSelectedNodes = () => {
-    this._selectedItems
-      .filter((i) => i instanceof NodeState)
-      .forEach((node: NodeState) => {
-        this._rootStore.nodesStore.removeNode(node.id);
-      });
-  };
-
-  removeSelectedLinks = () => {
-    this._selectedItems
-      .filter((i) => i instanceof LinkState)
-      .forEach((link: LinkState) => {
-        this._rootStore.linksStore.removeLink(link.id);
-      });
-  };
-
-  cloneSelectedNodes = () => {
-    this._selectedItems
-      .filter((i) => i instanceof NodeState)
-      .forEach((node: NodeState) => {
-        const nodeObj = node.export() as INodeState;
-        nodeObj.id = undefined;
-        nodeObj.label = [nodeObj.label, 'copy'].join(' ');
-        nodeObj.position = addPoints(nodeObj.position, [50, 50]);
-        this._rootStore.nodesStore.addNode(nodeObj, false);
-      });
   };
 }
 

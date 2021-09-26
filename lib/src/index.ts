@@ -1,5 +1,7 @@
 // created from 'create-ts-index'
 
+export * from './commands/clone';
+export * from './commands/remove';
 export * from './components/BackgroundDefault';
 export * from './components/BackgroundWrapper';
 export * from './components/Diagram';
@@ -37,6 +39,7 @@ export * from './linkConstructors/curved';
 export * from './linkConstructors/straight';
 export * from './linkConstructors/utils';
 export * from './states/callbacks';
+export * from './states/commandExecutor';
 export * from './states/diagramSettings';
 export * from './states/diagramState';
 export * from './states/dragState';
