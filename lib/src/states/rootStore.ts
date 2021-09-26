@@ -9,6 +9,7 @@ import { NodesStore } from 'states/nodesStore';
 import { INodeState } from 'states/nodeState';
 import { PortsSettings, IPortsSettings } from 'states/portsSettings';
 import { SelectionState } from 'states/selectionState';
+import { DragState } from 'states/dragState';
 
 export class RootStore {
   private _diagramState: DiagramState;
@@ -16,6 +17,7 @@ export class RootStore {
   private _nodesStore: NodesStore;
   private _linksStore: LinksStore;
   private _selectionState: SelectionState;
+  private _dragState: DragState;
 
   private _diagramSettings: DiagramSettings;
   private _nodesSettings: NodesSettings;
@@ -35,6 +37,7 @@ export class RootStore {
     this._nodesStore = new NodesStore(this);
     this._linksStore = new LinksStore(this);
     this._selectionState = new SelectionState(this);
+    this._dragState = new DragState(this._selectionState, this._callbacks);
   }
 
   get diagramState() {
@@ -71,6 +74,10 @@ export class RootStore {
 
   get selectionState() {
     return this._selectionState;
+  }
+
+  get dragState() {
+    return this._dragState;
   }
 
   importState = (nodes?: INodeState[], links?: ILinkState[]) => {

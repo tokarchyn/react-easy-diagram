@@ -13,7 +13,7 @@ export class Callbacks {
   private _validateLinkEndpoints?: ICallbacks['validateLinkEndpoints'];
   private _nodesAdded?: ICallbacks['nodesAdded'];
   private _nodePositionChanged?: ICallbacks['nodePositionChanged'];
-  private _nodeDragStateChanged?: ICallbacks['nodeDragStateChanged'];
+  private _dragStateChanged?: ICallbacks['dragStateChanged'];
 
   private _rootStore: RootStore;
 
@@ -26,14 +26,14 @@ export class Callbacks {
     this._validateLinkEndpoints = callbacks?.validateLinkEndpoints;
     this._nodesAdded = callbacks?.nodesAdded;
     this._nodePositionChanged = callbacks?.nodePositionChanged;
-    this._nodeDragStateChanged = callbacks?.nodeDragStateChanged;
+    this._dragStateChanged = callbacks?.dragStateChanged;
   };
 
-  export = () => ({
+  export = () : ICallbacks => ({
     validateLinkEndpoints: this._validateLinkEndpoints,
     nodesAdded: this._nodesAdded,
     nodePositionChanged: this._nodePositionChanged,
-    nodeDragStateChanged: this._nodeDragStateChanged,
+    dragStateChanged: this._dragStateChanged,
   });
 
   validateLinkEndpoints = (source: PortState, target: PortState) => {
@@ -69,9 +69,9 @@ export class Callbacks {
       this._rootStore
     );
 
-  nodeDragStateChanged = (node: NodeState) =>
-    this._nodeDragStateChanged &&
-    this._nodeDragStateChanged(node, node.isDragActive, this._rootStore);
+  dragStateChanged = (nodes: NodeState[], started: boolean) =>
+    this._dragStateChanged &&
+    this._dragStateChanged(nodes, started, this._rootStore);
 }
 
 export interface ICallbacks {
@@ -93,9 +93,9 @@ export interface ICallbacks {
     isDragActive: boolean,
     rootStore: RootStore
   ) => void;
-  nodeDragStateChanged?: (
-    node: NodeState,
-    isDragActive: boolean,
+  dragStateChanged?: (
+    nodes: NodeState[],
+    started: boolean,
     rootStore: RootStore
   ) => void;
 }

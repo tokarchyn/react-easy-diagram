@@ -1,26 +1,22 @@
-import React, { useCallback, useMemo, useRef } from 'react';
-import { useGesture } from 'react-use-gesture';
-import { NodeState } from 'states/nodeState';
-import { addPoints, multiplyPoint, Point } from 'utils/point';
-import { useRootStore } from 'hooks/useRootStore';
-import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
 import {
   canDragGestureBeTapInstead,
   eventPathContainsClass,
   GestureHandlers,
 } from 'hooks/userInteractions/common';
 import { useCursor, useDiagramCursor } from 'hooks/userInteractions/useCursor';
+import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
+import { useRootStore } from 'hooks/useRootStore';
+import React, { useCallback, useMemo, useRef } from 'react';
+import { useGesture } from 'react-use-gesture';
+import { NodeState } from 'states/nodeState';
+import { multiplyPoint } from 'utils/point';
 
 export const useNodeUserInteraction = (
   nodeState: NodeState
 ): React.RefObject<HTMLElement> => {
   const rootStore = useRootStore();
 
-  // In case the snap to grid option is enabled in settings
-  const remainderFromPreviousDragEventRef = useRef<
-    Map<string, Point | undefined>
-  >(new Map());
-  const dragAllowedRef = useRef<boolean>(false);
+  const interactionActiveRef = useRef<boolean>(false);
   const selectOnLongTapRef = useRef<NodeJS.Timeout | null>(null);
   const cancelSelectOnLongTap = useCallback(() => {
     if (selectOnLongTapRef.current) {
@@ -34,73 +30,57 @@ export const useNodeUserInteraction = (
 
   const handlers = useMemo<GestureHandlers>(
     () => ({
-      onDrag: ({ pinching, delta, ctrlKey, movement }) => {
+      onDrag: ({ pinching, delta, movement }) => {
         if (
-          !dragAllowedRef.current ||
+          !interactionActiveRef.current ||
           pinching ||
           canDragGestureBeTapInstead(movement)
         ) {
           return;
         }
         cancelSelectOnLongTap();
-        if (!nodeState.isDragEnabled) {
-          return;
+
+        if (rootStore.dragState.isActive && !nodeState.isDragActive) return;
+        if (!nodeState.isDragEnabled) return;
+
+        if (!nodeState.isDragActive) {
+          rootStore.dragState.startDragging(nodeState);
         }
 
-        if (nodeState.isSelectionEnabled && !nodeState.selected) {
-          // If there is any node that was dragged then its probably due to multi-touch,
-          // in this case it's better to not unselect those nodes.
-          if (
-            rootStore.selectionState.selectedNodes.some((n) => n.isDragActive)
-          ) {
-            rootStore.selectionState.select(nodeState, true);
-          } else {
-            rootStore.selectionState.select(nodeState, ctrlKey);
-          }
-        }
-
-        if (nodeState.selected) {
-          rootStore.selectionState.selectedNodes.forEach((n) => {
-            n.isDragActive = true;
-            const newPosition = addPoints(
-              n.position,
-              multiplyPoint(delta, 1 / rootStore.diagramState.zoom),
-              remainderFromPreviousDragEventRef.current.get(n.id)
-            );
-            const newRemainder = n.setPosition(newPosition);
-            remainderFromPreviousDragEventRef.current.set(n.id, newRemainder);
-          });
-        }
+        rootStore.dragState.dragBy(
+          multiplyPoint(delta, 1 / rootStore.diagramState.zoom)
+        );
       },
       onDragStart: ({ event }) => {
-        dragAllowedRef.current = allowNodeInteraction(event);
-        if (!dragAllowedRef.current) {
-          return;
-        }
-        cancelSelectOnLongTap();
-        if (nodeState.isSelectionEnabled) {
-          selectOnLongTapRef.current = global.setTimeout(() => {
-            if (selectOnLongTapRef.current) {
-              selectOnLongTapRef.current = null;
-              rootStore.selectionState.select(nodeState, true);
-            }
-          }, selectDelay);
+        interactionActiveRef.current =
+          allowNodeInteraction(event) && !rootStore.dragState.isActive;
+
+        if (interactionActiveRef.current) {
+          cancelSelectOnLongTap();
+          if (nodeState.isSelectionEnabled) {
+            selectOnLongTapRef.current = global.setTimeout(() => {
+              if (selectOnLongTapRef.current) {
+                selectOnLongTapRef.current = null;
+                rootStore.selectionState.switch(nodeState);
+              }
+            }, selectDelay);
+          }
         }
       },
       onDragEnd: ({ tap, ctrlKey }) => {
-        if (!dragAllowedRef.current) {
-          return;
-        }
-        const selectLongOnTapCancelled = cancelSelectOnLongTap();
-        rootStore.selectionState.selectedNodes.forEach((n) => {
-          n.isDragActive = false;
-        });
+        if (interactionActiveRef.current) {
+          interactionActiveRef.current = false;
+          const selectLongOnTapCancelled = cancelSelectOnLongTap();
 
-        // selectLongOnTapCancelled means that callback in timer wasn't executed yet
-        if (nodeState.isSelectionEnabled && tap && selectLongOnTapCancelled) {
-          rootStore.selectionState.select(nodeState, ctrlKey);
+          if (nodeState.isDragActive) {
+            rootStore.dragState.stopDragging();
+          }
+
+          // selectLongOnTapCancelled means that callback in timer wasn't executed yet
+          if (nodeState.isSelectionEnabled && tap && selectLongOnTapCancelled) {
+            rootStore.selectionState.select(nodeState, !ctrlKey);
+          }
         }
-        remainderFromPreviousDragEventRef.current.clear();
       },
     }),
     [nodeState, rootStore]
@@ -112,7 +92,7 @@ export const useNodeUserInteraction = (
   });
 
   useUserAbilityToSelectSwitcher(
-    nodeState.isDragActive,
+    interactionActiveRef.current,
     userInteractionElemRef.current?.ownerDocument?.body
   );
 

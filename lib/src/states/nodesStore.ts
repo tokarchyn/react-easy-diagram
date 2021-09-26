@@ -9,12 +9,12 @@ import {
 import { guidForcedUniqueness } from 'utils/guid';
 import { NodeState, INodeState, INodeStateWithId } from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
-import { Point, subtractPoints } from 'utils/point';
+import { addPoints, multiplyPoint, Point, subtractPoints } from 'utils/point';
+import { DragState } from 'states/dragState';
 
 export class NodesStore {
-  private _nodes: Map<string, NodeState> = new Map();
-
-  private _rootStore: RootStore;
+  private _nodes = new Map<string, NodeState>();
+  private _rootStore;
 
   constructor(rootStore: RootStore) {
     makeAutoObservable(this);

@@ -1,9 +1,38 @@
-import React from 'react';
-import { Diagram } from 'react-easy-diagram';
+import React, { useEffect, useRef } from 'react';
+import { Diagram, NodeState, RootStore } from 'react-easy-diagram';
+import { reaction } from 'mobx';
 
 export default function () {
+  const storeRef = useRef<RootStore>(null);
+
+  // To react on changes in the diagram state, in addition to callbacks the library provides,
+  // you can also use mobx functions like reaction, autorun and when. More info here: https://mobx.js.org/reactions.html
+  // Here is example that will help you to do some work when selection changed.
+  useEffect(
+    () =>
+      reaction(
+        () => {
+          if (storeRef.current) {
+            // When you read properties in any observable object mobx subscribes to changes in this properties 
+            // and will call function you provide as a second argument to reaction function.
+            return storeRef.current.selectionState.selectedItems.map(i => i);
+          }
+        },
+        (selectedItems, prevSelectedItems) => {
+          console.log(
+            'Selection updated. Current selected nodes: ',
+            selectedItems
+              ?.filter((i) => i instanceof NodeState)
+              .map((n) => n.id)
+          );
+        }
+      ),
+    [storeRef.current]
+  );
+
   return (
     <Diagram
+      storeRef={storeRef}
       settings={{
         callbacks: {
           nodesAdded: (addResults, failedToAdd, importing, store) => {
@@ -17,11 +46,11 @@ export default function () {
               }' changed from '${oldPos.toString()}' to '${newPos.toString()}'`
             );
           },
-          nodeDragStateChanged: (node, isDragActive) => {
+          dragStateChanged: (nodes, dragStarted, store) => {
             console.log(
-              `${isDragActive ? 'Start' : 'Finish'} dragging of node with id '${
-                node.id
-              }'`
+              `${dragStarted ? 'Start' : 'Finish'} dragging nodes: '${nodes
+                .map((n) => n.id)
+                .reduce((prev, val) => prev + ', ' + val)}'`
             );
           },
         },

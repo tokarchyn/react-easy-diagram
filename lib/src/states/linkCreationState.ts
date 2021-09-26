@@ -119,7 +119,7 @@ export class LinkCreationState implements ILinkInteractionState {
         },
       });
       if (result.success) {
-        this._rootStore.selectionState.select(result.value, false);
+        this._rootStore.selectionState.select(result.value, true);
       }
     }
     this._resetProps();

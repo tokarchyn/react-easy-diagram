@@ -11,12 +11,11 @@ import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { LinkState } from 'states/linkState';
 import { PortState, IPortStateWithoutIds } from 'states/portState';
 import { RootStore } from 'states/rootStore';
-import { ISelectableItem } from 'states/selectionState';
 import { componentDefaultType } from 'states/visualComponents';
 import { arePointsEqual, Point } from 'utils/point';
 import { generateTransform } from 'utils/transformation';
 
-export class NodeState implements ISelectableItem {
+export class NodeState {
   private _id: string;
   private _label: string;
   private _position: Point;
@@ -243,9 +242,11 @@ export class NodeState implements ISelectableItem {
   };
 
   get isDragEnabled(): boolean {
-    return this._isDragEnabled === null
-      ? this._rootStore.diagramSettings.userInteraction.nodeDrag
-      : this._isDragEnabled;
+    return (
+      (this._isDragEnabled === null
+        ? this._rootStore.diagramSettings.userInteraction.nodeDrag
+        : this._isDragEnabled) && this.isSelectionEnabled
+    );
   }
 
   setIsDragEnabled = (value: boolean | null | undefined) => {
@@ -259,7 +260,6 @@ export class NodeState implements ISelectableItem {
   set isDragActive(value) {
     if (this._isDragActive != value) {
       this._isDragActive = value;
-      this._rootStore.callbacks.nodeDragStateChanged(this);
     }
   }
 }

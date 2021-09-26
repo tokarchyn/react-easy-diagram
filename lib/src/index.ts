@@ -39,6 +39,7 @@ export * from './linkConstructors/utils';
 export * from './states/callbacks';
 export * from './states/diagramSettings';
 export * from './states/diagramState';
+export * from './states/dragState';
 export * from './states/htmlElementRefState';
 export * from './states/linkCreationState';
 export * from './states/linkPointEndpointState';

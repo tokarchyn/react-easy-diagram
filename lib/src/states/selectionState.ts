@@ -5,7 +5,7 @@ import { RootStore } from 'states/rootStore';
 import { addPoints } from 'utils/point';
 
 export class SelectionState {
-  private _selectedItems: ISelectableItem[] = [];
+  private _selectedItems: SelectableItem[] = [];
 
   private _rootStore: RootStore;
 
@@ -14,39 +14,50 @@ export class SelectionState {
     this._rootStore = rootStore;
   }
 
-  get selectedItems(): Readonly<ISelectableItem[]> {
+  get selectedItems(): Readonly<SelectableItem[]> {
     return this._selectedItems;
   }
 
-  get selectedNodes(): Readonly<NodeState[]> {
+  get selectedNodes(): NodeState[] {
     return this.selectedItems.filter(
       (i) => i instanceof NodeState
     ) as NodeState[];
   }
 
-  select = (item: ISelectableItem, multipleActivated: boolean) => {
-    if (multipleActivated) {
-      if (this._selectedItems.includes(item)) {
-        this.unselect(item);
-      } else {
-        item.selected = true;
-        this._selectedItems.push(item);
-      }
-    } else {
-      this.clear();
+  select = (item: SelectableItem, unselectOther: boolean = false): boolean => {
+    if (unselectOther) this.unselectAll();
+
+    if (!item.selected) {
       item.selected = true;
-      this._selectedItems.push(item);
+      this._selectedItems = [...this._selectedItems, item];
+
+      return true;
+    } else return false;
+  };
+
+  switch = (item: SelectableItem): boolean => {
+    if (item.selected) {
+      return this.unselect(item);
+    } else {
+      return this.select(item);
     }
   };
 
-  unselect = (item: ISelectableItem) => {
-    item.selected = false;
-    this._selectedItems = this._selectedItems.filter((i) => i !== item);
+  unselect = (item: SelectableItem): boolean => {
+    if (item.selected) {
+      item.selected = false;
+      this._selectedItems = this._selectedItems.filter((i) => i !== item);
+      return true;
+    } else return false;
   };
 
-  clear = () => {
+  unselectAll = () => {
     this._selectedItems.forEach((i) => (i.selected = false));
     this._selectedItems = [];
+  };
+
+  unselectItems = (itemsToClear: Readonly<SelectableItem[]>) => {
+    itemsToClear.forEach((i) => this.unselect(i));
   };
 
   removeSelected = () => {
@@ -83,6 +94,4 @@ export class SelectionState {
   };
 }
 
-export interface ISelectableItem {
-  selected: boolean;
-}
+export type SelectableItem = NodeState | LinkState;

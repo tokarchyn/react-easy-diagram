@@ -28,31 +28,35 @@ export const useLinkUserInteraction = (
               linkState.hovered = false;
             },
             onDragStart: () => {
-              activeRef.current = true;
-              selectionHandledRef.current = false;
-
-              if (linkState.isSelectionEnabled) {
-                selectionTimeoutRef.current = global.setTimeout(() => {
-                  if (!selectionHandledRef.current) {
-                    selectionHandledRef.current = true;
-                    rootStore.selectionState.select(linkState, true);
-                  }
-                }, selectDelay);
+              activeRef.current = !rootStore.dragState.isActive;
+              if (activeRef.current) {
+                selectionHandledRef.current = false;
+  
+                if (linkState.isSelectionEnabled) {
+                  selectionTimeoutRef.current = global.setTimeout(() => {
+                    if (!selectionHandledRef.current) {
+                      selectionHandledRef.current = true;
+                      rootStore.selectionState.switch(linkState);
+                    }
+                  }, selectDelay);
+                }
               }
             },
             onDragEnd: ({ tap, ctrlKey }) => {
-              activeRef.current = false;
-              if (selectionTimeoutRef.current) {
-                clearTimeout(selectionTimeoutRef.current);
-              }
-
-              if (
-                linkState.isSelectionEnabled &&
-                tap &&
-                !selectionHandledRef.current
-              ) {
-                selectionHandledRef.current = true;
-                rootStore.selectionState.select(linkState, ctrlKey);
+              if (activeRef.current) {
+                activeRef.current = false;
+                if (selectionTimeoutRef.current) {
+                  clearTimeout(selectionTimeoutRef.current);
+                }
+  
+                if (
+                  linkState.isSelectionEnabled &&
+                  tap &&
+                  !selectionHandledRef.current
+                ) {
+                  selectionHandledRef.current = true;
+                  rootStore.selectionState.select(linkState, !ctrlKey);
+                }
               }
             },
           }

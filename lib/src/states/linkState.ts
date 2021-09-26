@@ -7,12 +7,11 @@ import {
   ILinkPortEndpoint,
 } from 'states/linkPortEndpointState';
 import { RootStore } from 'states/rootStore';
-import { ISelectableItem } from 'states/selectionState';
 import { componentDefaultType } from 'states/visualComponents';
 import { isBoolean } from 'utils/common';
 
 export class LinkState
-  implements ILinkState, ISelectableItem, ILinkInteractionState {
+  implements ILinkState, ILinkInteractionState {
   private _id: string;
   private _type: string;
   private _source: LinkPortEndpointState;

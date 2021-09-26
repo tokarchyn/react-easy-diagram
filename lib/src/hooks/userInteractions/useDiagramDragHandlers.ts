@@ -47,7 +47,7 @@ export function useDiagramDragHandlers(
       },
       onDragEnd: ({ tap }) => {
         if (tap) {
-          rootStore.selectionState.clear();
+          rootStore.selectionState.unselectAll();
         }
         activeRef.current = false;
       },

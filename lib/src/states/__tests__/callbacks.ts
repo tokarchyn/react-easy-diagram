@@ -13,11 +13,15 @@ describe('Callbacks import', () => {
     let callback = () => true;
     callbacks.import({
       validateLinkEndpoints: callback,
-      nodesAdded: callback
+      nodesAdded: callback,
+      nodePositionChanged: callback,
+      dragStateChanged: callback
     });
 
     const exportedCallbacks = callbacks.export();
     expect(exportedCallbacks.validateLinkEndpoints).toBe(callback);
     expect(exportedCallbacks.nodesAdded).toBe(callback);
+    expect(exportedCallbacks.nodePositionChanged).toBe(callback);
+    expect(exportedCallbacks.dragStateChanged).toBe(callback);
   });
 });
