@@ -56,6 +56,10 @@ export class LinksStore {
     return this._nodesLinksCollection.get(nodeId) ?? [];
   };
 
+  getLink = (id: string): LinkState | undefined => {
+    return this.links.get(id);
+  };
+
   getPortLinks = (nodeId: string, portId: string): LinkState[] => {
     const nodeLinks = this.getNodeLinks(nodeId);
     const fullPortId = createFullPortId(nodeId, portId);

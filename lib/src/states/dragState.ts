@@ -4,7 +4,7 @@ import { NodeState } from 'states/nodeState';
 import { addPoints, Point } from 'utils/point';
 
 /**
- * Encapsulate logic for dragging mechanism. Right now only nodes are supposed to be draged.
+ * Encapsulate logic for dragging mechanism. Right now only nodes are supposed to be dragged.
  */
 export class DragState {
   private _nodesBeingDragged = new Set<NodeState>();
