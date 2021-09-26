@@ -15,7 +15,7 @@
     "@docusaurus/preset-classic": "^2.0.0-alpha.75",
     "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.75",
     "@mdx-js/react": "^1.6.21",
-    "react-easy-diagram": "0.8.7",
+    "react-easy-diagram": "0.8.8",
     "clsx": "^1.1.1",
     "raw-loader": "^4.0.2",
     "react": "^16.8.4",
