@@ -126,22 +126,6 @@ describe('Drag state', () => {
     expect(node2.selected).toBeFalsy();
   });
 
-  test('Do not start node dragging if another node is being dragged ', () => {
-    const node1 = store.nodesStore.getNode('1')!;
-    const node2 = store.nodesStore.getNode('2')!;
-    store.dragState.startDragging(node1);
-
-    store.dragState.startDragging(node2);
-
-    expect(store.dragState.isActive).toBeTruthy();
-
-    expect(node1.isDragActive).toBeTruthy();
-    expect(node1.selected).toBeTruthy();
-
-    expect(node2.isDragActive).toBeFalsy();
-    expect(node2.selected).toBeFalsy();
-  });
-
   test('Do not start node dragging if drag is disabled for this node', () => {
     const node1 = store.nodesStore.getNode('1')!;
     node1.setIsDragEnabled(false);
