@@ -27,9 +27,10 @@ export const useNodeUserInteraction = (
     return false;
   }, [selectOnLongTapRef]);
   const userInteractionElemRef = useRef<HTMLElement>(null);
-
+  
   const handlers = useMemo<GestureHandlers>(
     () => ({
+      onClick: () => {}, // Prevent from double tap zooming on IOS
       onDrag: ({ pinching, delta, movement }) => {
         if (
           !interactionActiveRef.current ||
