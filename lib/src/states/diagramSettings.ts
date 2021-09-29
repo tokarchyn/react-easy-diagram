@@ -78,7 +78,7 @@ export interface IDiagramSettings {
     | VisualComponent<IMiniControlComponentProps>;
   zoomInterval?: Point;
   zoomToFitSettings?: IZoomToFitSettings;
-  userInteraction?: Partial<IUserInteraction> | boolean;
+  userInteraction?: Partial<IUserInteraction>;
 }
 
 export interface IBackgroundComponentProps<TSettings = any> {

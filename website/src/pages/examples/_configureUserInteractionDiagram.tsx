@@ -97,7 +97,7 @@ const Configurator = observer<INodeVisualComponentProps>(({ draggableRef }) => {
 });
 
 const UserInteractionCheckbox = observer<{
-  userInteractionPropertyName: keyof IUserInteraction;
+  userInteractionPropertyName: keyof Omit<IUserInteraction, 'multiselectionKey'>;
 }>(({ userInteractionPropertyName }) => {
   const { diagramSettings } = useRootStore();
 

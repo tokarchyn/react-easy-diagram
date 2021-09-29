@@ -1,0 +1,24 @@
+---
+title: User interaction
+id: userInteraction
+---
+
+## Items Selection
+
+There two types of items that can be selected at this moment, node and link. This can be done by clicking or touching them.
+For multiselection you have two options:
+
+1. Tap and hold for a moment.
+2. Click primary mouse button while holding `multiselectionKey`, this key is by default `shift`, but can also be configurated to `ctrl`, `meta` and `alt`. For example:
+
+```jsx
+<Diagram
+  settings={{
+    diagram: {
+      userInteraction: {
+        multiselectionKey: 'meta',
+      },
+    },
+  }}
+/>
+```

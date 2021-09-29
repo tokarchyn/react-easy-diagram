@@ -1,5 +1,4 @@
 import { makeAutoObservable } from 'mobx';
-import { isObject } from 'utils/common';
 
 export class UserInteractionSettings {
   private _diagramZoom: boolean;
@@ -8,32 +7,21 @@ export class UserInteractionSettings {
   private _portConnection: boolean;
   private _nodeSelection: boolean;
   private _linkSelection: boolean;
+  private _multiselectionKey: MultipleSelectionKey;
 
   constructor() {
     this.import();
     makeAutoObservable(this);
   }
 
-  import = (obj?: Partial<IUserInteraction> | boolean) => {
-    if (obj === true || obj === undefined || obj === null) this.setAll(true);
-    else if (obj === false) this.setAll(false);
-    else if (isObject(obj)) {
-      this._diagramZoom = obj.diagramZoom ?? true;
-      this._diagramPan = obj.diagramPan ?? true;
-      this._nodeDrag = obj.nodeDrag ?? true;
-      this._portConnection = obj.portConnection ?? true;
-      this._nodeSelection = obj.nodeSelection ?? true;
-      this._linkSelection = obj.linkSelection ?? true;
-    }
-  };
-
-  setAll = (value: boolean) => {
-    this._diagramZoom = value;
-    this._diagramPan = value;
-    this._nodeDrag = value;
-    this._portConnection = value;
-    this._nodeSelection = value;
-    this._linkSelection = value;
+  import = (obj?: Partial<IUserInteraction>) => {
+    this._diagramZoom = obj?.diagramZoom ?? true;
+    this._diagramPan = obj?.diagramPan ?? true;
+    this._nodeDrag = obj?.nodeDrag ?? true;
+    this._portConnection = obj?.portConnection ?? true;
+    this._nodeSelection = obj?.nodeSelection ?? true;
+    this._linkSelection = obj?.linkSelection ?? true;
+    this._multiselectionKey = obj?.multiselectionKey ?? 'shift';
   };
 
   get diagramZoom() {
@@ -83,6 +71,34 @@ export class UserInteractionSettings {
   set linkSelection(value: boolean) {
     this._linkSelection = value;
   }
+
+  get multiselectionKey() {
+    return this._multiselectionKey;
+  }
+
+  set multiselectionKey(value: MultipleSelectionKey) {
+    this._multiselectionKey = value;
+  }
+
+  isCallbackMultiselectionActivated = (
+    shiftKey: boolean,
+    altKey: boolean,
+    ctrlKey: boolean,
+    metaKey: boolean
+  ): boolean => {
+    switch (this.multiselectionKey) {
+      case 'alt':
+        return altKey;
+      case 'ctrl':
+        return ctrlKey;
+      case 'meta':
+        return metaKey;
+      case 'shift':
+        return shiftKey;
+      default:
+        return false;
+    }
+  };
 }
 
 export interface IUserInteraction {
@@ -92,4 +108,7 @@ export interface IUserInteraction {
   portConnection: boolean;
   nodeSelection: boolean;
   linkSelection: boolean;
+  multiselectionKey: MultipleSelectionKey;
 }
+
+export type MultipleSelectionKey = 'ctrl' | 'alt' | 'meta' | 'shift';

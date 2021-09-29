@@ -1,8 +1,3 @@
 module.exports = {
-  docs: [
-    {
-      type: 'doc',
-      id: 'introduction',
-    },
-  ],
+  docs: ['introduction', 'userInteraction'],
 };
