@@ -27,7 +27,7 @@ export const useNodeUserInteraction = (
     return false;
   }, [selectOnLongTapRef]);
   const userInteractionElemRef = useRef<HTMLElement>(null);
-  
+
   const handlers = useMemo<GestureHandlers>(
     () => ({
       onClick: () => {}, // Prevent from double tap zooming on IOS
@@ -68,7 +68,7 @@ export const useNodeUserInteraction = (
           }
         }
       },
-      onDragEnd: ({ tap, ctrlKey }) => {
+      onDragEnd: ({ tap, shiftKey, altKey, ctrlKey, metaKey }) => {
         if (interactionActiveRef.current) {
           interactionActiveRef.current = false;
           const selectLongOnTapCancelled = cancelSelectOnLongTap();
@@ -79,7 +79,15 @@ export const useNodeUserInteraction = (
 
           // selectLongOnTapCancelled means that callback in timer wasn't executed yet
           if (nodeState.isSelectionEnabled && tap && selectLongOnTapCancelled) {
-            rootStore.selectionState.select(nodeState, !ctrlKey);
+            rootStore.selectionState.switch(
+              nodeState,
+              !rootStore.diagramSettings.userInteraction.isCallbackMultiselectionActivated(
+                shiftKey,
+                altKey,
+                ctrlKey,
+                metaKey
+              )
+            );
           }
         }
       },

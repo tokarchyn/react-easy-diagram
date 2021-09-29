@@ -31,7 +31,7 @@ export const useLinkUserInteraction = (
               activeRef.current = !rootStore.dragState.isActive;
               if (activeRef.current) {
                 selectionHandledRef.current = false;
-  
+
                 if (linkState.isSelectionEnabled) {
                   selectionTimeoutRef.current = global.setTimeout(() => {
                     if (!selectionHandledRef.current) {
@@ -42,20 +42,28 @@ export const useLinkUserInteraction = (
                 }
               }
             },
-            onDragEnd: ({ tap, ctrlKey }) => {
+            onDragEnd: ({ tap, ctrlKey, shiftKey, altKey, metaKey }) => {
               if (activeRef.current) {
                 activeRef.current = false;
                 if (selectionTimeoutRef.current) {
                   clearTimeout(selectionTimeoutRef.current);
                 }
-  
+
                 if (
                   linkState.isSelectionEnabled &&
                   tap &&
                   !selectionHandledRef.current
                 ) {
                   selectionHandledRef.current = true;
-                  rootStore.selectionState.select(linkState, !ctrlKey);
+                  rootStore.selectionState.switch(
+                    linkState,
+                    !rootStore.diagramSettings.userInteraction.isCallbackMultiselectionActivated(
+                      shiftKey,
+                      altKey,
+                      ctrlKey,
+                      metaKey
+                    )
+                  );
                 }
               }
             },
