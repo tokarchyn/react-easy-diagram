@@ -20,14 +20,17 @@ export const NodeDefault: React.FC<
         'default',
         settings?.classes,
         defaultNodeClasses,
-        settings?.style
+        settings?.style,
+        undefined,
+        { 'selected-hovered': ['selected', 'hovered'] }
       ),
     [settings]
   );
 
   useEffect(() => {
     let state = 'default';
-    if (entity.selected) state = 'selected';
+    if (entity.selected && entity.hovered) state = 'selected-hovered';
+    else if (entity.selected) state = 'selected';
     else if (entity.hovered) state = 'hovered';
 
     styling.setState(state);
@@ -51,7 +54,7 @@ export interface INodeDefaultSettings {
   style?: NodeDefaultSettingsByStates<React.CSSProperties>;
 }
 
-export type NodeDefaultState = 'default' | 'hovered' | 'selected';
+export type NodeDefaultState = 'default' | 'hovered' | 'selected' | 'selected-hovered';
 export type NodeDefaultSettingsByStates<TValue> = {
   [key in NodeDefaultState]?: TValue;
 };
