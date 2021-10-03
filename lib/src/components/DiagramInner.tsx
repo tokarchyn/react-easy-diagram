@@ -12,7 +12,7 @@ export interface IDiagramInnerProps {
   diagramStyles?: React.CSSProperties;
 }
 
-export const InnerDiagram = observer<IDiagramInnerProps>((props) => {
+export const DigramInner = observer<IDiagramInnerProps>((props) => {
   const rootStore = useRootStore();
   useDiagramUserInteraction();
 
@@ -23,14 +23,11 @@ export const InnerDiagram = observer<IDiagramInnerProps>((props) => {
     rootStore.diagramState.renderOffsetAndZoom(offset, zoom);
   }, [offset, zoom]);
 
-  useEffect(() => {
-    const resizeHandler = () =>
-      rootStore.nodesStore.nodes.forEach((n) =>
-        n.recalculatePortsSizeAndPosition()
-      );
-    window.addEventListener('resize', resizeHandler);
-    return () => window.removeEventListener('resize', resizeHandler);
-  }, [rootStore]);
+  useResizeAction(() =>
+    rootStore.nodesStore.nodes.forEach((n) =>
+      n.recalculatePortsSizeAndPosition()
+    )
+  );
 
   return (
     <div
@@ -53,4 +50,13 @@ export const InnerDiagram = observer<IDiagramInnerProps>((props) => {
   );
 });
 
-InnerDiagram.displayName = 'InnerDiagram';
+function useResizeAction(action: () => any) {
+  const rootStore = useRootStore();
+
+  useEffect(() => {
+    window.addEventListener('resize', action);
+    return () => window.removeEventListener('resize', action);
+  }, [rootStore, action]);
+}
+
+DigramInner.displayName = 'InnerDiagram';

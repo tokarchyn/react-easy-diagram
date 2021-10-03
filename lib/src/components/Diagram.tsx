@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import { InnerDiagram } from 'components/DiagramInner';
+import { DigramInner } from 'components/DiagramInner';
 import type { ISettings } from 'states/rootStore';
 import { RootStore } from 'states/rootStore';
 import type { INodeState } from 'states/nodeState';
@@ -28,7 +28,7 @@ export function Diagram (props: IDiagramProps) {
 
   return (
     <RootStoreContext.Provider value={rootStore}>
-      <InnerDiagram />
+      <DigramInner />
     </RootStoreContext.Provider>
   );
 };
