@@ -4,8 +4,9 @@ import type { IPortVisualComponentProps } from 'states/portsSettings';
 import type { IComponentDefinition } from 'states/visualComponentState';
 import { Point } from 'utils/point';
 
-export interface IPortDefaultSettings {
+export interface IPortInnerDefaultSettings {
   size: Point;
+  borderRadius: React.CSSProperties['borderRadius'];
   opacity?: number;
   color: string;
   dragColor: string;
@@ -13,36 +14,35 @@ export interface IPortDefaultSettings {
   invalidColor: string;
 }
 
-export const PortInnerDefault: React.FC<
-  IPortVisualComponentProps<IPortDefaultSettings>
+const PortInnerDefault: React.FC<
+  IPortVisualComponentProps<IPortInnerDefaultSettings>
 > = observer(({ entity: port, settings }) => {
-  const finalSettings = {
-    ...portDefaultSettings,
-    ...settings,
-  };
+  settings = settings ?? portDefaultSettings;
 
-  let color = finalSettings.color;
-  if (port.dragging) color = finalSettings.dragColor;
+  let color = settings.color;
+  if (port.dragging) color = settings.dragColor;
   else if (port.hovered && port.validForConnection)
-    color = finalSettings.hoverColor;
+    color = settings.hoverColor;
   else if (port.hovered && !port.validForConnection)
-    color = finalSettings.invalidColor;
+    color = settings.invalidColor;
 
   return (
     <div
+      className={'react_fast_diagram_PortInnerDefault'}
       style={{
-        width: finalSettings.size[0],
-        height: finalSettings.size[1],
-        opacity: finalSettings.opacity,
+        width: settings.size[0],
+        height: settings.size[1],
+        opacity: settings.opacity,
         backgroundColor: color,
-        borderRadius: '2px',
+        borderRadius: settings.borderRadius,
       }}
     ></div>
   );
 });
 
-const portDefaultSettings: IPortDefaultSettings = {
+const portDefaultSettings: IPortInnerDefaultSettings = {
   size: [10, 10],
+  borderRadius: '2px',
   color: '#6eb7ff',
   dragColor: '#49f860',
   hoverColor: '#49f860',
@@ -50,8 +50,8 @@ const portDefaultSettings: IPortDefaultSettings = {
 };
 
 export function createPortInnerDefault(
-  settings?: Partial<IPortDefaultSettings>
-): IComponentDefinition<IPortVisualComponentProps, IPortDefaultSettings> {
+  settings?: Partial<IPortInnerDefaultSettings>
+): IComponentDefinition<IPortVisualComponentProps, IPortInnerDefaultSettings> {
   return {
     component: PortInnerDefault,
     settings: {

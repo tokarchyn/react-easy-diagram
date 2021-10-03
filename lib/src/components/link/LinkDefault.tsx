@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { LinkCreationState } from 'states/linkCreationState';
 import type { ILinkVisualComponentProps } from 'states/linksSettings';
 import type { IComponentDefinition } from 'states/visualComponentState';
 
@@ -46,13 +45,15 @@ export const LinkDefault: React.FC<
         {...bind()}
         pointerEvents='auto'
         fill='none'
-        strokeOpacity={entity.hovered && finalSettings.enableHoverEffect ? 0.22 : 0}
+        strokeOpacity={
+          entity.hovered && finalSettings.enableHoverEffect ? 0.22 : 0
+        }
       />
     </g>
   );
 });
 
-function getMarkerBasedOnState(
+export function getMarkerBasedOnState(
   marker: ILinkSvgMarker | undefined,
   selected: boolean,
   hovered: boolean
@@ -76,7 +77,6 @@ export interface ILinkDefaultSettings {
   hoveredColor?: string;
   enableHoverEffect: boolean;
   strokeWidth: number;
-  cirleRadius: number;
   markerStart?: ILinkSvgMarker;
   markerEnd?: ILinkSvgMarker;
 }
@@ -94,8 +94,7 @@ const linkDefaultSettings: ILinkDefaultSettings = {
   selectedColor: '#6eb7ff',
   hoveredColor: '#a1d0ff',
   strokeWidth: 1,
-  cirleRadius: 3,
-  enableHoverEffect: true
+  enableHoverEffect: true,
 };
 
 export function createLinkDefault(

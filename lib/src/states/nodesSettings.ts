@@ -7,7 +7,7 @@ import {
   createOutputHorizontalNode,
   createOutputVerticalNode,
   createStarNode,
-} from 'components/Node';
+} from 'components/node/NodeDefault';
 import { makeAutoObservable } from 'mobx';
 import { NodeState } from 'states/nodeState';
 import {

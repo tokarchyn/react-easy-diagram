@@ -128,6 +128,7 @@ export default () => (
         components: {
           number: createOutputHorizontalNode({
             innerNode: NumberProvider,
+            classes: [styles.nodePadding]
           }),
           sum: createNode({
             ports: [
@@ -135,13 +136,13 @@ export default () => (
                 id: 'number_1',
                 type: 'input',
                 position: 'left-center',
-                offsetFromOrigin: [0, -15],
+                offsetFromOrigin: [0, -8],
               },
               {
                 id: 'number_2',
                 type: 'input',
                 position: 'left-center',
-                offsetFromOrigin: [0, 15],
+                offsetFromOrigin: [0, 8],
               },
               {
                 id: 'output',
@@ -150,6 +151,7 @@ export default () => (
               },
             ],
             innerNode: Sum,
+            classes: [styles.nodePadding]
           }),
         },
       },

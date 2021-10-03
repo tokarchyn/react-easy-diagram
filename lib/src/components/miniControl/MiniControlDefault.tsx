@@ -101,7 +101,7 @@ export const Button: React.FC<{
 }> = (props) => (
   <button
     onClick={props.onClick}
-    className='react_fast_diagram_Minicontrol_Default_Btn'
+    className='react_fast_diagram_Minicontrol_Btn'
     style={{
       width: props.size + 'px',
       height: props.size + 'px',

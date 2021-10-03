@@ -1,6 +1,6 @@
 import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 import { makeAutoObservable } from 'mobx';
-import { createLinkDefault, LinkDefault } from 'components/LinkDefault';
+import { createLinkDefault, LinkDefault } from 'components/link/LinkDefault';
 import { createCurvedLinkPathConstructor } from 'linkConstructors/curved';
 import { Point } from 'utils/point';
 import { DirectionWithDiagonals } from 'utils/position';
@@ -15,7 +15,7 @@ import {
   IVisualComponentsObject,
 } from 'states/visualComponents';
 import { IVisualComponentProps } from 'states/visualComponentState';
-import { createArrowMarker, createCircleMarker } from 'components/Markers';
+import { createArrowMarker, createCircleMarker } from 'components/link/Markers';
 
 export class LinksSettings {
   private _pathConstructor: ILinkPathConstructor;

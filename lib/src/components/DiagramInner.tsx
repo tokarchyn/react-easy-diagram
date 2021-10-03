@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { LinksLayer } from 'components/LinksLayer';
-import { NodesLayer } from 'components/NodesLayer';
+import { LinksLayer } from 'components/link/LinksLayer';
+import { NodesLayer } from 'components/node/NodesLayer';
 import { useDiagramUserInteraction } from 'hooks/userInteractions/useDiagramUserInteraction';
 import { observer } from 'mobx-react-lite';
 import { useRootStore } from 'hooks/useRootStore';
-import { BackgroundWrapper } from 'components/BackgroundWrapper';
-import { MiniControlWrapper } from 'components/MiniControlWrapper';
+import { BackgroundWrapper } from 'components/background/BackgroundWrapper';
+import { MiniControlWrapper } from 'components/miniControl/MiniControlWrapper';
 import { generateTransform } from 'utils/transformation';
 
 export interface IDiagramInnerProps {

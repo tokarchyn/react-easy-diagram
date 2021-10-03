@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import {
   NodeContext,
   RenderedPortsComponentsContext,
-} from 'components/NodeWrapper';
+} from 'components/node/NodeWrapper';
 import { useUpdateOrCreatePortState } from 'hooks/useUpdateOrCreatePortState';
 import {
   PortPosition,
@@ -56,7 +56,7 @@ export const Port: React.FC<IPortProps> = observer((props) => {
     <div
       style={positionStyles}
       id={portState.fullId}
-      className={className}
+      className={disableNodeUserInteractionClassName}
       ref={portState.ref}
       key={portState.fullId}
       {...bind()}
@@ -68,8 +68,6 @@ export const Port: React.FC<IPortProps> = observer((props) => {
     </div>
   );
 });
-
-const className = `react_fast_diagram_Port ${disableNodeUserInteractionClassName}`;
 
 /**
  * Report to NodeWrapper that port was rendered so it can clean up the old ports

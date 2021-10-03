@@ -4,11 +4,9 @@ import {
   createLinkDefault,
   createPortInnerDefault,
   Diagram,
-} from 'react-easy-diagram';
-import {
   createArrowMarker,
-  createCircleMarker,
-} from 'react-easy-diagram/src/components/Markers';
+  createCircleMarker
+} from 'react-easy-diagram';
 
 export default function () {
   return (
@@ -89,7 +87,7 @@ export default function () {
               // Or just using one marker for all states
               markerStart: 'default_circle_marker',
               // If you use markers it can be more attractive to disable hover effect
-              enableHoverEffect: false
+              enableHoverEffect: false,
             }),
             custom_arrow_link: createLinkDefault({
               markerEnd: 'custom_arrow',
@@ -98,6 +96,11 @@ export default function () {
                 hovered: 'custom_circle_hovered',
                 selected: 'custom_circle_selected',
               },
+            }),
+            // Link component that will be used while connecting ports
+            linkCreation: createLinkDefault({
+              markerEnd: 'default_arrow_marker_hovered',
+              enableHoverEffect: false,
             }),
           },
           // You can define your own markers

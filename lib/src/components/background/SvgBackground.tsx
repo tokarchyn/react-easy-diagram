@@ -3,8 +3,8 @@ import React, { useMemo } from 'react';
 import type { IComponentDefinition } from 'states/visualComponentState';
 import type { IBackgroundComponentProps } from 'states/diagramSettings';
 
-const BackgroundDefault: React.FC<
-  IBackgroundComponentProps<IBackgroundDefaultSettings>
+const SvgBackground: React.FC<
+  IBackgroundComponentProps<ISvgBackgroundSettings>
 > = observer(({ diagramOffset, diagramZoom, settings }) => {
   const finalSettings = settings ?? defaultSettings;
 
@@ -18,7 +18,7 @@ const BackgroundDefault: React.FC<
 
   return (
     <div
-      className='react_fast_diagram_Background_Default'
+      className='react_fast_diagram_Background'
       style={{
         backgroundColor: finalSettings.color,
         backgroundImage,
@@ -47,7 +47,7 @@ export const createGridImageGenerator = (
   sizeMultiplicator: number,
   linesColor: string,
   linesOpacity: number
-): BackgroundImageGenerator => (width: number, height: number) =>
+): BackgroundSvgImageGenerator => (width: number, height: number) =>
   gridImageGenerator(
     width,
     height,
@@ -78,7 +78,7 @@ export const createDotsImageGenerator = (
   dotsColor: string,
   dotsOpacity: number,
   dotsRadius: number
-): BackgroundImageGenerator => (width: number, height: number) =>
+): BackgroundSvgImageGenerator => (width: number, height: number) =>
   dotsImageGenerator(
     width,
     height,
@@ -107,19 +107,19 @@ export const createCrossesImageGenerator = (
   sizeMultiplicator: number,
   color: string,
   opacity: number
-): BackgroundImageGenerator => (width: number, height: number) =>
+): BackgroundSvgImageGenerator => (width: number, height: number) =>
   crossesImageGenerator(width, height, sizeMultiplicator, color, opacity);
 
-const defaultSettings: IBackgroundDefaultSettings = {
+const defaultSettings: ISvgBackgroundSettings = {
   imageGenerator: createCrossesImageGenerator(0.2, '#858585', 0.1),
   color: '#ffffff',
 };
 
-export const createDefaultBackground = (
-  settings?: Partial<IBackgroundDefaultSettings>
+export const createSvgBackground = (
+  settings?: Partial<ISvgBackgroundSettings>
 ): IComponentDefinition<
   IBackgroundComponentProps,
-  IBackgroundDefaultSettings
+  ISvgBackgroundSettings
 > => {
   const finalSettings = {
     ...defaultSettings,
@@ -127,12 +127,12 @@ export const createDefaultBackground = (
   };
 
   return {
-    component: BackgroundDefault,
+    component: SvgBackground,
     settings: finalSettings,
   };
 };
 
-export type BackgroundImageGenerator = (
+export type BackgroundSvgImageGenerator = (
   width: number,
   height: number
 ) => string;
@@ -142,7 +142,7 @@ export type BackgroundImageGenerator = (
  * You can use for example services like listed in this article https://css-tricks.com/websites-generate-svg-patterns/
  * to generate this string.
  */
-export interface IBackgroundDefaultSettings {
-  imageGenerator?: BackgroundImageGenerator;
+export interface ISvgBackgroundSettings {
+  imageGenerator?: BackgroundSvgImageGenerator;
   color: string;
 }

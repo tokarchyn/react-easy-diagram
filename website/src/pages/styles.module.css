@@ -60,6 +60,8 @@
   color: white;
 }
 
+/* Diagram styles */
+
 .textInput {
   outline: none;
   border: 1px solid #c2c2c2;
@@ -72,4 +74,8 @@
 
 .textInput:focus {
   border: 1px solid rgb(110, 183, 255);
+}
+
+.nodePadding {
+  padding: 6px;
 }

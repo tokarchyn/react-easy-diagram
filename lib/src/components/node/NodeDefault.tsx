@@ -1,80 +1,67 @@
-import React from 'react';
-import { INodeVisualComponentProps } from '../states/nodesSettings';
-import { NodeLabel } from './NodeLabel';
+import { NodeLabel } from 'components/node/NodeLabel';
+import { IPortProps, Port } from 'components/port/Port';
 import { observer } from 'mobx-react-lite';
+import React, { useMemo } from 'react';
+import { INodeVisualComponentProps } from 'states/nodesSettings';
+import { NodeState } from 'states/nodeState';
 import {
   IComponentDefinition,
   VisualComponent,
 } from 'states/visualComponentState';
-import { NodeState } from 'states/nodeState';
-import { Optional } from 'utils/common';
-import { IPortProps, Port } from './Port';
 
-export const Node: React.FC<
-  INodeVisualComponentProps<INodeSettings>
+export const NodeDefault: React.FC<
+  INodeVisualComponentProps<INodeDefaultSettings>
 > = observer(({ entity, settings, draggableRef }) => {
-  const finalSettings = {
-    ...defaultNodeDefaultSettings,
-    ...settings,
-  };
-  const finalStyles = {
-    ...finalSettings.style,
-    ...(entity.selected ? finalSettings.selectedStyle : undefined),
-  };
+  const className = useMemo(() => {
+    let classes = settings?.classes ?? [];
+    if (entity.selected && settings?.selectedClasses)
+      classes = [...classes, ...settings.selectedClasses];
+
+    if (!settings?.removeDefaultClasses) {
+      classes.push('react_fast_diagram_Node_Default');
+      if (entity.selected) classes.push('react_fast_diagram_Node_Default_Selected');
+    }
+    return classes.join(' ');
+  }, [settings, entity.selected]);
 
   return (
-    <div
-      ref={draggableRef}
-      className='react_fast_diagram_Node_Default'
-      style={finalStyles}
-    >
-      <finalSettings.innerNode node={entity} />
+    <div ref={draggableRef} className={className} style={settings?.style}>
+      {settings?.innerNode && <settings.innerNode node={entity} />}
 
-      {Array.isArray(finalSettings.ports) &&
-        finalSettings.ports.map((p) => <Port {...p} key={p.id} />)}
+      {Array.isArray(settings?.ports) &&
+        settings?.ports.map((p) => <Port {...p} key={p.id} />)}
     </div>
   );
 });
 
-const defaultNodeDefaultSettings: INodeFinalSettings = {
-  style: {
-    padding: '10px',
-  },
-  selectedStyle: {
-    border: '#6eb7ff solid 1px',
-  },
-  innerNode: NodeLabel,
-};
-
-export interface INodeFinalSettings {
-  style?: React.CSSProperties;
-  selectedStyle: React.CSSProperties;
+export interface INodeDefaultSettings {
   ports?: IPortProps[];
-  innerNode: VisualComponent<{ node: NodeState }>;
-  padding?: React.CSSProperties['padding'];
+  innerNode?: VisualComponent<{ node: NodeState }>;
+  style?: React.CSSProperties;
+  selectedClasses?: string[];
+  removeDefaultClasses?: true;
+  classes?: string[];
 }
 
 export function createNode(
-  settings?: INodeSettings
+  settings?: INodeDefaultSettings
 ): IComponentDefinition<
-  INodeVisualComponentProps<INodeSettings>,
-  INodeSettings
+  INodeVisualComponentProps<INodeDefaultSettings>,
+  INodeDefaultSettings
 > {
   return {
-    component: Node,
+    component: NodeDefault,
     settings: {
-      ...defaultNodeDefaultSettings,
+      innerNode: NodeLabel,
       ...settings,
     },
   };
 }
 
-export type INodeSettings = Optional<
-  INodeFinalSettings,
-  'innerNode' | 'selectedStyle'
+export type INodeDefaultSettingsWithoutPorts = Omit<
+  INodeDefaultSettings,
+  'ports'
 >;
-
-export type INodeDefaultSettingsWithoutPorts = Omit<INodeSettings, 'ports'>;
 
 export const createInputOutputHorizontalNode = (
   settings?: INodeDefaultSettingsWithoutPorts

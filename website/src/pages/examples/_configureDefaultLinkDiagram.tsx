@@ -41,7 +41,6 @@ export default () => (
           linkCreation: createLinkDefault({
             color: 'green',
             strokeWidth: 3,
-            cirleRadius: 3,
           }),
         },
       },

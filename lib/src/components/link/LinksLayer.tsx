@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { LinksStore } from 'states/linksStore';
-import { LinkWrapper } from 'components/LinkWrapper';
+import { LinkWrapper } from 'components/link/LinkWrapper';
 import { useRootStore } from 'hooks/useRootStore';
 
 export const LinksLayer = observer<{linksStore: LinksStore}>(({linksStore}) => {

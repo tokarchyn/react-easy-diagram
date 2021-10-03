@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { createPortInnerDefault } from 'components/PortInnerDefault';
+import { createPortInnerDefault } from 'components/port/PortInnerDefault';
 import { PortState } from 'states/portState';
 import {
   VisualComponents,
