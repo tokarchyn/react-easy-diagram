@@ -1,62 +1,71 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import type { IPortVisualComponentProps } from 'states/portsSettings';
+import { StatefullStyling } from 'states/statefullStyling';
 import type { IComponentDefinition } from 'states/visualComponentState';
-import { Point } from 'utils/point';
-
-export interface IPortInnerDefaultSettings {
-  size: Point;
-  borderRadius: React.CSSProperties['borderRadius'];
-  opacity?: number;
-  color: string;
-  dragColor: string;
-  hoverColor: string;
-  invalidColor: string;
-}
 
 const PortInnerDefault: React.FC<
   IPortVisualComponentProps<IPortInnerDefaultSettings>
-> = observer(({ entity: port, settings }) => {
-  settings = settings ?? portDefaultSettings;
-
-  let color = settings.color;
-  if (port.dragging) color = settings.dragColor;
-  else if (port.hovered && port.validForConnection)
-    color = settings.hoverColor;
-  else if (port.hovered && !port.validForConnection)
-    color = settings.invalidColor;
-
-  return (
-    <div
-      className={'react_fast_diagram_PortInnerDefault'}
-      style={{
-        width: settings.size[0],
-        height: settings.size[1],
-        opacity: settings.opacity,
-        backgroundColor: color,
-        borderRadius: settings.borderRadius,
-      }}
-    ></div>
+> = observer(({ entity, settings }) => {
+  const styling = useMemo(
+    () =>
+      new StatefullStyling(
+        settings?.removeDefaultClasses,
+        'default',
+        settings?.classes,
+        defaultPortInnerClasses,
+        settings?.styles
+      ),
+    [settings]
   );
+
+  useEffect(() => {
+    let state = 'default';
+    if (entity.dragging) state = 'dragging';
+    else if (entity.hovered && entity.validForConnection) state = 'hovered';
+    else if (entity.hovered && !entity.validForConnection) state = 'invalid';
+
+    styling.setState(state);
+  }, [
+    entity,
+    entity.hovered,
+    entity.dragging,
+    entity.validForConnection,
+    styling,
+  ]);
+
+  return <div className={styling.className} style={styling.style}></div>;
 });
 
-const portDefaultSettings: IPortInnerDefaultSettings = {
-  size: [10, 10],
-  borderRadius: '2px',
-  color: '#6eb7ff',
-  dragColor: '#49f860',
-  hoverColor: '#49f860',
-  invalidColor: '#fa4040',
+export type PortInnerDefaultState =
+  | 'default'
+  | 'hovered'
+  | 'dragging'
+  | 'invalid';
+export type PortInnerDefaultSettingsByStates<TValue> = {
+  [key in PortInnerDefaultState]?: TValue;
+};
+
+export interface IPortInnerDefaultSettings {
+  removeDefaultClasses?: true;
+  classes?: PortInnerDefaultSettingsByStates<string[]>;
+  styles?: PortInnerDefaultSettingsByStates<React.CSSProperties>;
+}
+
+export const defaultPortInnerClasses: PortInnerDefaultSettingsByStates<
+  string[]
+> = {
+  default: ['react_fast_diagram_PortInnerDefault'],
+  hovered: ['react_fast_diagram_PortInnerDefault_Hovered'],
+  dragging: ['react_fast_diagram_PortInnerDefault_Dragging'],
+  invalid: ['react_fast_diagram_PortInnerDefault_Invalid'],
 };
 
 export function createPortInnerDefault(
-  settings?: Partial<IPortInnerDefaultSettings>
+  settings?: IPortInnerDefaultSettings
 ): IComponentDefinition<IPortVisualComponentProps, IPortInnerDefaultSettings> {
   return {
     component: PortInnerDefault,
-    settings: {
-      ...portDefaultSettings,
-      ...settings,
-    },
+    settings: settings,
   };
 }

@@ -107,7 +107,24 @@
 /* Port */
 .react_fast_diagram_PortInnerDefault {
   cursor: pointer;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: #6eb7ff;
 }
+
+.react_fast_diagram_PortInnerDefault_Hovered {
+  background-color: #49f860;
+}
+
+.react_fast_diagram_PortInnerDefault_Dragging {
+  background-color: #49f860;
+}
+
+.react_fast_diagram_PortInnerDefault_Invalid {
+  background-color: #fa4040;
+}
+
 /* Port */
 
 /* Link */
@@ -134,10 +151,6 @@
 }
 
 .react_fast_diagram_LinkDefault_SecondaryLine_Hovered {
-  stroke-opacity: 0.22;
-}
-
-.react_fast_diagram_LinkDefault_SecondaryLine_Selected {
   stroke-opacity: 0.22;
 }
 /* Link */

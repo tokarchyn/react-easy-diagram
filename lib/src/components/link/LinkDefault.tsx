@@ -13,7 +13,7 @@ export const LinkDefault: React.FC<
         settings?.removeDefaultClasses,
         'default',
         settings?.mainLine?.classes,
-        defaultMainLineClasses,
+        defaultLinkMainLineClasses,
         settings?.mainLine?.styles
       ),
     [settings]
@@ -25,7 +25,7 @@ export const LinkDefault: React.FC<
         settings?.removeDefaultClasses,
         'default',
         settings?.secondaryLine?.classes,
-        defaultSecondaryLineClasses,
+        defaultLinkSecondaryLineClasses,
         settings?.secondaryLine?.styles
       ),
     [settings]
@@ -60,8 +60,8 @@ export const LinkDefault: React.FC<
 });
 
 export interface ILineStyling {
-  classes?: ILinkDefaultSettingsByStates<string[]>;
-  styles?: ILinkDefaultSettingsByStates<React.CSSProperties>;
+  classes?: LinkDefaultSettingsByStates<string[]>;
+  styles?: LinkDefaultSettingsByStates<React.CSSProperties>;
 }
 export interface ILinkDefaultSettings {
   removeDefaultClasses?: true;
@@ -70,17 +70,17 @@ export interface ILinkDefaultSettings {
 }
 
 export type LinkDefaultState = 'default' | 'hovered' | 'selected';
-export type ILinkDefaultSettingsByStates<TValue> = {
+export type LinkDefaultSettingsByStates<TValue> = {
   [key in LinkDefaultState]?: TValue;
 };
 
-export const defaultMainLineClasses: ILinkDefaultSettingsByStates<string[]> = {
+export const defaultLinkMainLineClasses: LinkDefaultSettingsByStates<string[]> = {
   default: ['react_fast_diagram_LinkDefault_Line'],
   hovered: ['react_fast_diagram_LinkDefault_Line_Hovered'],
   selected: ['react_fast_diagram_LinkDefault_Line_Selected'],
 };
 
-export const defaultSecondaryLineClasses: ILinkDefaultSettingsByStates<string[]> = {
+export const defaultLinkSecondaryLineClasses: LinkDefaultSettingsByStates<string[]> = {
   default: [
     'react_fast_diagram_LinkDefault_Line',
     'react_fast_diagram_LinkDefault_SecondaryLine',
@@ -91,7 +91,6 @@ export const defaultSecondaryLineClasses: ILinkDefaultSettingsByStates<string[]>
   ],
   selected: [
     'react_fast_diagram_LinkDefault_Line_Selected',
-    'react_fast_diagram_LinkDefault_SecondaryLine_Selected',
   ],
 };
 
