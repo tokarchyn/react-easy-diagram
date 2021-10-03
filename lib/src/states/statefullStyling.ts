@@ -11,6 +11,7 @@ export class StatefullStyling {
   private _currentState: string;
   private _defaultState: string;
   private _removeDefaultClasses: boolean;
+  private _spareStates?: Dictionary<string[]>;
 
   constructor(
     removeDefaultClasses?: boolean,
@@ -18,17 +19,16 @@ export class StatefullStyling {
     classes?: Dictionary<string[] | undefined>,
     defaultClasses?: Dictionary<string[] | undefined>,
     styles?: Dictionary<CSSProperties | undefined>,
-    defaultStyles?: Dictionary<CSSProperties | undefined>
+    defaultStyles?: Dictionary<CSSProperties | undefined>,
+    spareStates?: Dictionary<string[]>,
   ) {
-    this._removeDefaultClasses = removeDefaultClasses ?? false;
-    this._defaultState = defaultState ?? '';
     this._currentState = this._defaultState;
-
+    
     this._classes = classes;
     this._defaultClasses = defaultClasses;
     this._styles = styles;
     this._defaultStyles = defaultStyles;
-
+    
     makeAutoObservable(this, {
       // @ts-ignore
       _classes: observable.ref,
@@ -36,6 +36,10 @@ export class StatefullStyling {
       _styles: observable.ref,
       _defaultStyles: observable.ref,
     });
+    
+    this._removeDefaultClasses = removeDefaultClasses ?? false;
+    this._defaultState = defaultState ?? '';
+    this._spareStates = spareStates;
   }
 
   setState = (state: string) => {
@@ -47,19 +51,19 @@ export class StatefullStyling {
 
     const defaultStateDefaultClasses =
       !this._removeDefaultClasses && this._defaultState !== this._currentState
-        ? this._defaultClasses?.[this._defaultState]
+        ? this._getValueForState(this._defaultState, this._defaultClasses)
         : undefined;
 
     const defaultClasses = !this._removeDefaultClasses
-      ? this._defaultClasses?.[this._currentState]
+      ? this._getValueForState(this._currentState, this._defaultClasses)
       : undefined;
 
     const defaultStateClasses =
       this._defaultState !== this._currentState
-        ? this._classes?.[this._defaultState]
+        ? this._getValueForState(this._defaultState, this._classes)
         : undefined;
 
-    const classes = this._classes?.[this._currentState];
+    const classes = this._getValueForState(this._currentState, this._classes);
 
     return combineArrays(
       defaultStateDefaultClasses,
@@ -74,17 +78,17 @@ export class StatefullStyling {
 
     const defaultStateDefaultStyles =
       this._defaultState !== this._currentState
-        ? this._defaultStyles?.[this._defaultState]
+        ? this._getValueForState(this._defaultState, this._defaultStyles)
         : undefined;
 
-    const defaultStyles = this._defaultStyles?.[this._currentState];
+    const defaultStyles = this._getValueForState(this._currentState, this._defaultStyles);
 
     const defaultStateStyles =
       this._defaultState !== this._currentState
-        ? this._styles?.[this._defaultState]
+        ? this._getValueForState(this._defaultState, this._styles)
         : undefined;
 
-    const styles = this._styles?.[this._currentState];
+    const styles = this._getValueForState(this._currentState, this._styles);
 
     return {
       ...defaultStateDefaultStyles,
@@ -92,5 +96,21 @@ export class StatefullStyling {
       ...defaultStateStyles,
       ...styles,
     };
+  }
+
+  private _getValueForState<TValue>(state: string, dict?: Dictionary<TValue>) {
+    if (dict) {
+      let val = dict[state];
+      if (!val && this._spareStates?.[state]) {
+        const spareStates = this._spareStates[state];
+        for (let i = 0; i < spareStates.length; i++) {
+          const spareState = spareStates[i];
+          val = dict[spareState];
+          if (val) break;
+        }
+      }
+      return val;
+    }
+    else return undefined; 
   }
 }

@@ -14,7 +14,9 @@ export const LinkDefault: React.FC<
         'default',
         settings?.mainLine?.classes,
         defaultLinkMainLineClasses,
-        settings?.mainLine?.style
+        settings?.mainLine?.style,
+        undefined,
+        { 'selected-hovered': ['selected', 'hovered'] }
       ),
     [settings]
   );
@@ -33,7 +35,8 @@ export const LinkDefault: React.FC<
 
   useEffect(() => {
     let state = 'default';
-    if (entity.selected) state = 'selected';
+    if (entity.selected && entity.hovered) state = 'selected-hovered';
+    else if (entity.selected) state = 'selected';
     else if (entity.hovered) state = 'hovered';
 
     mainStyling.setState(state);
@@ -69,18 +72,26 @@ export interface ILinkDefaultSettings {
   secondaryLine?: ILineStyling;
 }
 
-export type LinkDefaultState = 'default' | 'hovered' | 'selected';
+export type LinkDefaultState =
+  | 'default'
+  | 'hovered'
+  | 'selected'
+  | 'selected-hovered';
 export type LinkDefaultSettingsByStates<TValue> = {
   [key in LinkDefaultState]?: TValue;
 };
 
-export const defaultLinkMainLineClasses: LinkDefaultSettingsByStates<string[]> = {
+export const defaultLinkMainLineClasses: LinkDefaultSettingsByStates<
+  string[]
+> = {
   default: ['react_fast_diagram_LinkDefault_Line'],
   hovered: ['react_fast_diagram_LinkDefault_Line_Hovered'],
   selected: ['react_fast_diagram_LinkDefault_Line_Selected'],
 };
 
-export const defaultLinkSecondaryLineClasses: LinkDefaultSettingsByStates<string[]> = {
+export const defaultLinkSecondaryLineClasses: LinkDefaultSettingsByStates<
+  string[]
+> = {
   default: [
     'react_fast_diagram_LinkDefault_Line',
     'react_fast_diagram_LinkDefault_SecondaryLine',
@@ -89,8 +100,9 @@ export const defaultLinkSecondaryLineClasses: LinkDefaultSettingsByStates<string
     'react_fast_diagram_LinkDefault_Line_Hovered',
     'react_fast_diagram_LinkDefault_SecondaryLine_Hovered',
   ],
-  selected: [
+  'selected-hovered': [
     'react_fast_diagram_LinkDefault_Line_Selected',
+    'react_fast_diagram_LinkDefault_SecondaryLine_Hovered',
   ],
 };
 
