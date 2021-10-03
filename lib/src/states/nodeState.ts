@@ -1,11 +1,10 @@
 import { autorun, makeAutoObservable, reaction } from 'mobx';
-import { Dictionary, isBoolean } from 'utils/common';
+import { Dictionary, isBoolean, deepCopy } from 'utils/common';
 import {
   SuccessOrErrorResult,
   errorResult,
   successValueResult,
 } from 'utils/result';
-import { deepCopy } from 'utils';
 import { guidForcedUniqueness } from 'utils/guid';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { LinkState } from 'states/linkState';

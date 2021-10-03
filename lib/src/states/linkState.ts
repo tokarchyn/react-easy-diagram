@@ -1,6 +1,5 @@
 import { makeAutoObservable } from 'mobx';
 import { Point } from 'utils/point';
-import { deepCopy } from 'utils';
 import { LinkPointEndpointState } from 'states/linkPointEndpointState';
 import {
   LinkPortEndpointState,
@@ -8,7 +7,7 @@ import {
 } from 'states/linkPortEndpointState';
 import { RootStore } from 'states/rootStore';
 import { componentDefaultType } from 'states/visualComponents';
-import { isBoolean } from 'utils/common';
+import { isBoolean, deepCopy } from 'utils/common';
 
 export class LinkState
   implements ILinkState, ILinkInteractionState {

@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { addPoints, multiplyPoint, Point } from 'utils/point';
-import { deepCopy } from 'utils';
+import { deepCopy } from 'utils/common';
 import { NodeState } from 'states/nodeState';
 import { PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';

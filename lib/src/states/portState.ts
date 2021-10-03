@@ -1,7 +1,6 @@
 import { makeAutoObservable, reaction } from 'mobx';
 import { multiplyPoint, Point } from 'utils/point';
 import { DirectionWithDiagonals } from 'utils/position';
-import { deepCopy } from 'utils';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { LinkState } from 'states/linkState';
 import { NodeState } from 'states/nodeState';
@@ -12,7 +11,7 @@ import {
   VisualComponentState,
   VisualComponent,
 } from 'states/visualComponentState';
-import { isBoolean } from 'utils/common';
+import { isBoolean, deepCopy } from 'utils/common';
 
 export class PortState {
   private _id: string;
