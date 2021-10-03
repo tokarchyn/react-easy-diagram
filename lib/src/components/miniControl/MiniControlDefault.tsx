@@ -20,7 +20,7 @@ const MiniControlDefault: React.FC<
 
   return (
     <div
-      className='react_fast_diagram_Minicontrol_Default'
+      className='react_fast_diagram_MiniControl_Default'
       style={{
         ...getOffsetStyles(settings),
         ...settings?.containerStyle,
@@ -101,7 +101,7 @@ export const Button: React.FC<{
 }> = (props) => (
   <button
     onClick={props.onClick}
-    className='react_fast_diagram_Minicontrol_Btn'
+    className='react_fast_diagram_MiniControl_Btn'
     style={{
       width: props.size + 'px',
       height: props.size + 'px',

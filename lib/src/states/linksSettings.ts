@@ -25,7 +25,11 @@ export class LinksSettings {
   >({
     [componentDefaultType]: createLinkDefault(),
     [linkCreationComponentType]: createLinkDefault({
-      markerEnd: 'default_circle_marker_selected',
+      mainLine: {
+        styles: {
+          default: { markerEnd: 'url(#default_circle_marker_hovered)' },
+        },
+      },
     }),
   });
   private _preferLinksDirection: 'horizontal' | 'vertical' | 'both';

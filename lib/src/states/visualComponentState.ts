@@ -18,7 +18,7 @@ export class VisualComponentState<TComponentProps> {
     this.import(component);
     makeObservable<VisualComponentState<TComponentProps>, '_component' | '_settings'>(this, {
       _component: observable.ref,
-      _settings: observable,
+      _settings: observable.ref,
       component: computed,
       settings: computed,
       import: action,

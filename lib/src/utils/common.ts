@@ -31,3 +31,11 @@ export function clampValue(value: number, interval: Point) {
 export function deepCopy<TValue>(value: TValue): TValue {
   return JSON.parse(JSON.stringify(value));
 }
+
+export function combineArrays<TValue>(
+  ...arrays: (TValue[] | undefined)[]
+): TValue[] {
+  const combined: TValue[] = [];
+  arrays.forEach((a) => a?.forEach((v) => v && combined.push(v)));
+  return combined;
+}

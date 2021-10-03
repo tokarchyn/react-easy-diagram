@@ -1,104 +1,102 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import type { ILinkVisualComponentProps } from 'states/linksSettings';
+import { StatefullStyling } from 'states/statefullStyling';
 import type { IComponentDefinition } from 'states/visualComponentState';
 
 export const LinkDefault: React.FC<
-  ILinkVisualComponentProps<Partial<ILinkDefaultSettings>>
+  ILinkVisualComponentProps<ILinkDefaultSettings>
 > = observer(({ entity, settings, bind }) => {
-  const finalSettings = {
-    ...linkDefaultSettings,
-    ...settings,
-  };
-  const path = entity.path;
-  if (!path) return null;
+  const mainStyling = useMemo(
+    () =>
+      new StatefullStyling(
+        settings?.removeDefaultClasses,
+        'default',
+        settings?.mainLine?.classes,
+        defaultMainLineClasses,
+        settings?.mainLine?.styles
+      ),
+    [settings]
+  );
 
-  let color = finalSettings.color;
-  if (entity.selected && finalSettings.selectedColor)
-    color = finalSettings.selectedColor;
-  else if (entity.hovered && finalSettings.hoveredColor)
-    color = finalSettings.hoveredColor;
+  const secondaryStyling = useMemo(
+    () =>
+      new StatefullStyling(
+        settings?.removeDefaultClasses,
+        'default',
+        settings?.secondaryLine?.classes,
+        defaultSecondaryLineClasses,
+        settings?.secondaryLine?.styles
+      ),
+    [settings]
+  );
+
+  useEffect(() => {
+    let state = 'default';
+    if (entity.selected) state = 'selected';
+    else if (entity.hovered) state = 'hovered';
+
+    mainStyling.setState(state);
+    secondaryStyling.setState(state);
+  }, [entity, entity.hovered, entity.selected, mainStyling, secondaryStyling]);
+
+  if (!entity.path) return null;
 
   return (
     <g>
       <path
-        d={path.svgPath}
-        stroke={color}
-        strokeWidth={finalSettings.strokeWidth}
-        fill='none'
-        strokeLinecap='round'
-        markerStart={getMarkerBasedOnState(
-          finalSettings.markerStart,
-          entity.selected,
-          entity.hovered
-        )}
-        markerEnd={getMarkerBasedOnState(
-          finalSettings.markerEnd,
-          entity.selected,
-          entity.hovered
-        )}
+        d={entity.path.svgPath}
+        className={mainStyling.className}
+        style={mainStyling.style}
       />
       <path
-        d={path.svgPath}
-        stroke={color}
-        strokeWidth='5'
+        d={entity.path.svgPath}
+        className={secondaryStyling.className}
+        style={secondaryStyling.style}
         {...bind()}
-        pointerEvents='auto'
-        fill='none'
-        strokeOpacity={
-          entity.hovered && finalSettings.enableHoverEffect ? 0.22 : 0
-        }
       />
     </g>
   );
 });
 
-export function getMarkerBasedOnState(
-  marker: ILinkSvgMarker | undefined,
-  selected: boolean,
-  hovered: boolean
-): string | undefined {
-  if (!marker) return undefined;
-
-  let id = undefined;
-  if (typeof marker === 'string') {
-    id = marker;
-  } else {
-    id = marker.default;
-    if (selected && marker.selected) id = marker.selected;
-    else if (hovered && marker.hovered) id = marker.hovered;
-  }
-  return `url(#${id})`;
+export interface ILineStyling {
+  classes?: ILinkDefaultSettingsByStates<string[]>;
+  styles?: ILinkDefaultSettingsByStates<React.CSSProperties>;
 }
-
 export interface ILinkDefaultSettings {
-  color: string;
-  selectedColor?: string;
-  hoveredColor?: string;
-  enableHoverEffect: boolean;
-  strokeWidth: number;
-  markerStart?: ILinkSvgMarker;
-  markerEnd?: ILinkSvgMarker;
+  removeDefaultClasses?: true;
+  mainLine?: ILineStyling;
+  secondaryLine?: ILineStyling;
 }
 
-type ILinkSvgMarker =
-  | {
-      default: string;
-      hovered?: string;
-      selected?: string;
-    }
-  | string;
+export type LinkDefaultState = 'default' | 'hovered' | 'selected';
+export type ILinkDefaultSettingsByStates<TValue> = {
+  [key in LinkDefaultState]?: TValue;
+};
 
-const linkDefaultSettings: ILinkDefaultSettings = {
-  color: '#c2c2c2',
-  selectedColor: '#6eb7ff',
-  hoveredColor: '#a1d0ff',
-  strokeWidth: 1,
-  enableHoverEffect: true,
+export const defaultMainLineClasses: ILinkDefaultSettingsByStates<string[]> = {
+  default: ['react_fast_diagram_LinkDefault_Line'],
+  hovered: ['react_fast_diagram_LinkDefault_Line_Hovered'],
+  selected: ['react_fast_diagram_LinkDefault_Line_Selected'],
+};
+
+export const defaultSecondaryLineClasses: ILinkDefaultSettingsByStates<string[]> = {
+  default: [
+    'react_fast_diagram_LinkDefault_Line',
+    'react_fast_diagram_LinkDefault_SecondaryLine',
+  ],
+  hovered: [
+    'react_fast_diagram_LinkDefault_Line_Hovered',
+    'react_fast_diagram_LinkDefault_SecondaryLine_Hovered',
+  ],
+  selected: [
+    'react_fast_diagram_LinkDefault_Line_Selected',
+    'react_fast_diagram_LinkDefault_SecondaryLine_Selected',
+  ],
 };
 
 export function createLinkDefault(
-  settings?: Partial<ILinkDefaultSettings>
+  settings?: ILinkDefaultSettings
 ): IComponentDefinition<
   ILinkVisualComponentProps,
   Partial<ILinkDefaultSettings>

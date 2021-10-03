@@ -57,6 +57,7 @@ export * from './states/portState';
 export * from './states/portsSettings';
 export * from './states/rootStore';
 export * from './states/selectionState';
+export * from './states/statefullStyling';
 export * from './states/userInteractionSettings';
 export * from './states/visualComponentState';
 export * from './states/visualComponentWithDefault';

@@ -1,3 +1,4 @@
+/* Diagram */
 .react_fast_diagram_DiagramInner {
   width: 100%;
   height: 100%;
@@ -31,7 +32,9 @@
   left: 0;
   overflow: visible;
 }
+/* Diagram */
 
+/* Node */
 .react_fast_diagram_NodeWrapper {
   position: absolute;
   top: 0;
@@ -61,11 +64,9 @@
   text-align: center;
   margin: auto;
 }
+/* Node */
 
-.react_fast_diagram_disabled_user_select {
-  user-select: none;
-}
-
+/* Background */
 .react_fast_diagram_BackgroundWrapper {
   height: 100%;
   width: 100%;
@@ -76,15 +77,17 @@
   height: 100%;
   width: 100%;
 }
+/* Background */
 
-.react_fast_diagram_Minicontrol_Default {
+/* MiniControl */
+.react_fast_diagram_MiniControl_Default {
   position: absolute;
   height: fit-content;
   display: flex;
   flex-direction: column;
 }
 
-.react_fast_diagram_Minicontrol_Btn {
+.react_fast_diagram_MiniControl_Btn {
   background-color: white;
   border: 1px solid rgb(209, 209, 209);
   color: black;
@@ -95,17 +98,57 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .react_fast_diagram_Minicontrol_Btn:hover {
+  .react_fast_diagram_MiniControl_Btn:hover {
     background-color: rgb(228, 228, 228);
   }
 }
+/* MiniControl */
 
+/* Port */
 .react_fast_diagram_PortInnerDefault {
   cursor: pointer;
 }
+/* Port */
+
+/* Link */
+.react_fast_diagram_LinkDefault_Line {
+  cursor: pointer;
+  fill: none;
+  stroke-linecap: round;
+  stroke: #c2c2c2;
+  stroke-width: 1px;
+}
+
+.react_fast_diagram_LinkDefault_Line_Selected {
+  stroke: #6eb7ff;
+}
+
+.react_fast_diagram_LinkDefault_Line_Hovered {
+  stroke: #a1d0ff;
+}
+
+.react_fast_diagram_LinkDefault_SecondaryLine {
+  stroke-width: 5px;
+  stroke-opacity: 0;
+  pointer-events: all;
+}
+
+.react_fast_diagram_LinkDefault_SecondaryLine_Hovered {
+  stroke-opacity: 0.22;
+}
+
+.react_fast_diagram_LinkDefault_SecondaryLine_Selected {
+  stroke-opacity: 0.22;
+}
+/* Link */
+
+/* Common */
+.react_fast_diagram_disabled_user_select {
+  user-select: none;
+}
+/* Common */
 
 /* Containers with gap between items */
-
 .react_fast_diagram_flex_gap {
   --gap: 12px;
   display: flex;
@@ -138,5 +181,4 @@
 .react_fast_diagram_flex_gap_x > :first-child {
   margin: 0;
 }
-
 /* Containers with gap between items */
