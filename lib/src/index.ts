@@ -61,7 +61,6 @@ export * from './states/userInteractionSettings';
 export * from './states/visualComponentState';
 export * from './states/visualComponentWithDefault';
 export * from './states/visualComponents';
-export * from './utils';
 export * from './utils/common';
 export * from './utils/guid';
 export * from './utils/point';
