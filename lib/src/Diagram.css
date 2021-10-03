@@ -44,7 +44,7 @@
   pointer-events: auto;
 }
 
-.react_fast_diagram_Node_Default {
+.react_fast_diagram_NodeDefault {
   min-width: 10px;
   min-height: 10px;
   border-radius: 3px;
@@ -55,7 +55,11 @@
   align-items: center;
 }
 
-.react_fast_diagram_Node_Default_Selected {
+.react_fast_diagram_NodeDefault_Hovered {
+  border: #a1d0ff solid 1px;
+}
+
+.react_fast_diagram_NodeDefault_Selected {
   border: #6eb7ff solid 1px;
 }
 

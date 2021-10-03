@@ -1,9 +1,10 @@
 import { NodeLabel } from 'components/node/NodeLabel';
 import { IPortProps, Port } from 'components/port/Port';
 import { observer } from 'mobx-react-lite';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { INodeVisualComponentProps } from 'states/nodesSettings';
 import { NodeState } from 'states/nodeState';
+import { StatefullStyling } from 'states/statefullStyling';
 import {
   IComponentDefinition,
   VisualComponent,
@@ -12,20 +13,28 @@ import {
 export const NodeDefault: React.FC<
   INodeVisualComponentProps<INodeDefaultSettings>
 > = observer(({ entity, settings, draggableRef }) => {
-  const className = useMemo(() => {
-    let classes = settings?.classes ?? [];
-    if (entity.selected && settings?.selectedClasses)
-      classes = [...classes, ...settings.selectedClasses];
+  const styling = useMemo(
+    () =>
+      new StatefullStyling(
+        settings?.removeDefaultClasses,
+        'default',
+        settings?.classes,
+        defaultNodeClasses,
+        settings?.style
+      ),
+    [settings]
+  );
 
-    if (!settings?.removeDefaultClasses) {
-      classes.push('react_fast_diagram_Node_Default');
-      if (entity.selected) classes.push('react_fast_diagram_Node_Default_Selected');
-    }
-    return classes.join(' ');
-  }, [settings, entity.selected]);
+  useEffect(() => {
+    let state = 'default';
+    if (entity.selected) state = 'selected';
+    else if (entity.hovered) state = 'hovered';
+
+    styling.setState(state);
+  }, [entity, entity.hovered, entity.selected, styling]);
 
   return (
-    <div ref={draggableRef} className={className} style={settings?.style}>
+    <div ref={draggableRef} className={styling.className} style={styling.style}>
       {settings?.innerNode && <settings.innerNode node={entity} />}
 
       {Array.isArray(settings?.ports) &&
@@ -37,11 +46,21 @@ export const NodeDefault: React.FC<
 export interface INodeDefaultSettings {
   ports?: IPortProps[];
   innerNode?: VisualComponent<{ node: NodeState }>;
-  style?: React.CSSProperties;
-  selectedClasses?: string[];
   removeDefaultClasses?: true;
-  classes?: string[];
+  classes?: NodeDefaultSettingsByStates<string[]>;
+  style?: NodeDefaultSettingsByStates<React.CSSProperties>;
 }
+
+export type NodeDefaultState = 'default' | 'hovered' | 'selected';
+export type NodeDefaultSettingsByStates<TValue> = {
+  [key in NodeDefaultState]?: TValue;
+};
+
+export const defaultNodeClasses: NodeDefaultSettingsByStates<string[]> = {
+  default: ['react_fast_diagram_NodeDefault'],
+  hovered: ['react_fast_diagram_NodeDefault_Hovered'],
+  selected: ['react_fast_diagram_NodeDefault_Selected'],
+};
 
 export function createNode(
   settings?: INodeDefaultSettings

@@ -26,7 +26,7 @@ export class LinksSettings {
     [componentDefaultType]: createLinkDefault(),
     [linkCreationComponentType]: createLinkDefault({
       mainLine: {
-        styles: {
+        style: {
           default: { markerEnd: 'url(#default_circle_marker_hovered)' },
         },
       },

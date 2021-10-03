@@ -7,7 +7,7 @@ import {
   NodeState,
 } from 'react-easy-diagram';
 import { observer } from 'mobx-react-lite';
-import styles from '../styles.module.css'; 
+import styles from '../styles.module.css';
 
 const NumberProvider = observer<{ node: NodeState }>(({ node }) => {
   const port = node.ports.get('output');
@@ -128,7 +128,7 @@ export default () => (
         components: {
           number: createOutputHorizontalNode({
             innerNode: NumberProvider,
-            classes: [styles.nodePadding]
+            classes: { default: [styles.nodePadding] },
           }),
           sum: createNode({
             ports: [
@@ -151,19 +151,22 @@ export default () => (
               },
             ],
             innerNode: Sum,
-            classes: [styles.nodePadding]
+            classes: { default: [styles.nodePadding] },
           }),
         },
       },
       callbacks: {
         validateLinkEndpoints: (source, target, rootStore) => {
           // allow connection only if target port is still unconnected
-          if (target.type === 'input' && target.connectedLinks.length > 0) return false;
-          if (source.type === 'input' && source.connectedLinks.length > 0) return false;
+          if (target.type === 'input' && target.connectedLinks.length > 0)
+            return false;
+          if (source.type === 'input' && source.connectedLinks.length > 0)
+            return false;
 
           if (source.type === 'input' && target.type === 'input') return false;
-          if (source.type === 'output' && target.type === 'output') return false;
-          
+          if (source.type === 'output' && target.type === 'output')
+            return false;
+
           return true;
         },
       },

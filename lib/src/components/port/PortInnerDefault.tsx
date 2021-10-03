@@ -14,7 +14,7 @@ const PortInnerDefault: React.FC<
         'default',
         settings?.classes,
         defaultPortInnerClasses,
-        settings?.styles
+        settings?.style
       ),
     [settings]
   );
@@ -49,7 +49,7 @@ export type PortInnerDefaultSettingsByStates<TValue> = {
 export interface IPortInnerDefaultSettings {
   removeDefaultClasses?: true;
   classes?: PortInnerDefaultSettingsByStates<string[]>;
-  styles?: PortInnerDefaultSettingsByStates<React.CSSProperties>;
+  style?: PortInnerDefaultSettingsByStates<React.CSSProperties>;
 }
 
 export const defaultPortInnerClasses: PortInnerDefaultSettingsByStates<

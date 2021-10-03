@@ -30,6 +30,12 @@ export const useNodeUserInteraction = (
 
   const handlers = useMemo<GestureHandlers>(
     () => ({
+      onPointerEnter: () => {
+        nodeState.hovered = true;
+      },
+      onPointerLeave: () => {
+        nodeState.hovered = false;
+      },
       onClick: () => {}, // Prevent from double tap zooming on IOS
       onDrag: ({ pinching, delta, movement }) => {
         if (

@@ -14,7 +14,7 @@ export const LinkDefault: React.FC<
         'default',
         settings?.mainLine?.classes,
         defaultLinkMainLineClasses,
-        settings?.mainLine?.styles
+        settings?.mainLine?.style
       ),
     [settings]
   );
@@ -26,7 +26,7 @@ export const LinkDefault: React.FC<
         'default',
         settings?.secondaryLine?.classes,
         defaultLinkSecondaryLineClasses,
-        settings?.secondaryLine?.styles
+        settings?.secondaryLine?.style
       ),
     [settings]
   );
@@ -61,7 +61,7 @@ export const LinkDefault: React.FC<
 
 export interface ILineStyling {
   classes?: LinkDefaultSettingsByStates<string[]>;
-  styles?: LinkDefaultSettingsByStates<React.CSSProperties>;
+  style?: LinkDefaultSettingsByStates<React.CSSProperties>;
 }
 export interface ILinkDefaultSettings {
   removeDefaultClasses?: true;

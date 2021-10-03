@@ -22,6 +22,7 @@ export class NodeState {
   private _ref: HtmlElementRefState;
   private _type: string;
   private _selected: boolean;
+  private _hovered: boolean;
   private _extra: any;
   private _isSelectionEnabled: boolean | null;
   private _isDragEnabled: boolean | null;
@@ -35,6 +36,7 @@ export class NodeState {
     this._id = id;
     this._ref = new HtmlElementRefState(null);
     this._selected = false;
+    this._hovered = false;
     this.import(state);
 
     makeAutoObservable(this, {
@@ -143,6 +145,14 @@ export class NodeState {
     if (!value) {
       this.isDragActive = false;
     }
+  }
+
+  get hovered() {
+    return this._hovered;
+  }
+
+  set hovered(value: boolean) {
+    this._hovered = value;
   }
 
   get extra() {
