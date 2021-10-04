@@ -1,9 +1,11 @@
-name: CI
+name: Release
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'     
+        required: true
 
 jobs:
   publish_library:
@@ -36,6 +38,11 @@ jobs:
           cp ../LICENSE package/
           cp package.json package/
           cp -r dist package/
+      
+      - name: Remove develop tag
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          sed  -i 's|version.*|version": "${{ github.event.inputs.version }}"|' lib/package/package.json
 
       - name: Publish package
         uses: JS-DevTools/npm-publish@v1
