@@ -141,7 +141,7 @@
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = function(chunkId) {
 /******/ 			// return url for filenames based on template
-/******/ 			return "assets/js/" + ({"53":"935f2afb","99":"fb72e560","132":"ce59fbe4","150":"66accb38","195":"c4f5d8e4","317":"cf959e9c","409":"c2a627a4","514":"1be78505","518":"65f3459c","542":"812c8586","592":"common","651":"fcdae9f6","763":"78bfeeec","829":"aa3c789d","901":"9e7a0641","915":"315cfba4","918":"17896441","937":"972d9d57","976":"af557546"}[chunkId] || chunkId) + "." + {"53":"10941bf9","99":"14a41354","119":"b4ca9f61","132":"2ad74583","150":"2335df3f","195":"81c83a99","317":"0ed743c3","409":"c9f4fdb6","514":"086c3b8a","518":"2074ea1b","542":"ecc97808","592":"05e0ea70","651":"25cfd6e1","763":"3f324979","829":"3bab22ed","901":"01cd812a","915":"bbc06295","918":"c0d6fb15","937":"c4f1d022","976":"e3046e3f"}[chunkId] + ".js";
+/******/ 			return "assets/js/" + ({"53":"935f2afb","99":"fb72e560","132":"ce59fbe4","150":"66accb38","195":"c4f5d8e4","317":"cf959e9c","409":"c2a627a4","514":"1be78505","518":"65f3459c","542":"812c8586","592":"common","651":"fcdae9f6","763":"78bfeeec","829":"aa3c789d","901":"9e7a0641","915":"315cfba4","918":"17896441","937":"972d9d57","976":"af557546"}[chunkId] || chunkId) + "." + {"53":"443de01d","99":"496baff4","119":"b4ca9f61","132":"2ad74583","150":"ae554a11","195":"068a1c50","317":"0ed743c3","409":"b1df05d4","514":"086c3b8a","518":"8c3bf970","542":"ecc97808","592":"e0a38191","651":"25cfd6e1","763":"3f324979","829":"3bab22ed","901":"01cd812a","915":"1ed01c4f","918":"c0d6fb15","937":"fcb999da","976":"e3046e3f"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	}();
 /******/ 	
@@ -150,7 +150,7 @@
 /******/ 		// This function allow to reference all chunks
 /******/ 		__webpack_require__.miniCssF = function(chunkId) {
 /******/ 			// return url for filenames based on template
-/******/ 			return "assets/css/" + "styles" + "." + "898b987f" + ".css";
+/******/ 			return "assets/css/" + "styles" + "." + "61ae314e" + ".css";
 /******/ 		};
 /******/ 	}();
 /******/ 	
@@ -230,7 +230,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/publicPath */
 /******/ 	!function() {
-/******/ 		__webpack_require__.p = "/react-easy-diagram/";
+/******/ 		__webpack_require__.p = "/";
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/compat */

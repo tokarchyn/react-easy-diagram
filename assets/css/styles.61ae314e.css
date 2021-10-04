@@ -4014,6 +4014,8 @@ body {
   color: white;
 }
 
+/* Diagram styles */
+
 .textInput_11m- {
   outline: none;
   border: 1px solid #c2c2c2;
@@ -4026,4 +4028,8 @@ body {
 
 .textInput_11m-:focus {
   border: 1px solid rgb(110, 183, 255);
+}
+
+.nodePadding_GbY- {
+  padding: 6px;
 }
