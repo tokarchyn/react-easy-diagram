@@ -151,7 +151,7 @@
 .react_fast_diagram_LinkDefault_SecondaryLine {
   stroke-width: 5px;
   stroke-opacity: 0;
-  pointer-events: all;
+  pointer-events: stroke;
 }
 
 .react_fast_diagram_LinkDefault_SecondaryLine_Hovered {
