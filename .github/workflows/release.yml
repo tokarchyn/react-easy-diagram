@@ -6,6 +6,9 @@ on:
       version:
         description: 'Version'     
         required: true
+      tag:
+        description: 'Tag'     
+        required: true
 
 jobs:
   publish_library:
@@ -48,6 +51,7 @@ jobs:
         uses: JS-DevTools/npm-publish@v1
         with:
           package: lib/package/package.json
+          tag: ${{ github.event.inputs.tag }}
           token: ${{ secrets.NPM_TOKEN }}
 
       - name: Deploy website
