@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://tokarchyn.github.io/react-easy-diagram/blog</id>
+    <title>React Easy Diagram Blog</title>
+    <updated>2015-10-25T23:29:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://tokarchyn.github.io/react-easy-diagram/blog"/>
+    <subtitle>React Easy Diagram Blog</subtitle>
+    <icon>https://tokarchyn.github.io/react-easy-diagram/img/favicon.ico</icon>
+</feed>
