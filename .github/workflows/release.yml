@@ -27,6 +27,12 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Remove baseUrl in docusaurus for develop
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          sed -i 's|baseUrl.*|baseUrl: \"\",|' website/docusaurus.config.js
+          cat website/docusaurus.config.js
+
       - name: Build package&website
         run: yarn build
 
