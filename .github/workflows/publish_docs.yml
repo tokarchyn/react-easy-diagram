@@ -1,0 +1,44 @@
+name: Publish docs
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+jobs:
+  publish_library:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Remove baseUrl in docusaurus for develop
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          sed -i '/baseUrl/d' website/docusaurus.config.js
+          cat website/docusaurus.config.js
+
+      - name: Build package&website
+        run: yarn build
+
+      - name: Deploy website
+        if: github.ref == 'refs/heads/develop'
+        uses: JamesIves/github-pages-deploy-action@4.1.3
+        with:
+          branch: gh-pages-beta
+          folder: website/build
