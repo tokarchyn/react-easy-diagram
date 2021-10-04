@@ -6,30 +6,42 @@ import {
   RubbishBinIcon,
 } from 'components/Icons';
 import { observer } from 'mobx-react-lite';
-import React from 'react';
+import React, { useMemo } from 'react';
 import type { IMiniControlComponentProps } from 'states/diagramSettings';
 import { IComponentDefinition } from 'states/visualComponentState';
+import { combineArrays } from 'utils/common';
 import { CornerPosition } from 'utils/position';
 
 const MiniControlDefault: React.FC<
   IMiniControlComponentProps<IMiniControlDefaultSettings>
 > = observer(({ rootStore, settings }) => {
-  settings = settings ?? defaultSettings;
+  const finalSettings = settings ?? defaultSettings;
 
-  if (Object.values(settings.buttons).every((v) => v === false)) return null;
+  const className = useMemo(
+    () =>
+      combineArrays(
+        ['react_fast_diagram_MiniControl_Default'],
+        finalSettings?.classes
+      ).join(' '),
+    [finalSettings]
+  );
+
+  const style = useMemo(
+    () => ({
+      ...getOffsetStyles(finalSettings),
+      ...finalSettings?.style,
+    }),
+    [finalSettings]
+  );
+
+  if (Object.values(finalSettings.buttons).every((v) => v === false)) return null;
 
   return (
-    <div
-      className='react_fast_diagram_MiniControl_Default'
-      style={{
-        ...getOffsetStyles(settings),
-        ...settings?.containerStyle,
-      }}
-    >
-      {settings.buttons.deleteSelection &&
+    <div className={className} style={style}>
+      {finalSettings.buttons.deleteSelection &&
         rootStore.selectionState.selectedItems.length > 0 && (
           <Button
-            size={settings.buttonsSize}
+            size={finalSettings.buttonsSize}
             onClick={() =>
               rootStore.commandExecutor.execute(removeSelectedCommand)
             }
@@ -37,10 +49,10 @@ const MiniControlDefault: React.FC<
             <RubbishBinIcon />
           </Button>
         )}
-      {settings.buttons.cloneSelectedNodes &&
-        rootStore.selectionState.selectedItems.length > 0 && (
+      {finalSettings.buttons.cloneSelectedNodes &&
+        rootStore.selectionState.selectedNodes.length > 0 && (
           <Button
-            size={settings.buttonsSize}
+            size={finalSettings.buttonsSize}
             onClick={() =>
               rootStore.commandExecutor.execute(cloneSelectedNodesCommand)
             }
@@ -48,23 +60,23 @@ const MiniControlDefault: React.FC<
             <CopyIcon />
           </Button>
         )}
-      {settings.buttons.zoomIn && (
+      {finalSettings.buttons.zoomIn && (
         <Button
-          size={settings.buttonsSize}
+          size={finalSettings.buttonsSize}
           onClick={rootStore.diagramState.zoomIn}
           children='+'
         />
       )}
-      {settings.buttons.zoomOut && (
+      {finalSettings.buttons.zoomOut && (
         <Button
-          size={settings.buttonsSize}
+          size={finalSettings.buttonsSize}
           onClick={rootStore.diagramState.zoomOut}
           children='-'
         />
       )}
-      {settings.buttons.zoomToFit && (
+      {finalSettings.buttons.zoomToFit && (
         <Button
-          size={settings.buttonsSize}
+          size={finalSettings.buttonsSize}
           onClick={rootStore.diagramState.zoomToFit}
         >
           <FilterCenterFocusIcon />
@@ -131,7 +143,6 @@ export const createDefaultMiniControl = (
 
 const defaultSettings: IMiniControlDefaultSettings = {
   position: 'left-bottom',
-  containerStyle: {},
   buttonsSize: 30,
   buttons: {
     zoomIn: true,
@@ -144,11 +155,12 @@ const defaultSettings: IMiniControlDefaultSettings = {
 };
 
 export interface IMiniControlDefaultSettings {
-  position: CornerPosition;
-  containerStyle: React.CSSProperties;
+  classes?: string[];
+  style?: React.CSSProperties;
+  position?: CornerPosition;
   buttons: ButtonsValue;
   buttonsSize: number;
-  parentOffset: number;
+  parentOffset?: number;
 }
 
 interface ButtonsValue {
