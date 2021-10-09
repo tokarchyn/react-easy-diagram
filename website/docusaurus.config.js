@@ -106,4 +106,17 @@ module.exports = {
     ],
   ],
   themes: ['@docusaurus/theme-live-codeblock'],
+  plugins: [
+    [
+      'docusaurus-plugin-typedoc',
+      {
+        entryPoints: ['../lib/src/index.ts'],
+        tsconfig: '../lib/tsconfig.json',
+        readme: 'none',
+        excludeProtected: true,
+        excludeInternal: true,
+        excludePrivate: true
+      },
+    ],
+  ],
 };

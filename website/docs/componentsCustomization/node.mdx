@@ -128,7 +128,7 @@ Creating your own component for node is very simple and require only two things:
 1. Wrapping in `observer` as were written at the beginning of this page.
 2. Attaching draggable reference which component will get as a prop.
 
-Let's write a node component with background depending on rather node is hovered or not. It will also display it's position and label. To see other data available in `entity` object, which you will also get as a prop, see [State management](../stateManagement#node).
+Let's write a node component with background depending on rather node is hovered or not. It will also display it's position and label. To see other data available in `entity` object, which you will also get as a prop, go to the [Node state](../api/classes/NodeState.md).
 ```jsx
 const NodeComponent = observer(({ entity, draggableRef }) => {
   return (
