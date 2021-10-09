@@ -30,7 +30,7 @@ describe('Node state', () => {
     };
 
     beforeEach(() => {
-      mockNodePositionChangedCallback = jest.fn((a, b, c, d, e) => {});
+      mockNodePositionChangedCallback = jest.fn((_a, _b, _c, _d, _e) => {});
       store.callbacks.import({
         nodePositionChanged: mockNodePositionChangedCallback,
       });
@@ -48,7 +48,7 @@ describe('Node state', () => {
       const node = new NodeState(store, 'test', {
         position: [5, 10],
       });
-      node.setPosition([5,10]);
+      node.setPosition([5, 10]);
       expect(mockNodePositionChangedCallback.mock.calls.length).toBe(0);
     });
 

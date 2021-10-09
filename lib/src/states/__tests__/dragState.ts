@@ -132,7 +132,7 @@ describe('Drag state', () => {
     store.dragState.startDragging(node1);
 
     expect(store.dragState.isActive).toBeFalsy();
-    
+
     expect(node1.isDragActive).toBeFalsy();
     expect(node1.selected).toBeFalsy();
   });

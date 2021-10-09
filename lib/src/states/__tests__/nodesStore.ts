@@ -1,8 +1,6 @@
 import { ICallbacks } from 'states/callbacks';
-import { INodeState, NodeState } from 'states/nodeState';
+import { INodeState } from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
-import { Point } from 'utils/point';
-import { SuccessOrErrorResult, SuccessResult } from 'utils/result';
 
 describe('Nodes store', () => {
   let store: RootStore;
@@ -103,9 +101,9 @@ describe('Nodes store', () => {
 
       const nodeToAdd: INodeState = { id: 'mynode', position: [0, 100] };
       const result = store.nodesStore.addNode(nodeToAdd, false);
-      
+
       expect(result.success).toBeFalsy();
-      
+
       const callbackCalls = mockNodesAddedCallback.mock.calls;
       expect(callbackCalls.length).toBe(2);
       expect(callbackCalls[1][2]).toBe(false);
@@ -224,7 +222,7 @@ describe('Nodes store', () => {
 
     const nodeToAdd1: INodeState = { id: 'mynode', position: [0, 11] };
     const nodeToAdd2: INodeState = { id: 'mynode2', position: [0, 12] };
-    const result = store.nodesStore.addNodes([nodeToAdd1,nodeToAdd2]);
+    const result = store.nodesStore.addNodes([nodeToAdd1, nodeToAdd2]);
 
     expect(result.length).toBe(2);
 

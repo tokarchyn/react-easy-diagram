@@ -19,7 +19,15 @@ describe('Diagram settings', () => {
       zoomToFitSettings: {
         padding: [100, 100],
       },
-      userInteraction: false,
+      userInteraction: {
+        diagramZoom: false,
+        diagramPan: false,
+        nodeDrag: false,
+        portConnection: false,
+        nodeSelection: false,
+        linkSelection: false,
+        multiselectionKey: 'meta'
+      },
     };
 
     settings.import(newSettings);
@@ -33,23 +41,12 @@ describe('Diagram settings', () => {
     expect(settings.zoomInterval).toEqual(newSettings.zoomInterval);
     expect(settings.zoomToFitSettings).toEqual(newSettings.zoomToFitSettings);
 
-    expect(settings.userInteraction.diagramZoom).toEqual(
-      newSettings.userInteraction
-    );
-    expect(settings.userInteraction.diagramPan).toEqual(
-      newSettings.userInteraction
-    );
-    expect(settings.userInteraction.nodeDrag).toEqual(
-      newSettings.userInteraction
-    );
-    expect(settings.userInteraction.portConnection).toEqual(
-      newSettings.userInteraction
-    );
-    expect(settings.userInteraction.nodeSelection).toEqual(
-      newSettings.userInteraction
-    );
-    expect(settings.userInteraction.linkSelection).toEqual(
-      newSettings.userInteraction
-    );
+    expect(settings.userInteraction.diagramZoom).toBeFalsy();
+    expect(settings.userInteraction.diagramPan).toBeFalsy();
+    expect(settings.userInteraction.nodeDrag).toBeFalsy();
+    expect(settings.userInteraction.portConnection).toBeFalsy();
+    expect(settings.userInteraction.nodeSelection).toBeFalsy();
+    expect(settings.userInteraction.linkSelection).toBeFalsy();
+    expect(settings.userInteraction.multiselectionKey).toEqual('meta');
   });
 });

@@ -9,7 +9,7 @@ import '../Diagram.css';
 
 export const RootStoreContext = React.createContext<RootStore | null>(null);
 
-export function Diagram (props: IDiagramProps) {
+export function Diagram(props: IDiagramProps) {
   const rootStore = useMemo(() => {
     const store = new RootStore();
     props.settings && store.importSettings(props.settings);
@@ -31,7 +31,7 @@ export function Diagram (props: IDiagramProps) {
       <DigramInner />
     </RootStoreContext.Provider>
   );
-};
+}
 
 export interface IDiagramProps {
   settings?: ISettings;
@@ -43,5 +43,3 @@ export interface IDiagramInitState {
   nodes?: INodeState[];
   links?: ILinkState[];
 }
-
-Diagram.displayName = 'Diagram';
