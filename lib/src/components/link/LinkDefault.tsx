@@ -11,7 +11,7 @@ export const LinkDefault: React.FC<
     () =>
       new StatefullStyling(
         settings?.removeDefaultClasses,
-        'default',
+        'base',
         settings?.mainLine?.classes,
         defaultLinkMainLineClasses,
         settings?.mainLine?.style,
@@ -25,7 +25,7 @@ export const LinkDefault: React.FC<
     () =>
       new StatefullStyling(
         settings?.removeDefaultClasses,
-        'default',
+        'base',
         settings?.secondaryLine?.classes,
         defaultLinkSecondaryLineClasses,
         settings?.secondaryLine?.style
@@ -34,7 +34,7 @@ export const LinkDefault: React.FC<
   );
 
   useEffect(() => {
-    let state = 'default';
+    let state = 'base';
     if (entity.selected && entity.hovered) state = 'selected-hovered';
     else if (entity.selected) state = 'selected';
     else if (entity.hovered) state = 'hovered';
@@ -73,7 +73,7 @@ export interface ILinkDefaultSettings {
 }
 
 export type LinkDefaultState =
-  | 'default'
+  | 'base'
   | 'hovered'
   | 'selected'
   | 'selected-hovered';
@@ -84,7 +84,7 @@ export type LinkDefaultSettingsByStates<TValue> = {
 export const defaultLinkMainLineClasses: LinkDefaultSettingsByStates<
   string[]
 > = {
-  default: ['react_fast_diagram_LinkDefault_Line'],
+  base: ['react_fast_diagram_LinkDefault_Line'],
   hovered: ['react_fast_diagram_LinkDefault_Line_Hovered'],
   selected: ['react_fast_diagram_LinkDefault_Line_Selected'],
 };
@@ -92,7 +92,7 @@ export const defaultLinkMainLineClasses: LinkDefaultSettingsByStates<
 export const defaultLinkSecondaryLineClasses: LinkDefaultSettingsByStates<
   string[]
 > = {
-  default: [
+  base: [
     'react_fast_diagram_LinkDefault_Line',
     'react_fast_diagram_LinkDefault_SecondaryLine',
   ],

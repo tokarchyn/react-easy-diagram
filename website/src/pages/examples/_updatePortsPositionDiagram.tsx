@@ -23,7 +23,7 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
 
     return (
       <div
-        className='react_fast_diagram_Node_Default'
+        className='react_fast_diagram_NodeDefault'
         ref={draggableRef}
         style={{
           padding: 15,
@@ -62,7 +62,7 @@ const NodeWithInternalData = observer<INodeVisualComponentProps>(
 
     return (
       <div
-        className='react_fast_diagram_Node_Default'
+        className='react_fast_diagram_NodeDefault'
         ref={draggableRef}
         style={{
           padding: 15,

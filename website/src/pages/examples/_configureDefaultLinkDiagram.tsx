@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  createLinkDefault,
-  Diagram,
-} from 'react-easy-diagram';
+import { createLinkDefault, Diagram } from 'react-easy-diagram';
 
 export default () => (
   <Diagram
@@ -11,17 +8,17 @@ export default () => (
         {
           id: 'Node 1',
           position: [100, 100],
-          type: 'input_output_horizontal'
+          type: 'input_output_horizontal',
         },
         {
           id: 'Node 2',
           position: [420, 300],
-          type: 'input_output_horizontal'
+          type: 'input_output_horizontal',
         },
         {
           id: 'Node 3',
           position: [420, 100],
-          type: 'input_output_horizontal'
+          type: 'input_output_horizontal',
         },
       ],
       links: [
@@ -35,12 +32,32 @@ export default () => (
       links: {
         components: {
           default: createLinkDefault({
-            color: 'grey',
-            strokeWidth: 1,
+            mainLine: {
+              style: {
+                base: {
+                  stroke: 'grey',
+                  strokeWidth: 1,
+                },
+              },
+            },
           }),
           linkCreation: createLinkDefault({
-            color: 'green',
-            strokeWidth: 3,
+            mainLine: {
+              style: {
+                base: {
+                  stroke: 'green',
+                  strokeWidth: 2,
+                },
+              },
+            },
+            secondaryLine: {
+              style: {
+                base: {
+                  stroke: 'green',
+                  strokeWidth: 5,
+                },
+              },
+            },
           }),
         },
       },

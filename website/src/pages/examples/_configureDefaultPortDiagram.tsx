@@ -31,15 +31,25 @@ export default () => (
       ports: {
         portComponents: {
           default: createPortInnerDefault({
-            size: [10, 10],
-            color: '#ee6eff',
-            dragColor: '#f849d2',
-            hoverColor: '#f849d2',
-            invalidColor: '#cccccc',
+            style: {
+              base: {
+                width: 10,
+                height: 10,
+                backgroundColor: '#ee6eff',
+              },
+              invalid: {
+                backgroundColor: '#cccccc',
+              },
+            },
           }),
           big_yellow: createPortInnerDefault({
-            size: [10, 20],
-            color: '#ffe657',
+            style: {
+              base: {
+                width: 10,
+                height: 20,
+                backgroundColor: '#ffe657',
+              },
+            },
           }),
         },
       },

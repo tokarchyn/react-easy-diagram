@@ -10,14 +10,14 @@ import {
   VisualComponent,
 } from 'states/visualComponentState';
 
-export const NodeDefault: React.FC<
+const NodeDefault: React.FC<
   INodeVisualComponentProps<INodeDefaultSettings>
 > = observer(({ entity, settings, draggableRef }) => {
   const styling = useMemo(
     () =>
       new StatefullStyling(
         settings?.removeDefaultClasses,
-        'default',
+        'base',
         settings?.classes,
         defaultNodeClasses,
         settings?.style,
@@ -28,7 +28,7 @@ export const NodeDefault: React.FC<
   );
 
   useEffect(() => {
-    let state = 'default';
+    let state = 'base';
     if (entity.selected && entity.hovered) state = 'selected-hovered';
     else if (entity.selected) state = 'selected';
     else if (entity.hovered) state = 'hovered';
@@ -54,13 +54,13 @@ export interface INodeDefaultSettings {
   style?: NodeDefaultSettingsByStates<React.CSSProperties>;
 }
 
-export type NodeDefaultState = 'default' | 'hovered' | 'selected' | 'selected-hovered';
+export type NodeDefaultState = 'base' | 'hovered' | 'selected' | 'selected-hovered';
 export type NodeDefaultSettingsByStates<TValue> = {
   [key in NodeDefaultState]?: TValue;
 };
 
 export const defaultNodeClasses: NodeDefaultSettingsByStates<string[]> = {
-  default: ['react_fast_diagram_NodeDefault'],
+  base: ['react_fast_diagram_NodeDefault'],
   hovered: ['react_fast_diagram_NodeDefault_Hovered'],
   selected: ['react_fast_diagram_NodeDefault_Selected'],
 };

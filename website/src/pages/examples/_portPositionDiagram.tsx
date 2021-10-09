@@ -25,7 +25,7 @@ const SomeNode = observer<INodeVisualComponentProps>(
     return (
       <div
         ref={draggableRef}
-        className='react_fast_diagram_Node_Default'
+        className='react_fast_diagram_NodeDefault'
         style={{
           padding: 15,
           border: entity.selected ? '#6eb7ff solid 1px' : '',
@@ -184,7 +184,11 @@ export default () => (
       ports: {
         portComponents: {
           custom_port: createPortInnerDefault({
-            color: 'yellow',
+            style: {
+              base: {
+                backgroundColor: 'yellow',
+              }
+            }
           }),
         },
       },

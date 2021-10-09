@@ -11,7 +11,7 @@ const PortInnerDefault: React.FC<
     () =>
       new StatefullStyling(
         settings?.removeDefaultClasses,
-        'default',
+        'base',
         settings?.classes,
         defaultPortInnerClasses,
         settings?.style
@@ -20,7 +20,7 @@ const PortInnerDefault: React.FC<
   );
 
   useEffect(() => {
-    let state = 'default';
+    let state = 'base';
     if (entity.dragging) state = 'dragging';
     else if (entity.hovered && entity.validForConnection) state = 'hovered';
     else if (entity.hovered && !entity.validForConnection) state = 'invalid';
@@ -38,7 +38,7 @@ const PortInnerDefault: React.FC<
 });
 
 export type PortInnerDefaultState =
-  | 'default'
+  | 'base'
   | 'hovered'
   | 'dragging'
   | 'invalid';
@@ -55,7 +55,7 @@ export interface IPortInnerDefaultSettings {
 export const defaultPortInnerClasses: PortInnerDefaultSettingsByStates<
   string[]
 > = {
-  default: ['react_fast_diagram_PortInnerDefault'],
+  base: ['react_fast_diagram_PortInnerDefault'],
   hovered: ['react_fast_diagram_PortInnerDefault_Hovered'],
   dragging: ['react_fast_diagram_PortInnerDefault_Dragging'],
   invalid: ['react_fast_diagram_PortInnerDefault_Invalid'],
