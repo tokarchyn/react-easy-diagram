@@ -1,0 +1,151 @@
+---
+title: Node
+---
+
+You can customize visual representation of nodes mainly in two ways: by providing [your own
+components](#your-own-component) or by [modifying built-in component](#modifying-built-in-component).
+
+To be able to use new components for nodes provide them in diagram settings:
+
+```tsx
+<Diagram
+  settings={{
+    nodes: {
+      components: {
+        your_type_1: createOutputHorizontalNode(), // method to create built-in node component
+        your_type_2: MyCustomNode, // your React functional component
+        default: MyDefaultNode, // to override default node component, which is just a component with a label
+      },
+    },
+  }}
+  initState={{
+    nodes: [{
+      id: 'node_1',
+      position: [100, 100],
+      type: 'your_type_1', // the component key you add in settings
+    }],
+  }}
+/>
+```
+
+:::caution
+
+In order to rerender your component when state of library changed the component should be wrapped in `observer` function from `mobx` state management library. See more information about it in [State management](../stateManagement). You can import this function like this `import { observer } from 'mobx-react-lite';`.
+
+:::
+
+## Modifying built-in component
+
+The build-in component for nodes simplifies customization and provides the most common variants of ports number and their location. 
+
+Nevertheless, the nodes content vary considerably among different projects, thats why this library provides only one built-in component for node content: `NodeLabel`. This component display only a node label in the center of the node component. You can provide your own component for node content as a property `innerNode` of the settings you pass into functions to create built-in node component.
+
+### Settings
+
+```ts 
+interface INodeDefaultSettingsWithoutPorts {
+  innerNode?: React.FunctionComponent<{ node: NodeState }>; // component to display node content
+  removeDefaultClasses?: true; // set to true to remove default classes
+  classes?: { // see styling section below
+    base?: string[],
+    hovered?: string[],
+    selected?: string[],
+    "selected-hovered"?: string[],
+  };
+  style?: {
+    base?: React.CSSProperties,
+    hovered?: React.CSSProperties,
+    selected?: React.CSSProperties,
+    "selected-hovered"?: React.CSSProperties,
+  };
+}
+```
+
+### Creating
+
+The functions to create node component with predefined ports are:
+1. `createInputOutputHorizontalNode(settings)` - create a component with input on the left border of the node and output on the right ('input' and 'output' means nothing but the `id` of port).
+2. `createInputOutputVerticalNode(settings)` - input on the top border and output on the bottom.
+3. `createInputHorizontalNode(settings)` - input on the left border.
+4. `createInputVerticalNode(settings)` - input on the top border.
+5. `createOutputHorizontalNode(settings)` - output on the right border.
+6. `createOutputVerticalNode(settings)` - output on the bottom border.
+7. `createStarNode(settings)` - there 4 ports on each border with ids: `left`, `top`, `right`, `bottom`.
+
+If you want to define your own set of ports there is a function `createNode(settings)`, which besides the [settings](#settings) enables you to provide ports properties (see documentation for [Port](port)).
+```tsx title="Definition of Sum node component from calculator example"
+createNode({
+  ports: [ // array of ports properties
+    {
+      id: 'number_1',
+      type: 'input',
+      position: 'left-center',
+      offsetFromOrigin: [0, -8],
+    },
+    {
+      id: 'number_2',
+      type: 'input',
+      position: 'left-center',
+      offsetFromOrigin: [0, 8],
+    },
+    {
+      id: 'output',
+      type: 'output',
+      position: 'right-center',
+    },
+  ],
+  innerNode: Sum,
+  classes: { default: [styles.nodePadding] },
+})
+```
+
+### Styling
+
+You can provide `base` classes and styles for node in [settings](#settings), which will be applied regardless of rather node is hovered or selected. You can also provide classes and styles that will be added to `base` ones when the node will be hovered, selected or both.
+```jsx
+createStarNode({
+  classes: {
+    base: ['my_node_base'],
+    hovered: ['my_node_hovered'], // if node will be hovered the classes 'my_node_base' and 'my_node_hovered' will be added to component
+    selected: ['my_node_selected'],
+    "selected-hovered": ['my_node_hovered','my_node_selected', 'my_node_hovered_and_selected'],
+  };
+  style: {
+    base: {
+      border: '1px solid black'
+    },
+    selected: { // will be merged with 'base' when node will be selected
+      border: '1px solid red', // this will override border in 'base'
+      boxShadow: '3px 3px 3px grey'; // this will be added
+    },
+  };
+})
+```
+
+## Your own component
+
+Creating your own component for node is very simple and require only two things:
+1. Wrapping in `observer` as were written at the beginning of this page.
+2. Attaching draggable reference which component will get as a prop.
+
+Let's write a node component with background depending on rather node is hovered or not. It will also display it's position and label. To see other data available in `entity` object, which you will also get as a prop, see [State management](../stateManagement#node).
+```jsx
+const NodeComponent = observer(({ entity, draggableRef }) => {
+  return (
+    <div
+      ref={draggableRef} // this will enable library to track when user hover, drag the node etc. 
+      style={{
+        padding: 15,
+        backgroundColor: entity.hovered ? '#8c8cff' : '#b6b6ff', // thanks to wrapping in 'observer' component will subscribe to all properties you read from any observable object
+        width: 150,
+        fontSize: 10,
+      }}
+    >
+      <div>Label: {entity.label]}</div>
+      <div>X: {entity.position[0]}</div>
+      <div>Y: {entity.position[1]}</div>
+      <Port id='input' type='input' position='left-center' />
+    </div>
+  );
+});
+```
