@@ -1,14 +1,13 @@
 import React from 'react';
 import {
-  componentDefaultType,
+  COMPONENT_DEFAULT_TYPE,
   createLinkDefault,
   createPortInnerDefault,
   Diagram,
-} from 'react-easy-diagram';
-import {
   createArrowMarker,
   createCircleMarker,
-} from 'react-easy-diagram/src/components/Markers';
+  LINK_CREATION_COMPONENT_TYPE
+} from 'react-easy-diagram';
 
 export default function () {
   return (
@@ -70,33 +69,68 @@ export default function () {
       }}
       settings={{
         ports: {
-          portComponents: {
+          components: {
             default: createPortInnerDefault({
-              size: [10, 10],
-              opacity: 0,
+              style: {
+                base: {
+                  opacity: 0,
+                }
+              }
             }),
           },
         },
         links: {
           components: {
-            [componentDefaultType]: createLinkDefault({
-              // You can specify marker for each link state
-              markerEnd: {
-                default: 'default_arrow_marker', // There 6 built-in markers: 'default_{circle|arrow}_marker', 'default_{circle|arrow}_marker_selected', 'default_{circle|arrow}_marker_hovered'
-                hovered: 'default_arrow_marker_hovered',
-                selected: 'default_arrow_marker_selected',
+            [COMPONENT_DEFAULT_TYPE]: createLinkDefault({
+              mainLine:{
+                style: {
+                  base: {
+                    markerEnd: 'url(#default_arrow_marker)', // There 6 built-in markers: 'default_{circle|arrow}_marker', 'default_{circle|arrow}_marker_selected', 'default_{circle|arrow}_marker_hovered'
+                    markerStart: 'url(#default_circle_marker)'
+                  },
+                  hovered: {
+                    markerEnd: 'url(#default_arrow_marker_hovered)'
+                  },
+                  selected: {
+                    markerEnd: 'url(#default_arrow_marker_selected)'
+                  }
+                }
               },
-              // Or just using one marker for all states
-              markerStart: 'default_circle_marker',
-              // If you use markers it can be more attractive to disable hover effect
-              enableHoverEffect: false
+              // If you use markers it can be more attractive to disable hover effect, but hidden secondary line
+              secondaryLine: {
+                style: {
+                  base: {
+                    opacity: 0
+                  }
+                }
+              }
             }),
             custom_arrow_link: createLinkDefault({
-              markerEnd: 'custom_arrow',
-              markerStart: {
-                default: 'custom_circle',
-                hovered: 'custom_circle_hovered',
-                selected: 'custom_circle_selected',
+              mainLine:{
+                style: {
+                  base: {
+                    stroke: 'red',
+                    markerEnd: 'url(#custom_arrow)', // There 6 built-in markers: 'default_{circle|arrow}_marker', 'default_{circle|arrow}_marker_selected', 'default_{circle|arrow}_marker_hovered'
+                    markerStart: 'url(#custom_circle)'
+                  },
+                  hovered: {
+                    markerStart: 'url(#custom_circle_hovered)'
+                  },
+                  selected: {
+                    markerStart: 'url(#custom_circle_selected)'
+                  }
+                }
+              },
+            }),
+            // Link component that will be used while connecting ports
+            [LINK_CREATION_COMPONENT_TYPE]: createLinkDefault({
+              mainLine:{
+                style: {
+                  base: {
+                    stroke: 'red',
+                    markerEnd: 'url(#default_arrow_marker_hovered)',
+                  },
+                }
               },
             }),
           },

@@ -5,8 +5,7 @@ import {
 } from 'hooks/userInteractions/common';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { RootStore } from 'states/rootStore';
-import { BoundingBox } from 'utils/common';
-import { clampValue, deepCopy } from 'utils';
+import { BoundingBox, clampValue, deepCopy } from 'utils/common';
 import { addPoints, multiplyPoint, Point, subtractPoints } from 'utils/point';
 
 export class DiagramState

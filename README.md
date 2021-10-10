@@ -18,11 +18,9 @@ Open source library to build highly customizable interactive React diagrams with
 
 ## Roadmap
 There are several top priority things right now:
-- Write basic documentation.
 - Add link's label.
-- Add callbacks for better control over library.
+- Add callbacks for better control over the library.
 - Test code as much as possible.
-- Add better way to customize `css` of built-in components (right now it is done by styles props).
 - Prepare repository for contribution by other developers (issues templates, commit messages template, discussion section). 
 
 ## Installation
@@ -40,19 +38,20 @@ There are three main entities in library: `node`, `port`, `link`.
 
 <img src="https://github.com/tokarchyn/react-easy-diagram/blob/main/repo/entities.png?raw=true" alt="Entities" height="130">
 
-To create simple diagram import `Diagram`:
-```
+To create diagram import `Diagram`:
+```jsx
 import { Diagram } from "react-easy-diagram";
 ```
-Pass it to the rendering function and provide props, for example:
-```
+
+Pass it to the rendering function and provide state and settings as a props, for example:
+```jsx
 const YourDiagram = () => (
     <Diagram initState={{
         nodes: [
           {
             id: "node_1",
             position: [300, 300],
-            type: "output_horizontal" // there are also other built-in types such as input_output_horizontal, input_output_vertical, input_vertical, input_horizontal, output_vertical, star
+            type: "output_horizontal" // there are other built-in types, such as input_output_horizontal, input_output_vertical, input_vertical, input_horizontal, output_vertical, star. You can also provide your own types in settings.
           },
           {
             id: "node_2",
@@ -75,4 +74,3 @@ const YourDiagram = () => (
       }} />
 );
 ```
-Right now you can use examples in the [website](https://tokarchyn.github.io/react-easy-diagram) to see how you can customize, change settings and do other things. Also, thanks to typescript you can explore API right in the code editor. Documentation is a top priority and will be provided as soon as possible.

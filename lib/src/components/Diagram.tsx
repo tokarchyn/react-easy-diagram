@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import { InnerDiagram } from 'components/DiagramInner';
+import { DigramInner } from 'components/DiagramInner';
 import type { ISettings } from 'states/rootStore';
 import { RootStore } from 'states/rootStore';
 import type { INodeState } from 'states/nodeState';
@@ -9,7 +9,7 @@ import '../Diagram.css';
 
 export const RootStoreContext = React.createContext<RootStore | null>(null);
 
-export function Diagram (props: IDiagramProps) {
+export function Diagram(props: IDiagramProps) {
   const rootStore = useMemo(() => {
     const store = new RootStore();
     props.settings && store.importSettings(props.settings);
@@ -28,10 +28,10 @@ export function Diagram (props: IDiagramProps) {
 
   return (
     <RootStoreContext.Provider value={rootStore}>
-      <InnerDiagram />
+      <DigramInner />
     </RootStoreContext.Provider>
   );
-};
+}
 
 export interface IDiagramProps {
   settings?: ISettings;
@@ -43,5 +43,3 @@ export interface IDiagramInitState {
   nodes?: INodeState[];
   links?: ILinkState[];
 }
-
-Diagram.displayName = 'Diagram';

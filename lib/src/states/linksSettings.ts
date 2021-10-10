@@ -1,21 +1,21 @@
 import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 import { makeAutoObservable } from 'mobx';
-import { createLinkDefault, LinkDefault } from 'components/LinkDefault';
+import { createLinkDefault, LinkDefault } from 'components/link/LinkDefault';
 import { createCurvedLinkPathConstructor } from 'linkConstructors/curved';
 import { Point } from 'utils/point';
 import { DirectionWithDiagonals } from 'utils/position';
 import {
   LinkCreationState,
-  linkCreationComponentType,
+  LINK_CREATION_COMPONENT_TYPE,
 } from 'states/linkCreationState';
 import { LinkState } from 'states/linkState';
 import {
   VisualComponents,
-  componentDefaultType,
+  COMPONENT_DEFAULT_TYPE,
   IVisualComponentsObject,
 } from 'states/visualComponents';
 import { IVisualComponentProps } from 'states/visualComponentState';
-import { createArrowMarker, createCircleMarker } from 'components/Markers';
+import { createArrowMarker, createCircleMarker } from 'components/link/Markers';
 
 export class LinksSettings {
   private _pathConstructor: ILinkPathConstructor;
@@ -23,9 +23,13 @@ export class LinksSettings {
     LinkState | LinkCreationState,
     ILinkVisualComponentProps
   >({
-    [componentDefaultType]: createLinkDefault(),
-    [linkCreationComponentType]: createLinkDefault({
-      markerEnd: 'default_circle_marker_selected',
+    [COMPONENT_DEFAULT_TYPE]: createLinkDefault(),
+    [LINK_CREATION_COMPONENT_TYPE]: createLinkDefault({
+      mainLine: {
+        style: {
+          base: { markerEnd: 'url(#default_circle_marker_hovered)' },
+        },
+      },
     }),
   });
   private _preferLinksDirection: 'horizontal' | 'vertical' | 'both';

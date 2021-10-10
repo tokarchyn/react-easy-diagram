@@ -3,11 +3,11 @@ import {
   createNode,
   createOutputHorizontalNode,
   Diagram,
-  disableNodeUserInteractionClassName,
+  DISABLE_NODE_USER_INTERACTION_CLASS,
   NodeState,
 } from 'react-easy-diagram';
 import { observer } from 'mobx-react-lite';
-import styles from '../styles.module.css'; 
+import styles from '../styles.module.css';
 
 const NumberProvider = observer<{ node: NodeState }>(({ node }) => {
   const port = node.ports.get('output');
@@ -21,7 +21,7 @@ const NumberProvider = observer<{ node: NodeState }>(({ node }) => {
             port?.setExtra(parseInt(event.target.value) || 0)
           }
           defaultValue={port && port.extra}
-          className={`${styles.textInput} ${disableNodeUserInteractionClassName}`}
+          className={`${styles.textInput} ${DISABLE_NODE_USER_INTERACTION_CLASS}`}
         />
       </span>
     </>
@@ -128,6 +128,7 @@ export default () => (
         components: {
           number: createOutputHorizontalNode({
             innerNode: NumberProvider,
+            classes: { base: [styles.nodePadding] },
           }),
           sum: createNode({
             ports: [
@@ -135,13 +136,13 @@ export default () => (
                 id: 'number_1',
                 type: 'input',
                 position: 'left-center',
-                offsetFromOrigin: [0, -15],
+                offsetFromOrigin: [0, -8],
               },
               {
                 id: 'number_2',
                 type: 'input',
                 position: 'left-center',
-                offsetFromOrigin: [0, 15],
+                offsetFromOrigin: [0, 8],
               },
               {
                 id: 'output',
@@ -150,18 +151,22 @@ export default () => (
               },
             ],
             innerNode: Sum,
+            classes: { base: [styles.nodePadding] },
           }),
         },
       },
       callbacks: {
         validateLinkEndpoints: (source, target, rootStore) => {
           // allow connection only if target port is still unconnected
-          if (target.type === 'input' && target.connectedLinks.length > 0) return false;
-          if (source.type === 'input' && source.connectedLinks.length > 0) return false;
+          if (target.type === 'input' && target.connectedLinks.length > 0)
+            return false;
+          if (source.type === 'input' && source.connectedLinks.length > 0)
+            return false;
 
           if (source.type === 'input' && target.type === 'input') return false;
-          if (source.type === 'output' && target.type === 'output') return false;
-          
+          if (source.type === 'output' && target.type === 'output')
+            return false;
+
           return true;
         },
       },

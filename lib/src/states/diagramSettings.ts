@@ -1,9 +1,9 @@
 import { makeAutoObservable } from 'mobx';
 import { Point } from 'utils/point';
-import { createDefaultBackground } from 'components/BackgroundDefault';
+import { createSvgBackground } from 'components/background/SvgBackground';
 import { VisualComponentWithDefault } from 'states/visualComponentWithDefault';
 import { RootStore } from 'states/rootStore';
-import { createDefaultMiniControl } from 'components/MiniControlDefault';
+import { createDefaultMiniControl } from 'components/miniControl/MiniControlDefault';
 import {
   IComponentDefinition,
   VisualComponent,
@@ -19,7 +19,7 @@ export class DiagramSettings {
 
   constructor() {
     this._backgroundComponentState = new VisualComponentWithDefault<IBackgroundComponentProps>(
-      createDefaultBackground()
+      createSvgBackground()
     );
     this._miniControlComponentState = new VisualComponentWithDefault<IMiniControlComponentProps>(
       createDefaultMiniControl()

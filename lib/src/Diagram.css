@@ -1,3 +1,4 @@
+/* Diagram */
 .react_fast_diagram_DiagramInner {
   width: 100%;
   height: 100%;
@@ -8,21 +9,14 @@
   user-select: none;
 }
 
-.react_fast_diagram_DiagramInner * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  color: black;
-}
-
 .react_fast_diagram_DiagramInner_DraggablePart {
   width: 100%;
   height: 100%;
   position: absolute;
   overflow: visible;
-  transform-origin: 0px 0px;
   top: 0px;
   left: 0px;
+  transform-origin: 0px 0px;
   /* useGestures hook use targetTouches instead of simply touches, 
   so we should set this property to Movable, otherwise if user put 
   one finger above Movable and another above DiagramInner, the hook 
@@ -35,10 +29,12 @@
   width: 100%;
   height: 100%;
   top: 0;
-  left: 0;  
+  left: 0;
   overflow: visible;
 }
+/* Diagram */
 
+/* Node */
 .react_fast_diagram_NodeWrapper {
   position: absolute;
   top: 0;
@@ -48,7 +44,7 @@
   pointer-events: auto;
 }
 
-.react_fast_diagram_Node_Default {
+.react_fast_diagram_NodeDefault {
   min-width: 10px;
   min-height: 10px;
   border-radius: 3px;
@@ -57,66 +53,119 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.react_fast_diagram_NodeDefault_Hovered {
+  border: #a1d0ff solid 1px;
+}
+
+.react_fast_diagram_NodeDefault_Selected {
+  border: #6eb7ff solid 1px;
+}
+
+.react_fast_diagram_NodeLabel {
+  padding: 5px 7px;
   text-align: center;
   margin: auto;
-  font-size: small;
 }
+/* Node */
 
-.react_fast_diagram_PortContainer_Default {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.react_fast_diagram_Node_Default > * {
-  text-align: center;
-  margin: auto;
-}
-
-.react_fast_diagram_disabled_user_select {
-  user-select: none;
-}
-
+/* Background */
 .react_fast_diagram_BackgroundWrapper {
   height: 100%;
   width: 100%;
   pointer-events: none;
 }
 
-.react_fast_diagram_Background_Default {
+.react_fast_diagram_Background {
   height: 100%;
   width: 100%;
 }
+/* Background */
 
-.react_fast_diagram_Minicontrol_Default {
+/* MiniControl */
+.react_fast_diagram_MiniControl_Default {
   position: absolute;
   height: fit-content;
   display: flex;
   flex-direction: column;
 }
 
-.react_fast_diagram_Minicontrol_Default_Btn {
-  background-color: white; 
+.react_fast_diagram_MiniControl_Btn {
+  background-color: white;
   border: 1px solid rgb(209, 209, 209);
-  color: black; 
+  color: black;
   padding: 2px;
   font-size: 16px;
   cursor: pointer;
   text-align: center;
 }
 
-@media(hover: hover) and (pointer: fine) {
-  .react_fast_diagram_Minicontrol_Default_Btn:hover {
+@media (hover: hover) and (pointer: fine) {
+  .react_fast_diagram_MiniControl_Btn:hover {
     background-color: rgb(228, 228, 228);
   }
 }
+/* MiniControl */
 
-.react_fast_diagram_Port {
+/* Port */
+.react_fast_diagram_PortInnerDefault {
   cursor: pointer;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: #6eb7ff;
 }
 
-/* Containers with gap between items */
+.react_fast_diagram_PortInnerDefault_Hovered {
+  background-color: #49f860;
+}
 
+.react_fast_diagram_PortInnerDefault_Dragging {
+  background-color: #49f860;
+}
+
+.react_fast_diagram_PortInnerDefault_Invalid {
+  background-color: #fa4040;
+}
+
+/* Port */
+
+/* Link */
+.react_fast_diagram_LinkDefault_Line {
+  cursor: pointer;
+  fill: none;
+  stroke-linecap: round;
+  stroke: #c2c2c2;
+  stroke-width: 1px;
+}
+
+.react_fast_diagram_LinkDefault_Line_Selected {
+  stroke: #6eb7ff;
+}
+
+.react_fast_diagram_LinkDefault_Line_Hovered {
+  stroke: #a1d0ff;
+}
+
+.react_fast_diagram_LinkDefault_SecondaryLine {
+  stroke-width: 5px;
+  stroke-opacity: 0;
+  pointer-events: stroke;
+}
+
+.react_fast_diagram_LinkDefault_SecondaryLine_Hovered {
+  stroke-opacity: 0.22;
+}
+/* Link */
+
+/* Common */
+.react_fast_diagram_disabled_user_select {
+  user-select: none;
+}
+/* Common */
+
+/* Containers with gap between items */
 .react_fast_diagram_flex_gap {
   --gap: 12px;
   display: flex;
@@ -149,5 +198,4 @@
 .react_fast_diagram_flex_gap_x > :first-child {
   margin: 0;
 }
-
 /* Containers with gap between items */

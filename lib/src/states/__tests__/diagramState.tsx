@@ -1,10 +1,7 @@
-import { DiagramSettings, IDiagramSettings } from 'states/diagramSettings';
-import { UserInteractionSettings } from 'states/userInteractionSettings';
-import React from 'react';
 import { DiagramState, IDiagramState } from 'states/diagramState';
 import { RootStore } from 'states/rootStore';
-import { Point } from 'utils/point';
 import { BoundingBox } from 'utils/common';
+import { Point } from 'utils/point';
 
 describe('Diagram state', () => {
   let rootStore: RootStore;
@@ -82,7 +79,7 @@ describe('Diagram state', () => {
   });
 
   test('Zoom to fit nodes', () => {
-    rootStore.diagramSettings.zoomToFitSettings.padding = [5,5]
+    rootStore.diagramSettings.zoomToFitSettings.padding = [5, 5];
     const boundingBox: BoundingBox = {
       topLeftCorner: [100, 100],
       bottomRightCorner: [190, 190],

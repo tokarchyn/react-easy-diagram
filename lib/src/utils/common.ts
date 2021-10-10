@@ -23,3 +23,19 @@ export function isObject(value: any): value is object {
 export function isBoolean(value: any): value is boolean {
   return value != null && typeof value == 'boolean';
 }
+
+export function clampValue(value: number, interval: Point) {
+  return Math.min(Math.max(value, interval[0]), interval[1]);
+}
+
+export function deepCopy<TValue>(value: TValue): TValue {
+  return JSON.parse(JSON.stringify(value));
+}
+
+export function combineArrays<TValue>(
+  ...arrays: (TValue[] | undefined)[]
+): TValue[] {
+  const combined: TValue[] = [];
+  arrays.forEach((a) => a?.forEach((v) => v && combined.push(v)));
+  return combined;
+}

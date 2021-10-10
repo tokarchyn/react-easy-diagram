@@ -1,0 +1,134 @@
+---
+title: Node
+---
+
+## Modifying built-in component
+
+The build-in component for nodes simplifies customization and provides the most common variants of ports number and their location. 
+
+Nevertheless, the nodes content vary considerably among different projects, thats why this library provides only one built-in component for node content: `NodeLabel`. This component display only a node label in the center of the node component. You can provide your own component for node content as a property `innerNode` of the settings you pass into functions to create built-in node component.
+
+### Settings
+
+```ts 
+interface INodeDefaultSettingsWithoutPorts {
+  innerNode?: React.FunctionComponent<{ node: NodeState }>; // component to display node content
+  removeDefaultClasses?: true; // set to true to remove default classes
+  classes?: { // see styling section below
+    base?: string[],
+    hovered?: string[],
+    selected?: string[],
+    "selected-hovered"?: string[],
+  };
+  style?: {
+    base?: React.CSSProperties,
+    hovered?: React.CSSProperties,
+    selected?: React.CSSProperties,
+    "selected-hovered"?: React.CSSProperties,
+  };
+}
+```
+
+### Creating
+
+The functions to create node component with predefined ports are:
+1. `createInputOutputHorizontalNode(settings)` - create a component with input on the left border of the node and output on the right ('input' and 'output' means nothing but the `id` of port and its `type`).
+2. `createInputOutputVerticalNode(settings)` - input on the top border and output on the bottom.
+3. `createInputHorizontalNode(settings)` - input on the left border.
+4. `createInputVerticalNode(settings)` - input on the top border.
+5. `createOutputHorizontalNode(settings)` - output on the right border.
+6. `createOutputVerticalNode(settings)` - output on the bottom border.
+7. `createStarNode(settings)` - there 4 ports on each border with ids: `left`, `top`, `right`, `bottom`.
+
+If you want to define your own set of ports there is a function `createNode(settings)`, which besides the [settings](#settings) enables you to provide ports properties (see documentation for [Port](port)).
+```tsx title="Definition of Sum node component from calculator example"
+createNode({
+  ports: [ // array of ports properties
+    {
+      id: 'number_1',
+      type: 'input',
+      position: 'left-center',
+      offsetFromOrigin: [0, -8],
+    },
+    {
+      id: 'number_2',
+      type: 'input',
+      position: 'left-center',
+      offsetFromOrigin: [0, 8],
+    },
+    {
+      id: 'output',
+      type: 'output',
+      position: 'right-center',
+    },
+  ],
+  innerNode: Sum,
+  classes: { base: [styles.nodePadding] },
+})
+```
+
+### Styling
+
+You can provide classes and styles for node in [settings](#settings) for each state, like hovered, selected or both. The `base` classes and styles are applied regardless of node state.
+
+```jsx
+createStarNode({
+  classes: {
+    base: ['node_base'],
+    hovered: ['node_hovered'], // if node will be hovered the classes 'node_base' and 'node_hovered' will be added to component along with the default ones
+    selected: ['node_selected'],
+    "selected-hovered": ['node_hovered','node_selected', 'node_hovered_and_selected'],
+  };
+  style: {
+    base: {
+      border: '1px solid black'
+    },
+    selected: { // will be merged with 'base' when node will be selected
+      border: '1px solid red', // this will override border in 'base'
+      boxShadow: '3px 3px 3px grey'; // this will be added
+    },
+  };
+})
+```
+
+## Your own component
+
+Creating your own component for node is very simple and require only wrapping it in `observer` as were written in the [Introduction](introduction).
+
+Let's write a node component with background depending on rather node is hovered or not. It will also display it's position and label. To see other data available in `entity` object, which you will also get as a prop, go to the [Node state](../api/classes/NodeState.md).
+```jsx
+const NodeComponent = observer(({ entity }) => {
+  return (
+    <div
+      style={{
+        padding: 15,
+        backgroundColor: entity.hovered ? '#8c8cff' : '#b6b6ff', // thanks to wrapping in 'observer' component will subscribe to all properties you read from any observable object
+        width: 150,
+        fontSize: 10,
+      }}
+    >
+      <div>Label: {entity.label]}</div>
+      <div>X: {entity.position[0]}</div>
+      <div>Y: {entity.position[1]}</div>
+      <Port id='input' type='input' position='left-center' />
+    </div>
+  );
+});
+```
+
+## User interaction
+
+By default the library will listen for drag, click or other events on all HTML elements inside a node. But sometimes we want to allow user to drag only node header, or to disable dragging for slider element etc. To achieve this you can use constants for HTML classes, that are importable from library as `ENABLE_NODE_USER_INTERACTION_CLASS` and `DISABLE_NODE_USER_INTERACTION_CLASS`.
+
+For example:
+```jsx
+<div className={'node_class'}> {/* user will be able to drag this element */}
+  <div className={DISABLE_NODE_USER_INTERACTION_CLASS}> {/* but not this */}
+    <div> {/* and not this, because its parent has DISABLE_NODE_USER_INTERACTION_CLASS */}
+      <div className={ENABLE_NODE_USER_INTERACTION_CLASS}> {/* but this user will be able to drag again */}
+        <div></div> {/* and this also yes */}
+      </div>
+    </div>
+  </div>
+</div>
+```

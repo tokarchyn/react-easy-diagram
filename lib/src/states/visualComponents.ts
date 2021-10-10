@@ -11,7 +11,6 @@ export class VisualComponents<
   TEntity,
   TComponentProps extends IVisualComponentProps<TEntity>
 > {
-  private _defaultType: string = componentDefaultType;
   private _defaultComponents: Dictionary<VisualComponentState<TComponentProps>>;
   private _components: Dictionary<VisualComponentState<TComponentProps>>;
 
@@ -28,8 +27,6 @@ export class VisualComponents<
   }
 
   import = (obj?: IVisualComponentsObject<TComponentProps>) => {
-    this.setDefaultType(obj?.defaultType);
-
     this._components = {
       ...this._defaultComponents,
       ...this._createComponentCollection(obj?.components),
@@ -39,18 +36,10 @@ export class VisualComponents<
   getComponent = (
     type: string | undefined | null
   ): VisualComponentState<TComponentProps> => {
-    const finalComponentType = type ?? this.defaultType;
+    const finalComponentType = type ?? COMPONENT_DEFAULT_TYPE;
     return (
-      this._components[finalComponentType] ?? this._components[this.defaultType]
+      this._components[finalComponentType] ?? this._components[COMPONENT_DEFAULT_TYPE]
     );
-  };
-
-  get defaultType() {
-    return this._defaultType;
-  }
-
-  setDefaultType = (value: string | undefined | null) => {
-    this._defaultType = value ?? componentDefaultType;
   };
 
   private _createComponentCollection = (
@@ -69,10 +58,9 @@ export class VisualComponents<
   };
 }
 
-export const componentDefaultType = 'default';
+export const COMPONENT_DEFAULT_TYPE = 'default';
 
 export interface IVisualComponentsObject<TComponentProps> {
-  defaultType?: string;
   components?: Dictionary<
     IComponentDefinition<TComponentProps> | VisualComponent<TComponentProps>
   >;

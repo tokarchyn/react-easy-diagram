@@ -1,14 +1,13 @@
 import { makeAutoObservable } from 'mobx';
 import { Point } from 'utils/point';
-import { deepCopy } from 'utils';
 import { LinkPointEndpointState } from 'states/linkPointEndpointState';
 import {
   LinkPortEndpointState,
   ILinkPortEndpoint,
 } from 'states/linkPortEndpointState';
 import { RootStore } from 'states/rootStore';
-import { componentDefaultType } from 'states/visualComponents';
-import { isBoolean } from 'utils/common';
+import { COMPONENT_DEFAULT_TYPE } from 'states/visualComponents';
+import { isBoolean, deepCopy } from 'utils/common';
 
 export class LinkState
   implements ILinkState, ILinkInteractionState {
@@ -78,7 +77,7 @@ export class LinkState
   }
 
   setType = (value: string | null | undefined) => {
-    this._type = value ?? componentDefaultType;
+    this._type = value ?? COMPONENT_DEFAULT_TYPE;
   };
 
   get segments() {

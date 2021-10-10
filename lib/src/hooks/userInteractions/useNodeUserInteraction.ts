@@ -11,9 +11,7 @@ import { useGesture } from 'react-use-gesture';
 import { NodeState } from 'states/nodeState';
 import { multiplyPoint } from 'utils/point';
 
-export const useNodeUserInteraction = (
-  nodeState: NodeState
-): React.RefObject<HTMLElement> => {
+export const useNodeUserInteraction = (nodeState: NodeState) => {
   const rootStore = useRootStore();
 
   const interactionActiveRef = useRef<boolean>(false);
@@ -26,10 +24,15 @@ export const useNodeUserInteraction = (
     }
     return false;
   }, [selectOnLongTapRef]);
-  const userInteractionElemRef = useRef<HTMLElement>(null);
 
   const handlers = useMemo<GestureHandlers>(
     () => ({
+      onPointerEnter: () => {
+        nodeState.hovered = true;
+      },
+      onPointerLeave: () => {
+        nodeState.hovered = false;
+      },
       onClick: () => {}, // Prevent from double tap zooming on IOS
       onDrag: ({ pinching, delta, movement }) => {
         if (
@@ -96,19 +99,17 @@ export const useNodeUserInteraction = (
   );
 
   useGesture(handlers, {
-    domTarget: userInteractionElemRef,
+    domTarget: nodeState.ref,
     eventOptions: { passive: false },
   });
 
   useUserAbilityToSelectSwitcher(
     interactionActiveRef.current,
-    userInteractionElemRef.current?.ownerDocument?.body
+    nodeState.ref.current?.ownerDocument?.body
   );
 
   useDiagramCursor(nodeState.isDragActive, 'move');
   useCursor(nodeState.isDragActive, 'move', nodeState.ref.current);
-
-  return userInteractionElemRef;
 };
 
 const selectDelay: number = 500;
@@ -118,12 +119,12 @@ function allowNodeInteraction(
 ) {
   return eventPathContainsClass(
     event,
-    enableNodeUserInteractionClassName,
-    disableNodeUserInteractionClassName
+    ENABLE_NODE_USER_INTERACTION_CLASS,
+    DISABLE_NODE_USER_INTERACTION_CLASS
   );
 }
 
-export const enableNodeUserInteractionClassName =
+export const ENABLE_NODE_USER_INTERACTION_CLASS =
   'react_easy_diagram_enable_node_user_interaction';
-export const disableNodeUserInteractionClassName =
+export const DISABLE_NODE_USER_INTERACTION_CLASS =
   'react_easy_diagram_disable_node_user_interaction';

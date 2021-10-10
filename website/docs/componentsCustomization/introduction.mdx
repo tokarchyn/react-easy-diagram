@@ -1,0 +1,47 @@
+---
+title: Introduction
+---
+
+You can customize visual representation of nodes, ports and links mainly in two ways: by providing your own components or by modifying built-in components.
+
+:::caution
+In order to rerender your component when state of the library changed the component should be wrapped in `observer` function from `mobx` state management library. See more information about it in [State management](../stateManagement). You can import this function like this `import { observer } from 'mobx-react-lite';`.
+:::
+
+To be able to use new components provide them in diagram settings:
+
+```tsx
+<Diagram
+  settings={{
+    nodes: {
+      components: {
+        your_node_type_1: createOutputHorizontalNode(), // one of the methods to create built-in node component
+        your_node_type_2: createNode({ // method to create built-in node component but with the ability to specify ports
+          ports: [{
+            id: 'output',
+            type: 'your_port_type_1', // the port type is used to get component from settings to render port
+            position: 'bottom-center'
+          }],
+        })
+        your_node_type_3: MyCustomNode, // your React functional component
+        [COMPONENT_DEFAULT_TYPE]: MyDefaultNode, // to override default node component, which is just a component with a label
+      },
+    },
+    ports: {
+      components: {
+        your_port_type_1: createLinkDefault(), // method to create built-in port component
+        your_type_2: MyCustomPort, // your React functional component
+        [COMPONENT_DEFAULT_TYPE]: MyCustomPort, // to override default port component
+      },
+    },
+  }}
+  initState={{
+    nodes: [{
+      id: 'node_1',
+      position: [100, 100],
+      type: 'your_node_type_2', // the component key you added in settings
+    }],
+  }}
+/>
+```
+

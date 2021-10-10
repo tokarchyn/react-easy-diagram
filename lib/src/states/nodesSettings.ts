@@ -7,12 +7,12 @@ import {
   createOutputHorizontalNode,
   createOutputVerticalNode,
   createStarNode,
-} from 'components/Node';
+} from 'components/node/NodeDefault';
 import { makeAutoObservable } from 'mobx';
 import { NodeState } from 'states/nodeState';
 import {
   VisualComponents,
-  componentDefaultType,
+  COMPONENT_DEFAULT_TYPE,
   IVisualComponentsObject,
 } from 'states/visualComponents';
 import { IVisualComponentProps } from 'states/visualComponentState';
@@ -23,7 +23,7 @@ export class NodesSettings {
     NodeState,
     INodeVisualComponentProps
   > = new VisualComponents<NodeState, INodeVisualComponentProps>({
-    [componentDefaultType]: createNode({ ports: [] }),
+    [COMPONENT_DEFAULT_TYPE]: createNode({ ports: [] }),
     input_output_horizontal: createInputOutputHorizontalNode(),
     input_output_vertical: createInputOutputVerticalNode(),
     input_vertical: createInputVerticalNode(),
@@ -65,7 +65,6 @@ export class NodesSettings {
 
 export interface INodeVisualComponentProps<TSettings = any>
   extends IVisualComponentProps<NodeState, TSettings> {
-  draggableRef: React.RefObject<any>;
 }
 
 export interface INodesSettings
