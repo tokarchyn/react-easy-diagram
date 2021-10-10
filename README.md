@@ -19,7 +19,7 @@ Open source library to build highly customizable interactive React diagrams with
 ## Roadmap
 There are several top priority things right now:
 - Add link's label.
-- Add callbacks for better control over library.
+- Add callbacks for better control over the library.
 - Test code as much as possible.
 - Prepare repository for contribution by other developers (issues templates, commit messages template, discussion section). 
 
