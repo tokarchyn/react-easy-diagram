@@ -5,6 +5,15 @@
     "type": "git",
     "url": "https://github.com/tokarchyn/react-easy-diagram.git"
   },
+  "keywords": [
+    "diagram",
+    "diagrams",
+    "react",
+    "typescript",
+    "flowchart",
+    "nodes",
+    "links"
+  ],
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
