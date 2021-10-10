@@ -1,0 +1,55 @@
+---
+title: Link
+---
+
+## Modifying built-in component
+
+To create built-in link component call `createLinkDefault(settings)`. You can provide classes and styles for link in settings for each state, like hovered, selected or both. The `base` classes and styles are applied regardless of link state.
+
+The default link component has defined two svg pathes, the main one and secondary, which has two purposes. The first one is to just support visual effect of hovering, and the second to enable hovering and selecting without necessity of trying to hit thin main line.
+
+```ts title="Settings type"
+interface ILinkDefaultSettings {
+  removeDefaultClasses?: true; // set to true to remove default classes
+  mainLine?: {
+    classes?: {
+      base?: string[],
+      hovered?: string[],
+      selected?: string[],
+      'selected-hovered'?: string[],
+    };
+    style?: {
+      base?: React.CSSProperties,
+      hovered?: React.CSSProperties,
+      selected?: React.CSSProperties,
+      'selected-hovered'?: React.CSSProperties,
+    };
+  };
+  secondaryLine?: ILineStyling // the same settings as for the mainLine
+}
+```
+
+Code example is available [here](/examples/configureDefaultLink).
+
+## Your own component
+
+Creating your own component for link is very simple and require only wrapping it in `observer` as were written in the [Introduction](introduction), attaching event handlers and rendering path your way.
+
+Your component will receive `entity` object in props, that represents link's state, to see all available data in it go to the [Link state](../api/classes/LinkState.md).
+
+```tsx
+const LinkDefault = observer(({ entity, bind }) => {
+  return (
+    <g>
+      <path
+        d={entity.path.svgPath} // thanks to wrapping in observer rerender will happen every time the data you access will be updated
+        {...bind()} // attaching event handlers
+      />
+    </g>
+  );
+});
+```
+
+## Markers
+
+See [example](/examples/linkMarkers).

@@ -3,7 +3,7 @@ import {
   createNode,
   createOutputHorizontalNode,
   Diagram,
-  disableNodeUserInteractionClassName,
+  DISABLE_NODE_USER_INTERACTION_CLASS,
   NodeState,
 } from 'react-easy-diagram';
 import { observer } from 'mobx-react-lite';
@@ -21,7 +21,7 @@ const NumberProvider = observer<{ node: NodeState }>(({ node }) => {
             port?.setExtra(parseInt(event.target.value) || 0)
           }
           defaultValue={port && port.extra}
-          className={`${styles.textInput} ${disableNodeUserInteractionClassName}`}
+          className={`${styles.textInput} ${DISABLE_NODE_USER_INTERACTION_CLASS}`}
         />
       </span>
     </>

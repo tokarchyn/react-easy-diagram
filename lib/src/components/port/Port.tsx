@@ -13,7 +13,7 @@ import {
 import { Point } from 'utils/point';
 import { IPortState } from 'states/portState';
 import { usePortUserInteraction } from 'hooks/userInteractions/usePortUserInteraction';
-import { disableNodeUserInteractionClassName } from 'hooks/userInteractions/useNodeUserInteraction';
+import { DISABLE_NODE_USER_INTERACTION_CLASS } from 'hooks/userInteractions/useNodeUserInteraction';
 import { DirectionWithDiagonals } from 'utils/position';
 
 export interface IPortProps extends IPortState {
@@ -56,7 +56,7 @@ export const Port: React.FC<IPortProps> = observer((props) => {
     <div
       style={positionStyles}
       id={portState.fullId}
-      className={disableNodeUserInteractionClassName}
+      className={DISABLE_NODE_USER_INTERACTION_CLASS}
       ref={portState.ref}
       key={portState.fullId}
       {...bind()}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   createPortInnerDefault,
   Diagram,
-  disableNodeUserInteractionClassName,
+  DISABLE_NODE_USER_INTERACTION_CLASS,
   INodeVisualComponentProps,
   Point,
   Port,
@@ -11,7 +11,7 @@ import { observer } from 'mobx-react-lite';
 import styles from '../styles.module.css'; 
 
 const SomeNode = observer<INodeVisualComponentProps>(
-  ({ draggableRef, entity }) => {
+  ({ entity }) => {
     const [
       portOffsetFromNodeCenter,
       setPortOffsetFromNodeCenter,
@@ -24,7 +24,6 @@ const SomeNode = observer<INodeVisualComponentProps>(
 
     return (
       <div
-        ref={draggableRef}
         className='react_fast_diagram_NodeDefault'
         style={{
           padding: 15,
@@ -34,7 +33,7 @@ const SomeNode = observer<INodeVisualComponentProps>(
         <div>Offset from center of node:</div>
         <span>
           <input
-            className={`${styles.textInput} ${disableNodeUserInteractionClassName}`}
+            className={`${styles.textInput} ${DISABLE_NODE_USER_INTERACTION_CLASS}`}
             type='number'
             onChange={(event) =>
               setPortOffsetFromNodeCenter(parseInt(event.target.value) ?? 0)
@@ -46,7 +45,7 @@ const SomeNode = observer<INodeVisualComponentProps>(
         <span>
           X:{' '}
           <input
-            className={`${styles.textInput} ${disableNodeUserInteractionClassName}`}
+            className={`${styles.textInput} ${DISABLE_NODE_USER_INTERACTION_CLASS}`}
             type='number'
             style={{ width: 50, marginRight: 10 }}
             onChange={(event) => {
@@ -60,7 +59,7 @@ const SomeNode = observer<INodeVisualComponentProps>(
           />
           Y:{' '}
           <input
-            className={`${styles.textInput} ${disableNodeUserInteractionClassName}`}
+            className={`${styles.textInput} ${DISABLE_NODE_USER_INTERACTION_CLASS}`}
             type='number'
             style={{ width: 50 }}
             onChange={(event) => {
@@ -182,7 +181,7 @@ export default () => (
         },
       },
       ports: {
-        portComponents: {
+        components: {
           custom_port: createPortInnerDefault({
             style: {
               base: {

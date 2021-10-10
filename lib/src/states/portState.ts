@@ -6,7 +6,7 @@ import { LinkState } from 'states/linkState';
 import { NodeState } from 'states/nodeState';
 import { IPortVisualComponentProps } from 'states/portsSettings';
 import { RootStore } from 'states/rootStore';
-import { componentDefaultType } from 'states/visualComponents';
+import { COMPONENT_DEFAULT_TYPE } from 'states/visualComponents';
 import {
   VisualComponentState,
   VisualComponent,
@@ -112,7 +112,7 @@ export class PortState {
   }
 
   setType = (value: string | null | undefined) => {
-    this._type = value ?? componentDefaultType;
+    this._type = value ?? COMPONENT_DEFAULT_TYPE;
   };
 
   /**

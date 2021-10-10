@@ -6,12 +6,12 @@ import { Point } from 'utils/point';
 import { DirectionWithDiagonals } from 'utils/position';
 import {
   LinkCreationState,
-  linkCreationComponentType,
+  LINK_CREATION_COMPONENT_TYPE,
 } from 'states/linkCreationState';
 import { LinkState } from 'states/linkState';
 import {
   VisualComponents,
-  componentDefaultType,
+  COMPONENT_DEFAULT_TYPE,
   IVisualComponentsObject,
 } from 'states/visualComponents';
 import { IVisualComponentProps } from 'states/visualComponentState';
@@ -23,8 +23,8 @@ export class LinksSettings {
     LinkState | LinkCreationState,
     ILinkVisualComponentProps
   >({
-    [componentDefaultType]: createLinkDefault(),
-    [linkCreationComponentType]: createLinkDefault({
+    [COMPONENT_DEFAULT_TYPE]: createLinkDefault(),
+    [LINK_CREATION_COMPONENT_TYPE]: createLinkDefault({
       mainLine: {
         style: {
           base: { markerEnd: 'url(#default_circle_marker_hovered)' },

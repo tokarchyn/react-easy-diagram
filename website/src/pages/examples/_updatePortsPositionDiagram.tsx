@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import {
   Diagram,
-  disableNodeUserInteractionClassName,
+  DISABLE_NODE_USER_INTERACTION_CLASS,
   INodeVisualComponentProps,
   Port,
 } from 'react-easy-diagram';
 import { observer } from 'mobx-react-lite';
 
 const NodeWithExternalData = observer<INodeVisualComponentProps>(
-  ({ draggableRef, entity: node }) => {
+  ({ entity: node }) => {
     const [linesNumber, setLinesNumber] = useState<number>(0);
 
     useEffect(() => {
@@ -24,7 +24,6 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
     return (
       <div
         className='react_fast_diagram_NodeDefault'
-        ref={draggableRef}
         style={{
           padding: 15,
           border: node.selected ? '#6eb7ff solid 1px' : '',
@@ -37,7 +36,7 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
 
         <div>
           <button
-            className={disableNodeUserInteractionClassName}
+            className={DISABLE_NODE_USER_INTERACTION_CLASS}
             type='button'
             onClick={() => setLinesNumber((c) => c + 1)}
           >
@@ -55,7 +54,7 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
 );
 
 const NodeWithInternalData = observer<INodeVisualComponentProps>(
-  ({ draggableRef, entity: node }) => {
+  ({ entity: node }) => {
     const linesNumber = node.extra ?? 0;
 
     const lines = useLines(linesNumber);
@@ -63,7 +62,6 @@ const NodeWithInternalData = observer<INodeVisualComponentProps>(
     return (
       <div
         className='react_fast_diagram_NodeDefault'
-        ref={draggableRef}
         style={{
           padding: 15,
           border: node.selected ? '#6eb7ff solid 1px' : '',
@@ -76,7 +74,7 @@ const NodeWithInternalData = observer<INodeVisualComponentProps>(
 
         <div>
           <button
-            className={disableNodeUserInteractionClassName}
+            className={DISABLE_NODE_USER_INTERACTION_CLASS}
             type='button'
             onClick={() => node.setExtra(linesNumber + 1)}
           >

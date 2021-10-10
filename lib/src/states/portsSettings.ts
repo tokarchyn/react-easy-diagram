@@ -3,7 +3,7 @@ import { createPortInnerDefault } from 'components/port/PortInnerDefault';
 import { PortState } from 'states/portState';
 import {
   VisualComponents,
-  componentDefaultType,
+  COMPONENT_DEFAULT_TYPE,
   IVisualComponentsObject,
 } from 'states/visualComponents';
 import { IVisualComponentProps } from 'states/visualComponentState';
@@ -13,7 +13,7 @@ export class PortsSettings {
     PortState,
     IPortVisualComponentProps
   > = new VisualComponents<PortState, IPortVisualComponentProps>({
-    [componentDefaultType]: createPortInnerDefault(),
+    [COMPONENT_DEFAULT_TYPE]: createPortInnerDefault(),
   });
 
   constructor() {
@@ -25,17 +25,12 @@ export class PortsSettings {
   }
 
   import = (obj?: IPortsSettings) => {
-    this.portVisualComponents.import({
-      components: obj?.portComponents,
-      defaultType: obj?.portDefaultType,
-    });
+    this.portVisualComponents.import(obj);
   };
 }
 
 export interface IPortVisualComponentProps<TSettings = any>
   extends IVisualComponentProps<PortState, TSettings> {}
 
-export interface IPortsSettings {
-  portComponents?: IVisualComponentsObject<IPortVisualComponentProps>['components'];
-  portDefaultType?: IVisualComponentsObject<IPortVisualComponentProps>['defaultType'];
-}
+export interface IPortsSettings
+  extends IVisualComponentsObject<IPortVisualComponentProps> {}

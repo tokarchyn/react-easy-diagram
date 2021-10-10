@@ -1,0 +1,55 @@
+---
+title: Port
+---
+
+## Modifying built-in component
+
+To create built-in port component call `createPortInnerDefault(settings)`. You can provide classes and styles for port in settings for each state, like hovered, dragging or invalid. The `base` classes and styles are applied regardless of port state.
+
+Port is in dragging state when user is connecting two ports. Port is in invalid state when user while connecting hover over another port, but it is not allowed to connect them.
+
+```ts title="Settings type"
+interface IPortInnerDefaultSettings {
+  removeDefaultClasses?: true; // set to true to remove default classes
+  classes?: {
+    base?: string[],
+    hovered?: string[],
+    dragging?: string[],
+    invalid?: string[],
+  };
+  style?: {
+    base?: React.CSSProperties,
+    hovered?: React.CSSProperties,
+    dragging?: React.CSSProperties,
+    invalid?: React.CSSProperties,
+  };
+}
+```
+
+```jsx title="Example"
+createPortInnerDefault({
+  classes: {
+    base: ['port_base'],
+    hovered: ['port_hovered'], // if port will be hovered the classes 'port_base' and 'port_hovered' will be added to component along with the default ones
+    dragging: ['port_selected'],
+    invalid: ['port_invalid', 'invalid_background_color'],
+  };
+  style: {
+    base: {
+      border: '1px solid black'
+    },
+    invalid: { // will be merged with 'base' when port will be in invalid state
+      border: '1px solid red', // this will override border in 'base'
+      boxShadow: '3px 3px 3px grey'; // this will be added
+    },
+  };
+})
+```
+
+## Your own component
+
+Creating your own component for port is very simple and require only wrapping it in `observer` as were written in the [Introduction](introduction).
+
+Your component will receive `entity` object in props, that represents port's state, to see all available data in it go to the [Port state](../api/classes/PortState.md).
+
+Code example is available [here](/examples/customizePortDiagram).

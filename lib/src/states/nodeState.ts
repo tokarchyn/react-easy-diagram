@@ -10,7 +10,7 @@ import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { LinkState } from 'states/linkState';
 import { PortState, IPortStateWithoutIds } from 'states/portState';
 import { RootStore } from 'states/rootStore';
-import { componentDefaultType } from 'states/visualComponents';
+import { COMPONENT_DEFAULT_TYPE } from 'states/visualComponents';
 import { arePointsEqual, Point } from 'utils/point';
 import { generateTransform } from 'utils/transformation';
 
@@ -133,7 +133,7 @@ export class NodeState {
   }
 
   setType = (value: string | null | undefined) => {
-    this._type = value ?? componentDefaultType;
+    this._type = value ?? COMPONENT_DEFAULT_TYPE;
   };
 
   get selected() {

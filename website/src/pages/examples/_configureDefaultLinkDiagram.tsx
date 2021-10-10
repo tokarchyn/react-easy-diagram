@@ -1,5 +1,18 @@
+import { css, keyframes } from '@emotion/css';
 import React from 'react';
 import { createLinkDefault, Diagram } from 'react-easy-diagram';
+
+// We use for our example emotion library for css-in-js, but you can use of 
+// course vanilla css or any method of doing css you like
+const lineAnim = keyframes`
+  to {
+    stroke-dashoffset: 40;
+  }
+`;
+const mainLineClass = css`
+  stroke-dasharray: 4;
+  animation: ${lineAnim} 5s linear infinite;
+`;
 
 export default () => (
   <Diagram
@@ -33,6 +46,9 @@ export default () => (
         components: {
           default: createLinkDefault({
             mainLine: {
+              classes: {
+                base: [mainLineClass],
+              },
               style: {
                 base: {
                   stroke: 'grey',

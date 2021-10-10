@@ -68,19 +68,23 @@ export default () => (
         components: {
           config: Configurator,
           disabled_port: createNode({
-            ports: [{ id: 'port', position: 'right-center', isConnectionEnabled: false }],
-          })
+            ports: [
+              {
+                id: 'port',
+                position: 'right-center',
+                isConnectionEnabled: false,
+              },
+            ],
+          }),
         },
       },
     }}
   />
 );
 
-const Configurator = observer<INodeVisualComponentProps>(({ draggableRef }) => {
-  const { diagramSettings } = useRootStore();
-
+const Configurator = observer<INodeVisualComponentProps>(() => {
   return (
-    <div className='react_fast_diagram_Node_Default' ref={draggableRef}>
+    <div className='react_fast_diagram_Node_Default'>
       <div>
         <b>Diagram user interaction configuration</b>
       </div>
@@ -97,7 +101,10 @@ const Configurator = observer<INodeVisualComponentProps>(({ draggableRef }) => {
 });
 
 const UserInteractionCheckbox = observer<{
-  userInteractionPropertyName: keyof Omit<IUserInteraction, 'multiselectionKey'>;
+  userInteractionPropertyName: keyof Omit<
+    IUserInteraction,
+    'multiselectionKey'
+  >;
 }>(({ userInteractionPropertyName }) => {
   const { diagramSettings } = useRootStore();
 
@@ -108,7 +115,8 @@ const UserInteractionCheckbox = observer<{
         type='checkbox'
         checked={diagramSettings.userInteraction[userInteractionPropertyName]}
         onChange={(event) =>
-          (diagramSettings.userInteraction[userInteractionPropertyName] = event.target.checked)
+          (diagramSettings.userInteraction[userInteractionPropertyName] =
+            event.target.checked)
         }
       />
       <label

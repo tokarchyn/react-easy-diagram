@@ -1,9 +1,6 @@
-import { ICallbacks } from 'states/callbacks';
-import { NodeState } from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
-import { Point } from 'utils/point';
 
-describe('Node state', () => {
+describe('Selection state', () => {
   let store: RootStore;
 
   beforeEach(() => {

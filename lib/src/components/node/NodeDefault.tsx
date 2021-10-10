@@ -12,7 +12,7 @@ import {
 
 const NodeDefault: React.FC<
   INodeVisualComponentProps<INodeDefaultSettings>
-> = observer(({ entity, settings, draggableRef }) => {
+> = observer(({ entity, settings }) => {
   const styling = useMemo(
     () =>
       new StatefullStyling(
@@ -37,7 +37,7 @@ const NodeDefault: React.FC<
   }, [entity, entity.hovered, entity.selected, styling]);
 
   return (
-    <div ref={draggableRef} className={styling.className} style={styling.style}>
+    <div className={styling.className} style={styling.style}>
       {settings?.innerNode && <settings.innerNode node={entity} />}
 
       {Array.isArray(settings?.ports) &&

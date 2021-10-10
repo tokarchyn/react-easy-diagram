@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useMemo } from 'react';
 import {
-  enableNodeUserInteractionClassName,
+  ENABLE_NODE_USER_INTERACTION_CLASS,
   useNodeUserInteraction,
 } from 'hooks/userInteractions/useNodeUserInteraction';
 import { NodeState } from 'states/nodeState';
@@ -9,7 +9,7 @@ import { useNotifyRef } from 'hooks/useNotifyRef';
 import { action } from 'mobx';
 
 export const NodeWrapper = observer<{ node: NodeState }>(({ node }) => {
-  const userInteractionElemRef = useNodeUserInteraction(node);
+  useNodeUserInteraction(node);
   const renderedPortsContextValue = usePortsCleanUp(node);
 
   return (
@@ -27,7 +27,6 @@ export const NodeWrapper = observer<{ node: NodeState }>(({ node }) => {
           ref={node.ref}
         >
           <node.componentDefinition.component
-            draggableRef={userInteractionElemRef}
             entity={node}
             settings={node.componentDefinition.settings}
           />
@@ -45,7 +44,7 @@ interface IRenderedPorts {
 export const RenderedPortsComponentsContext = React.createContext<IRenderedPorts>(
   { render: () => undefined, unrender: () => undefined }
 );
-export const className = `react_fast_diagram_NodeWrapper ${enableNodeUserInteractionClassName}`;
+export const className = `react_fast_diagram_NodeWrapper ${ENABLE_NODE_USER_INTERACTION_CLASS}`;
 
 /**
  * Clean up old ports.
