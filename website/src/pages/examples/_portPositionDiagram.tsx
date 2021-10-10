@@ -11,7 +11,7 @@ import { observer } from 'mobx-react-lite';
 import styles from '../styles.module.css'; 
 
 const SomeNode = observer<INodeVisualComponentProps>(
-  ({ draggableRef, entity }) => {
+  ({ entity }) => {
     const [
       portOffsetFromNodeCenter,
       setPortOffsetFromNodeCenter,
@@ -24,7 +24,6 @@ const SomeNode = observer<INodeVisualComponentProps>(
 
     return (
       <div
-        ref={draggableRef}
         className='react_fast_diagram_NodeDefault'
         style={{
           padding: 15,

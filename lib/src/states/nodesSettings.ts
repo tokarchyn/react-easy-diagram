@@ -65,7 +65,6 @@ export class NodesSettings {
 
 export interface INodeVisualComponentProps<TSettings = any>
   extends IVisualComponentProps<NodeState, TSettings> {
-  draggableRef: React.RefObject<any>;
 }
 
 export interface INodesSettings

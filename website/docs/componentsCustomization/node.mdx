@@ -14,7 +14,7 @@ To be able to use new components for nodes provide them in diagram settings:
       components: {
         your_type_1: createOutputHorizontalNode(), // method to create built-in node component
         your_type_2: MyCustomNode, // your React functional component
-        default: MyDefaultNode, // to override default node component, which is just a component with a label
+        [COMPONENT_DEFAULT_TYPE]: MyDefaultNode, // to override default node component, which is just a component with a label
       },
     },
   }}
@@ -101,12 +101,13 @@ createNode({
 
 ### Styling
 
-You can provide `base` classes and styles for node in [settings](#settings), which will be applied regardless of rather node is hovered or selected. You can also provide classes and styles that will be added to `base` ones when the node will be hovered, selected or both.
+You can provide classes and styles for node in [settings](#settings) for each state, like hovered, selected or both. The `base` classes and styles are applied regardless of node state.
+
 ```jsx
 createStarNode({
   classes: {
     base: ['my_node_base'],
-    hovered: ['my_node_hovered'], // if node will be hovered the classes 'my_node_base' and 'my_node_hovered' will be added to component
+    hovered: ['my_node_hovered'], // if node will be hovered the classes 'my_node_base' and 'my_node_hovered' will be added to component along with the default ones
     selected: ['my_node_selected'],
     "selected-hovered": ['my_node_hovered','my_node_selected', 'my_node_hovered_and_selected'],
   };
@@ -124,16 +125,13 @@ createStarNode({
 
 ## Your own component
 
-Creating your own component for node is very simple and require only two things:
-1. Wrapping in `observer` as were written at the beginning of this page.
-2. Attaching draggable reference which component will get as a prop.
+Creating your own component for node is very simple and require only wrapping in `observer` as were written at the beginning of this page.
 
 Let's write a node component with background depending on rather node is hovered or not. It will also display it's position and label. To see other data available in `entity` object, which you will also get as a prop, go to the [Node state](../api/classes/NodeState.md).
 ```jsx
-const NodeComponent = observer(({ entity, draggableRef }) => {
+const NodeComponent = observer(({ entity }) => {
   return (
     <div
-      ref={draggableRef} // this will enable library to track when user hover, drag the node etc. 
       style={{
         padding: 15,
         backgroundColor: entity.hovered ? '#8c8cff' : '#b6b6ff', // thanks to wrapping in 'observer' component will subscribe to all properties you read from any observable object

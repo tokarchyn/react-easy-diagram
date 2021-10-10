@@ -11,9 +11,7 @@ import { useGesture } from 'react-use-gesture';
 import { NodeState } from 'states/nodeState';
 import { multiplyPoint } from 'utils/point';
 
-export const useNodeUserInteraction = (
-  nodeState: NodeState
-): React.RefObject<HTMLElement> => {
+export const useNodeUserInteraction = (nodeState: NodeState) => {
   const rootStore = useRootStore();
 
   const interactionActiveRef = useRef<boolean>(false);
@@ -26,7 +24,6 @@ export const useNodeUserInteraction = (
     }
     return false;
   }, [selectOnLongTapRef]);
-  const userInteractionElemRef = useRef<HTMLElement>(null);
 
   const handlers = useMemo<GestureHandlers>(
     () => ({
@@ -102,19 +99,17 @@ export const useNodeUserInteraction = (
   );
 
   useGesture(handlers, {
-    domTarget: userInteractionElemRef,
+    domTarget: nodeState.ref,
     eventOptions: { passive: false },
   });
 
   useUserAbilityToSelectSwitcher(
     interactionActiveRef.current,
-    userInteractionElemRef.current?.ownerDocument?.body
+    nodeState.ref.current?.ownerDocument?.body
   );
 
   useDiagramCursor(nodeState.isDragActive, 'move');
   useCursor(nodeState.isDragActive, 'move', nodeState.ref.current);
-
-  return userInteractionElemRef;
 };
 
 const selectDelay: number = 500;

@@ -21,7 +21,7 @@ const PortWithLabel: React.FC<{
 };
 
 const NodeComponent = observer<INodeVisualComponentProps>(
-  ({ entity, draggableRef }) => {
+  ({ entity }) => {
     const [ports, setPorts] = useState<string[]>([]);
     const remove = useCallback(
       (idToRemove: string) =>
@@ -31,7 +31,7 @@ const NodeComponent = observer<INodeVisualComponentProps>(
     const [portToAdd, setPortToAdd] = useState<string>('');
 
     return (
-      <div className='react_fast_diagram_Node_Default' ref={draggableRef}>
+      <div className='react_fast_diagram_Node_Default'>
         <span>
           <input
             type='number'
