@@ -2,49 +2,6 @@
 title: Port
 ---
 
-You can customize visual representation of ports mainly in two ways: by providing [your own
-components](#your-own-component) or by [modifying built-in component](#modifying-built-in-component).
-
-To be able to use new components for ports provide them in diagram settings:
-
-```tsx
-<Diagram
-  settings={{
-    ports: {
-      components: {
-        your_type_1: createLinkDefault(), // method to create built-in port component
-        your_type_2: MyCustomPort, // your React functional component
-        [COMPONENT_DEFAULT_TYPE]: MyCustomPort, // to override default port component
-      },
-    },
-    nodes: {
-      components: {
-        your_node: createNode({
-          ports: [{
-            id: 'output',
-            type: 'your_type_1', // the port type is used to get component from settings to render port
-            position: 'bottom-center'
-          }],
-        })
-      }
-    }
-  }}
-  initState={{
-    nodes: [{
-      id: 'node_1',
-      position: [100, 100],
-      type: 'your_node', // the component key you add in nodes settings
-    }],
-  }}
-/>
-```
-
-:::caution
-
-In order to rerender your component when state of library changed the component should be wrapped in `observer` function from `mobx` state management library. See more information about it in [State management](../stateManagement). You can import this function like this `import { observer } from 'mobx-react-lite';`.
-
-:::
-
 ## Modifying built-in component
 
 To create built-in port component call `createPortInnerDefault(settings)`. You can provide classes and styles for node in settings for each state, like hovered, dragging or invalid. The `base` classes and styles are applied regardless of port state.
@@ -72,10 +29,10 @@ interface IPortInnerDefaultSettings {
 ```jsx title="Example"
 createPortInnerDefault({
   classes: {
-    base: ['my_base'],
-    hovered: ['my_hovered'], // if port will be hovered the classes 'my_base' and 'my_hovered' will be added to component along with the default ones
-    dragging: ['my_selected'],
-    invalid: ['my_ivalid', 'invalid_background_color'],
+    base: ['port_base'],
+    hovered: ['port_hovered'], // if port will be hovered the classes 'port_base' and 'port_hovered' will be added to component along with the default ones
+    dragging: ['port_selected'],
+    invalid: ['port_invalid', 'invalid_background_color'],
   };
   style: {
     base: {
@@ -91,7 +48,7 @@ createPortInnerDefault({
 
 ## Your own component
 
-Creating your own component for port is very simple and require only wrapping it in `observer` as were written at the beginning of this page.
+Creating your own component for port is very simple and require only wrapping it in `observer` as were written in the [Introduction](../introduction).
 
 Your component will receive `entity` object in props, that represents port's state, to see all available data in it go to the [Port state](../api/classes/PortState.md).
 

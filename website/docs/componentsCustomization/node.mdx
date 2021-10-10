@@ -2,38 +2,6 @@
 title: Node
 ---
 
-You can customize visual representation of nodes mainly in two ways: by providing [your own
-components](#your-own-component) or by [modifying built-in component](#modifying-built-in-component).
-
-To be able to use new components for nodes provide them in diagram settings:
-
-```tsx
-<Diagram
-  settings={{
-    nodes: {
-      components: {
-        your_type_1: createOutputHorizontalNode(), // method to create built-in node component
-        your_type_2: MyCustomNode, // your React functional component
-        [COMPONENT_DEFAULT_TYPE]: MyDefaultNode, // to override default node component, which is just a component with a label
-      },
-    },
-  }}
-  initState={{
-    nodes: [{
-      id: 'node_1',
-      position: [100, 100],
-      type: 'your_type_1', // the component key you add in settings
-    }],
-  }}
-/>
-```
-
-:::caution
-
-In order to rerender your component when state of library changed the component should be wrapped in `observer` function from `mobx` state management library. See more information about it in [State management](../stateManagement). You can import this function like this `import { observer } from 'mobx-react-lite';`.
-
-:::
-
 ## Modifying built-in component
 
 The build-in component for nodes simplifies customization and provides the most common variants of ports number and their location. 
@@ -106,10 +74,10 @@ You can provide classes and styles for node in [settings](#settings) for each st
 ```jsx
 createStarNode({
   classes: {
-    base: ['my_node_base'],
-    hovered: ['my_node_hovered'], // if node will be hovered the classes 'my_node_base' and 'my_node_hovered' will be added to component along with the default ones
-    selected: ['my_node_selected'],
-    "selected-hovered": ['my_node_hovered','my_node_selected', 'my_node_hovered_and_selected'],
+    base: ['node_base'],
+    hovered: ['node_hovered'], // if node will be hovered the classes 'node_base' and 'node_hovered' will be added to component along with the default ones
+    selected: ['node_selected'],
+    "selected-hovered": ['node_hovered','node_selected', 'node_hovered_and_selected'],
   };
   style: {
     base: {
@@ -125,7 +93,7 @@ createStarNode({
 
 ## Your own component
 
-Creating your own component for node is very simple and require only wrapping it in `observer` as were written at the beginning of this page.
+Creating your own component for node is very simple and require only wrapping it in `observer` as were written in the [Introduction](../introduction).
 
 Let's write a node component with background depending on rather node is hovered or not. It will also display it's position and label. To see other data available in `entity` object, which you will also get as a prop, go to the [Node state](../api/classes/NodeState.md).
 ```jsx
