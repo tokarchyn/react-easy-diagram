@@ -30,10 +30,6 @@ custom_edit_url: null
 | :------ | :------ |
 | `defaultComponent` | [`IComponentDefinition`](../interfaces/IComponentDefinition)<`TComponentProps`, `any`\> |
 
-#### Defined in
-
-[lib/src/states/visualComponentWithDefault.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentWithDefault.ts#L12)
-
 ## Accessors
 
 ### component
@@ -44,10 +40,6 @@ custom_edit_url: null
 
 [`VisualComponent`](../#visualcomponent)<`TComponentProps`\>
 
-#### Defined in
-
-[lib/src/states/visualComponentWithDefault.ts:20](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentWithDefault.ts#L20)
-
 ___
 
 ### settings
@@ -57,10 +49,6 @@ ___
 #### Returns
 
 `any`
-
-#### Defined in
-
-[lib/src/states/visualComponentWithDefault.ts:24](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentWithDefault.ts#L24)
 
 ## Methods
 
@@ -77,7 +65,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/visualComponentWithDefault.ts:28](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentWithDefault.ts#L28)

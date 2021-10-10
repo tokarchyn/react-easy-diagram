@@ -12,10 +12,6 @@ custom_edit_url: null
 
 • **new UserInteractionSettings**()
 
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L12)
-
 ## Accessors
 
 ### diagramPan
@@ -25,10 +21,6 @@ custom_edit_url: null
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:35](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L35)
 
 • `set` **diagramPan**(`value`): `void`
 
@@ -42,10 +34,6 @@ custom_edit_url: null
 
 `void`
 
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:39](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L39)
-
 ___
 
 ### diagramZoom
@@ -55,10 +43,6 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:27](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L27)
 
 • `set` **diagramZoom**(`value`): `void`
 
@@ -72,10 +56,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:31](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L31)
-
 ___
 
 ### linkSelection
@@ -85,10 +65,6 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:67](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L67)
 
 • `set` **linkSelection**(`value`): `void`
 
@@ -102,10 +78,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:71](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L71)
-
 ___
 
 ### multiselectionKey
@@ -115,10 +87,6 @@ ___
 #### Returns
 
 [`MultipleSelectionKey`](../#multipleselectionkey)
-
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:75](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L75)
 
 • `set` **multiselectionKey**(`value`): `void`
 
@@ -132,10 +100,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:79](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L79)
-
 ___
 
 ### nodeDrag
@@ -145,10 +109,6 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:43](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L43)
 
 • `set` **nodeDrag**(`value`): `void`
 
@@ -162,10 +122,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:47](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L47)
-
 ___
 
 ### nodeSelection
@@ -175,10 +131,6 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:59](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L59)
 
 • `set` **nodeSelection**(`value`): `void`
 
@@ -192,10 +144,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:63](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L63)
-
 ___
 
 ### portConnection
@@ -205,10 +153,6 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:51](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L51)
 
 • `set` **portConnection**(`value`): `void`
 
@@ -221,10 +165,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L55)
 
 ## Methods
 
@@ -241,10 +181,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:17](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L17)
 
 ___
 
@@ -264,7 +200,3 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/userInteractionSettings.ts:83](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L83)

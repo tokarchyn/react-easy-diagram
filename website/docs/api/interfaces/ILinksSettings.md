@@ -22,19 +22,11 @@ custom_edit_url: null
 
 [IVisualComponentsObject](IVisualComponentsObject).[components](IVisualComponentsObject#components)
 
-#### Defined in
-
-[lib/src/states/visualComponents.ts:64](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponents.ts#L64)
-
 ___
 
 ### pathConstructor
 
 • `Optional` **pathConstructor**: [`ILinkPathConstructor`](../#ilinkpathconstructor)
-
-#### Defined in
-
-[lib/src/states/linksSettings.ts:121](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L121)
 
 ___
 
@@ -42,16 +34,8 @@ ___
 
 • `Optional` **preferLinksDirection**: ``"horizontal"`` \| ``"vertical"`` \| ``"both"``
 
-#### Defined in
-
-[lib/src/states/linksSettings.ts:122](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L122)
-
 ___
 
 ### svgMarkers
 
 • `Optional` **svgMarkers**: `FunctionComponent`<`Object`\>[]
-
-#### Defined in
-
-[lib/src/states/linksSettings.ts:123](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L123)

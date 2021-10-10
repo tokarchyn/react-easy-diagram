@@ -12,10 +12,6 @@ custom_edit_url: null
 
 • **directionFactor**: `number`
 
-#### Defined in
-
-[lib/src/linkConstructors/curved.ts:31](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/linkConstructors/curved.ts#L31)
-
 ## Methods
 
 ### tweakDirectionFactorBasedOnDistance
@@ -32,7 +28,3 @@ custom_edit_url: null
 #### Returns
 
 `number`
-
-#### Defined in
-
-[lib/src/linkConstructors/curved.ts:32](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/linkConstructors/curved.ts#L32)

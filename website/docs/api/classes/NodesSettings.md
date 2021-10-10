@@ -12,10 +12,6 @@ custom_edit_url: null
 
 • **new NodesSettings**()
 
-#### Defined in
-
-[lib/src/states/nodesSettings.ts:37](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesSettings.ts#L37)
-
 ## Accessors
 
 ### gridSnap
@@ -26,10 +22,6 @@ custom_edit_url: null
 
 ``null`` \| [`Point`](../#point)
 
-#### Defined in
-
-[lib/src/states/nodesSettings.ts:51](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesSettings.ts#L51)
-
 ___
 
 ### visualComponents
@@ -39,10 +31,6 @@ ___
 #### Returns
 
 [`VisualComponents`](VisualComponents)<[`NodeState`](NodeState), [`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps)<`any`\>\>
-
-#### Defined in
-
-[lib/src/states/nodesSettings.ts:42](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesSettings.ts#L42)
 
 ## Methods
 
@@ -60,10 +48,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/nodesSettings.ts:46](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesSettings.ts#L46)
-
 ___
 
 ### setGridSnap
@@ -79,7 +63,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/nodesSettings.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesSettings.ts#L55)

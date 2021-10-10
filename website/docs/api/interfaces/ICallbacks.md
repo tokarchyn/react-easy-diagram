@@ -24,10 +24,6 @@ custom_edit_url: null
 
 `void`
 
-#### Defined in
-
-[lib/src/states/callbacks.ts:96](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L96)
-
 ___
 
 ### nodePositionChanged
@@ -48,10 +44,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/callbacks.ts:89](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L89)
-
 ___
 
 ### nodesAdded
@@ -71,10 +63,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/callbacks.ts:83](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L83)
-
 ___
 
 ### validateLinkEndpoints
@@ -92,7 +80,3 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/callbacks.ts:78](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L78)

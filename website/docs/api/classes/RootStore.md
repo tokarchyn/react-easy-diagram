@@ -12,10 +12,6 @@ custom_edit_url: null
 
 • **new RootStore**()
 
-#### Defined in
-
-[lib/src/states/rootStore.ts:30](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L30)
-
 ## Accessors
 
 ### callbacks
@@ -25,10 +21,6 @@ custom_edit_url: null
 #### Returns
 
 [`Callbacks`](Callbacks)
-
-#### Defined in
-
-[lib/src/states/rootStore.ts:74](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L74)
 
 ___
 
@@ -40,10 +32,6 @@ ___
 
 [`CommandExecutor`](CommandExecutor)
 
-#### Defined in
-
-[lib/src/states/rootStore.ts:86](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L86)
-
 ___
 
 ### diagramSettings
@@ -53,10 +41,6 @@ ___
 #### Returns
 
 [`DiagramSettings`](DiagramSettings)
-
-#### Defined in
-
-[lib/src/states/rootStore.ts:58](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L58)
 
 ___
 
@@ -68,10 +52,6 @@ ___
 
 [`DiagramState`](DiagramState)
 
-#### Defined in
-
-[lib/src/states/rootStore.ts:46](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L46)
-
 ___
 
 ### dragState
@@ -81,10 +61,6 @@ ___
 #### Returns
 
 [`DragState`](DragState)
-
-#### Defined in
-
-[lib/src/states/rootStore.ts:82](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L82)
 
 ___
 
@@ -96,10 +72,6 @@ ___
 
 [`LinksSettings`](LinksSettings)
 
-#### Defined in
-
-[lib/src/states/rootStore.ts:66](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L66)
-
 ___
 
 ### linksStore
@@ -109,10 +81,6 @@ ___
 #### Returns
 
 [`LinksStore`](LinksStore)
-
-#### Defined in
-
-[lib/src/states/rootStore.ts:54](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L54)
 
 ___
 
@@ -124,10 +92,6 @@ ___
 
 [`NodesSettings`](NodesSettings)
 
-#### Defined in
-
-[lib/src/states/rootStore.ts:62](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L62)
-
 ___
 
 ### nodesStore
@@ -137,10 +101,6 @@ ___
 #### Returns
 
 [`NodesStore`](NodesStore)
-
-#### Defined in
-
-[lib/src/states/rootStore.ts:50](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L50)
 
 ___
 
@@ -152,10 +112,6 @@ ___
 
 [`PortsSettings`](PortsSettings)
 
-#### Defined in
-
-[lib/src/states/rootStore.ts:70](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L70)
-
 ___
 
 ### selectionState
@@ -165,10 +121,6 @@ ___
 #### Returns
 
 [`SelectionState`](SelectionState)
-
-#### Defined in
-
-[lib/src/states/rootStore.ts:78](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L78)
 
 ## Methods
 
@@ -184,10 +136,6 @@ ___
 | :------ | :------ |
 | `links` | [`ILinkState`](../interfaces/ILinkState)[] |
 | `nodes` | [`INodeState`](../interfaces/INodeState)[] |
-
-#### Defined in
-
-[lib/src/states/rootStore.ts:95](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L95)
 
 ___
 
@@ -205,10 +153,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/rootStore.ts:100](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L100)
-
 ___
 
 ### importState
@@ -225,7 +169,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/rootStore.ts:90](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L90)

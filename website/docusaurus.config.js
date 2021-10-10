@@ -40,8 +40,8 @@ module.exports = {
               to: 'examples/configureDefaultLink',
             },
             {
-              label: 'Configure default port',
-              to: 'examples/configureDefaultPort',
+              label: 'Customize port',
+              to: 'examples/customizePortDiagram',
             },
             {
               label: 'Performance',
@@ -115,7 +115,11 @@ module.exports = {
         readme: 'none',
         excludeProtected: true,
         excludeInternal: true,
-        excludePrivate: true
+        excludePrivate: true,
+        /* disable sources temporarily, because each change in source will change 
+        every api docs, as it contains hash of commit. It would be good to change 
+        it in future (see gitRevision, gitRemote options) */
+        disableSources: true, 
       },
     ],
   ],

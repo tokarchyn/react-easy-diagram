@@ -24,10 +24,6 @@ custom_edit_url: null
 | `portId` | `string` |
 | `rootStore` | [`RootStore`](RootStore) |
 
-#### Defined in
-
-[lib/src/states/linkPortEndpointState.ts:14](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L14)
-
 ## Accessors
 
 ### node
@@ -37,10 +33,6 @@ custom_edit_url: null
 #### Returns
 
 `undefined` \| [`NodeState`](NodeState)
-
-#### Defined in
-
-[lib/src/states/linkPortEndpointState.ts:35](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L35)
 
 ___
 
@@ -56,10 +48,6 @@ ___
 
 [ILinkPortEndpoint](../interfaces/ILinkPortEndpoint).[nodeId](../interfaces/ILinkPortEndpoint#nodeid)
 
-#### Defined in
-
-[lib/src/states/linkPortEndpointState.ts:27](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L27)
-
 ___
 
 ### point
@@ -70,10 +58,6 @@ ___
 
 `undefined` \| [`Point`](../#point)
 
-#### Defined in
-
-[lib/src/states/linkPortEndpointState.ts:43](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L43)
-
 ___
 
 ### port
@@ -83,10 +67,6 @@ ___
 #### Returns
 
 `undefined` \| [`PortState`](PortState)
-
-#### Defined in
-
-[lib/src/states/linkPortEndpointState.ts:39](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L39)
 
 ___
 
@@ -102,10 +82,6 @@ ___
 
 [ILinkPortEndpoint](../interfaces/ILinkPortEndpoint).[portId](../interfaces/ILinkPortEndpoint#portid)
 
-#### Defined in
-
-[lib/src/states/linkPortEndpointState.ts:31](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L31)
-
 ## Methods
 
 ### export
@@ -115,7 +91,3 @@ ___
 #### Returns
 
 [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint)
-
-#### Defined in
-
-[lib/src/states/linkPortEndpointState.ts:21](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L21)

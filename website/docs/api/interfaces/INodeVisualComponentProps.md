@@ -20,16 +20,6 @@ custom_edit_url: null
 
 ## Properties
 
-### draggableRef
-
-• **draggableRef**: `RefObject`<`any`\>
-
-#### Defined in
-
-[lib/src/states/nodesSettings.ts:68](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesSettings.ts#L68)
-
-___
-
 ### entity
 
 • **entity**: [`NodeState`](../classes/NodeState)
@@ -37,10 +27,6 @@ ___
 #### Inherited from
 
 [IVisualComponentProps](IVisualComponentProps).[entity](IVisualComponentProps#entity)
-
-#### Defined in
-
-[lib/src/states/visualComponentState.ts:51](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentState.ts#L51)
 
 ___
 
@@ -51,7 +37,3 @@ ___
 #### Inherited from
 
 [IVisualComponentProps](IVisualComponentProps).[settings](IVisualComponentProps#settings)
-
-#### Defined in
-
-[lib/src/states/visualComponentState.ts:52](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentState.ts#L52)

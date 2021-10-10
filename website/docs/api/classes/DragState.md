@@ -21,10 +21,6 @@ Encapsulate logic for dragging mechanism. Right now only nodes are supposed to b
 | `selectionState` | [`SelectionState`](SelectionState) |
 | `callbacks` | [`Callbacks`](Callbacks) |
 
-#### Defined in
-
-[lib/src/states/dragState.ts:18](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/dragState.ts#L18)
-
 ## Accessors
 
 ### isActive
@@ -34,10 +30,6 @@ Encapsulate logic for dragging mechanism. Right now only nodes are supposed to b
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/dragState.ts:24](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/dragState.ts#L24)
 
 ## Methods
 
@@ -57,10 +49,6 @@ Drag by a vector
 
 `void`
 
-#### Defined in
-
-[lib/src/states/dragState.ts:54](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/dragState.ts#L54)
-
 ___
 
 ### startDragging
@@ -77,10 +65,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/dragState.ts:28](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/dragState.ts#L28)
-
 ___
 
 ### stopDragging
@@ -90,7 +74,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/dragState.ts:66](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/dragState.ts#L66)

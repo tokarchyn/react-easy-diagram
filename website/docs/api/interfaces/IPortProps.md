@@ -22,10 +22,6 @@ custom_edit_url: null
 
 [IPortState](IPortState).[component](IPortState#component)
 
-#### Defined in
-
-[lib/src/states/portState.ts:274](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L274)
-
 ___
 
 ### extra
@@ -35,10 +31,6 @@ ___
 #### Inherited from
 
 [IPortState](IPortState).[extra](IPortState#extra)
-
-#### Defined in
-
-[lib/src/states/portState.ts:273](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L273)
 
 ___
 
@@ -50,10 +42,6 @@ ___
 
 [IPortState](IPortState).[id](IPortState#id)
 
-#### Defined in
-
-[lib/src/states/portState.ts:280](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L280)
-
 ___
 
 ### isConnectionEnabled
@@ -63,10 +51,6 @@ ___
 #### Inherited from
 
 [IPortState](IPortState).[isConnectionEnabled](IPortState#isconnectionenabled)
-
-#### Defined in
-
-[lib/src/states/portState.ts:276](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L276)
 
 ___
 
@@ -78,10 +62,6 @@ ___
 
 [IPortState](IPortState).[label](IPortState#label)
 
-#### Defined in
-
-[lib/src/states/portState.ts:271](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L271)
-
 ___
 
 ### linkDirection
@@ -92,19 +72,11 @@ ___
 
 [IPortState](IPortState).[linkDirection](IPortState#linkdirection)
 
-#### Defined in
-
-[lib/src/states/portState.ts:275](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L275)
-
 ___
 
 ### offsetFromNodeCenter
 
 • `Optional` **offsetFromNodeCenter**: `number`
-
-#### Defined in
-
-[lib/src/components/port/Port.tsx:21](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/port/Port.tsx#L21)
 
 ___
 
@@ -112,19 +84,11 @@ ___
 
 • `Optional` **offsetFromOrigin**: [`Point`](../#point)
 
-#### Defined in
-
-[lib/src/components/port/Port.tsx:22](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/port/Port.tsx#L22)
-
 ___
 
 ### position
 
 • `Optional` **position**: ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"``
-
-#### Defined in
-
-[lib/src/components/port/Port.tsx:20](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/port/Port.tsx#L20)
 
 ___
 
@@ -135,7 +99,3 @@ ___
 #### Inherited from
 
 [IPortState](IPortState).[type](IPortState#type)
-
-#### Defined in
-
-[lib/src/states/portState.ts:272](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L272)

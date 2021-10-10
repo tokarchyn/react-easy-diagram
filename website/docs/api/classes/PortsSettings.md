@@ -12,10 +12,6 @@ custom_edit_url: null
 
 • **new PortsSettings**()
 
-#### Defined in
-
-[lib/src/states/portsSettings.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portsSettings.ts#L19)
-
 ## Accessors
 
 ### portVisualComponents
@@ -25,10 +21,6 @@ custom_edit_url: null
 #### Returns
 
 [`VisualComponents`](VisualComponents)<[`PortState`](PortState), [`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps)<`any`\>\>
-
-#### Defined in
-
-[lib/src/states/portsSettings.ts:23](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portsSettings.ts#L23)
 
 ## Methods
 
@@ -45,7 +37,3 @@ custom_edit_url: null
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/portsSettings.ts:27](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portsSettings.ts#L27)

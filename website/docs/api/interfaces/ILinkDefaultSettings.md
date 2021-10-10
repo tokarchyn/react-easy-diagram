@@ -12,26 +12,14 @@ custom_edit_url: null
 
 • `Optional` **mainLine**: [`ILineStyling`](ILineStyling)
 
-#### Defined in
-
-[lib/src/components/link/LinkDefault.tsx:71](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/LinkDefault.tsx#L71)
-
 ___
 
 ### removeDefaultClasses
 
 • `Optional` **removeDefaultClasses**: ``true``
 
-#### Defined in
-
-[lib/src/components/link/LinkDefault.tsx:70](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/LinkDefault.tsx#L70)
-
 ___
 
 ### secondaryLine
 
 • `Optional` **secondaryLine**: [`ILineStyling`](ILineStyling)
-
-#### Defined in
-
-[lib/src/components/link/LinkDefault.tsx:72](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/LinkDefault.tsx#L72)

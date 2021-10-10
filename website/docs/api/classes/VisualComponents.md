@@ -32,10 +32,6 @@ custom_edit_url: null
 | :------ | :------ |
 | `defaultComponents` | [`Dictionary`](../interfaces/Dictionary)<[`IComponentDefinition`](../interfaces/IComponentDefinition)<`TComponentProps`, `any`\> \| [`VisualComponent`](../#visualcomponent)<`TComponentProps`\>\> |
 
-#### Defined in
-
-[lib/src/states/visualComponents.ts:17](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponents.ts#L17)
-
 ## Methods
 
 ### getComponent
@@ -52,10 +48,6 @@ custom_edit_url: null
 
 [`VisualComponentState`](VisualComponentState)<`TComponentProps`\>
 
-#### Defined in
-
-[lib/src/states/visualComponents.ts:36](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponents.ts#L36)
-
 ___
 
 ### import
@@ -71,7 +63,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/visualComponents.ts:29](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponents.ts#L29)

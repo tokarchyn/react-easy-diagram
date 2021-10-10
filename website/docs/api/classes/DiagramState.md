@@ -23,10 +23,6 @@ custom_edit_url: null
 | :------ | :------ |
 | `rootStore` | [`RootStore`](RootStore) |
 
-#### Defined in
-
-[lib/src/states/diagramState.ts:20](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L20)
-
 ## Accessors
 
 ### diagramInnerRef
@@ -36,10 +32,6 @@ custom_edit_url: null
 #### Returns
 
 [`HtmlElementRefState`](HtmlElementRefState)
-
-#### Defined in
-
-[lib/src/states/diagramState.ts:102](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L102)
 
 ___
 
@@ -55,10 +47,6 @@ ___
 
 [IUserInteractionTranslateAndZoom](../interfaces/IUserInteractionTranslateAndZoom).[offset](../interfaces/IUserInteractionTranslateAndZoom#offset)
 
-#### Defined in
-
-[lib/src/states/diagramState.ts:106](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L106)
-
 ___
 
 ### renderedOffset
@@ -69,10 +57,6 @@ ___
 
 [`Point`](../#point)
 
-#### Defined in
-
-[lib/src/states/diagramState.ts:114](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L114)
-
 ___
 
 ### renderedZoom
@@ -82,10 +66,6 @@ ___
 #### Returns
 
 `number`
-
-#### Defined in
-
-[lib/src/states/diagramState.ts:118](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L118)
 
 ___
 
@@ -101,10 +81,6 @@ ___
 
 [IUserInteractionTranslateAndZoom](../interfaces/IUserInteractionTranslateAndZoom).[zoom](../interfaces/IUserInteractionTranslateAndZoom#zoom)
 
-#### Defined in
-
-[lib/src/states/diagramState.ts:110](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L110)
-
 ## Methods
 
 ### export
@@ -114,10 +90,6 @@ ___
 #### Returns
 
 [`IDiagramState`](../interfaces/IDiagramState)
-
-#### Defined in
-
-[lib/src/states/diagramState.ts:38](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L38)
 
 ___
 
@@ -134,10 +106,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/diagramState.ts:33](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L33)
 
 ___
 
@@ -157,10 +125,6 @@ Set offset and zoom values that were already rendered.
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/diagramState.ts:125](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L125)
 
 ___
 
@@ -182,10 +146,6 @@ ___
 
 [IUserInteractionTranslate](../interfaces/IUserInteractionTranslate).[setOffset](../interfaces/IUserInteractionTranslate#setoffset)
 
-#### Defined in
-
-[lib/src/states/diagramState.ts:44](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L44)
-
 ___
 
 ### setTransformation
@@ -203,10 +163,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/diagramState.ts:77](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L77)
-
 ___
 
 ### setZoom
@@ -222,10 +178,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/diagramState.ts:48](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L48)
 
 ___
 
@@ -249,10 +201,6 @@ ___
 
 [IUserInteractionTranslateAndZoom](../interfaces/IUserInteractionTranslateAndZoom).[tranlsateAndZoomInto](../interfaces/IUserInteractionTranslateAndZoom#tranlsateandzoominto)
 
-#### Defined in
-
-[lib/src/states/diagramState.ts:86](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L86)
-
 ___
 
 ### translate
@@ -269,10 +217,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/diagramState.ts:82](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L82)
-
 ___
 
 ### zoomIn
@@ -282,10 +226,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/diagramState.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L55)
 
 ___
 
@@ -304,10 +244,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/diagramState.ts:59](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L59)
-
 ___
 
 ### zoomIntoCenter
@@ -324,10 +260,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/diagramState.ts:95](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L95)
-
 ___
 
 ### zoomOut
@@ -338,10 +270,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/diagramState.ts:56](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L56)
-
 ___
 
 ### zoomToFit
@@ -351,7 +279,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/diagramState.ts:130](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L130)

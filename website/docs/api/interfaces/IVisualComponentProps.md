@@ -29,16 +29,8 @@ custom_edit_url: null
 
 • **entity**: `TEntity`
 
-#### Defined in
-
-[lib/src/states/visualComponentState.ts:51](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentState.ts#L51)
-
 ___
 
 ### settings
 
 • `Optional` **settings**: `TSettings`
-
-#### Defined in
-
-[lib/src/states/visualComponentState.ts:52](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentState.ts#L52)

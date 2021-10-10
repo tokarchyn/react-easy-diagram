@@ -12,26 +12,14 @@ custom_edit_url: null
 
 • **source**: [`Point`](../#point)
 
-#### Defined in
-
-[lib/src/states/linkState.ts:212](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L212)
-
 ___
 
 ### svgPath
 
 • **svgPath**: `string`
 
-#### Defined in
-
-[lib/src/states/linkState.ts:211](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L211)
-
 ___
 
 ### target
 
 • **target**: [`Point`](../#point)
-
-#### Defined in
-
-[lib/src/states/linkState.ts:213](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L213)

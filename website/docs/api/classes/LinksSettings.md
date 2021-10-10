@@ -12,10 +12,6 @@ custom_edit_url: null
 
 • **new LinksSettings**()
 
-#### Defined in
-
-[lib/src/states/linksSettings.ts:77](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L77)
-
 ## Accessors
 
 ### pathConstructor
@@ -25,10 +21,6 @@ custom_edit_url: null
 #### Returns
 
 [`ILinkPathConstructor`](../#ilinkpathconstructor)
-
-#### Defined in
-
-[lib/src/states/linksSettings.ts:91](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L91)
 
 ___
 
@@ -40,10 +32,6 @@ ___
 
 ``"horizontal"`` \| ``"vertical"`` \| ``"both"``
 
-#### Defined in
-
-[lib/src/states/linksSettings.ts:103](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L103)
-
 ___
 
 ### svgMarkers
@@ -54,10 +42,6 @@ ___
 
 readonly `FunctionComponent`<`Object`\>[]
 
-#### Defined in
-
-[lib/src/states/linksSettings.ts:107](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L107)
-
 ___
 
 ### visualComponents
@@ -67,10 +51,6 @@ ___
 #### Returns
 
 [`VisualComponents`](VisualComponents)<[`LinkState`](LinkState) \| [`LinkCreationState`](LinkCreationState), [`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps)<`any`\>\>
-
-#### Defined in
-
-[lib/src/states/linksSettings.ts:99](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L99)
 
 ## Methods
 
@@ -88,10 +68,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/linksSettings.ts:82](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L82)
-
 ___
 
 ### setPathConstructor
@@ -107,7 +83,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/linksSettings.ts:95](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L95)

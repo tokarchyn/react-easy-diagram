@@ -18,10 +18,6 @@ custom_edit_url: null
 | :------ | :------ |
 | `rootStore` | [`RootStore`](RootStore) |
 
-#### Defined in
-
-[lib/src/states/linksStore.ts:25](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L25)
-
 ## Accessors
 
 ### linkCreation
@@ -32,10 +28,6 @@ custom_edit_url: null
 
 [`LinkCreationState`](LinkCreationState)
 
-#### Defined in
-
-[lib/src/states/linksStore.ts:51](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L51)
-
 ___
 
 ### links
@@ -45,10 +37,6 @@ ___
 #### Returns
 
 `ReadonlyMap`<`string`, [`LinkState`](LinkState)\>
-
-#### Defined in
-
-[lib/src/states/linksStore.ts:47](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L47)
 
 ## Methods
 
@@ -65,10 +53,6 @@ ___
 #### Returns
 
 [`LinkState`](LinkState)
-
-#### Defined in
-
-[lib/src/states/linksStore.ts:96](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L96)
 
 ___
 
@@ -87,10 +71,6 @@ ___
 
 `boolean`
 
-#### Defined in
-
-[lib/src/states/linksStore.ts:204](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L204)
-
 ___
 
 ### export
@@ -100,10 +80,6 @@ ___
 #### Returns
 
 [`ILinkState`](../interfaces/ILinkState)[]
-
-#### Defined in
-
-[lib/src/states/linksStore.ts:44](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L44)
 
 ___
 
@@ -121,10 +97,6 @@ ___
 
 `undefined` \| [`PortState`](PortState)
 
-#### Defined in
-
-[lib/src/states/linksStore.ts:198](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L198)
-
 ___
 
 ### getEndpointPortOrError
@@ -141,10 +113,6 @@ ___
 
 [`SuccessOrErrorResult`](../#successorerrorresult)<[`PortState`](PortState), `undefined`\>
 
-#### Defined in
-
-[lib/src/states/linksStore.ts:181](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L181)
-
 ___
 
 ### getLink
@@ -160,10 +128,6 @@ ___
 #### Returns
 
 `undefined` \| [`LinkState`](LinkState)
-
-#### Defined in
-
-[lib/src/states/linksStore.ts:59](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L59)
 
 ___
 
@@ -182,10 +146,6 @@ ___
 
 `undefined` \| [`LinkState`](LinkState)
 
-#### Defined in
-
-[lib/src/states/linksStore.ts:211](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L211)
-
 ___
 
 ### getNodeLinks
@@ -201,10 +161,6 @@ ___
 #### Returns
 
 [`LinkState`](LinkState)[]
-
-#### Defined in
-
-[lib/src/states/linksStore.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L55)
 
 ___
 
@@ -223,10 +179,6 @@ ___
 
 [`LinkState`](LinkState)[]
 
-#### Defined in
-
-[lib/src/states/linksStore.ts:63](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L63)
-
 ___
 
 ### import
@@ -242,10 +194,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/linksStore.ts:32](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L32)
 
 ___
 
@@ -263,10 +211,6 @@ ___
 
 `boolean`
 
-#### Defined in
-
-[lib/src/states/linksStore.ts:118](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L118)
-
 ___
 
 ### removeNodeLinks
@@ -282,10 +226,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/linksStore.ts:73](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L73)
 
 ___
 
@@ -304,10 +244,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/linksStore.ts:78](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L78)
-
 ___
 
 ### validateAndAddLink
@@ -323,10 +259,6 @@ ___
 #### Returns
 
 [`SuccessOrErrorResult`](../#successorerrorresult)<[`LinkState`](LinkState), `undefined`\>
-
-#### Defined in
-
-[lib/src/states/linksStore.ts:109](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L109)
 
 ___
 
@@ -344,10 +276,6 @@ ___
 
 [`SuccessOrErrorResult`](../#successorerrorresult)<`undefined`, `undefined`\>
 
-#### Defined in
-
-[lib/src/states/linksStore.ts:138](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L138)
-
 ___
 
 ### validateLinkProperties
@@ -363,7 +291,3 @@ ___
 #### Returns
 
 [`SuccessOrErrorResult`](../#successorerrorresult)<`undefined`, `undefined`\>
-
-#### Defined in
-
-[lib/src/states/linksStore.ts:164](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksStore.ts#L164)

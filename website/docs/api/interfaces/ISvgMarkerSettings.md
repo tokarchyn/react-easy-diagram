@@ -20,16 +20,8 @@ custom_edit_url: null
 
 • **id**: `string`
 
-#### Defined in
-
-[lib/src/components/link/Markers.tsx:4](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/Markers.tsx#L4)
-
 ___
 
 ### style
 
 • `Optional` **style**: `CSSProperties`
-
-#### Defined in
-
-[lib/src/components/link/Markers.tsx:5](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/Markers.tsx#L5)

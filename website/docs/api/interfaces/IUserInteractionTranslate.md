@@ -16,10 +16,6 @@ custom_edit_url: null
 
 • **offset**: [`Point`](../#point)
 
-#### Defined in
-
-[lib/src/hooks/userInteractions/common.ts:50](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/common.ts#L50)
-
 ## Methods
 
 ### setOffset
@@ -35,7 +31,3 @@ custom_edit_url: null
 #### Returns
 
 `any`
-
-#### Defined in
-
-[lib/src/hooks/userInteractions/common.ts:51](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/common.ts#L51)

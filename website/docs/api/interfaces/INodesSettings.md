@@ -22,16 +22,8 @@ custom_edit_url: null
 
 [IVisualComponentsObject](IVisualComponentsObject).[components](IVisualComponentsObject#components)
 
-#### Defined in
-
-[lib/src/states/visualComponents.ts:64](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponents.ts#L64)
-
 ___
 
 ### gridSnap
 
 • `Optional` **gridSnap**: `number` \| [`Point`](../#point)
-
-#### Defined in
-
-[lib/src/states/nodesSettings.ts:73](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesSettings.ts#L73)

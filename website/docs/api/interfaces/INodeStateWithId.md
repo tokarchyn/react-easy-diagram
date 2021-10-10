@@ -22,19 +22,11 @@ custom_edit_url: null
 
 [INodeStateWithoutId](INodeStateWithoutId).[extra](INodeStateWithoutId#extra)
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:310](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L310)
-
 ___
 
 ### id
 
 • **id**: `string`
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:320](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L320)
 
 ___
 
@@ -46,10 +38,6 @@ ___
 
 [INodeStateWithoutId](INodeStateWithoutId).[isDragEnabled](INodeStateWithoutId#isdragenabled)
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:312](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L312)
-
 ___
 
 ### isSelectionEnabled
@@ -59,10 +47,6 @@ ___
 #### Inherited from
 
 [INodeStateWithoutId](INodeStateWithoutId).[isSelectionEnabled](INodeStateWithoutId#isselectionenabled)
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:311](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L311)
 
 ___
 
@@ -74,10 +58,6 @@ ___
 
 [INodeStateWithoutId](INodeStateWithoutId).[label](INodeStateWithoutId#label)
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:307](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L307)
-
 ___
 
 ### position
@@ -88,10 +68,6 @@ ___
 
 [INodeStateWithoutId](INodeStateWithoutId).[position](INodeStateWithoutId#position)
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:308](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L308)
-
 ___
 
 ### type
@@ -101,7 +77,3 @@ ___
 #### Inherited from
 
 [INodeStateWithoutId](INodeStateWithoutId).[type](INodeStateWithoutId#type)
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:309](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L309)

@@ -20,10 +20,6 @@ custom_edit_url: null
 | `id` | `string` |
 | `state?` | [`INodeStateWithoutId`](../interfaces/INodeStateWithoutId) |
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:33](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L33)
-
 ## Accessors
 
 ### componentDefinition
@@ -33,10 +29,6 @@ custom_edit_url: null
 #### Returns
 
 [`VisualComponentState`](VisualComponentState)<[`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps)<`any`\>\>
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:178](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L178)
 
 ___
 
@@ -48,10 +40,6 @@ ___
 
 [`Dictionary`](../interfaces/Dictionary)<[`PortState`](PortState)[]\>
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:227](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L227)
-
 ___
 
 ### connectedLinks
@@ -61,10 +49,6 @@ ___
 #### Returns
 
 [`LinkState`](LinkState)[]
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:235](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L235)
 
 ___
 
@@ -76,10 +60,6 @@ ___
 
 `any`
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:158](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L158)
-
 ___
 
 ### hovered
@@ -89,10 +69,6 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:150](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L150)
 
 • `set` **hovered**(`value`): `void`
 
@@ -106,10 +82,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:154](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L154)
-
 ___
 
 ### id
@@ -120,10 +92,6 @@ ___
 
 `string`
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:77](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L77)
-
 ___
 
 ### isDragActive
@@ -133,10 +101,6 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:265](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L265)
 
 • `set` **isDragActive**(`value`): `void`
 
@@ -150,10 +114,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:269](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L269)
-
 ___
 
 ### isDragEnabled
@@ -163,10 +123,6 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:253](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L253)
 
 ___
 
@@ -178,10 +134,6 @@ ___
 
 `boolean`
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:243](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L243)
-
 ___
 
 ### label
@@ -191,10 +143,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:81](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L81)
 
 • `set` **label**(`value`): `void`
 
@@ -208,10 +156,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:85](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L85)
-
 ___
 
 ### ports
@@ -222,10 +166,6 @@ ___
 
 `ReadonlyMap`<`string`, [`PortState`](PortState)\>
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:170](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L170)
-
 ___
 
 ### position
@@ -235,10 +175,6 @@ ___
 #### Returns
 
 [`Point`](../#point)
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:89](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L89)
 
 ___
 
@@ -253,10 +189,6 @@ ___
 Value is calculated without zoom taking into account, that is, the same as zoom would be '1'.
 Value can be @type {null} in case reference to real DOM object is not set.
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:187](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L187)
-
 ___
 
 ### ref
@@ -267,10 +199,6 @@ ___
 
 [`HtmlElementRefState`](HtmlElementRefState)
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:166](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L166)
-
 ___
 
 ### selected
@@ -280,10 +208,6 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:139](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L139)
 
 • `set` **selected**(`value`): `void`
 
@@ -297,10 +221,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:143](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L143)
-
 ___
 
 ### transformString
@@ -311,10 +231,6 @@ ___
 
 `string`
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:174](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L174)
-
 ___
 
 ### type
@@ -324,10 +240,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:131](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L131)
 
 ## Methods
 
@@ -345,10 +257,6 @@ ___
 
 [`SuccessOrErrorResult`](../#successorerrorresult)<[`PortState`](PortState), `undefined`\>
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:197](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L197)
-
 ___
 
 ### export
@@ -358,10 +266,6 @@ ___
 #### Returns
 
 [`INodeStateWithId`](../interfaces/INodeStateWithId)
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:65](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L65)
 
 ___
 
@@ -379,10 +283,6 @@ ___
 
 `undefined` \| [`PortState`](PortState)
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:191](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L191)
-
 ___
 
 ### getPortOrThrowException
@@ -398,10 +298,6 @@ ___
 #### Returns
 
 [`PortState`](PortState)
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:220](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L220)
 
 ___
 
@@ -419,10 +315,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L55)
-
 ___
 
 ### recalculatePortsSizeAndPosition
@@ -432,10 +324,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:239](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L239)
 
 ___
 
@@ -453,10 +341,6 @@ ___
 
 `boolean`
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:211](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L211)
-
 ___
 
 ### setExtra
@@ -472,10 +356,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:162](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L162)
 
 ___
 
@@ -493,10 +373,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:261](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L261)
-
 ___
 
 ### setIsSelectionEnabled
@@ -512,10 +388,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:249](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L249)
 
 ___
 
@@ -537,10 +409,6 @@ ___
 remainder in case snap to grid is turned on. For example if newPosition would be [22,17] and snap [10,10],
 the node position would be set to [20,20] and remainder equals [2,-3]
 
-#### Defined in
-
-[lib/src/states/nodeState.ts:99](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L99)
-
 ___
 
 ### setType
@@ -556,7 +424,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:135](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L135)

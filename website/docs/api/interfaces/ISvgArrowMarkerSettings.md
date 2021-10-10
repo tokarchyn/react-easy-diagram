@@ -18,10 +18,6 @@ custom_edit_url: null
 
 • `Optional` **height**: `number`
 
-#### Defined in
-
-[lib/src/components/link/Markers.tsx:40](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/Markers.tsx#L40)
-
 ___
 
 ### id
@@ -31,10 +27,6 @@ ___
 #### Inherited from
 
 [ISvgMarkerSettings](ISvgMarkerSettings).[id](ISvgMarkerSettings#id)
-
-#### Defined in
-
-[lib/src/components/link/Markers.tsx:4](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/Markers.tsx#L4)
 
 ___
 
@@ -46,16 +38,8 @@ ___
 
 [ISvgMarkerSettings](ISvgMarkerSettings).[style](ISvgMarkerSettings#style)
 
-#### Defined in
-
-[lib/src/components/link/Markers.tsx:5](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/Markers.tsx#L5)
-
 ___
 
 ### width
 
 • `Optional` **width**: `number`
-
-#### Defined in
-
-[lib/src/components/link/Markers.tsx:41](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/Markers.tsx#L41)

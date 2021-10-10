@@ -16,16 +16,8 @@ to generate this string.
 
 • **color**: `string`
 
-#### Defined in
-
-[lib/src/components/background/SvgBackground.tsx:147](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/background/SvgBackground.tsx#L147)
-
 ___
 
 ### imageGenerator
 
 • `Optional` **imageGenerator**: [`BackgroundSvgImageGenerator`](../#backgroundsvgimagegenerator)
-
-#### Defined in
-
-[lib/src/components/background/SvgBackground.tsx:146](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/background/SvgBackground.tsx#L146)

@@ -18,10 +18,6 @@ custom_edit_url: null
 | :------ | :------ |
 | `rootStore` | [`RootStore`](RootStore) |
 
-#### Defined in
-
-[lib/src/states/callbacks.ts:20](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L20)
-
 ## Methods
 
 ### dragStateChanged
@@ -39,10 +35,6 @@ custom_edit_url: null
 
 `undefined` \| `void`
 
-#### Defined in
-
-[lib/src/states/callbacks.ts:72](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L72)
-
 ___
 
 ### export
@@ -52,10 +44,6 @@ ___
 #### Returns
 
 [`ICallbacks`](../interfaces/ICallbacks)
-
-#### Defined in
-
-[lib/src/states/callbacks.ts:32](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L32)
 
 ___
 
@@ -72,10 +60,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/callbacks.ts:25](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L25)
 
 ___
 
@@ -96,10 +80,6 @@ ___
 
 `undefined` \| `void`
 
-#### Defined in
-
-[lib/src/states/callbacks.ts:57](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L57)
-
 ___
 
 ### nodesAdded
@@ -117,10 +97,6 @@ ___
 
 `undefined` \| `void`
 
-#### Defined in
-
-[lib/src/states/callbacks.ts:45](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L45)
-
 ___
 
 ### validateLinkEndpoints
@@ -137,7 +113,3 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/callbacks.ts:39](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L39)

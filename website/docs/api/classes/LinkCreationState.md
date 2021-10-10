@@ -22,10 +22,6 @@ custom_edit_url: null
 | :------ | :------ |
 | `rootStore` | [`RootStore`](RootStore) |
 
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:21](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L21)
-
 ## Accessors
 
 ### componentDefinition
@@ -35,10 +31,6 @@ custom_edit_url: null
 #### Returns
 
 [`VisualComponentState`](VisualComponentState)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps)<`any`\>\>
-
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:128](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L128)
 
 ___
 
@@ -54,10 +46,6 @@ ___
 
 [ILinkInteractionState](../interfaces/ILinkInteractionState).[hovered](../interfaces/ILinkInteractionState#hovered)
 
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:30](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L30)
-
 ___
 
 ### isLinking
@@ -68,10 +56,6 @@ ___
 
 `boolean`
 
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:46](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L46)
-
 ___
 
 ### path
@@ -81,10 +65,6 @@ ___
 #### Returns
 
 `undefined` \| [`ILinkPath`](../interfaces/ILinkPath)
-
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:133](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L133)
 
 ___
 
@@ -100,10 +80,6 @@ ___
 
 [ILinkInteractionState](../interfaces/ILinkInteractionState).[selected](../interfaces/ILinkInteractionState#selected)
 
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:26](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L26)
-
 ___
 
 ### source
@@ -113,10 +89,6 @@ ___
 #### Returns
 
 ``null`` \| [`LinkPortEndpointState`](LinkPortEndpointState)
-
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:34](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L34)
 
 ___
 
@@ -128,10 +100,6 @@ ___
 
 ``null`` \| [`LinkPointEndpointState`](LinkPointEndpointState)
 
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:38](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L38)
-
 ___
 
 ### targetPortCandidate
@@ -141,10 +109,6 @@ ___
 #### Returns
 
 ``null`` \| [`PortState`](PortState)
-
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:42](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L42)
 
 ## Methods
 
@@ -162,10 +126,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:102](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L102)
-
 ___
 
 ### setTargetPortCandidate
@@ -181,10 +141,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:80](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L80)
 
 ___
 
@@ -203,10 +159,6 @@ ___
 
 `boolean`
 
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:50](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L50)
-
 ___
 
 ### stopLinking
@@ -216,7 +168,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:109](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L109)

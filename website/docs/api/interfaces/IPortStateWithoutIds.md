@@ -22,19 +22,11 @@ custom_edit_url: null
 
 • `Optional` **component**: [`VisualComponent`](../#visualcomponent)<[`IPortVisualComponentProps`](IPortVisualComponentProps)<`any`\>\>
 
-#### Defined in
-
-[lib/src/states/portState.ts:274](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L274)
-
 ___
 
 ### extra
 
 • `Optional` **extra**: `any`
-
-#### Defined in
-
-[lib/src/states/portState.ts:273](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L273)
 
 ___
 
@@ -42,19 +34,11 @@ ___
 
 • `Optional` **isConnectionEnabled**: `boolean`
 
-#### Defined in
-
-[lib/src/states/portState.ts:276](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L276)
-
 ___
 
 ### label
 
 • `Optional` **label**: `string`
-
-#### Defined in
-
-[lib/src/states/portState.ts:271](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L271)
 
 ___
 
@@ -62,16 +46,8 @@ ___
 
 • `Optional` **linkDirection**: ``"left"`` \| ``"right"`` \| ``"up"`` \| ``"down"`` \| ``"left-down"`` \| ``"left-up"`` \| ``"right-down"`` \| ``"right-up"``
 
-#### Defined in
-
-[lib/src/states/portState.ts:275](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L275)
-
 ___
 
 ### type
 
 • `Optional` **type**: `string`
-
-#### Defined in
-
-[lib/src/states/portState.ts:272](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L272)

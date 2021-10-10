@@ -18,10 +18,6 @@ custom_edit_url: null
 | :------ | :------ |
 | `rootStore` | [`RootStore`](RootStore) |
 
-#### Defined in
-
-[lib/src/states/commandExecutor.ts:7](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/commandExecutor.ts#L7)
-
 ## Methods
 
 ### execute
@@ -37,7 +33,3 @@ custom_edit_url: null
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/commandExecutor.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/commandExecutor.ts#L12)

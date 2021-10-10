@@ -21,10 +21,6 @@ custom_edit_url: null
 | `nodeId` | `string` |
 | `state?` | [`IPortStateWithoutIds`](../interfaces/IPortStateWithoutIds) |
 
-#### Defined in
-
-[lib/src/states/portState.ts:34](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L34)
-
 ## Accessors
 
 ### componentDefinition
@@ -34,10 +30,6 @@ custom_edit_url: null
 #### Returns
 
 [`VisualComponentState`](VisualComponentState)<[`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps)<`any`\>\>
-
-#### Defined in
-
-[lib/src/states/portState.ts:202](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L202)
 
 ___
 
@@ -49,10 +41,6 @@ ___
 
 [`LinkState`](LinkState)[]
 
-#### Defined in
-
-[lib/src/states/portState.ts:208](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L208)
-
 ___
 
 ### connectedPorts
@@ -63,10 +51,6 @@ ___
 
 [`PortState`](PortState)[]
 
-#### Defined in
-
-[lib/src/states/portState.ts:212](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L212)
-
 ___
 
 ### dragging
@@ -76,10 +60,6 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/portState.ts:78](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L78)
 
 • `set` **dragging**(`value`): `void`
 
@@ -93,10 +73,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/portState.ts:82](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L82)
-
 ___
 
 ### extra
@@ -106,10 +82,6 @@ ___
 #### Returns
 
 `any`
-
-#### Defined in
-
-[lib/src/states/portState.ts:155](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L155)
 
 ___
 
@@ -121,10 +93,6 @@ ___
 
 `string`
 
-#### Defined in
-
-[lib/src/states/portState.ts:70](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L70)
-
 ___
 
 ### hovered
@@ -134,10 +102,6 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/portState.ts:86](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L86)
 
 • `set` **hovered**(`value`): `void`
 
@@ -151,10 +115,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/portState.ts:90](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L90)
-
 ___
 
 ### id
@@ -164,10 +124,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-[lib/src/states/portState.ts:62](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L62)
 
 ___
 
@@ -179,10 +135,6 @@ ___
 
 `boolean`
 
-#### Defined in
-
-[lib/src/states/portState.ts:259](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L259)
-
 ___
 
 ### label
@@ -192,10 +144,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-[lib/src/states/portState.ts:102](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L102)
 
 ___
 
@@ -207,10 +155,6 @@ ___
 
 `undefined` \| ``"left"`` \| ``"right"`` \| ``"up"`` \| ``"down"`` \| ``"left-down"`` \| ``"left-up"`` \| ``"right-down"`` \| ``"right-up"``
 
-#### Defined in
-
-[lib/src/states/portState.ts:220](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L220)
-
 ___
 
 ### node
@@ -220,10 +164,6 @@ ___
 #### Returns
 
 [`NodeState`](NodeState)
-
-#### Defined in
-
-[lib/src/states/portState.ts:163](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L163)
 
 ___
 
@@ -235,10 +175,6 @@ ___
 
 `string`
 
-#### Defined in
-
-[lib/src/states/portState.ts:66](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L66)
-
 ___
 
 ### offsetRelativeToNode
@@ -248,10 +184,6 @@ ___
 #### Returns
 
 ``null`` \| [`Point`](../#point)
-
-#### Defined in
-
-[lib/src/states/portState.ts:169](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L169)
 
 ___
 
@@ -266,10 +198,6 @@ ___
 Value is calculated without zoom taking into account, that is, the same as zoom would be '1'.
 Value can be @type {null} in case reference to real DOM object is not set.
 
-#### Defined in
-
-[lib/src/states/portState.ts:186](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L186)
-
 ___
 
 ### ref
@@ -279,10 +207,6 @@ ___
 #### Returns
 
 [`HtmlElementRefState`](HtmlElementRefState)
-
-#### Defined in
-
-[lib/src/states/portState.ts:74](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L74)
 
 ___
 
@@ -294,10 +218,6 @@ ___
 
 `number`
 
-#### Defined in
-
-[lib/src/states/portState.ts:255](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L255)
-
 ___
 
 ### type
@@ -308,10 +228,6 @@ ___
 
 `string`
 
-#### Defined in
-
-[lib/src/states/portState.ts:110](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L110)
-
 ___
 
 ### validForConnection
@@ -321,10 +237,6 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/portState.ts:94](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L94)
 
 • `set` **validForConnection**(`value`): `void`
 
@@ -338,10 +250,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/portState.ts:98](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L98)
-
 ## Methods
 
 ### export
@@ -351,10 +259,6 @@ ___
 #### Returns
 
 [`IPortStateWithIds`](../interfaces/IPortStateWithIds)
-
-#### Defined in
-
-[lib/src/states/portState.ts:145](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L145)
 
 ___
 
@@ -374,10 +278,6 @@ Update all properties. If some property missing in `state` parameter, the defaul
 
 `void`
 
-#### Defined in
-
-[lib/src/states/portState.ts:121](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L121)
-
 ___
 
 ### recalculateSizeAndPosition
@@ -388,10 +288,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/portState.ts:247](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L247)
-
 ___
 
 ### recalculateSizeAndPositionWithoutDelay
@@ -401,10 +297,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/portState.ts:251](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L251)
 
 ___
 
@@ -422,10 +314,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/portState.ts:190](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L190)
-
 ___
 
 ### setExtra
@@ -441,10 +329,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/portState.ts:159](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L159)
 
 ___
 
@@ -462,10 +346,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/portState.ts:265](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L265)
-
 ___
 
 ### setLabel
@@ -481,10 +361,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/portState.ts:106](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L106)
 
 ___
 
@@ -502,10 +378,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/portState.ts:239](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L239)
-
 ___
 
 ### setLinkDirectionIfNotYet
@@ -522,10 +394,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/portState.ts:243](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L243)
-
 ___
 
 ### setType
@@ -541,10 +409,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/portState.ts:114](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L114)
 
 ___
 
@@ -563,7 +427,3 @@ Update only those properties presented in `state` parameter
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/portState.ts:133](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L133)

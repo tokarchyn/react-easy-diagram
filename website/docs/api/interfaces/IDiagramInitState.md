@@ -12,16 +12,8 @@ custom_edit_url: null
 
 • `Optional` **links**: [`ILinkState`](ILinkState)[]
 
-#### Defined in
-
-[lib/src/components/Diagram.tsx:44](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/Diagram.tsx#L44)
-
 ___
 
 ### nodes
 
 • `Optional` **nodes**: [`INodeState`](INodeState)[]
-
-#### Defined in
-
-[lib/src/components/Diagram.tsx:43](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/Diagram.tsx#L43)

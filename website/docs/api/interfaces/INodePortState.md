@@ -22,10 +22,6 @@ custom_edit_url: null
 
 [IPortStateWithoutIds](IPortStateWithoutIds).[component](IPortStateWithoutIds#component)
 
-#### Defined in
-
-[lib/src/states/portState.ts:274](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L274)
-
 ___
 
 ### extra
@@ -36,19 +32,11 @@ ___
 
 [IPortStateWithoutIds](IPortStateWithoutIds).[extra](IPortStateWithoutIds#extra)
 
-#### Defined in
-
-[lib/src/states/portState.ts:273](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L273)
-
 ___
 
 ### id
 
 • `Optional` **id**: `string`
-
-#### Defined in
-
-[lib/src/states/nodeState.ts:316](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L316)
 
 ___
 
@@ -60,10 +48,6 @@ ___
 
 [IPortStateWithoutIds](IPortStateWithoutIds).[isConnectionEnabled](IPortStateWithoutIds#isconnectionenabled)
 
-#### Defined in
-
-[lib/src/states/portState.ts:276](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L276)
-
 ___
 
 ### label
@@ -73,10 +57,6 @@ ___
 #### Inherited from
 
 [IPortStateWithoutIds](IPortStateWithoutIds).[label](IPortStateWithoutIds#label)
-
-#### Defined in
-
-[lib/src/states/portState.ts:271](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L271)
 
 ___
 
@@ -88,10 +68,6 @@ ___
 
 [IPortStateWithoutIds](IPortStateWithoutIds).[linkDirection](IPortStateWithoutIds#linkdirection)
 
-#### Defined in
-
-[lib/src/states/portState.ts:275](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L275)
-
 ___
 
 ### type
@@ -101,7 +77,3 @@ ___
 #### Inherited from
 
 [IPortStateWithoutIds](IPortStateWithoutIds).[type](IPortStateWithoutIds#type)
-
-#### Defined in
-
-[lib/src/states/portState.ts:272](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L272)

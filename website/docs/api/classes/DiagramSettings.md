@@ -12,10 +12,6 @@ custom_edit_url: null
 
 • **new DiagramSettings**()
 
-#### Defined in
-
-[lib/src/states/diagramSettings.ts:20](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L20)
-
 ## Accessors
 
 ### backgroundComponentState
@@ -25,10 +21,6 @@ custom_edit_url: null
 #### Returns
 
 [`VisualComponentWithDefault`](VisualComponentWithDefault)<[`IBackgroundComponentProps`](../interfaces/IBackgroundComponentProps)<`any`\>\>
-
-#### Defined in
-
-[lib/src/states/diagramSettings.ts:42](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L42)
 
 ___
 
@@ -40,10 +32,6 @@ ___
 
 [`VisualComponentWithDefault`](VisualComponentWithDefault)<[`IMiniControlComponentProps`](../interfaces/IMiniControlComponentProps)<`any`\>\>
 
-#### Defined in
-
-[lib/src/states/diagramSettings.ts:46](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L46)
-
 ___
 
 ### userInteraction
@@ -53,10 +41,6 @@ ___
 #### Returns
 
 [`UserInteractionSettings`](UserInteractionSettings)
-
-#### Defined in
-
-[lib/src/states/diagramSettings.ts:62](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L62)
 
 ___
 
@@ -68,10 +52,6 @@ ___
 
 [`Point`](../#point)
 
-#### Defined in
-
-[lib/src/states/diagramSettings.ts:50](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L50)
-
 ___
 
 ### zoomToFitSettings
@@ -81,10 +61,6 @@ ___
 #### Returns
 
 [`IZoomToFitSettings`](../interfaces/IZoomToFitSettings)
-
-#### Defined in
-
-[lib/src/states/diagramSettings.ts:54](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L54)
 
 ## Methods
 
@@ -102,10 +78,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/diagramSettings.ts:31](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L31)
-
 ___
 
 ### setZoomInterval
@@ -121,7 +93,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/diagramSettings.ts:58](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L58)

@@ -24,10 +24,6 @@ custom_edit_url: null
 | `defaultStyles?` | [`Dictionary`](../interfaces/Dictionary)<`undefined` \| `CSSProperties`\> |
 | `spareStates?` | [`Dictionary`](../interfaces/Dictionary)<`string`[]\> |
 
-#### Defined in
-
-[lib/src/states/statefullStyling.ts:16](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/statefullStyling.ts#L16)
-
 ## Accessors
 
 ### className
@@ -38,10 +34,6 @@ custom_edit_url: null
 
 `string`
 
-#### Defined in
-
-[lib/src/states/statefullStyling.ts:49](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/statefullStyling.ts#L49)
-
 ___
 
 ### style
@@ -51,10 +43,6 @@ ___
 #### Returns
 
 `CSSProperties`
-
-#### Defined in
-
-[lib/src/states/statefullStyling.ts:76](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/statefullStyling.ts#L76)
 
 ## Methods
 
@@ -71,7 +59,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/statefullStyling.ts:45](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/statefullStyling.ts#L45)

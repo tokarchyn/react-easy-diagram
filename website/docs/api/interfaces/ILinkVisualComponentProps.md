@@ -28,10 +28,6 @@ custom_edit_url: null
 
 [IVisualComponentProps](IVisualComponentProps).[entity](IVisualComponentProps#entity)
 
-#### Defined in
-
-[lib/src/states/visualComponentState.ts:51](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentState.ts#L51)
-
 ___
 
 ### settings
@@ -41,10 +37,6 @@ ___
 #### Inherited from
 
 [IVisualComponentProps](IVisualComponentProps).[settings](IVisualComponentProps#settings)
-
-#### Defined in
-
-[lib/src/states/visualComponentState.ts:52](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentState.ts#L52)
 
 ## Methods
 
@@ -61,7 +53,3 @@ ___
 #### Returns
 
 `ReactEventHandlers`
-
-#### Defined in
-
-[lib/src/states/linksSettings.ts:116](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L116)

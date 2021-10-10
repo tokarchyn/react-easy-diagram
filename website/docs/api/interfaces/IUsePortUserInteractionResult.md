@@ -12,10 +12,6 @@ custom_edit_url: null
 
 • **active**: `boolean`
 
-#### Defined in
-
-[lib/src/hooks/userInteractions/usePortUserInteraction.ts:87](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/usePortUserInteraction.ts#L87)
-
 ## Methods
 
 ### bind
@@ -31,7 +27,3 @@ custom_edit_url: null
 #### Returns
 
 `ReactEventHandlers`
-
-#### Defined in
-
-[lib/src/hooks/userInteractions/usePortUserInteraction.ts:88](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/usePortUserInteraction.ts#L88)

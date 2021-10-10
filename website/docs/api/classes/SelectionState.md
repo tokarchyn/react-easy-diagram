@@ -12,10 +12,6 @@ custom_edit_url: null
 
 • **new SelectionState**()
 
-#### Defined in
-
-[lib/src/states/selectionState.ts:8](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L8)
-
 ## Accessors
 
 ### selectedItems
@@ -26,10 +22,6 @@ custom_edit_url: null
 
 readonly [`SelectableItem`](../#selectableitem)[]
 
-#### Defined in
-
-[lib/src/states/selectionState.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L12)
-
 ___
 
 ### selectedNodes
@@ -39,10 +31,6 @@ ___
 #### Returns
 
 [`NodeState`](NodeState)[]
-
-#### Defined in
-
-[lib/src/states/selectionState.ts:16](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L16)
 
 ## Methods
 
@@ -61,10 +49,6 @@ ___
 
 `boolean`
 
-#### Defined in
-
-[lib/src/states/selectionState.ts:22](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L22)
-
 ___
 
 ### switch
@@ -82,10 +66,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/selectionState.ts:33](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L33)
-
 ___
 
 ### unselect
@@ -102,10 +82,6 @@ ___
 
 `boolean`
 
-#### Defined in
-
-[lib/src/states/selectionState.ts:41](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L41)
-
 ___
 
 ### unselectAll
@@ -115,10 +91,6 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/selectionState.ts:49](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L49)
 
 ___
 
@@ -135,7 +107,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/selectionState.ts:54](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L54)

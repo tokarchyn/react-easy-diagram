@@ -21,7 +21,3 @@ custom_edit_url: null
 #### Returns
 
 `ReactEventHandlers`
-
-#### Defined in
-
-[lib/src/hooks/userInteractions/useLinkUserInteraction.ts:90](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useLinkUserInteraction.ts#L90)

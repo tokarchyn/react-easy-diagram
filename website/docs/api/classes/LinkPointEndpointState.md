@@ -18,10 +18,6 @@ custom_edit_url: null
 | :------ | :------ |
 | `pos` | [`Point`](../#point) |
 
-#### Defined in
-
-[lib/src/states/linkPointEndpointState.ts:8](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPointEndpointState.ts#L8)
-
 ## Accessors
 
 ### point
@@ -31,10 +27,6 @@ custom_edit_url: null
 #### Returns
 
 [`Point`](../#point)
-
-#### Defined in
-
-[lib/src/states/linkPointEndpointState.ts:13](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPointEndpointState.ts#L13)
 
 ## Methods
 
@@ -51,7 +43,3 @@ custom_edit_url: null
 #### Returns
 
 `void`
-
-#### Defined in
-
-[lib/src/states/linkPointEndpointState.ts:17](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPointEndpointState.ts#L17)

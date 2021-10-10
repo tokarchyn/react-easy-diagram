@@ -16,19 +16,11 @@ custom_edit_url: null
 
 • **offset**: [`Point`](../#point)
 
-#### Defined in
-
-[lib/src/hooks/userInteractions/common.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/common.ts#L55)
-
 ___
 
 ### zoom
 
 • **zoom**: `number`
-
-#### Defined in
-
-[lib/src/hooks/userInteractions/common.ts:56](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/common.ts#L56)
 
 ## Methods
 
@@ -47,7 +39,3 @@ ___
 #### Returns
 
 `any`
-
-#### Defined in
-
-[lib/src/hooks/userInteractions/common.ts:57](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/common.ts#L57)

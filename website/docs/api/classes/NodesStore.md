@@ -18,10 +18,6 @@ custom_edit_url: null
 | :------ | :------ |
 | `rootStore` | [`RootStore`](RootStore) |
 
-#### Defined in
-
-[lib/src/states/nodesStore.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L19)
-
 ## Accessors
 
 ### nodes
@@ -31,10 +27,6 @@ custom_edit_url: null
 #### Returns
 
 `ReadonlyMap`<`string`, [`NodeState`](NodeState)\>
-
-#### Defined in
-
-[lib/src/states/nodesStore.ts:24](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L24)
 
 ## Methods
 
@@ -53,10 +45,6 @@ custom_edit_url: null
 
 [`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState), [`INodeState`](../interfaces/INodeState)\>
 
-#### Defined in
-
-[lib/src/states/nodesStore.ts:62](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L62)
-
 ___
 
 ### addNodes
@@ -74,10 +62,6 @@ ___
 
 [`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState), [`INodeState`](../interfaces/INodeState)\>[]
 
-#### Defined in
-
-[lib/src/states/nodesStore.ts:40](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L40)
-
 ___
 
 ### export
@@ -87,10 +71,6 @@ ___
 #### Returns
 
 [`INodeStateWithId`](../interfaces/INodeStateWithId)[]
-
-#### Defined in
-
-[lib/src/states/nodesStore.ts:37](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L37)
 
 ___
 
@@ -108,10 +88,6 @@ ___
 
 `undefined` \| [`NodeState`](NodeState)
 
-#### Defined in
-
-[lib/src/states/nodesStore.ts:100](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L100)
-
 ___
 
 ### getNodesBoundingBox
@@ -123,10 +99,6 @@ ___
 [`BoundingBox`](../#boundingbox)
 
 Values are calculated without zoom taking into account, that is, the same as zoom would be '1'
-
-#### Defined in
-
-[lib/src/states/nodesStore.ts:107](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L107)
 
 ___
 
@@ -144,10 +116,6 @@ ___
 
 `void`
 
-#### Defined in
-
-[lib/src/states/nodesStore.ts:28](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L28)
-
 ___
 
 ### removeNode
@@ -163,7 +131,3 @@ ___
 #### Returns
 
 `boolean`
-
-#### Defined in
-
-[lib/src/states/nodesStore.ts:89](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L89)
