@@ -118,15 +118,15 @@ const NodeComponent = observer(({ entity }) => {
 
 ## User interaction
 
-By default the library will listen for drag, click or other events on all HTML elements inside a node. But sometimes we want to allow user to drag only with node header, or to disable dragging for slider element etc. To achieve this you can use constants for HTML classes, that are importable from library as `ENABLE_NODE_USER_INTERACTION_CLASS` and `DISABLE_NODE_USER_INTERACTION_CLASS`.
+By default the library will listen for drag, click or other events on all HTML elements inside a node. But sometimes we want to allow user to drag only node header, or to disable dragging for slider element etc. To achieve this you can use constants for HTML classes, that are importable from library as `ENABLE_NODE_USER_INTERACTION_CLASS` and `DISABLE_NODE_USER_INTERACTION_CLASS`.
 
 For example:
 ```jsx
-<div className={'node_class'}> {/* user will be able to drag with this element */}
-  <div className={DISABLE_NODE_USER_INTERACTION_CLASS}> {/* but not with this */}
-    <div> {/* and not with this, because its parent has DISABLE_NODE_USER_INTERACTION_CLASS */}
-      <div className={ENABLE_NODE_USER_INTERACTION_CLASS}> {/* but with this user will be able to drag again */}
-        <div></div> {/* and with this also yes */}
+<div className={'node_class'}> {/* user will be able to drag this element */}
+  <div className={DISABLE_NODE_USER_INTERACTION_CLASS}> {/* but not this */}
+    <div> {/* and not this, because its parent has DISABLE_NODE_USER_INTERACTION_CLASS */}
+      <div className={ENABLE_NODE_USER_INTERACTION_CLASS}> {/* but this user will be able to drag again */}
+        <div></div> {/* and this also yes */}
       </div>
     </div>
   </div>
