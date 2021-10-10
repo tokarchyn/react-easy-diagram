@@ -4,7 +4,7 @@ title: Port
 
 ## Modifying built-in component
 
-To create built-in port component call `createPortInnerDefault(settings)`. You can provide classes and styles for node in settings for each state, like hovered, dragging or invalid. The `base` classes and styles are applied regardless of port state.
+To create built-in port component call `createPortInnerDefault(settings)`. You can provide classes and styles for port in settings for each state, like hovered, dragging or invalid. The `base` classes and styles are applied regardless of port state.
 
 Port is in dragging state when user is connecting two ports. Port is in invalid state when user while connecting hover over another port, but it is not allowed to connect them.
 
@@ -48,7 +48,7 @@ createPortInnerDefault({
 
 ## Your own component
 
-Creating your own component for port is very simple and require only wrapping it in `observer` as were written in the [Introduction](../introduction).
+Creating your own component for port is very simple and require only wrapping it in `observer` as were written in the [Introduction](introduction).
 
 Your component will receive `entity` object in props, that represents port's state, to see all available data in it go to the [Port state](../api/classes/PortState.md).
 
