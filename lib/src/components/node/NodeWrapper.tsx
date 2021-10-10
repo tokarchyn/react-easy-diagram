@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useMemo } from 'react';
 import {
-  enableNodeUserInteractionClassName,
+  ENABLE_NODE_USER_INTERACTION_CLASS,
   useNodeUserInteraction,
 } from 'hooks/userInteractions/useNodeUserInteraction';
 import { NodeState } from 'states/nodeState';
@@ -45,7 +45,7 @@ interface IRenderedPorts {
 export const RenderedPortsComponentsContext = React.createContext<IRenderedPorts>(
   { render: () => undefined, unrender: () => undefined }
 );
-export const className = `react_fast_diagram_NodeWrapper ${enableNodeUserInteractionClassName}`;
+export const className = `react_fast_diagram_NodeWrapper ${ENABLE_NODE_USER_INTERACTION_CLASS}`;
 
 /**
  * Clean up old ports.

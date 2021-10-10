@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   Diagram,
-  disableNodeUserInteractionClassName,
+  DISABLE_NODE_USER_INTERACTION_CLASS,
   INodeVisualComponentProps,
   Port,
 } from 'react-easy-diagram';
@@ -37,7 +37,7 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
 
         <div>
           <button
-            className={disableNodeUserInteractionClassName}
+            className={DISABLE_NODE_USER_INTERACTION_CLASS}
             type='button'
             onClick={() => setLinesNumber((c) => c + 1)}
           >
@@ -76,7 +76,7 @@ const NodeWithInternalData = observer<INodeVisualComponentProps>(
 
         <div>
           <button
-            className={disableNodeUserInteractionClassName}
+            className={DISABLE_NODE_USER_INTERACTION_CLASS}
             type='button'
             onClick={() => node.setExtra(linesNumber + 1)}
           >

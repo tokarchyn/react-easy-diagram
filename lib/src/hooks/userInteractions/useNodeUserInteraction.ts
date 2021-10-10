@@ -124,12 +124,12 @@ function allowNodeInteraction(
 ) {
   return eventPathContainsClass(
     event,
-    enableNodeUserInteractionClassName,
-    disableNodeUserInteractionClassName
+    ENABLE_NODE_USER_INTERACTION_CLASS,
+    DISABLE_NODE_USER_INTERACTION_CLASS
   );
 }
 
-export const enableNodeUserInteractionClassName =
+export const ENABLE_NODE_USER_INTERACTION_CLASS =
   'react_easy_diagram_enable_node_user_interaction';
-export const disableNodeUserInteractionClassName =
+export const DISABLE_NODE_USER_INTERACTION_CLASS =
   'react_easy_diagram_disable_node_user_interaction';

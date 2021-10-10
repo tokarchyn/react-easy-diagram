@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import {
   Diagram,
-  disableNodeUserInteractionClassName,
+  DISABLE_NODE_USER_INTERACTION_CLASS,
   INodeVisualComponentProps,
   Port
 } from 'react-easy-diagram';
@@ -36,7 +36,7 @@ const NodeComponent = observer<INodeVisualComponentProps>(
           <input
             type='number'
             onChange={(event) => setPortToAdd(event.target.value)}
-            className={disableNodeUserInteractionClassName}
+            className={DISABLE_NODE_USER_INTERACTION_CLASS}
           />
           <button
             onClick={() =>
