@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/diagramSettings.ts:73](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramSettings.ts#L73)
+[lib/src/states/diagramSettings.ts:73](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L73)
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramSettings.ts:76](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramSettings.ts#L76)
+[lib/src/states/diagramSettings.ts:76](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L76)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramSettings.ts:81](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramSettings.ts#L81)
+[lib/src/states/diagramSettings.ts:81](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L81)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramSettings.ts:79](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramSettings.ts#L79)
+[lib/src/states/diagramSettings.ts:79](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L79)
 
 ___
 
@@ -54,4 +54,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramSettings.ts:80](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramSettings.ts#L80)
+[lib/src/states/diagramSettings.ts:80](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L80)

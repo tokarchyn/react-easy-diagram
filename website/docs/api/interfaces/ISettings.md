@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/rootStore.ts:114](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/rootStore.ts#L114)
+[lib/src/states/rootStore.ts:114](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L114)
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/rootStore.ts:110](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/rootStore.ts#L110)
+[lib/src/states/rootStore.ts:110](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L110)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/rootStore.ts:112](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/rootStore.ts#L112)
+[lib/src/states/rootStore.ts:112](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L112)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/rootStore.ts:111](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/rootStore.ts#L111)
+[lib/src/states/rootStore.ts:111](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L111)
 
 ___
 
@@ -54,4 +54,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/rootStore.ts:113](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/rootStore.ts#L113)
+[lib/src/states/rootStore.ts:113](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/rootStore.ts#L113)

@@ -6,7 +6,7 @@ import {
   ILinkPortEndpoint,
 } from 'states/linkPortEndpointState';
 import { RootStore } from 'states/rootStore';
-import { componentDefaultType } from 'states/visualComponents';
+import { COMPONENT_DEFAULT_TYPE } from 'states/visualComponents';
 import { isBoolean, deepCopy } from 'utils/common';
 
 export class LinkState
@@ -77,7 +77,7 @@ export class LinkState
   }
 
   setType = (value: string | null | undefined) => {
-    this._type = value ?? componentDefaultType;
+    this._type = value ?? COMPONENT_DEFAULT_TYPE;
   };
 
   get segments() {

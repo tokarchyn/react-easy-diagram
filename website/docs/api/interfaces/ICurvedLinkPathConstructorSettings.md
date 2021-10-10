@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/linkConstructors/curved.ts:31](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/linkConstructors/curved.ts#L31)
+[lib/src/linkConstructors/curved.ts:31](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/linkConstructors/curved.ts#L31)
 
 ## Methods
 
@@ -35,4 +35,4 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/linkConstructors/curved.ts:32](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/linkConstructors/curved.ts#L32)
+[lib/src/linkConstructors/curved.ts:32](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/linkConstructors/curved.ts#L32)

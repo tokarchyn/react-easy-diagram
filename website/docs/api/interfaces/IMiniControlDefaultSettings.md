@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/components/miniControl/MiniControlDefault.tsx:161](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/miniControl/MiniControlDefault.tsx#L161)
+[lib/src/components/miniControl/MiniControlDefault.tsx:161](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/miniControl/MiniControlDefault.tsx#L161)
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/miniControl/MiniControlDefault.tsx:162](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/miniControl/MiniControlDefault.tsx#L162)
+[lib/src/components/miniControl/MiniControlDefault.tsx:162](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/miniControl/MiniControlDefault.tsx#L162)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/miniControl/MiniControlDefault.tsx:158](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/miniControl/MiniControlDefault.tsx#L158)
+[lib/src/components/miniControl/MiniControlDefault.tsx:158](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/miniControl/MiniControlDefault.tsx#L158)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/miniControl/MiniControlDefault.tsx:163](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/miniControl/MiniControlDefault.tsx#L163)
+[lib/src/components/miniControl/MiniControlDefault.tsx:163](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/miniControl/MiniControlDefault.tsx#L163)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/miniControl/MiniControlDefault.tsx:160](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/miniControl/MiniControlDefault.tsx#L160)
+[lib/src/components/miniControl/MiniControlDefault.tsx:160](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/miniControl/MiniControlDefault.tsx#L160)
 
 ___
 
@@ -64,4 +64,4 @@ ___
 
 #### Defined in
 
-[lib/src/components/miniControl/MiniControlDefault.tsx:159](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/miniControl/MiniControlDefault.tsx#L159)
+[lib/src/components/miniControl/MiniControlDefault.tsx:159](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/miniControl/MiniControlDefault.tsx#L159)

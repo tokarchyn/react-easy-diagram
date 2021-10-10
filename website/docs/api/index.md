@@ -116,7 +116,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/components/background/SvgBackground.tsx:135](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/background/SvgBackground.tsx#L135)
+[lib/src/components/background/SvgBackground.tsx:135](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/background/SvgBackground.tsx#L135)
 
 ___
 
@@ -134,7 +134,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/common.ts:3](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/common.ts#L3)
+[lib/src/utils/common.ts:3](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/common.ts#L3)
 
 ___
 
@@ -144,7 +144,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/position.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/position.ts#L12)
+[lib/src/utils/position.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/position.ts#L12)
 
 ___
 
@@ -154,7 +154,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/position.ts:1](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/position.ts#L1)
+[lib/src/utils/position.ts:1](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/position.ts#L1)
 
 ___
 
@@ -164,7 +164,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/position.ts:2](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/position.ts#L2)
+[lib/src/utils/position.ts:2](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/position.ts#L2)
 
 ___
 
@@ -180,7 +180,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/result.ts:1](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/result.ts#L1)
+[lib/src/utils/result.ts:1](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/result.ts#L1)
 
 ___
 
@@ -190,7 +190,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/common.ts:64](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/common.ts#L64)
+[lib/src/hooks/userInteractions/common.ts:64](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/common.ts#L64)
 
 ___
 
@@ -215,7 +215,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linksSettings.ts:132](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linksSettings.ts#L132)
+[lib/src/states/linksSettings.ts:132](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L132)
 
 ___
 
@@ -225,7 +225,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:83](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L83)
+[lib/src/components/node/NodeDefault.tsx:83](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L83)
 
 ___
 
@@ -241,7 +241,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/link/LinkDefault.tsx:80](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/link/LinkDefault.tsx#L80)
+[lib/src/components/link/LinkDefault.tsx:80](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/LinkDefault.tsx#L80)
 
 ___
 
@@ -251,7 +251,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/link/LinkDefault.tsx:75](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/link/LinkDefault.tsx#L75)
+[lib/src/components/link/LinkDefault.tsx:75](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/LinkDefault.tsx#L75)
 
 ___
 
@@ -261,7 +261,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:114](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L114)
+[lib/src/states/userInteractionSettings.ts:114](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L114)
 
 ___
 
@@ -277,7 +277,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:58](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L58)
+[lib/src/components/node/NodeDefault.tsx:58](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L58)
 
 ___
 
@@ -287,7 +287,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:57](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L57)
+[lib/src/components/node/NodeDefault.tsx:57](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L57)
 
 ___
 
@@ -304,7 +304,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/common.ts:13](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/common.ts#L13)
+[lib/src/utils/common.ts:13](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/common.ts#L13)
 
 ___
 
@@ -314,7 +314,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/point.ts:1](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/point.ts#L1)
+[lib/src/utils/point.ts:1](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/point.ts#L1)
 
 ___
 
@@ -330,7 +330,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/port/PortInnerDefault.tsx:45](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/port/PortInnerDefault.tsx#L45)
+[lib/src/components/port/PortInnerDefault.tsx:45](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/port/PortInnerDefault.tsx#L45)
 
 ___
 
@@ -340,7 +340,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/port/PortInnerDefault.tsx:40](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/port/PortInnerDefault.tsx#L40)
+[lib/src/components/port/PortInnerDefault.tsx:40](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/port/PortInnerDefault.tsx#L40)
 
 ___
 
@@ -350,7 +350,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/useRelativePositionStyles.ts:139](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/useRelativePositionStyles.ts#L139)
+[lib/src/hooks/useRelativePositionStyles.ts:139](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/useRelativePositionStyles.ts#L139)
 
 ___
 
@@ -360,7 +360,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/position.ts:10](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/position.ts#L10)
+[lib/src/utils/position.ts:10](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/position.ts#L10)
 
 ___
 
@@ -370,7 +370,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/selectionState.ts:59](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/selectionState.ts#L59)
+[lib/src/states/selectionState.ts:59](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L59)
 
 ___
 
@@ -387,7 +387,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/result.ts:9](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/result.ts#L9)
+[lib/src/utils/result.ts:9](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/result.ts#L9)
 
 ___
 
@@ -403,7 +403,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/result.ts:5](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/result.ts#L5)
+[lib/src/utils/result.ts:5](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/result.ts#L5)
 
 ___
 
@@ -419,7 +419,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/visualComponentState.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponentState.ts#L55)
+[lib/src/states/visualComponentState.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentState.ts#L55)
 
 ## Variables
 
@@ -429,7 +429,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/background/BackgroundWrapper.tsx:5](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/background/BackgroundWrapper.tsx#L5)
+[lib/src/components/background/BackgroundWrapper.tsx:5](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/background/BackgroundWrapper.tsx#L5)
 
 ___
 
@@ -439,7 +439,17 @@ ___
 
 #### Defined in
 
-[lib/src/components/miniControl/MiniControlDefault.tsx:110](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/miniControl/MiniControlDefault.tsx#L110)
+[lib/src/components/miniControl/MiniControlDefault.tsx:110](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/miniControl/MiniControlDefault.tsx#L110)
+
+___
+
+### COMPONENT\_DEFAULT\_TYPE
+
+• **COMPONENT\_DEFAULT\_TYPE**: ``"default"``
+
+#### Defined in
+
+[lib/src/states/visualComponents.ts:61](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponents.ts#L61)
 
 ___
 
@@ -449,7 +459,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/Icons.tsx:11](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/Icons.tsx#L11)
+[lib/src/components/Icons.tsx:11](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/Icons.tsx#L11)
 
 ___
 
@@ -459,7 +469,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useUserAbilityToSelectSwitcher.ts:3](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useUserAbilityToSelectSwitcher.ts#L3)
+[lib/src/hooks/userInteractions/useUserAbilityToSelectSwitcher.ts:3](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useUserAbilityToSelectSwitcher.ts#L3)
 
 ___
 
@@ -469,7 +479,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/DiagramInner.tsx:15](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/DiagramInner.tsx#L15)
+[lib/src/components/DiagramInner.tsx:15](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/DiagramInner.tsx#L15)
 
 ___
 
@@ -479,7 +489,17 @@ ___
 
 #### Defined in
 
-[lib/src/components/Icons.tsx:17](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/Icons.tsx#L17)
+[lib/src/components/Icons.tsx:17](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/Icons.tsx#L17)
+
+___
+
+### LINK\_CREATION\_COMPONENT\_TYPE
+
+• **LINK\_CREATION\_COMPONENT\_TYPE**: `string` = `'linkCreation'`
+
+#### Defined in
+
+[lib/src/states/linkCreationState.ts:153](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L153)
 
 ___
 
@@ -489,7 +509,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/link/LinkDefault.tsx:7](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/link/LinkDefault.tsx#L7)
+[lib/src/components/link/LinkDefault.tsx:7](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/LinkDefault.tsx#L7)
 
 ___
 
@@ -499,7 +519,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/link/LinkWrapper.tsx:7](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/link/LinkWrapper.tsx#L7)
+[lib/src/components/link/LinkWrapper.tsx:7](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/LinkWrapper.tsx#L7)
 
 ___
 
@@ -509,7 +529,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/link/LinksLayer.tsx:7](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/link/LinksLayer.tsx#L7)
+[lib/src/components/link/LinksLayer.tsx:7](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/LinksLayer.tsx#L7)
 
 ___
 
@@ -519,7 +539,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/miniControl/MiniControlWrapper.tsx:5](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/miniControl/MiniControlWrapper.tsx#L5)
+[lib/src/components/miniControl/MiniControlWrapper.tsx:5](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/miniControl/MiniControlWrapper.tsx#L5)
 
 ___
 
@@ -529,7 +549,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeWrapper.tsx:40](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeWrapper.tsx#L40)
+[lib/src/components/node/NodeWrapper.tsx:40](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeWrapper.tsx#L40)
 
 ___
 
@@ -539,7 +559,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeLabel.tsx:5](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeLabel.tsx#L5)
+[lib/src/components/node/NodeLabel.tsx:5](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeLabel.tsx#L5)
 
 ___
 
@@ -549,7 +569,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeWrapper.tsx:11](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeWrapper.tsx#L11)
+[lib/src/components/node/NodeWrapper.tsx:11](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeWrapper.tsx#L11)
 
 ___
 
@@ -559,7 +579,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodesLayer.tsx:7](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodesLayer.tsx#L7)
+[lib/src/components/node/NodesLayer.tsx:7](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodesLayer.tsx#L7)
 
 ___
 
@@ -569,7 +589,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/port/Port.tsx:25](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/port/Port.tsx#L25)
+[lib/src/components/port/Port.tsx:25](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/port/Port.tsx#L25)
 
 ___
 
@@ -579,7 +599,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeWrapper.tsx:45](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeWrapper.tsx#L45)
+[lib/src/components/node/NodeWrapper.tsx:45](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeWrapper.tsx#L45)
 
 ___
 
@@ -589,7 +609,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/Diagram.tsx:10](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/Diagram.tsx#L10)
+[lib/src/components/Diagram.tsx:10](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/Diagram.tsx#L10)
 
 ___
 
@@ -599,7 +619,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/Icons.tsx:5](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/Icons.tsx#L5)
+[lib/src/components/Icons.tsx:5](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/Icons.tsx#L5)
 
 ___
 
@@ -609,7 +629,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeWrapper.tsx:48](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeWrapper.tsx#L48)
+[lib/src/components/node/NodeWrapper.tsx:48](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeWrapper.tsx#L48)
 
 ___
 
@@ -625,17 +645,7 @@ ___
 
 #### Defined in
 
-[lib/src/commands/clone.ts:5](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/commands/clone.ts#L5)
-
-___
-
-### componentDefaultType
-
-• **componentDefaultType**: ``"default"``
-
-#### Defined in
-
-[lib/src/states/visualComponents.ts:72](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponents.ts#L72)
+[lib/src/commands/clone.ts:5](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/commands/clone.ts#L5)
 
 ___
 
@@ -645,7 +655,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/link/LinkDefault.tsx:84](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/link/LinkDefault.tsx#L84)
+[lib/src/components/link/LinkDefault.tsx:84](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/LinkDefault.tsx#L84)
 
 ___
 
@@ -655,7 +665,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/link/LinkDefault.tsx:92](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/link/LinkDefault.tsx#L92)
+[lib/src/components/link/LinkDefault.tsx:92](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/LinkDefault.tsx#L92)
 
 ___
 
@@ -665,7 +675,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:62](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L62)
+[lib/src/components/node/NodeDefault.tsx:62](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L62)
 
 ___
 
@@ -675,7 +685,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/port/PortInnerDefault.tsx:55](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/port/PortInnerDefault.tsx#L55)
+[lib/src/components/port/PortInnerDefault.tsx:55](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/port/PortInnerDefault.tsx#L55)
 
 ___
 
@@ -685,7 +695,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useNodeUserInteraction.ts:134](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useNodeUserInteraction.ts#L134)
+[lib/src/hooks/userInteractions/useNodeUserInteraction.ts:134](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useNodeUserInteraction.ts#L134)
 
 ___
 
@@ -695,17 +705,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useNodeUserInteraction.ts:132](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useNodeUserInteraction.ts#L132)
-
-___
-
-### linkCreationComponentType
-
-• **linkCreationComponentType**: `string` = `'linkCreation'`
-
-#### Defined in
-
-[lib/src/states/linkCreationState.ts:153](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L153)
+[lib/src/hooks/userInteractions/useNodeUserInteraction.ts:132](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useNodeUserInteraction.ts#L132)
 
 ___
 
@@ -715,7 +715,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/useRelativePositionStyles.ts:117](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/useRelativePositionStyles.ts#L117)
+[lib/src/hooks/useRelativePositionStyles.ts:117](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/useRelativePositionStyles.ts#L117)
 
 ___
 
@@ -725,7 +725,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/position.ts:9](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/position.ts#L9)
+[lib/src/utils/position.ts:9](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/position.ts#L9)
 
 ___
 
@@ -741,7 +741,7 @@ ___
 
 #### Defined in
 
-[lib/src/commands/remove.ts:4](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/commands/remove.ts#L4)
+[lib/src/commands/remove.ts:4](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/commands/remove.ts#L4)
 
 ___
 
@@ -757,7 +757,7 @@ ___
 
 #### Defined in
 
-[lib/src/commands/remove.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/commands/remove.ts#L19)
+[lib/src/commands/remove.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/commands/remove.ts#L19)
 
 ___
 
@@ -773,7 +773,7 @@ ___
 
 #### Defined in
 
-[lib/src/commands/remove.ts:11](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/commands/remove.ts#L11)
+[lib/src/commands/remove.ts:11](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/commands/remove.ts#L11)
 
 ## Functions
 
@@ -793,7 +793,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/Diagram.tsx:12](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/Diagram.tsx#L12)
+[lib/src/components/Diagram.tsx:12](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/Diagram.tsx#L12)
 
 ___
 
@@ -813,7 +813,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/point.ts:17](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/point.ts#L17)
+[lib/src/utils/point.ts:17](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/point.ts#L17)
 
 ___
 
@@ -834,7 +834,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/point.ts:38](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/point.ts#L38)
+[lib/src/utils/point.ts:38](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/point.ts#L38)
 
 ___
 
@@ -855,7 +855,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/transformation.ts:18](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/transformation.ts#L18)
+[lib/src/utils/transformation.ts:18](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/transformation.ts#L18)
 
 ___
 
@@ -879,7 +879,7 @@ See useGestures documetation for more information.
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/common.ts:45](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/common.ts#L45)
+[lib/src/hooks/userInteractions/common.ts:45](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/common.ts#L45)
 
 ___
 
@@ -900,7 +900,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/common.ts:27](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/common.ts#L27)
+[lib/src/utils/common.ts:27](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/common.ts#L27)
 
 ___
 
@@ -926,7 +926,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/common.ts:35](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/common.ts#L35)
+[lib/src/utils/common.ts:35](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/common.ts#L35)
 
 ___
 
@@ -949,7 +949,7 @@ ___
 
 #### Defined in
 
-[lib/src/linkConstructors/utils.ts:48](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/linkConstructors/utils.ts#L48)
+[lib/src/linkConstructors/utils.ts:48](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/linkConstructors/utils.ts#L48)
 
 ___
 
@@ -969,7 +969,7 @@ ___
 
 #### Defined in
 
-[lib/src/linkConstructors/utils.ts:44](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/linkConstructors/utils.ts#L44)
+[lib/src/linkConstructors/utils.ts:44](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/linkConstructors/utils.ts#L44)
 
 ___
 
@@ -989,7 +989,7 @@ ___
 
 #### Defined in
 
-[lib/src/linkConstructors/utils.ts:60](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/linkConstructors/utils.ts#L60)
+[lib/src/linkConstructors/utils.ts:60](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/linkConstructors/utils.ts#L60)
 
 ___
 
@@ -1009,7 +1009,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/link/Markers.tsx:73](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/link/Markers.tsx#L73)
+[lib/src/components/link/Markers.tsx:73](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/Markers.tsx#L73)
 
 ___
 
@@ -1029,7 +1029,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/link/Markers.tsx:33](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/link/Markers.tsx#L33)
+[lib/src/components/link/Markers.tsx:33](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/Markers.tsx#L33)
 
 ___
 
@@ -1051,7 +1051,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/background/SvgBackground.tsx:106](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/background/SvgBackground.tsx#L106)
+[lib/src/components/background/SvgBackground.tsx:106](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/background/SvgBackground.tsx#L106)
 
 ___
 
@@ -1071,7 +1071,7 @@ ___
 
 #### Defined in
 
-[lib/src/linkConstructors/curved.ts:48](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/linkConstructors/curved.ts#L48)
+[lib/src/linkConstructors/curved.ts:48](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/linkConstructors/curved.ts#L48)
 
 ___
 
@@ -1091,7 +1091,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/miniControl/MiniControlDefault.tsx:127](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/miniControl/MiniControlDefault.tsx#L127)
+[lib/src/components/miniControl/MiniControlDefault.tsx:127](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/miniControl/MiniControlDefault.tsx#L127)
 
 ___
 
@@ -1114,7 +1114,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/background/SvgBackground.tsx:76](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/background/SvgBackground.tsx#L76)
+[lib/src/components/background/SvgBackground.tsx:76](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/background/SvgBackground.tsx#L76)
 
 ___
 
@@ -1135,7 +1135,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/portState.ts:288](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/portState.ts#L288)
+[lib/src/states/portState.ts:288](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L288)
 
 ___
 
@@ -1157,7 +1157,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/background/SvgBackground.tsx:46](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/background/SvgBackground.tsx#L46)
+[lib/src/components/background/SvgBackground.tsx:46](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/background/SvgBackground.tsx#L46)
 
 ___
 
@@ -1177,7 +1177,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:110](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L110)
+[lib/src/components/node/NodeDefault.tsx:110](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L110)
 
 ___
 
@@ -1197,7 +1197,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:88](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L88)
+[lib/src/components/node/NodeDefault.tsx:88](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L88)
 
 ___
 
@@ -1217,7 +1217,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:99](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L99)
+[lib/src/components/node/NodeDefault.tsx:99](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L99)
 
 ___
 
@@ -1237,7 +1237,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:118](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L118)
+[lib/src/components/node/NodeDefault.tsx:118](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L118)
 
 ___
 
@@ -1257,7 +1257,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/link/LinkDefault.tsx:109](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/link/LinkDefault.tsx#L109)
+[lib/src/components/link/LinkDefault.tsx:109](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/LinkDefault.tsx#L109)
 
 ___
 
@@ -1279,7 +1279,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:143](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L143)
+[lib/src/states/linkState.ts:143](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L143)
 
 ___
 
@@ -1299,7 +1299,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:68](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L68)
+[lib/src/components/node/NodeDefault.tsx:68](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L68)
 
 ___
 
@@ -1319,7 +1319,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:126](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L126)
+[lib/src/components/node/NodeDefault.tsx:126](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L126)
 
 ___
 
@@ -1339,7 +1339,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:134](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L134)
+[lib/src/components/node/NodeDefault.tsx:134](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L134)
 
 ___
 
@@ -1359,7 +1359,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/port/PortInnerDefault.tsx:64](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/port/PortInnerDefault.tsx#L64)
+[lib/src/components/port/PortInnerDefault.tsx:64](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/port/PortInnerDefault.tsx#L64)
 
 ___
 
@@ -1379,7 +1379,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/port/PortsContainer.tsx:92](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/port/PortsContainer.tsx#L92)
+[lib/src/components/port/PortsContainer.tsx:92](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/port/PortsContainer.tsx#L92)
 
 ___
 
@@ -1399,7 +1399,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:142](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L142)
+[lib/src/components/node/NodeDefault.tsx:142](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L142)
 
 ___
 
@@ -1413,7 +1413,7 @@ ___
 
 #### Defined in
 
-[lib/src/linkConstructors/straight.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/linkConstructors/straight.ts#L12)
+[lib/src/linkConstructors/straight.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/linkConstructors/straight.ts#L12)
 
 ___
 
@@ -1433,7 +1433,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/background/SvgBackground.tsx:118](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/background/SvgBackground.tsx#L118)
+[lib/src/components/background/SvgBackground.tsx:118](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/background/SvgBackground.tsx#L118)
 
 ___
 
@@ -1455,7 +1455,7 @@ ___
 
 #### Defined in
 
-[lib/src/linkConstructors/utils.ts:32](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/linkConstructors/utils.ts#L32)
+[lib/src/linkConstructors/utils.ts:32](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/linkConstructors/utils.ts#L32)
 
 ___
 
@@ -1481,7 +1481,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/common.ts:31](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/common.ts#L31)
+[lib/src/utils/common.ts:31](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/common.ts#L31)
 
 ___
 
@@ -1502,7 +1502,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/point.ts:11](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/point.ts#L11)
+[lib/src/utils/point.ts:11](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/point.ts#L11)
 
 ___
 
@@ -1522,7 +1522,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/result.ts:35](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/result.ts#L35)
+[lib/src/utils/result.ts:35](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/result.ts#L35)
 
 ___
 
@@ -1549,7 +1549,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/result.ts:39](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/result.ts#L39)
+[lib/src/utils/result.ts:39](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/result.ts#L39)
 
 ___
 
@@ -1576,7 +1576,7 @@ if neither exceptClassName nor className were found -> return false
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/common.ts:15](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/common.ts#L15)
+[lib/src/hooks/userInteractions/common.ts:15](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/common.ts#L15)
 
 ___
 
@@ -1597,7 +1597,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/transformation.ts:3](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/transformation.ts#L3)
+[lib/src/utils/transformation.ts:3](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/transformation.ts#L3)
 
 ___
 
@@ -1617,7 +1617,7 @@ ___
 
 #### Defined in
 
-[lib/src/linkConstructors/utils.ts:4](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/linkConstructors/utils.ts#L4)
+[lib/src/linkConstructors/utils.ts:4](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/linkConstructors/utils.ts#L4)
 
 ___
 
@@ -1637,7 +1637,7 @@ ___
 
 #### Defined in
 
-[lib/src/linkConstructors/utils.ts:27](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/linkConstructors/utils.ts#L27)
+[lib/src/linkConstructors/utils.ts:27](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/linkConstructors/utils.ts#L27)
 
 ___
 
@@ -1651,7 +1651,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/guid.ts:7](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/guid.ts#L7)
+[lib/src/utils/guid.ts:7](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/guid.ts#L7)
 
 ___
 
@@ -1671,7 +1671,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/guid.ts:25](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/guid.ts#L25)
+[lib/src/utils/guid.ts:25](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/guid.ts#L25)
 
 ___
 
@@ -1691,7 +1691,7 @@ value is boolean
 
 #### Defined in
 
-[lib/src/utils/common.ts:23](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/common.ts#L23)
+[lib/src/utils/common.ts:23](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/common.ts#L23)
 
 ___
 
@@ -1718,7 +1718,7 @@ result is ErrorResult<TErrorValue\>
 
 #### Defined in
 
-[lib/src/utils/result.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/result.ts#L19)
+[lib/src/utils/result.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/result.ts#L19)
 
 ___
 
@@ -1738,7 +1738,7 @@ value is number
 
 #### Defined in
 
-[lib/src/utils/common.ts:15](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/common.ts#L15)
+[lib/src/utils/common.ts:15](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/common.ts#L15)
 
 ___
 
@@ -1758,7 +1758,7 @@ value is object
 
 #### Defined in
 
-[lib/src/utils/common.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/common.ts#L19)
+[lib/src/utils/common.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/common.ts#L19)
 
 ___
 
@@ -1778,7 +1778,7 @@ value is Point
 
 #### Defined in
 
-[lib/src/utils/point.ts:3](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/point.ts#L3)
+[lib/src/utils/point.ts:3](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/point.ts#L3)
 
 ___
 
@@ -1805,7 +1805,7 @@ result is SuccessResult<TValue\>
 
 #### Defined in
 
-[lib/src/utils/result.ts:13](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/result.ts#L13)
+[lib/src/utils/result.ts:13](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/result.ts#L13)
 
 ___
 
@@ -1826,7 +1826,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkPortEndpointState.ts:68](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkPortEndpointState.ts#L68)
+[lib/src/states/linkPortEndpointState.ts:68](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L68)
 
 ___
 
@@ -1847,7 +1847,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/point.ts:33](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/point.ts#L33)
+[lib/src/utils/point.ts:33](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/point.ts#L33)
 
 ___
 
@@ -1867,7 +1867,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/point.ts:14](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/point.ts#L14)
+[lib/src/utils/point.ts:14](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/point.ts#L14)
 
 ___
 
@@ -1887,7 +1887,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/point.ts:28](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/point.ts#L28)
+[lib/src/utils/point.ts:28](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/point.ts#L28)
 
 ___
 
@@ -1901,7 +1901,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/result.ts:25](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/result.ts#L25)
+[lib/src/utils/result.ts:25](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/result.ts#L25)
 
 ___
 
@@ -1927,7 +1927,7 @@ ___
 
 #### Defined in
 
-[lib/src/utils/result.ts:29](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/result.ts#L29)
+[lib/src/utils/result.ts:29](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/result.ts#L29)
 
 ___
 
@@ -1949,7 +1949,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useCursor.ts:4](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useCursor.ts#L4)
+[lib/src/hooks/userInteractions/useCursor.ts:4](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useCursor.ts#L4)
 
 ___
 
@@ -1975,7 +1975,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/useDiagram.tsx:8](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/useDiagram.tsx#L8)
+[lib/src/hooks/useDiagram.tsx:8](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/useDiagram.tsx#L8)
 
 ___
 
@@ -1996,7 +1996,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useCursor.ts:25](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useCursor.ts#L25)
+[lib/src/hooks/userInteractions/useCursor.ts:25](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useCursor.ts#L25)
 
 ___
 
@@ -2016,7 +2016,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useDiagramDragHandlers.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useDiagramDragHandlers.ts#L19)
+[lib/src/hooks/userInteractions/useDiagramDragHandlers.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useDiagramDragHandlers.ts#L19)
 
 ___
 
@@ -2036,7 +2036,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useDiagramPinchHandlers.ts:23](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useDiagramPinchHandlers.ts#L23)
+[lib/src/hooks/userInteractions/useDiagramPinchHandlers.ts:23](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useDiagramPinchHandlers.ts#L23)
 
 ___
 
@@ -2050,7 +2050,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useDiagramUserInteraction.ts:9](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useDiagramUserInteraction.ts#L9)
+[lib/src/hooks/userInteractions/useDiagramUserInteraction.ts:9](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useDiagramUserInteraction.ts#L9)
 
 ___
 
@@ -2070,7 +2070,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useDiagramWheelHandler.ts:7](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useDiagramWheelHandler.ts#L7)
+[lib/src/hooks/userInteractions/useDiagramWheelHandler.ts:7](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useDiagramWheelHandler.ts#L7)
 
 ___
 
@@ -2090,7 +2090,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useLinkUserInteraction.ts:11](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useLinkUserInteraction.ts#L11)
+[lib/src/hooks/userInteractions/useLinkUserInteraction.ts:11](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useLinkUserInteraction.ts#L11)
 
 ___
 
@@ -2110,7 +2110,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useNodeUserInteraction.ts:14](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useNodeUserInteraction.ts#L14)
+[lib/src/hooks/userInteractions/useNodeUserInteraction.ts:14](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useNodeUserInteraction.ts#L14)
 
 ___
 
@@ -2136,7 +2136,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/useNotifyRef.ts:3](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/useNotifyRef.ts#L3)
+[lib/src/hooks/useNotifyRef.ts:3](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/useNotifyRef.ts#L3)
 
 ___
 
@@ -2156,7 +2156,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/usePortUserInteraction.ts:11](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/usePortUserInteraction.ts#L11)
+[lib/src/hooks/userInteractions/usePortUserInteraction.ts:11](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/usePortUserInteraction.ts#L11)
 
 ___
 
@@ -2179,7 +2179,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/useRelativePositionStyles.ts:5](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/useRelativePositionStyles.ts#L5)
+[lib/src/hooks/useRelativePositionStyles.ts:5](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/useRelativePositionStyles.ts#L5)
 
 ___
 
@@ -2193,7 +2193,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/useRootStore.ts:5](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/useRootStore.ts#L5)
+[lib/src/hooks/useRootStore.ts:5](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/useRootStore.ts#L5)
 
 ___
 
@@ -2213,7 +2213,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/useUpdateOrCreatePortState.ts:10](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/useUpdateOrCreatePortState.ts#L10)
+[lib/src/hooks/useUpdateOrCreatePortState.ts:10](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/useUpdateOrCreatePortState.ts#L10)
 
 ___
 
@@ -2234,4 +2234,4 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useUserAbilityToSelectSwitcher.ts:6](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useUserAbilityToSelectSwitcher.ts#L6)
+[lib/src/hooks/userInteractions/useUserAbilityToSelectSwitcher.ts:6](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useUserAbilityToSelectSwitcher.ts#L6)

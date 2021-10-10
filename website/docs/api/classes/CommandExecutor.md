@@ -20,7 +20,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/commandExecutor.ts:7](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/commandExecutor.ts#L7)
+[lib/src/states/commandExecutor.ts:7](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/commandExecutor.ts#L7)
 
 ## Methods
 
@@ -40,4 +40,4 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/commandExecutor.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/commandExecutor.ts#L12)
+[lib/src/states/commandExecutor.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/commandExecutor.ts#L12)

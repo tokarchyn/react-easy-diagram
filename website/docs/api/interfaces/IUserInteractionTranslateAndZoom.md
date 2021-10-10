@@ -18,7 +18,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/common.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/common.ts#L55)
+[lib/src/hooks/userInteractions/common.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/common.ts#L55)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/common.ts:56](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/common.ts#L56)
+[lib/src/hooks/userInteractions/common.ts:56](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/common.ts#L56)
 
 ## Methods
 
@@ -50,4 +50,4 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/common.ts:57](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/common.ts#L57)
+[lib/src/hooks/userInteractions/common.ts:57](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/common.ts#L57)

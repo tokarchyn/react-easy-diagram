@@ -27,7 +27,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linkState.ts:26](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L26)
+[lib/src/states/linkState.ts:26](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L26)
 
 ## Accessors
 
@@ -41,7 +41,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linkState.ts:95](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L95)
+[lib/src/states/linkState.ts:95](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L95)
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:116](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L116)
+[lib/src/states/linkState.ts:116](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L116)
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:108](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L108)
+[lib/src/states/linkState.ts:108](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L108)
 
 • `set` **hovered**(`value`): `void`
 
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:112](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L112)
+[lib/src/states/linkState.ts:112](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L112)
 
 ___
 
@@ -115,7 +115,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:71](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L71)
+[lib/src/states/linkState.ts:71](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L71)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:132](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L132)
+[lib/src/states/linkState.ts:132](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L132)
 
 ___
 
@@ -147,7 +147,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:91](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L91)
+[lib/src/states/linkState.ts:91](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L91)
 
 ___
 
@@ -165,7 +165,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:83](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L83)
+[lib/src/states/linkState.ts:83](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L83)
 
 ___
 
@@ -183,7 +183,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:100](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L100)
+[lib/src/states/linkState.ts:100](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L100)
 
 • `set` **selected**(`value`): `void`
 
@@ -203,7 +203,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:104](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L104)
+[lib/src/states/linkState.ts:104](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L104)
 
 ___
 
@@ -221,7 +221,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:120](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L120)
+[lib/src/states/linkState.ts:120](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L120)
 
 ___
 
@@ -239,7 +239,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:124](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L124)
+[lib/src/states/linkState.ts:124](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L124)
 
 ___
 
@@ -257,7 +257,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:75](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L75)
+[lib/src/states/linkState.ts:75](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L75)
 
 ## Methods
 
@@ -271,7 +271,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:59](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L59)
+[lib/src/states/linkState.ts:59](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L59)
 
 ___
 
@@ -291,7 +291,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:40](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L40)
+[lib/src/states/linkState.ts:40](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L40)
 
 ___
 
@@ -311,7 +311,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:128](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L128)
+[lib/src/states/linkState.ts:128](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L128)
 
 ___
 
@@ -331,7 +331,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:138](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L138)
+[lib/src/states/linkState.ts:138](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L138)
 
 ___
 
@@ -351,7 +351,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:87](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L87)
+[lib/src/states/linkState.ts:87](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L87)
 
 ___
 
@@ -371,4 +371,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:79](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L79)
+[lib/src/states/linkState.ts:79](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L79)

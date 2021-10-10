@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useDiagramDragHandlers.ts:14](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useDiagramDragHandlers.ts#L14)
+[lib/src/hooks/userInteractions/useDiagramDragHandlers.ts:14](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useDiagramDragHandlers.ts#L14)
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useDiagramDragHandlers.ts:16](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useDiagramDragHandlers.ts#L16)
+[lib/src/hooks/userInteractions/useDiagramDragHandlers.ts:16](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useDiagramDragHandlers.ts#L16)
 
 ___
 
@@ -34,4 +34,4 @@ ___
 
 #### Defined in
 
-[lib/src/hooks/userInteractions/useDiagramDragHandlers.ts:15](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/hooks/userInteractions/useDiagramDragHandlers.ts#L15)
+[lib/src/hooks/userInteractions/useDiagramDragHandlers.ts:15](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/hooks/userInteractions/useDiagramDragHandlers.ts#L15)

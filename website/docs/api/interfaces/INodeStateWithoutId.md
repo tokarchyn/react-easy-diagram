@@ -22,7 +22,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:310](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L310)
+[lib/src/states/nodeState.ts:310](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L310)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:312](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L312)
+[lib/src/states/nodeState.ts:312](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L312)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:311](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L311)
+[lib/src/states/nodeState.ts:311](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L311)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:307](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L307)
+[lib/src/states/nodeState.ts:307](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L307)
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:308](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L308)
+[lib/src/states/nodeState.ts:308](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L308)
 
 ___
 
@@ -72,4 +72,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:309](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L309)
+[lib/src/states/nodeState.ts:309](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L309)

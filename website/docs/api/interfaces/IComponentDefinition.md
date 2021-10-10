@@ -21,7 +21,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/visualComponentState.ts:60](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponentState.ts#L60)
+[lib/src/states/visualComponentState.ts:60](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentState.ts#L60)
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/visualComponentState.ts:61](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponentState.ts#L61)
+[lib/src/states/visualComponentState.ts:61](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentState.ts#L61)

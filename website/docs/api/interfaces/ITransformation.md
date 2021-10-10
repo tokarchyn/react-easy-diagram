@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/utils/transformation.ts:15](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/transformation.ts#L15)
+[lib/src/utils/transformation.ts:15](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/transformation.ts#L15)
 
 ___
 
@@ -24,4 +24,4 @@ ___
 
 #### Defined in
 
-[lib/src/utils/transformation.ts:14](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/utils/transformation.ts#L14)
+[lib/src/utils/transformation.ts:14](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/utils/transformation.ts#L14)

@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/components/port/PortInnerDefault.tsx:51](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/port/PortInnerDefault.tsx#L51)
+[lib/src/components/port/PortInnerDefault.tsx:51](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/port/PortInnerDefault.tsx#L51)
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/port/PortInnerDefault.tsx:50](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/port/PortInnerDefault.tsx#L50)
+[lib/src/components/port/PortInnerDefault.tsx:50](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/port/PortInnerDefault.tsx#L50)
 
 ___
 
@@ -34,4 +34,4 @@ ___
 
 #### Defined in
 
-[lib/src/components/port/PortInnerDefault.tsx:52](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/port/PortInnerDefault.tsx#L52)
+[lib/src/components/port/PortInnerDefault.tsx:52](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/port/PortInnerDefault.tsx#L52)

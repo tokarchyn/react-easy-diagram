@@ -24,7 +24,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/components/link/Markers.tsx:4](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/link/Markers.tsx#L4)
+[lib/src/components/link/Markers.tsx:4](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/Markers.tsx#L4)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/link/Markers.tsx:9](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/link/Markers.tsx#L9)
+[lib/src/components/link/Markers.tsx:9](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/Markers.tsx#L9)
 
 ___
 
@@ -48,4 +48,4 @@ ___
 
 #### Defined in
 
-[lib/src/components/link/Markers.tsx:5](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/link/Markers.tsx#L5)
+[lib/src/components/link/Markers.tsx:5](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/link/Markers.tsx#L5)

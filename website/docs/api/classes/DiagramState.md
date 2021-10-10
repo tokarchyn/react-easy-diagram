@@ -25,7 +25,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:20](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L20)
+[lib/src/states/diagramState.ts:20](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L20)
 
 ## Accessors
 
@@ -39,7 +39,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:102](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L102)
+[lib/src/states/diagramState.ts:102](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L102)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:106](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L106)
+[lib/src/states/diagramState.ts:106](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L106)
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:114](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L114)
+[lib/src/states/diagramState.ts:114](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L114)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:118](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L118)
+[lib/src/states/diagramState.ts:118](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L118)
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:110](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L110)
+[lib/src/states/diagramState.ts:110](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L110)
 
 ## Methods
 
@@ -117,7 +117,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:38](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L38)
+[lib/src/states/diagramState.ts:38](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L38)
 
 ___
 
@@ -137,7 +137,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:33](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L33)
+[lib/src/states/diagramState.ts:33](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L33)
 
 ___
 
@@ -160,7 +160,7 @@ Set offset and zoom values that were already rendered.
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:125](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L125)
+[lib/src/states/diagramState.ts:125](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L125)
 
 ___
 
@@ -184,7 +184,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:44](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L44)
+[lib/src/states/diagramState.ts:44](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L44)
 
 ___
 
@@ -205,7 +205,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:77](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L77)
+[lib/src/states/diagramState.ts:77](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L77)
 
 ___
 
@@ -225,7 +225,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:48](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L48)
+[lib/src/states/diagramState.ts:48](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L48)
 
 ___
 
@@ -251,7 +251,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:86](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L86)
+[lib/src/states/diagramState.ts:86](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L86)
 
 ___
 
@@ -271,7 +271,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:82](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L82)
+[lib/src/states/diagramState.ts:82](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L82)
 
 ___
 
@@ -285,7 +285,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L55)
+[lib/src/states/diagramState.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L55)
 
 ___
 
@@ -306,7 +306,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:59](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L59)
+[lib/src/states/diagramState.ts:59](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L59)
 
 ___
 
@@ -326,7 +326,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:95](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L95)
+[lib/src/states/diagramState.ts:95](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L95)
 
 ___
 
@@ -340,7 +340,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:56](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L56)
+[lib/src/states/diagramState.ts:56](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L56)
 
 ___
 
@@ -354,4 +354,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:130](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L130)
+[lib/src/states/diagramState.ts:130](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L130)

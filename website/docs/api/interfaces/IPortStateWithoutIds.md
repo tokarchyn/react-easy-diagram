@@ -24,7 +24,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/portState.ts:274](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/portState.ts#L274)
+[lib/src/states/portState.ts:274](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L274)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/portState.ts:273](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/portState.ts#L273)
+[lib/src/states/portState.ts:273](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L273)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/portState.ts:276](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/portState.ts#L276)
+[lib/src/states/portState.ts:276](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L276)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/portState.ts:271](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/portState.ts#L271)
+[lib/src/states/portState.ts:271](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L271)
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/portState.ts:275](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/portState.ts#L275)
+[lib/src/states/portState.ts:275](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L275)
 
 ___
 
@@ -74,4 +74,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/portState.ts:272](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/portState.ts#L272)
+[lib/src/states/portState.ts:272](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portState.ts#L272)

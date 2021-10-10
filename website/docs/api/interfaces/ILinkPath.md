@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linkState.ts:212](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L212)
+[lib/src/states/linkState.ts:212](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L212)
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:211](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L211)
+[lib/src/states/linkState.ts:211](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L211)
 
 ___
 
@@ -34,4 +34,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:213](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L213)
+[lib/src/states/linkState.ts:213](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L213)

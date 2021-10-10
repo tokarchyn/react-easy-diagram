@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/nodesSettings.ts:37](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesSettings.ts#L37)
+[lib/src/states/nodesSettings.ts:37](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesSettings.ts#L37)
 
 ## Accessors
 
@@ -28,7 +28,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/nodesSettings.ts:51](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesSettings.ts#L51)
+[lib/src/states/nodesSettings.ts:51](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesSettings.ts#L51)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodesSettings.ts:42](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesSettings.ts#L42)
+[lib/src/states/nodesSettings.ts:42](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesSettings.ts#L42)
 
 ## Methods
 
@@ -62,7 +62,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodesSettings.ts:46](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesSettings.ts#L46)
+[lib/src/states/nodesSettings.ts:46](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesSettings.ts#L46)
 
 ___
 
@@ -82,4 +82,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodesSettings.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesSettings.ts#L55)
+[lib/src/states/nodesSettings.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesSettings.ts#L55)

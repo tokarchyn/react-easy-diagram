@@ -20,7 +20,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linkPointEndpointState.ts:8](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkPointEndpointState.ts#L8)
+[lib/src/states/linkPointEndpointState.ts:8](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPointEndpointState.ts#L8)
 
 ## Accessors
 
@@ -34,7 +34,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linkPointEndpointState.ts:13](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkPointEndpointState.ts#L13)
+[lib/src/states/linkPointEndpointState.ts:13](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPointEndpointState.ts#L13)
 
 ## Methods
 
@@ -54,4 +54,4 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linkPointEndpointState.ts:17](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkPointEndpointState.ts#L17)
+[lib/src/states/linkPointEndpointState.ts:17](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPointEndpointState.ts#L17)

@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L12)
+[lib/src/states/userInteractionSettings.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L12)
 
 ## Accessors
 
@@ -28,7 +28,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:35](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L35)
+[lib/src/states/userInteractionSettings.ts:35](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L35)
 
 • `set` **diagramPan**(`value`): `void`
 
@@ -44,7 +44,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:39](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L39)
+[lib/src/states/userInteractionSettings.ts:39](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L39)
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:27](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L27)
+[lib/src/states/userInteractionSettings.ts:27](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L27)
 
 • `set` **diagramZoom**(`value`): `void`
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:31](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L31)
+[lib/src/states/userInteractionSettings.ts:31](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L31)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:67](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L67)
+[lib/src/states/userInteractionSettings.ts:67](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L67)
 
 • `set` **linkSelection**(`value`): `void`
 
@@ -104,7 +104,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:71](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L71)
+[lib/src/states/userInteractionSettings.ts:71](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L71)
 
 ___
 
@@ -118,7 +118,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:75](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L75)
+[lib/src/states/userInteractionSettings.ts:75](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L75)
 
 • `set` **multiselectionKey**(`value`): `void`
 
@@ -134,7 +134,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:79](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L79)
+[lib/src/states/userInteractionSettings.ts:79](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L79)
 
 ___
 
@@ -148,7 +148,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:43](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L43)
+[lib/src/states/userInteractionSettings.ts:43](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L43)
 
 • `set` **nodeDrag**(`value`): `void`
 
@@ -164,7 +164,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:47](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L47)
+[lib/src/states/userInteractionSettings.ts:47](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L47)
 
 ___
 
@@ -178,7 +178,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:59](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L59)
+[lib/src/states/userInteractionSettings.ts:59](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L59)
 
 • `set` **nodeSelection**(`value`): `void`
 
@@ -194,7 +194,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:63](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L63)
+[lib/src/states/userInteractionSettings.ts:63](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L63)
 
 ___
 
@@ -208,7 +208,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:51](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L51)
+[lib/src/states/userInteractionSettings.ts:51](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L51)
 
 • `set` **portConnection**(`value`): `void`
 
@@ -224,7 +224,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L55)
+[lib/src/states/userInteractionSettings.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L55)
 
 ## Methods
 
@@ -244,7 +244,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:17](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L17)
+[lib/src/states/userInteractionSettings.ts:17](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L17)
 
 ___
 
@@ -267,4 +267,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:83](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L83)
+[lib/src/states/userInteractionSettings.ts:83](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L83)

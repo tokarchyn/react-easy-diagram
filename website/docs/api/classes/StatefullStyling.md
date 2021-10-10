@@ -26,7 +26,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/statefullStyling.ts:16](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/statefullStyling.ts#L16)
+[lib/src/states/statefullStyling.ts:16](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/statefullStyling.ts#L16)
 
 ## Accessors
 
@@ -40,7 +40,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/statefullStyling.ts:49](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/statefullStyling.ts#L49)
+[lib/src/states/statefullStyling.ts:49](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/statefullStyling.ts#L49)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/statefullStyling.ts:76](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/statefullStyling.ts#L76)
+[lib/src/states/statefullStyling.ts:76](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/statefullStyling.ts#L76)
 
 ## Methods
 
@@ -74,4 +74,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/statefullStyling.ts:45](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/statefullStyling.ts#L45)
+[lib/src/states/statefullStyling.ts:45](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/statefullStyling.ts#L45)

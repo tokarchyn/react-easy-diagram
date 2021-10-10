@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:53](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L53)
+[lib/src/components/node/NodeDefault.tsx:53](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L53)
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:51](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L51)
+[lib/src/components/node/NodeDefault.tsx:51](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L51)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:50](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L50)
+[lib/src/components/node/NodeDefault.tsx:50](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L50)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:52](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L52)
+[lib/src/components/node/NodeDefault.tsx:52](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L52)
 
 ___
 
@@ -54,4 +54,4 @@ ___
 
 #### Defined in
 
-[lib/src/components/node/NodeDefault.tsx:54](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/node/NodeDefault.tsx#L54)
+[lib/src/components/node/NodeDefault.tsx:54](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/node/NodeDefault.tsx#L54)

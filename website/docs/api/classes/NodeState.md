@@ -22,7 +22,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:33](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L33)
+[lib/src/states/nodeState.ts:33](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L33)
 
 ## Accessors
 
@@ -36,7 +36,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:178](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L178)
+[lib/src/states/nodeState.ts:178](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L178)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:227](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L227)
+[lib/src/states/nodeState.ts:227](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L227)
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:235](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L235)
+[lib/src/states/nodeState.ts:235](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L235)
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:158](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L158)
+[lib/src/states/nodeState.ts:158](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L158)
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:150](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L150)
+[lib/src/states/nodeState.ts:150](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L150)
 
 • `set` **hovered**(`value`): `void`
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:154](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L154)
+[lib/src/states/nodeState.ts:154](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L154)
 
 ___
 
@@ -122,7 +122,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:77](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L77)
+[lib/src/states/nodeState.ts:77](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L77)
 
 ___
 
@@ -136,7 +136,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:265](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L265)
+[lib/src/states/nodeState.ts:265](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L265)
 
 • `set` **isDragActive**(`value`): `void`
 
@@ -152,7 +152,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:269](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L269)
+[lib/src/states/nodeState.ts:269](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L269)
 
 ___
 
@@ -166,7 +166,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:253](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L253)
+[lib/src/states/nodeState.ts:253](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L253)
 
 ___
 
@@ -180,7 +180,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:243](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L243)
+[lib/src/states/nodeState.ts:243](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L243)
 
 ___
 
@@ -194,7 +194,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:81](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L81)
+[lib/src/states/nodeState.ts:81](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L81)
 
 • `set` **label**(`value`): `void`
 
@@ -210,7 +210,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:85](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L85)
+[lib/src/states/nodeState.ts:85](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L85)
 
 ___
 
@@ -224,7 +224,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:170](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L170)
+[lib/src/states/nodeState.ts:170](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L170)
 
 ___
 
@@ -238,7 +238,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:89](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L89)
+[lib/src/states/nodeState.ts:89](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L89)
 
 ___
 
@@ -255,7 +255,7 @@ Value can be @type {null} in case reference to real DOM object is not set.
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:187](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L187)
+[lib/src/states/nodeState.ts:187](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L187)
 
 ___
 
@@ -269,7 +269,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:166](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L166)
+[lib/src/states/nodeState.ts:166](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L166)
 
 ___
 
@@ -283,7 +283,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:139](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L139)
+[lib/src/states/nodeState.ts:139](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L139)
 
 • `set` **selected**(`value`): `void`
 
@@ -299,7 +299,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:143](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L143)
+[lib/src/states/nodeState.ts:143](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L143)
 
 ___
 
@@ -313,7 +313,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:174](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L174)
+[lib/src/states/nodeState.ts:174](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L174)
 
 ___
 
@@ -327,7 +327,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:131](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L131)
+[lib/src/states/nodeState.ts:131](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L131)
 
 ## Methods
 
@@ -347,7 +347,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:197](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L197)
+[lib/src/states/nodeState.ts:197](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L197)
 
 ___
 
@@ -361,7 +361,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:65](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L65)
+[lib/src/states/nodeState.ts:65](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L65)
 
 ___
 
@@ -381,7 +381,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:191](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L191)
+[lib/src/states/nodeState.ts:191](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L191)
 
 ___
 
@@ -401,7 +401,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:220](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L220)
+[lib/src/states/nodeState.ts:220](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L220)
 
 ___
 
@@ -421,7 +421,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L55)
+[lib/src/states/nodeState.ts:55](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L55)
 
 ___
 
@@ -435,7 +435,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:239](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L239)
+[lib/src/states/nodeState.ts:239](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L239)
 
 ___
 
@@ -455,7 +455,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:211](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L211)
+[lib/src/states/nodeState.ts:211](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L211)
 
 ___
 
@@ -475,7 +475,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:162](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L162)
+[lib/src/states/nodeState.ts:162](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L162)
 
 ___
 
@@ -495,7 +495,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:261](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L261)
+[lib/src/states/nodeState.ts:261](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L261)
 
 ___
 
@@ -515,7 +515,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:249](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L249)
+[lib/src/states/nodeState.ts:249](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L249)
 
 ___
 
@@ -539,7 +539,7 @@ the node position would be set to [20,20] and remainder equals [2,-3]
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:99](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L99)
+[lib/src/states/nodeState.ts:99](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L99)
 
 ___
 
@@ -559,4 +559,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodeState.ts:135](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodeState.ts#L135)
+[lib/src/states/nodeState.ts:135](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodeState.ts#L135)

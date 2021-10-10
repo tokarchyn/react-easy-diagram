@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:106](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L106)
+[lib/src/states/userInteractionSettings.ts:106](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L106)
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:105](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L105)
+[lib/src/states/userInteractionSettings.ts:105](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L105)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:110](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L110)
+[lib/src/states/userInteractionSettings.ts:110](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L110)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:111](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L111)
+[lib/src/states/userInteractionSettings.ts:111](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L111)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:107](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L107)
+[lib/src/states/userInteractionSettings.ts:107](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L107)
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:109](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L109)
+[lib/src/states/userInteractionSettings.ts:109](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L109)
 
 ___
 
@@ -74,4 +74,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/userInteractionSettings.ts:108](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/userInteractionSettings.ts#L108)
+[lib/src/states/userInteractionSettings.ts:108](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/userInteractionSettings.ts#L108)

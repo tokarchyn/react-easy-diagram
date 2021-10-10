@@ -20,7 +20,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/diagramSettings.ts:91](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramSettings.ts#L91)
+[lib/src/states/diagramSettings.ts:91](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L91)
 
 ___
 
@@ -30,4 +30,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramSettings.ts:92](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramSettings.ts#L92)
+[lib/src/states/diagramSettings.ts:92](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramSettings.ts#L92)

@@ -26,7 +26,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/callbacks.ts:96](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/callbacks.ts#L96)
+[lib/src/states/callbacks.ts:96](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L96)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/callbacks.ts:89](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/callbacks.ts#L89)
+[lib/src/states/callbacks.ts:89](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L89)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/callbacks.ts:83](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/callbacks.ts#L83)
+[lib/src/states/callbacks.ts:83](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L83)
 
 ___
 
@@ -95,4 +95,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/callbacks.ts:78](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/callbacks.ts#L78)
+[lib/src/states/callbacks.ts:78](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L78)

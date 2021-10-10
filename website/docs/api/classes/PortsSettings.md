@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/portsSettings.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/portsSettings.ts#L19)
+[lib/src/states/portsSettings.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portsSettings.ts#L19)
 
 ## Accessors
 
@@ -28,7 +28,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/portsSettings.ts:23](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/portsSettings.ts#L23)
+[lib/src/states/portsSettings.ts:23](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portsSettings.ts#L23)
 
 ## Methods
 
@@ -48,4 +48,4 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/portsSettings.ts:27](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/portsSettings.ts#L27)
+[lib/src/states/portsSettings.ts:27](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/portsSettings.ts#L27)

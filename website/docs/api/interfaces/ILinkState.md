@@ -28,7 +28,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linkState.ts:194](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L194)
+[lib/src/states/linkState.ts:194](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L194)
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:203](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L203)
+[lib/src/states/linkState.ts:203](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L203)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:195](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L195)
+[lib/src/states/linkState.ts:195](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L195)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:193](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L193)
+[lib/src/states/linkState.ts:193](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L193)
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:191](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L191)
+[lib/src/states/linkState.ts:191](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L191)
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:192](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L192)
+[lib/src/states/linkState.ts:192](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L192)
 
 ___
 
@@ -108,4 +108,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkState.ts:190](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L190)
+[lib/src/states/linkState.ts:190](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L190)

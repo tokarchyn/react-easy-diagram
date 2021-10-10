@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/selectionState.ts:8](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/selectionState.ts#L8)
+[lib/src/states/selectionState.ts:8](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L8)
 
 ## Accessors
 
@@ -28,7 +28,7 @@ readonly [`SelectableItem`](../#selectableitem)[]
 
 #### Defined in
 
-[lib/src/states/selectionState.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/selectionState.ts#L12)
+[lib/src/states/selectionState.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L12)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/selectionState.ts:16](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/selectionState.ts#L16)
+[lib/src/states/selectionState.ts:16](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L16)
 
 ## Methods
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/selectionState.ts:22](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/selectionState.ts#L22)
+[lib/src/states/selectionState.ts:22](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L22)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/selectionState.ts:33](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/selectionState.ts#L33)
+[lib/src/states/selectionState.ts:33](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L33)
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/selectionState.ts:41](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/selectionState.ts#L41)
+[lib/src/states/selectionState.ts:41](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L41)
 
 ___
 
@@ -118,7 +118,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/selectionState.ts:49](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/selectionState.ts#L49)
+[lib/src/states/selectionState.ts:49](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L49)
 
 ___
 
@@ -138,4 +138,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/selectionState.ts:54](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/selectionState.ts#L54)
+[lib/src/states/selectionState.ts:54](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/selectionState.ts#L54)

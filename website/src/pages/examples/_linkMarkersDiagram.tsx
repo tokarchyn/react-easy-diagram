@@ -1,11 +1,12 @@
 import React from 'react';
 import {
-  componentDefaultType,
+  COMPONENT_DEFAULT_TYPE,
   createLinkDefault,
   createPortInnerDefault,
   Diagram,
   createArrowMarker,
-  createCircleMarker
+  createCircleMarker,
+  LINK_CREATION_COMPONENT_TYPE
 } from 'react-easy-diagram';
 
 export default function () {
@@ -68,7 +69,7 @@ export default function () {
       }}
       settings={{
         ports: {
-          portComponents: {
+          components: {
             default: createPortInnerDefault({
               style: {
                 base: {
@@ -80,7 +81,7 @@ export default function () {
         },
         links: {
           components: {
-            [componentDefaultType]: createLinkDefault({
+            [COMPONENT_DEFAULT_TYPE]: createLinkDefault({
               mainLine:{
                 style: {
                   base: {
@@ -122,7 +123,7 @@ export default function () {
               },
             }),
             // Link component that will be used while connecting ports
-            linkCreation: createLinkDefault({
+            [LINK_CREATION_COMPONENT_TYPE]: createLinkDefault({
               mainLine:{
                 style: {
                   base: {

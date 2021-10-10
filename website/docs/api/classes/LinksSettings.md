@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linksSettings.ts:77](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linksSettings.ts#L77)
+[lib/src/states/linksSettings.ts:77](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L77)
 
 ## Accessors
 
@@ -28,7 +28,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linksSettings.ts:91](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linksSettings.ts#L91)
+[lib/src/states/linksSettings.ts:91](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L91)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linksSettings.ts:103](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linksSettings.ts#L103)
+[lib/src/states/linksSettings.ts:103](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L103)
 
 ___
 
@@ -56,7 +56,7 @@ readonly `FunctionComponent`<`Object`\>[]
 
 #### Defined in
 
-[lib/src/states/linksSettings.ts:107](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linksSettings.ts#L107)
+[lib/src/states/linksSettings.ts:107](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L107)
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linksSettings.ts:99](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linksSettings.ts#L99)
+[lib/src/states/linksSettings.ts:99](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L99)
 
 ## Methods
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linksSettings.ts:82](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linksSettings.ts#L82)
+[lib/src/states/linksSettings.ts:82](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L82)
 
 ___
 
@@ -110,4 +110,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/linksSettings.ts:95](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linksSettings.ts#L95)
+[lib/src/states/linksSettings.ts:95](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L95)

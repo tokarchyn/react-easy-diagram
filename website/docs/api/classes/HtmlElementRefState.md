@@ -20,7 +20,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/htmlElementRefState.ts:8](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/htmlElementRefState.ts#L8)
+[lib/src/states/htmlElementRefState.ts:8](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/htmlElementRefState.ts#L8)
 
 ## Accessors
 
@@ -34,7 +34,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/htmlElementRefState.ts:13](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/htmlElementRefState.ts#L13)
+[lib/src/states/htmlElementRefState.ts:13](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/htmlElementRefState.ts#L13)
 
 • `set` **current**(`value`): `void`
 
@@ -50,7 +50,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/htmlElementRefState.ts:17](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/htmlElementRefState.ts#L17)
+[lib/src/states/htmlElementRefState.ts:17](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/htmlElementRefState.ts#L17)
 
 ___
 
@@ -67,7 +67,7 @@ Value can be @type {null} in case reference to real DOM object is not set.
 
 #### Defined in
 
-[lib/src/states/htmlElementRefState.ts:34](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/htmlElementRefState.ts#L34)
+[lib/src/states/htmlElementRefState.ts:34](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/htmlElementRefState.ts#L34)
 
 ## Methods
 
@@ -88,7 +88,7 @@ Value can be @type {null} in case reference to real DOM object is not set.
 
 #### Defined in
 
-[lib/src/states/htmlElementRefState.ts:21](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/htmlElementRefState.ts#L21)
+[lib/src/states/htmlElementRefState.ts:21](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/htmlElementRefState.ts#L21)
 
 ___
 
@@ -102,4 +102,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/htmlElementRefState.ts:43](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/htmlElementRefState.ts#L43)
+[lib/src/states/htmlElementRefState.ts:43](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/htmlElementRefState.ts#L43)

@@ -24,7 +24,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linkCreationState.ts:21](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L21)
+[lib/src/states/linkCreationState.ts:21](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L21)
 
 ## Accessors
 
@@ -38,7 +38,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linkCreationState.ts:128](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L128)
+[lib/src/states/linkCreationState.ts:128](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L128)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkCreationState.ts:30](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L30)
+[lib/src/states/linkCreationState.ts:30](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L30)
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkCreationState.ts:46](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L46)
+[lib/src/states/linkCreationState.ts:46](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L46)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkCreationState.ts:133](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L133)
+[lib/src/states/linkCreationState.ts:133](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L133)
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkCreationState.ts:26](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L26)
+[lib/src/states/linkCreationState.ts:26](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L26)
 
 ___
 
@@ -116,7 +116,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkCreationState.ts:34](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L34)
+[lib/src/states/linkCreationState.ts:34](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L34)
 
 ___
 
@@ -130,7 +130,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkCreationState.ts:38](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L38)
+[lib/src/states/linkCreationState.ts:38](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L38)
 
 ___
 
@@ -144,7 +144,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkCreationState.ts:42](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L42)
+[lib/src/states/linkCreationState.ts:42](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L42)
 
 ## Methods
 
@@ -164,7 +164,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkCreationState.ts:102](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L102)
+[lib/src/states/linkCreationState.ts:102](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L102)
 
 ___
 
@@ -184,7 +184,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkCreationState.ts:80](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L80)
+[lib/src/states/linkCreationState.ts:80](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L80)
 
 ___
 
@@ -205,7 +205,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkCreationState.ts:50](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L50)
+[lib/src/states/linkCreationState.ts:50](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L50)
 
 ___
 
@@ -219,4 +219,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkCreationState.ts:109](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkCreationState.ts#L109)
+[lib/src/states/linkCreationState.ts:109](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkCreationState.ts#L109)

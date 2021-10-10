@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:208](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L208)
+[lib/src/states/diagramState.ts:208](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L208)
 
 ___
 
@@ -24,4 +24,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/diagramState.ts:209](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/diagramState.ts#L209)
+[lib/src/states/diagramState.ts:209](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/diagramState.ts#L209)

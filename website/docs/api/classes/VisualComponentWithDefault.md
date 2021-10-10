@@ -32,7 +32,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/visualComponentWithDefault.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponentWithDefault.ts#L12)
+[lib/src/states/visualComponentWithDefault.ts:12](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentWithDefault.ts#L12)
 
 ## Accessors
 
@@ -46,7 +46,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/visualComponentWithDefault.ts:20](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponentWithDefault.ts#L20)
+[lib/src/states/visualComponentWithDefault.ts:20](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentWithDefault.ts#L20)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/visualComponentWithDefault.ts:24](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponentWithDefault.ts#L24)
+[lib/src/states/visualComponentWithDefault.ts:24](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentWithDefault.ts#L24)
 
 ## Methods
 
@@ -80,4 +80,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/visualComponentWithDefault.ts:28](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponentWithDefault.ts#L28)
+[lib/src/states/visualComponentWithDefault.ts:28](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponentWithDefault.ts#L28)

@@ -23,7 +23,7 @@ Encapsulate logic for dragging mechanism. Right now only nodes are supposed to b
 
 #### Defined in
 
-[lib/src/states/dragState.ts:18](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/dragState.ts#L18)
+[lib/src/states/dragState.ts:18](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/dragState.ts#L18)
 
 ## Accessors
 
@@ -37,7 +37,7 @@ Encapsulate logic for dragging mechanism. Right now only nodes are supposed to b
 
 #### Defined in
 
-[lib/src/states/dragState.ts:24](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/dragState.ts#L24)
+[lib/src/states/dragState.ts:24](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/dragState.ts#L24)
 
 ## Methods
 
@@ -59,7 +59,7 @@ Drag by a vector
 
 #### Defined in
 
-[lib/src/states/dragState.ts:54](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/dragState.ts#L54)
+[lib/src/states/dragState.ts:54](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/dragState.ts#L54)
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/dragState.ts:28](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/dragState.ts#L28)
+[lib/src/states/dragState.ts:28](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/dragState.ts#L28)
 
 ___
 
@@ -93,4 +93,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/dragState.ts:66](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/dragState.ts#L66)
+[lib/src/states/dragState.ts:66](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/dragState.ts#L66)

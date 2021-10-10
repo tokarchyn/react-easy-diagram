@@ -29,7 +29,7 @@ export default () => (
     }}
     settings={{
       ports: {
-        portComponents: {
+        components: {
           default: createPortInnerDefault({
             style: {
               base: {

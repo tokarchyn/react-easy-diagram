@@ -14,4 +14,4 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linkState.ts:207](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkState.ts#L207)
+[lib/src/states/linkState.ts:207](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkState.ts#L207)

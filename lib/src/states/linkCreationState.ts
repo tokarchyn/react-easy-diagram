@@ -127,7 +127,7 @@ export class LinkCreationState implements ILinkInteractionState {
 
   get componentDefinition() {
     const { visualComponents } = this._rootStore.linksSettings;
-    return visualComponents.getComponent(linkCreationComponentType);
+    return visualComponents.getComponent(LINK_CREATION_COMPONENT_TYPE);
   }
 
   get path(): ILinkPath | undefined {
@@ -150,4 +150,4 @@ export class LinkCreationState implements ILinkInteractionState {
   };
 }
 
-export const linkCreationComponentType: string = 'linkCreation';
+export const LINK_CREATION_COMPONENT_TYPE: string = 'linkCreation';

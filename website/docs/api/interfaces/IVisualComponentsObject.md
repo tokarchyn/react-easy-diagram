@@ -20,6 +20,8 @@ custom_edit_url: null
 
   ↳ [`INodesSettings`](INodesSettings)
 
+  ↳ [`IPortsSettings`](IPortsSettings)
+
 ## Properties
 
 ### components
@@ -28,14 +30,4 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/visualComponents.ts:76](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponents.ts#L76)
-
-___
-
-### defaultType
-
-• `Optional` **defaultType**: `string`
-
-#### Defined in
-
-[lib/src/states/visualComponents.ts:75](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponents.ts#L75)
+[lib/src/states/visualComponents.ts:64](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponents.ts#L64)

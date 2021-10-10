@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/components/Diagram.tsx:38](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/Diagram.tsx#L38)
+[lib/src/components/Diagram.tsx:38](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/Diagram.tsx#L38)
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 #### Defined in
 
-[lib/src/components/Diagram.tsx:37](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/Diagram.tsx#L37)
+[lib/src/components/Diagram.tsx:37](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/Diagram.tsx#L37)
 
 ___
 
@@ -34,4 +34,4 @@ ___
 
 #### Defined in
 
-[lib/src/components/Diagram.tsx:39](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/Diagram.tsx#L39)
+[lib/src/components/Diagram.tsx:39](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/Diagram.tsx#L39)

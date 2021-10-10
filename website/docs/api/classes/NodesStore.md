@@ -20,7 +20,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/nodesStore.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesStore.ts#L19)
+[lib/src/states/nodesStore.ts:19](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L19)
 
 ## Accessors
 
@@ -34,7 +34,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/nodesStore.ts:24](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesStore.ts#L24)
+[lib/src/states/nodesStore.ts:24](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L24)
 
 ## Methods
 
@@ -55,7 +55,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/nodesStore.ts:62](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesStore.ts#L62)
+[lib/src/states/nodesStore.ts:62](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L62)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodesStore.ts:40](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesStore.ts#L40)
+[lib/src/states/nodesStore.ts:40](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L40)
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodesStore.ts:37](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesStore.ts#L37)
+[lib/src/states/nodesStore.ts:37](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L37)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodesStore.ts:100](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesStore.ts#L100)
+[lib/src/states/nodesStore.ts:100](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L100)
 
 ___
 
@@ -126,7 +126,7 @@ Values are calculated without zoom taking into account, that is, the same as zoo
 
 #### Defined in
 
-[lib/src/states/nodesStore.ts:107](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesStore.ts#L107)
+[lib/src/states/nodesStore.ts:107](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L107)
 
 ___
 
@@ -146,7 +146,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodesStore.ts:28](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesStore.ts#L28)
+[lib/src/states/nodesStore.ts:28](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L28)
 
 ___
 
@@ -166,4 +166,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/nodesStore.ts:89](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/nodesStore.ts#L89)
+[lib/src/states/nodesStore.ts:89](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/nodesStore.ts#L89)

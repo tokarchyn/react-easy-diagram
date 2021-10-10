@@ -24,21 +24,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/visualComponents.ts:76](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponents.ts#L76)
-
-___
-
-### defaultType
-
-• `Optional` **defaultType**: `string`
-
-#### Inherited from
-
-[IVisualComponentsObject](IVisualComponentsObject).[defaultType](IVisualComponentsObject#defaulttype)
-
-#### Defined in
-
-[lib/src/states/visualComponents.ts:75](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponents.ts#L75)
+[lib/src/states/visualComponents.ts:64](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponents.ts#L64)
 
 ___
 
@@ -48,7 +34,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linksSettings.ts:121](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linksSettings.ts#L121)
+[lib/src/states/linksSettings.ts:121](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L121)
 
 ___
 
@@ -58,7 +44,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linksSettings.ts:122](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linksSettings.ts#L122)
+[lib/src/states/linksSettings.ts:122](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L122)
 
 ___
 
@@ -68,4 +54,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/linksSettings.ts:123](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linksSettings.ts#L123)
+[lib/src/states/linksSettings.ts:123](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linksSettings.ts#L123)

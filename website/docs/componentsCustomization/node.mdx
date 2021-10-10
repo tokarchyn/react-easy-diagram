@@ -64,7 +64,7 @@ interface INodeDefaultSettingsWithoutPorts {
 ### Creating
 
 The functions to create node component with predefined ports are:
-1. `createInputOutputHorizontalNode(settings)` - create a component with input on the left border of the node and output on the right ('input' and 'output' means nothing but the `id` of port).
+1. `createInputOutputHorizontalNode(settings)` - create a component with input on the left border of the node and output on the right ('input' and 'output' means nothing but the `id` of port and its `type`).
 2. `createInputOutputVerticalNode(settings)` - input on the top border and output on the bottom.
 3. `createInputHorizontalNode(settings)` - input on the left border.
 4. `createInputVerticalNode(settings)` - input on the top border.
@@ -95,7 +95,7 @@ createNode({
     },
   ],
   innerNode: Sum,
-  classes: { default: [styles.nodePadding] },
+  classes: { base: [styles.nodePadding] },
 })
 ```
 

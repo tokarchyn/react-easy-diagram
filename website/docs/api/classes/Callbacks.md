@@ -20,7 +20,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/callbacks.ts:20](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/callbacks.ts#L20)
+[lib/src/states/callbacks.ts:20](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L20)
 
 ## Methods
 
@@ -41,7 +41,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/callbacks.ts:72](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/callbacks.ts#L72)
+[lib/src/states/callbacks.ts:72](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L72)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/callbacks.ts:32](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/callbacks.ts#L32)
+[lib/src/states/callbacks.ts:32](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L32)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/callbacks.ts:25](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/callbacks.ts#L25)
+[lib/src/states/callbacks.ts:25](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L25)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/callbacks.ts:57](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/callbacks.ts#L57)
+[lib/src/states/callbacks.ts:57](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L57)
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/callbacks.ts:45](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/callbacks.ts#L45)
+[lib/src/states/callbacks.ts:45](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L45)
 
 ___
 
@@ -140,4 +140,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/callbacks.ts:39](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/callbacks.ts#L39)
+[lib/src/states/callbacks.ts:39](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/callbacks.ts#L39)

@@ -14,4 +14,4 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/components/DiagramInner.tsx:12](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/DiagramInner.tsx#L12)
+[lib/src/components/DiagramInner.tsx:12](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/DiagramInner.tsx#L12)

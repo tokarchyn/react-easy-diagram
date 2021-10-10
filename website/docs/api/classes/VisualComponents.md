@@ -34,21 +34,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/visualComponents.ts:18](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponents.ts#L18)
-
-## Accessors
-
-### defaultType
-
-• `get` **defaultType**(): `string`
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[lib/src/states/visualComponents.ts:48](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponents.ts#L48)
+[lib/src/states/visualComponents.ts:17](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponents.ts#L17)
 
 ## Methods
 
@@ -68,7 +54,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/visualComponents.ts:39](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponents.ts#L39)
+[lib/src/states/visualComponents.ts:36](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponents.ts#L36)
 
 ___
 
@@ -88,24 +74,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/visualComponents.ts:30](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponents.ts#L30)
-
-___
-
-### setDefaultType
-
-▸ **setDefaultType**(`value`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value` | `undefined` \| ``null`` \| `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[lib/src/states/visualComponents.ts:52](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/visualComponents.ts#L52)
+[lib/src/states/visualComponents.ts:29](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/visualComponents.ts#L29)

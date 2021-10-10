@@ -18,7 +18,7 @@ to generate this string.
 
 #### Defined in
 
-[lib/src/components/background/SvgBackground.tsx:147](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/background/SvgBackground.tsx#L147)
+[lib/src/components/background/SvgBackground.tsx:147](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/background/SvgBackground.tsx#L147)
 
 ___
 
@@ -28,4 +28,4 @@ ___
 
 #### Defined in
 
-[lib/src/components/background/SvgBackground.tsx:146](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/components/background/SvgBackground.tsx#L146)
+[lib/src/components/background/SvgBackground.tsx:146](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/components/background/SvgBackground.tsx#L146)

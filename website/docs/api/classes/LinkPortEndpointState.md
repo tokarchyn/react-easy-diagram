@@ -26,7 +26,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linkPortEndpointState.ts:14](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkPortEndpointState.ts#L14)
+[lib/src/states/linkPortEndpointState.ts:14](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L14)
 
 ## Accessors
 
@@ -40,7 +40,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[lib/src/states/linkPortEndpointState.ts:35](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkPortEndpointState.ts#L35)
+[lib/src/states/linkPortEndpointState.ts:35](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L35)
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkPortEndpointState.ts:27](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkPortEndpointState.ts#L27)
+[lib/src/states/linkPortEndpointState.ts:27](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L27)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkPortEndpointState.ts:43](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkPortEndpointState.ts#L43)
+[lib/src/states/linkPortEndpointState.ts:43](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L43)
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkPortEndpointState.ts:39](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkPortEndpointState.ts#L39)
+[lib/src/states/linkPortEndpointState.ts:39](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L39)
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkPortEndpointState.ts:31](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkPortEndpointState.ts#L31)
+[lib/src/states/linkPortEndpointState.ts:31](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L31)
 
 ## Methods
 
@@ -118,4 +118,4 @@ ___
 
 #### Defined in
 
-[lib/src/states/linkPortEndpointState.ts:21](https://github.com/tokarchyn/react-easy-diagram/blob/96a8c28/lib/src/states/linkPortEndpointState.ts#L21)
+[lib/src/states/linkPortEndpointState.ts:21](https://github.com/tokarchyn/react-easy-diagram/blob/370fa2c/lib/src/states/linkPortEndpointState.ts#L21)
