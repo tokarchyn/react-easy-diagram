@@ -3,7 +3,6 @@ import { Handler, WebKitGestureEvent } from 'react-use-gesture/dist/types';
 import { Point, subtractPoints } from 'utils/point';
 import { useRootStore } from 'hooks/useRootStore';
 import { useNotifyRef } from 'hooks/useNotifyRef';
-import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
 
 type PinchEvent =
   | React.TouchEvent
@@ -85,11 +84,6 @@ export function useDiagramPinchHandlers(
       cancel,
       diagramSettings,
     ]
-  );
-
-  useUserAbilityToSelectSwitcher(
-    activeRef.current,
-    diagramState.diagramInnerRef.current?.ownerDocument?.body
   );
 
   return handlers;

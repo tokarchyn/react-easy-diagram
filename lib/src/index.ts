@@ -34,7 +34,6 @@ export * from './hooks/userInteractions/useDiagramWheelHandler';
 export * from './hooks/userInteractions/useLinkUserInteraction';
 export * from './hooks/userInteractions/useNodeUserInteraction';
 export * from './hooks/userInteractions/usePortUserInteraction';
-export * from './hooks/userInteractions/useUserAbilityToSelectSwitcher';
 export * from './linkConstructors/curved';
 export * from './linkConstructors/straight';
 export * from './linkConstructors/utils';
