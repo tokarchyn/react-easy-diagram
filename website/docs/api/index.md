@@ -351,12 +351,6 @@ ___
 
 ___
 
-### DISABLED\_USER\_SELECT\_CSS\_CLASS
-
-• **DISABLED\_USER\_SELECT\_CSS\_CLASS**: ``"react_fast_diagram_disabled_user_select"``
-
-___
-
 ### DISABLE\_NODE\_USER\_INTERACTION\_CLASS
 
 • **DISABLE\_NODE\_USER\_INTERACTION\_CLASS**: ``"react_easy_diagram_disable_node_user_interaction"``
@@ -1710,20 +1704,3 @@ ___
 #### Returns
 
 [`PortState`](classes/PortState) \| `undefined`
-
-___
-
-### useUserAbilityToSelectSwitcher
-
-▸ **useUserAbilityToSelectSwitcher**(`active`, `elementToSwitchUserSelectOn`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `active` | `boolean` |
-| `elementToSwitchUserSelectOn` | `undefined` \| `HTMLElement` |
-
-#### Returns
-
-`void`
