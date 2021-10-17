@@ -4,7 +4,7 @@ title: Port
 
 ## Modifying built-in component
 
-To create built-in port component call `createPortInnerDefault(settings)`. You can provide classes and styles for port in settings for each state, like hovered, dragging or invalid. The `base` classes and styles are applied regardless of port state.
+To create built-in port component call `createPortInnerDefault(settings)`. You can provide classes and styles for port in settings for each state, like hovered, dragging, invalid etc. The `base` classes and styles are applied regardless of port state.
 
 Port is in dragging state when user is connecting two ports. Port is in invalid state when user while connecting hover over another port, but it is not allowed to connect them.
 
@@ -16,12 +16,16 @@ interface IPortInnerDefaultSettings {
     hovered?: string[],
     dragging?: string[],
     invalid?: string[],
+    'node-hovered'?: string[], // when parent node is hovered
+    'node-selected'?: string[], // when parent node is selected
   };
   style?: {
     base?: React.CSSProperties,
     hovered?: React.CSSProperties,
     dragging?: React.CSSProperties,
     invalid?: React.CSSProperties,
+    'node-hovered'?: React.CSSProperties,
+    'node-selected'?: React.CSSProperties,
   };
 }
 ```

@@ -6,7 +6,6 @@ import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 import { LinkCreationState } from 'states/linkCreationState';
 import { LinkState } from 'states/linkState';
 import { GestureHandlers } from 'hooks/userInteractions/common';
-import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
 
 export const useLinkUserInteraction = (
   linkState: LinkState | LinkCreationState
@@ -75,11 +74,6 @@ export const useLinkUserInteraction = (
   const bind = useGesture(handlers, {
     eventOptions: { passive: false },
   });
-
-  useUserAbilityToSelectSwitcher(
-    activeRef.current,
-    rootStore.diagramState.diagramInnerRef.current?.ownerDocument?.body
-  );
 
   return { bind };
 };

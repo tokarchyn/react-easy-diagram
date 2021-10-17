@@ -28,7 +28,6 @@ custom_edit_url: null
 - [PortsSettings](classes/PortsSettings)
 - [RootStore](classes/RootStore)
 - [SelectionState](classes/SelectionState)
-- [StatefullStyling](classes/StatefullStyling)
 - [UserInteractionSettings](classes/UserInteractionSettings)
 - [VisualComponentState](classes/VisualComponentState)
 - [VisualComponentWithDefault](classes/VisualComponentWithDefault)
@@ -86,6 +85,7 @@ custom_edit_url: null
 - [ITransformation](interfaces/ITransformation)
 - [IUseLinkUserInteractionResult](interfaces/IUseLinkUserInteractionResult)
 - [IUsePortUserInteractionResult](interfaces/IUsePortUserInteractionResult)
+- [IUseStylingOptions](interfaces/IUseStylingOptions)
 - [IUserInteraction](interfaces/IUserInteraction)
 - [IUserInteractionTranslate](interfaces/IUserInteractionTranslate)
 - [IUserInteractionTranslateAndZoom](interfaces/IUserInteractionTranslateAndZoom)
@@ -348,12 +348,6 @@ ___
 ### CopyIcon
 
 • **CopyIcon**: `React.FC`
-
-___
-
-### DISABLED\_USER\_SELECT\_CSS\_CLASS
-
-• **DISABLED\_USER\_SELECT\_CSS\_CLASS**: ``"react_fast_diagram_disabled_user_select"``
 
 ___
 
@@ -1083,13 +1077,13 @@ ___
 
 ### createVector
 
-▸ **createVector**(`point1`, `length`, `angleInRadian`): [`Point`](#point)
+▸ **createVector**(`p`, `length`, `angleInRadian`): [`Point`](#point)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `point1` | [`Point`](#point) |
+| `p` | [`Point`](#point) |
 | `length` | `number` |
 | `angleInRadian` | `undefined` \| `number` |
 
@@ -1670,7 +1664,7 @@ ___
 
 ### useRelativePositionStyles
 
-▸ `Const` **useRelativePositionStyles**(`position?`, `offsetFromParentCenter?`, `offsetFromOrigin?`, `usePortCenterPivot?`): `Pick`<`Partial`<`CSSProperties`\>, ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"position"`` \| ``"width"`` \| ``"height"`` \| ``"transform"``\>
+▸ `Const` **useRelativePositionStyles**(`position?`, `offsetFromParentCenter?`, `offsetFromOrigin?`, `usePortCenterPivot?`): `Pick`<`Partial`<`CSSProperties`\>, ``"transform"`` \| ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"position"`` \| ``"width"`` \| ``"height"``\>
 
 #### Parameters
 
@@ -1683,7 +1677,7 @@ ___
 
 #### Returns
 
-`Pick`<`Partial`<`CSSProperties`\>, ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"position"`` \| ``"width"`` \| ``"height"`` \| ``"transform"``\>
+`Pick`<`Partial`<`CSSProperties`\>, ``"transform"`` \| ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"position"`` \| ``"width"`` \| ``"height"``\>
 
 ___
 
@@ -1694,6 +1688,28 @@ ___
 #### Returns
 
 [`RootStore`](classes/RootStore)
+
+___
+
+### useStyling
+
+▸ **useStyling**(`options`, `state`): `Object`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `options` | [`IUseStylingOptions`](interfaces/IUseStylingOptions) |
+| `state` | `string` |
+
+#### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `className` | `string` |
+| `style` | `CSSProperties` |
 
 ___
 
@@ -1710,20 +1726,3 @@ ___
 #### Returns
 
 [`PortState`](classes/PortState) \| `undefined`
-
-___
-
-### useUserAbilityToSelectSwitcher
-
-▸ **useUserAbilityToSelectSwitcher**(`active`, `elementToSwitchUserSelectOn`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `active` | `boolean` |
-| `elementToSwitchUserSelectOn` | `undefined` \| `HTMLElement` |
-
-#### Returns
-
-`void`

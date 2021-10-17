@@ -1,47 +1,45 @@
+import { IUseStylingOptions, useStyling } from 'hooks/useStyling';
 import { observer } from 'mobx-react-lite';
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import type { ILinkVisualComponentProps } from 'states/linksSettings';
-import { StatefullStyling } from 'states/statefullStyling';
 import type { IComponentDefinition } from 'states/visualComponentState';
 
 export const LinkDefault: React.FC<
   ILinkVisualComponentProps<ILinkDefaultSettings>
 > = observer(({ entity, settings, bind }) => {
-  const mainStyling = useMemo(
+  const mainStylingOptions = useMemo<IUseStylingOptions>(
     () =>
-      new StatefullStyling(
-        settings?.removeDefaultClasses,
-        'base',
-        settings?.mainLine?.classes,
-        defaultLinkMainLineClasses,
-        settings?.mainLine?.style,
-        undefined,
-        { 'selected-hovered': ['selected', 'hovered'] }
-      ),
+      ({
+        removeDefaultClasses: settings?.removeDefaultClasses,
+        baseState: 'base',
+        classes: settings?.mainLine?.classes,
+        defaultClasses: defaultLinkMainLineClasses,
+        style: settings?.mainLine?.style,
+        spareStates: { 'selected-hovered': ['selected', 'hovered'] }
+      }),
     [settings]
   );
 
-  const secondaryStyling = useMemo(
+  const secondaryStylingOptions = useMemo<IUseStylingOptions>(
     () =>
-      new StatefullStyling(
-        settings?.removeDefaultClasses,
-        'base',
-        settings?.secondaryLine?.classes,
-        defaultLinkSecondaryLineClasses,
-        settings?.secondaryLine?.style
-      ),
+      ({
+        removeDefaultClasses: settings?.removeDefaultClasses,
+        baseState: 'base',
+        classes: settings?.secondaryLine?.classes,
+        defaultClasses: defaultLinkSecondaryLineClasses,
+        style: settings?.secondaryLine?.style,
+        spareStates: { 'selected-hovered': ['selected', 'hovered'] }
+      }),
     [settings]
   );
 
-  useEffect(() => {
-    let state = 'base';
-    if (entity.selected && entity.hovered) state = 'selected-hovered';
-    else if (entity.selected) state = 'selected';
-    else if (entity.hovered) state = 'hovered';
+  let state = 'base';
+  if (entity.selected && entity.hovered) state = 'selected-hovered';
+  else if (entity.selected) state = 'selected';
+  else if (entity.hovered) state = 'hovered';
 
-    mainStyling.setState(state);
-    secondaryStyling.setState(state);
-  }, [entity, entity.hovered, entity.selected, mainStyling, secondaryStyling]);
+  const mainStyling = useStyling(mainStylingOptions, state);
+  const secondaryStyling = useStyling(secondaryStylingOptions, state);
 
   if (!entity.path) return null;
 

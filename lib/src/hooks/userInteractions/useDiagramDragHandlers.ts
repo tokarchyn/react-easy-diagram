@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import { Handler } from 'react-use-gesture/dist/types';
 import { useRootStore } from 'hooks/useRootStore';
 import { useNotifyRef } from 'hooks/useNotifyRef';
-import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
 import { addPoints } from 'utils/point';
 import { useDiagramCursor } from 'hooks/userInteractions/useCursor';
 
@@ -53,11 +52,6 @@ export function useDiagramDragHandlers(
       },
     }),
     [activeRef, diagramState, cancelEvent, rootStore]
-  );
-
-  useUserAbilityToSelectSwitcher(
-    activeRef.current,
-    diagramState.diagramInnerRef.current?.ownerDocument?.body
   );
 
   useDiagramCursor(activeRef.current, 'grabbing');

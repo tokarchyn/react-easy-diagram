@@ -4,7 +4,6 @@ import {
   GestureHandlers,
 } from 'hooks/userInteractions/common';
 import { useCursor, useDiagramCursor } from 'hooks/userInteractions/useCursor';
-import { useUserAbilityToSelectSwitcher } from 'hooks/userInteractions/useUserAbilityToSelectSwitcher';
 import { useRootStore } from 'hooks/useRootStore';
 import React, { useCallback, useMemo, useRef } from 'react';
 import { useGesture } from 'react-use-gesture';
@@ -102,11 +101,6 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
     domTarget: nodeState.ref,
     eventOptions: { passive: false },
   });
-
-  useUserAbilityToSelectSwitcher(
-    interactionActiveRef.current,
-    nodeState.ref.current?.ownerDocument?.body
-  );
 
   useDiagramCursor(nodeState.isDragActive, 'move');
   useCursor(nodeState.isDragActive, 'move', nodeState.ref.current);

@@ -1,10 +1,10 @@
 import { NodeLabel } from 'components/node/NodeLabel';
 import { IPortProps, Port } from 'components/port/Port';
+import { IUseStylingOptions, useStyling } from 'hooks/useStyling';
 import { observer } from 'mobx-react-lite';
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { INodeVisualComponentProps } from 'states/nodesSettings';
 import { NodeState } from 'states/nodeState';
-import { StatefullStyling } from 'states/statefullStyling';
 import {
   IComponentDefinition,
   VisualComponent,
@@ -13,28 +13,24 @@ import {
 const NodeDefault: React.FC<
   INodeVisualComponentProps<INodeDefaultSettings>
 > = observer(({ entity, settings }) => {
-  const styling = useMemo(
-    () =>
-      new StatefullStyling(
-        settings?.removeDefaultClasses,
-        'base',
-        settings?.classes,
-        defaultNodeClasses,
-        settings?.style,
-        undefined,
-        { 'selected-hovered': ['selected', 'hovered'] }
-      ),
+  const stylingOptions = useMemo<IUseStylingOptions>(
+    () => ({
+      removeDefaultClasses: settings?.removeDefaultClasses,
+      baseState: 'base',
+      classes: settings?.classes,
+      defaultClasses: defaultNodeClasses,
+      style: settings?.style,
+      spareStates: { 'selected-hovered': ['selected', 'hovered'] },
+    }),
     [settings]
   );
 
-  useEffect(() => {
-    let state = 'base';
-    if (entity.selected && entity.hovered) state = 'selected-hovered';
-    else if (entity.selected) state = 'selected';
-    else if (entity.hovered) state = 'hovered';
+  let state = 'base';
+  if (entity.selected && entity.hovered) state = 'selected-hovered';
+  else if (entity.selected) state = 'selected';
+  else if (entity.hovered) state = 'hovered';
 
-    styling.setState(state);
-  }, [entity, entity.hovered, entity.selected, styling]);
+  const styling = useStyling(stylingOptions, state);
 
   return (
     <div className={styling.className} style={styling.style}>
@@ -54,7 +50,11 @@ export interface INodeDefaultSettings {
   style?: NodeDefaultSettingsByStates<React.CSSProperties>;
 }
 
-export type NodeDefaultState = 'base' | 'hovered' | 'selected' | 'selected-hovered';
+export type NodeDefaultState =
+  | 'base'
+  | 'hovered'
+  | 'selected'
+  | 'selected-hovered';
 export type NodeDefaultSettingsByStates<TValue> = {
   [key in NodeDefaultState]?: TValue;
 };

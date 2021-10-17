@@ -29,6 +29,8 @@ export const DigramInner = observer<IDiagramInnerProps>((props) => {
     )
   );
 
+  const transform = generateTransform(offset, zoom);
+
   return (
     <div
       ref={rootStore.diagramState.diagramInnerRef}
@@ -36,15 +38,8 @@ export const DigramInner = observer<IDiagramInnerProps>((props) => {
       className='react_fast_diagram_DiagramInner'
     >
       <BackgroundWrapper />
-      <div
-        className='react_fast_diagram_DiagramInner_DraggablePart'
-        style={{
-          transform: generateTransform(offset, zoom),
-        }}
-      >
-        <LinksLayer linksStore={rootStore.linksStore} />
-        <NodesLayer nodesStore={rootStore.nodesStore} />
-      </div>
+      <LinksLayer linksStore={rootStore.linksStore} transform={transform} />
+      <NodesLayer nodesStore={rootStore.nodesStore} transform={transform} />
       <MiniControlWrapper />
     </div>
   );
@@ -58,5 +53,3 @@ function useResizeAction(action: () => any) {
     return () => window.removeEventListener('resize', action);
   }, [rootStore, action]);
 }
-
-DigramInner.displayName = 'InnerDiagram';
