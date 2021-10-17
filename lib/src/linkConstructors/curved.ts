@@ -1,11 +1,9 @@
+import { commandC, createVector, getRadian } from 'linkConstructors/utils';
+import { distanceBetweenPoints } from 'utils/point';
 import {
   ILinkPathConstructor,
   ILinkPathConstructorEndpointInfo,
 } from '../states/linksSettings';
-import { DirectionWithDiagonals } from 'utils/position';
-import { distanceBetweenPoints, roundPoint } from 'utils/point';
-import { Point } from 'utils/point';
-import { commandC, createVector, getRadian } from 'linkConstructors/utils';
 
 function curvedLinkPathConstructor(
   source: ILinkPathConstructorEndpointInfo,

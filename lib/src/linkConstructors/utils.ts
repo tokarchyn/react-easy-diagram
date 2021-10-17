@@ -1,7 +1,9 @@
 import { Point } from 'utils/point';
 import { DirectionWithDiagonals } from 'utils/position';
 
-export function getDegree(dir: DirectionWithDiagonals | undefined): number | undefined {
+export function getDegree(
+  dir: DirectionWithDiagonals | undefined
+): number | undefined {
   switch (dir) {
     case 'left':
       return 180;
@@ -24,20 +26,22 @@ export function getDegree(dir: DirectionWithDiagonals | undefined): number | und
   }
 }
 
-export function getRadian(dir: DirectionWithDiagonals | undefined) : number|undefined {
+export function getRadian(
+  dir: DirectionWithDiagonals | undefined
+): number | undefined {
   const degree = getDegree(dir);
-  return degree !== undefined ? degree* Math.PI/180 : undefined;
+  return degree !== undefined ? (degree * Math.PI) / 180 : undefined;
 }
 
 export function createVector(
-  point1: Point,
+  p: Point,
   length: number,
   angleInRadian: number | undefined
 ): Point {
   return [
-    point1[0] +
-      length * (angleInRadian !== undefined ? Math.cos(angleInRadian) : 0),
-    point1[1] + length * (angleInRadian !== undefined ? -Math.sin(angleInRadian) : 0),
+    p[0] + length * (angleInRadian !== undefined ? Math.cos(angleInRadian) : 0),
+    p[1] +
+      length * (angleInRadian !== undefined ? -Math.sin(angleInRadian) : 0),
   ];
 }
 
@@ -45,9 +49,14 @@ export function commandM(point: Point): string {
   return 'M ' + coordinateFromPoint(point);
 }
 
-export function commandC(startPoint: Point, control1: Point, control2: Point, endPoint: Point): string {
+export function commandC(
+  startPoint: Point,
+  control1: Point,
+  control2: Point,
+  endPoint: Point
+): string {
   return (
-    commandM(startPoint) + 
+    commandM(startPoint) +
     ' C ' +
     coordinateFromPoint(control1) +
     ' ' +
