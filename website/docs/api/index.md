@@ -1077,13 +1077,13 @@ ___
 
 ### createVector
 
-▸ **createVector**(`point1`, `length`, `angleInRadian`): [`Point`](#point)
+▸ **createVector**(`p`, `length`, `angleInRadian`): [`Point`](#point)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `point1` | [`Point`](#point) |
+| `p` | [`Point`](#point) |
 | `length` | `number` |
 | `angleInRadian` | `undefined` \| `number` |
 
