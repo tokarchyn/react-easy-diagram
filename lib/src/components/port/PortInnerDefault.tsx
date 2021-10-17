@@ -22,13 +22,21 @@ const PortInnerDefault: React.FC<
   if (entity.dragging) state = 'dragging';
   else if (entity.hovered && entity.validForConnection) state = 'hovered';
   else if (entity.hovered && !entity.validForConnection) state = 'invalid';
+  else if (entity.node.selected) state = 'node-selected';
+  else if (entity.node.hovered) state = 'node-hovered';
 
   const styling = useStyling(stylingOptions, state);
 
   return <div className={styling.className} style={styling.style}></div>;
 });
 
-export type PortInnerDefaultState = 'base' | 'hovered' | 'dragging' | 'invalid';
+export type PortInnerDefaultState =
+  | 'base'
+  | 'hovered'
+  | 'dragging'
+  | 'invalid'
+  | 'node-hovered'
+  | 'node-selected';
 export type PortInnerDefaultSettingsByStates<TValue> = {
   [key in PortInnerDefaultState]?: TValue;
 };
@@ -46,6 +54,8 @@ export const defaultPortInnerClasses: PortInnerDefaultSettingsByStates<
   hovered: ['react_fast_diagram_PortInnerDefault_Hovered'],
   dragging: ['react_fast_diagram_PortInnerDefault_Dragging'],
   invalid: ['react_fast_diagram_PortInnerDefault_Invalid'],
+  'node-hovered': ['react_fast_diagram_PortInnerDefault_NodeHovered'],
+  'node-selected': ['react_fast_diagram_PortInnerDefault_NodeSelected'],
 };
 
 export function createPortInnerDefault(
