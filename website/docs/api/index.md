@@ -268,7 +268,7 @@ ___
 
 ### PortInnerDefaultState
 
-Ƭ **PortInnerDefaultState**: ``"base"`` \| ``"hovered"`` \| ``"dragging"`` \| ``"invalid"``
+Ƭ **PortInnerDefaultState**: ``"base"`` \| ``"hovered"`` \| ``"dragging"`` \| ``"invalid"`` \| ``"node-hovered"`` \| ``"node-selected"``
 
 ___
 
