@@ -1,4 +1,4 @@
-(self["webpackChunkwebsite"] = self["webpackChunkwebsite"] || []).push([[5829,9514],{
+(self["webpackChunkwebsite"] = self["webpackChunkwebsite"] || []).push([[2099,9514],{
 
 /***/ 5061:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
@@ -228,21 +228,6 @@ this._remaindersFromDrags=new Map();this.startDragging=function(nodeToDrag){if(!
 
 /***/ }),
 
-/***/ 3099:
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
-/* harmony import */ var _ExecutionEnvironment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(161);
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */function BrowserOnly(_ref){var children=_ref.children,fallback=_ref.fallback;if(!_ExecutionEnvironment__WEBPACK_IMPORTED_MODULE_1__/* .default.canUseDOM */ .Z.canUseDOM||children==null){return fallback||null;}return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment,null,children());}/* harmony default export */ __webpack_exports__["Z"] = (BrowserOnly);
-
-/***/ }),
-
 /***/ 7709:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -252,7 +237,8 @@ this._remaindersFromDrags=new Map();this.startDragging=function(nodeToDrag){if(!
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
 /* harmony import */ var _docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3099);
-function DiagramContainer(props){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{style:{height:'calc(90vh - var(--ifm-navbar-height))'}},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z,null,function(){return props.children;}));}
+/* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5199);
+function DiagramContainer(props){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{className:_styles_module_css__WEBPACK_IMPORTED_MODULE_2__/* .default.diagramContainer */ .Z.diagramContainer},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z,null,function(){return props.children;}));}
 
 /***/ }),
 
@@ -276,7 +262,7 @@ function ExampleWrapper(props){(0,_theme_hooks_useKeyboardNavigation__WEBPACK_IM
 
 /***/ }),
 
-/***/ 9858:
+/***/ 5525:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -296,14 +282,20 @@ var _exampleWrapper = __webpack_require__(1713);
 var CodeBlock = __webpack_require__(3338);
 // EXTERNAL MODULE: ./src/pages/examples/_diagramContainer.jsx
 var _diagramContainer = __webpack_require__(7709);
-;// CONCATENATED MODULE: ../node_modules/raw-loader/dist/cjs.js!./src/pages/examples/_basicDiagram.tsx
-/* harmony default export */ var _basicDiagram = ("import React from 'react';\nimport {\n  Diagram,\n} from 'react-easy-diagram';\n\nexport default function () {\n  return (\n    <Diagram\n      initState={{\n        nodes: [\n          {\n            id: 'node_1',\n            label: 'Node 1',\n            position: [300, 300],\n            type: 'output_horizontal'\n          },\n          {\n            id: 'node_2',\n            label: 'Node 2',\n            position: [520, 400],\n            type: 'input_output_horizontal'\n          },\n          {\n            id: 'node_3',\n            label: 'Node 3',\n            position: [520, 200],\n            type: 'input_horizontal'\n          },\n        ],\n        links: [\n          {\n            source: {\n              nodeId: 'node_1',\n              portId: 'output',\n            },\n            target: {\n              nodeId: 'node_2',\n              portId: 'input',\n            }\n          },\n          {\n            source: {\n              nodeId: 'node_1',\n              portId: 'output',\n            },\n            target: {\n              nodeId: 'node_3',\n              portId: 'input',\n            },\n          },\n          {\n            source: {\n              nodeId: 'node_3',\n              portId: 'input',\n            },\n            target: {\n              nodeId: 'node_2',\n              portId: 'output',\n            },\n          },\n        ],\n      }}\n    />\n  );\n}\n");
+;// CONCATENATED MODULE: ../node_modules/raw-loader/dist/cjs.js!./src/pages/examples/_configureDefaultLinkDiagram.tsx
+/* harmony default export */ var _configureDefaultLinkDiagram = ("import { css, keyframes } from '@emotion/css';\nimport React from 'react';\nimport { createLinkDefault, Diagram } from 'react-easy-diagram';\n\n// We use for our example emotion library for css-in-js, but you can use of \n// course vanilla css or any method of doing css you like\nconst lineAnim = keyframes`\n  to {\n    stroke-dashoffset: 40;\n  }\n`;\nconst mainLineClass = css`\n  stroke-dasharray: 4;\n  animation: ${lineAnim} 5s linear infinite;\n`;\n\nexport default () => (\n  <Diagram\n    initState={{\n      nodes: [\n        {\n          id: 'Node 1',\n          position: [100, 100],\n          type: 'input_output_horizontal',\n        },\n        {\n          id: 'Node 2',\n          position: [420, 300],\n          type: 'input_output_horizontal',\n        },\n        {\n          id: 'Node 3',\n          position: [420, 100],\n          type: 'input_output_horizontal',\n        },\n      ],\n      links: [\n        {\n          source: { nodeId: 'Node 1', portId: 'output' },\n          target: { nodeId: 'Node 2', portId: 'input' },\n        },\n      ],\n    }}\n    settings={{\n      links: {\n        components: {\n          default: createLinkDefault({\n            mainLine: {\n              classes: {\n                base: [mainLineClass],\n              },\n              style: {\n                base: {\n                  stroke: 'grey',\n                  strokeWidth: 1,\n                },\n              },\n            },\n          }),\n          linkCreation: createLinkDefault({\n            mainLine: {\n              style: {\n                base: {\n                  stroke: 'green',\n                  strokeWidth: 2,\n                },\n              },\n            },\n            secondaryLine: {\n              style: {\n                base: {\n                  stroke: 'green',\n                  strokeWidth: 5,\n                },\n              },\n            },\n          }),\n        },\n      },\n    }}\n  />\n);\n");
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteralLoose.js
+var taggedTemplateLiteralLoose = __webpack_require__(7739);
+// EXTERNAL MODULE: ../node_modules/@emotion/css/dist/emotion-css.esm.js + 15 modules
+var emotion_css_esm = __webpack_require__(9419);
 // EXTERNAL MODULE: ../lib/dist/index.esm.js
 var index_esm = __webpack_require__(5061);
-;// CONCATENATED MODULE: ./src/pages/examples/_basicDiagram.tsx
-/* harmony default export */ function examples_basicDiagram() {return/*#__PURE__*/react.createElement(index_esm.Diagram,{initState:{nodes:[{id:'node_1',label:'Node 1',position:[300,300],type:'output_horizontal'},{id:'node_2',label:'Node 2',position:[520,400],type:'input_output_horizontal'},{id:'node_3',label:'Node 3',position:[520,200],type:'input_horizontal'}],links:[{source:{nodeId:'node_1',portId:'output'},target:{nodeId:'node_2',portId:'input'}},{source:{nodeId:'node_1',portId:'output'},target:{nodeId:'node_3',portId:'input'}},{source:{nodeId:'node_3',portId:'input'},target:{nodeId:'node_2',portId:'output'}}]}});}
-;// CONCATENATED MODULE: ./src/pages/examples/basic.jsx
-function Example(){return/*#__PURE__*/react.createElement(_exampleWrapper/* ExampleWrapper */.U,{title:"Basic Example"},/*#__PURE__*/react.createElement(_diagramContainer/* DiagramContainer */.G,null,/*#__PURE__*/react.createElement(examples_basicDiagram,null)),/*#__PURE__*/react.createElement(CodeBlock/* default */.Z,{className:"language-jsx"},_basicDiagram));}
+;// CONCATENATED MODULE: ./src/pages/examples/_configureDefaultLinkDiagram.tsx
+var _templateObject,_templateObject2;// We use for our example emotion library for css-in-js, but you can use of 
+// course vanilla css or any method of doing css you like
+var lineAnim=(0,emotion_css_esm/* keyframes */.F4)(_templateObject||(_templateObject=(0,taggedTemplateLiteralLoose/* default */.Z)(["\n  to {\n    stroke-dashoffset: 40;\n  }\n"])));var mainLineClass=(0,emotion_css_esm/* css */.iv)(_templateObject2||(_templateObject2=(0,taggedTemplateLiteralLoose/* default */.Z)(["\n  stroke-dasharray: 4;\n  animation: "," 5s linear infinite;\n"])),lineAnim);/* harmony default export */ var examples_configureDefaultLinkDiagram = (function(){return/*#__PURE__*/react.createElement(index_esm.Diagram,{initState:{nodes:[{id:'Node 1',position:[100,100],type:'input_output_horizontal'},{id:'Node 2',position:[420,300],type:'input_output_horizontal'},{id:'Node 3',position:[420,100],type:'input_output_horizontal'}],links:[{source:{nodeId:'Node 1',portId:'output'},target:{nodeId:'Node 2',portId:'input'}}]},settings:{links:{components:{default:(0,index_esm.createLinkDefault)({mainLine:{classes:{base:[mainLineClass]},style:{base:{stroke:'grey',strokeWidth:1}}}}),linkCreation:(0,index_esm.createLinkDefault)({mainLine:{style:{base:{stroke:'green',strokeWidth:2}}},secondaryLine:{style:{base:{stroke:'green',strokeWidth:5}}}})}}}});});
+;// CONCATENATED MODULE: ./src/pages/examples/configureDefaultLink.jsx
+function Example(){return/*#__PURE__*/react.createElement(_exampleWrapper/* ExampleWrapper */.U,{title:"Configure Default Link Example"},/*#__PURE__*/react.createElement(_diagramContainer/* DiagramContainer */.G,null,/*#__PURE__*/react.createElement(examples_configureDefaultLinkDiagram,null)),/*#__PURE__*/react.createElement(CodeBlock/* default */.Z,{className:"language-jsx"},_configureDefaultLinkDiagram));}
 
 /***/ }),
 
@@ -356,6 +348,15 @@ var Translate = __webpack_require__(1787);
  * LICENSE file in the root directory of this source tree.
  */// Add react-live imports you need here
 var ReactLiveScope=Object.assign({React:react__WEBPACK_IMPORTED_MODULE_0__},react__WEBPACK_IMPORTED_MODULE_0__,react_easy_diagram__WEBPACK_IMPORTED_MODULE_1__,{observer:mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__/* .observer */ .Pi});/* harmony default export */ __webpack_exports__["Z"] = (ReactLiveScope);
+
+/***/ }),
+
+/***/ 5199:
+/***/ (function(__unused_webpack_module, __webpack_exports__) {
+
+"use strict";
+// extracted by mini-css-extract-plugin
+/* harmony default export */ __webpack_exports__["Z"] = ({"heroBanner":"heroBanner_3P7f","headerContainer":"headerContainer_3hB5","headerDemoImage":"headerDemoImage_1LU4","buttons":"buttons_1r9m","features":"features_3azU","featureImage":"featureImage_ZtzX","title":"title_3dbr","subtitle":"subtitle_3Hk7","diagramContainer":"diagramContainer_27u8","textInput":"textInput_11m-","nodePadding":"nodePadding_GbY-"});
 
 /***/ })
 

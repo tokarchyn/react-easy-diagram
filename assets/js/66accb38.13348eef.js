@@ -252,7 +252,8 @@ this._remaindersFromDrags=new Map();this.startDragging=function(nodeToDrag){if(!
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
 /* harmony import */ var _docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3099);
-function DiagramContainer(props){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{style:{height:'calc(90vh - var(--ifm-navbar-height))'}},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z,null,function(){return props.children;}));}
+/* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5199);
+function DiagramContainer(props){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{className:_styles_module_css__WEBPACK_IMPORTED_MODULE_2__/* .default.diagramContainer */ .Z.diagramContainer},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z,null,function(){return props.children;}));}
 
 /***/ }),
 
@@ -362,6 +363,15 @@ var Translate = __webpack_require__(1787);
  * LICENSE file in the root directory of this source tree.
  */// Add react-live imports you need here
 var ReactLiveScope=Object.assign({React:react__WEBPACK_IMPORTED_MODULE_0__},react__WEBPACK_IMPORTED_MODULE_0__,react_easy_diagram__WEBPACK_IMPORTED_MODULE_1__,{observer:mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__/* .observer */ .Pi});/* harmony default export */ __webpack_exports__["Z"] = (ReactLiveScope);
+
+/***/ }),
+
+/***/ 5199:
+/***/ (function(__unused_webpack_module, __webpack_exports__) {
+
+"use strict";
+// extracted by mini-css-extract-plugin
+/* harmony default export */ __webpack_exports__["Z"] = ({"heroBanner":"heroBanner_3P7f","headerContainer":"headerContainer_3hB5","headerDemoImage":"headerDemoImage_1LU4","buttons":"buttons_1r9m","features":"features_3azU","featureImage":"featureImage_ZtzX","title":"title_3dbr","subtitle":"subtitle_3Hk7","diagramContainer":"diagramContainer_27u8","textInput":"textInput_11m-","nodePadding":"nodePadding_GbY-"});
 
 /***/ })
 

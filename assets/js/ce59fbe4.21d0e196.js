@@ -1,4 +1,4 @@
-(self["webpackChunkwebsite"] = self["webpackChunkwebsite"] || []).push([[2099,9514],{
+(self["webpackChunkwebsite"] = self["webpackChunkwebsite"] || []).push([[5132,9514],{
 
 /***/ 5061:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
@@ -228,6 +228,21 @@ this._remaindersFromDrags=new Map();this.startDragging=function(nodeToDrag){if(!
 
 /***/ }),
 
+/***/ 3099:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
+/* harmony import */ var _ExecutionEnvironment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(161);
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */function BrowserOnly(_ref){var children=_ref.children,fallback=_ref.fallback;if(!_ExecutionEnvironment__WEBPACK_IMPORTED_MODULE_1__/* .default.canUseDOM */ .Z.canUseDOM||children==null){return fallback||null;}return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment,null,children());}/* harmony default export */ __webpack_exports__["Z"] = (BrowserOnly);
+
+/***/ }),
+
 /***/ 7709:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -237,7 +252,8 @@ this._remaindersFromDrags=new Map();this.startDragging=function(nodeToDrag){if(!
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
 /* harmony import */ var _docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3099);
-function DiagramContainer(props){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{style:{height:'calc(90vh - var(--ifm-navbar-height))'}},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z,null,function(){return props.children;}));}
+/* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5199);
+function DiagramContainer(props){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{className:_styles_module_css__WEBPACK_IMPORTED_MODULE_2__/* .default.diagramContainer */ .Z.diagramContainer},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z,null,function(){return props.children;}));}
 
 /***/ }),
 
@@ -261,7 +277,7 @@ function ExampleWrapper(props){(0,_theme_hooks_useKeyboardNavigation__WEBPACK_IM
 
 /***/ }),
 
-/***/ 5525:
+/***/ 7116:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -281,20 +297,20 @@ var _exampleWrapper = __webpack_require__(1713);
 var CodeBlock = __webpack_require__(3338);
 // EXTERNAL MODULE: ./src/pages/examples/_diagramContainer.jsx
 var _diagramContainer = __webpack_require__(7709);
-;// CONCATENATED MODULE: ../node_modules/raw-loader/dist/cjs.js!./src/pages/examples/_configureDefaultLinkDiagram.tsx
-/* harmony default export */ var _configureDefaultLinkDiagram = ("import { css, keyframes } from '@emotion/css';\nimport React from 'react';\nimport { createLinkDefault, Diagram } from 'react-easy-diagram';\n\n// We use for our example emotion library for css-in-js, but you can use of \n// course vanilla css or any method of doing css you like\nconst lineAnim = keyframes`\n  to {\n    stroke-dashoffset: 40;\n  }\n`;\nconst mainLineClass = css`\n  stroke-dasharray: 4;\n  animation: ${lineAnim} 5s linear infinite;\n`;\n\nexport default () => (\n  <Diagram\n    initState={{\n      nodes: [\n        {\n          id: 'Node 1',\n          position: [100, 100],\n          type: 'input_output_horizontal',\n        },\n        {\n          id: 'Node 2',\n          position: [420, 300],\n          type: 'input_output_horizontal',\n        },\n        {\n          id: 'Node 3',\n          position: [420, 100],\n          type: 'input_output_horizontal',\n        },\n      ],\n      links: [\n        {\n          source: { nodeId: 'Node 1', portId: 'output' },\n          target: { nodeId: 'Node 2', portId: 'input' },\n        },\n      ],\n    }}\n    settings={{\n      links: {\n        components: {\n          default: createLinkDefault({\n            mainLine: {\n              classes: {\n                base: [mainLineClass],\n              },\n              style: {\n                base: {\n                  stroke: 'grey',\n                  strokeWidth: 1,\n                },\n              },\n            },\n          }),\n          linkCreation: createLinkDefault({\n            mainLine: {\n              style: {\n                base: {\n                  stroke: 'green',\n                  strokeWidth: 2,\n                },\n              },\n            },\n            secondaryLine: {\n              style: {\n                base: {\n                  stroke: 'green',\n                  strokeWidth: 5,\n                },\n              },\n            },\n          }),\n        },\n      },\n    }}\n  />\n);\n");
-// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteralLoose.js
-var taggedTemplateLiteralLoose = __webpack_require__(7739);
-// EXTERNAL MODULE: ../node_modules/@emotion/css/dist/emotion-css.esm.js + 15 modules
-var emotion_css_esm = __webpack_require__(9419);
+;// CONCATENATED MODULE: ../node_modules/raw-loader/dist/cjs.js!./src/pages/examples/_updatePortsPositionDiagram.tsx
+/* harmony default export */ var _updatePortsPositionDiagram = ("import React, { useEffect, useState } from 'react';\nimport {\n  Diagram,\n  DISABLE_NODE_USER_INTERACTION_CLASS,\n  INodeVisualComponentProps,\n  Port,\n} from 'react-easy-diagram';\nimport { observer } from 'mobx-react-lite';\n\nconst NodeWithExternalData = observer<INodeVisualComponentProps>(\n  ({ entity: node }) => {\n    const [linesNumber, setLinesNumber] = useState<number>(0);\n\n    useEffect(() => {\n      // Size and position changes in DOM element are not reported to the library, so it is\n      // required to trigger recalculation if you think size or position is changed. There is also\n      // possibility to store your data that could change size or position in port's or node's \"extra\" property,\n      // changes in these properties along with the other are already handled by library.\n      node.recalculatePortsSizeAndPosition();\n    }, [linesNumber]);\n\n    const lines = useLines(linesNumber);\n\n    return (\n      <div\n        className='react_fast_diagram_NodeDefault'\n        style={{\n          padding: 15,\n          border: node.selected ? '#6eb7ff solid 1px' : '',\n        }}\n      >\n        <div>Node with external state that cause node resize</div>\n        <div>Fields:</div>\n\n        {lines.map(l => l)}\n\n        <div>\n          <button\n            className={DISABLE_NODE_USER_INTERACTION_CLASS}\n            type='button'\n            onClick={() => setLinesNumber((c) => c + 1)}\n          >\n            Add line\n          </button>\n        </div>\n\n        <Port id='left' position='left-center' />\n        <Port id='top' position='top-center' />\n        <Port id='right' position='right-center' />\n        <Port id='bottom' position='bottom-center' />\n      </div>\n    );\n  }\n);\n\nconst NodeWithInternalData = observer<INodeVisualComponentProps>(\n  ({ entity: node }) => {\n    const linesNumber = node.extra ?? 0;\n\n    const lines = useLines(linesNumber);\n\n    return (\n      <div\n        className='react_fast_diagram_NodeDefault'\n        style={{\n          padding: 15,\n          border: node.selected ? '#6eb7ff solid 1px' : '',\n        }}\n      >\n        <div>Node with internal state that cause node resize</div>\n        <div>Fields:</div>\n\n        {lines.map(l => l)}\n\n        <div>\n          <button\n            className={DISABLE_NODE_USER_INTERACTION_CLASS}\n            type='button'\n            onClick={() => node.setExtra(linesNumber + 1)}\n          >\n            Add line\n          </button>\n        </div>\n\n        <Port id='left' position='left-center' />\n        <Port id='top' position='top-center' />\n        <Port id='right' position='right-center' />\n        <Port id='bottom' position='bottom-center' />\n      </div>\n    );\n  }\n);\n\nfunction useLines(count: number) {\n  const lines = []\n  for (let i = 0; i < count; i++) {\n    lines.push(<span key={i}>Line {i}</span>);\n  }\n  return lines;\n}\n\nexport default () => (\n  <Diagram\n    initState={{\n      nodes: [\n        {\n          id: 'external',\n          position: [0, 0],\n          type: 'external',\n        },\n        {\n          id: 'internal',\n          position: [400, 0],\n          type: 'internal',\n        },\n        {\n          id: 'left_node',\n          position: [-200, 100],\n          type: 'output_horizontal',\n        },\n        {\n          id: 'top_node',\n          position: [300, -200],\n          type: 'output_vertical',\n        },\n        {\n          id: 'right_node',\n          position: [800, 100],\n          type: 'input_horizontal',\n        },\n        {\n          id: 'bottom_node',\n          position: [300, 300],\n          type: 'input_vertical',\n        },\n      ],\n      links: [\n        {\n          source: {\n            nodeId: 'internal',\n            portId: 'left',\n          },\n          target: {\n            nodeId: 'external',\n            portId: 'right',\n          },\n        },\n        {\n          source: {\n            nodeId: 'internal',\n            portId: 'top',\n          },\n          target: {\n            nodeId: 'top_node',\n            portId: 'output',\n          },\n        },\n        {\n          source: {\n            nodeId: 'internal',\n            portId: 'right',\n          },\n          target: {\n            nodeId: 'right_node',\n            portId: 'input',\n          },\n        },\n        {\n          source: {\n            nodeId: 'internal',\n            portId: 'bottom',\n          },\n          target: {\n            nodeId: 'bottom_node',\n            portId: 'input',\n          },\n        },\n\n        {\n          source: {\n            nodeId: 'external',\n            portId: 'left',\n          },\n          target: {\n            nodeId: 'left_node',\n            portId: 'output',\n          },\n        },\n        {\n          source: {\n            nodeId: 'external',\n            portId: 'top',\n          },\n          target: {\n            nodeId: 'top_node',\n            portId: 'output',\n          },\n        },\n        {\n          source: {\n            nodeId: 'external',\n            portId: 'bottom',\n          },\n          target: {\n            nodeId: 'bottom_node',\n            portId: 'input',\n          },\n        },\n      ],\n    }}\n    settings={{\n      nodes: {\n        components: {\n          internal: NodeWithInternalData,\n          external: NodeWithExternalData,\n        },\n      },\n    }}\n  />\n);\n");
 // EXTERNAL MODULE: ../lib/dist/index.esm.js
 var index_esm = __webpack_require__(5061);
-;// CONCATENATED MODULE: ./src/pages/examples/_configureDefaultLinkDiagram.tsx
-var _templateObject,_templateObject2;// We use for our example emotion library for css-in-js, but you can use of 
-// course vanilla css or any method of doing css you like
-var lineAnim=(0,emotion_css_esm/* keyframes */.F4)(_templateObject||(_templateObject=(0,taggedTemplateLiteralLoose/* default */.Z)(["\n  to {\n    stroke-dashoffset: 40;\n  }\n"])));var mainLineClass=(0,emotion_css_esm/* css */.iv)(_templateObject2||(_templateObject2=(0,taggedTemplateLiteralLoose/* default */.Z)(["\n  stroke-dasharray: 4;\n  animation: "," 5s linear infinite;\n"])),lineAnim);/* harmony default export */ var examples_configureDefaultLinkDiagram = (function(){return/*#__PURE__*/react.createElement(index_esm.Diagram,{initState:{nodes:[{id:'Node 1',position:[100,100],type:'input_output_horizontal'},{id:'Node 2',position:[420,300],type:'input_output_horizontal'},{id:'Node 3',position:[420,100],type:'input_output_horizontal'}],links:[{source:{nodeId:'Node 1',portId:'output'},target:{nodeId:'Node 2',portId:'input'}}]},settings:{links:{components:{default:(0,index_esm.createLinkDefault)({mainLine:{classes:{base:[mainLineClass]},style:{base:{stroke:'grey',strokeWidth:1}}}}),linkCreation:(0,index_esm.createLinkDefault)({mainLine:{style:{base:{stroke:'green',strokeWidth:2}}},secondaryLine:{style:{base:{stroke:'green',strokeWidth:5}}}})}}}});});
-;// CONCATENATED MODULE: ./src/pages/examples/configureDefaultLink.jsx
-function Example(){return/*#__PURE__*/react.createElement(_exampleWrapper/* ExampleWrapper */.U,{title:"Configure Default Link Example"},/*#__PURE__*/react.createElement(_diagramContainer/* DiagramContainer */.G,null,/*#__PURE__*/react.createElement(examples_configureDefaultLinkDiagram,null)),/*#__PURE__*/react.createElement(CodeBlock/* default */.Z,{className:"language-jsx"},_configureDefaultLinkDiagram));}
+// EXTERNAL MODULE: ../node_modules/mobx-react-lite/es/index.js + 17 modules
+var es = __webpack_require__(5479);
+;// CONCATENATED MODULE: ./src/pages/examples/_updatePortsPositionDiagram.tsx
+var NodeWithExternalData=(0,es/* observer */.Pi)(function(_ref){var node=_ref.entity;var _useState=(0,react.useState)(0),linesNumber=_useState[0],setLinesNumber=_useState[1];(0,react.useEffect)(function(){// Size and position changes in DOM element are not reported to the library, so it is
+// required to trigger recalculation if you think size or position is changed. There is also
+// possibility to store your data that could change size or position in port's or node's "extra" property,
+// changes in these properties along with the other are already handled by library.
+node.recalculatePortsSizeAndPosition();},[linesNumber]);var lines=useLines(linesNumber);return/*#__PURE__*/react.createElement("div",{className:"react_fast_diagram_NodeDefault",style:{padding:15,border:node.selected?'#6eb7ff solid 1px':''}},/*#__PURE__*/react.createElement("div",null,"Node with external state that cause node resize"),/*#__PURE__*/react.createElement("div",null,"Fields:"),lines.map(function(l){return l;}),/*#__PURE__*/react.createElement("div",null,/*#__PURE__*/react.createElement("button",{className:index_esm.DISABLE_NODE_USER_INTERACTION_CLASS,type:"button",onClick:function onClick(){return setLinesNumber(function(c){return c+1;});}},"Add line")),/*#__PURE__*/react.createElement(index_esm.Port,{id:"left",position:"left-center"}),/*#__PURE__*/react.createElement(index_esm.Port,{id:"top",position:"top-center"}),/*#__PURE__*/react.createElement(index_esm.Port,{id:"right",position:"right-center"}),/*#__PURE__*/react.createElement(index_esm.Port,{id:"bottom",position:"bottom-center"}));});var NodeWithInternalData=(0,es/* observer */.Pi)(function(_ref2){var _node$extra;var node=_ref2.entity;var linesNumber=(_node$extra=node.extra)!=null?_node$extra:0;var lines=useLines(linesNumber);return/*#__PURE__*/react.createElement("div",{className:"react_fast_diagram_NodeDefault",style:{padding:15,border:node.selected?'#6eb7ff solid 1px':''}},/*#__PURE__*/react.createElement("div",null,"Node with internal state that cause node resize"),/*#__PURE__*/react.createElement("div",null,"Fields:"),lines.map(function(l){return l;}),/*#__PURE__*/react.createElement("div",null,/*#__PURE__*/react.createElement("button",{className:index_esm.DISABLE_NODE_USER_INTERACTION_CLASS,type:"button",onClick:function onClick(){return node.setExtra(linesNumber+1);}},"Add line")),/*#__PURE__*/react.createElement(index_esm.Port,{id:"left",position:"left-center"}),/*#__PURE__*/react.createElement(index_esm.Port,{id:"top",position:"top-center"}),/*#__PURE__*/react.createElement(index_esm.Port,{id:"right",position:"right-center"}),/*#__PURE__*/react.createElement(index_esm.Port,{id:"bottom",position:"bottom-center"}));});function useLines(count){var lines=[];for(var i=0;i<count;i++){lines.push(/*#__PURE__*/react.createElement("span",{key:i},"Line ",i));}return lines;}/* harmony default export */ var examples_updatePortsPositionDiagram = (function(){return/*#__PURE__*/react.createElement(index_esm.Diagram,{initState:{nodes:[{id:'external',position:[0,0],type:'external'},{id:'internal',position:[400,0],type:'internal'},{id:'left_node',position:[-200,100],type:'output_horizontal'},{id:'top_node',position:[300,-200],type:'output_vertical'},{id:'right_node',position:[800,100],type:'input_horizontal'},{id:'bottom_node',position:[300,300],type:'input_vertical'}],links:[{source:{nodeId:'internal',portId:'left'},target:{nodeId:'external',portId:'right'}},{source:{nodeId:'internal',portId:'top'},target:{nodeId:'top_node',portId:'output'}},{source:{nodeId:'internal',portId:'right'},target:{nodeId:'right_node',portId:'input'}},{source:{nodeId:'internal',portId:'bottom'},target:{nodeId:'bottom_node',portId:'input'}},{source:{nodeId:'external',portId:'left'},target:{nodeId:'left_node',portId:'output'}},{source:{nodeId:'external',portId:'top'},target:{nodeId:'top_node',portId:'output'}},{source:{nodeId:'external',portId:'bottom'},target:{nodeId:'bottom_node',portId:'input'}}]},settings:{nodes:{components:{internal:NodeWithInternalData,external:NodeWithExternalData}}}});});
+;// CONCATENATED MODULE: ./src/pages/examples/updatePortsPosition.jsx
+function Example(){return/*#__PURE__*/react.createElement(_exampleWrapper/* ExampleWrapper */.U,{title:"Update ports position example"},/*#__PURE__*/react.createElement(_diagramContainer/* DiagramContainer */.G,null,/*#__PURE__*/react.createElement(examples_updatePortsPositionDiagram,null)),/*#__PURE__*/react.createElement(CodeBlock/* default */.Z,{className:"language-jsx"},_updatePortsPositionDiagram));}
 
 /***/ }),
 
@@ -347,6 +363,15 @@ var Translate = __webpack_require__(1787);
  * LICENSE file in the root directory of this source tree.
  */// Add react-live imports you need here
 var ReactLiveScope=Object.assign({React:react__WEBPACK_IMPORTED_MODULE_0__},react__WEBPACK_IMPORTED_MODULE_0__,react_easy_diagram__WEBPACK_IMPORTED_MODULE_1__,{observer:mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__/* .observer */ .Pi});/* harmony default export */ __webpack_exports__["Z"] = (ReactLiveScope);
+
+/***/ }),
+
+/***/ 5199:
+/***/ (function(__unused_webpack_module, __webpack_exports__) {
+
+"use strict";
+// extracted by mini-css-extract-plugin
+/* harmony default export */ __webpack_exports__["Z"] = ({"heroBanner":"heroBanner_3P7f","headerContainer":"headerContainer_3hB5","headerDemoImage":"headerDemoImage_1LU4","buttons":"buttons_1r9m","features":"features_3azU","featureImage":"featureImage_ZtzX","title":"title_3dbr","subtitle":"subtitle_3Hk7","diagramContainer":"diagramContainer_27u8","textInput":"textInput_11m-","nodePadding":"nodePadding_GbY-"});
 
 /***/ })
 

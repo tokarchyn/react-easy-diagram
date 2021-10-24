@@ -4016,6 +4016,11 @@ body {
 
 /* Diagram styles */
 
+.diagramContainer_27u8 {
+  color: black;
+  height: calc(90vh - var(--ifm-navbar-height));
+}
+
 .textInput_11m- {
   outline: none;
   border: 1px solid #c2c2c2;
