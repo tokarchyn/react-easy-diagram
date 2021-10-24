@@ -160,12 +160,6 @@
 }
 /* Link */
 
-/* Common */
-.react_fast_diagram_disabled_user_select {
-  user-select: none;
-}
-/* Common */
-
 /* Containers with gap between items */
 .react_fast_diagram_flex_gap {
   --gap: 12px;
