@@ -1,4 +1,4 @@
-(self["webpackChunkwebsite"] = self["webpackChunkwebsite"] || []).push([[4342,9514],{
+(self["webpackChunkwebsite"] = self["webpackChunkwebsite"] || []).push([[5829,9514],{
 
 /***/ 5061:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
@@ -228,6 +228,21 @@ this._remaindersFromDrags=new Map();this.startDragging=function(nodeToDrag){if(!
 
 /***/ }),
 
+/***/ 3099:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
+/* harmony import */ var _ExecutionEnvironment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(161);
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */function BrowserOnly(_ref){var children=_ref.children,fallback=_ref.fallback;if(!_ExecutionEnvironment__WEBPACK_IMPORTED_MODULE_1__/* .default.canUseDOM */ .Z.canUseDOM||children==null){return fallback||null;}return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment,null,children());}/* harmony default export */ __webpack_exports__["Z"] = (BrowserOnly);
+
+/***/ }),
+
 /***/ 7709:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -237,7 +252,8 @@ this._remaindersFromDrags=new Map();this.startDragging=function(nodeToDrag){if(!
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
 /* harmony import */ var _docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3099);
-function DiagramContainer(props){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{style:{height:'calc(90vh - var(--ifm-navbar-height))'}},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z,null,function(){return props.children;}));}
+/* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5199);
+function DiagramContainer(props){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{className:_styles_module_css__WEBPACK_IMPORTED_MODULE_2__/* .default.diagramContainer */ .Z.diagramContainer},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z,null,function(){return props.children;}));}
 
 /***/ }),
 
@@ -261,7 +277,7 @@ function ExampleWrapper(props){(0,_theme_hooks_useKeyboardNavigation__WEBPACK_IM
 
 /***/ }),
 
-/***/ 9535:
+/***/ 9858:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -281,20 +297,14 @@ var _exampleWrapper = __webpack_require__(1713);
 var CodeBlock = __webpack_require__(3338);
 // EXTERNAL MODULE: ./src/pages/examples/_diagramContainer.jsx
 var _diagramContainer = __webpack_require__(7709);
-;// CONCATENATED MODULE: ../node_modules/raw-loader/dist/cjs.js!./src/pages/examples/_customizePortDiagram.tsx
-/* harmony default export */ var _customizePortDiagram = ("import React from 'react';\nimport {\n  createNode,\n  createPortInnerDefault,\n  Diagram,\n  IPortVisualComponentProps,\n} from 'react-easy-diagram';\nimport { observer } from 'mobx-react-lite';\nimport { css } from '@emotion/css';\n\nexport default () => (\n  <Diagram\n    initState={{\n      nodes: [\n        {\n          id: 'Node 1',\n          position: [100, 100],\n          type: 'output_horizontal',\n        },\n        {\n          id: 'Node 2',\n          position: [300, 200],\n          type: 'node_with_yellow_port',\n        },\n        {\n          id: 'Node 3',\n          position: [300, 100],\n          type: 'node_with_circle_port',\n        },\n      ],\n      links: [\n        {\n          source: { nodeId: 'Node 1', portId: 'output' },\n          target: { nodeId: 'Node 2', portId: 'input' },\n        },\n        {\n          source: { nodeId: 'Node 1', portId: 'output' },\n          target: { nodeId: 'Node 3', portId: 'input' },\n        },\n      ],\n    }}\n    settings={{\n      ports: {\n        components: {\n          default: createPortInnerDefault({\n            style: {\n              base: {\n                width: 10,\n                height: 10,\n                backgroundColor: '#ee6eff',\n              },\n              invalid: {\n                backgroundColor: '#cccccc',\n              },\n            },\n          }),\n          big_yellow: createPortInnerDefault({\n            style: {\n              base: {\n                width: 10,\n                height: 20,\n                backgroundColor: '#fded93',\n              },\n              hovered: {\n                backgroundColor: '#ffe657',\n              },\n            },\n          }),\n          circle: CirclePort,\n        },\n      },\n      nodes: {\n        components: {\n          node_with_yellow_port: createNode({\n            ports: [\n              { id: 'input', type: 'big_yellow', position: 'left-center' },\n            ],\n          }),\n          node_with_circle_port: createNode({\n            ports: [{ id: 'input', type: 'circle', position: 'left-center' }],\n          }),\n        },\n      },\n    }}\n  />\n);\n\nconst circle_base_class = css`\n  width: 5px;\n  height: 5px;\n  background-color: white;\n  border: 1px solid #afafaf;\n  border-radius: 9999px;\n`;\n\nconst circle_hovered_class = css`\n  background-color: #dfefff;\n  border: 1px solid #a1d0ff;\n`;\n\nconst CirclePort = observer<IPortVisualComponentProps>(({ entity }) => {\n  let className = circle_base_class;\n  if (entity.hovered || entity.dragging)\n    className += ' ' + circle_hovered_class;\n    \n  return <div className={className}></div>;\n});\n");
-// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteralLoose.js
-var taggedTemplateLiteralLoose = __webpack_require__(7739);
+;// CONCATENATED MODULE: ../node_modules/raw-loader/dist/cjs.js!./src/pages/examples/_basicDiagram.tsx
+/* harmony default export */ var _basicDiagram = ("import React from 'react';\nimport {\n  Diagram,\n} from 'react-easy-diagram';\n\nexport default function () {\n  return (\n    <Diagram\n      initState={{\n        nodes: [\n          {\n            id: 'node_1',\n            label: 'Node 1',\n            position: [300, 300],\n            type: 'output_horizontal'\n          },\n          {\n            id: 'node_2',\n            label: 'Node 2',\n            position: [520, 400],\n            type: 'input_output_horizontal'\n          },\n          {\n            id: 'node_3',\n            label: 'Node 3',\n            position: [520, 200],\n            type: 'input_horizontal'\n          },\n        ],\n        links: [\n          {\n            source: {\n              nodeId: 'node_1',\n              portId: 'output',\n            },\n            target: {\n              nodeId: 'node_2',\n              portId: 'input',\n            }\n          },\n          {\n            source: {\n              nodeId: 'node_1',\n              portId: 'output',\n            },\n            target: {\n              nodeId: 'node_3',\n              portId: 'input',\n            },\n          },\n          {\n            source: {\n              nodeId: 'node_3',\n              portId: 'input',\n            },\n            target: {\n              nodeId: 'node_2',\n              portId: 'output',\n            },\n          },\n        ],\n      }}\n    />\n  );\n}\n");
 // EXTERNAL MODULE: ../lib/dist/index.esm.js
 var index_esm = __webpack_require__(5061);
-// EXTERNAL MODULE: ../node_modules/mobx-react-lite/es/index.js + 17 modules
-var es = __webpack_require__(5479);
-// EXTERNAL MODULE: ../node_modules/@emotion/css/dist/emotion-css.esm.js + 15 modules
-var emotion_css_esm = __webpack_require__(9419);
-;// CONCATENATED MODULE: ./src/pages/examples/_customizePortDiagram.tsx
-var _templateObject,_templateObject2;/* harmony default export */ var examples_customizePortDiagram = (function(){return/*#__PURE__*/react.createElement(index_esm.Diagram,{initState:{nodes:[{id:'Node 1',position:[100,100],type:'output_horizontal'},{id:'Node 2',position:[300,200],type:'node_with_yellow_port'},{id:'Node 3',position:[300,100],type:'node_with_circle_port'}],links:[{source:{nodeId:'Node 1',portId:'output'},target:{nodeId:'Node 2',portId:'input'}},{source:{nodeId:'Node 1',portId:'output'},target:{nodeId:'Node 3',portId:'input'}}]},settings:{ports:{components:{default:(0,index_esm.createPortInnerDefault)({style:{base:{width:10,height:10,backgroundColor:'#ee6eff'},invalid:{backgroundColor:'#cccccc'}}}),big_yellow:(0,index_esm.createPortInnerDefault)({style:{base:{width:10,height:20,backgroundColor:'#fded93'},hovered:{backgroundColor:'#ffe657'}}}),circle:CirclePort}},nodes:{components:{node_with_yellow_port:(0,index_esm.createNode)({ports:[{id:'input',type:'big_yellow',position:'left-center'}]}),node_with_circle_port:(0,index_esm.createNode)({ports:[{id:'input',type:'circle',position:'left-center'}]})}}}});});var circle_base_class=(0,emotion_css_esm/* css */.iv)(_templateObject||(_templateObject=(0,taggedTemplateLiteralLoose/* default */.Z)(["\n  width: 5px;\n  height: 5px;\n  background-color: white;\n  border: 1px solid #afafaf;\n  border-radius: 9999px;\n"])));var circle_hovered_class=(0,emotion_css_esm/* css */.iv)(_templateObject2||(_templateObject2=(0,taggedTemplateLiteralLoose/* default */.Z)(["\n  background-color: #dfefff;\n  border: 1px solid #a1d0ff;\n"])));var CirclePort=(0,es/* observer */.Pi)(function(_ref){var entity=_ref.entity;var className=circle_base_class;if(entity.hovered||entity.dragging)className+=' '+circle_hovered_class;return/*#__PURE__*/react.createElement("div",{className:className});});
-;// CONCATENATED MODULE: ./src/pages/examples/customizePortDiagram.jsx
-function Example(){return/*#__PURE__*/react.createElement(_exampleWrapper/* ExampleWrapper */.U,{title:"Customize Port Example"},/*#__PURE__*/react.createElement(_diagramContainer/* DiagramContainer */.G,null,/*#__PURE__*/react.createElement(examples_customizePortDiagram,null)),/*#__PURE__*/react.createElement(CodeBlock/* default */.Z,{className:"language-jsx"},_customizePortDiagram));}
+;// CONCATENATED MODULE: ./src/pages/examples/_basicDiagram.tsx
+/* harmony default export */ function examples_basicDiagram() {return/*#__PURE__*/react.createElement(index_esm.Diagram,{initState:{nodes:[{id:'node_1',label:'Node 1',position:[300,300],type:'output_horizontal'},{id:'node_2',label:'Node 2',position:[520,400],type:'input_output_horizontal'},{id:'node_3',label:'Node 3',position:[520,200],type:'input_horizontal'}],links:[{source:{nodeId:'node_1',portId:'output'},target:{nodeId:'node_2',portId:'input'}},{source:{nodeId:'node_1',portId:'output'},target:{nodeId:'node_3',portId:'input'}},{source:{nodeId:'node_3',portId:'input'},target:{nodeId:'node_2',portId:'output'}}]}});}
+;// CONCATENATED MODULE: ./src/pages/examples/basic.jsx
+function Example(){return/*#__PURE__*/react.createElement(_exampleWrapper/* ExampleWrapper */.U,{title:"Basic Example"},/*#__PURE__*/react.createElement(_diagramContainer/* DiagramContainer */.G,null,/*#__PURE__*/react.createElement(examples_basicDiagram,null)),/*#__PURE__*/react.createElement(CodeBlock/* default */.Z,{className:"language-jsx"},_basicDiagram));}
 
 /***/ }),
 
@@ -347,6 +357,15 @@ var Translate = __webpack_require__(1787);
  * LICENSE file in the root directory of this source tree.
  */// Add react-live imports you need here
 var ReactLiveScope=Object.assign({React:react__WEBPACK_IMPORTED_MODULE_0__},react__WEBPACK_IMPORTED_MODULE_0__,react_easy_diagram__WEBPACK_IMPORTED_MODULE_1__,{observer:mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__/* .observer */ .Pi});/* harmony default export */ __webpack_exports__["Z"] = (ReactLiveScope);
+
+/***/ }),
+
+/***/ 5199:
+/***/ (function(__unused_webpack_module, __webpack_exports__) {
+
+"use strict";
+// extracted by mini-css-extract-plugin
+/* harmony default export */ __webpack_exports__["Z"] = ({"heroBanner":"heroBanner_3P7f","headerContainer":"headerContainer_3hB5","headerDemoImage":"headerDemoImage_1LU4","buttons":"buttons_1r9m","features":"features_3azU","featureImage":"featureImage_ZtzX","title":"title_3dbr","subtitle":"subtitle_3Hk7","diagramContainer":"diagramContainer_27u8","textInput":"textInput_11m-","nodePadding":"nodePadding_GbY-"});
 
 /***/ })
 

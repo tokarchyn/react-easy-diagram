@@ -1,4 +1,4 @@
-(self["webpackChunkwebsite"] = self["webpackChunkwebsite"] || []).push([[6317,9514],{
+(self["webpackChunkwebsite"] = self["webpackChunkwebsite"] || []).push([[1976,9514],{
 
 /***/ 5061:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
@@ -252,7 +252,8 @@ this._remaindersFromDrags=new Map();this.startDragging=function(nodeToDrag){if(!
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
 /* harmony import */ var _docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3099);
-function DiagramContainer(props){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{style:{height:'calc(90vh - var(--ifm-navbar-height))'}},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z,null,function(){return props.children;}));}
+/* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5199);
+function DiagramContainer(props){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{className:_styles_module_css__WEBPACK_IMPORTED_MODULE_2__/* .default.diagramContainer */ .Z.diagramContainer},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z,null,function(){return props.children;}));}
 
 /***/ }),
 
@@ -276,7 +277,7 @@ function ExampleWrapper(props){(0,_theme_hooks_useKeyboardNavigation__WEBPACK_IM
 
 /***/ }),
 
-/***/ 7207:
+/***/ 369:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -296,16 +297,14 @@ var _exampleWrapper = __webpack_require__(1713);
 var CodeBlock = __webpack_require__(3338);
 // EXTERNAL MODULE: ./src/pages/examples/_diagramContainer.jsx
 var _diagramContainer = __webpack_require__(7709);
-;// CONCATENATED MODULE: ../node_modules/raw-loader/dist/cjs.js!./src/pages/examples/_dynamicPortsDiagram.tsx
-/* harmony default export */ var _dynamicPortsDiagram = ("import React, { useCallback, useState } from 'react';\nimport {\n  Diagram,\n  DISABLE_NODE_USER_INTERACTION_CLASS,\n  INodeVisualComponentProps,\n  Port\n} from 'react-easy-diagram';\nimport { observer } from 'mobx-react-lite';\n\nconst PortWithLabel: React.FC<{\n  id: string;\n  remove?: (id: string) => any;\n}> = (props) => {\n  return (\n    <div>\n      {props.remove && (<button onClick={() => props.remove && props.remove(props.id)}>X</button>)}\n      <span>Port id: {props.id}</span>\n      <Port id={props.id} />\n    </div>\n  );\n};\n\nconst NodeComponent = observer<INodeVisualComponentProps>(\n  ({ entity }) => {\n    const [ports, setPorts] = useState<string[]>([]);\n    const remove = useCallback(\n      (idToRemove: string) =>\n        setPorts((ids) => ids.filter((id) => id !== idToRemove)),\n      [setPorts]\n    );\n    const [portToAdd, setPortToAdd] = useState<string>('');\n\n    return (\n      <div className='react_fast_diagram_Node_Default'>\n        <span>\n          <input\n            type='number'\n            onChange={(event) => setPortToAdd(event.target.value)}\n            className={DISABLE_NODE_USER_INTERACTION_CLASS}\n          />\n          <button\n            onClick={() =>\n              setPorts((ports) =>\n                ports.includes(portToAdd) ? ports : [...ports, portToAdd]\n              )\n            }\n          >\n            add new\n          </button>\n          <button\n            onClick={() =>\n              setPorts([])\n            }\n          >remove all</button>\n        </span>\n        <PortWithLabel id={\"test\"} key={\"test\"}/>\n        {ports.map((id) => (\n          <PortWithLabel id={id} remove={remove} key={id}/>\n        ))}\n      </div>\n    );\n  }\n);\n\nexport default () => (\n  <Diagram\n    initState={{\n      nodes: [\n        {\n          id: 'node_1',\n          position: [100, 100],\n          type: 'dynamic',\n        },\n      ],\n    }}\n    settings={{\n      nodes: {\n        components: {\n          dynamic: NodeComponent,\n        },\n      },\n    }}\n  />\n);\n");
+;// CONCATENATED MODULE: ../node_modules/raw-loader/dist/cjs.js!./src/pages/examples/_performanceDiagram.tsx
+/* harmony default export */ var _performanceDiagram = ("import React from 'react';\nimport {\n  Diagram,\n  ILinkState,\n  INodeState,\n} from 'react-easy-diagram';\n\nconst generateState = (colNum: number, rowNum: number) => {\n  const nodes: INodeState[] = [];\n  const links: ILinkState[] = [];\n  const getNodeId = (i: number, j: number) => `node_${i}_${j}`;\n\n  for (let i = 0; i < colNum; i++) {\n    for (let j = 0; j < rowNum; j++) {\n      nodes.push({\n        id: getNodeId(i, j),\n        position: [i * 120, j * 120],\n        type: 'star'\n      });\n      if (i - 1 >= 0) {\n        links.push({\n          source: {\n            nodeId: getNodeId(i - 1, j),\n            portId: 'right',\n          },\n          target: {\n            nodeId: getNodeId(i, j),\n            portId: 'left',\n          },\n        });\n      }\n      if (j - 1 >= 0) {\n        links.push({\n          source: {\n            nodeId: getNodeId(i, j - 1),\n            portId: 'bottom',\n          },\n          target: {\n            nodeId: getNodeId(i, j),\n            portId: 'top',\n          },\n        });\n      }\n    }\n  }\n\n  return { nodes, links };\n};\n\nexport default () => <Diagram initState={generateState(10, 10)} />;\n");
 // EXTERNAL MODULE: ../lib/dist/index.esm.js
 var index_esm = __webpack_require__(5061);
-// EXTERNAL MODULE: ../node_modules/mobx-react-lite/es/index.js + 17 modules
-var es = __webpack_require__(5479);
-;// CONCATENATED MODULE: ./src/pages/examples/_dynamicPortsDiagram.tsx
-var PortWithLabel=function PortWithLabel(props){return/*#__PURE__*/react.createElement("div",null,props.remove&&/*#__PURE__*/react.createElement("button",{onClick:function onClick(){return props.remove&&props.remove(props.id);}},"X"),/*#__PURE__*/react.createElement("span",null,"Port id: ",props.id),/*#__PURE__*/react.createElement(index_esm.Port,{id:props.id}));};var NodeComponent=(0,es/* observer */.Pi)(function(_ref){var entity=_ref.entity;var _useState=(0,react.useState)([]),ports=_useState[0],setPorts=_useState[1];var remove=(0,react.useCallback)(function(idToRemove){return setPorts(function(ids){return ids.filter(function(id){return id!==idToRemove;});});},[setPorts]);var _useState2=(0,react.useState)(''),portToAdd=_useState2[0],setPortToAdd=_useState2[1];return/*#__PURE__*/react.createElement("div",{className:"react_fast_diagram_Node_Default"},/*#__PURE__*/react.createElement("span",null,/*#__PURE__*/react.createElement("input",{type:"number",onChange:function onChange(event){return setPortToAdd(event.target.value);},className:index_esm.DISABLE_NODE_USER_INTERACTION_CLASS}),/*#__PURE__*/react.createElement("button",{onClick:function onClick(){return setPorts(function(ports){return ports.includes(portToAdd)?ports:[].concat(ports,[portToAdd]);});}},"add new"),/*#__PURE__*/react.createElement("button",{onClick:function onClick(){return setPorts([]);}},"remove all")),/*#__PURE__*/react.createElement(PortWithLabel,{id:"test",key:"test"}),ports.map(function(id){return/*#__PURE__*/react.createElement(PortWithLabel,{id:id,remove:remove,key:id});}));});/* harmony default export */ var examples_dynamicPortsDiagram = (function(){return/*#__PURE__*/react.createElement(index_esm.Diagram,{initState:{nodes:[{id:'node_1',position:[100,100],type:'dynamic'}]},settings:{nodes:{components:{dynamic:NodeComponent}}}});});
-;// CONCATENATED MODULE: ./src/pages/examples/dynamicPorts.jsx
-function Example(){return/*#__PURE__*/react.createElement(_exampleWrapper/* ExampleWrapper */.U,{title:"Dynamic Ports Example"},/*#__PURE__*/react.createElement(_diagramContainer/* DiagramContainer */.G,null,/*#__PURE__*/react.createElement(examples_dynamicPortsDiagram,null)),/*#__PURE__*/react.createElement(CodeBlock/* default */.Z,{className:"language-jsx"},_dynamicPortsDiagram));}
+;// CONCATENATED MODULE: ./src/pages/examples/_performanceDiagram.tsx
+var generateState=function generateState(colNum,rowNum){var nodes=[];var links=[];var getNodeId=function getNodeId(i,j){return"node_"+i+"_"+j;};for(var i=0;i<colNum;i++){for(var j=0;j<rowNum;j++){nodes.push({id:getNodeId(i,j),position:[i*120,j*120],type:'star'});if(i-1>=0){links.push({source:{nodeId:getNodeId(i-1,j),portId:'right'},target:{nodeId:getNodeId(i,j),portId:'left'}});}if(j-1>=0){links.push({source:{nodeId:getNodeId(i,j-1),portId:'bottom'},target:{nodeId:getNodeId(i,j),portId:'top'}});}}}return{nodes:nodes,links:links};};/* harmony default export */ var examples_performanceDiagram = (function(){return/*#__PURE__*/react.createElement(index_esm.Diagram,{initState:generateState(10,10)});});
+;// CONCATENATED MODULE: ./src/pages/examples/performance.jsx
+function Example(){return/*#__PURE__*/react.createElement(_exampleWrapper/* ExampleWrapper */.U,{title:"Performance Example"},/*#__PURE__*/react.createElement(_diagramContainer/* DiagramContainer */.G,null,/*#__PURE__*/react.createElement(examples_performanceDiagram,null)),/*#__PURE__*/react.createElement(CodeBlock/* default */.Z,{className:"language-jsx"},_performanceDiagram));}
 
 /***/ }),
 
@@ -358,6 +357,15 @@ var Translate = __webpack_require__(1787);
  * LICENSE file in the root directory of this source tree.
  */// Add react-live imports you need here
 var ReactLiveScope=Object.assign({React:react__WEBPACK_IMPORTED_MODULE_0__},react__WEBPACK_IMPORTED_MODULE_0__,react_easy_diagram__WEBPACK_IMPORTED_MODULE_1__,{observer:mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__/* .observer */ .Pi});/* harmony default export */ __webpack_exports__["Z"] = (ReactLiveScope);
+
+/***/ }),
+
+/***/ 5199:
+/***/ (function(__unused_webpack_module, __webpack_exports__) {
+
+"use strict";
+// extracted by mini-css-extract-plugin
+/* harmony default export */ __webpack_exports__["Z"] = ({"heroBanner":"heroBanner_3P7f","headerContainer":"headerContainer_3hB5","headerDemoImage":"headerDemoImage_1LU4","buttons":"buttons_1r9m","features":"features_3azU","featureImage":"featureImage_ZtzX","title":"title_3dbr","subtitle":"subtitle_3Hk7","diagramContainer":"diagramContainer_27u8","textInput":"textInput_11m-","nodePadding":"nodePadding_GbY-"});
 
 /***/ })
 
