@@ -20,6 +20,12 @@ ___
 
 ___
 
+### disableAllMouseAndTouchInteractions
+
+• **disableAllMouseAndTouchInteractions**: `boolean`
+
+___
+
 ### linkSelection
 
 • **linkSelection**: `boolean`

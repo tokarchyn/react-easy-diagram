@@ -34,7 +34,13 @@ export const DigramInner = observer<IDiagramInnerProps>((props) => {
   return (
     <div
       ref={rootStore.diagramState.diagramInnerRef}
-      style={{ ...props.diagramStyles }}
+      style={{
+        touchAction: rootStore.diagramSettings.userInteraction
+          .arePointerInteractionsDisabled
+          ? 'auto'
+          : undefined,
+        ...props.diagramStyles,
+      }}
       className='react_fast_diagram_DiagramInner'
     >
       <BackgroundWrapper />

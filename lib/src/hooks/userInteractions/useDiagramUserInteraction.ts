@@ -7,8 +7,9 @@ import { useDiagramPinchHandlers } from 'hooks/userInteractions/useDiagramPinchH
 import { useDiagramWheelHandler } from 'hooks/userInteractions/useDiagramWheelHandler';
 
 export const useDiagramUserInteraction = () => {
-  const { diagramState } = useRootStore();
+  const { diagramState, diagramSettings } = useRootStore();
 
+  console.log('useDiagramUserInteraction')
   const cancelGesture = useCallback(
     (
       event:
@@ -34,7 +35,9 @@ export const useDiagramUserInteraction = () => {
       ...wheelHandler,
     },
     {
-      domTarget: diagramState.diagramInnerRef,
+      domTarget: diagramSettings.userInteraction.arePointerInteractionsDisabled
+        ? undefined
+        : diagramState.diagramInnerRef,
       eventOptions: { passive: false },
     }
   );

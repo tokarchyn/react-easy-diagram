@@ -11,6 +11,13 @@ import {
 export default function () {
   return (
     <Diagram
+    settings={{
+      diagram: {
+        userInteraction: {
+          disableAllMouseAndTouchInteractions: true
+        }
+      }
+    }}
       initState={{
         nodes: [
           {

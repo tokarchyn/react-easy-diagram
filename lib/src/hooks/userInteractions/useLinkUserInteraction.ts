@@ -75,7 +75,9 @@ export const useLinkUserInteraction = (
     eventOptions: { passive: false },
   });
 
-  return { bind };
+  if (rootStore.diagramSettings.userInteraction.arePointerInteractionsDisabled)
+    return { bind: () => ({}) };
+  else return { bind };
 };
 
 const selectDelay: number = 500;

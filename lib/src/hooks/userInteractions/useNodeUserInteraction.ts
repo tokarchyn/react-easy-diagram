@@ -98,7 +98,10 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
   );
 
   useGesture(handlers, {
-    domTarget: nodeState.ref,
+    domTarget: rootStore.diagramSettings.userInteraction
+      .arePointerInteractionsDisabled
+      ? undefined
+      : nodeState.ref,
     eventOptions: { passive: false },
   });
 

@@ -409,6 +409,12 @@ ___
 
 ___
 
+### LockIcon
+
+• **LockIcon**: `React.FC`
+
+___
+
 ### MiniControlWrapper
 
 • **MiniControlWrapper**: () => `Element` & { `displayName`: `string`  }
@@ -460,6 +466,12 @@ ___
 ### RubbishBinIcon
 
 • **RubbishBinIcon**: `React.FC`
+
+___
+
+### UnlockIcon
+
+• **UnlockIcon**: `React.FC`
 
 ___
 

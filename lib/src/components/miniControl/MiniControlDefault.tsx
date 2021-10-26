@@ -4,7 +4,9 @@ import {
   CopyIcon,
   FilterCenterFocusIcon,
   RubbishBinIcon,
+  UnlockIcon,
 } from 'components/Icons';
+import { LockIcon } from 'index';
 import { observer } from 'mobx-react-lite';
 import React, { useMemo } from 'react';
 import type { IMiniControlComponentProps } from 'states/diagramSettings';
@@ -14,77 +16,107 @@ import { CornerPosition } from 'utils/position';
 
 const MiniControlDefault: React.FC<
   IMiniControlComponentProps<IMiniControlDefaultSettings>
-> = observer(({ rootStore, settings }) => {
-  const finalSettings = settings ?? defaultSettings;
+> = observer(
+  ({
+    rootStore: {
+      commandExecutor,
+      diagramState,
+      diagramSettings,
+      selectionState,
+    },
+    settings,
+  }) => {
+    const finalSettings = settings ?? defaultSettings;
 
-  const className = useMemo(
-    () =>
-      combineArrays(
-        ['react_fast_diagram_MiniControl_Default'],
-        finalSettings?.classes
-      ).join(' '),
-    [finalSettings]
-  );
+    const className = useMemo(
+      () =>
+        combineArrays(
+          ['react_fast_diagram_MiniControl_Default'],
+          finalSettings?.classes
+        ).join(' '),
+      [finalSettings]
+    );
 
-  const style = useMemo(
-    () => ({
-      ...getOffsetStyles(finalSettings),
-      ...finalSettings?.style,
-    }),
-    [finalSettings]
-  );
+    const style = useMemo(
+      () => ({
+        ...getOffsetStyles(finalSettings),
+        ...finalSettings?.style,
+      }),
+      [finalSettings]
+    );
 
-  if (Object.values(finalSettings.buttons).every((v) => v === false)) return null;
+    if (Object.values(finalSettings.buttons).every((v) => v === false))
+      return null;
 
-  return (
-    <div className={className} style={style}>
-      {finalSettings.buttons.deleteSelection &&
-        rootStore.selectionState.selectedItems.length > 0 && (
+    return (
+      <div className={className} style={style}>
+        {finalSettings.buttons.deleteSelection &&
+          selectionState.selectedItems.length > 0 && (
+            <Button
+              size={finalSettings.buttonsSize}
+              onClick={() => commandExecutor.execute(removeSelectedCommand)}
+            >
+              <RubbishBinIcon />
+            </Button>
+          )}
+        {finalSettings.buttons.cloneSelectedNodes &&
+          selectionState.selectedNodes.length > 0 && (
+            <Button
+              size={finalSettings.buttonsSize}
+              onClick={() => commandExecutor.execute(cloneSelectedNodesCommand)}
+            >
+              <CopyIcon />
+            </Button>
+          )}
+        {finalSettings.buttons.zoomIn && (
           <Button
             size={finalSettings.buttonsSize}
-            onClick={() =>
-              rootStore.commandExecutor.execute(removeSelectedCommand)
-            }
-          >
-            <RubbishBinIcon />
-          </Button>
+            onClick={diagramState.zoomIn}
+            children='+'
+          />
         )}
-      {finalSettings.buttons.cloneSelectedNodes &&
-        rootStore.selectionState.selectedNodes.length > 0 && (
+        {finalSettings.buttons.zoomOut && (
           <Button
             size={finalSettings.buttonsSize}
-            onClick={() =>
-              rootStore.commandExecutor.execute(cloneSelectedNodesCommand)
-            }
+            onClick={diagramState.zoomOut}
+            children='-'
+          />
+        )}
+        {finalSettings.buttons.zoomToFit && (
+          <Button
+            size={finalSettings.buttonsSize}
+            onClick={diagramState.zoomToFit}
           >
-            <CopyIcon />
+            <FilterCenterFocusIcon />
           </Button>
         )}
-      {finalSettings.buttons.zoomIn && (
-        <Button
-          size={finalSettings.buttonsSize}
-          onClick={rootStore.diagramState.zoomIn}
-          children='+'
-        />
-      )}
-      {finalSettings.buttons.zoomOut && (
-        <Button
-          size={finalSettings.buttonsSize}
-          onClick={rootStore.diagramState.zoomOut}
-          children='-'
-        />
-      )}
-      {finalSettings.buttons.zoomToFit && (
-        <Button
-          size={finalSettings.buttonsSize}
-          onClick={rootStore.diagramState.zoomToFit}
-        >
-          <FilterCenterFocusIcon />
-        </Button>
-      )}
-    </div>
-  );
-});
+        {finalSettings.buttons.lockUnlockPointerInteractions && (
+          <Button
+            size={finalSettings.buttonsSize}
+            onClick={() => {
+              if (
+                diagramSettings.userInteraction.arePointerInteractionsDisabled
+              )
+                diagramSettings.userInteraction.enableAllPointerInteractions(
+                  true
+                );
+              else
+                diagramSettings.userInteraction.disableAllPointerInteractions(
+                  true
+                );
+            }}
+          >
+            {diagramSettings.userInteraction.arePointerInteractionsDisabled ? (
+              <UnlockIcon />
+            ) : (
+              <LockIcon />
+            )}
+          </Button>
+        )}
+      </div>
+    );
+  }
+);
 
 function getOffsetStyles(settings: IMiniControlDefaultSettings) {
   return {
@@ -150,6 +182,7 @@ const defaultSettings: IMiniControlDefaultSettings = {
     deleteSelection: true,
     cloneSelectedNodes: true,
     zoomToFit: true,
+    lockUnlockPointerInteractions: true,
   },
   parentOffset: 20,
 };
@@ -169,4 +202,5 @@ interface ButtonsValue {
   deleteSelection?: boolean;
   cloneSelectedNodes?: boolean;
   zoomToFit?: boolean;
+  lockUnlockPointerInteractions?: boolean;
 }

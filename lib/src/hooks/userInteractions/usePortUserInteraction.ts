@@ -13,6 +13,7 @@ export const usePortUserInteraction = (
   const {
     linksStore: { linkCreation },
     diagramState,
+    diagramSettings,
   } = useRootStore();
 
   const handlers = useMemo<IGestureHandlers | {}>(
@@ -68,7 +69,9 @@ export const usePortUserInteraction = (
 
   return {
     active: !!portState?.dragging,
-    bind,
+    bind: diagramSettings.userInteraction.arePointerInteractionsDisabled
+      ? () => ({})
+      : bind,
   };
 };
 

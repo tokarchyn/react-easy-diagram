@@ -50,18 +50,23 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
   const [position, setPosition] = useState<Point>([0, 0]);
   const [translate, setTranslate] = useState<Point>([0, 0]);
   const [active, setActive] = useState(false);
-  const leftTopDiagramRef = useRef<Point>();
+  const diagramRectRef = useRef<DOMRect>();
   const elementRef = useRef<HTMLDivElement>(null);
   const cancelledRef = useRef<boolean>(false);
 
   const getPositionOnDiagram = useCallback(
     (pointerPosition: Point) => {
-      if (leftTopDiagramRef.current) {
-        const pointOnDiagram = subtractPoints(
-          pointerPosition,
-          leftTopDiagramRef.current
-        );
-        if (pointOnDiagram[0] >= 0 && pointOnDiagram[1] >= 0) {
+      if (diagramRectRef.current) {
+        const pointOnDiagram = subtractPoints(pointerPosition, [
+          diagramRectRef.current.left,
+          diagramRectRef.current.top,
+        ]);
+        if (
+          pointOnDiagram[0] >= 0 &&
+          pointOnDiagram[1] >= 0 &&
+          pointOnDiagram[0] <= diagramRectRef.current.width &&
+          pointOnDiagram[1] <= diagramRectRef.current.height
+        ) {
           return multiplyPoint(
             subtractPoints(pointOnDiagram, store.diagramState.offset),
             1 / store.diagramState.zoom
@@ -69,18 +74,17 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
         }
       }
     },
-    [leftTopDiagramRef, store]
+    [diagramRectRef, store]
   );
 
   useGesture(
     {
-      onDrag: ({ movement, event, xy }) => {
-        // Cannot use 'cancel' property provided by the library because the first callbacks 
+      onDrag: ({ movement, xy }) => {
+        // Cannot use 'cancel' property provided by the library because the first callbacks
         // after cancelling will have this property set to false
         if (!cancelledRef.current) {
-          event.preventDefault();
           setTranslate(movement);
-  
+
           props.onDrag?.({
             position: getPositionOnDiagram(xy),
             pointerPosition: xy,
@@ -88,7 +92,7 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
           });
         }
       },
-      onDragStart: ({ event, xy, cancel }) => {
+      onDragStart: ({ xy, cancel }) => {
         const allowDrag = props.onDragStart?.({ pointerPosition: xy, store });
         if (allowDrag === false) {
           cancelledRef.current = true;
@@ -96,22 +100,24 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
           return;
         } else {
           cancelledRef.current = false;
-          const diagRect = store.diagramState.diagramInnerRef.current?.getBoundingClientRect();
-          leftTopDiagramRef.current = diagRect && [diagRect.left, diagRect.top];
-          event.preventDefault();
+          store.diagramSettings.userInteraction.disableAllPointerInteractions();
+          diagramRectRef.current = store.diagramState.diagramInnerRef.current?.getBoundingClientRect();
           setPosition(xy);
           setActive(true);
         }
       },
       onDragEnd: ({ xy }) => {
-        setActive(false);
-        setTranslate([0, 0]);
-
-        props.onDrop?.({
-          position: getPositionOnDiagram(xy),
-          pointerPosition: xy,
-          store,
-        });
+        if (!cancelledRef.current) {
+          store.diagramSettings.userInteraction.enableAllPointerInteractions();
+          setActive(false);
+          setTranslate([0, 0]);
+  
+          props.onDrop?.({
+            position: getPositionOnDiagram(xy),
+            pointerPosition: xy,
+            store,
+          });
+        }
       },
     },
     {
@@ -128,6 +134,7 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
         style={{
           transform: `translate(calc(${translate[0]}px - 50%), calc(${translate[1]}px - 50%))`,
           opacity: active ? 1 : 0,
+          pointerEvents: active ? 'auto' : 'none',
           left: position[0],
           top: position[1],
         }}

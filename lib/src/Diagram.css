@@ -180,6 +180,7 @@
 
 .react_fast_diagram_DragAndDropItem_Droppable {
   position: fixed;
+  padding: 40px;
 }
 /* Drag and drop */
 
