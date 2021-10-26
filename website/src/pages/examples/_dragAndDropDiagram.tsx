@@ -1,3 +1,4 @@
+import { css } from '@emotion/css';
 import React from 'react';
 import {
   addNodeCommand,
@@ -21,14 +22,7 @@ export default function () {
         ],
       }}
     >
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'row-reverse',
-        }}
-      >
+      <div className={container_class}>
         <DigramInner />
         <DragAndDropContainer
           items={[
@@ -60,6 +54,36 @@ export default function () {
     </Diagram>
   );
 }
+
+const container_class = css`
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  > :last-child {
+    border: 0 solid rgb(0, 0, 0, 0.1);
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 800px) {
+    flex-direction: row-reverse;
+
+    > :last-child {
+      border-right-width: 1px;
+      width: 300px;
+    }
+  }
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+
+    > :last-child {
+      border-top-width: 1px;
+      width: 100%;
+      height: 150px;
+    }
+  }
+`;
 
 function createNodeOnDrop(nodeType: string) {
   return (event: DragAndDropEvent) => {
