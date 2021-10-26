@@ -93,6 +93,24 @@ ___
 
 ___
 
+### getPositionByPointer
+
+▸ **getPositionByPointer**(`pointerPosition`): [`Point`](../#point)
+
+Get position on Diagram in its coordinates system (including zoom) by mouse/touch position.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `pointerPosition` | [`Point`](../#point) | position of mouse or finger on the screen |
+
+#### Returns
+
+[`Point`](../#point)
+
+___
+
 ### import
 
 ▸ **import**(`state?`): `void`

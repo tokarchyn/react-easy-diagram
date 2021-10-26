@@ -120,6 +120,20 @@ export class DiagramState
   }
 
   /**
+   * Get position on Diagram in its coordinates system (including zoom) by mouse/touch position.
+   * @param pointerPosition position of mouse or finger on the screen
+   */
+  getPositionByPointer = (pointerPosition: Point): Point => {
+    const diagRect = this.diagramInnerRef.current?.getBoundingClientRect();
+    if (diagRect) {
+      return multiplyPoint(
+        subtractPoints(pointerPosition, [diagRect.left, diagRect.top], this.offset),
+        1 / this.zoom
+      );
+    } else return [0, 0];
+  };
+
+  /**
    * Set offset and zoom values that were already rendered.
    */
   renderOffsetAndZoom = (offset: Point, zoom: number) => {

@@ -36,13 +36,17 @@ custom_edit_url: null
 ## Interfaces
 
 - [Dictionary](interfaces/Dictionary)
+- [DragAndDropContainerProps](interfaces/DragAndDropContainerProps)
+- [DragAndDropEvent](interfaces/DragAndDropEvent)
+- [DragAndDropItemProps](interfaces/DragAndDropItemProps)
+- [DragAndDropStartEvent](interfaces/DragAndDropStartEvent)
 - [IBackgroundComponentProps](interfaces/IBackgroundComponentProps)
 - [ICallbacks](interfaces/ICallbacks)
+- [ICommand](interfaces/ICommand)
 - [IComponentDefinition](interfaces/IComponentDefinition)
 - [ICurvedLinkPathConstructorSettings](interfaces/ICurvedLinkPathConstructorSettings)
 - [IDiagramInitState](interfaces/IDiagramInitState)
 - [IDiagramInnerProps](interfaces/IDiagramInnerProps)
-- [IDiagramProps](interfaces/IDiagramProps)
 - [IDiagramSettings](interfaces/IDiagramSettings)
 - [IDiagramState](interfaces/IDiagramState)
 - [IDragHandlers](interfaces/IDragHandlers)
@@ -163,6 +167,12 @@ ___
 ### GestureHandlers
 
 Ƭ **GestureHandlers**: `Partial`<`UserHandlers`<`EventTypes`\> & `NativeHandlers`<`EventTypes`\>\>
+
+___
+
+### IDiagramProps
+
+Ƭ **IDiagramProps**: `React.PropsWithChildren`<`Object`\>
 
 ___
 
@@ -551,11 +561,63 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `props` | [`IDiagramProps`](interfaces/IDiagramProps) |
+| `props` | `PropsWithChildren`<`Object`\> |
 
 #### Returns
 
 `Element`
+
+___
+
+### DragAndDropContainer
+
+▸ **DragAndDropContainer**(`props`): `Element`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `props` | [`DragAndDropContainerProps`](interfaces/DragAndDropContainerProps) |
+
+#### Returns
+
+`Element`
+
+___
+
+### DragAndDropItem
+
+▸ **DragAndDropItem**(`props`): `Element`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `props` | [`DragAndDropItemProps`](interfaces/DragAndDropItemProps) |
+
+#### Returns
+
+`Element`
+
+___
+
+### addNodeCommand
+
+▸ `Const` **addNodeCommand**(`node`): `Object`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `node` | [`INodeState`](interfaces/INodeState) |
+
+#### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `execute` | (`rootStore`: [`RootStore`](classes/RootStore)) => `void` |
 
 ___
 

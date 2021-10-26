@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { DigramInner } from 'components/DiagramInner';
-import type { ISettings } from 'states/rootStore';
 import { RootStore } from 'states/rootStore';
+import type { ISettings } from 'states/rootStore';
 import type { INodeState } from 'states/nodeState';
 import type { ILinkState } from 'states/linkState';
 
@@ -28,16 +28,16 @@ export function Diagram(props: IDiagramProps) {
 
   return (
     <RootStoreContext.Provider value={rootStore}>
-      <DigramInner />
+      {props.children || <DigramInner />}
     </RootStoreContext.Provider>
   );
 }
 
-export interface IDiagramProps {
+export type IDiagramProps = React.PropsWithChildren<{
   settings?: ISettings;
   initState?: IDiagramInitState;
   storeRef?: React.MutableRefObject<RootStore | null>;
-}
+}>;
 
 export interface IDiagramInitState {
   nodes?: INodeState[];
