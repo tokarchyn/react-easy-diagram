@@ -44,7 +44,7 @@ ___
 
 ### onDragStart
 
-▸ `Optional` **onDragStart**(`state`): `boolean`
+▸ `Optional` **onDragStart**(`state`): `any`
 
 Callback that will be called on drag start. Return false to cancel drag.
 
@@ -56,7 +56,7 @@ Callback that will be called on drag start. Return false to cancel drag.
 
 #### Returns
 
-`boolean`
+`any`
 
 ___
 

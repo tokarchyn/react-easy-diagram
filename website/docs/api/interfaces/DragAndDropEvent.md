@@ -28,9 +28,9 @@ ___
 
 ### position
 
-• **position**: [`Point`](../#point)
+• `Optional` **position**: [`Point`](../#point)
 
-Position in diagram coordinates system (including zoom).
+Position in diagram coordinates system (including zoom). Undefined if pointer is not above a diagram.
 
 ___
 
