@@ -14,9 +14,9 @@ interface DragAndDropBaseEvent {
 
 export interface DragAndDropEvent extends DragAndDropBaseEvent {
   /**
-   * Position in diagram coordinates system (including zoom).
+   * Position in diagram coordinates system (including zoom). Undefined if pointer is not above a diagram.
    */
-  position: Point;
+  position?: Point;
 }
 
 export interface DragAndDropStartEvent extends DragAndDropBaseEvent {}
@@ -29,7 +29,7 @@ export interface DragAndDropItemProps {
   /**
    * Callback that will be called on drag start. Return false to cancel drag.
    */
-  onDragStart?: (state: DragAndDropStartEvent) => boolean;
+  onDragStart?: (state: DragAndDropStartEvent) => false | any;
   /**
    * Callback that will be called during pointer movement.
    */
@@ -51,6 +51,8 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
   const [translate, setTranslate] = useState<Point>([0, 0]);
   const [active, setActive] = useState(false);
   const leftTopDiagramRef = useRef<Point>();
+  const elementRef = useRef<HTMLDivElement>(null);
+  const cancelledRef = useRef<boolean>(false);
 
   const getPositionOnDiagram = useCallback(
     (pointerPosition: Point) => {
@@ -70,20 +72,30 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
     [leftTopDiagramRef, store]
   );
 
-  const bind = useGesture(
+  useGesture(
     {
       onDrag: ({ movement, event, xy }) => {
-        event.preventDefault();
-        setTranslate(movement);
-
-        props.onDrop?.({ position, pointerPosition: xy, store });
+        // Cannot use 'cancel' property provided by the library because the first callbacks 
+        // after cancelling will have this property set to false
+        if (!cancelledRef.current) {
+          event.preventDefault();
+          setTranslate(movement);
+  
+          props.onDrag?.({
+            position: getPositionOnDiagram(xy),
+            pointerPosition: xy,
+            store,
+          });
+        }
       },
       onDragStart: ({ event, xy, cancel }) => {
         const allowDrag = props.onDragStart?.({ pointerPosition: xy, store });
         if (allowDrag === false) {
+          cancelledRef.current = true;
           cancel();
           return;
         } else {
+          cancelledRef.current = false;
           const diagRect = store.diagramState.diagramInnerRef.current?.getBoundingClientRect();
           leftTopDiagramRef.current = diagRect && [diagRect.left, diagRect.top];
           event.preventDefault();
@@ -95,23 +107,21 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
         setActive(false);
         setTranslate([0, 0]);
 
-        const positionOnDiagram = getPositionOnDiagram(xy);
-        if (positionOnDiagram) {
-          props.onDrop?.({
-            position: positionOnDiagram,
-            pointerPosition: xy,
-            store,
-          });
-        }
+        props.onDrop?.({
+          position: getPositionOnDiagram(xy),
+          pointerPosition: xy,
+          store,
+        });
       },
     },
     {
+      domTarget: elementRef,
       eventOptions: { passive: false },
     }
   );
 
   return (
-    <div className='react_fast_diagram_DragAndDropItem' {...bind()}>
+    <div className='react_fast_diagram_DragAndDropItem' ref={elementRef}>
       {props.draggable}
       <div
         className='react_fast_diagram_DragAndDropItem_Droppable'

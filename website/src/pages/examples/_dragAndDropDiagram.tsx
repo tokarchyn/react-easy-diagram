@@ -50,6 +50,9 @@ export default function () {
                 <div style={{ fontSize: '2rem', textAlign: 'center' }}>⭐</div>
               ),
               onDrop: createNodeOnDrop('star'),
+              onDrag: (event) =>
+                console.log(`Dragging position: ${event.position}`),
+              onDragStart: (event) => console.log(`Dragging started`),
             },
           ]}
         />
@@ -59,14 +62,18 @@ export default function () {
 }
 
 function createNodeOnDrop(nodeType: string) {
-  return (event: DragAndDropEvent) =>
-    event.store.commandExecutor.execute(
-      addNodeCommand({
-        position: event.position,
-        label: 'Newly created',
-        type: nodeType,
-      })
-    );
+  return (event: DragAndDropEvent) => {
+    // Check if drop occured above the diagram
+    if (event.position) {
+      event.store.commandExecutor.execute(
+        addNodeCommand({
+          position: event.position,
+          label: 'Newly created',
+          type: nodeType,
+        })
+      );
+    }
+  };
 }
 
 function NodeTemplate(props: { label: string }) {
