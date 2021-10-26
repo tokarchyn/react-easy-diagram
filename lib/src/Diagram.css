@@ -12,8 +12,10 @@
 
 .react_fast_diagram_Layer {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  /* We cannot set it to 100% of parent because if parent will be smaller than node
+  then browser will try to shrink node */
+  width: 1000px; 
+  height: 1000px;
   top: 0;
   left: 0;
   overflow: visible;
