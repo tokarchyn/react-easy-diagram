@@ -100,11 +100,9 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
   );
 
   useGesture(handlers, {
-    target: rootStore.diagramSettings.userInteraction
-      .arePointerInteractionsDisabled
-      ? undefined
-      : nodeState.ref,
+    target: nodeState.ref,
     eventOptions: { passive: false },
+    enabled: !rootStore.diagramSettings.userInteraction.arePointerInteractionsDisabled
   });
 
   useDiagramCursor(nodeState.isDragActive, 'move');

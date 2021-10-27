@@ -72,11 +72,10 @@ export const useLinkUserInteraction = (
 
   const bind = useGesture(handlers, {
     eventOptions: { passive: false },
+    enabled: !rootStore.diagramSettings.userInteraction.arePointerInteractionsDisabled
   });
 
-  if (rootStore.diagramSettings.userInteraction.arePointerInteractionsDisabled)
-    return { bind: () => ({}) };
-  else return { bind };
+  return { bind };
 };
 
 const selectDelay: number = 500;

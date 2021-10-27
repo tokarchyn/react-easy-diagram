@@ -67,15 +67,14 @@ export const usePortUserInteraction = (
   const bind = useGesture(handlers, {
     eventOptions: { passive: false },
     drag: { pointer: { capture: false } },
+    enabled: !diagramSettings.userInteraction.arePointerInteractionsDisabled
   });
 
   useDiagramCursor(!!portState?.dragging, 'pointer');
 
   return {
     active: !!portState?.dragging,
-    bind: diagramSettings.userInteraction.arePointerInteractionsDisabled
-      ? () => ({})
-      : bind,
+    bind: bind,
   };
 };
 

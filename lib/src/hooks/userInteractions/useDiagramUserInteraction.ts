@@ -26,10 +26,9 @@ export const useDiagramUserInteraction = () => {
       ...wheelHandler,
     },
     {
-      target: diagramSettings.userInteraction.arePointerInteractionsDisabled
-        ? undefined
-        : diagramState.diagramInnerRef,
+      target: diagramState.diagramInnerRef,
       eventOptions: { passive: false },
+      enabled: !diagramSettings.userInteraction.arePointerInteractionsDisabled
     }
   );
 };
