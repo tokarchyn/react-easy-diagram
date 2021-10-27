@@ -32,7 +32,7 @@ export const LinkDefault: React.FC<
       }),
     [settings]
   );
-
+  
   let state = 'base';
   if (entity.selected && entity.hovered) state = 'selected-hovered';
   else if (entity.selected) state = 'selected';

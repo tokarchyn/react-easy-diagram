@@ -10,16 +10,16 @@ custom_edit_url: null
 
 ### onDrag
 
-• **onDrag**: `DragEventHandler`
+• **onDrag**: `Handler`<``"drag"``, `PointerEvent` \| `MouseEvent` \| `TouchEvent` \| `KeyboardEvent`\>
 
 ___
 
 ### onDragEnd
 
-• **onDragEnd**: `DragEventHandler`
+• **onDragEnd**: `Handler`<``"drag"``, `PointerEvent` \| `MouseEvent` \| `TouchEvent` \| `KeyboardEvent`\>
 
 ___
 
 ### onDragStart
 
-• **onDragStart**: `DragEventHandler`
+• **onDragStart**: `Handler`<``"drag"``, `PointerEvent` \| `MouseEvent` \| `TouchEvent` \| `KeyboardEvent`\>

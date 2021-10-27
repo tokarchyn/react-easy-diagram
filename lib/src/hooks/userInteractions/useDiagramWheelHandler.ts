@@ -1,8 +1,11 @@
-import { useMemo } from 'react';
-import { Handler } from 'react-use-gesture/dist/types';
-import { subtractPoints } from 'utils/point';
-import type { IUserInteractionTranslateAndZoom } from 'hooks/userInteractions/common';
+import { EventTypes, Handler } from '@use-gesture/react';
+import type {
+  check,
+  IUserInteractionTranslateAndZoom,
+} from 'hooks/userInteractions/common';
 import { useRootStore } from 'hooks/useRootStore';
+import { useMemo } from 'react';
+import { subtractPoints } from 'utils/point';
 
 export function useDiagramWheelHandler(
   state: IUserInteractionTranslateAndZoom
@@ -39,9 +42,7 @@ export function useDiagramWheelHandler(
   return handlers;
 }
 
-type WheelEventHandler =
-  | Handler<'wheel', React.WheelEvent<Element> | WheelEvent>
-  | undefined;
+type WheelEventHandler = Handler<'wheel', check<EventTypes, 'wheel'>>;
 
 interface IWheelHandler {
   onWheel: WheelEventHandler;

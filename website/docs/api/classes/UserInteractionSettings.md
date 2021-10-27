@@ -14,6 +14,16 @@ custom_edit_url: null
 
 ## Accessors
 
+### arePointerInteractionsDisabled
+
+• `get` **arePointerInteractionsDisabled**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+___
+
 ### diagramPan
 
 • `get` **diagramPan**(): `boolean`
@@ -167,6 +177,38 @@ ___
 `void`
 
 ## Methods
+
+### disableAllPointerInteractions
+
+▸ **disableAllPointerInteractions**(`force?`): `void`
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `force` | `boolean` | `false` |
+
+#### Returns
+
+`void`
+
+___
+
+### enableAllPointerInteractions
+
+▸ **enableAllPointerInteractions**(`force?`): `void`
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `force` | `boolean` | `false` |
+
+#### Returns
+
+`void`
+
+___
 
 ### import
 

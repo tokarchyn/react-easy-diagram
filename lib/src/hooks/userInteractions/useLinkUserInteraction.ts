@@ -1,8 +1,7 @@
 import { useNotifyRef } from 'hooks/useNotifyRef';
 import { useRootStore } from 'hooks/useRootStore';
 import { useMemo, useRef } from 'react';
-import { useGesture } from 'react-use-gesture';
-import { ReactEventHandlers } from 'react-use-gesture/dist/types';
+import { ReactDOMAttributes, useGesture } from '@use-gesture/react';
 import { LinkCreationState } from 'states/linkCreationState';
 import { LinkState } from 'states/linkState';
 import { GestureHandlers } from 'hooks/userInteractions/common';
@@ -75,11 +74,13 @@ export const useLinkUserInteraction = (
     eventOptions: { passive: false },
   });
 
-  return { bind };
+  if (rootStore.diagramSettings.userInteraction.arePointerInteractionsDisabled)
+    return { bind: () => ({}) };
+  else return { bind };
 };
 
 const selectDelay: number = 500;
 
 export interface IUseLinkUserInteractionResult {
-  bind: (...args: any[]) => ReactEventHandlers;
+  bind: (...args: any[]) => ReactDOMAttributes;
 }

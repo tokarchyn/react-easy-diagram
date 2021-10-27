@@ -16,7 +16,7 @@ custom_edit_url: null
 
 ### bind
 
-▸ **bind**(...`args`): `ReactEventHandlers`
+▸ **bind**(...`args`): `ReactDOMAttributes`
 
 #### Parameters
 
@@ -26,4 +26,4 @@ custom_edit_url: null
 
 #### Returns
 
-`ReactEventHandlers`
+`ReactDOMAttributes`

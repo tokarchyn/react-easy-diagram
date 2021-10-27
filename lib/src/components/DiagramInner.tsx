@@ -30,12 +30,19 @@ export const DigramInner = observer<IDiagramInnerProps>((props) => {
   );
 
   const transform = generateTransform(offset, zoom);
+  let className = 'react_fast_diagram_DiagramInner';
+  if (
+    !rootStore.diagramSettings.userInteraction.arePointerInteractionsDisabled
+  ) {
+    // Disable touch actions as useGesture library recommends
+    className += ' react_fast_diagram_touch_action_disabled';
+  }
 
   return (
     <div
       ref={rootStore.diagramState.diagramInnerRef}
-      style={{ ...props.diagramStyles }}
-      className='react_fast_diagram_DiagramInner'
+      style={props.diagramStyles}
+      className={className}
     >
       <BackgroundWrapper />
       <LinksLayer linksStore={rootStore.linksStore} transform={transform} />

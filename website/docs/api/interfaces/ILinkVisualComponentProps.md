@@ -42,7 +42,7 @@ ___
 
 ### bind
 
-▸ **bind**(...`args`): `ReactEventHandlers`
+▸ **bind**(...`args`): `ReactDOMAttributes`
 
 #### Parameters
 
@@ -52,4 +52,4 @@ ___
 
 #### Returns
 
-`ReactEventHandlers`
+`ReactDOMAttributes`

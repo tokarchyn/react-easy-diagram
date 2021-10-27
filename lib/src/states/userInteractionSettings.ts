@@ -8,6 +8,7 @@ export class UserInteractionSettings {
   private _nodeSelection: boolean;
   private _linkSelection: boolean;
   private _multiselectionKey: MultipleSelectionKey;
+  private _disableAllPointerInteractionsCounter: number;
 
   constructor() {
     this.import();
@@ -22,6 +23,9 @@ export class UserInteractionSettings {
     this._nodeSelection = obj?.nodeSelection ?? true;
     this._linkSelection = obj?.linkSelection ?? true;
     this._multiselectionKey = obj?.multiselectionKey ?? 'shift';
+    this._disableAllPointerInteractionsCounter = obj?.disableAllMouseAndTouchInteractions
+      ? 1
+      : 0;
   };
 
   get diagramZoom() {
@@ -80,6 +84,22 @@ export class UserInteractionSettings {
     this._multiselectionKey = value;
   }
 
+  disableAllPointerInteractions = (force: boolean = false) => {
+    this._disableAllPointerInteractionsCounter = force
+      ? 1
+      : this._disableAllPointerInteractionsCounter + 1;
+  };
+
+  enableAllPointerInteractions = (force: boolean = false) => {
+    this._disableAllPointerInteractionsCounter = force
+      ? 0
+      : this._disableAllPointerInteractionsCounter - 1;
+  };
+
+  get arePointerInteractionsDisabled(): boolean {
+    return this._disableAllPointerInteractionsCounter > 0;
+  }
+
   isCallbackMultiselectionActivated = (
     shiftKey: boolean,
     altKey: boolean,
@@ -109,6 +129,7 @@ export interface IUserInteraction {
   nodeSelection: boolean;
   linkSelection: boolean;
   multiselectionKey: MultipleSelectionKey;
+  disableAllMouseAndTouchInteractions: boolean;
 }
 
 export type MultipleSelectionKey = 'ctrl' | 'alt' | 'meta' | 'shift';

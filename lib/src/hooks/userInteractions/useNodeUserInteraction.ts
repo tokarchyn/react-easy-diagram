@@ -6,7 +6,7 @@ import {
 import { useCursor, useDiagramCursor } from 'hooks/userInteractions/useCursor';
 import { useRootStore } from 'hooks/useRootStore';
 import React, { useCallback, useMemo, useRef } from 'react';
-import { useGesture } from 'react-use-gesture';
+import { useGesture } from '@use-gesture/react';
 import { NodeState } from 'states/nodeState';
 import { multiplyPoint } from 'utils/point';
 
@@ -54,7 +54,7 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
           multiplyPoint(delta, 1 / rootStore.diagramState.zoom)
         );
       },
-      onDragStart: ({ event }) => {
+      onDragStart: ({ event, cancel }) => {
         interactionActiveRef.current =
           allowNodeInteraction(event) && !rootStore.dragState.isActive;
 
@@ -68,6 +68,8 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
               }
             }, selectDelay);
           }
+        } else {
+          cancel();
         }
       },
       onDragEnd: ({ tap, shiftKey, altKey, ctrlKey, metaKey }) => {
@@ -98,7 +100,10 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
   );
 
   useGesture(handlers, {
-    domTarget: nodeState.ref,
+    target: rootStore.diagramSettings.userInteraction
+      .arePointerInteractionsDisabled
+      ? undefined
+      : nodeState.ref,
     eventOptions: { passive: false },
   });
 
@@ -109,7 +114,7 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
 const selectDelay: number = 500;
 
 function allowNodeInteraction(
-  event: React.PointerEvent<Element> | PointerEvent
+  event: PointerEvent | TouchEvent | MouseEvent | KeyboardEvent
 ) {
   return eventPathContainsClass(
     event,
