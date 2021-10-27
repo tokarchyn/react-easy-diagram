@@ -80,6 +80,7 @@ describe('Diagram state', () => {
 
   test('Zoom to fit nodes', () => {
     rootStore.diagramSettings.zoomToFitSettings.padding = [5, 5];
+    rootStore.diagramSettings.zoomToFitSettings.zoomInterval = [1, 5];
     const boundingBox: BoundingBox = {
       topLeftCorner: [100, 100],
       bottomRightCorner: [190, 190],
@@ -95,5 +96,25 @@ describe('Diagram state', () => {
 
     expect(diagramState.zoom).toEqual(2);
     expect(diagramState.offset).toEqual([-190, -190]);
+  });
+
+  test('Zoom to fit nodes taking into account zoom to fit interval', () => {
+    rootStore.diagramSettings.zoomToFitSettings.padding = [5, 5];
+    rootStore.diagramSettings.zoomToFitSettings.zoomInterval = [1, 1.2];
+    const boundingBox: BoundingBox = {
+      topLeftCorner: [100, 100],
+      bottomRightCorner: [190, 190],
+      size: [90, 90],
+    };
+    rootStore.nodesStore.getNodesBoundingBox = () => boundingBox;
+    diagramState.diagramInnerRef.current = {
+      clientWidth: 200,
+      clientHeight: 200,
+    } as HTMLDivElement;
+
+    diagramState.zoomToFit();
+
+    expect(diagramState.zoom).toEqual(rootStore.diagramSettings.zoomToFitSettings.zoomInterval[1]);
+    expect(diagramState.offset).toEqual([-74, -74]);
   });
 });

@@ -11,7 +11,8 @@ export const NodesLayer = observer<{
   const rootStore = useRootStore();
 
   useEffect(() => {
-    rootStore.diagramState.zoomToFit();
+    if (rootStore.diagramSettings.zoomToFitSettings.callOnLoad)
+      rootStore.diagramState.zoomToFit();
   }, []);
 
   return (

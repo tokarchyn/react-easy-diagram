@@ -127,7 +127,11 @@ export class DiagramState
     const diagRect = this.diagramInnerRef.current?.getBoundingClientRect();
     if (diagRect) {
       return multiplyPoint(
-        subtractPoints(pointerPosition, [diagRect.left, diagRect.top], this.offset),
+        subtractPoints(
+          pointerPosition,
+          [diagRect.left, diagRect.top],
+          this.offset
+        ),
         1 / this.zoom
       );
     } else return [0, 0];
@@ -150,16 +154,10 @@ export class DiagramState
       return;
     }
 
-    const newZoom = calculateNewZoomToFitBoundingBox(
-      diagramSize,
-      nodesBoundingBox
+    const newZoom = clampValue(
+      calculateNewZoomToFitBoundingBox(diagramSize, nodesBoundingBox),
+      this._rootStore.diagramSettings.zoomToFitSettings.zoomInterval
     );
-
-    // Extend interval to be able to set required zoom
-    this._rootStore.diagramSettings.setZoomInterval([
-      Math.min(this._rootStore.diagramSettings.zoomInterval[0], newZoom),
-      Math.max(this._rootStore.diagramSettings.zoomInterval[1], newZoom),
-    ]);
     this.setZoom(newZoom);
 
     this.setOffset(
