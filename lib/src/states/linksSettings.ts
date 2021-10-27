@@ -1,4 +1,3 @@
-import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 import { makeAutoObservable } from 'mobx';
 import { createLinkDefault, LinkDefault } from 'components/link/LinkDefault';
 import { createCurvedLinkPathConstructor } from 'linkConstructors/curved';
@@ -16,6 +15,7 @@ import {
 } from 'states/visualComponents';
 import { IVisualComponentProps } from 'states/visualComponentState';
 import { createArrowMarker, createCircleMarker } from 'components/link/Markers';
+import { ReactDOMAttributes } from '@use-gesture/react';
 
 export class LinksSettings {
   private _pathConstructor: ILinkPathConstructor;
@@ -113,7 +113,7 @@ const defaultPathConstructor = createCurvedLinkPathConstructor();
 
 export interface ILinkVisualComponentProps<TSettings = any>
   extends IVisualComponentProps<LinkState | LinkCreationState, TSettings> {
-  bind: (...args: any[]) => ReactEventHandlers;
+  bind: (...args: any[]) => ReactDOMAttributes;
 }
 
 export interface ILinksSettings

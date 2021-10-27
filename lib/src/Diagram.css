@@ -4,7 +4,6 @@
   height: 100%;
   position: relative;
   overflow: hidden;
-  touch-action: none;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -103,7 +102,6 @@
 
 /* Port */
 .react_fast_diagram_PortInnerDefault {
-  cursor: pointer;
   width: 7px;
   height: 7px;
   background-color: white;
@@ -112,14 +110,17 @@
 }
 
 .react_fast_diagram_PortInnerDefault_Hovered {
+  cursor: pointer;
   border-color: #A0F251;
 }
 
 .react_fast_diagram_PortInnerDefault_Dragging {
+  cursor: pointer;
   border-color: #A0F251;
 }
 
 .react_fast_diagram_PortInnerDefault_Invalid {
+  cursor: pointer;
   border-color: #FF7B8F;
 }
 
@@ -134,8 +135,7 @@
 /* Port */
 
 /* Link */
-.react_fast_diagram_LinkDefault_Line {
-  cursor: pointer;
+.react_fast_diagram_LinkDefault_Line {  
   fill: none;
   stroke-linecap: round;
   stroke: #c2c2c2;
@@ -154,10 +154,12 @@
   stroke-width: 5px;
   stroke-opacity: 0;
   pointer-events: stroke;
+  touch-action: none;
 }
 
 .react_fast_diagram_LinkDefault_SecondaryLine_Hovered {
   stroke-opacity: 0.22;
+  cursor: pointer;
 }
 /* Link */
 
@@ -180,7 +182,6 @@
 
 .react_fast_diagram_DragAndDropItem_Droppable {
   position: fixed;
-  padding: 40px;
 }
 /* Drag and drop */
 
@@ -218,3 +219,9 @@
   margin: 0;
 }
 /* Containers with gap between items */
+
+/* Utils */
+.react_fast_diagram_touch_action_disabled {
+  touch-action: none;
+}
+/* Utils */

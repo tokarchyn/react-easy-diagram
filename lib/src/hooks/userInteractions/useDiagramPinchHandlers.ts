@@ -1,26 +1,12 @@
-import { useMemo, useRef } from 'react';
-import { Handler, WebKitGestureEvent } from 'react-use-gesture/dist/types';
-import { Point, subtractPoints } from 'utils/point';
-import { useRootStore } from 'hooks/useRootStore';
+import { EventTypes, Handler } from '@use-gesture/react';
 import { useNotifyRef } from 'hooks/useNotifyRef';
-
-type PinchEvent =
-  | React.TouchEvent
-  | TouchEvent
-  | React.WheelEvent
-  | WheelEvent
-  | WebKitGestureEvent;
-
-type PinchEventHandler = Handler<'pinch', PinchEvent> | undefined;
-
-interface IPinchHandlers {
-  onPinch: PinchEventHandler;
-  onPinchStart: PinchEventHandler;
-  onPinchEnd: PinchEventHandler;
-}
+import { useRootStore } from 'hooks/useRootStore';
+import { useMemo, useRef } from 'react';
+import { Point, subtractPoints } from 'utils/point';
+import { check } from './common';
 
 export function useDiagramPinchHandlers(
-  cancel: (event: PinchEvent) => boolean
+  cancel: (event: { target: EventTarget | null }) => boolean
 ): IPinchHandlers {
   const { diagramState, diagramSettings } = useRootStore();
 
@@ -87,6 +73,14 @@ export function useDiagramPinchHandlers(
   );
 
   return handlers;
+}
+
+type PinchEventHandler = Handler<'pinch', check<EventTypes, 'pinch'>>;
+
+interface IPinchHandlers {
+  onPinch: PinchEventHandler;
+  onPinchStart: PinchEventHandler;
+  onPinchEnd: PinchEventHandler;
 }
 
 interface IPinchState {

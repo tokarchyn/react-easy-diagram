@@ -1,6 +1,6 @@
 import { useRootStore } from 'hooks/useRootStore';
 import React, { useCallback, useRef, useState } from 'react';
-import { useGesture } from 'react-use-gesture';
+import { useGesture } from '@use-gesture/react';
 import { RootStore } from 'states/rootStore';
 import { multiplyPoint, Point, subtractPoints } from 'utils/point';
 
@@ -100,7 +100,6 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
           return;
         } else {
           cancelledRef.current = false;
-          store.diagramSettings.userInteraction.disableAllPointerInteractions();
           diagramRectRef.current = store.diagramState.diagramInnerRef.current?.getBoundingClientRect();
           setPosition(xy);
           setActive(true);
@@ -108,7 +107,6 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
       },
       onDragEnd: ({ xy }) => {
         if (!cancelledRef.current) {
-          store.diagramSettings.userInteraction.enableAllPointerInteractions();
           setActive(false);
           setTranslate([0, 0]);
   
@@ -121,7 +119,7 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
       },
     },
     {
-      domTarget: elementRef,
+      target: elementRef,
       eventOptions: { passive: false },
     }
   );

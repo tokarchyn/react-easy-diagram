@@ -107,9 +107,9 @@ const MiniControlDefault: React.FC<
             }}
           >
             {diagramSettings.userInteraction.arePointerInteractionsDisabled ? (
-              <UnlockIcon />
-            ) : (
               <LockIcon />
+            ) : (
+              <UnlockIcon />
             )}
           </Button>
         )}

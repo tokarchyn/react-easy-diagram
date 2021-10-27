@@ -335,6 +335,19 @@ ___
 | :------ |
 | `TComponentProps` |
 
+___
+
+### check
+
+Ƭ **check**<`T`, `Key`\>: `undefined` extends `T`[`Key`] ? `EventTypes`[`Key`] : `T`[`Key`]
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `AnyHandlerEventTypes` |
+| `Key` | extends `GestureKey` |
+
 ## Variables
 
 ### BackgroundWrapper
@@ -472,12 +485,6 @@ ___
 ### UnlockIcon
 
 • **UnlockIcon**: `React.FC`
-
-___
-
-### className
-
-• **className**: `string`
 
 ___
 
@@ -1258,7 +1265,7 @@ if neither exceptClassName nor className were found -> return false
 
 | Name | Type |
 | :------ | :------ |
-| `event` | `PointerEvent` \| `PointerEvent`<`Element`\> |
+| `event` | `PointerEvent` \| `MouseEvent` \| `TouchEvent` \| `KeyboardEvent` |
 | `className` | `string` |
 | `exceptClassName?` | `string` |
 
@@ -1560,7 +1567,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `active` | `boolean` |
-| `cursor` | `undefined` \| `string` & {} \| ``"-moz-initial"`` \| ``"inherit"`` \| ``"initial"`` \| ``"revert"`` \| ``"unset"`` \| ``"-moz-grab"`` \| ``"-webkit-grab"`` \| ``"alias"`` \| ``"all-scroll"`` \| ``"auto"`` \| ``"cell"`` \| ``"col-resize"`` \| ``"context-menu"`` \| ``"copy"`` \| ``"crosshair"`` \| ``"default"`` \| ``"e-resize"`` \| ``"ew-resize"`` \| ``"grab"`` \| ``"grabbing"`` \| ``"help"`` \| ``"move"`` \| ``"n-resize"`` \| ``"ne-resize"`` \| ``"nesw-resize"`` \| ``"no-drop"`` \| ``"none"`` \| ``"not-allowed"`` \| ``"ns-resize"`` \| ``"nw-resize"`` \| ``"nwse-resize"`` \| ``"pointer"`` \| ``"progress"`` \| ``"row-resize"`` \| ``"s-resize"`` \| ``"se-resize"`` \| ``"sw-resize"`` \| ``"text"`` \| ``"vertical-text"`` \| ``"w-resize"`` \| ``"wait"`` \| ``"zoom-in"`` \| ``"zoom-out"`` |
+| `cursor` | `undefined` \| ``"move"`` \| `string` & {} \| ``"-moz-initial"`` \| ``"inherit"`` \| ``"initial"`` \| ``"revert"`` \| ``"unset"`` \| ``"-moz-grab"`` \| ``"-webkit-grab"`` \| ``"alias"`` \| ``"all-scroll"`` \| ``"auto"`` \| ``"cell"`` \| ``"col-resize"`` \| ``"context-menu"`` \| ``"copy"`` \| ``"crosshair"`` \| ``"default"`` \| ``"e-resize"`` \| ``"ew-resize"`` \| ``"grab"`` \| ``"grabbing"`` \| ``"help"`` \| ``"n-resize"`` \| ``"ne-resize"`` \| ``"nesw-resize"`` \| ``"no-drop"`` \| ``"none"`` \| ``"not-allowed"`` \| ``"ns-resize"`` \| ``"nw-resize"`` \| ``"nwse-resize"`` \| ``"pointer"`` \| ``"progress"`` \| ``"row-resize"`` \| ``"s-resize"`` \| ``"se-resize"`` \| ``"sw-resize"`` \| ``"text"`` \| ``"vertical-text"`` \| ``"w-resize"`` \| ``"wait"`` \| ``"zoom-in"`` \| ``"zoom-out"`` |
 | `ref` | ``null`` \| `HTMLDivElement` |
 
 #### Returns
@@ -1600,7 +1607,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `active` | `boolean` |
-| `cursor` | `undefined` \| `string` & {} \| ``"-moz-initial"`` \| ``"inherit"`` \| ``"initial"`` \| ``"revert"`` \| ``"unset"`` \| ``"-moz-grab"`` \| ``"-webkit-grab"`` \| ``"alias"`` \| ``"all-scroll"`` \| ``"auto"`` \| ``"cell"`` \| ``"col-resize"`` \| ``"context-menu"`` \| ``"copy"`` \| ``"crosshair"`` \| ``"default"`` \| ``"e-resize"`` \| ``"ew-resize"`` \| ``"grab"`` \| ``"grabbing"`` \| ``"help"`` \| ``"move"`` \| ``"n-resize"`` \| ``"ne-resize"`` \| ``"nesw-resize"`` \| ``"no-drop"`` \| ``"none"`` \| ``"not-allowed"`` \| ``"ns-resize"`` \| ``"nw-resize"`` \| ``"nwse-resize"`` \| ``"pointer"`` \| ``"progress"`` \| ``"row-resize"`` \| ``"s-resize"`` \| ``"se-resize"`` \| ``"sw-resize"`` \| ``"text"`` \| ``"vertical-text"`` \| ``"w-resize"`` \| ``"wait"`` \| ``"zoom-in"`` \| ``"zoom-out"`` |
+| `cursor` | `undefined` \| ``"move"`` \| `string` & {} \| ``"-moz-initial"`` \| ``"inherit"`` \| ``"initial"`` \| ``"revert"`` \| ``"unset"`` \| ``"-moz-grab"`` \| ``"-webkit-grab"`` \| ``"alias"`` \| ``"all-scroll"`` \| ``"auto"`` \| ``"cell"`` \| ``"col-resize"`` \| ``"context-menu"`` \| ``"copy"`` \| ``"crosshair"`` \| ``"default"`` \| ``"e-resize"`` \| ``"ew-resize"`` \| ``"grab"`` \| ``"grabbing"`` \| ``"help"`` \| ``"n-resize"`` \| ``"ne-resize"`` \| ``"nesw-resize"`` \| ``"no-drop"`` \| ``"none"`` \| ``"not-allowed"`` \| ``"ns-resize"`` \| ``"nw-resize"`` \| ``"nwse-resize"`` \| ``"pointer"`` \| ``"progress"`` \| ``"row-resize"`` \| ``"s-resize"`` \| ``"se-resize"`` \| ``"sw-resize"`` \| ``"text"`` \| ``"vertical-text"`` \| ``"w-resize"`` \| ``"wait"`` \| ``"zoom-in"`` \| ``"zoom-out"`` |
 
 #### Returns
 
@@ -1610,13 +1617,13 @@ ___
 
 ### useDiagramDragHandlers
 
-▸ **useDiagramDragHandlers**(`cancelEvent?`): [`IDragHandlers`](interfaces/IDragHandlers)
+▸ **useDiagramDragHandlers**(`cancelEvent`): [`IDragHandlers`](interfaces/IDragHandlers)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `cancelEvent?` | (`event`: `PointerEvent` \| `PointerEvent`<`Element`\>) => `boolean` |
+| `cancelEvent` | (`event`: { `target`: ``null`` \| `EventTarget`  }) => `boolean` |
 
 #### Returns
 
@@ -1632,7 +1639,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `cancel` | (`event`: `PinchEvent`) => `boolean` |
+| `cancel` | (`event`: { `target`: ``null`` \| `EventTarget`  }) => `boolean` |
 
 #### Returns
 

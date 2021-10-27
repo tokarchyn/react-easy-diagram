@@ -7,10 +7,20 @@ import { NodeState } from 'states/nodeState';
 import { observer } from 'mobx-react-lite';
 import { useNotifyRef } from 'hooks/useNotifyRef';
 import { action } from 'mobx';
+import { useRootStore } from 'hooks/useRootStore';
 
 export const NodeWrapper = observer<{ node: NodeState }>(({ node }) => {
+  const {diagramSettings} = useRootStore();
   useNodeUserInteraction(node);
   const renderedPortsContextValue = usePortsCleanUp(node);
+
+  let className = `react_fast_diagram_NodeWrapper ${ENABLE_NODE_USER_INTERACTION_CLASS}`;
+  if (
+    !diagramSettings.userInteraction.arePointerInteractionsDisabled
+  ) {
+    // Disable touch actions as useGesture library recommends
+    className += ' react_fast_diagram_touch_action_disabled';
+  }
 
   return (
     <NodeContext.Provider value={node}>
@@ -44,7 +54,6 @@ interface IRenderedPorts {
 export const RenderedPortsComponentsContext = React.createContext<IRenderedPorts>(
   { render: () => undefined, unrender: () => undefined }
 );
-export const className = `react_fast_diagram_NodeWrapper ${ENABLE_NODE_USER_INTERACTION_CLASS}`;
 
 /**
  * Clean up old ports.

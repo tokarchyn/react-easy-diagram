@@ -16,11 +16,11 @@ custom_edit_url: null
 
 ### selectedItems
 
-• `get` **selectedItems**(): readonly [`SelectableItem`](../#selectableitem)[]
+• `get` **selectedItems**(): [`SelectableItem`](../#selectableitem)[]
 
 #### Returns
 
-readonly [`SelectableItem`](../#selectableitem)[]
+[`SelectableItem`](../#selectableitem)[]
 
 ___
 

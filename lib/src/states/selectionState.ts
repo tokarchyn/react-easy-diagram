@@ -3,14 +3,14 @@ import { LinkState } from 'states/linkState';
 import { NodeState } from 'states/nodeState';
 
 export class SelectionState {
-  private _selectedItems: SelectableItem[] = [];
+  private _selectedItems = new Set<SelectableItem>();
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  get selectedItems(): Readonly<SelectableItem[]> {
-    return this._selectedItems;
+  get selectedItems(): SelectableItem[] {
+    return Array.from(this._selectedItems);
   }
 
   get selectedNodes(): NodeState[] {
@@ -21,11 +21,10 @@ export class SelectionState {
 
   select = (item: SelectableItem, unselectOther: boolean = false): boolean => {
     if (unselectOther) this.unselectAll();
-
-    if (!item.selected) {
+    
+    if (!this._selectedItems.has(item)) {
       item.selected = true;
-      this._selectedItems = [...this._selectedItems, item];
-
+      this._selectedItems.add(item);
       return true;
     } else return false;
   };
@@ -39,16 +38,16 @@ export class SelectionState {
   };
 
   unselect = (item: SelectableItem): boolean => {
-    if (item.selected) {
+    if (this._selectedItems.has(item)) {
       item.selected = false;
-      this._selectedItems = this._selectedItems.filter((i) => i !== item);
+      this._selectedItems.delete(item);
       return true;
     } else return false;
   };
 
   unselectAll = () => {
     this._selectedItems.forEach((i) => (i.selected = false));
-    this._selectedItems = [];
+    this._selectedItems.clear();
   };
 
   unselectItems = (itemsToClear: Readonly<SelectableItem[]>) => {
