@@ -45,8 +45,8 @@ export const DigramInner = observer<IDiagramInnerProps>((props) => {
       className={className}
     >
       <BackgroundWrapper />
-      <LinksLayer linksStore={rootStore.linksStore} transform={transform} />
-      <NodesLayer nodesStore={rootStore.nodesStore} transform={transform} />
+      <LinksLayer transform={transform} />
+      <NodesLayer transform={transform} />
       <MiniControlWrapper />
     </div>
   );

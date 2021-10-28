@@ -9,7 +9,7 @@ export interface ISvgCircleMarkerSettings extends ISvgMarkerSettings {
   radius?: number;
 }
 
-const CircleMarker = (props: ISvgCircleMarkerSettings) => {
+const CircleMarker = React.memo((props: ISvgCircleMarkerSettings) => {
   const finalSettings: ISvgCircleMarkerSettings = {
     id: props.id,
     radius: props.radius ?? 2,
@@ -28,7 +28,7 @@ const CircleMarker = (props: ISvgCircleMarkerSettings) => {
       <circle r={finalSettings.radius} style={finalSettings.style} />
     </marker>
   );
-};
+});
 
 export function createCircleMarker(
   settings: ISvgCircleMarkerSettings
@@ -41,7 +41,7 @@ export interface ISvgArrowMarkerSettings extends ISvgMarkerSettings {
   width?: number;
 }
 
-const ArrowMarker = (props: ISvgArrowMarkerSettings) => {
+const ArrowMarker = React.memo((props: ISvgArrowMarkerSettings) => {
   const finalSettings = {
     id: props.id,
     height: props.height ?? 10,
@@ -68,7 +68,7 @@ const ArrowMarker = (props: ISvgArrowMarkerSettings) => {
       />
     </marker>
   );
-};
+});
 
 export function createArrowMarker(
   settings: ISvgArrowMarkerSettings

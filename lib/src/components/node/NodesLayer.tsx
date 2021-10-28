@@ -5,9 +5,8 @@ import { NodesStore } from 'states/nodesStore';
 import { NodeWrapper } from 'components/node/NodeWrapper';
 
 export const NodesLayer = observer<{
-  nodesStore: NodesStore;
   transform: string;
-}>(({ nodesStore, transform }) => {
+}>(({ transform }) => {
   const rootStore = useRootStore();
 
   useEffect(() => {
@@ -17,9 +16,19 @@ export const NodesLayer = observer<{
 
   return (
     <div className='react_fast_diagram_Layer' style={{ transform: transform }}>
+      <NodesList />
+    </div>
+  );
+});
+
+const NodesList = observer(() => {
+  const { nodesStore } = useRootStore();
+  return (
+    <>
+      {' '}
       {Array.from(nodesStore.nodes).map(([id, node]) => (
         <NodeWrapper key={node.id} node={node} />
       ))}
-    </div>
+    </>
   );
 });
