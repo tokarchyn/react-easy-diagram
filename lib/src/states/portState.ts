@@ -172,7 +172,7 @@ export class PortState {
         this.node.ref.current,
         // Zoom property cannot be used here because to calculate offset we use real
         // html elements that have not been rendered with the new zoom at this time
-        this._rootStore.diagramState.renderedZoom
+        this._rootStore.diagramState.renderedZoomNotObservable
       );
     }
 

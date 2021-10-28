@@ -13,7 +13,7 @@ export class DiagramState
   private _offset: Point;
   private _zoom: number;
   private _renderedOffset: Point;
-  private _renderedZoom: number;
+  private _renderedZoomNotObservable: number;
   private _diagramInnerRef: HtmlElementRefState;
   private _rootStore: RootStore;
 
@@ -21,12 +21,14 @@ export class DiagramState
     this._diagramInnerRef = new HtmlElementRefState(null);
     this._rootStore = rootStore;
     this._renderedOffset = [0, 0];
-    this._renderedZoom = 1;
+    this._renderedZoomNotObservable = 1;
     this.import();
-
+    
     makeAutoObservable(this, {
       // @ts-ignore
       _rootStore: false,
+      renderedZoomNotObservable: false,
+      _renderedZoomNotObservable: false
     });
   }
 
@@ -115,8 +117,8 @@ export class DiagramState
     return this._renderedOffset;
   }
 
-  get renderedZoom() {
-    return this._renderedZoom;
+  get renderedZoomNotObservable() {
+    return this._renderedZoomNotObservable;
   }
 
   /**
@@ -142,7 +144,7 @@ export class DiagramState
    */
   renderOffsetAndZoom = (offset: Point, zoom: number) => {
     this._renderedOffset = offset;
-    this._renderedZoom = zoom;
+    this._renderedZoomNotObservable = zoom;
   };
 
   zoomToFit = () => {

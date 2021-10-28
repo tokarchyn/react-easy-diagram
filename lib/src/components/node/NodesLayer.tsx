@@ -25,7 +25,6 @@ const NodesList = observer(() => {
   const { nodesStore } = useRootStore();
   return (
     <>
-      {' '}
       {Array.from(nodesStore.nodes).map(([id, node]) => (
         <NodeWrapper key={node.id} node={node} />
       ))}

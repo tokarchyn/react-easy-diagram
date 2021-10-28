@@ -59,9 +59,9 @@ ___
 
 ___
 
-### renderedZoom
+### renderedZoomNotObservable
 
-• `get` **renderedZoom**(): `number`
+• `get` **renderedZoomNotObservable**(): `number`
 
 #### Returns
 
