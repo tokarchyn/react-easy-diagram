@@ -34,11 +34,11 @@ describe('Drag state', () => {
     store.selectionState.select(node1);
     store.selectionState.select(node2);
 
-    store.dragState.startDragging(node2);
+    const started = store.dragState.startDragging(node2);
     store.dragState.dragBy([10, 10]);
 
     expect(store.dragState.isActive).toBeTruthy();
-
+    expect(started).toBeTruthy();
     expect(node1.position).toEqual([10, 10]);
     expect(node1.isDragActive).toBeTruthy();
 
@@ -117,13 +117,25 @@ describe('Drag state', () => {
     const node2 = store.nodesStore.getNode('2')!;
     store.dragState.startDragging(node1);
 
-    store.dragState.startDragging(node2);
+    const dragginsStarted = store.dragState.startDragging(node2);
 
     expect(node1.isDragActive).toBeTruthy();
     expect(node1.selected).toBeTruthy();
 
+    expect(dragginsStarted).toBeFalsy();
     expect(node2.isDragActive).toBeFalsy();
     expect(node2.selected).toBeFalsy();
+  });
+
+  test('Do not start node dragging if drag is disabled for this node', () => {
+    const node1 = store.nodesStore.getNode('1')!;
+    node1.setIsDragEnabled(false);
+    store.dragState.startDragging(node1);
+
+    expect(store.dragState.isActive).toBeFalsy();
+
+    expect(node1.isDragActive).toBeFalsy();
+    expect(node1.selected).toBeFalsy();
   });
 
   test('Do not start node dragging if drag is disabled for this node', () => {

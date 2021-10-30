@@ -53,7 +53,7 @@ ___
 
 ### startDragging
 
-▸ **startDragging**(`nodeToDrag`): `void`
+▸ **startDragging**(`nodeToDrag`): `boolean`
 
 #### Parameters
 
@@ -63,7 +63,7 @@ ___
 
 #### Returns
 
-`void`
+`boolean`
 
 ___
 

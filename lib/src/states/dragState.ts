@@ -25,8 +25,8 @@ export class DragState {
     return this._nodesBeingDragged.size !== 0;
   }
 
-  startDragging = (nodeToDrag: NodeState) => {
-    if (!nodeToDrag.isDragEnabled || this.isActive) return;
+  startDragging = (nodeToDrag: NodeState) : boolean => {
+    if (!nodeToDrag.isDragEnabled || this.isActive) return false;
 
     if (nodeToDrag.selected) {
       this._selectionState.unselectItems(
@@ -45,6 +45,7 @@ export class DragState {
     });
 
     this._callbacks.dragStateChanged(this._selectionState.selectedNodes, true);
+    return true;
   };
 
   /**
