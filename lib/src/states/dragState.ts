@@ -31,7 +31,7 @@ export class DragState {
     if (nodeToDrag.selected) {
       this._selectionState.unselectItems(
         this._selectionState.selectedItems.filter(
-          (i) => !(i instanceof NodeState) || !i.isDragEnabled
+          (i) => (i instanceof NodeState) && !i.isDragEnabled
         )
       );
     } else {
