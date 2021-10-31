@@ -1,17 +1,17 @@
-import { autorun, makeAutoObservable, reaction } from 'mobx';
-import { Dictionary, isBoolean, deepCopy } from 'utils/common';
-import {
-  SuccessOrErrorResult,
-  errorResult,
-  successValueResult,
-} from 'utils/result';
-import { guidForcedUniqueness } from 'utils/guid';
+import { makeAutoObservable, reaction } from 'mobx';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { LinkState } from 'states/linkState';
-import { PortState, IPortStateWithoutIds } from 'states/portState';
+import { IPortStateWithoutIds, PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';
 import { COMPONENT_DEFAULT_TYPE } from 'states/visualComponents';
-import { arePointsEqual, Point } from 'utils/point';
+import { deepCopy, Dictionary, isBoolean } from 'utils/common';
+import { guidForcedUniqueness } from 'utils/guid';
+import { addPoints, arePointsEqual, Point } from 'utils/point';
+import {
+  errorResult,
+  SuccessOrErrorResult,
+  successValueResult,
+} from 'utils/result';
 import { generateTransform } from 'utils/transformation';
 
 export class NodeState {
@@ -53,7 +53,7 @@ export class NodeState {
   }
 
   import = (newState?: INodeStateWithoutId) => {
-    this.setPosition(newState?.position);
+    this.setPosition(newState?.position ?? [0, 0]);
     this.setType(newState?.type);
     this.setExtra(newState?.extra);
     this.label = newState?.label ?? '';
@@ -93,38 +93,60 @@ export class NodeState {
   /**
    * @param newPosition - new position
    * @param ignoreSnapping - do not take into account snapping to grid
-   * @returns remainder in case snap to grid is turned on. For example if newPosition would be [22,17] and snap [10,10],
-   * the node position would be set to [20,20] and remainder equals [2,-3]
+   * @returns false if position did not change
    */
   setPosition = (
-    newPosition: Point | null | undefined,
+    newPosition: Point,
+    ignoreSnapping: boolean = false
+  ): boolean => {
+    const snap = this._rootStore.nodesSettings.gridSnap;
+    if (!ignoreSnapping && snap) {
+      newPosition = [
+        snapPosition(newPosition[0], snap[0]),
+        snapPosition(newPosition[1], snap[1]),
+      ];
+    }
+
+    if (!arePointsEqual(newPosition, this._position)) {
+      const oldPos = this._position;
+      this._position = newPosition;
+
+      // Do not notify if position was not initialized before
+      if (oldPos) {
+        this._rootStore.callbacks.nodePositionChanged(
+          this,
+          oldPos,
+          this._position,
+          this.isDragActive
+        );
+      }
+      return true;
+    } else return false;
+  };
+
+  /**
+   * @param vector - vector to move node by
+   * @param ignoreSnapping - do not take into account snapping to grid
+   * @returns remainder in case snap to grid is turned on. For example if vector
+   * would be [3,9], node current position [10,10] and snap [5,5],
+   * the node position would be set to [10,15] and remainder equals [3,4]
+   */
+  moveBy = (
+    vector: Point,
     ignoreSnapping: boolean = false
   ): Point | undefined => {
-    newPosition = newPosition ?? [0, 0];
+    let newPos = addPoints(this.position, vector);
+    let remainder: Point | undefined = undefined;
+    const snap = this._rootStore.nodesSettings.gridSnap;
 
-    let remainder = undefined;
-    if (!ignoreSnapping) {
-      const result = snapPositionToGrid(
-        newPosition,
-        this._rootStore.nodesSettings.gridSnap
-      );
-      newPosition = result.position;
-      remainder = result.remainder;
+    if (!ignoreSnapping && snap) {
+      const res1 = snapMoveByVector(this.position[0], vector[0], snap[0]);
+      const res2 = snapMoveByVector(this.position[1], vector[1], snap[1]);
+      remainder = [res1.remainder, res2.remainder];
+      newPos = [res1.value, res2.value];
     }
 
-    if (arePointsEqual(newPosition, this._position)) return remainder;
-
-    const lastPos = this._position;
-    this._position = newPosition;
-    // Do not notify if position was not initialized before
-    if (lastPos) {
-      this._rootStore.callbacks.nodePositionChanged(
-        this,
-        lastPos,
-        this._position,
-        this.isDragActive
-      );
-    }
+    this.setPosition(newPos, true);
     return remainder;
   };
 
@@ -273,34 +295,29 @@ export class NodeState {
   }
 }
 
-function snapPositionToGrid(position: Point, snap: Point | null) {
-  if (!snap)
-    return {
-      position,
-      remainder: undefined,
-    };
-
-  const resultX = snapPositionValueToGridValue(position[0], snap[0]);
-  const resultY = snapPositionValueToGridValue(position[1], snap[1]);
-
-  return {
-    position: [resultX.value, resultY.value] as Point,
-    remainder: [resultX.remainder, resultY.remainder] as Point,
-  };
+function snapPosition(pos: number, snap: number) {
+  const mod = pos % snap;
+  if (Math.abs(mod) > snap / 2) return pos + snap * Math.sign(mod) - mod;
+  else return pos - mod;
 }
 
-function snapPositionValueToGridValue(value: number, snapValue: number) {
-  const mod = value % snapValue;
-  let remainder = 0;
-  let newValue = value;
-  if (snapValue / 2 > mod) {
-    newValue -= mod;
-    remainder = mod;
-  } else {
-    newValue += snapValue - mod;
-    remainder = -(snapValue - mod);
+function snapMoveByVector(pos: number, vec: number, snapValue: number) {
+  if (vec === 0) return { value: pos, remainder: 0 };
+
+  let result = 0;
+  let desiredPos = pos + vec;
+
+  let frac = Math.trunc(desiredPos / snapValue);
+  if ((vec < 0 && desiredPos > 0) || (vec > 0 && desiredPos < 0)) {
+    frac += 1 * Math.sign(desiredPos);
   }
-  return { value: newValue, remainder };
+  if (frac === -0) frac = 0;
+
+  result = frac * snapValue;
+
+  if ((vec < 0 && result > pos) || (vec > 0 && result < pos)) {
+    return { value: pos, remainder: vec };
+  } else return { value: result, remainder: pos - result + vec };
 }
 
 export interface INodeStateWithoutId {

@@ -138,14 +138,18 @@ describe('Drag state', () => {
     expect(node1.selected).toBeFalsy();
   });
 
-  test('Do not start node dragging if drag is disabled for this node', () => {
+  test('Nodes positions should be snapped to grid when drag starts', () => {
+    store.nodesSettings.setGridSnap(10);
     const node1 = store.nodesStore.getNode('1')!;
-    node1.setIsDragEnabled(false);
+    node1.setPosition([3, 8], true);
+    const node2 = store.nodesStore.getNode('2')!;
+    node2.setPosition([-3, -8], true);
+    store.selectionState.select(node1);
+    store.selectionState.select(node2);
+
     store.dragState.startDragging(node1);
 
-    expect(store.dragState.isActive).toBeFalsy();
-
-    expect(node1.isDragActive).toBeFalsy();
-    expect(node1.selected).toBeFalsy();
+    expect(node1.position).toEqual([0, 10]);
+    expect(node2.position).toEqual([0, -10]);
   });
 });

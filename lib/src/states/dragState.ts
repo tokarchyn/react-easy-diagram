@@ -42,6 +42,9 @@ export class DragState {
     this._selectionState.selectedNodes.forEach((n) => {
       n.isDragActive = true;
       this._nodesBeingDragged.add(n);
+      // Force snapping to grid to prevent from desynchronized dragging if some of nodes positions were
+      // set by ignoring grid  
+      n.setPosition(n.position);
     });
 
     this._callbacks.dragStateChanged(this._selectionState.selectedNodes, true);
@@ -54,12 +57,11 @@ export class DragState {
    */
   dragBy = (vector: Point) => {
     this._nodesBeingDragged.forEach((n) => {
-      const newPosition = addPoints(
-        n.position,
+      const vectorWithRemainder = addPoints(
         vector,
         this._remaindersFromDrags.get(n.id)
       );
-      const newRemainder = n.setPosition(newPosition);
+      const newRemainder = n.moveBy(vectorWithRemainder);
       this._remaindersFromDrags.set(n.id, newRemainder);
     });
   };

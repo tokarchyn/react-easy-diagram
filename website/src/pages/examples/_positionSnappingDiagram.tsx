@@ -7,7 +7,7 @@ export default () => (
       nodes: [
         {
           id: 'Node 1',
-          position: [100, 100],
+          position: [90, 90],
           type: 'output_horizontal'
         },
         {
@@ -25,7 +25,7 @@ export default () => (
     }}
     settings={{
       nodes:{
-        gridSnap: 35 // or [10, 20] to set x and y snap separately
+        gridSnap: 30 // or [10, 20] to set x and y snap separately
       }
     }}
   />
