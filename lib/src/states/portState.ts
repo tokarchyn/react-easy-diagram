@@ -1,5 +1,5 @@
-import { makeAutoObservable, reaction } from 'mobx';
-import { multiplyPoint, Point } from 'utils/point';
+import { makeAutoObservable, reaction, untracked } from 'mobx';
+import { addPoints, multiplyPoint, Point, subtractPoints } from 'utils/point';
 import { DirectionWithDiagonals } from 'utils/position';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { LinkState } from 'states/linkState';
@@ -23,11 +23,13 @@ export class PortState {
   private _linkDirection: DirectionWithDiagonals | null;
   private _isConnectionEnabled: boolean | null;
 
-  private _ref: HtmlElementRefState = new HtmlElementRefState(null);
+  private _ref: HtmlElementRefState;
   private _dragging: boolean = false;
   private _hovered: boolean = false;
   private _validForConnection: boolean = true;
-  private _sizeAndPositionRecalculationWithDelay: number = 0;
+
+  private _offsetRecalculationRequested: number = 0;
+  private _triggerOffsetRecalculation: number = 0;
 
   private _rootStore: RootStore;
 
@@ -39,22 +41,16 @@ export class PortState {
   ) {
     this._id = id;
     this._nodeId = nodeId;
+    this._ref = new HtmlElementRefState(null, rootStore.diagramState);
     this.import(state);
 
     makeAutoObservable(this);
     this._rootStore = rootStore;
 
     reaction(
-      () => [
-        this._id,
-        this._nodeId,
-        this._label,
-        this._type,
-        this._extra,
-        this._component,
-      ],
+      () => [this._label, this._type, this._extra],
       () => {
-        this.recalculateSizeAndPosition();
+        this.recalculateOffset();
       }
     );
   }
@@ -166,25 +162,54 @@ export class PortState {
     else throw `Node with id '${this.nodeId}' does not exist`;
   }
 
+  /**
+   * Offset relative to parent node, helps us to calculate positions of link endpoints for example.
+   * @returns offset excluding zoom
+   */
   get offsetRelativeToNode(): Point | null {
-    if (this.node.ref.current) {
-      return this._ref.offsetRelativeToParent(
-        this.node.ref.current,
-        // Zoom property cannot be used here because to calculate offset we use real
-        // html elements that have not been rendered with the new zoom at this time
-        this._rootStore.diagramState.renderedZoomNotObservable
-      );
+    /* This value is implemented as getter to automatically recalculate 
+    value if html element is attached (react ref) and also it helps with performance
+    as if there is no observers the value will not be calculated */
+    this._triggerOffsetRecalculation | 1;
+
+    /* There is another method of calculating offset by using getBoundingClientReact, but it 
+    has its drawbacks like that it return position related to viewport and therefore requires
+    from us to synchronize moments when node and port getBoundingClientReact is called. It also
+    requires using diagram zoom to correctly calculate offset. */
+    if (this.ref.current && this.node.ref.current) {
+      let iterElement = this.ref.current as HTMLElement | null;
+      let nextOffsetParent = null as Element | null;
+      let acumLeft = 0;
+      let acumTop = 0;
+
+      while (this.node.ref.current !== iterElement && iterElement) {
+        if (!nextOffsetParent || nextOffsetParent === iterElement) {
+          const translate = getTranslate(iterElement);
+          acumLeft += iterElement.offsetLeft + translate[0];
+          acumTop += iterElement.offsetTop + translate[1];
+          nextOffsetParent = iterElement.offsetParent;
+        }
+        iterElement = iterElement.parentElement;
+      }
+      return [acumLeft, acumTop];
     }
 
     return null;
   }
 
+  recalculateOffset = () => {
+    this._offsetRecalculationRequested += 1;
+  };
+
+  recalculateOffsetImmediately = () => {
+    this._triggerOffsetRecalculation += 1;
+  };
+
   /**
-   * @returns Value is calculated without zoom taking into account, that is, the same as zoom would be '1'.
-   * Value can be @type {null} in case reference to real DOM object is not set.
+   * Is used to trigger port rerendering and following offset recalculation
    */
-  get realSize(): Point | null {
-    return this._ref.realSize;
+  get offsetRecalculationRequested() {
+    return this._offsetRecalculationRequested;
   }
 
   setComponent = (
@@ -224,7 +249,7 @@ export class PortState {
     if (!this.offsetRelativeToNode) return undefined;
 
     const nodeCenter =
-      this.node.realSize && multiplyPoint(this.node.realSize, 0.5);
+      this.node.ref.size && multiplyPoint(this.node.ref.size, 0.5);
     if (!nodeCenter) return undefined;
 
     if (this._rootStore.linksSettings.preferLinksDirection === 'horizontal') {
@@ -244,18 +269,6 @@ export class PortState {
     this._linkDirection = this._linkDirection ?? direction;
   };
 
-  recalculateSizeAndPosition = () => {
-    this._sizeAndPositionRecalculationWithDelay += 1;
-  };
-
-  recalculateSizeAndPositionWithoutDelay = () => {
-    this._ref.recalculateSizeAndPosition();
-  };
-
-  get sizeAndPositionRecalculationWithDelay() {
-    return this._sizeAndPositionRecalculationWithDelay;
-  }
-
   get isConnectionEnabled(): boolean {
     return this._isConnectionEnabled === null
       ? this._rootStore.diagramSettings.userInteraction.portConnection
@@ -265,6 +278,26 @@ export class PortState {
   setIsConnectionEnabled = (value: boolean | null | undefined) => {
     this._isConnectionEnabled = isBoolean(value) ? value : null;
   };
+}
+
+// https://stackoverflow.com/questions/21912684/how-to-get-value-of-translatex-and-translatey
+// https://gist.github.com/aderaaij/a6b666bf756b2db1596b366da921755d
+function getTranslate(item: HTMLElement): Point {
+  const transArr: Point = [0, 0];
+  if (!window.getComputedStyle) {
+    return transArr;
+  }
+  const style = window.getComputedStyle(item);
+  const transform = style.transform || style.webkitTransform;
+  // matrix(a, b, c, d, tx, ty)
+  // consider also to add matrix3d(a, b, 0, 0, c, d, 0, 0, 0, 0, 1, 0, tx, ty, 0, 1)
+  let mat = transform.match(/^matrix\((.+)\)$/);
+  if (mat) {
+    transArr[0] = parseFloat(mat[1].split(', ')[4]);
+    transArr[1] = parseFloat(mat[1].split(', ')[5]);
+  }
+
+  return transArr;
 }
 
 export interface IPortStateWithoutIds {

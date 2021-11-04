@@ -49,26 +49,6 @@ ___
 
 ___
 
-### renderedOffset
-
-• `get` **renderedOffset**(): [`Point`](../#point)
-
-#### Returns
-
-[`Point`](../#point)
-
-___
-
-### renderedZoomNotObservable
-
-• `get` **renderedZoomNotObservable**(): `number`
-
-#### Returns
-
-`number`
-
-___
-
 ### zoom
 
 • `get` **zoom**(): `number`
@@ -111,6 +91,16 @@ Get position on Diagram in its coordinates system (including zoom) by mouse/touc
 
 ___
 
+### getRenderedZoom
+
+▸ **getRenderedZoom**(): ``null`` \| `number`
+
+#### Returns
+
+``null`` \| `number`
+
+___
+
 ### import
 
 ▸ **import**(`state?`): `void`
@@ -120,25 +110,6 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `state?` | [`IDiagramState`](../interfaces/IDiagramState) |
-
-#### Returns
-
-`void`
-
-___
-
-### renderOffsetAndZoom
-
-▸ **renderOffsetAndZoom**(`offset`, `zoom`): `void`
-
-Set offset and zoom values that were already rendered.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `offset` | [`Point`](../#point) |
-| `zoom` | `number` |
 
 #### Returns
 

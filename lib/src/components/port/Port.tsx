@@ -43,12 +43,11 @@ export const Port: React.FC<IPortProps> = observer((props) => {
   const { bind } = usePortUserInteraction(portState);
 
   useEffect(() => {
-    portState?.ref.recalculateSizeAndPosition();
-  }, [
-    portState,
-    portState?.ref,
-    portState?.sizeAndPositionRecalculationWithDelay,
-  ]);
+    // Prevent from recalculating on first load
+    if (portState && portState.offsetRecalculationRequested > 0) {
+      portState?.recalculateOffsetImmediately();
+    }
+  }, [portState, portState?.offsetRecalculationRequested]);
 
   if (!portState) {
     return null;

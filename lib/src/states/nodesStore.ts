@@ -116,7 +116,7 @@ export class NodesStore {
 
     this._nodes.forEach((node) => {
       const pos = node.position;
-      const size = node.realSize ?? [0, 0];
+      const size = node.ref.size ?? [0, 0];
 
       topLeftCorner = [
         Math.min(topLeftCorner[0], pos[0]),

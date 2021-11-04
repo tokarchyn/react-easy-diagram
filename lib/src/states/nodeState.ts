@@ -34,7 +34,7 @@ export class NodeState {
     this._rootStore = rootStore;
 
     this._id = id;
-    this._ref = new HtmlElementRefState(null);
+    this._ref = new HtmlElementRefState(null, rootStore.diagramState);
     this._selected = false;
     this._hovered = false;
     this.import(state);
@@ -47,7 +47,7 @@ export class NodeState {
     reaction(
       () => [this._id, this._label, this._extra, this._type],
       () => {
-        this.recalculatePortsSizeAndPosition();
+        this.recalculatePortsOffset();
       }
     );
   }
@@ -202,14 +202,6 @@ export class NodeState {
     return visualComponents.getComponent(this.type);
   }
 
-  /**
-   * @returns Value is calculated without zoom taking into account, that is, the same as zoom would be '1'.
-   * Value can be @type {null} in case reference to real DOM object is not set.
-   */
-  get realSize(): Point | null {
-    return this._ref.realSize;
-  }
-
   getPort = (portId: string): PortState | undefined => {
     if (portId) {
       return this._ports.get(portId);
@@ -258,8 +250,8 @@ export class NodeState {
     return this._rootStore.linksStore.getNodeLinks(this._id);
   }
 
-  recalculatePortsSizeAndPosition = () => {
-    this._ports.forEach((p) => p.recalculateSizeAndPosition());
+  recalculatePortsOffset = () => {
+    this._ports.forEach((p) => p.recalculateOffset());
   };
 
   get isSelectionEnabled(): boolean {

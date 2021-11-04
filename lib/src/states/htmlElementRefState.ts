@@ -1,13 +1,17 @@
+import { DiagramState } from 'index';
 import { makeAutoObservable } from 'mobx';
-import { Point } from 'utils/point';
+import { multiplyPoint, Point } from 'utils/point';
 
 export class HtmlElementRefState {
+  private _diagramState: DiagramState;
+
   private _currentInternal: HTMLDivElement | null;
   private _triggerSizePositionRecalculation: number = 0;
 
-  constructor(initValue: HTMLDivElement | null) {
+  constructor(initValue: HTMLDivElement | null, diagramState: DiagramState) {
     this._currentInternal = initValue;
     makeAutoObservable(this);
+    this._diagramState = diagramState;
   }
 
   get current() {
@@ -18,31 +22,58 @@ export class HtmlElementRefState {
     this._currentInternal = value;
   }
 
-  offsetRelativeToParent = (parent: HTMLElement, zoom: number): Point | null => {
-    this._triggerSizePositionRecalculation | 1; // to make offsetRelativeToParent dependend on _triggerSizePositionRecalculation
-    const curr = this.current as HTMLElement;
-    if (!curr) return null;
-    const boundingRect = curr.getBoundingClientRect();
-    const parentBoundingRect = parent.getBoundingClientRect();
-    return [(boundingRect.x - parentBoundingRect.x) / zoom, (boundingRect.y - parentBoundingRect.y) / zoom];
-  };
+  /**
+   * Size excluding zoom. 
+   */
+  get size(): Point | null {
+    if (this.boundingRect && this.boundingRect.diagramZoom) {
+      return multiplyPoint(
+        [this.boundingRect.rect.width, this.boundingRect.rect.height],
+        1 / this.boundingRect.diagramZoom
+      );
+    }
+    return null;
+  }
 
   /**
-   * @returns Value is calculated without zoom taking into account, that is, the same as zoom would be '1'.
-   * Value can be @type {null} in case reference to real DOM object is not set.
+   * Position excluding zoom. 
    */
-  get realSize(): Point | null {
-    this._triggerSizePositionRecalculation | 1; // to make realSize dependend on _triggerSizePositionRecalculation
-    if (this.current) {
-      return [this.current.clientWidth, this.current.clientHeight];
-    } else {
-      return null;
+  get position(): Point | null {
+    if (this.boundingRect && this.boundingRect.diagramZoom) {
+      return multiplyPoint(
+        [this.boundingRect.rect.x, this.boundingRect.rect.y],
+        1 / this.boundingRect.diagramZoom
+      );
     }
+    return null;
   }
 
-  recalculateSizeAndPosition = () => {
-    this._triggerSizePositionRecalculation += 1; 
+  get boundingRect() {
+    this._triggerSizePositionRecalculation | 1;
+    if (this.current) {
+      const rect = this.current.getBoundingClientRect();
+      const zoom = this._diagramState.getRenderedZoom();
+
+      return {
+        rect: rect,
+        diagramZoom: zoom,
+      };
+    }
+
+    return null;
   }
+
+  getDataAttribute = (name: string): string | null => {
+    if (this.current) {
+      return this.current.getAttribute(name);
+    }
+
+    return null;
+  };
+
+  recalculateSizeAndPosition = () => {
+    this._triggerSizePositionRecalculation += 1;
+  };
 }
 
 export interface IHtmlElementRect {

@@ -10,15 +10,26 @@ custom_edit_url: null
 
 ### constructor
 
-• **new HtmlElementRefState**(`initValue`)
+• **new HtmlElementRefState**(`initValue`, `diagramState`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `initValue` | ``null`` \| `HTMLDivElement` |
+| `diagramState` | [`DiagramState`](DiagramState) |
 
 ## Accessors
+
+### boundingRect
+
+• `get` **boundingRect**(): ``null`` \| { `diagramZoom`: ``null`` \| `number` ; `rect`: `DOMRect`  }
+
+#### Returns
+
+``null`` \| { `diagramZoom`: ``null`` \| `number` ; `rect`: `DOMRect`  }
+
+___
 
 ### current
 
@@ -42,33 +53,43 @@ custom_edit_url: null
 
 ___
 
-### realSize
+### position
 
-• `get` **realSize**(): ``null`` \| [`Point`](../#point)
+• `get` **position**(): ``null`` \| [`Point`](../#point)
+
+Position excluding zoom.
 
 #### Returns
 
 ``null`` \| [`Point`](../#point)
 
-Value is calculated without zoom taking into account, that is, the same as zoom would be '1'.
-Value can be @type {null} in case reference to real DOM object is not set.
+___
+
+### size
+
+• `get` **size**(): ``null`` \| [`Point`](../#point)
+
+Size excluding zoom.
+
+#### Returns
+
+``null`` \| [`Point`](../#point)
 
 ## Methods
 
-### offsetRelativeToParent
+### getDataAttribute
 
-▸ **offsetRelativeToParent**(`parent`, `zoom`): ``null`` \| [`Point`](../#point)
+▸ **getDataAttribute**(`name`): ``null`` \| `string`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `parent` | `HTMLElement` |
-| `zoom` | `number` |
+| `name` | `string` |
 
 #### Returns
 
-``null`` \| [`Point`](../#point)
+``null`` \| `string`
 
 ___
 

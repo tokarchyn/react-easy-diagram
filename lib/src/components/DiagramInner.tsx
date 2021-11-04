@@ -16,19 +16,12 @@ export const DigramInner = observer<IDiagramInnerProps>((props) => {
   const rootStore = useRootStore();
   useDiagramUserInteraction();
 
-  const offset = rootStore.diagramState.offset;
-  const zoom = rootStore.diagramState.zoom;
-  // Notify state about already rendered zoom and offset.
-  useEffect(() => {
-    rootStore.diagramState.renderOffsetAndZoom(offset, zoom);
-  }, [offset, zoom]);
-
   useResizeAction(() =>
-    rootStore.nodesStore.nodes.forEach((n) =>
-      n.recalculatePortsSizeAndPosition()
-    )
+    rootStore.nodesStore.nodes.forEach((n) => n.recalculatePortsOffset())
   );
 
+  const offset = rootStore.diagramState.offset;
+  const zoom = rootStore.diagramState.zoom;
   const transform = generateTransform(offset, zoom);
   let className = 'react_fast_diagram_DiagramInner';
   if (
@@ -42,6 +35,7 @@ export const DigramInner = observer<IDiagramInnerProps>((props) => {
     <div
       ref={rootStore.diagramState.diagramInnerRef}
       style={props.diagramStyles}
+      data-zoom={zoom}
       className={className}
     >
       <BackgroundWrapper />

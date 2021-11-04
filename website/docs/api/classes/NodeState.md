@@ -178,19 +178,6 @@ ___
 
 ___
 
-### realSize
-
-• `get` **realSize**(): ``null`` \| [`Point`](../#point)
-
-#### Returns
-
-``null`` \| [`Point`](../#point)
-
-Value is calculated without zoom taking into account, that is, the same as zoom would be '1'.
-Value can be @type {null} in case reference to real DOM object is not set.
-
-___
-
 ### ref
 
 • `get` **ref**(): [`HtmlElementRefState`](HtmlElementRefState)
@@ -338,9 +325,9 @@ the node position would be set to [10,15] and remainder equals [3,4]
 
 ___
 
-### recalculatePortsSizeAndPosition
+### recalculatePortsOffset
 
-▸ **recalculatePortsSizeAndPosition**(): `void`
+▸ **recalculatePortsOffset**(): `void`
 
 #### Returns
 

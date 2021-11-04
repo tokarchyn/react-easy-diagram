@@ -7,28 +7,23 @@ import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { RootStore } from 'states/rootStore';
 import { BoundingBox, clampValue, deepCopy } from 'utils/common';
 import { addPoints, multiplyPoint, Point, subtractPoints } from 'utils/point';
+import { stringifyKey } from 'mobx/dist/internal';
 
 export class DiagramState
   implements IUserInteractionTranslate, IUserInteractionTranslateAndZoom {
   private _offset: Point;
   private _zoom: number;
-  private _renderedOffset: Point;
-  private _renderedZoomNotObservable: number;
   private _diagramInnerRef: HtmlElementRefState;
   private _rootStore: RootStore;
 
   constructor(rootStore: RootStore) {
-    this._diagramInnerRef = new HtmlElementRefState(null);
+    this._diagramInnerRef = new HtmlElementRefState(null, this);
     this._rootStore = rootStore;
-    this._renderedOffset = [0, 0];
-    this._renderedZoomNotObservable = 1;
     this.import();
-    
+
     makeAutoObservable(this, {
       // @ts-ignore
       _rootStore: false,
-      renderedZoomNotObservable: false,
-      _renderedZoomNotObservable: false
     });
   }
 
@@ -95,7 +90,7 @@ export class DiagramState
   };
 
   zoomIntoCenter = (zoomMultiplicator: number) => {
-    const diagramRealSize = this._diagramInnerRef.realSize;
+    const diagramRealSize = this._diagramInnerRef.size;
     if (!diagramRealSize) return;
 
     this.zoomInto(multiplyPoint(diagramRealSize, 0.5), zoomMultiplicator);
@@ -113,12 +108,9 @@ export class DiagramState
     return this._zoom;
   }
 
-  get renderedOffset() {
-    return this._renderedOffset;
-  }
-
-  get renderedZoomNotObservable() {
-    return this._renderedZoomNotObservable;
+  getRenderedZoom(): number | null {
+    const attr = this.diagramInnerRef.getDataAttribute('data-zoom');
+    return attr ? Number(attr) : null;
   }
 
   /**
@@ -139,18 +131,10 @@ export class DiagramState
     } else return [0, 0];
   };
 
-  /**
-   * Set offset and zoom values that were already rendered.
-   */
-  renderOffsetAndZoom = (offset: Point, zoom: number) => {
-    this._renderedOffset = offset;
-    this._renderedZoomNotObservable = zoom;
-  };
-
   zoomToFit = () => {
     const nodesBoundingBox = this._getNodesBoundingBoxWithPadding();
 
-    const diagramSize = this._diagramInnerRef.realSize;
+    const diagramSize = this._diagramInnerRef.size;
     if (!diagramSize) {
       console.warn('Cannot retrieve diagram size');
       return;
