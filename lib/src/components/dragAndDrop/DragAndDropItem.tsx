@@ -100,7 +100,7 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
           return;
         } else {
           cancelledRef.current = false;
-          diagramRectRef.current = store.diagramState.diagramInnerRef.current?.getBoundingClientRect();
+          diagramRectRef.current = store.diagramState.ref.current?.getBoundingClientRect();
           setPosition(xy);
           setActive(true);
         }

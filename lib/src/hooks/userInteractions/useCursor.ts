@@ -27,7 +27,7 @@ export function useDiagramCursor(
   cursor: React.CSSProperties['cursor']
 ) {
   const { diagramState } = useRootStore();
-  const ref = diagramState.diagramInnerRef.current;
+  const ref = diagramState.ref.current;
 
   useCursor(active, cursor, ref);
 }

@@ -7,17 +7,16 @@ import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { RootStore } from 'states/rootStore';
 import { BoundingBox, clampValue, deepCopy } from 'utils/common';
 import { addPoints, multiplyPoint, Point, subtractPoints } from 'utils/point';
-import { stringifyKey } from 'mobx/dist/internal';
 
 export class DiagramState
   implements IUserInteractionTranslate, IUserInteractionTranslateAndZoom {
   private _offset: Point;
   private _zoom: number;
-  private _diagramInnerRef: HtmlElementRefState;
+  private _ref: HtmlElementRefState;
   private _rootStore: RootStore;
 
   constructor(rootStore: RootStore) {
-    this._diagramInnerRef = new HtmlElementRefState(null, this);
+    this._ref = new HtmlElementRefState(null, this);
     this._rootStore = rootStore;
     this.import();
 
@@ -90,14 +89,16 @@ export class DiagramState
   };
 
   zoomIntoCenter = (zoomMultiplicator: number) => {
-    const diagramRealSize = this._diagramInnerRef.size;
-    if (!diagramRealSize) return;
-
-    this.zoomInto(multiplyPoint(diagramRealSize, 0.5), zoomMultiplicator);
+    if (this.ref.boundingRect) {
+      this.zoomInto(
+        multiplyPoint(this.ref.boundingRect.size, 0.5),
+        zoomMultiplicator
+      );
+    }
   };
 
-  get diagramInnerRef() {
-    return this._diagramInnerRef;
+  get ref() {
+    return this._ref;
   }
 
   get offset() {
@@ -109,7 +110,7 @@ export class DiagramState
   }
 
   getRenderedZoom(): number | null {
-    const attr = this.diagramInnerRef.getDataAttribute('data-zoom');
+    const attr = this.ref.getDataAttribute('data-zoom');
     return attr ? Number(attr) : null;
   }
 
@@ -118,7 +119,7 @@ export class DiagramState
    * @param pointerPosition position of mouse or finger on the screen
    */
   getPositionByPointer = (pointerPosition: Point): Point => {
-    const diagRect = this.diagramInnerRef.current?.getBoundingClientRect();
+    const diagRect = this.ref.current?.getBoundingClientRect();
     if (diagRect) {
       return multiplyPoint(
         subtractPoints(
@@ -134,7 +135,7 @@ export class DiagramState
   zoomToFit = () => {
     const nodesBoundingBox = this._getNodesBoundingBoxWithPadding();
 
-    const diagramSize = this._diagramInnerRef.size;
+    const diagramSize = this.ref.boundingRect?.size;
     if (!diagramSize) {
       console.warn('Cannot retrieve diagram size');
       return;
@@ -180,7 +181,6 @@ function calculateNewZoomToFitBoundingBox(
     diagramSize[0] / boundingBox.size[0],
     diagramSize[1] / boundingBox.size[1]
   );
-
   return newZoom;
 }
 

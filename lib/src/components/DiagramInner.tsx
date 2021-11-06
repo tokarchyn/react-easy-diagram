@@ -16,9 +16,10 @@ export const DigramInner = observer<IDiagramInnerProps>((props) => {
   const rootStore = useRootStore();
   useDiagramUserInteraction();
 
-  useResizeAction(() =>
-    rootStore.nodesStore.nodes.forEach((n) => n.recalculatePortsOffset())
-  );
+  useResizeAction(() => {
+    rootStore.diagramState.ref.recalculateSizeAndPosition();
+    rootStore.nodesStore.nodes.forEach((n) => n.recalculatePortsOffset());
+  });
 
   const offset = rootStore.diagramState.offset;
   const zoom = rootStore.diagramState.zoom;
@@ -33,7 +34,7 @@ export const DigramInner = observer<IDiagramInnerProps>((props) => {
 
   return (
     <div
-      ref={rootStore.diagramState.diagramInnerRef}
+      ref={rootStore.diagramState.ref}
       style={props.diagramStyles}
       data-zoom={zoom}
       className={className}

@@ -25,16 +25,6 @@ custom_edit_url: null
 
 ## Accessors
 
-### diagramInnerRef
-
-• `get` **diagramInnerRef**(): [`HtmlElementRefState`](HtmlElementRefState)
-
-#### Returns
-
-[`HtmlElementRefState`](HtmlElementRefState)
-
-___
-
 ### offset
 
 • `get` **offset**(): [`Point`](../#point)
@@ -46,6 +36,16 @@ ___
 #### Implementation of
 
 [IUserInteractionTranslateAndZoom](../interfaces/IUserInteractionTranslateAndZoom).[offset](../interfaces/IUserInteractionTranslateAndZoom#offset)
+
+___
+
+### ref
+
+• `get` **ref**(): [`HtmlElementRefState`](HtmlElementRefState)
+
+#### Returns
+
+[`HtmlElementRefState`](HtmlElementRefState)
 
 ___
 

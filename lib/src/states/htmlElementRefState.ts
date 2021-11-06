@@ -1,5 +1,5 @@
 import { DiagramState } from 'index';
-import { makeAutoObservable } from 'mobx';
+import { computed, makeAutoObservable } from 'mobx';
 import { multiplyPoint, Point } from 'utils/point';
 
 export class HtmlElementRefState {
@@ -10,7 +10,11 @@ export class HtmlElementRefState {
 
   constructor(initValue: HTMLDivElement | null, diagramState: DiagramState) {
     this._currentInternal = initValue;
-    makeAutoObservable(this);
+    makeAutoObservable(this, {
+      sizeExcludingZoom: computed({ keepAlive: true }),
+      positionExcludingZoom: computed({ keepAlive: true }),
+      boundingRect: computed({ keepAlive: true }),
+    });
     this._diagramState = diagramState;
   }
 
@@ -23,12 +27,12 @@ export class HtmlElementRefState {
   }
 
   /**
-   * Size excluding zoom. 
+   * Size excluding diagram zoom.
    */
-  get size(): Point | null {
+  get sizeExcludingZoom(): Point | null {
     if (this.boundingRect && this.boundingRect.diagramZoom) {
       return multiplyPoint(
-        [this.boundingRect.rect.width, this.boundingRect.rect.height],
+        this.boundingRect.size,
         1 / this.boundingRect.diagramZoom
       );
     }
@@ -36,12 +40,12 @@ export class HtmlElementRefState {
   }
 
   /**
-   * Position excluding zoom. 
+   * Position excluding diagram zoom.
    */
-  get position(): Point | null {
+  get positionExcludingZoom(): Point | null {
     if (this.boundingRect && this.boundingRect.diagramZoom) {
       return multiplyPoint(
-        [this.boundingRect.rect.x, this.boundingRect.rect.y],
+        this.boundingRect.position,
         1 / this.boundingRect.diagramZoom
       );
     }
@@ -55,7 +59,8 @@ export class HtmlElementRefState {
       const zoom = this._diagramState.getRenderedZoom();
 
       return {
-        rect: rect,
+        position: [rect.x, rect.y] as Point,
+        size: [rect.width, rect.height] as Point,
         diagramZoom: zoom,
       };
     }

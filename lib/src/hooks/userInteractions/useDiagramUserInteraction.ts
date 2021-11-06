@@ -11,8 +11,8 @@ export const useDiagramUserInteraction = () => {
   const cancelGesture = useCallback(
     (
       event: {target: EventTarget | null}
-    ) => event.target !== diagramState.diagramInnerRef.current,
-    [diagramState.diagramInnerRef]
+    ) => event.target !== diagramState.ref.current,
+    [diagramState.ref]
   );
 
   const dragHandlers = useDiagramDragHandlers(cancelGesture);
@@ -26,7 +26,7 @@ export const useDiagramUserInteraction = () => {
       ...wheelHandler,
     },
     {
-      target: diagramState.diagramInnerRef,
+      target: diagramState.ref,
       eventOptions: { passive: false },
       enabled: !diagramSettings.userInteraction.arePointerInteractionsDisabled
     }

@@ -16,7 +16,6 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
       // required to trigger recalculation if you think size or position is changed. There is also
       // possibility to store your data that could change size or position in port's or node's "extra" property,
       // changes in these properties along with the other are already handled by library.
-      console.log('NodeWithExternalData recalculatePortsSizeAndPosition')
       node.recalculatePortsOffset();
     }, [linesNumber]);
 

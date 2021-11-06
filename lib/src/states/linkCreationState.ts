@@ -56,7 +56,7 @@ export class LinkCreationState implements ILinkInteractionState {
     );
 
     const sourcePoint = this._source.point;
-    const portSize = this._source.port!.ref.size;
+    const portSize = this._source.port!.ref.sizeExcludingZoom;
     if (sourcePoint && portSize) {
       // endpoint point is calculated for center of port
       const topLeftCornerPoint = subtractPoints(

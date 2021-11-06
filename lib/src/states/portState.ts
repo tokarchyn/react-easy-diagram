@@ -249,7 +249,7 @@ export class PortState {
     if (!this.offsetRelativeToNode) return undefined;
 
     const nodeCenter =
-      this.node.ref.size && multiplyPoint(this.node.ref.size, 0.5);
+      this.node.ref.sizeExcludingZoom && multiplyPoint(this.node.ref.sizeExcludingZoom, 0.5);
     if (!nodeCenter) return undefined;
 
     if (this._rootStore.linksSettings.preferLinksDirection === 'horizontal') {

@@ -68,14 +68,12 @@ describe('Drag state', () => {
     expect(node2.isDragActive).toBeFalsy();
   });
 
-  test('Unselect items that cannot be dragged', () => {
+  test('Unselect nodes that cannot be dragged', () => {
     const node1 = store.nodesStore.getNode('1')!;
     const node2 = store.nodesStore.getNode('2')!;
     node2.setIsDragEnabled(false);
-    const link1_2 = store.linksStore.getLink('1-2')!;
     store.selectionState.select(node1);
     store.selectionState.select(node2);
-    store.selectionState.select(link1_2);
 
     store.dragState.startDragging(node1);
     store.dragState.dragBy([10, 10]);
@@ -87,8 +85,6 @@ describe('Drag state', () => {
     expect(node2.position).toEqual([0, 100]);
     expect(node2.isDragActive).toBeFalsy();
     expect(node2.selected).toBeFalsy();
-
-    expect(link1_2.selected).toBeFalsy();
   });
 
   test('Unselect all items if drag starts with unselected node ', () => {

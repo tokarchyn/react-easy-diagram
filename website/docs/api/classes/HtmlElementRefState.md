@@ -23,11 +23,11 @@ custom_edit_url: null
 
 ### boundingRect
 
-• `get` **boundingRect**(): ``null`` \| { `diagramZoom`: ``null`` \| `number` ; `rect`: `DOMRect`  }
+• `get` **boundingRect**(): ``null`` \| { `diagramZoom`: ``null`` \| `number` ; `position`: [`Point`](../#point) ; `size`: [`Point`](../#point)  }
 
 #### Returns
 
-``null`` \| { `diagramZoom`: ``null`` \| `number` ; `rect`: `DOMRect`  }
+``null`` \| { `diagramZoom`: ``null`` \| `number` ; `position`: [`Point`](../#point) ; `size`: [`Point`](../#point)  }
 
 ___
 
@@ -53,11 +53,11 @@ ___
 
 ___
 
-### position
+### positionExcludingZoom
 
-• `get` **position**(): ``null`` \| [`Point`](../#point)
+• `get` **positionExcludingZoom**(): ``null`` \| [`Point`](../#point)
 
-Position excluding zoom.
+Position excluding diagram zoom.
 
 #### Returns
 
@@ -65,11 +65,11 @@ Position excluding zoom.
 
 ___
 
-### size
+### sizeExcludingZoom
 
-• `get` **size**(): ``null`` \| [`Point`](../#point)
+• `get` **sizeExcludingZoom**(): ``null`` \| [`Point`](../#point)
 
-Size excluding zoom.
+Size excluding diagram zoom.
 
 #### Returns
 

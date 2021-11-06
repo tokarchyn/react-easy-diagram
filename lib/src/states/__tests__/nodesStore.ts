@@ -1,6 +1,7 @@
 import { ICallbacks } from 'states/callbacks';
 import { INodeState } from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
+import { createDummyHTMLElement } from 'utils/__tests__/testUtils';
 
 describe('Nodes store', () => {
   let store: RootStore;
@@ -171,14 +172,30 @@ describe('Nodes store', () => {
   });
 
   describe('Get nodes bounding box', () => {
+    beforeEach(() => {
+      store.diagramState.ref.current = createDummyHTMLElement({
+        size: [100, 100],
+        position: [0, 0],
+        attributes: {
+          'data-zoom': '1',
+        },
+      });
+    });
+
     test('Two nodes with sizes', () => {
       store.nodesStore.import([
         { position: [-10, -15] },
         { position: [10, 15] },
       ]);
       const nodes = Array.from(store.nodesStore.nodes.values());
-      nodes[0].ref.current = { clientWidth: 100, clientHeight: 100 } as any;
-      nodes[1].ref.current = { clientWidth: 100, clientHeight: 100 } as any;
+      nodes[0].ref.current = createDummyHTMLElement({
+        size: [100, 100],
+        position: nodes[0].position,
+      });
+      nodes[1].ref.current = createDummyHTMLElement({
+        size: [100, 100],
+        position: nodes[1].position,
+      });
 
       const box = store.nodesStore.getNodesBoundingBox();
 

@@ -16,12 +16,12 @@ export function useDiagramWheelHandler(
     () => ({
       onWheel: ({ direction: [_, yDirection], event }) => {
         if (
-          !diagramState.diagramInnerRef.current ||
+          !diagramState.ref.current ||
           !diagramSettings.userInteraction.diagramZoom
         )
           return;
         event?.preventDefault();
-        const rect = diagramState.diagramInnerRef.current.getBoundingClientRect();
+        const rect = diagramState.ref.current.getBoundingClientRect();
 
         const mousePositionOnElement = subtractPoints(
           [event.clientX, event.clientY],
@@ -36,7 +36,7 @@ export function useDiagramWheelHandler(
         state.tranlsateAndZoomInto([0, 0], mousePositionOnElement, factor);
       },
     }),
-    [diagramState.diagramInnerRef, state, diagramSettings]
+    [diagramState.ref, state, diagramSettings]
   );
 
   return handlers;
