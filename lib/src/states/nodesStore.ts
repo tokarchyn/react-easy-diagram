@@ -42,8 +42,7 @@ export class NodesStore {
     rewriteIfExists: boolean = false
   ): SuccessOrErrorResult<NodeState, INodeState>[] => {
     let results = this._addNodesInternal(nodes, rewriteIfExists);
-    results.length != 0 &&
-      this._rootStore.callbacks.nodesAdded(results, false);
+    results.length != 0 && this._rootStore.callbacks.nodesAdded(results, false);
     return results;
   };
 
@@ -72,7 +71,8 @@ export class NodesStore {
     node: INodeState,
     rewriteIfExists: boolean
   ): SuccessOrErrorResult<NodeState, INodeState> => {
-    if (!node) return errorValueResult(node, 'Node object is null or undefined');
+    if (!node)
+      return errorValueResult(node, 'Node object is null or undefined');
 
     if (!rewriteIfExists && node.id && this._nodes.has(node.id))
       return errorValueResult(node, `Node with id '${node.id}' already exists`);
@@ -116,7 +116,7 @@ export class NodesStore {
 
     this._nodes.forEach((node) => {
       const pos = node.position;
-      const size = node.realSize ?? [0, 0];
+      const size = node.ref.sizeExcludingZoom ?? [0, 0];
 
       topLeftCorner = [
         Math.min(topLeftCorner[0], pos[0]),

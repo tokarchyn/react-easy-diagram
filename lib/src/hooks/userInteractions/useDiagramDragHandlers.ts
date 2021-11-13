@@ -1,13 +1,12 @@
 import { useMemo } from 'react';
-import { Handler } from 'react-use-gesture/dist/types';
+import { EventTypes, Handler } from '@use-gesture/react';
 import { useRootStore } from 'hooks/useRootStore';
 import { useNotifyRef } from 'hooks/useNotifyRef';
 import { addPoints } from 'utils/point';
 import { useDiagramCursor } from 'hooks/userInteractions/useCursor';
+import { check } from './common';
 
-type DragEventHandler =
-  | Handler<'drag', React.PointerEvent<Element> | PointerEvent>
-  | undefined;
+type DragEventHandler = Handler<'drag', check<EventTypes, 'drag'>>;
 
 export interface IDragHandlers {
   onDrag: DragEventHandler;
@@ -16,7 +15,7 @@ export interface IDragHandlers {
 }
 
 export function useDiagramDragHandlers(
-  cancelEvent?: (event: React.PointerEvent<Element> | PointerEvent) => boolean
+  cancelEvent: (event: { target: EventTarget | null }) => boolean
 ): IDragHandlers {
   const rootStore = useRootStore();
   const diagramState = rootStore.diagramState;
@@ -31,24 +30,26 @@ export function useDiagramDragHandlers(
         diagramState.setOffset(addPoints(diagramState.offset, delta));
       },
       onDragStart: ({ event, cancel }) => {
-        if (cancelEvent && cancelEvent(event)) {
+        if (cancelEvent(event)) {
           cancel();
           return;
         }
         // Do not activate so drag will not be performed, but also don't cancel, as it would not be possible to clear selection
-        if (
-          !rootStore.diagramSettings.userInteraction.diagramPan ||
-          event.buttons !== 1
-        ) {
+        if (!rootStore.diagramSettings.userInteraction.diagramPan) {
+          return;
+        }
+        if ((event as MouseEvent).buttons !== 1) {
           return;
         }
         activeRef.current = true;
       },
       onDragEnd: ({ tap }) => {
-        if (tap) {
-          rootStore.selectionState.unselectAll();
+        if (activeRef.current) {
+          if (tap) {
+            rootStore.selectionState.unselectAll();
+          }
+          activeRef.current = false;
         }
-        activeRef.current = false;
       },
     }),
     [activeRef, diagramState, cancelEvent, rootStore]

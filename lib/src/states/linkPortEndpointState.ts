@@ -45,13 +45,13 @@ export class LinkPortEndpointState implements ILinkPortEndpoint {
       this.node &&
       this.port &&
       this.port.offsetRelativeToNode &&
-      this.port.realSize
+      this.port.ref.sizeExcludingZoom
     ) {
       return addPoints(
         this.node.position,
         addPoints(
           this.port.offsetRelativeToNode,
-          multiplyPoint(this.port.realSize, 0.5)
+          multiplyPoint(this.port.ref.sizeExcludingZoom, 0.5)
         )
       );
     }

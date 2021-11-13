@@ -1,26 +1,18 @@
 import React, { useCallback } from 'react';
-import { useGesture } from 'react-use-gesture';
-import { WebKitGestureEvent } from 'react-use-gesture/dist/types';
+import { useGesture, WebKitGestureEvent } from '@use-gesture/react';
 import { useRootStore } from 'hooks/useRootStore';
 import { useDiagramDragHandlers } from 'hooks/userInteractions/useDiagramDragHandlers';
 import { useDiagramPinchHandlers } from 'hooks/userInteractions/useDiagramPinchHandlers';
 import { useDiagramWheelHandler } from 'hooks/userInteractions/useDiagramWheelHandler';
 
 export const useDiagramUserInteraction = () => {
-  const { diagramState } = useRootStore();
+  const { diagramState, diagramSettings } = useRootStore();
 
   const cancelGesture = useCallback(
     (
-      event:
-        | TouchEvent
-        | React.TouchEvent<Element>
-        | React.WheelEvent<Element>
-        | WheelEvent
-        | WebKitGestureEvent
-        | React.PointerEvent<Element>
-        | PointerEvent
-    ) => event.target !== diagramState.diagramInnerRef.current,
-    [diagramState.diagramInnerRef]
+      event: {target: EventTarget | null}
+    ) => event.target !== diagramState.ref.current,
+    [diagramState.ref]
   );
 
   const dragHandlers = useDiagramDragHandlers(cancelGesture);
@@ -34,8 +26,9 @@ export const useDiagramUserInteraction = () => {
       ...wheelHandler,
     },
     {
-      domTarget: diagramState.diagramInnerRef,
+      target: diagramState.ref,
       eventOptions: { passive: false },
+      enabled: !diagramSettings.userInteraction.arePointerInteractionsDisabled
     }
   );
 };

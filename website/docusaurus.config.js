@@ -71,6 +71,10 @@ module.exports = {
               label: 'Link Markers',
               to: 'examples/linkMarkers',
             },
+            {
+              label: 'Drag and drop',
+              to: 'examples/dragAndDrop',
+            },
             // {
             //   label: 'Dynamic ports',
             //   to: 'examples/dynamicPorts',

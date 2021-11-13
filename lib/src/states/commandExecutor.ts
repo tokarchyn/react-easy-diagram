@@ -14,6 +14,6 @@ export class CommandExecutor {
   };
 }
 
-interface ICommand {
+export interface ICommand {
   execute(rootStore: RootStore): any;
 }

@@ -7,6 +7,7 @@ import { useRootStore } from 'hooks/useRootStore';
 import { BackgroundWrapper } from 'components/background/BackgroundWrapper';
 import { MiniControlWrapper } from 'components/miniControl/MiniControlWrapper';
 import { generateTransform } from 'utils/transformation';
+import '../Diagram.css';
 
 export interface IDiagramInnerProps {
   diagramStyles?: React.CSSProperties;
@@ -16,30 +17,32 @@ export const DigramInner = observer<IDiagramInnerProps>((props) => {
   const rootStore = useRootStore();
   useDiagramUserInteraction();
 
+  useResizeAction(() => {
+    rootStore.diagramState.ref.recalculateSizeAndPosition();
+    rootStore.nodesStore.nodes.forEach((n) => n.recalculatePortsOffset());
+  });
+
   const offset = rootStore.diagramState.offset;
   const zoom = rootStore.diagramState.zoom;
-  // Notify state about already rendered zoom and offset.
-  useEffect(() => {
-    rootStore.diagramState.renderOffsetAndZoom(offset, zoom);
-  }, [offset, zoom]);
-
-  useResizeAction(() =>
-    rootStore.nodesStore.nodes.forEach((n) =>
-      n.recalculatePortsSizeAndPosition()
-    )
-  );
-
   const transform = generateTransform(offset, zoom);
+  let className = 'react_fast_diagram_DiagramInner';
+  if (
+    !rootStore.diagramSettings.userInteraction.arePointerInteractionsDisabled
+  ) {
+    // Disable touch actions as useGesture library recommends
+    className += ' react_fast_diagram_touch_action_disabled';
+  }
 
   return (
     <div
-      ref={rootStore.diagramState.diagramInnerRef}
-      style={{ ...props.diagramStyles }}
-      className='react_fast_diagram_DiagramInner'
+      ref={rootStore.diagramState.ref}
+      style={props.diagramStyles}
+      data-zoom={zoom}
+      className={className}
     >
       <BackgroundWrapper />
-      <LinksLayer linksStore={rootStore.linksStore} transform={transform} />
-      <NodesLayer nodesStore={rootStore.nodesStore} transform={transform} />
+      <LinksLayer transform={transform} />
+      <NodesLayer transform={transform} />
       <MiniControlWrapper />
     </div>
   );

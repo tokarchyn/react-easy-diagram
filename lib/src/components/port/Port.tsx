@@ -15,6 +15,7 @@ import { IPortState } from 'states/portState';
 import { usePortUserInteraction } from 'hooks/userInteractions/usePortUserInteraction';
 import { DISABLE_NODE_USER_INTERACTION_CLASS } from 'hooks/userInteractions/useNodeUserInteraction';
 import { DirectionWithDiagonals } from 'utils/position';
+import { useRootStore } from 'hooks/useRootStore';
 
 export interface IPortProps extends IPortState {
   position?: PortPosition;
@@ -23,6 +24,7 @@ export interface IPortProps extends IPortState {
 }
 
 export const Port: React.FC<IPortProps> = observer((props) => {
+  const { diagramSettings } = useRootStore();
   const node = useContext(NodeContext) as NodeState; // node should already exist
   const portState = useUpdateOrCreatePortState({
     linkDirection: props.position && positionToLinkDirection[props.position],
@@ -41,22 +43,27 @@ export const Port: React.FC<IPortProps> = observer((props) => {
   const { bind } = usePortUserInteraction(portState);
 
   useEffect(() => {
-    portState?.ref.recalculateSizeAndPosition();
-  }, [
-    portState,
-    portState?.ref,
-    portState?.sizeAndPositionRecalculationWithDelay,
-  ]);
+    // Prevent from recalculating on first load
+    if (portState && portState.offsetRecalculationRequested > 0) {
+      portState?.recalculateOffsetImmediately();
+    }
+  }, [portState, portState?.offsetRecalculationRequested]);
 
   if (!portState) {
     return null;
+  }
+
+  let className = DISABLE_NODE_USER_INTERACTION_CLASS;
+  if (!diagramSettings.userInteraction.arePointerInteractionsDisabled) {
+    // Disable touch actions as useGesture library recommends
+    className += ' react_fast_diagram_touch_action_disabled';
   }
 
   return (
     <div
       style={positionStyles}
       id={portState.fullId}
-      className={DISABLE_NODE_USER_INTERACTION_CLASS}
+      className={className}
       ref={portState.ref}
       key={portState.fullId}
       {...bind()}

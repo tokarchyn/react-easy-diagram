@@ -34,11 +34,11 @@ describe('Drag state', () => {
     store.selectionState.select(node1);
     store.selectionState.select(node2);
 
-    store.dragState.startDragging(node2);
+    const started = store.dragState.startDragging(node2);
     store.dragState.dragBy([10, 10]);
 
     expect(store.dragState.isActive).toBeTruthy();
-
+    expect(started).toBeTruthy();
     expect(node1.position).toEqual([10, 10]);
     expect(node1.isDragActive).toBeTruthy();
 
@@ -68,14 +68,12 @@ describe('Drag state', () => {
     expect(node2.isDragActive).toBeFalsy();
   });
 
-  test('Unselect items that cannot be dragged', () => {
+  test('Unselect nodes that cannot be dragged', () => {
     const node1 = store.nodesStore.getNode('1')!;
     const node2 = store.nodesStore.getNode('2')!;
     node2.setIsDragEnabled(false);
-    const link1_2 = store.linksStore.getLink('1-2')!;
     store.selectionState.select(node1);
     store.selectionState.select(node2);
-    store.selectionState.select(link1_2);
 
     store.dragState.startDragging(node1);
     store.dragState.dragBy([10, 10]);
@@ -87,8 +85,6 @@ describe('Drag state', () => {
     expect(node2.position).toEqual([0, 100]);
     expect(node2.isDragActive).toBeFalsy();
     expect(node2.selected).toBeFalsy();
-
-    expect(link1_2.selected).toBeFalsy();
   });
 
   test('Unselect all items if drag starts with unselected node ', () => {
@@ -117,11 +113,12 @@ describe('Drag state', () => {
     const node2 = store.nodesStore.getNode('2')!;
     store.dragState.startDragging(node1);
 
-    store.dragState.startDragging(node2);
+    const dragginsStarted = store.dragState.startDragging(node2);
 
     expect(node1.isDragActive).toBeTruthy();
     expect(node1.selected).toBeTruthy();
 
+    expect(dragginsStarted).toBeFalsy();
     expect(node2.isDragActive).toBeFalsy();
     expect(node2.selected).toBeFalsy();
   });
@@ -135,5 +132,20 @@ describe('Drag state', () => {
 
     expect(node1.isDragActive).toBeFalsy();
     expect(node1.selected).toBeFalsy();
+  });
+
+  test('Nodes positions should be snapped to grid when drag starts', () => {
+    store.nodesSettings.setGridSnap(10);
+    const node1 = store.nodesStore.getNode('1')!;
+    node1.setPosition([3, 8], true);
+    const node2 = store.nodesStore.getNode('2')!;
+    node2.setPosition([-3, -8], true);
+    store.selectionState.select(node1);
+    store.selectionState.select(node2);
+
+    store.dragState.startDragging(node1);
+
+    expect(node1.position).toEqual([0, 10]);
+    expect(node2.position).toEqual([0, -10]);
   });
 });

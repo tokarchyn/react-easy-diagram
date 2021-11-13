@@ -28,7 +28,7 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `command` | `ICommand` |
+| `command` | [`ICommand`](../interfaces/ICommand) |
 
 #### Returns
 

@@ -178,19 +178,6 @@ ___
 
 ___
 
-### realSize
-
-• `get` **realSize**(): ``null`` \| [`Point`](../#point)
-
-#### Returns
-
-``null`` \| [`Point`](../#point)
-
-Value is calculated without zoom taking into account, that is, the same as zoom would be '1'.
-Value can be @type {null} in case reference to real DOM object is not set.
-
-___
-
 ### ref
 
 • `get` **ref**(): [`HtmlElementRefState`](HtmlElementRefState)
@@ -317,9 +304,30 @@ ___
 
 ___
 
-### recalculatePortsSizeAndPosition
+### moveBy
 
-▸ **recalculatePortsSizeAndPosition**(): `void`
+▸ **moveBy**(`vector`, `ignoreSnapping?`): `undefined` \| [`Point`](../#point)
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `vector` | [`Point`](../#point) | `undefined` | vector to move node by |
+| `ignoreSnapping` | `boolean` | `false` | do not take into account snapping to grid |
+
+#### Returns
+
+`undefined` \| [`Point`](../#point)
+
+remainder in case snap to grid is turned on. For example if vector
+would be [3,9], node current position [10,10] and snap [5,5],
+the node position would be set to [10,15] and remainder equals [3,4]
+
+___
+
+### recalculatePortsOffset
+
+▸ **recalculatePortsOffset**(): `void`
 
 #### Returns
 
@@ -393,21 +401,20 @@ ___
 
 ### setPosition
 
-▸ **setPosition**(`newPosition`, `ignoreSnapping?`): `undefined` \| [`Point`](../#point)
+▸ **setPosition**(`newPosition`, `ignoreSnapping?`): `boolean`
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `newPosition` | `undefined` \| ``null`` \| [`Point`](../#point) | `undefined` | new position |
+| `newPosition` | [`Point`](../#point) | `undefined` | new position |
 | `ignoreSnapping` | `boolean` | `false` | do not take into account snapping to grid |
 
 #### Returns
 
-`undefined` \| [`Point`](../#point)
+`boolean`
 
-remainder in case snap to grid is turned on. For example if newPosition would be [22,17] and snap [10,10],
-the node position would be set to [20,20] and remainder equals [2,-3]
+false if position did not change
 
 ___
 

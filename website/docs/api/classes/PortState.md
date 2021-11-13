@@ -177,26 +177,29 @@ ___
 
 ___
 
+### offsetRecalculationRequested
+
+• `get` **offsetRecalculationRequested**(): `number`
+
+Is used to trigger port rerendering and following offset recalculation
+
+#### Returns
+
+`number`
+
+___
+
 ### offsetRelativeToNode
 
 • `get` **offsetRelativeToNode**(): ``null`` \| [`Point`](../#point)
 
-#### Returns
-
-``null`` \| [`Point`](../#point)
-
-___
-
-### realSize
-
-• `get` **realSize**(): ``null`` \| [`Point`](../#point)
+Offset relative to parent node, helps us to calculate positions of link endpoints for example.
 
 #### Returns
 
 ``null`` \| [`Point`](../#point)
 
-Value is calculated without zoom taking into account, that is, the same as zoom would be '1'.
-Value can be @type {null} in case reference to real DOM object is not set.
+offset excluding zoom
 
 ___
 
@@ -207,16 +210,6 @@ ___
 #### Returns
 
 [`HtmlElementRefState`](HtmlElementRefState)
-
-___
-
-### sizeAndPositionRecalculationWithDelay
-
-• `get` **sizeAndPositionRecalculationWithDelay**(): `number`
-
-#### Returns
-
-`number`
 
 ___
 
@@ -280,9 +273,9 @@ Update all properties. If some property missing in `state` parameter, the defaul
 
 ___
 
-### recalculateSizeAndPosition
+### recalculateOffset
 
-▸ **recalculateSizeAndPosition**(): `void`
+▸ **recalculateOffset**(): `void`
 
 #### Returns
 
@@ -290,9 +283,9 @@ ___
 
 ___
 
-### recalculateSizeAndPositionWithoutDelay
+### recalculateOffsetImmediately
 
-▸ **recalculateSizeAndPositionWithoutDelay**(): `void`
+▸ **recalculateOffsetImmediately**(): `void`
 
 #### Returns
 

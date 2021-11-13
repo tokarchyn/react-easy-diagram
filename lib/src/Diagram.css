@@ -2,18 +2,18 @@
 .react_fast_diagram_DiagramInner {
   width: 100%;
   height: 100%;
-  min-height: 100%;
   position: relative;
   overflow: hidden;
-  touch-action: none;
   user-select: none;
   -webkit-user-select: none;
 }
 
 .react_fast_diagram_Layer {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  /* We cannot set it to 100% of parent (and there is not need in this) because if parent will be smaller than node
+  then browser will try to shrink node */
+  width: 1000px; 
+  height: 1000px;
   top: 0;
   left: 0;
   overflow: visible;
@@ -102,7 +102,6 @@
 
 /* Port */
 .react_fast_diagram_PortInnerDefault {
-  cursor: pointer;
   width: 7px;
   height: 7px;
   background-color: white;
@@ -111,14 +110,17 @@
 }
 
 .react_fast_diagram_PortInnerDefault_Hovered {
+  cursor: pointer;
   border-color: #A0F251;
 }
 
 .react_fast_diagram_PortInnerDefault_Dragging {
+  cursor: pointer;
   border-color: #A0F251;
 }
 
 .react_fast_diagram_PortInnerDefault_Invalid {
+  cursor: pointer;
   border-color: #FF7B8F;
 }
 
@@ -133,8 +135,7 @@
 /* Port */
 
 /* Link */
-.react_fast_diagram_LinkDefault_Line {
-  cursor: pointer;
+.react_fast_diagram_LinkDefault_Line {  
   fill: none;
   stroke-linecap: round;
   stroke: #c2c2c2;
@@ -153,18 +154,36 @@
   stroke-width: 5px;
   stroke-opacity: 0;
   pointer-events: stroke;
+  touch-action: none;
 }
 
 .react_fast_diagram_LinkDefault_SecondaryLine_Hovered {
   stroke-opacity: 0.22;
+  cursor: pointer;
 }
 /* Link */
 
-/* Common */
-.react_fast_diagram_disabled_user_select {
-  user-select: none;
+/* Drag and drop */
+.react_fast_diagram_DragAndDropContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+  overflow-y: auto;
+  align-items: center;
 }
-/* Common */
+
+.react_fast_diagram_DragAndDropItem {
+  touch-action: none;
+  user-select: none;
+  width: fit-content;
+  height: fit-content;
+}
+
+.react_fast_diagram_DragAndDropItem_Droppable {
+  position: fixed;
+}
+/* Drag and drop */
 
 /* Containers with gap between items */
 .react_fast_diagram_flex_gap {
@@ -200,3 +219,9 @@
   margin: 0;
 }
 /* Containers with gap between items */
+
+/* Utils */
+.react_fast_diagram_touch_action_disabled {
+  touch-action: none;
+}
+/* Utils */

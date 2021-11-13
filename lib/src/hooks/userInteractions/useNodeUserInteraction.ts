@@ -6,7 +6,7 @@ import {
 import { useCursor, useDiagramCursor } from 'hooks/userInteractions/useCursor';
 import { useRootStore } from 'hooks/useRootStore';
 import React, { useCallback, useMemo, useRef } from 'react';
-import { useGesture } from 'react-use-gesture';
+import { useGesture } from '@use-gesture/react';
 import { NodeState } from 'states/nodeState';
 import { multiplyPoint } from 'utils/point';
 
@@ -23,6 +23,7 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
     }
     return false;
   }, [selectOnLongTapRef]);
+  const startedDragRef = useRef<boolean>(false);
 
   const handlers = useMemo<GestureHandlers>(
     () => ({
@@ -33,7 +34,7 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
         nodeState.hovered = false;
       },
       onClick: () => {}, // Prevent from double tap zooming on IOS
-      onDrag: ({ pinching, delta, movement }) => {
+      onDrag: ({ pinching, delta, movement, cancel }) => {
         if (
           !interactionActiveRef.current ||
           pinching ||
@@ -43,18 +44,39 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
         }
         cancelSelectOnLongTap();
 
-        if (rootStore.dragState.isActive && !nodeState.isDragActive) return;
-        if (!nodeState.isDragEnabled) return;
+        if (
+          !nodeState.isDragEnabled ||
+          // If there is another node that activated dragging
+          (rootStore.dragState.isActive && !startedDragRef.current)
+        ) {
+          interactionActiveRef.current = false;
+          cancel();
+          return;
+        }
+
+        // If somehow node was unselected during dragging. It can be connecting ports while dragging nodes, 
+        // or dropped node for example
+        if (
+          rootStore.dragState.isActive &&
+          !nodeState.isDragActive &&
+          startedDragRef.current
+        ) {
+          rootStore.dragState.stopDragging();
+          startedDragRef.current = false;
+          interactionActiveRef.current = false;
+          cancel();
+          return;
+        }
 
         if (!nodeState.isDragActive) {
-          rootStore.dragState.startDragging(nodeState);
+          startedDragRef.current = rootStore.dragState.startDragging(nodeState);
         }
 
         rootStore.dragState.dragBy(
           multiplyPoint(delta, 1 / rootStore.diagramState.zoom)
         );
       },
-      onDragStart: ({ event }) => {
+      onDragStart: ({ event, cancel }) => {
         interactionActiveRef.current =
           allowNodeInteraction(event) && !rootStore.dragState.isActive;
 
@@ -64,10 +86,15 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
             selectOnLongTapRef.current = global.setTimeout(() => {
               if (selectOnLongTapRef.current) {
                 selectOnLongTapRef.current = null;
-                rootStore.selectionState.switch(nodeState);
+                // It can happen if user simultaneously tap two nodes and will start move one of them
+                if (!rootStore.dragState.isActive) {
+                  rootStore.selectionState.switch(nodeState);
+                }
               }
             }, selectDelay);
           }
+        } else {
+          cancel();
         }
       },
       onDragEnd: ({ tap, shiftKey, altKey, ctrlKey, metaKey }) => {
@@ -75,8 +102,9 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
           interactionActiveRef.current = false;
           const selectLongOnTapCancelled = cancelSelectOnLongTap();
 
-          if (nodeState.isDragActive) {
+          if (startedDragRef.current) {
             rootStore.dragState.stopDragging();
+            startedDragRef.current = false;
           }
 
           // selectLongOnTapCancelled means that callback in timer wasn't executed yet
@@ -98,8 +126,10 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
   );
 
   useGesture(handlers, {
-    domTarget: nodeState.ref,
+    target: nodeState.ref,
     eventOptions: { passive: false },
+    enabled: !rootStore.diagramSettings.userInteraction
+      .arePointerInteractionsDisabled,
   });
 
   useDiagramCursor(nodeState.isDragActive, 'move');
@@ -109,7 +139,7 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
 const selectDelay: number = 500;
 
 function allowNodeInteraction(
-  event: React.PointerEvent<Element> | PointerEvent
+  event: PointerEvent | TouchEvent | MouseEvent | KeyboardEvent
 ) {
   return eventPathContainsClass(
     event,

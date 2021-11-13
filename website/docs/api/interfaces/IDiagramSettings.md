@@ -34,4 +34,4 @@ ___
 
 ### zoomToFitSettings
 
-• `Optional` **zoomToFitSettings**: [`IZoomToFitSettings`](IZoomToFitSettings)
+• `Optional` **zoomToFitSettings**: `Partial`<[`IZoomToFitSettings`](IZoomToFitSettings)\>

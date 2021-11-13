@@ -25,16 +25,6 @@ custom_edit_url: null
 
 ## Accessors
 
-### diagramInnerRef
-
-• `get` **diagramInnerRef**(): [`HtmlElementRefState`](HtmlElementRefState)
-
-#### Returns
-
-[`HtmlElementRefState`](HtmlElementRefState)
-
-___
-
 ### offset
 
 • `get` **offset**(): [`Point`](../#point)
@@ -49,23 +39,13 @@ ___
 
 ___
 
-### renderedOffset
+### ref
 
-• `get` **renderedOffset**(): [`Point`](../#point)
-
-#### Returns
-
-[`Point`](../#point)
-
-___
-
-### renderedZoom
-
-• `get` **renderedZoom**(): `number`
+• `get` **ref**(): [`HtmlElementRefState`](HtmlElementRefState)
 
 #### Returns
 
-`number`
+[`HtmlElementRefState`](HtmlElementRefState)
 
 ___
 
@@ -93,6 +73,34 @@ ___
 
 ___
 
+### getPositionByPointer
+
+▸ **getPositionByPointer**(`pointerPosition`): [`Point`](../#point)
+
+Get position on Diagram in its coordinates system (including zoom) by mouse/touch position.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `pointerPosition` | [`Point`](../#point) | position of mouse or finger on the screen |
+
+#### Returns
+
+[`Point`](../#point)
+
+___
+
+### getRenderedZoom
+
+▸ **getRenderedZoom**(): ``null`` \| `number`
+
+#### Returns
+
+``null`` \| `number`
+
+___
+
 ### import
 
 ▸ **import**(`state?`): `void`
@@ -102,25 +110,6 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `state?` | [`IDiagramState`](../interfaces/IDiagramState) |
-
-#### Returns
-
-`void`
-
-___
-
-### renderOffsetAndZoom
-
-▸ **renderOffsetAndZoom**(`offset`, `zoom`): `void`
-
-Set offset and zoom values that were already rendered.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `offset` | [`Point`](../#point) |
-| `zoom` | `number` |
 
 #### Returns
 

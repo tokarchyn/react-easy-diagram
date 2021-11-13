@@ -36,13 +36,17 @@ custom_edit_url: null
 ## Interfaces
 
 - [Dictionary](interfaces/Dictionary)
+- [DragAndDropContainerProps](interfaces/DragAndDropContainerProps)
+- [DragAndDropEvent](interfaces/DragAndDropEvent)
+- [DragAndDropItemProps](interfaces/DragAndDropItemProps)
+- [DragAndDropStartEvent](interfaces/DragAndDropStartEvent)
 - [IBackgroundComponentProps](interfaces/IBackgroundComponentProps)
 - [ICallbacks](interfaces/ICallbacks)
+- [ICommand](interfaces/ICommand)
 - [IComponentDefinition](interfaces/IComponentDefinition)
 - [ICurvedLinkPathConstructorSettings](interfaces/ICurvedLinkPathConstructorSettings)
 - [IDiagramInitState](interfaces/IDiagramInitState)
 - [IDiagramInnerProps](interfaces/IDiagramInnerProps)
-- [IDiagramProps](interfaces/IDiagramProps)
 - [IDiagramSettings](interfaces/IDiagramSettings)
 - [IDiagramState](interfaces/IDiagramState)
 - [IDragHandlers](interfaces/IDragHandlers)
@@ -163,6 +167,12 @@ ___
 ### GestureHandlers
 
 Ƭ **GestureHandlers**: `Partial`<`UserHandlers`<`EventTypes`\> & `NativeHandlers`<`EventTypes`\>\>
+
+___
+
+### IDiagramProps
+
+Ƭ **IDiagramProps**: `React.PropsWithChildren`<`Object`\>
 
 ___
 
@@ -325,6 +335,19 @@ ___
 | :------ |
 | `TComponentProps` |
 
+___
+
+### check
+
+Ƭ **check**<`T`, `Key`\>: `undefined` extends `T`[`Key`] ? `EventTypes`[`Key`] : `T`[`Key`]
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `AnyHandlerEventTypes` |
+| `Key` | extends `GestureKey` |
+
 ## Variables
 
 ### BackgroundWrapper
@@ -399,6 +422,12 @@ ___
 
 ___
 
+### LockIcon
+
+• **LockIcon**: `React.FC`
+
+___
+
 ### MiniControlWrapper
 
 • **MiniControlWrapper**: () => `Element` & { `displayName`: `string`  }
@@ -453,9 +482,9 @@ ___
 
 ___
 
-### className
+### UnlockIcon
 
-• **className**: `string`
+• **UnlockIcon**: `React.FC`
 
 ___
 
@@ -551,11 +580,79 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `props` | [`IDiagramProps`](interfaces/IDiagramProps) |
+| `props` | `PropsWithChildren`<`Object`\> |
 
 #### Returns
 
 `Element`
+
+___
+
+### DiagramContext
+
+▸ **DiagramContext**(`props`): `Element`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `props` | `PropsWithChildren`<`Object`\> |
+
+#### Returns
+
+`Element`
+
+___
+
+### DragAndDropContainer
+
+▸ **DragAndDropContainer**(`props`): `Element`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `props` | [`DragAndDropContainerProps`](interfaces/DragAndDropContainerProps) |
+
+#### Returns
+
+`Element`
+
+___
+
+### DragAndDropItem
+
+▸ **DragAndDropItem**(`props`): `Element`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `props` | [`DragAndDropItemProps`](interfaces/DragAndDropItemProps) |
+
+#### Returns
+
+`Element`
+
+___
+
+### addNodeCommand
+
+▸ `Const` **addNodeCommand**(`node`): `Object`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `node` | [`INodeState`](interfaces/INodeState) |
+
+#### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `execute` | (`rootStore`: [`RootStore`](classes/RootStore)) => `void` |
 
 ___
 
@@ -969,6 +1066,34 @@ ___
 
 ___
 
+### createNodeOnDrop
+
+▸ **createNodeOnDrop**(`node`): (`event`: [`DragAndDropEvent`](interfaces/DragAndDropEvent)) => `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `node` | `Pick`<[`INodeState`](interfaces/INodeState), ``"id"`` \| ``"label"`` \| ``"type"`` \| ``"extra"`` \| ``"isSelectionEnabled"`` \| ``"isDragEnabled"``\> |
+
+#### Returns
+
+`fn`
+
+▸ (`event`): `void`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `event` | [`DragAndDropEvent`](interfaces/DragAndDropEvent) |
+
+##### Returns
+
+`void`
+
+___
+
 ### createOutputHorizontalNode
 
 ▸ `Const` **createOutputHorizontalNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
@@ -1184,7 +1309,7 @@ if neither exceptClassName nor className were found -> return false
 
 | Name | Type |
 | :------ | :------ |
-| `event` | `PointerEvent` \| `PointerEvent`<`Element`\> |
+| `event` | `PointerEvent` \| `MouseEvent` \| `TouchEvent` \| `KeyboardEvent` |
 | `className` | `string` |
 | `exceptClassName?` | `string` |
 
@@ -1486,7 +1611,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `active` | `boolean` |
-| `cursor` | `undefined` \| `string` & {} \| ``"-moz-initial"`` \| ``"inherit"`` \| ``"initial"`` \| ``"revert"`` \| ``"unset"`` \| ``"-moz-grab"`` \| ``"-webkit-grab"`` \| ``"alias"`` \| ``"all-scroll"`` \| ``"auto"`` \| ``"cell"`` \| ``"col-resize"`` \| ``"context-menu"`` \| ``"copy"`` \| ``"crosshair"`` \| ``"default"`` \| ``"e-resize"`` \| ``"ew-resize"`` \| ``"grab"`` \| ``"grabbing"`` \| ``"help"`` \| ``"move"`` \| ``"n-resize"`` \| ``"ne-resize"`` \| ``"nesw-resize"`` \| ``"no-drop"`` \| ``"none"`` \| ``"not-allowed"`` \| ``"ns-resize"`` \| ``"nw-resize"`` \| ``"nwse-resize"`` \| ``"pointer"`` \| ``"progress"`` \| ``"row-resize"`` \| ``"s-resize"`` \| ``"se-resize"`` \| ``"sw-resize"`` \| ``"text"`` \| ``"vertical-text"`` \| ``"w-resize"`` \| ``"wait"`` \| ``"zoom-in"`` \| ``"zoom-out"`` |
+| `cursor` | `undefined` \| ``"move"`` \| `string` & {} \| ``"-moz-initial"`` \| ``"inherit"`` \| ``"initial"`` \| ``"revert"`` \| ``"unset"`` \| ``"-moz-grab"`` \| ``"-webkit-grab"`` \| ``"alias"`` \| ``"all-scroll"`` \| ``"auto"`` \| ``"cell"`` \| ``"col-resize"`` \| ``"context-menu"`` \| ``"copy"`` \| ``"crosshair"`` \| ``"default"`` \| ``"e-resize"`` \| ``"ew-resize"`` \| ``"grab"`` \| ``"grabbing"`` \| ``"help"`` \| ``"n-resize"`` \| ``"ne-resize"`` \| ``"nesw-resize"`` \| ``"no-drop"`` \| ``"none"`` \| ``"not-allowed"`` \| ``"ns-resize"`` \| ``"nw-resize"`` \| ``"nwse-resize"`` \| ``"pointer"`` \| ``"progress"`` \| ``"row-resize"`` \| ``"s-resize"`` \| ``"se-resize"`` \| ``"sw-resize"`` \| ``"text"`` \| ``"vertical-text"`` \| ``"w-resize"`` \| ``"wait"`` \| ``"zoom-in"`` \| ``"zoom-out"`` |
 | `ref` | ``null`` \| `HTMLDivElement` |
 
 #### Returns
@@ -1526,7 +1651,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `active` | `boolean` |
-| `cursor` | `undefined` \| `string` & {} \| ``"-moz-initial"`` \| ``"inherit"`` \| ``"initial"`` \| ``"revert"`` \| ``"unset"`` \| ``"-moz-grab"`` \| ``"-webkit-grab"`` \| ``"alias"`` \| ``"all-scroll"`` \| ``"auto"`` \| ``"cell"`` \| ``"col-resize"`` \| ``"context-menu"`` \| ``"copy"`` \| ``"crosshair"`` \| ``"default"`` \| ``"e-resize"`` \| ``"ew-resize"`` \| ``"grab"`` \| ``"grabbing"`` \| ``"help"`` \| ``"move"`` \| ``"n-resize"`` \| ``"ne-resize"`` \| ``"nesw-resize"`` \| ``"no-drop"`` \| ``"none"`` \| ``"not-allowed"`` \| ``"ns-resize"`` \| ``"nw-resize"`` \| ``"nwse-resize"`` \| ``"pointer"`` \| ``"progress"`` \| ``"row-resize"`` \| ``"s-resize"`` \| ``"se-resize"`` \| ``"sw-resize"`` \| ``"text"`` \| ``"vertical-text"`` \| ``"w-resize"`` \| ``"wait"`` \| ``"zoom-in"`` \| ``"zoom-out"`` |
+| `cursor` | `undefined` \| ``"move"`` \| `string` & {} \| ``"-moz-initial"`` \| ``"inherit"`` \| ``"initial"`` \| ``"revert"`` \| ``"unset"`` \| ``"-moz-grab"`` \| ``"-webkit-grab"`` \| ``"alias"`` \| ``"all-scroll"`` \| ``"auto"`` \| ``"cell"`` \| ``"col-resize"`` \| ``"context-menu"`` \| ``"copy"`` \| ``"crosshair"`` \| ``"default"`` \| ``"e-resize"`` \| ``"ew-resize"`` \| ``"grab"`` \| ``"grabbing"`` \| ``"help"`` \| ``"n-resize"`` \| ``"ne-resize"`` \| ``"nesw-resize"`` \| ``"no-drop"`` \| ``"none"`` \| ``"not-allowed"`` \| ``"ns-resize"`` \| ``"nw-resize"`` \| ``"nwse-resize"`` \| ``"pointer"`` \| ``"progress"`` \| ``"row-resize"`` \| ``"s-resize"`` \| ``"se-resize"`` \| ``"sw-resize"`` \| ``"text"`` \| ``"vertical-text"`` \| ``"w-resize"`` \| ``"wait"`` \| ``"zoom-in"`` \| ``"zoom-out"`` |
 
 #### Returns
 
@@ -1536,13 +1661,13 @@ ___
 
 ### useDiagramDragHandlers
 
-▸ **useDiagramDragHandlers**(`cancelEvent?`): [`IDragHandlers`](interfaces/IDragHandlers)
+▸ **useDiagramDragHandlers**(`cancelEvent`): [`IDragHandlers`](interfaces/IDragHandlers)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `cancelEvent?` | (`event`: `PointerEvent` \| `PointerEvent`<`Element`\>) => `boolean` |
+| `cancelEvent` | (`event`: { `target`: ``null`` \| `EventTarget`  }) => `boolean` |
 
 #### Returns
 
@@ -1558,7 +1683,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `cancel` | (`event`: `PinchEvent`) => `boolean` |
+| `cancel` | (`event`: { `target`: ``null`` \| `EventTarget`  }) => `boolean` |
 
 #### Returns
 
@@ -1664,7 +1789,7 @@ ___
 
 ### useRelativePositionStyles
 
-▸ `Const` **useRelativePositionStyles**(`position?`, `offsetFromParentCenter?`, `offsetFromOrigin?`, `usePortCenterPivot?`): `Pick`<`Partial`<`CSSProperties`\>, ``"transform"`` \| ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"position"`` \| ``"width"`` \| ``"height"``\>
+▸ `Const` **useRelativePositionStyles**(`position?`, `offsetFromParentCenter?`, `offsetFromOrigin?`, `usePortCenterPivot?`): `Pick`<`Partial`<`CSSProperties`\>, ``"position"`` \| ``"transform"`` \| ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"width"`` \| ``"height"``\>
 
 #### Parameters
 
@@ -1677,7 +1802,7 @@ ___
 
 #### Returns
 
-`Pick`<`Partial`<`CSSProperties`\>, ``"transform"`` \| ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"position"`` \| ``"width"`` \| ``"height"``\>
+`Pick`<`Partial`<`CSSProperties`\>, ``"position"`` \| ``"transform"`` \| ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"width"`` \| ``"height"``\>
 
 ___
 

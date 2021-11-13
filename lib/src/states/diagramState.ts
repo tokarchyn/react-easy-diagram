@@ -12,16 +12,12 @@ export class DiagramState
   implements IUserInteractionTranslate, IUserInteractionTranslateAndZoom {
   private _offset: Point;
   private _zoom: number;
-  private _renderedOffset: Point;
-  private _renderedZoom: number;
-  private _diagramInnerRef: HtmlElementRefState;
+  private _ref: HtmlElementRefState;
   private _rootStore: RootStore;
 
   constructor(rootStore: RootStore) {
-    this._diagramInnerRef = new HtmlElementRefState(null);
+    this._ref = new HtmlElementRefState(null, this);
     this._rootStore = rootStore;
-    this._renderedOffset = [0, 0];
-    this._renderedZoom = 1;
     this.import();
 
     makeAutoObservable(this, {
@@ -93,14 +89,16 @@ export class DiagramState
   };
 
   zoomIntoCenter = (zoomMultiplicator: number) => {
-    const diagramRealSize = this._diagramInnerRef.realSize;
-    if (!diagramRealSize) return;
-
-    this.zoomInto(multiplyPoint(diagramRealSize, 0.5), zoomMultiplicator);
+    if (this.ref.boundingRect) {
+      this.zoomInto(
+        multiplyPoint(this.ref.boundingRect.size, 0.5),
+        zoomMultiplicator
+      );
+    }
   };
 
-  get diagramInnerRef() {
-    return this._diagramInnerRef;
+  get ref() {
+    return this._ref;
   }
 
   get offset() {
@@ -111,41 +109,42 @@ export class DiagramState
     return this._zoom;
   }
 
-  get renderedOffset() {
-    return this._renderedOffset;
-  }
-
-  get renderedZoom() {
-    return this._renderedZoom;
+  getRenderedZoom(): number | null {
+    const attr = this.ref.getDataAttribute('data-zoom');
+    return attr ? Number(attr) : null;
   }
 
   /**
-   * Set offset and zoom values that were already rendered.
+   * Get position on Diagram in its coordinates system (including zoom) by mouse/touch position.
+   * @param pointerPosition position of mouse or finger on the screen
    */
-  renderOffsetAndZoom = (offset: Point, zoom: number) => {
-    this._renderedOffset = offset;
-    this._renderedZoom = zoom;
+  getPositionByPointer = (pointerPosition: Point): Point => {
+    const diagRect = this.ref.current?.getBoundingClientRect();
+    if (diagRect) {
+      return multiplyPoint(
+        subtractPoints(
+          pointerPosition,
+          [diagRect.left, diagRect.top],
+          this.offset
+        ),
+        1 / this.zoom
+      );
+    } else return [0, 0];
   };
 
   zoomToFit = () => {
     const nodesBoundingBox = this._getNodesBoundingBoxWithPadding();
 
-    const diagramSize = this._diagramInnerRef.realSize;
+    const diagramSize = this.ref.boundingRect?.size;
     if (!diagramSize) {
       console.warn('Cannot retrieve diagram size');
       return;
     }
 
-    const newZoom = calculateNewZoomToFitBoundingBox(
-      diagramSize,
-      nodesBoundingBox
+    const newZoom = clampValue(
+      calculateNewZoomToFitBoundingBox(diagramSize, nodesBoundingBox),
+      this._rootStore.diagramSettings.zoomToFitSettings.zoomInterval
     );
-
-    // Extend interval to be able to set required zoom
-    this._rootStore.diagramSettings.setZoomInterval([
-      Math.min(this._rootStore.diagramSettings.zoomInterval[0], newZoom),
-      Math.max(this._rootStore.diagramSettings.zoomInterval[1], newZoom),
-    ]);
     this.setZoom(newZoom);
 
     this.setOffset(
@@ -182,7 +181,6 @@ function calculateNewZoomToFitBoundingBox(
     diagramSize[0] / boundingBox.size[0],
     diagramSize[1] / boundingBox.size[1]
   );
-
   return newZoom;
 }
 

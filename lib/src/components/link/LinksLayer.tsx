@@ -5,24 +5,39 @@ import { LinkWrapper } from 'components/link/LinkWrapper';
 import { useRootStore } from 'hooks/useRootStore';
 
 export const LinksLayer = observer<{
-  linksStore: LinksStore;
   transform: string;
-}>(({ linksStore, transform }) => {
-  const rootStore = useRootStore();
-
+}>(({ transform }) => {
   return (
     <svg className='react_fast_diagram_Layer'>
-      <defs>
-        {rootStore.linksSettings.svgMarkers.map((Marker, i) => (
-          <Marker key={i} />
-        ))}
-      </defs>
+      <MarkerDefs />
       <g style={{ transform: transform }}>
-        {Array.from(linksStore.links).map(([id, link]) => (
-          <LinkWrapper key={link.id} link={link} />
-        ))}
-        {<LinkWrapper key='__creation__' link={linksStore.linkCreation} />}
+        <LinksList />
       </g>
     </svg>
+  );
+});
+
+const LinksList = observer(() => {
+  const { linksStore } = useRootStore();
+
+  return (
+    <>
+      {Array.from(linksStore.links).map(([id, link]) => (
+        <LinkWrapper key={link.id} link={link} />
+      ))}
+      {<LinkWrapper key='__creation__' link={linksStore.linkCreation} />}
+    </>
+  );
+});
+
+const MarkerDefs = observer(() => {
+  const { linksSettings } = useRootStore();
+
+  return (
+    <defs>
+      {linksSettings.svgMarkers.map((Marker, i) => (
+        <Marker key={i} />
+      ))}
+    </defs>
   );
 });

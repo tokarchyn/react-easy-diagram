@@ -67,6 +67,8 @@ export class DiagramSettings {
 const defaultZoomInterval: Point = [0.1, 3];
 const defaultZoomToFitSettings: IZoomToFitSettings = {
   padding: [30, 30],
+  zoomInterval: [0.1, 1.5],
+  callOnLoad: true
 };
 
 export interface IDiagramSettings {
@@ -77,7 +79,7 @@ export interface IDiagramSettings {
     | IComponentDefinition<IMiniControlComponentProps>
     | VisualComponent<IMiniControlComponentProps>;
   zoomInterval?: Point;
-  zoomToFitSettings?: IZoomToFitSettings;
+  zoomToFitSettings?: Partial<IZoomToFitSettings>;
   userInteraction?: Partial<IUserInteraction>;
 }
 
@@ -94,4 +96,6 @@ export interface IMiniControlComponentProps<TSettings = any> {
 
 export interface IZoomToFitSettings {
   padding: Point;
+  zoomInterval: Point;
+  callOnLoad: boolean;
 }

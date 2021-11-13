@@ -1,12 +1,16 @@
 // created from 'create-ts-index'
 
+export * from './commands/addNode';
 export * from './commands/clone';
 export * from './commands/remove';
 export * from './components/Diagram';
+export * from './components/DiagramContext';
 export * from './components/DiagramInner';
 export * from './components/Icons';
 export * from './components/background/BackgroundWrapper';
 export * from './components/background/SvgBackground';
+export * from './components/dragAndDrop/DragAndDropContainer';
+export * from './components/dragAndDrop/DragAndDropItem';
 export * from './components/link/LinkDefault';
 export * from './components/link/LinkWrapper';
 export * from './components/link/LinksLayer';

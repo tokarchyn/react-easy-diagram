@@ -1,9 +1,11 @@
 import {
+  AnyHandlerEventTypes,
   EventTypes,
+  GestureKey,
   NativeHandlers,
   UserHandlers,
   Vector2,
-} from 'react-use-gesture/dist/types';
+} from '@use-gesture/react';
 import { Point } from 'utils/point';
 
 /**
@@ -13,7 +15,7 @@ import { Point } from 'utils/point';
  * if neither exceptClassName nor className were found -> return false
  */
 export const eventPathContainsClass = (
-  event: PointerEvent | React.PointerEvent<Element>,
+  event: PointerEvent | TouchEvent | MouseEvent | KeyboardEvent,
   className: string,
   exceptClassName?: string
 ) => {
@@ -64,3 +66,5 @@ export interface IUserInteractionTranslateAndZoom {
 export type GestureHandlers = Partial<
   UserHandlers<EventTypes> & NativeHandlers<EventTypes>
 >;
+
+export declare type check<T extends AnyHandlerEventTypes, Key extends GestureKey> = undefined extends T[Key] ? EventTypes[Key] : T[Key];

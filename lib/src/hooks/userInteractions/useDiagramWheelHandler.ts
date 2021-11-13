@@ -1,8 +1,11 @@
-import { useMemo } from 'react';
-import { Handler } from 'react-use-gesture/dist/types';
-import { subtractPoints } from 'utils/point';
-import type { IUserInteractionTranslateAndZoom } from 'hooks/userInteractions/common';
+import { EventTypes, Handler } from '@use-gesture/react';
+import type {
+  check,
+  IUserInteractionTranslateAndZoom,
+} from 'hooks/userInteractions/common';
 import { useRootStore } from 'hooks/useRootStore';
+import { useMemo } from 'react';
+import { subtractPoints } from 'utils/point';
 
 export function useDiagramWheelHandler(
   state: IUserInteractionTranslateAndZoom
@@ -13,12 +16,12 @@ export function useDiagramWheelHandler(
     () => ({
       onWheel: ({ direction: [_, yDirection], event }) => {
         if (
-          !diagramState.diagramInnerRef.current ||
+          !diagramState.ref.current ||
           !diagramSettings.userInteraction.diagramZoom
         )
           return;
         event?.preventDefault();
-        const rect = diagramState.diagramInnerRef.current.getBoundingClientRect();
+        const rect = diagramState.ref.current.getBoundingClientRect();
 
         const mousePositionOnElement = subtractPoints(
           [event.clientX, event.clientY],
@@ -33,15 +36,13 @@ export function useDiagramWheelHandler(
         state.tranlsateAndZoomInto([0, 0], mousePositionOnElement, factor);
       },
     }),
-    [diagramState.diagramInnerRef, state, diagramSettings]
+    [diagramState.ref, state, diagramSettings]
   );
 
   return handlers;
 }
 
-type WheelEventHandler =
-  | Handler<'wheel', React.WheelEvent<Element> | WheelEvent>
-  | undefined;
+type WheelEventHandler = Handler<'wheel', check<EventTypes, 'wheel'>>;
 
 interface IWheelHandler {
   onWheel: WheelEventHandler;
