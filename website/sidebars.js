@@ -14,6 +14,7 @@ module.exports = {
       ],
     },
     'stateManagement',
+    'dragAndDrop',
     {
       type: 'category',
       label: 'Api',

@@ -1,0 +1,41 @@
+---
+title: Drag and drop
+---
+
+Drag and drop is implemented without using [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API) to be able to add reliable touch support. There is an [example](/examples/dragAndDrop) with code to help you with implementation. The following code block describes what should be done to enable drag and drop:
+
+```jsx
+<DiagramContext /* instead of using Diagram component use component for diagram context */
+    /* you pass the same props as to Diagram component */
+    initState={/* ... */}
+    settings={/* ... */}
+  >
+    <div className="any_class">
+      <DigramInner /* component that actually render diagram using context we provided above */ />
+      <DragAndDropContainer /* the helper component that only position and render draggable items */
+        items={[ /* items to drag and drop */
+          {
+            draggable: <div>Star</div>,
+            onDrop: createNodeOnDrop({ type: 'star' }),
+          },
+        ]}
+      />
+    </div>
+</DiagramContext>
+```
+
+## DragAndDropContainer
+It's very simple component that only render all [DragAndDropItem](#DragAndDropItem), where the actual drag and drop logic is implemented. You can modify this component by providing classes or style, see [DragAndDropContainerProps](api/interfaces/DragAndDropContainerProps.md). Another option is just using your own component instead of the DragAndDropContainer:
+
+```jsx
+<div>
+  <DragAndDropItem /* some props */ />
+  <DragAndDropItem /* some props */ />
+  <DragAndDropItem /* some props */ />
+</div>
+```
+
+## DragAndDropItem
+The component that contain all logic to be dragged and dropped. The only required properties you should provide are `draggable` and `onDrop`. The `draggable` is any element that will be rendered and which you can drag. The `onDrop` is a callback that will be called once user drop item. As the most common case you will want to do on drop is creating node, the library provides you ready to use callback [createNodeOnDrop(nodeDefinition)](api/#createnodeondrop). 
+
+See all properties you can pass to it in [DragAndDropItemProps](api/interfaces/DragAndDropItemProps.md).
