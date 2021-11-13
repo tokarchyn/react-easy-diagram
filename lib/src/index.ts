@@ -4,6 +4,7 @@ export * from './commands/addNode';
 export * from './commands/clone';
 export * from './commands/remove';
 export * from './components/Diagram';
+export * from './components/DiagramContext';
 export * from './components/DiagramInner';
 export * from './components/Icons';
 export * from './components/background/BackgroundWrapper';

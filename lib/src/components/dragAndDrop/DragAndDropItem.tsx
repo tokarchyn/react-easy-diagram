@@ -3,6 +3,8 @@ import React, { useCallback, useRef, useState } from 'react';
 import { useGesture } from '@use-gesture/react';
 import { RootStore } from 'states/rootStore';
 import { multiplyPoint, Point, subtractPoints } from 'utils/point';
+import { addNodeCommand } from 'commands/addNode';
+import { INodeState } from 'index';
 
 interface DragAndDropBaseEvent {
   /**
@@ -109,7 +111,7 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
         if (!cancelledRef.current) {
           setActive(false);
           setTranslate([0, 0]);
-  
+
           props.onDrop?.({
             position: getPositionOnDiagram(xy),
             pointerPosition: xy,
@@ -141,4 +143,19 @@ export function DragAndDropItem(props: DragAndDropItemProps) {
       </div>
     </div>
   );
+}
+
+export function createNodeOnDrop(node: Omit<INodeState, 'position'>) {
+  return (event: DragAndDropEvent) => {
+    // Check if drop occured above the diagram
+    if (event.position) {
+      event.store.commandExecutor.execute(
+        addNodeCommand({
+          position: event.position,
+          label: 'Newly created',
+          type: node.type,
+        })
+      );
+    }
+  };
 }

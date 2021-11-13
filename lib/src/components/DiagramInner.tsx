@@ -7,6 +7,7 @@ import { useRootStore } from 'hooks/useRootStore';
 import { BackgroundWrapper } from 'components/background/BackgroundWrapper';
 import { MiniControlWrapper } from 'components/miniControl/MiniControlWrapper';
 import { generateTransform } from 'utils/transformation';
+import '../Diagram.css';
 
 export interface IDiagramInnerProps {
   diagramStyles?: React.CSSProperties;

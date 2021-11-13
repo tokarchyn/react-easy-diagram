@@ -588,6 +588,22 @@ ___
 
 ___
 
+### DiagramContext
+
+▸ **DiagramContext**(`props`): `Element`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `props` | `PropsWithChildren`<`Object`\> |
+
+#### Returns
+
+`Element`
+
+___
+
 ### DragAndDropContainer
 
 ▸ **DragAndDropContainer**(`props`): `Element`
@@ -1047,6 +1063,34 @@ ___
 #### Returns
 
 [`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+
+___
+
+### createNodeOnDrop
+
+▸ **createNodeOnDrop**(`node`): (`event`: [`DragAndDropEvent`](interfaces/DragAndDropEvent)) => `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `node` | `Pick`<[`INodeState`](interfaces/INodeState), ``"id"`` \| ``"label"`` \| ``"type"`` \| ``"extra"`` \| ``"isSelectionEnabled"`` \| ``"isDragEnabled"``\> |
+
+#### Returns
+
+`fn`
+
+▸ (`event`): `void`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `event` | [`DragAndDropEvent`](interfaces/DragAndDropEvent) |
+
+##### Returns
+
+`void`
 
 ___
 
@@ -1745,7 +1789,7 @@ ___
 
 ### useRelativePositionStyles
 
-▸ `Const` **useRelativePositionStyles**(`position?`, `offsetFromParentCenter?`, `offsetFromOrigin?`, `usePortCenterPivot?`): `Pick`<`Partial`<`CSSProperties`\>, ``"transform"`` \| ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"position"`` \| ``"width"`` \| ``"height"``\>
+▸ `Const` **useRelativePositionStyles**(`position?`, `offsetFromParentCenter?`, `offsetFromOrigin?`, `usePortCenterPivot?`): `Pick`<`Partial`<`CSSProperties`\>, ``"position"`` \| ``"transform"`` \| ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"width"`` \| ``"height"``\>
 
 #### Parameters
 
@@ -1758,7 +1802,7 @@ ___
 
 #### Returns
 
-`Pick`<`Partial`<`CSSProperties`\>, ``"transform"`` \| ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"position"`` \| ``"width"`` \| ``"height"``\>
+`Pick`<`Partial`<`CSSProperties`\>, ``"position"`` \| ``"transform"`` \| ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"width"`` \| ``"height"``\>
 
 ___
 

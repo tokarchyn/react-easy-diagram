@@ -1,16 +1,15 @@
 import { css } from '@emotion/css';
 import React from 'react';
 import {
-  addNodeCommand,
-  Diagram,
   DigramInner,
   DragAndDropContainer,
-  DragAndDropEvent,
+  DiagramContext,
+  createNodeOnDrop,
 } from 'react-easy-diagram';
 
 export default function () {
   return (
-    <Diagram
+    <DiagramContext
       initState={{
         nodes: [
           {
@@ -28,22 +27,22 @@ export default function () {
           items={[
             {
               draggable: <NodeTemplate label='Input-output' />,
-              onDrop: createNodeOnDrop('input_output_horizontal'),
+              onDrop: createNodeOnDrop({ type: 'input_output_horizontal' }),
             },
             {
               draggable: <NodeTemplate label='Input' />,
-              onDrop: createNodeOnDrop('input_horizontal'),
+              onDrop: createNodeOnDrop({ type: 'input_horizontal' }),
             },
             {
               draggable: <NodeTemplate label='Output' />,
-              onDrop: createNodeOnDrop('output_horizontal'),
+              onDrop: createNodeOnDrop({ type: 'output_horizontal' }),
             },
             {
               draggable: <NodeTemplate label='Star' />,
               droppable: (
                 <div style={{ fontSize: '2rem', textAlign: 'center' }}>⭐</div>
               ),
-              onDrop: createNodeOnDrop('star'),
+              onDrop: createNodeOnDrop({ type: 'star' }),
               onDrag: (event) =>
                 console.log(`Dragging position: ${event.position}`),
               onDragStart: (event) => console.log(`Dragging started`),
@@ -51,7 +50,7 @@ export default function () {
           ]}
         />
       </div>
-    </Diagram>
+    </DiagramContext>
   );
 }
 
@@ -84,21 +83,6 @@ const container_class = css`
     }
   }
 `;
-
-function createNodeOnDrop(nodeType: string) {
-  return (event: DragAndDropEvent) => {
-    // Check if drop occured above the diagram
-    if (event.position) {
-      event.store.commandExecutor.execute(
-        addNodeCommand({
-          position: event.position,
-          label: 'Newly created',
-          type: nodeType,
-        })
-      );
-    }
-  };
-}
 
 function NodeTemplate(props: { label: string }) {
   return (
