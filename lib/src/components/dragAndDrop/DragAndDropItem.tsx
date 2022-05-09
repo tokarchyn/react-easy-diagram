@@ -151,9 +151,8 @@ export function createNodeOnDrop(node: Omit<INodeState, 'position'>) {
     if (event.position) {
       event.store.commandExecutor.execute(
         addNodeCommand({
+          ...node,
           position: event.position,
-          label: 'Newly created',
-          type: node.type,
         })
       );
     }

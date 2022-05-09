@@ -27,22 +27,22 @@ export default function () {
           items={[
             {
               draggable: <NodeTemplate label='Input-output' />,
-              onDrop: createNodeOnDrop({ type: 'input_output_horizontal' }),
+              onDrop: createNodeOnDrop({ type: 'input_output_horizontal', label: 'Input-output node' }),
             },
             {
               draggable: <NodeTemplate label='Input' />,
-              onDrop: createNodeOnDrop({ type: 'input_horizontal' }),
+              onDrop: createNodeOnDrop({ type: 'input_horizontal', label: 'Input node' }),
             },
             {
               draggable: <NodeTemplate label='Output' />,
-              onDrop: createNodeOnDrop({ type: 'output_horizontal' }),
+              onDrop: createNodeOnDrop({ type: 'output_horizontal', label: 'Output node' }),
             },
             {
               draggable: <NodeTemplate label='Star' />,
               droppable: (
                 <div style={{ fontSize: '2rem', textAlign: 'center' }}>⭐</div>
               ),
-              onDrop: createNodeOnDrop({ type: 'star' }),
+              onDrop: createNodeOnDrop({ type: 'star', label: 'Star node' }),
               onDrag: (event) =>
                 console.log(`Dragging position: ${event.position}`),
               onDragStart: (event) => console.log(`Dragging started`),
