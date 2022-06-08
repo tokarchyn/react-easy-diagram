@@ -2,7 +2,7 @@ name: Release
 
 on:
   release:
-    types: [published]
+    types: [created]
 
 jobs:
   publish_library:
@@ -41,18 +41,18 @@ jobs:
       - name: Set package version
         run: |
           version=$(echo ${{github.event.client_payload.value}} | sed 's/v//g')
-          sed -i 's|version.*|version": "$version",|' lib/package/package.json
+          sed -i "s|version.*|version\": \"$version\",|" lib/package/package.json
           cat lib/package/package.json
 
       - name: Publish package      
-        if: github.ref == 'refs/heads/main'
+        if: github.event.release.target_commitish == 'main'
         uses: JS-DevTools/npm-publish@v1
         with:
           package: lib/package/package.json
           token: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish package
-        if: github.ref == 'refs/heads/develop'
+        if: github.event.release.target_commitish == 'develop'
         uses: JS-DevTools/npm-publish@v1
         with:
           package: lib/package/package.json
