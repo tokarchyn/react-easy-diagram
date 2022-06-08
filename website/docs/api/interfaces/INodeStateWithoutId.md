@@ -10,9 +10,9 @@ custom_edit_url: null
 
 - **`INodeStateWithoutId`**
 
-  ↳ [`INodeStateWithId`](INodeStateWithId)
+  ↳ [`INodeStateWithId`](INodeStateWithId.md)
 
-  ↳ [`INodeState`](INodeState)
+  ↳ [`INodeState`](INodeState.md)
 
 ## Properties
 

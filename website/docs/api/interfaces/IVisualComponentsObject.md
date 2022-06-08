@@ -16,14 +16,14 @@ custom_edit_url: null
 
 - **`IVisualComponentsObject`**
 
-  ↳ [`ILinksSettings`](ILinksSettings)
+  ↳ [`ILinksSettings`](ILinksSettings.md)
 
-  ↳ [`INodesSettings`](INodesSettings)
+  ↳ [`INodesSettings`](INodesSettings.md)
 
-  ↳ [`IPortsSettings`](IPortsSettings)
+  ↳ [`IPortsSettings`](IPortsSettings.md)
 
 ## Properties
 
 ### components
 
-• `Optional` **components**: [`Dictionary`](Dictionary)<[`IComponentDefinition`](IComponentDefinition)<`TComponentProps`, `any`\> \| [`VisualComponent`](../#visualcomponent)<`TComponentProps`\>\>
+• `Optional` **components**: [`Dictionary`](Dictionary.md)<[`IComponentDefinition`](IComponentDefinition.md)<`TComponentProps`, `any`\> \| [`VisualComponent`](../#visualcomponent)<`TComponentProps`\>\>

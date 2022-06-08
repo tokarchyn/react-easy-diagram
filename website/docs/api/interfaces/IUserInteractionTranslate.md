@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Implemented by
 
-- [`DiagramState`](../classes/DiagramState)
+- [`DiagramState`](../classes/DiagramState.md)
 
 ## Properties
 

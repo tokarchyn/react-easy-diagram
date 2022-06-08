@@ -11,7 +11,7 @@ custom_edit_url: null
 | Name | Type |
 | :------ | :------ |
 | `TEntity` | `TEntity` |
-| `TComponentProps` | extends [`IVisualComponentProps`](../interfaces/IVisualComponentProps)<`TEntity`\> |
+| `TComponentProps` | extends [`IVisualComponentProps`](../interfaces/IVisualComponentProps.md)<`TEntity`\> |
 
 ## Constructors
 
@@ -24,19 +24,19 @@ custom_edit_url: null
 | Name | Type |
 | :------ | :------ |
 | `TEntity` | `TEntity` |
-| `TComponentProps` | extends [`IVisualComponentProps`](../interfaces/IVisualComponentProps)<`TEntity`, `any`, `TComponentProps`\> |
+| `TComponentProps` | extends [`IVisualComponentProps`](../interfaces/IVisualComponentProps.md)<`TEntity`, `any`, `TComponentProps`\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `defaultComponents` | [`Dictionary`](../interfaces/Dictionary)<[`IComponentDefinition`](../interfaces/IComponentDefinition)<`TComponentProps`, `any`\> \| [`VisualComponent`](../#visualcomponent)<`TComponentProps`\>\> |
+| `defaultComponents` | [`Dictionary`](../interfaces/Dictionary.md)<[`IComponentDefinition`](../interfaces/IComponentDefinition.md)<`TComponentProps`, `any`\> \| [`VisualComponent`](../#visualcomponent)<`TComponentProps`\>\> |
 
 ## Methods
 
 ### getComponent
 
-▸ **getComponent**(`type`): [`VisualComponentState`](VisualComponentState)<`TComponentProps`\>
+▸ **getComponent**(`type`): [`VisualComponentState`](VisualComponentState.md)<`TComponentProps`\>
 
 #### Parameters
 
@@ -46,7 +46,7 @@ custom_edit_url: null
 
 #### Returns
 
-[`VisualComponentState`](VisualComponentState)<`TComponentProps`\>
+[`VisualComponentState`](VisualComponentState.md)<`TComponentProps`\>
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `obj?` | [`IVisualComponentsObject`](../interfaces/IVisualComponentsObject)<`TComponentProps`\> |
+| `obj?` | [`IVisualComponentsObject`](../interfaces/IVisualComponentsObject.md)<`TComponentProps`\> |
 
 #### Returns
 

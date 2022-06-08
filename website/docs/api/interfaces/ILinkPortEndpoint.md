@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Implemented by
 
-- [`LinkPortEndpointState`](../classes/LinkPortEndpointState)
+- [`LinkPortEndpointState`](../classes/LinkPortEndpointState.md)
 
 ## Properties
 

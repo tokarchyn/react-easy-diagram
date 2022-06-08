@@ -8,8 +8,8 @@ custom_edit_url: null
 
 ## Implements
 
-- [`ILinkState`](../interfaces/ILinkState)
-- [`ILinkInteractionState`](../interfaces/ILinkInteractionState)
+- [`ILinkState`](../interfaces/ILinkState.md)
+- [`ILinkInteractionState`](../interfaces/ILinkInteractionState.md)
 
 ## Constructors
 
@@ -21,19 +21,19 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `rootStore` | [`RootStore`](RootStore) |
+| `rootStore` | [`RootStore`](RootStore.md) |
 | `id` | `string` |
-| `state` | [`ILinkStateWithoutId`](../interfaces/ILinkStateWithoutId) |
+| `state` | [`ILinkStateWithoutId`](../interfaces/ILinkStateWithoutId.md) |
 
 ## Accessors
 
 ### componentDefinition
 
-• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps)<`any`\>\>
+• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState.md)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
 
 #### Returns
 
-[`VisualComponentState`](VisualComponentState)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps)<`any`\>\>
+[`VisualComponentState`](VisualComponentState.md)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 #### Implementation of
 
-[ILinkState](../interfaces/ILinkState).[extra](../interfaces/ILinkState#extra)
+[ILinkState](../interfaces/ILinkState.md).[extra](../interfaces/ILinkState.md#extra)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 #### Implementation of
 
-[ILinkInteractionState](../interfaces/ILinkInteractionState).[hovered](../interfaces/ILinkInteractionState#hovered)
+[ILinkInteractionState](../interfaces/ILinkInteractionState.md).[hovered](../interfaces/ILinkInteractionState.md#hovered)
 
 • `set` **hovered**(`value`): `void`
 
@@ -77,7 +77,7 @@ ___
 
 #### Implementation of
 
-[ILinkInteractionState](../interfaces/ILinkInteractionState).[hovered](../interfaces/ILinkInteractionState#hovered)
+[ILinkInteractionState](../interfaces/ILinkInteractionState.md).[hovered](../interfaces/ILinkInteractionState.md#hovered)
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 #### Implementation of
 
-[ILinkState](../interfaces/ILinkState).[id](../interfaces/ILinkState#id)
+[ILinkState](../interfaces/ILinkState.md).[id](../interfaces/ILinkState.md#id)
 
 ___
 
@@ -105,31 +105,31 @@ ___
 
 #### Implementation of
 
-[ILinkState](../interfaces/ILinkState).[isSelectionEnabled](../interfaces/ILinkState#isselectionenabled)
+[ILinkState](../interfaces/ILinkState.md).[isSelectionEnabled](../interfaces/ILinkState.md#isselectionenabled)
 
 ___
 
 ### path
 
-• `get` **path**(): `undefined` \| [`ILinkPath`](../interfaces/ILinkPath)
+• `get` **path**(): `undefined` \| [`ILinkPath`](../interfaces/ILinkPath.md)
 
 #### Returns
 
-`undefined` \| [`ILinkPath`](../interfaces/ILinkPath)
+`undefined` \| [`ILinkPath`](../interfaces/ILinkPath.md)
 
 ___
 
 ### segments
 
-• `get` **segments**(): [`ILinkSegment`](../interfaces/ILinkSegment)[]
+• `get` **segments**(): [`ILinkSegment`](../interfaces/ILinkSegment.md)[]
 
 #### Returns
 
-[`ILinkSegment`](../interfaces/ILinkSegment)[]
+[`ILinkSegment`](../interfaces/ILinkSegment.md)[]
 
 #### Implementation of
 
-[ILinkState](../interfaces/ILinkState).[segments](../interfaces/ILinkState#segments)
+[ILinkState](../interfaces/ILinkState.md).[segments](../interfaces/ILinkState.md#segments)
 
 ___
 
@@ -143,7 +143,7 @@ ___
 
 #### Implementation of
 
-[ILinkInteractionState](../interfaces/ILinkInteractionState).[selected](../interfaces/ILinkInteractionState#selected)
+[ILinkInteractionState](../interfaces/ILinkInteractionState.md).[selected](../interfaces/ILinkInteractionState.md#selected)
 
 • `set` **selected**(`value`): `void`
 
@@ -159,35 +159,35 @@ ___
 
 #### Implementation of
 
-[ILinkInteractionState](../interfaces/ILinkInteractionState).[selected](../interfaces/ILinkInteractionState#selected)
+[ILinkInteractionState](../interfaces/ILinkInteractionState.md).[selected](../interfaces/ILinkInteractionState.md#selected)
 
 ___
 
 ### source
 
-• `get` **source**(): [`LinkPortEndpointState`](LinkPortEndpointState)
+• `get` **source**(): [`LinkPortEndpointState`](LinkPortEndpointState.md)
 
 #### Returns
 
-[`LinkPortEndpointState`](LinkPortEndpointState)
+[`LinkPortEndpointState`](LinkPortEndpointState.md)
 
 #### Implementation of
 
-[ILinkState](../interfaces/ILinkState).[source](../interfaces/ILinkState#source)
+[ILinkState](../interfaces/ILinkState.md).[source](../interfaces/ILinkState.md#source)
 
 ___
 
 ### target
 
-• `get` **target**(): [`LinkPortEndpointState`](LinkPortEndpointState)
+• `get` **target**(): [`LinkPortEndpointState`](LinkPortEndpointState.md)
 
 #### Returns
 
-[`LinkPortEndpointState`](LinkPortEndpointState)
+[`LinkPortEndpointState`](LinkPortEndpointState.md)
 
 #### Implementation of
 
-[ILinkState](../interfaces/ILinkState).[target](../interfaces/ILinkState#target)
+[ILinkState](../interfaces/ILinkState.md).[target](../interfaces/ILinkState.md#target)
 
 ___
 
@@ -201,17 +201,17 @@ ___
 
 #### Implementation of
 
-[ILinkState](../interfaces/ILinkState).[type](../interfaces/ILinkState#type)
+[ILinkState](../interfaces/ILinkState.md).[type](../interfaces/ILinkState.md#type)
 
 ## Methods
 
 ### export
 
-▸ **export**(): [`ILinkStateWithId`](../interfaces/ILinkStateWithId)
+▸ **export**(): [`ILinkStateWithId`](../interfaces/ILinkStateWithId.md)
 
 #### Returns
 
-[`ILinkStateWithId`](../interfaces/ILinkStateWithId)
+[`ILinkStateWithId`](../interfaces/ILinkStateWithId.md)
 
 ___
 
@@ -223,7 +223,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `state` | [`ILinkStateWithoutId`](../interfaces/ILinkStateWithoutId) |
+| `state` | [`ILinkStateWithoutId`](../interfaces/ILinkStateWithoutId.md) |
 
 #### Returns
 
@@ -271,7 +271,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `value` | `undefined` \| ``null`` \| [`ILinkSegment`](../interfaces/ILinkSegment)[] |
+| `value` | `undefined` \| ``null`` \| [`ILinkSegment`](../interfaces/ILinkSegment.md)[] |
 
 #### Returns
 

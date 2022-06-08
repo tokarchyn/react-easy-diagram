@@ -10,10 +10,10 @@ custom_edit_url: null
 
 ### links
 
-• `Optional` **links**: [`ILinkState`](ILinkState)[]
+• `Optional` **links**: [`ILinkState`](ILinkState.md)[]
 
 ___
 
 ### nodes
 
-• `Optional` **nodes**: [`INodeState`](INodeState)[]
+• `Optional` **nodes**: [`INodeState`](INodeState.md)[]

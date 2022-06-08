@@ -10,7 +10,7 @@ custom_edit_url: null
 
 ### mainLine
 
-• `Optional` **mainLine**: [`ILineStyling`](ILineStyling)
+• `Optional` **mainLine**: [`ILineStyling`](ILineStyling.md)
 
 ___
 
@@ -22,4 +22,4 @@ ___
 
 ### secondaryLine
 
-• `Optional` **secondaryLine**: [`ILineStyling`](ILineStyling)
+• `Optional` **secondaryLine**: [`ILineStyling`](ILineStyling.md)

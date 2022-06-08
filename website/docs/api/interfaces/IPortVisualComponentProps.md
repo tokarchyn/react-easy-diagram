@@ -14,7 +14,7 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- [`IVisualComponentProps`](IVisualComponentProps)<[`PortState`](../classes/PortState), `TSettings`\>
+- [`IVisualComponentProps`](IVisualComponentProps.md)<[`PortState`](../classes/PortState.md), `TSettings`\>
 
   ↳ **`IPortVisualComponentProps`**
 
@@ -22,11 +22,11 @@ custom_edit_url: null
 
 ### entity
 
-• **entity**: [`PortState`](../classes/PortState)
+• **entity**: [`PortState`](../classes/PortState.md)
 
 #### Inherited from
 
-[IVisualComponentProps](IVisualComponentProps).[entity](IVisualComponentProps#entity)
+[IVisualComponentProps](IVisualComponentProps.md).[entity](IVisualComponentProps.md#entity)
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 #### Inherited from
 
-[IVisualComponentProps](IVisualComponentProps).[settings](IVisualComponentProps#settings)
+[IVisualComponentProps](IVisualComponentProps.md).[settings](IVisualComponentProps.md#settings)

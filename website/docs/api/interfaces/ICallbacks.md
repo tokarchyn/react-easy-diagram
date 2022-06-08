@@ -16,9 +16,9 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `nodes` | [`NodeState`](../classes/NodeState)[] |
+| `nodes` | [`NodeState`](../classes/NodeState.md)[] |
 | `started` | `boolean` |
-| `rootStore` | [`RootStore`](../classes/RootStore) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
 
 #### Returns
 
@@ -34,11 +34,11 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`NodeState`](../classes/NodeState) |
+| `node` | [`NodeState`](../classes/NodeState.md) |
 | `oldPosition` | [`Point`](../#point) |
 | `newPosition` | [`Point`](../#point) |
 | `isDragActive` | `boolean` |
-| `rootStore` | [`RootStore`](../classes/RootStore) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
 
 #### Returns
 
@@ -54,10 +54,10 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `addedNodes` | [`NodeState`](../classes/NodeState)[] |
-| `failedToAdd` | { `error?`: `string` ; `success`: ``false`` ; `value`: [`INodeState`](INodeState)  }[] |
+| `addedNodes` | [`NodeState`](../classes/NodeState.md)[] |
+| `failedToAdd` | { `error?`: `string` ; `success`: ``false`` ; `value`: [`INodeState`](INodeState.md)  }[] |
 | `importing` | `boolean` |
-| `rootStore` | [`RootStore`](../classes/RootStore) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
 
 #### Returns
 
@@ -73,9 +73,9 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `source` | [`PortState`](../classes/PortState) |
-| `target` | [`PortState`](../classes/PortState) |
-| `rootStore` | [`RootStore`](../classes/RootStore) |
+| `source` | [`PortState`](../classes/PortState.md) |
+| `target` | [`PortState`](../classes/PortState.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
 
 #### Returns
 

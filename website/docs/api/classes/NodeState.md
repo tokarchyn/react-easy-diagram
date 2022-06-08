@@ -16,39 +16,39 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `rootStore` | [`RootStore`](RootStore) |
+| `rootStore` | [`RootStore`](RootStore.md) |
 | `id` | `string` |
-| `state?` | [`INodeStateWithoutId`](../interfaces/INodeStateWithoutId) |
+| `state?` | [`INodeStateWithoutId`](../interfaces/INodeStateWithoutId.md) |
 
 ## Accessors
 
 ### componentDefinition
 
-• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState)<[`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps)<`any`\>\>
+• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState.md)<[`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps.md)<`any`\>\>
 
 #### Returns
 
-[`VisualComponentState`](VisualComponentState)<[`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps)<`any`\>\>
+[`VisualComponentState`](VisualComponentState.md)<[`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps.md)<`any`\>\>
 
 ___
 
 ### connectedExternalPorts
 
-• `get` **connectedExternalPorts**(): [`Dictionary`](../interfaces/Dictionary)<[`PortState`](PortState)[]\>
+• `get` **connectedExternalPorts**(): [`Dictionary`](../interfaces/Dictionary.md)<[`PortState`](PortState.md)[]\>
 
 #### Returns
 
-[`Dictionary`](../interfaces/Dictionary)<[`PortState`](PortState)[]\>
+[`Dictionary`](../interfaces/Dictionary.md)<[`PortState`](PortState.md)[]\>
 
 ___
 
 ### connectedLinks
 
-• `get` **connectedLinks**(): [`LinkState`](LinkState)[]
+• `get` **connectedLinks**(): [`LinkState`](LinkState.md)[]
 
 #### Returns
 
-[`LinkState`](LinkState)[]
+[`LinkState`](LinkState.md)[]
 
 ___
 
@@ -160,11 +160,11 @@ ___
 
 ### ports
 
-• `get` **ports**(): `ReadonlyMap`<`string`, [`PortState`](PortState)\>
+• `get` **ports**(): `ReadonlyMap`<`string`, [`PortState`](PortState.md)\>
 
 #### Returns
 
-`ReadonlyMap`<`string`, [`PortState`](PortState)\>
+`ReadonlyMap`<`string`, [`PortState`](PortState.md)\>
 
 ___
 
@@ -180,11 +180,11 @@ ___
 
 ### ref
 
-• `get` **ref**(): [`HtmlElementRefState`](HtmlElementRefState)
+• `get` **ref**(): [`HtmlElementRefState`](HtmlElementRefState.md)
 
 #### Returns
 
-[`HtmlElementRefState`](HtmlElementRefState)
+[`HtmlElementRefState`](HtmlElementRefState.md)
 
 ___
 
@@ -232,33 +232,33 @@ ___
 
 ### addPort
 
-▸ **addPort**(`port`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`PortState`](PortState), `undefined`\>
+▸ **addPort**(`port`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`PortState`](PortState.md), `undefined`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `port` | [`INodePortState`](../interfaces/INodePortState) |
+| `port` | [`INodePortState`](../interfaces/INodePortState.md) |
 
 #### Returns
 
-[`SuccessOrErrorResult`](../#successorerrorresult)<[`PortState`](PortState), `undefined`\>
+[`SuccessOrErrorResult`](../#successorerrorresult)<[`PortState`](PortState.md), `undefined`\>
 
 ___
 
 ### export
 
-▸ **export**(): [`INodeStateWithId`](../interfaces/INodeStateWithId)
+▸ **export**(): [`INodeStateWithId`](../interfaces/INodeStateWithId.md)
 
 #### Returns
 
-[`INodeStateWithId`](../interfaces/INodeStateWithId)
+[`INodeStateWithId`](../interfaces/INodeStateWithId.md)
 
 ___
 
 ### getPort
 
-▸ **getPort**(`portId`): `undefined` \| [`PortState`](PortState)
+▸ **getPort**(`portId`): `undefined` \| [`PortState`](PortState.md)
 
 #### Parameters
 
@@ -268,13 +268,13 @@ ___
 
 #### Returns
 
-`undefined` \| [`PortState`](PortState)
+`undefined` \| [`PortState`](PortState.md)
 
 ___
 
 ### getPortOrThrowException
 
-▸ **getPortOrThrowException**(`portId`): [`PortState`](PortState)
+▸ **getPortOrThrowException**(`portId`): [`PortState`](PortState.md)
 
 #### Parameters
 
@@ -284,7 +284,7 @@ ___
 
 #### Returns
 
-[`PortState`](PortState)
+[`PortState`](PortState.md)
 
 ___
 
@@ -296,7 +296,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `newState?` | [`INodeStateWithoutId`](../interfaces/INodeStateWithoutId) |
+| `newState?` | [`INodeStateWithoutId`](../interfaces/INodeStateWithoutId.md) |
 
 #### Returns
 

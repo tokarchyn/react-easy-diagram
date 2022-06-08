@@ -26,11 +26,11 @@ ___
 
 ### selectedNodes
 
-• `get` **selectedNodes**(): [`NodeState`](NodeState)[]
+• `get` **selectedNodes**(): [`NodeState`](NodeState.md)[]
 
 #### Returns
 
-[`NodeState`](NodeState)[]
+[`NodeState`](NodeState.md)[]
 
 ## Methods
 

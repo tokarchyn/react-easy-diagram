@@ -16,13 +16,13 @@ ___
 
 ### innerNode
 
-• `Optional` **innerNode**: [`VisualComponent`](../#visualcomponent)<`Object`\>
+• `Optional` **innerNode**: [`VisualComponent`](../#visualcomponent)<{ `node`: [`NodeState`](../classes/NodeState.md)  }\>
 
 ___
 
 ### ports
 
-• `Optional` **ports**: [`IPortProps`](IPortProps)[]
+• `Optional` **ports**: [`IPortProps`](IPortProps.md)[]
 
 ___
 

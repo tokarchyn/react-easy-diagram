@@ -8,8 +8,8 @@ custom_edit_url: null
 
 ## Implements
 
-- [`IUserInteractionTranslate`](../interfaces/IUserInteractionTranslate)
-- [`IUserInteractionTranslateAndZoom`](../interfaces/IUserInteractionTranslateAndZoom)
+- [`IUserInteractionTranslate`](../interfaces/IUserInteractionTranslate.md)
+- [`IUserInteractionTranslateAndZoom`](../interfaces/IUserInteractionTranslateAndZoom.md)
 
 ## Constructors
 
@@ -21,7 +21,7 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `rootStore` | [`RootStore`](RootStore) |
+| `rootStore` | [`RootStore`](RootStore.md) |
 
 ## Accessors
 
@@ -35,17 +35,17 @@ custom_edit_url: null
 
 #### Implementation of
 
-[IUserInteractionTranslateAndZoom](../interfaces/IUserInteractionTranslateAndZoom).[offset](../interfaces/IUserInteractionTranslateAndZoom#offset)
+[IUserInteractionTranslateAndZoom](../interfaces/IUserInteractionTranslateAndZoom.md).[offset](../interfaces/IUserInteractionTranslateAndZoom.md#offset)
 
 ___
 
 ### ref
 
-• `get` **ref**(): [`HtmlElementRefState`](HtmlElementRefState)
+• `get` **ref**(): [`HtmlElementRefState`](HtmlElementRefState.md)
 
 #### Returns
 
-[`HtmlElementRefState`](HtmlElementRefState)
+[`HtmlElementRefState`](HtmlElementRefState.md)
 
 ___
 
@@ -59,17 +59,17 @@ ___
 
 #### Implementation of
 
-[IUserInteractionTranslateAndZoom](../interfaces/IUserInteractionTranslateAndZoom).[zoom](../interfaces/IUserInteractionTranslateAndZoom#zoom)
+[IUserInteractionTranslateAndZoom](../interfaces/IUserInteractionTranslateAndZoom.md).[zoom](../interfaces/IUserInteractionTranslateAndZoom.md#zoom)
 
 ## Methods
 
 ### export
 
-▸ **export**(): [`IDiagramState`](../interfaces/IDiagramState)
+▸ **export**(): [`IDiagramState`](../interfaces/IDiagramState.md)
 
 #### Returns
 
-[`IDiagramState`](../interfaces/IDiagramState)
+[`IDiagramState`](../interfaces/IDiagramState.md)
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `state?` | [`IDiagramState`](../interfaces/IDiagramState) |
+| `state?` | [`IDiagramState`](../interfaces/IDiagramState.md) |
 
 #### Returns
 
@@ -133,7 +133,7 @@ ___
 
 #### Implementation of
 
-[IUserInteractionTranslate](../interfaces/IUserInteractionTranslate).[setOffset](../interfaces/IUserInteractionTranslate#setoffset)
+[IUserInteractionTranslate](../interfaces/IUserInteractionTranslate.md).[setOffset](../interfaces/IUserInteractionTranslate.md#setoffset)
 
 ___
 
@@ -188,7 +188,7 @@ ___
 
 #### Implementation of
 
-[IUserInteractionTranslateAndZoom](../interfaces/IUserInteractionTranslateAndZoom).[tranlsateAndZoomInto](../interfaces/IUserInteractionTranslateAndZoom#tranlsateandzoominto)
+[IUserInteractionTranslateAndZoom](../interfaces/IUserInteractionTranslateAndZoom.md).[tranlsateAndZoomInto](../interfaces/IUserInteractionTranslateAndZoom.md#tranlsateandzoominto)
 
 ___
 

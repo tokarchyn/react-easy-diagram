@@ -10,28 +10,28 @@ custom_edit_url: null
 
 ### callbacks
 
-• `Optional` **callbacks**: [`ICallbacks`](ICallbacks)
+• `Optional` **callbacks**: [`ICallbacks`](ICallbacks.md)
 
 ___
 
 ### diagram
 
-• `Optional` **diagram**: [`IDiagramSettings`](IDiagramSettings)
+• `Optional` **diagram**: [`IDiagramSettings`](IDiagramSettings.md)
 
 ___
 
 ### links
 
-• `Optional` **links**: [`ILinksSettings`](ILinksSettings)
+• `Optional` **links**: [`ILinksSettings`](ILinksSettings.md)
 
 ___
 
 ### nodes
 
-• `Optional` **nodes**: [`INodesSettings`](INodesSettings)
+• `Optional` **nodes**: [`INodesSettings`](INodesSettings.md)
 
 ___
 
 ### ports
 
-• `Optional` **ports**: [`IPortsSettings`](IPortsSettings)
+• `Optional` **ports**: [`IPortsSettings`](IPortsSettings.md)

@@ -8,8 +8,8 @@ custom_edit_url: null
 
 ## Implemented by
 
-- [`LinkCreationState`](../classes/LinkCreationState)
-- [`LinkState`](../classes/LinkState)
+- [`LinkCreationState`](../classes/LinkCreationState.md)
+- [`LinkState`](../classes/LinkState.md)
 
 ## Properties
 

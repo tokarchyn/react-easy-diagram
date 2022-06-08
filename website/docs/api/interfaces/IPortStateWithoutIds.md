@@ -10,17 +10,17 @@ custom_edit_url: null
 
 - **`IPortStateWithoutIds`**
 
-  ↳ [`INodePortState`](INodePortState)
+  ↳ [`INodePortState`](INodePortState.md)
 
-  ↳ [`IPortState`](IPortState)
+  ↳ [`IPortState`](IPortState.md)
 
-  ↳ [`IPortStateWithIds`](IPortStateWithIds)
+  ↳ [`IPortStateWithIds`](IPortStateWithIds.md)
 
 ## Properties
 
 ### component
 
-• `Optional` **component**: [`VisualComponent`](../#visualcomponent)<[`IPortVisualComponentProps`](IPortVisualComponentProps)<`any`\>\>
+• `Optional` **component**: [`VisualComponent`](../#visualcomponent)<[`IPortVisualComponentProps`](IPortVisualComponentProps.md)<`any`\>\>
 
 ___
 

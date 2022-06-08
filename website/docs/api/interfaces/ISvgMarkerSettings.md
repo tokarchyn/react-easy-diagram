@@ -10,9 +10,9 @@ custom_edit_url: null
 
 - **`ISvgMarkerSettings`**
 
-  ↳ [`ISvgCircleMarkerSettings`](ISvgCircleMarkerSettings)
+  ↳ [`ISvgCircleMarkerSettings`](ISvgCircleMarkerSettings.md)
 
-  ↳ [`ISvgArrowMarkerSettings`](ISvgArrowMarkerSettings)
+  ↳ [`ISvgArrowMarkerSettings`](ISvgArrowMarkerSettings.md)
 
 ## Properties
 

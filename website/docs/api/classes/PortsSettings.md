@@ -16,11 +16,11 @@ custom_edit_url: null
 
 ### portVisualComponents
 
-• `get` **portVisualComponents**(): [`VisualComponents`](VisualComponents)<[`PortState`](PortState), [`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps)<`any`\>\>
+• `get` **portVisualComponents**(): [`VisualComponents`](VisualComponents.md)<[`PortState`](PortState.md), [`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps.md)<`any`\>\>
 
 #### Returns
 
-[`VisualComponents`](VisualComponents)<[`PortState`](PortState), [`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps)<`any`\>\>
+[`VisualComponents`](VisualComponents.md)<[`PortState`](PortState.md), [`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps.md)<`any`\>\>
 
 ## Methods
 
@@ -32,7 +32,7 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `obj?` | [`IPortsSettings`](../interfaces/IPortsSettings) |
+| `obj?` | [`IPortsSettings`](../interfaces/IPortsSettings.md) |
 
 #### Returns
 

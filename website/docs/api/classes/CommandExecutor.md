@@ -16,7 +16,7 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `rootStore` | [`RootStore`](RootStore) |
+| `rootStore` | [`RootStore`](RootStore.md) |
 
 ## Methods
 
@@ -28,7 +28,7 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `command` | [`ICommand`](../interfaces/ICommand) |
+| `command` | [`ICommand`](../interfaces/ICommand.md) |
 
 #### Returns
 

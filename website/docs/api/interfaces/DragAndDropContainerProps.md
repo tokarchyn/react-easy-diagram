@@ -16,7 +16,7 @@ ___
 
 ### items
 
-• **items**: [`DragAndDropItemProps`](DragAndDropItemProps)[]
+• **items**: [`DragAndDropItemProps`](DragAndDropItemProps.md)[]
 
 ___
 

@@ -16,19 +16,19 @@ ___
 
 ### classes
 
-• `Optional` **classes**: [`Dictionary`](Dictionary)<`undefined` \| `string`[]\>
+• `Optional` **classes**: [`Dictionary`](Dictionary.md)<`undefined` \| `string`[]\>
 
 ___
 
 ### defaultClasses
 
-• `Optional` **defaultClasses**: [`Dictionary`](Dictionary)<`undefined` \| `string`[]\>
+• `Optional` **defaultClasses**: [`Dictionary`](Dictionary.md)<`undefined` \| `string`[]\>
 
 ___
 
 ### defaultStyle
 
-• `Optional` **defaultStyle**: [`Dictionary`](Dictionary)<`undefined` \| `CSSProperties`\>
+• `Optional` **defaultStyle**: [`Dictionary`](Dictionary.md)<`undefined` \| `CSSProperties`\>
 
 ___
 
@@ -40,10 +40,10 @@ ___
 
 ### spareStates
 
-• `Optional` **spareStates**: [`Dictionary`](Dictionary)<`string`[]\>
+• `Optional` **spareStates**: [`Dictionary`](Dictionary.md)<`string`[]\>
 
 ___
 
 ### style
 
-• `Optional` **style**: [`Dictionary`](Dictionary)<`undefined` \| `CSSProperties`\>
+• `Optional` **style**: [`Dictionary`](Dictionary.md)<`undefined` \| `CSSProperties`\>

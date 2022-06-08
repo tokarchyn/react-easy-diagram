@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Implements
 
-- [`ILinkInteractionState`](../interfaces/ILinkInteractionState)
+- [`ILinkInteractionState`](../interfaces/ILinkInteractionState.md)
 
 ## Constructors
 
@@ -20,17 +20,17 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `rootStore` | [`RootStore`](RootStore) |
+| `rootStore` | [`RootStore`](RootStore.md) |
 
 ## Accessors
 
 ### componentDefinition
 
-• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps)<`any`\>\>
+• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState.md)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
 
 #### Returns
 
-[`VisualComponentState`](VisualComponentState)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps)<`any`\>\>
+[`VisualComponentState`](VisualComponentState.md)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Implementation of
 
-[ILinkInteractionState](../interfaces/ILinkInteractionState).[hovered](../interfaces/ILinkInteractionState#hovered)
+[ILinkInteractionState](../interfaces/ILinkInteractionState.md).[hovered](../interfaces/ILinkInteractionState.md#hovered)
 
 ___
 
@@ -60,11 +60,11 @@ ___
 
 ### path
 
-• `get` **path**(): `undefined` \| [`ILinkPath`](../interfaces/ILinkPath)
+• `get` **path**(): `undefined` \| [`ILinkPath`](../interfaces/ILinkPath.md)
 
 #### Returns
 
-`undefined` \| [`ILinkPath`](../interfaces/ILinkPath)
+`undefined` \| [`ILinkPath`](../interfaces/ILinkPath.md)
 
 ___
 
@@ -78,37 +78,37 @@ ___
 
 #### Implementation of
 
-[ILinkInteractionState](../interfaces/ILinkInteractionState).[selected](../interfaces/ILinkInteractionState#selected)
+[ILinkInteractionState](../interfaces/ILinkInteractionState.md).[selected](../interfaces/ILinkInteractionState.md#selected)
 
 ___
 
 ### source
 
-• `get` **source**(): ``null`` \| [`LinkPortEndpointState`](LinkPortEndpointState)
+• `get` **source**(): ``null`` \| [`LinkPortEndpointState`](LinkPortEndpointState.md)
 
 #### Returns
 
-``null`` \| [`LinkPortEndpointState`](LinkPortEndpointState)
+``null`` \| [`LinkPortEndpointState`](LinkPortEndpointState.md)
 
 ___
 
 ### target
 
-• `get` **target**(): ``null`` \| [`LinkPointEndpointState`](LinkPointEndpointState)
+• `get` **target**(): ``null`` \| [`LinkPointEndpointState`](LinkPointEndpointState.md)
 
 #### Returns
 
-``null`` \| [`LinkPointEndpointState`](LinkPointEndpointState)
+``null`` \| [`LinkPointEndpointState`](LinkPointEndpointState.md)
 
 ___
 
 ### targetPortCandidate
 
-• `get` **targetPortCandidate**(): ``null`` \| [`PortState`](PortState)
+• `get` **targetPortCandidate**(): ``null`` \| [`PortState`](PortState.md)
 
 #### Returns
 
-``null`` \| [`PortState`](PortState)
+``null`` \| [`PortState`](PortState.md)
 
 ## Methods
 
@@ -120,7 +120,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `portState` | [`PortState`](PortState) |
+| `portState` | [`PortState`](PortState.md) |
 
 #### Returns
 
@@ -136,7 +136,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `portState` | [`PortState`](PortState) |
+| `portState` | [`PortState`](PortState.md) |
 
 #### Returns
 
@@ -152,7 +152,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `portState` | [`PortState`](PortState) |
+| `portState` | [`PortState`](PortState.md) |
 | `pointOnPort` | [`Point`](../#point) |
 
 #### Returns

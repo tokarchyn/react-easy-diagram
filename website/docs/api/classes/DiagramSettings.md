@@ -16,31 +16,31 @@ custom_edit_url: null
 
 ### backgroundComponentState
 
-• `get` **backgroundComponentState**(): [`VisualComponentWithDefault`](VisualComponentWithDefault)<[`IBackgroundComponentProps`](../interfaces/IBackgroundComponentProps)<`any`\>\>
+• `get` **backgroundComponentState**(): [`VisualComponentWithDefault`](VisualComponentWithDefault.md)<[`IBackgroundComponentProps`](../interfaces/IBackgroundComponentProps.md)<`any`\>\>
 
 #### Returns
 
-[`VisualComponentWithDefault`](VisualComponentWithDefault)<[`IBackgroundComponentProps`](../interfaces/IBackgroundComponentProps)<`any`\>\>
+[`VisualComponentWithDefault`](VisualComponentWithDefault.md)<[`IBackgroundComponentProps`](../interfaces/IBackgroundComponentProps.md)<`any`\>\>
 
 ___
 
 ### miniControlComponentState
 
-• `get` **miniControlComponentState**(): [`VisualComponentWithDefault`](VisualComponentWithDefault)<[`IMiniControlComponentProps`](../interfaces/IMiniControlComponentProps)<`any`\>\>
+• `get` **miniControlComponentState**(): [`VisualComponentWithDefault`](VisualComponentWithDefault.md)<[`IMiniControlComponentProps`](../interfaces/IMiniControlComponentProps.md)<`any`\>\>
 
 #### Returns
 
-[`VisualComponentWithDefault`](VisualComponentWithDefault)<[`IMiniControlComponentProps`](../interfaces/IMiniControlComponentProps)<`any`\>\>
+[`VisualComponentWithDefault`](VisualComponentWithDefault.md)<[`IMiniControlComponentProps`](../interfaces/IMiniControlComponentProps.md)<`any`\>\>
 
 ___
 
 ### userInteraction
 
-• `get` **userInteraction**(): [`UserInteractionSettings`](UserInteractionSettings)
+• `get` **userInteraction**(): [`UserInteractionSettings`](UserInteractionSettings.md)
 
 #### Returns
 
-[`UserInteractionSettings`](UserInteractionSettings)
+[`UserInteractionSettings`](UserInteractionSettings.md)
 
 ___
 
@@ -56,11 +56,11 @@ ___
 
 ### zoomToFitSettings
 
-• `get` **zoomToFitSettings**(): [`IZoomToFitSettings`](../interfaces/IZoomToFitSettings)
+• `get` **zoomToFitSettings**(): [`IZoomToFitSettings`](../interfaces/IZoomToFitSettings.md)
 
 #### Returns
 
-[`IZoomToFitSettings`](../interfaces/IZoomToFitSettings)
+[`IZoomToFitSettings`](../interfaces/IZoomToFitSettings.md)
 
 ## Methods
 
@@ -72,7 +72,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `obj?` | [`IDiagramSettings`](../interfaces/IDiagramSettings) |
+| `obj?` | [`IDiagramSettings`](../interfaces/IDiagramSettings.md) |
 
 #### Returns
 

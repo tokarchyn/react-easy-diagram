@@ -142,6 +142,7 @@ function getOffsetStyles(settings: IMiniControlDefaultSettings) {
 export const Button: React.FC<{
   size: number;
   onClick: () => any;
+  children?: React.ReactNode;
 }> = (props) => (
   <button
     onClick={props.onClick}

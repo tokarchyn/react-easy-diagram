@@ -16,7 +16,7 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `rootStore` | [`RootStore`](RootStore) |
+| `rootStore` | [`RootStore`](RootStore.md) |
 
 ## Methods
 
@@ -28,7 +28,7 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `nodes` | [`NodeState`](NodeState)[] |
+| `nodes` | [`NodeState`](NodeState.md)[] |
 | `started` | `boolean` |
 
 #### Returns
@@ -39,11 +39,11 @@ ___
 
 ### export
 
-▸ **export**(): [`ICallbacks`](../interfaces/ICallbacks)
+▸ **export**(): [`ICallbacks`](../interfaces/ICallbacks.md)
 
 #### Returns
 
-[`ICallbacks`](../interfaces/ICallbacks)
+[`ICallbacks`](../interfaces/ICallbacks.md)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `callbacks?` | [`ICallbacks`](../interfaces/ICallbacks) |
+| `callbacks?` | [`ICallbacks`](../interfaces/ICallbacks.md) |
 
 #### Returns
 
@@ -71,7 +71,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`NodeState`](NodeState) |
+| `node` | [`NodeState`](NodeState.md) |
 | `oldPosition` | [`Point`](../#point) |
 | `newPosition` | [`Point`](../#point) |
 | `isDragActive` | `boolean` |
@@ -90,7 +90,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `addResults` | [`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState), [`INodeState`](../interfaces/INodeState)\>[] |
+| `addResults` | [`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState.md), [`INodeState`](../interfaces/INodeState.md)\>[] |
 | `importing` | `boolean` |
 
 #### Returns
@@ -107,8 +107,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `source` | [`PortState`](PortState) |
-| `target` | [`PortState`](PortState) |
+| `source` | [`PortState`](PortState.md) |
+| `target` | [`PortState`](PortState.md) |
 
 #### Returns
 

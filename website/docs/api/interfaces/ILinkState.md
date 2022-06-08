@@ -8,13 +8,13 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- [`ILinkStateWithoutId`](ILinkStateWithoutId)
+- [`ILinkStateWithoutId`](ILinkStateWithoutId.md)
 
   ↳ **`ILinkState`**
 
 ## Implemented by
 
-- [`LinkState`](../classes/LinkState)
+- [`LinkState`](../classes/LinkState.md)
 
 ## Properties
 
@@ -24,7 +24,7 @@ custom_edit_url: null
 
 #### Inherited from
 
-[ILinkStateWithoutId](ILinkStateWithoutId).[extra](ILinkStateWithoutId#extra)
+[ILinkStateWithoutId](ILinkStateWithoutId.md).[extra](ILinkStateWithoutId.md#extra)
 
 ___
 
@@ -40,37 +40,37 @@ ___
 
 #### Inherited from
 
-[ILinkStateWithoutId](ILinkStateWithoutId).[isSelectionEnabled](ILinkStateWithoutId#isselectionenabled)
+[ILinkStateWithoutId](ILinkStateWithoutId.md).[isSelectionEnabled](ILinkStateWithoutId.md#isselectionenabled)
 
 ___
 
 ### segments
 
-• `Optional` **segments**: [`ILinkSegment`](ILinkSegment)[]
+• `Optional` **segments**: [`ILinkSegment`](ILinkSegment.md)[]
 
 #### Inherited from
 
-[ILinkStateWithoutId](ILinkStateWithoutId).[segments](ILinkStateWithoutId#segments)
+[ILinkStateWithoutId](ILinkStateWithoutId.md).[segments](ILinkStateWithoutId.md#segments)
 
 ___
 
 ### source
 
-• **source**: [`ILinkPortEndpoint`](ILinkPortEndpoint)
+• **source**: [`ILinkPortEndpoint`](ILinkPortEndpoint.md)
 
 #### Inherited from
 
-[ILinkStateWithoutId](ILinkStateWithoutId).[source](ILinkStateWithoutId#source)
+[ILinkStateWithoutId](ILinkStateWithoutId.md).[source](ILinkStateWithoutId.md#source)
 
 ___
 
 ### target
 
-• **target**: [`ILinkPortEndpoint`](ILinkPortEndpoint)
+• **target**: [`ILinkPortEndpoint`](ILinkPortEndpoint.md)
 
 #### Inherited from
 
-[ILinkStateWithoutId](ILinkStateWithoutId).[target](ILinkStateWithoutId#target)
+[ILinkStateWithoutId](ILinkStateWithoutId.md).[target](ILinkStateWithoutId.md#target)
 
 ___
 
@@ -80,4 +80,4 @@ ___
 
 #### Inherited from
 
-[ILinkStateWithoutId](ILinkStateWithoutId).[type](ILinkStateWithoutId#type)
+[ILinkStateWithoutId](ILinkStateWithoutId.md).[type](ILinkStateWithoutId.md#type)

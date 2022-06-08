@@ -4,20 +4,21 @@ import AnnouncementBar from '@theme/AnnouncementBar';
 import Navbar from '@theme/Navbar';
 import Footer from '@theme/Footer';
 import LayoutProviders from '@theme/LayoutProviders';
-import LayoutHead from '@theme/LayoutHead';
-import useKeyboardNavigation from '@theme/hooks/useKeyboardNavigation';
+import { PageMetadata, useKeyboardNavigation } from '@docusaurus/theme-common';
 
-// Copied from docusaurus Layout
+// Copied from docusaurus Layout (https://github.com/facebook/docusaurus/blob/main/packages/docusaurus-theme-classic/src/theme/Layout/index.tsx)
 export function ExampleWrapper(props) {
+  const { title, description } = props;
+
   useKeyboardNavigation();
   return (
     <LayoutProviders>
-      <LayoutHead {...props} />
+      <PageMetadata title={title} description={description} />
       <SkipToContent />
       <AnnouncementBar />
       <Navbar />
       {props.children}
-      <Footer/>
+      <Footer />
     </LayoutProviders>
   );
 }

@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- [`IVisualComponentsObject`](IVisualComponentsObject)<[`ILinkVisualComponentProps`](ILinkVisualComponentProps)\>
+- [`IVisualComponentsObject`](IVisualComponentsObject.md)<[`ILinkVisualComponentProps`](ILinkVisualComponentProps.md)\>
 
   ↳ **`ILinksSettings`**
 
@@ -16,11 +16,11 @@ custom_edit_url: null
 
 ### components
 
-• `Optional` **components**: [`Dictionary`](Dictionary)<[`IComponentDefinition`](IComponentDefinition)<[`ILinkVisualComponentProps`](ILinkVisualComponentProps)<`any`\>, `any`\> \| [`VisualComponent`](../#visualcomponent)<[`ILinkVisualComponentProps`](ILinkVisualComponentProps)<`any`\>\>\>
+• `Optional` **components**: [`Dictionary`](Dictionary.md)<[`IComponentDefinition`](IComponentDefinition.md)<[`ILinkVisualComponentProps`](ILinkVisualComponentProps.md)<`any`\>, `any`\> \| [`VisualComponent`](../#visualcomponent)<[`ILinkVisualComponentProps`](ILinkVisualComponentProps.md)<`any`\>\>\>
 
 #### Inherited from
 
-[IVisualComponentsObject](IVisualComponentsObject).[components](IVisualComponentsObject#components)
+[IVisualComponentsObject](IVisualComponentsObject.md).[components](IVisualComponentsObject.md#components)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 ### svgMarkers
 
-• `Optional` **svgMarkers**: `FunctionComponent`<`Object`\>[]
+• `Optional` **svgMarkers**: `FunctionComponent`<{}\>[]

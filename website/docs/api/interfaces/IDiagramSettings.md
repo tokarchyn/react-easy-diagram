@@ -10,19 +10,19 @@ custom_edit_url: null
 
 ### backgroundComponent
 
-• `Optional` **backgroundComponent**: [`IComponentDefinition`](IComponentDefinition)<[`IBackgroundComponentProps`](IBackgroundComponentProps)<`any`\>, `any`\> \| [`VisualComponent`](../#visualcomponent)<[`IBackgroundComponentProps`](IBackgroundComponentProps)<`any`\>\>
+• `Optional` **backgroundComponent**: [`IComponentDefinition`](IComponentDefinition.md)<[`IBackgroundComponentProps`](IBackgroundComponentProps.md)<`any`\>, `any`\> \| [`VisualComponent`](../#visualcomponent)<[`IBackgroundComponentProps`](IBackgroundComponentProps.md)<`any`\>\>
 
 ___
 
 ### miniControlComponent
 
-• `Optional` **miniControlComponent**: [`VisualComponent`](../#visualcomponent)<[`IMiniControlComponentProps`](IMiniControlComponentProps)<`any`\>\> \| [`IComponentDefinition`](IComponentDefinition)<[`IMiniControlComponentProps`](IMiniControlComponentProps)<`any`\>, `any`\>
+• `Optional` **miniControlComponent**: [`VisualComponent`](../#visualcomponent)<[`IMiniControlComponentProps`](IMiniControlComponentProps.md)<`any`\>\> \| [`IComponentDefinition`](IComponentDefinition.md)<[`IMiniControlComponentProps`](IMiniControlComponentProps.md)<`any`\>, `any`\>
 
 ___
 
 ### userInteraction
 
-• `Optional` **userInteraction**: `Partial`<[`IUserInteraction`](IUserInteraction)\>
+• `Optional` **userInteraction**: `Partial`<[`IUserInteraction`](IUserInteraction.md)\>
 
 ___
 
@@ -34,4 +34,4 @@ ___
 
 ### zoomToFitSettings
 
-• `Optional` **zoomToFitSettings**: `Partial`<[`IZoomToFitSettings`](IZoomToFitSettings)\>
+• `Optional` **zoomToFitSettings**: `Partial`<[`IZoomToFitSettings`](IZoomToFitSettings.md)\>

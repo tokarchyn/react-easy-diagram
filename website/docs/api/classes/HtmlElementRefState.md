@@ -17,17 +17,17 @@ custom_edit_url: null
 | Name | Type |
 | :------ | :------ |
 | `initValue` | ``null`` \| `HTMLDivElement` |
-| `diagramState` | [`DiagramState`](DiagramState) |
+| `diagramState` | [`DiagramState`](DiagramState.md) |
 
 ## Accessors
 
 ### boundingRect
 
-• `get` **boundingRect**(): ``null`` \| { `diagramZoom`: ``null`` \| `number` ; `position`: [`Point`](../#point) ; `size`: [`Point`](../#point)  }
+• `get` **boundingRect**(): ``null`` \| { `diagramZoom`: ``null`` \| `number` = zoom; `position`: [`Point`](../#point) ; `size`: [`Point`](../#point)  }
 
 #### Returns
 
-``null`` \| { `diagramZoom`: ``null`` \| `number` ; `position`: [`Point`](../#point) ; `size`: [`Point`](../#point)  }
+``null`` \| { `diagramZoom`: ``null`` \| `number` = zoom; `position`: [`Point`](../#point) ; `size`: [`Point`](../#point)  }
 
 ___
 

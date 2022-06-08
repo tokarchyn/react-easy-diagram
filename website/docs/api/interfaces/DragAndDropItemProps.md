@@ -34,7 +34,7 @@ Callback that will be called during pointer movement.
 
 | Name | Type |
 | :------ | :------ |
-| `event` | [`DragAndDropEvent`](DragAndDropEvent) |
+| `event` | [`DragAndDropEvent`](DragAndDropEvent.md) |
 
 #### Returns
 
@@ -52,7 +52,7 @@ Callback that will be called on drag start. Return false to cancel drag.
 
 | Name | Type |
 | :------ | :------ |
-| `state` | [`DragAndDropStartEvent`](DragAndDropStartEvent) |
+| `state` | [`DragAndDropStartEvent`](DragAndDropStartEvent.md) |
 
 #### Returns
 
@@ -70,7 +70,7 @@ Callback that will be called on drop.
 
 | Name | Type |
 | :------ | :------ |
-| `event` | [`DragAndDropEvent`](DragAndDropEvent) |
+| `event` | [`DragAndDropEvent`](DragAndDropEvent.md) |
 
 #### Returns
 

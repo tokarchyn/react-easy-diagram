@@ -16,111 +16,111 @@ custom_edit_url: null
 
 ### callbacks
 
-• `get` **callbacks**(): [`Callbacks`](Callbacks)
+• `get` **callbacks**(): [`Callbacks`](Callbacks.md)
 
 #### Returns
 
-[`Callbacks`](Callbacks)
+[`Callbacks`](Callbacks.md)
 
 ___
 
 ### commandExecutor
 
-• `get` **commandExecutor**(): [`CommandExecutor`](CommandExecutor)
+• `get` **commandExecutor**(): [`CommandExecutor`](CommandExecutor.md)
 
 #### Returns
 
-[`CommandExecutor`](CommandExecutor)
+[`CommandExecutor`](CommandExecutor.md)
 
 ___
 
 ### diagramSettings
 
-• `get` **diagramSettings**(): [`DiagramSettings`](DiagramSettings)
+• `get` **diagramSettings**(): [`DiagramSettings`](DiagramSettings.md)
 
 #### Returns
 
-[`DiagramSettings`](DiagramSettings)
+[`DiagramSettings`](DiagramSettings.md)
 
 ___
 
 ### diagramState
 
-• `get` **diagramState**(): [`DiagramState`](DiagramState)
+• `get` **diagramState**(): [`DiagramState`](DiagramState.md)
 
 #### Returns
 
-[`DiagramState`](DiagramState)
+[`DiagramState`](DiagramState.md)
 
 ___
 
 ### dragState
 
-• `get` **dragState**(): [`DragState`](DragState)
+• `get` **dragState**(): [`DragState`](DragState.md)
 
 #### Returns
 
-[`DragState`](DragState)
+[`DragState`](DragState.md)
 
 ___
 
 ### linksSettings
 
-• `get` **linksSettings**(): [`LinksSettings`](LinksSettings)
+• `get` **linksSettings**(): [`LinksSettings`](LinksSettings.md)
 
 #### Returns
 
-[`LinksSettings`](LinksSettings)
+[`LinksSettings`](LinksSettings.md)
 
 ___
 
 ### linksStore
 
-• `get` **linksStore**(): [`LinksStore`](LinksStore)
+• `get` **linksStore**(): [`LinksStore`](LinksStore.md)
 
 #### Returns
 
-[`LinksStore`](LinksStore)
+[`LinksStore`](LinksStore.md)
 
 ___
 
 ### nodesSettings
 
-• `get` **nodesSettings**(): [`NodesSettings`](NodesSettings)
+• `get` **nodesSettings**(): [`NodesSettings`](NodesSettings.md)
 
 #### Returns
 
-[`NodesSettings`](NodesSettings)
+[`NodesSettings`](NodesSettings.md)
 
 ___
 
 ### nodesStore
 
-• `get` **nodesStore**(): [`NodesStore`](NodesStore)
+• `get` **nodesStore**(): [`NodesStore`](NodesStore.md)
 
 #### Returns
 
-[`NodesStore`](NodesStore)
+[`NodesStore`](NodesStore.md)
 
 ___
 
 ### portsSettings
 
-• `get` **portsSettings**(): [`PortsSettings`](PortsSettings)
+• `get` **portsSettings**(): [`PortsSettings`](PortsSettings.md)
 
 #### Returns
 
-[`PortsSettings`](PortsSettings)
+[`PortsSettings`](PortsSettings.md)
 
 ___
 
 ### selectionState
 
-• `get` **selectionState**(): [`SelectionState`](SelectionState)
+• `get` **selectionState**(): [`SelectionState`](SelectionState.md)
 
 #### Returns
 
-[`SelectionState`](SelectionState)
+[`SelectionState`](SelectionState.md)
 
 ## Methods
 
@@ -134,8 +134,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `links` | [`ILinkState`](../interfaces/ILinkState)[] |
-| `nodes` | [`INodeState`](../interfaces/INodeState)[] |
+| `links` | [`ILinkState`](../interfaces/ILinkState.md)[] |
+| `nodes` | [`INodeState`](../interfaces/INodeState.md)[] |
 
 ___
 
@@ -147,7 +147,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `settings` | [`ISettings`](../interfaces/ISettings) |
+| `settings` | [`ISettings`](../interfaces/ISettings.md) |
 
 #### Returns
 
@@ -163,8 +163,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `nodes?` | [`INodeState`](../interfaces/INodeState)[] |
-| `links?` | [`ILinkState`](../interfaces/ILinkState)[] |
+| `nodes?` | [`INodeState`](../interfaces/INodeState.md)[] |
+| `links?` | [`ILinkState`](../interfaces/ILinkState.md)[] |
 
 #### Returns
 

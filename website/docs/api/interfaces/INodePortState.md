@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- [`IPortStateWithoutIds`](IPortStateWithoutIds)
+- [`IPortStateWithoutIds`](IPortStateWithoutIds.md)
 
   ↳ **`INodePortState`**
 
@@ -16,11 +16,11 @@ custom_edit_url: null
 
 ### component
 
-• `Optional` **component**: [`VisualComponent`](../#visualcomponent)<[`IPortVisualComponentProps`](IPortVisualComponentProps)<`any`\>\>
+• `Optional` **component**: [`VisualComponent`](../#visualcomponent)<[`IPortVisualComponentProps`](IPortVisualComponentProps.md)<`any`\>\>
 
 #### Inherited from
 
-[IPortStateWithoutIds](IPortStateWithoutIds).[component](IPortStateWithoutIds#component)
+[IPortStateWithoutIds](IPortStateWithoutIds.md).[component](IPortStateWithoutIds.md#component)
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Inherited from
 
-[IPortStateWithoutIds](IPortStateWithoutIds).[extra](IPortStateWithoutIds#extra)
+[IPortStateWithoutIds](IPortStateWithoutIds.md).[extra](IPortStateWithoutIds.md#extra)
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 #### Inherited from
 
-[IPortStateWithoutIds](IPortStateWithoutIds).[isConnectionEnabled](IPortStateWithoutIds#isconnectionenabled)
+[IPortStateWithoutIds](IPortStateWithoutIds.md).[isConnectionEnabled](IPortStateWithoutIds.md#isconnectionenabled)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Inherited from
 
-[IPortStateWithoutIds](IPortStateWithoutIds).[label](IPortStateWithoutIds#label)
+[IPortStateWithoutIds](IPortStateWithoutIds.md).[label](IPortStateWithoutIds.md#label)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 #### Inherited from
 
-[IPortStateWithoutIds](IPortStateWithoutIds).[linkDirection](IPortStateWithoutIds#linkdirection)
+[IPortStateWithoutIds](IPortStateWithoutIds.md).[linkDirection](IPortStateWithoutIds.md#linkdirection)
 
 ___
 
@@ -76,4 +76,4 @@ ___
 
 #### Inherited from
 
-[IPortStateWithoutIds](IPortStateWithoutIds).[type](IPortStateWithoutIds#type)
+[IPortStateWithoutIds](IPortStateWithoutIds.md).[type](IPortStateWithoutIds.md#type)

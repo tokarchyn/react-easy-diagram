@@ -10,7 +10,7 @@ custom_edit_url: null
 
 ### ports
 
-• `Optional` **ports**: [`IPortState`](IPortState)[]
+• `Optional` **ports**: [`IPortState`](IPortState.md)[]
 
 ___
 

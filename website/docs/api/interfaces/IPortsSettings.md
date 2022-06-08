@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- [`IVisualComponentsObject`](IVisualComponentsObject)<[`IPortVisualComponentProps`](IPortVisualComponentProps)\>
+- [`IVisualComponentsObject`](IVisualComponentsObject.md)<[`IPortVisualComponentProps`](IPortVisualComponentProps.md)\>
 
   ↳ **`IPortsSettings`**
 
@@ -16,8 +16,8 @@ custom_edit_url: null
 
 ### components
 
-• `Optional` **components**: [`Dictionary`](Dictionary)<[`VisualComponent`](../#visualcomponent)<[`IPortVisualComponentProps`](IPortVisualComponentProps)<`any`\>\> \| [`IComponentDefinition`](IComponentDefinition)<[`IPortVisualComponentProps`](IPortVisualComponentProps)<`any`\>, `any`\>\>
+• `Optional` **components**: [`Dictionary`](Dictionary.md)<[`VisualComponent`](../#visualcomponent)<[`IPortVisualComponentProps`](IPortVisualComponentProps.md)<`any`\>\> \| [`IComponentDefinition`](IComponentDefinition.md)<[`IPortVisualComponentProps`](IPortVisualComponentProps.md)<`any`\>, `any`\>\>
 
 #### Inherited from
 
-[IVisualComponentsObject](IVisualComponentsObject).[components](IVisualComponentsObject#components)
+[IVisualComponentsObject](IVisualComponentsObject.md).[components](IVisualComponentsObject.md#components)

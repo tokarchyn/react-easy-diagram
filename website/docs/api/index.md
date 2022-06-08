@@ -1,7 +1,6 @@
 ---
 id: "index"
 title: "react-easy-diagram"
-slug: "/api/"
 sidebar_label: "Exports"
 sidebar_position: 0.5
 custom_edit_url: null
@@ -9,95 +8,95 @@ custom_edit_url: null
 
 ## Classes
 
-- [Callbacks](classes/Callbacks)
-- [CommandExecutor](classes/CommandExecutor)
-- [DiagramSettings](classes/DiagramSettings)
-- [DiagramState](classes/DiagramState)
-- [DragState](classes/DragState)
-- [HtmlElementRefState](classes/HtmlElementRefState)
-- [LinkCreationState](classes/LinkCreationState)
-- [LinkPointEndpointState](classes/LinkPointEndpointState)
-- [LinkPortEndpointState](classes/LinkPortEndpointState)
-- [LinkState](classes/LinkState)
-- [LinksSettings](classes/LinksSettings)
-- [LinksStore](classes/LinksStore)
-- [NodeState](classes/NodeState)
-- [NodesSettings](classes/NodesSettings)
-- [NodesStore](classes/NodesStore)
-- [PortState](classes/PortState)
-- [PortsSettings](classes/PortsSettings)
-- [RootStore](classes/RootStore)
-- [SelectionState](classes/SelectionState)
-- [UserInteractionSettings](classes/UserInteractionSettings)
-- [VisualComponentState](classes/VisualComponentState)
-- [VisualComponentWithDefault](classes/VisualComponentWithDefault)
-- [VisualComponents](classes/VisualComponents)
+- [Callbacks](classes/Callbacks.md)
+- [CommandExecutor](classes/CommandExecutor.md)
+- [DiagramSettings](classes/DiagramSettings.md)
+- [DiagramState](classes/DiagramState.md)
+- [DragState](classes/DragState.md)
+- [HtmlElementRefState](classes/HtmlElementRefState.md)
+- [LinkCreationState](classes/LinkCreationState.md)
+- [LinkPointEndpointState](classes/LinkPointEndpointState.md)
+- [LinkPortEndpointState](classes/LinkPortEndpointState.md)
+- [LinkState](classes/LinkState.md)
+- [LinksSettings](classes/LinksSettings.md)
+- [LinksStore](classes/LinksStore.md)
+- [NodeState](classes/NodeState.md)
+- [NodesSettings](classes/NodesSettings.md)
+- [NodesStore](classes/NodesStore.md)
+- [PortState](classes/PortState.md)
+- [PortsSettings](classes/PortsSettings.md)
+- [RootStore](classes/RootStore.md)
+- [SelectionState](classes/SelectionState.md)
+- [UserInteractionSettings](classes/UserInteractionSettings.md)
+- [VisualComponentState](classes/VisualComponentState.md)
+- [VisualComponentWithDefault](classes/VisualComponentWithDefault.md)
+- [VisualComponents](classes/VisualComponents.md)
 
 ## Interfaces
 
-- [Dictionary](interfaces/Dictionary)
-- [DragAndDropContainerProps](interfaces/DragAndDropContainerProps)
-- [DragAndDropEvent](interfaces/DragAndDropEvent)
-- [DragAndDropItemProps](interfaces/DragAndDropItemProps)
-- [DragAndDropStartEvent](interfaces/DragAndDropStartEvent)
-- [IBackgroundComponentProps](interfaces/IBackgroundComponentProps)
-- [ICallbacks](interfaces/ICallbacks)
-- [ICommand](interfaces/ICommand)
-- [IComponentDefinition](interfaces/IComponentDefinition)
-- [ICurvedLinkPathConstructorSettings](interfaces/ICurvedLinkPathConstructorSettings)
-- [IDiagramInitState](interfaces/IDiagramInitState)
-- [IDiagramInnerProps](interfaces/IDiagramInnerProps)
-- [IDiagramSettings](interfaces/IDiagramSettings)
-- [IDiagramState](interfaces/IDiagramState)
-- [IDragHandlers](interfaces/IDragHandlers)
-- [IHtmlElementRect](interfaces/IHtmlElementRect)
-- [ILineStyling](interfaces/ILineStyling)
-- [ILinkDefaultSettings](interfaces/ILinkDefaultSettings)
-- [ILinkInteractionState](interfaces/ILinkInteractionState)
-- [ILinkPath](interfaces/ILinkPath)
-- [ILinkPathConstructorEndpointInfo](interfaces/ILinkPathConstructorEndpointInfo)
-- [ILinkPortEndpoint](interfaces/ILinkPortEndpoint)
-- [ILinkSegment](interfaces/ILinkSegment)
-- [ILinkState](interfaces/ILinkState)
-- [ILinkStateWithId](interfaces/ILinkStateWithId)
-- [ILinkStateWithoutId](interfaces/ILinkStateWithoutId)
-- [ILinkVisualComponentProps](interfaces/ILinkVisualComponentProps)
-- [ILinksSettings](interfaces/ILinksSettings)
-- [IMiniControlComponentProps](interfaces/IMiniControlComponentProps)
-- [IMiniControlDefaultSettings](interfaces/IMiniControlDefaultSettings)
-- [INodeDefaultSettings](interfaces/INodeDefaultSettings)
-- [INodePortState](interfaces/INodePortState)
-- [INodeState](interfaces/INodeState)
-- [INodeStateWithId](interfaces/INodeStateWithId)
-- [INodeStateWithoutId](interfaces/INodeStateWithoutId)
-- [INodeVisualComponentProps](interfaces/INodeVisualComponentProps)
-- [INodesSettings](interfaces/INodesSettings)
-- [IPortInnerDefaultSettings](interfaces/IPortInnerDefaultSettings)
-- [IPortProps](interfaces/IPortProps)
-- [IPortState](interfaces/IPortState)
-- [IPortStateWithIds](interfaces/IPortStateWithIds)
-- [IPortStateWithoutIds](interfaces/IPortStateWithoutIds)
-- [IPortVisualComponentProps](interfaces/IPortVisualComponentProps)
-- [IPortsContainerProps](interfaces/IPortsContainerProps)
-- [IPortsContainerSettings](interfaces/IPortsContainerSettings)
-- [IPortsSettings](interfaces/IPortsSettings)
-- [ISettings](interfaces/ISettings)
-- [ISvgArrowMarkerSettings](interfaces/ISvgArrowMarkerSettings)
-- [ISvgBackgroundSettings](interfaces/ISvgBackgroundSettings)
-- [ISvgCircleMarkerSettings](interfaces/ISvgCircleMarkerSettings)
-- [ISvgMarkerSettings](interfaces/ISvgMarkerSettings)
-- [ITransformation](interfaces/ITransformation)
-- [IUseLinkUserInteractionResult](interfaces/IUseLinkUserInteractionResult)
-- [IUsePortUserInteractionResult](interfaces/IUsePortUserInteractionResult)
-- [IUseStylingOptions](interfaces/IUseStylingOptions)
-- [IUserInteraction](interfaces/IUserInteraction)
-- [IUserInteractionTranslate](interfaces/IUserInteractionTranslate)
-- [IUserInteractionTranslateAndZoom](interfaces/IUserInteractionTranslateAndZoom)
-- [IVisualComponentProps](interfaces/IVisualComponentProps)
-- [IVisualComponentsObject](interfaces/IVisualComponentsObject)
-- [IZoomToFitSettings](interfaces/IZoomToFitSettings)
+- [Dictionary](interfaces/Dictionary.md)
+- [DragAndDropContainerProps](interfaces/DragAndDropContainerProps.md)
+- [DragAndDropEvent](interfaces/DragAndDropEvent.md)
+- [DragAndDropItemProps](interfaces/DragAndDropItemProps.md)
+- [DragAndDropStartEvent](interfaces/DragAndDropStartEvent.md)
+- [IBackgroundComponentProps](interfaces/IBackgroundComponentProps.md)
+- [ICallbacks](interfaces/ICallbacks.md)
+- [ICommand](interfaces/ICommand.md)
+- [IComponentDefinition](interfaces/IComponentDefinition.md)
+- [ICurvedLinkPathConstructorSettings](interfaces/ICurvedLinkPathConstructorSettings.md)
+- [IDiagramInitState](interfaces/IDiagramInitState.md)
+- [IDiagramInnerProps](interfaces/IDiagramInnerProps.md)
+- [IDiagramSettings](interfaces/IDiagramSettings.md)
+- [IDiagramState](interfaces/IDiagramState.md)
+- [IDragHandlers](interfaces/IDragHandlers.md)
+- [IHtmlElementRect](interfaces/IHtmlElementRect.md)
+- [ILineStyling](interfaces/ILineStyling.md)
+- [ILinkDefaultSettings](interfaces/ILinkDefaultSettings.md)
+- [ILinkInteractionState](interfaces/ILinkInteractionState.md)
+- [ILinkPath](interfaces/ILinkPath.md)
+- [ILinkPathConstructorEndpointInfo](interfaces/ILinkPathConstructorEndpointInfo.md)
+- [ILinkPortEndpoint](interfaces/ILinkPortEndpoint.md)
+- [ILinkSegment](interfaces/ILinkSegment.md)
+- [ILinkState](interfaces/ILinkState.md)
+- [ILinkStateWithId](interfaces/ILinkStateWithId.md)
+- [ILinkStateWithoutId](interfaces/ILinkStateWithoutId.md)
+- [ILinkVisualComponentProps](interfaces/ILinkVisualComponentProps.md)
+- [ILinksSettings](interfaces/ILinksSettings.md)
+- [IMiniControlComponentProps](interfaces/IMiniControlComponentProps.md)
+- [IMiniControlDefaultSettings](interfaces/IMiniControlDefaultSettings.md)
+- [INodeDefaultSettings](interfaces/INodeDefaultSettings.md)
+- [INodePortState](interfaces/INodePortState.md)
+- [INodeState](interfaces/INodeState.md)
+- [INodeStateWithId](interfaces/INodeStateWithId.md)
+- [INodeStateWithoutId](interfaces/INodeStateWithoutId.md)
+- [INodeVisualComponentProps](interfaces/INodeVisualComponentProps.md)
+- [INodesSettings](interfaces/INodesSettings.md)
+- [IPortInnerDefaultSettings](interfaces/IPortInnerDefaultSettings.md)
+- [IPortProps](interfaces/IPortProps.md)
+- [IPortState](interfaces/IPortState.md)
+- [IPortStateWithIds](interfaces/IPortStateWithIds.md)
+- [IPortStateWithoutIds](interfaces/IPortStateWithoutIds.md)
+- [IPortVisualComponentProps](interfaces/IPortVisualComponentProps.md)
+- [IPortsContainerProps](interfaces/IPortsContainerProps.md)
+- [IPortsContainerSettings](interfaces/IPortsContainerSettings.md)
+- [IPortsSettings](interfaces/IPortsSettings.md)
+- [ISettings](interfaces/ISettings.md)
+- [ISvgArrowMarkerSettings](interfaces/ISvgArrowMarkerSettings.md)
+- [ISvgBackgroundSettings](interfaces/ISvgBackgroundSettings.md)
+- [ISvgCircleMarkerSettings](interfaces/ISvgCircleMarkerSettings.md)
+- [ISvgMarkerSettings](interfaces/ISvgMarkerSettings.md)
+- [ITransformation](interfaces/ITransformation.md)
+- [IUseLinkUserInteractionResult](interfaces/IUseLinkUserInteractionResult.md)
+- [IUsePortUserInteractionResult](interfaces/IUsePortUserInteractionResult.md)
+- [IUseStylingOptions](interfaces/IUseStylingOptions.md)
+- [IUserInteraction](interfaces/IUserInteraction.md)
+- [IUserInteractionTranslate](interfaces/IUserInteractionTranslate.md)
+- [IUserInteractionTranslateAndZoom](interfaces/IUserInteractionTranslateAndZoom.md)
+- [IVisualComponentProps](interfaces/IVisualComponentProps.md)
+- [IVisualComponentsObject](interfaces/IVisualComponentsObject.md)
+- [IZoomToFitSettings](interfaces/IZoomToFitSettings.md)
 
-## Type aliases
+## Type Aliases
 
 ### BackgroundSvgImageGenerator
 
@@ -172,13 +171,13 @@ ___
 
 ### IDiagramProps
 
-Ƭ **IDiagramProps**: `React.PropsWithChildren`<`Object`\>
+Ƭ **IDiagramProps**: `React.PropsWithChildren`<{ `initState?`: [`IDiagramInitState`](interfaces/IDiagramInitState.md) ; `settings?`: [`ISettings`](interfaces/ISettings.md) ; `storeRef?`: `React.MutableRefObject`<[`RootStore`](classes/RootStore.md) \| ``null``\>  }\>
 
 ___
 
 ### ILinkPathConstructor
 
-Ƭ **ILinkPathConstructor**: (`source`: [`ILinkPathConstructorEndpointInfo`](interfaces/ILinkPathConstructorEndpointInfo), `target`: [`ILinkPathConstructorEndpointInfo`](interfaces/ILinkPathConstructorEndpointInfo)) => `string`
+Ƭ **ILinkPathConstructor**: (`source`: [`ILinkPathConstructorEndpointInfo`](interfaces/ILinkPathConstructorEndpointInfo.md), `target`: [`ILinkPathConstructorEndpointInfo`](interfaces/ILinkPathConstructorEndpointInfo.md)) => `string`
 
 #### Type declaration
 
@@ -188,8 +187,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `source` | [`ILinkPathConstructorEndpointInfo`](interfaces/ILinkPathConstructorEndpointInfo) |
-| `target` | [`ILinkPathConstructorEndpointInfo`](interfaces/ILinkPathConstructorEndpointInfo) |
+| `source` | [`ILinkPathConstructorEndpointInfo`](interfaces/ILinkPathConstructorEndpointInfo.md) |
+| `target` | [`ILinkPathConstructorEndpointInfo`](interfaces/ILinkPathConstructorEndpointInfo.md) |
 
 ##### Returns
 
@@ -199,7 +198,7 @@ ___
 
 ### INodeDefaultSettingsWithoutPorts
 
-Ƭ **INodeDefaultSettingsWithoutPorts**: `Omit`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings), ``"ports"``\>
+Ƭ **INodeDefaultSettingsWithoutPorts**: `Omit`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md), ``"ports"``\>
 
 ___
 
@@ -296,7 +295,7 @@ ___
 
 ### SelectableItem
 
-Ƭ **SelectableItem**: [`NodeState`](classes/NodeState) \| [`LinkState`](classes/LinkState)
+Ƭ **SelectableItem**: [`NodeState`](classes/NodeState.md) \| [`LinkState`](classes/LinkState.md)
 
 ___
 
@@ -352,223 +351,223 @@ ___
 
 ### BackgroundWrapper
 
-• **BackgroundWrapper**: () => `Element` & { `displayName`: `string`  }
+• `Const` **BackgroundWrapper**: () => `Element` & { `displayName`: `string`  }
 
 ___
 
 ### Button
 
-• **Button**: `React.FC`<`Object`\>
+• `Const` **Button**: `React.FC`<{ `children?`: `React.ReactNode` ; `size`: `number` ; `onClick`: () => `any`  }\>
 
 ___
 
 ### COMPONENT\_DEFAULT\_TYPE
 
-• **COMPONENT\_DEFAULT\_TYPE**: ``"default"``
+• `Const` **COMPONENT\_DEFAULT\_TYPE**: ``"default"``
 
 ___
 
 ### CopyIcon
 
-• **CopyIcon**: `React.FC`
+• `Const` **CopyIcon**: `React.FC`
 
 ___
 
 ### DISABLE\_NODE\_USER\_INTERACTION\_CLASS
 
-• **DISABLE\_NODE\_USER\_INTERACTION\_CLASS**: ``"react_easy_diagram_disable_node_user_interaction"``
+• `Const` **DISABLE\_NODE\_USER\_INTERACTION\_CLASS**: ``"react_easy_diagram_disable_node_user_interaction"``
 
 ___
 
 ### DigramInner
 
-• **DigramInner**: `FunctionComponent`<[`IDiagramInnerProps`](interfaces/IDiagramInnerProps)\>
+• `Const` **DigramInner**: `FunctionComponent`<[`IDiagramInnerProps`](interfaces/IDiagramInnerProps.md)\>
 
 ___
 
 ### ENABLE\_NODE\_USER\_INTERACTION\_CLASS
 
-• **ENABLE\_NODE\_USER\_INTERACTION\_CLASS**: ``"react_easy_diagram_enable_node_user_interaction"``
+• `Const` **ENABLE\_NODE\_USER\_INTERACTION\_CLASS**: ``"react_easy_diagram_enable_node_user_interaction"``
 
 ___
 
 ### FilterCenterFocusIcon
 
-• **FilterCenterFocusIcon**: `React.FC`
+• `Const` **FilterCenterFocusIcon**: `React.FC`
 
 ___
 
 ### LINK\_CREATION\_COMPONENT\_TYPE
 
-• **LINK\_CREATION\_COMPONENT\_TYPE**: `string` = `'linkCreation'`
+• `Const` **LINK\_CREATION\_COMPONENT\_TYPE**: `string` = `'linkCreation'`
 
 ___
 
 ### LinkDefault
 
-• **LinkDefault**: `React.FC`<[`ILinkVisualComponentProps`](interfaces/ILinkVisualComponentProps)<[`ILinkDefaultSettings`](interfaces/ILinkDefaultSettings)\>\>
+• `Const` **LinkDefault**: `React.FC`<[`ILinkVisualComponentProps`](interfaces/ILinkVisualComponentProps.md)<[`ILinkDefaultSettings`](interfaces/ILinkDefaultSettings.md)\>\>
 
 ___
 
 ### LinkWrapper
 
-• **LinkWrapper**: `FunctionComponent`<`Object`\>
+• `Const` **LinkWrapper**: `FunctionComponent`<{ `link`: [`LinkState`](classes/LinkState.md) \| [`LinkCreationState`](classes/LinkCreationState.md)  }\>
 
 ___
 
 ### LinksLayer
 
-• **LinksLayer**: `FunctionComponent`<`Object`\>
+• `Const` **LinksLayer**: `FunctionComponent`<{ `transform`: `string`  }\>
 
 ___
 
 ### LockIcon
 
-• **LockIcon**: `React.FC`
+• `Const` **LockIcon**: `React.FC`
 
 ___
 
 ### MiniControlWrapper
 
-• **MiniControlWrapper**: () => `Element` & { `displayName`: `string`  }
+• `Const` **MiniControlWrapper**: () => `Element` & { `displayName`: `string`  }
 
 ___
 
 ### NodeContext
 
-• **NodeContext**: `Context`<``null`` \| [`NodeState`](classes/NodeState)\>
+• `Const` **NodeContext**: `Context`<``null`` \| [`NodeState`](classes/NodeState.md)\>
 
 ___
 
 ### NodeLabel
 
-• **NodeLabel**: `React.FC`<`Object`\>
+• `Const` **NodeLabel**: `React.FC`<{ `node`: [`NodeState`](classes/NodeState.md)  }\>
 
 ___
 
 ### NodeWrapper
 
-• **NodeWrapper**: `FunctionComponent`<`Object`\>
+• `Const` **NodeWrapper**: `FunctionComponent`<{ `node`: [`NodeState`](classes/NodeState.md)  }\>
 
 ___
 
 ### NodesLayer
 
-• **NodesLayer**: `FunctionComponent`<`Object`\>
+• `Const` **NodesLayer**: `FunctionComponent`<{ `transform`: `string`  }\>
 
 ___
 
 ### Port
 
-• **Port**: `React.FC`<[`IPortProps`](interfaces/IPortProps)\>
+• `Const` **Port**: `React.FC`<[`IPortProps`](interfaces/IPortProps.md)\>
 
 ___
 
 ### RenderedPortsComponentsContext
 
-• **RenderedPortsComponentsContext**: `Context`<`IRenderedPorts`\>
+• `Const` **RenderedPortsComponentsContext**: `Context`<`IRenderedPorts`\>
 
 ___
 
 ### RootStoreContext
 
-• **RootStoreContext**: `Context`<``null`` \| [`RootStore`](classes/RootStore)\>
+• `Const` **RootStoreContext**: `Context`<``null`` \| [`RootStore`](classes/RootStore.md)\>
 
 ___
 
 ### RubbishBinIcon
 
-• **RubbishBinIcon**: `React.FC`
+• `Const` **RubbishBinIcon**: `React.FC`
 
 ___
 
 ### UnlockIcon
 
-• **UnlockIcon**: `React.FC`
+• `Const` **UnlockIcon**: `React.FC`
 
 ___
 
 ### cloneSelectedNodesCommand
 
-• **cloneSelectedNodesCommand**: `Object`
+• `Const` **cloneSelectedNodesCommand**: `Object`
 
 #### Type declaration
 
 | Name | Type |
 | :------ | :------ |
-| `execute` | (`rootStore`: [`RootStore`](classes/RootStore)) => `void` |
+| `execute` | (`rootStore`: [`RootStore`](classes/RootStore.md)) => `void` |
 
 ___
 
 ### defaultLinkMainLineClasses
 
-• **defaultLinkMainLineClasses**: [`LinkDefaultSettingsByStates`](#linkdefaultsettingsbystates)<`string`[]\>
+• `Const` **defaultLinkMainLineClasses**: [`LinkDefaultSettingsByStates`](#linkdefaultsettingsbystates)<`string`[]\>
 
 ___
 
 ### defaultLinkSecondaryLineClasses
 
-• **defaultLinkSecondaryLineClasses**: [`LinkDefaultSettingsByStates`](#linkdefaultsettingsbystates)<`string`[]\>
+• `Const` **defaultLinkSecondaryLineClasses**: [`LinkDefaultSettingsByStates`](#linkdefaultsettingsbystates)<`string`[]\>
 
 ___
 
 ### defaultNodeClasses
 
-• **defaultNodeClasses**: [`NodeDefaultSettingsByStates`](#nodedefaultsettingsbystates)<`string`[]\>
+• `Const` **defaultNodeClasses**: [`NodeDefaultSettingsByStates`](#nodedefaultsettingsbystates)<`string`[]\>
 
 ___
 
 ### defaultPortInnerClasses
 
-• **defaultPortInnerClasses**: [`PortInnerDefaultSettingsByStates`](#portinnerdefaultsettingsbystates)<`string`[]\>
+• `Const` **defaultPortInnerClasses**: [`PortInnerDefaultSettingsByStates`](#portinnerdefaultsettingsbystates)<`string`[]\>
 
 ___
 
 ### portPositionValues
 
-• **portPositionValues**: readonly [``"left-top"``, ``"left-center"``, ``"left-bottom"``, ``"top-left"``, ``"top-center"``, ``"top-right"``, ``"right-top"``, ``"right-center"``, ``"right-bottom"``, ``"bottom-left"``, ``"bottom-center"``, ``"bottom-right"``, ``"diagonal-left-top"``, ``"diagonal-right-top"``, ``"diagonal-right-bottom"``, ``"diagonal-left-bottom"``]
+• `Const` **portPositionValues**: readonly [``"left-top"``, ``"left-center"``, ``"left-bottom"``, ``"top-left"``, ``"top-center"``, ``"top-right"``, ``"right-top"``, ``"right-center"``, ``"right-bottom"``, ``"bottom-left"``, ``"bottom-center"``, ``"bottom-right"``, ``"diagonal-left-top"``, ``"diagonal-right-top"``, ``"diagonal-right-bottom"``, ``"diagonal-left-bottom"``]
 
 ___
 
 ### positionValues
 
-• **positionValues**: readonly [``"left"``, ``"top"``, ``"right"``, ``"bottom"``]
+• `Const` **positionValues**: readonly [``"left"``, ``"top"``, ``"right"``, ``"bottom"``]
 
 ___
 
 ### removeSelectedCommand
 
-• **removeSelectedCommand**: `Object`
+• `Const` **removeSelectedCommand**: `Object`
 
 #### Type declaration
 
 | Name | Type |
 | :------ | :------ |
-| `execute` | (`rootStore`: [`RootStore`](classes/RootStore)) => `void` |
+| `execute` | (`rootStore`: [`RootStore`](classes/RootStore.md)) => `void` |
 
 ___
 
 ### removeSelectedLinksCommand
 
-• **removeSelectedLinksCommand**: `Object`
+• `Const` **removeSelectedLinksCommand**: `Object`
 
 #### Type declaration
 
 | Name | Type |
 | :------ | :------ |
-| `execute` | (`rootStore`: [`RootStore`](classes/RootStore)) => `void` |
+| `execute` | (`rootStore`: [`RootStore`](classes/RootStore.md)) => `void` |
 
 ___
 
 ### removeSelectedNodesCommand
 
-• **removeSelectedNodesCommand**: `Object`
+• `Const` **removeSelectedNodesCommand**: `Object`
 
 #### Type declaration
 
 | Name | Type |
 | :------ | :------ |
-| `execute` | (`rootStore`: [`RootStore`](classes/RootStore)) => `void` |
+| `execute` | (`rootStore`: [`RootStore`](classes/RootStore.md)) => `void` |
 
 ## Functions
 
@@ -580,7 +579,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `props` | `PropsWithChildren`<`Object`\> |
+| `props` | `PropsWithChildren`<{ `initState?`: [`IDiagramInitState`](interfaces/IDiagramInitState.md) ; `settings?`: [`ISettings`](interfaces/ISettings.md) ; `storeRef?`: `MutableRefObject`<``null`` \| [`RootStore`](classes/RootStore.md)\>  }\> |
 
 #### Returns
 
@@ -596,7 +595,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `props` | `PropsWithChildren`<`Object`\> |
+| `props` | `PropsWithChildren`<{ `initState?`: [`IDiagramInitState`](interfaces/IDiagramInitState.md) ; `settings?`: [`ISettings`](interfaces/ISettings.md) ; `storeRef?`: `MutableRefObject`<``null`` \| [`RootStore`](classes/RootStore.md)\>  }\> |
 
 #### Returns
 
@@ -612,7 +611,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `props` | [`DragAndDropContainerProps`](interfaces/DragAndDropContainerProps) |
+| `props` | [`DragAndDropContainerProps`](interfaces/DragAndDropContainerProps.md) |
 
 #### Returns
 
@@ -628,7 +627,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `props` | [`DragAndDropItemProps`](interfaces/DragAndDropItemProps) |
+| `props` | [`DragAndDropItemProps`](interfaces/DragAndDropItemProps.md) |
 
 #### Returns
 
@@ -638,13 +637,13 @@ ___
 
 ### addNodeCommand
 
-▸ `Const` **addNodeCommand**(`node`): `Object`
+▸ **addNodeCommand**(`node`): `Object`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`INodeState`](interfaces/INodeState) |
+| `node` | [`INodeState`](interfaces/INodeState.md) |
 
 #### Returns
 
@@ -652,13 +651,13 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `execute` | (`rootStore`: [`RootStore`](classes/RootStore)) => `void` |
+| `execute` | (`rootStore`: [`RootStore`](classes/RootStore.md)) => `void` |
 
 ___
 
 ### addPoints
 
-▸ `Const` **addPoints**(...`points`): [`Point`](#point)
+▸ **addPoints**(...`points`): [`Point`](#point)
 
 #### Parameters
 
@@ -674,7 +673,7 @@ ___
 
 ### arePointsEqual
 
-▸ `Const` **arePointsEqual**(`a?`, `b?`): `boolean`
+▸ **arePointsEqual**(`a?`, `b?`): `boolean`
 
 #### Parameters
 
@@ -691,14 +690,14 @@ ___
 
 ### areTranformationsEqual
 
-▸ `Const` **areTranformationsEqual**(`a`, `b`): `boolean`
+▸ **areTranformationsEqual**(`a`, `b`): `boolean`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `a` | [`ITransformation`](interfaces/ITransformation) |
-| `b` | [`ITransformation`](interfaces/ITransformation) |
+| `a` | [`ITransformation`](interfaces/ITransformation.md) |
+| `b` | [`ITransformation`](interfaces/ITransformation.md) |
 
 #### Returns
 
@@ -824,7 +823,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `settings` | [`ISvgArrowMarkerSettings`](interfaces/ISvgArrowMarkerSettings) |
+| `settings` | [`ISvgArrowMarkerSettings`](interfaces/ISvgArrowMarkerSettings.md) |
 
 #### Returns
 
@@ -840,7 +839,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `settings` | [`ISvgCircleMarkerSettings`](interfaces/ISvgCircleMarkerSettings) |
+| `settings` | [`ISvgCircleMarkerSettings`](interfaces/ISvgCircleMarkerSettings.md) |
 
 #### Returns
 
@@ -850,7 +849,7 @@ ___
 
 ### createCrossesImageGenerator
 
-▸ `Const` **createCrossesImageGenerator**(`sizeMultiplicator`, `color`, `opacity`): [`BackgroundSvgImageGenerator`](#backgroundsvgimagegenerator)
+▸ **createCrossesImageGenerator**(`sizeMultiplicator`, `color`, `opacity`): [`BackgroundSvgImageGenerator`](#backgroundsvgimagegenerator)
 
 #### Parameters
 
@@ -874,7 +873,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | `Partial`<[`ICurvedLinkPathConstructorSettings`](interfaces/ICurvedLinkPathConstructorSettings)\> |
+| `settings?` | `Partial`<[`ICurvedLinkPathConstructorSettings`](interfaces/ICurvedLinkPathConstructorSettings.md)\> |
 
 #### Returns
 
@@ -884,23 +883,23 @@ ___
 
 ### createDefaultMiniControl
 
-▸ `Const` **createDefaultMiniControl**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition)<[`IMiniControlComponentProps`](interfaces/IMiniControlComponentProps)<`any`\>, [`IMiniControlDefaultSettings`](interfaces/IMiniControlDefaultSettings)\>
+▸ **createDefaultMiniControl**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`IMiniControlComponentProps`](interfaces/IMiniControlComponentProps.md)<`any`\>, [`IMiniControlDefaultSettings`](interfaces/IMiniControlDefaultSettings.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | `Partial`<[`IMiniControlDefaultSettings`](interfaces/IMiniControlDefaultSettings)\> |
+| `settings?` | `Partial`<[`IMiniControlDefaultSettings`](interfaces/IMiniControlDefaultSettings.md)\> |
 
 #### Returns
 
-[`IComponentDefinition`](interfaces/IComponentDefinition)<[`IMiniControlComponentProps`](interfaces/IMiniControlComponentProps)<`any`\>, [`IMiniControlDefaultSettings`](interfaces/IMiniControlDefaultSettings)\>
+[`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`IMiniControlComponentProps`](interfaces/IMiniControlComponentProps.md)<`any`\>, [`IMiniControlDefaultSettings`](interfaces/IMiniControlDefaultSettings.md)\>
 
 ___
 
 ### createDotsImageGenerator
 
-▸ `Const` **createDotsImageGenerator**(`sizeMultiplicator`, `dotsColor`, `dotsOpacity`, `dotsRadius`): [`BackgroundSvgImageGenerator`](#backgroundsvgimagegenerator)
+▸ **createDotsImageGenerator**(`sizeMultiplicator`, `dotsColor`, `dotsOpacity`, `dotsRadius`): [`BackgroundSvgImageGenerator`](#backgroundsvgimagegenerator)
 
 #### Parameters
 
@@ -936,7 +935,7 @@ ___
 
 ### createGridImageGenerator
 
-▸ `Const` **createGridImageGenerator**(`sizeMultiplicator`, `linesColor`, `linesOpacity`): [`BackgroundSvgImageGenerator`](#backgroundsvgimagegenerator)
+▸ **createGridImageGenerator**(`sizeMultiplicator`, `linesColor`, `linesOpacity`): [`BackgroundSvgImageGenerator`](#backgroundsvgimagegenerator)
 
 #### Parameters
 
@@ -954,127 +953,127 @@ ___
 
 ### createInputHorizontalNode
 
-▸ `Const` **createInputHorizontalNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+▸ **createInputHorizontalNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
+| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
 
 #### Returns
 
-[`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+[`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 ___
 
 ### createInputOutputHorizontalNode
 
-▸ `Const` **createInputOutputHorizontalNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+▸ **createInputOutputHorizontalNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
+| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
 
 #### Returns
 
-[`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+[`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 ___
 
 ### createInputOutputVerticalNode
 
-▸ `Const` **createInputOutputVerticalNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+▸ **createInputOutputVerticalNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
+| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
 
 #### Returns
 
-[`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+[`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 ___
 
 ### createInputVerticalNode
 
-▸ `Const` **createInputVerticalNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+▸ **createInputVerticalNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
+| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
 
 #### Returns
 
-[`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+[`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 ___
 
 ### createLinkDefault
 
-▸ **createLinkDefault**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition)<[`ILinkVisualComponentProps`](interfaces/ILinkVisualComponentProps), `Partial`<[`ILinkDefaultSettings`](interfaces/ILinkDefaultSettings)\>\>
+▸ **createLinkDefault**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`ILinkVisualComponentProps`](interfaces/ILinkVisualComponentProps.md), `Partial`<[`ILinkDefaultSettings`](interfaces/ILinkDefaultSettings.md)\>\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | [`ILinkDefaultSettings`](interfaces/ILinkDefaultSettings) |
+| `settings?` | [`ILinkDefaultSettings`](interfaces/ILinkDefaultSettings.md) |
 
 #### Returns
 
-[`IComponentDefinition`](interfaces/IComponentDefinition)<[`ILinkVisualComponentProps`](interfaces/ILinkVisualComponentProps), `Partial`<[`ILinkDefaultSettings`](interfaces/ILinkDefaultSettings)\>\>
+[`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`ILinkVisualComponentProps`](interfaces/ILinkVisualComponentProps.md), `Partial`<[`ILinkDefaultSettings`](interfaces/ILinkDefaultSettings.md)\>\>
 
 ___
 
 ### createLinkPath
 
-▸ **createLinkPath**(`rootStore`, `source`, `target`): [`ILinkPath`](interfaces/ILinkPath) \| `undefined`
+▸ **createLinkPath**(`rootStore`, `source`, `target`): [`ILinkPath`](interfaces/ILinkPath.md) \| `undefined`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `rootStore` | [`RootStore`](classes/RootStore) |
-| `source` | [`LinkPortEndpointState`](classes/LinkPortEndpointState) |
-| `target` | [`LinkPortEndpointState`](classes/LinkPortEndpointState) \| [`LinkPointEndpointState`](classes/LinkPointEndpointState) |
+| `rootStore` | [`RootStore`](classes/RootStore.md) |
+| `source` | [`LinkPortEndpointState`](classes/LinkPortEndpointState.md) |
+| `target` | [`LinkPortEndpointState`](classes/LinkPortEndpointState.md) \| [`LinkPointEndpointState`](classes/LinkPointEndpointState.md) |
 
 #### Returns
 
-[`ILinkPath`](interfaces/ILinkPath) \| `undefined`
+[`ILinkPath`](interfaces/ILinkPath.md) \| `undefined`
 
 ___
 
 ### createNode
 
-▸ **createNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+▸ **createNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | [`INodeDefaultSettings`](interfaces/INodeDefaultSettings) |
+| `settings?` | [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md) |
 
 #### Returns
 
-[`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+[`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 ___
 
 ### createNodeOnDrop
 
-▸ **createNodeOnDrop**(`node`): (`event`: [`DragAndDropEvent`](interfaces/DragAndDropEvent)) => `void`
+▸ **createNodeOnDrop**(`node`): (`event`: [`DragAndDropEvent`](interfaces/DragAndDropEvent.md)) => `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | `Pick`<[`INodeState`](interfaces/INodeState), ``"id"`` \| ``"label"`` \| ``"type"`` \| ``"extra"`` \| ``"isSelectionEnabled"`` \| ``"isDragEnabled"``\> |
+| `node` | `Pick`<[`INodeState`](interfaces/INodeState.md), ``"id"`` \| ``"label"`` \| ``"type"`` \| ``"extra"`` \| ``"isSelectionEnabled"`` \| ``"isDragEnabled"``\> |
 
 #### Returns
 
@@ -1086,7 +1085,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `event` | [`DragAndDropEvent`](interfaces/DragAndDropEvent) |
+| `event` | [`DragAndDropEvent`](interfaces/DragAndDropEvent.md) |
 
 ##### Returns
 
@@ -1096,81 +1095,81 @@ ___
 
 ### createOutputHorizontalNode
 
-▸ `Const` **createOutputHorizontalNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+▸ **createOutputHorizontalNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
+| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
 
 #### Returns
 
-[`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+[`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 ___
 
 ### createOutputVerticalNode
 
-▸ `Const` **createOutputVerticalNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+▸ **createOutputVerticalNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
+| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
 
 #### Returns
 
-[`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+[`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 ___
 
 ### createPortInnerDefault
 
-▸ **createPortInnerDefault**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition)<[`IPortVisualComponentProps`](interfaces/IPortVisualComponentProps), [`IPortInnerDefaultSettings`](interfaces/IPortInnerDefaultSettings)\>
+▸ **createPortInnerDefault**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`IPortVisualComponentProps`](interfaces/IPortVisualComponentProps.md), [`IPortInnerDefaultSettings`](interfaces/IPortInnerDefaultSettings.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | [`IPortInnerDefaultSettings`](interfaces/IPortInnerDefaultSettings) |
+| `settings?` | [`IPortInnerDefaultSettings`](interfaces/IPortInnerDefaultSettings.md) |
 
 #### Returns
 
-[`IComponentDefinition`](interfaces/IComponentDefinition)<[`IPortVisualComponentProps`](interfaces/IPortVisualComponentProps), [`IPortInnerDefaultSettings`](interfaces/IPortInnerDefaultSettings)\>
+[`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`IPortVisualComponentProps`](interfaces/IPortVisualComponentProps.md), [`IPortInnerDefaultSettings`](interfaces/IPortInnerDefaultSettings.md)\>
 
 ___
 
 ### createPortsContainer
 
-▸ **createPortsContainer**(`settings?`): [`VisualComponent`](#visualcomponent)<[`IPortsContainerProps`](interfaces/IPortsContainerProps)\>
+▸ **createPortsContainer**(`settings?`): [`VisualComponent`](#visualcomponent)<[`IPortsContainerProps`](interfaces/IPortsContainerProps.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | `Partial`<[`IPortsContainerSettings`](interfaces/IPortsContainerSettings)\> |
+| `settings?` | `Partial`<[`IPortsContainerSettings`](interfaces/IPortsContainerSettings.md)\> |
 
 #### Returns
 
-[`VisualComponent`](#visualcomponent)<[`IPortsContainerProps`](interfaces/IPortsContainerProps)\>
+[`VisualComponent`](#visualcomponent)<[`IPortsContainerProps`](interfaces/IPortsContainerProps.md)\>
 
 ___
 
 ### createStarNode
 
-▸ `Const` **createStarNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+▸ **createStarNode**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
+| `settings?` | `Pick`<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md), ``"innerNode"`` \| ``"removeDefaultClasses"`` \| ``"classes"`` \| ``"style"``\> |
 
 #### Returns
 
-[`IComponentDefinition`](interfaces/IComponentDefinition)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings)\>
+[`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`INodeVisualComponentProps`](interfaces/INodeVisualComponentProps.md)<[`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>, [`INodeDefaultSettings`](interfaces/INodeDefaultSettings.md)\>
 
 ___
 
@@ -1186,17 +1185,17 @@ ___
 
 ### createSvgBackground
 
-▸ `Const` **createSvgBackground**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition)<[`IBackgroundComponentProps`](interfaces/IBackgroundComponentProps)<`any`\>, [`ISvgBackgroundSettings`](interfaces/ISvgBackgroundSettings)\>
+▸ **createSvgBackground**(`settings?`): [`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`IBackgroundComponentProps`](interfaces/IBackgroundComponentProps.md)<`any`\>, [`ISvgBackgroundSettings`](interfaces/ISvgBackgroundSettings.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings?` | `Partial`<[`ISvgBackgroundSettings`](interfaces/ISvgBackgroundSettings)\> |
+| `settings?` | `Partial`<[`ISvgBackgroundSettings`](interfaces/ISvgBackgroundSettings.md)\> |
 
 #### Returns
 
-[`IComponentDefinition`](interfaces/IComponentDefinition)<[`IBackgroundComponentProps`](interfaces/IBackgroundComponentProps)<`any`\>, [`ISvgBackgroundSettings`](interfaces/ISvgBackgroundSettings)\>
+[`IComponentDefinition`](interfaces/IComponentDefinition.md)<[`IBackgroundComponentProps`](interfaces/IBackgroundComponentProps.md)<`any`\>, [`ISvgBackgroundSettings`](interfaces/ISvgBackgroundSettings.md)\>
 
 ___
 
@@ -1242,7 +1241,7 @@ ___
 
 ### distanceBetweenPoints
 
-▸ `Const` **distanceBetweenPoints**(`a`, `b`): `number`
+▸ **distanceBetweenPoints**(`a`, `b`): `number`
 
 #### Parameters
 
@@ -1298,7 +1297,7 @@ ___
 
 ### eventPathContainsClass
 
-▸ `Const` **eventPathContainsClass**(`event`, `className`, `exceptClassName?`): `boolean`
+▸ **eventPathContainsClass**(`event`, `className`, `exceptClassName?`): `boolean`
 
 Check each element starting from the first one in composedPath() (see https://developer.mozilla.org/en-US/docs/Web/API/Event/composedPath),
 if exceptClassName is the first class found -> return false,
@@ -1321,7 +1320,7 @@ ___
 
 ### generateTransform
 
-▸ `Const` **generateTransform**(`translate`, `scale?`): `string`
+▸ **generateTransform**(`translate`, `scale?`): `string`
 
 #### Parameters
 
@@ -1512,8 +1511,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `a` | [`ILinkPortEndpoint`](interfaces/ILinkPortEndpoint) |
-| `b` | [`ILinkPortEndpoint`](interfaces/ILinkPortEndpoint) |
+| `a` | [`ILinkPortEndpoint`](interfaces/ILinkPortEndpoint.md) |
+| `b` | [`ILinkPortEndpoint`](interfaces/ILinkPortEndpoint.md) |
 
 #### Returns
 
@@ -1523,7 +1522,7 @@ ___
 
 ### multiplyPoint
 
-▸ `Const` **multiplyPoint**(`a`, `m`): [`Point`](#point)
+▸ **multiplyPoint**(`a`, `m`): [`Point`](#point)
 
 #### Parameters
 
@@ -1540,7 +1539,7 @@ ___
 
 ### roundPoint
 
-▸ `Const` **roundPoint**(`point`): [`Point`](#point)
+▸ **roundPoint**(`point`): [`Point`](#point)
 
 #### Parameters
 
@@ -1556,7 +1555,7 @@ ___
 
 ### subtractPoints
 
-▸ `Const` **subtractPoints**(...`points`): [`Point`](#point)
+▸ **subtractPoints**(...`points`): [`Point`](#point)
 
 #### Parameters
 
@@ -1611,7 +1610,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `active` | `boolean` |
-| `cursor` | `undefined` \| ``"move"`` \| `string` & {} \| ``"-moz-initial"`` \| ``"inherit"`` \| ``"initial"`` \| ``"revert"`` \| ``"unset"`` \| ``"-moz-grab"`` \| ``"-webkit-grab"`` \| ``"alias"`` \| ``"all-scroll"`` \| ``"auto"`` \| ``"cell"`` \| ``"col-resize"`` \| ``"context-menu"`` \| ``"copy"`` \| ``"crosshair"`` \| ``"default"`` \| ``"e-resize"`` \| ``"ew-resize"`` \| ``"grab"`` \| ``"grabbing"`` \| ``"help"`` \| ``"n-resize"`` \| ``"ne-resize"`` \| ``"nesw-resize"`` \| ``"no-drop"`` \| ``"none"`` \| ``"not-allowed"`` \| ``"ns-resize"`` \| ``"nw-resize"`` \| ``"nwse-resize"`` \| ``"pointer"`` \| ``"progress"`` \| ``"row-resize"`` \| ``"s-resize"`` \| ``"se-resize"`` \| ``"sw-resize"`` \| ``"text"`` \| ``"vertical-text"`` \| ``"w-resize"`` \| ``"wait"`` \| ``"zoom-in"`` \| ``"zoom-out"`` |
+| `cursor` | `undefined` \| ``"move"`` \| `string` & {} \| ``"-moz-initial"`` \| ``"inherit"`` \| ``"initial"`` \| ``"revert"`` \| ``"revert-layer"`` \| ``"unset"`` \| ``"-moz-grab"`` \| ``"-webkit-grab"`` \| ``"alias"`` \| ``"all-scroll"`` \| ``"auto"`` \| ``"cell"`` \| ``"col-resize"`` \| ``"context-menu"`` \| ``"copy"`` \| ``"crosshair"`` \| ``"default"`` \| ``"e-resize"`` \| ``"ew-resize"`` \| ``"grab"`` \| ``"grabbing"`` \| ``"help"`` \| ``"n-resize"`` \| ``"ne-resize"`` \| ``"nesw-resize"`` \| ``"no-drop"`` \| ``"none"`` \| ``"not-allowed"`` \| ``"ns-resize"`` \| ``"nw-resize"`` \| ``"nwse-resize"`` \| ``"pointer"`` \| ``"progress"`` \| ``"row-resize"`` \| ``"s-resize"`` \| ``"se-resize"`` \| ``"sw-resize"`` \| ``"text"`` \| ``"vertical-text"`` \| ``"w-resize"`` \| ``"wait"`` \| ``"zoom-in"`` \| ``"zoom-out"`` |
 | `ref` | ``null`` \| `HTMLDivElement` |
 
 #### Returns
@@ -1622,14 +1621,14 @@ ___
 
 ### useDiagram
 
-▸ `Const` **useDiagram**(`initState?`, `settings?`): `Object`
+▸ **useDiagram**(`initState?`, `settings?`): `Object`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `initState?` | [`IDiagramInitState`](interfaces/IDiagramInitState) |
-| `settings?` | [`ISettings`](interfaces/ISettings) |
+| `initState?` | [`IDiagramInitState`](interfaces/IDiagramInitState.md) |
+| `settings?` | [`ISettings`](interfaces/ISettings.md) |
 
 #### Returns
 
@@ -1638,7 +1637,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `Diagram` | () => `Element` |
-| `storeRef` | `MutableRefObject`<``null`` \| [`RootStore`](classes/RootStore)\> |
+| `storeRef` | `MutableRefObject`<``null`` \| [`RootStore`](classes/RootStore.md)\> |
 
 ___
 
@@ -1651,7 +1650,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `active` | `boolean` |
-| `cursor` | `undefined` \| ``"move"`` \| `string` & {} \| ``"-moz-initial"`` \| ``"inherit"`` \| ``"initial"`` \| ``"revert"`` \| ``"unset"`` \| ``"-moz-grab"`` \| ``"-webkit-grab"`` \| ``"alias"`` \| ``"all-scroll"`` \| ``"auto"`` \| ``"cell"`` \| ``"col-resize"`` \| ``"context-menu"`` \| ``"copy"`` \| ``"crosshair"`` \| ``"default"`` \| ``"e-resize"`` \| ``"ew-resize"`` \| ``"grab"`` \| ``"grabbing"`` \| ``"help"`` \| ``"n-resize"`` \| ``"ne-resize"`` \| ``"nesw-resize"`` \| ``"no-drop"`` \| ``"none"`` \| ``"not-allowed"`` \| ``"ns-resize"`` \| ``"nw-resize"`` \| ``"nwse-resize"`` \| ``"pointer"`` \| ``"progress"`` \| ``"row-resize"`` \| ``"s-resize"`` \| ``"se-resize"`` \| ``"sw-resize"`` \| ``"text"`` \| ``"vertical-text"`` \| ``"w-resize"`` \| ``"wait"`` \| ``"zoom-in"`` \| ``"zoom-out"`` |
+| `cursor` | `undefined` \| ``"move"`` \| `string` & {} \| ``"-moz-initial"`` \| ``"inherit"`` \| ``"initial"`` \| ``"revert"`` \| ``"revert-layer"`` \| ``"unset"`` \| ``"-moz-grab"`` \| ``"-webkit-grab"`` \| ``"alias"`` \| ``"all-scroll"`` \| ``"auto"`` \| ``"cell"`` \| ``"col-resize"`` \| ``"context-menu"`` \| ``"copy"`` \| ``"crosshair"`` \| ``"default"`` \| ``"e-resize"`` \| ``"ew-resize"`` \| ``"grab"`` \| ``"grabbing"`` \| ``"help"`` \| ``"n-resize"`` \| ``"ne-resize"`` \| ``"nesw-resize"`` \| ``"no-drop"`` \| ``"none"`` \| ``"not-allowed"`` \| ``"ns-resize"`` \| ``"nw-resize"`` \| ``"nwse-resize"`` \| ``"pointer"`` \| ``"progress"`` \| ``"row-resize"`` \| ``"s-resize"`` \| ``"se-resize"`` \| ``"sw-resize"`` \| ``"text"`` \| ``"vertical-text"`` \| ``"w-resize"`` \| ``"wait"`` \| ``"zoom-in"`` \| ``"zoom-out"`` |
 
 #### Returns
 
@@ -1661,7 +1660,7 @@ ___
 
 ### useDiagramDragHandlers
 
-▸ **useDiagramDragHandlers**(`cancelEvent`): [`IDragHandlers`](interfaces/IDragHandlers)
+▸ **useDiagramDragHandlers**(`cancelEvent`): [`IDragHandlers`](interfaces/IDragHandlers.md)
 
 #### Parameters
 
@@ -1671,7 +1670,7 @@ ___
 
 #### Returns
 
-[`IDragHandlers`](interfaces/IDragHandlers)
+[`IDragHandlers`](interfaces/IDragHandlers.md)
 
 ___
 
@@ -1693,7 +1692,7 @@ ___
 
 ### useDiagramUserInteraction
 
-▸ `Const` **useDiagramUserInteraction**(): `void`
+▸ **useDiagramUserInteraction**(): `void`
 
 #### Returns
 
@@ -1709,7 +1708,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `state` | [`IUserInteractionTranslateAndZoom`](interfaces/IUserInteractionTranslateAndZoom) |
+| `state` | [`IUserInteractionTranslateAndZoom`](interfaces/IUserInteractionTranslateAndZoom.md) |
 
 #### Returns
 
@@ -1719,29 +1718,29 @@ ___
 
 ### useLinkUserInteraction
 
-▸ `Const` **useLinkUserInteraction**(`linkState`): [`IUseLinkUserInteractionResult`](interfaces/IUseLinkUserInteractionResult)
+▸ **useLinkUserInteraction**(`linkState`): [`IUseLinkUserInteractionResult`](interfaces/IUseLinkUserInteractionResult.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `linkState` | [`LinkState`](classes/LinkState) \| [`LinkCreationState`](classes/LinkCreationState) |
+| `linkState` | [`LinkState`](classes/LinkState.md) \| [`LinkCreationState`](classes/LinkCreationState.md) |
 
 #### Returns
 
-[`IUseLinkUserInteractionResult`](interfaces/IUseLinkUserInteractionResult)
+[`IUseLinkUserInteractionResult`](interfaces/IUseLinkUserInteractionResult.md)
 
 ___
 
 ### useNodeUserInteraction
 
-▸ `Const` **useNodeUserInteraction**(`nodeState`): `void`
+▸ **useNodeUserInteraction**(`nodeState`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `nodeState` | [`NodeState`](classes/NodeState) |
+| `nodeState` | [`NodeState`](classes/NodeState.md) |
 
 #### Returns
 
@@ -1751,7 +1750,7 @@ ___
 
 ### useNotifyRef
 
-▸ `Const` **useNotifyRef**<`TValue`\>(`init`): `MutableRefObject`<`TValue`\>
+▸ **useNotifyRef**<`TValue`\>(`init`): `MutableRefObject`<`TValue`\>
 
 #### Type parameters
 
@@ -1773,23 +1772,23 @@ ___
 
 ### usePortUserInteraction
 
-▸ `Const` **usePortUserInteraction**(`portState?`): [`IUsePortUserInteractionResult`](interfaces/IUsePortUserInteractionResult)
+▸ **usePortUserInteraction**(`portState?`): [`IUsePortUserInteractionResult`](interfaces/IUsePortUserInteractionResult.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `portState?` | [`PortState`](classes/PortState) |
+| `portState?` | [`PortState`](classes/PortState.md) |
 
 #### Returns
 
-[`IUsePortUserInteractionResult`](interfaces/IUsePortUserInteractionResult)
+[`IUsePortUserInteractionResult`](interfaces/IUsePortUserInteractionResult.md)
 
 ___
 
 ### useRelativePositionStyles
 
-▸ `Const` **useRelativePositionStyles**(`position?`, `offsetFromParentCenter?`, `offsetFromOrigin?`, `usePortCenterPivot?`): `Pick`<`Partial`<`CSSProperties`\>, ``"position"`` \| ``"transform"`` \| ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"width"`` \| ``"height"``\>
+▸ **useRelativePositionStyles**(`position?`, `offsetFromParentCenter?`, `offsetFromOrigin?`, `usePortCenterPivot?`): `Pick`<`Partial`<`CSSProperties`\>, ``"position"`` \| ``"transform"`` \| ``"left"`` \| ``"top"`` \| ``"right"`` \| ``"bottom"`` \| ``"width"`` \| ``"height"``\>
 
 #### Parameters
 
@@ -1808,11 +1807,11 @@ ___
 
 ### useRootStore
 
-▸ `Const` **useRootStore**(): [`RootStore`](classes/RootStore)
+▸ **useRootStore**(): [`RootStore`](classes/RootStore.md)
 
 #### Returns
 
-[`RootStore`](classes/RootStore)
+[`RootStore`](classes/RootStore.md)
 
 ___
 
@@ -1824,7 +1823,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `options` | [`IUseStylingOptions`](interfaces/IUseStylingOptions) |
+| `options` | [`IUseStylingOptions`](interfaces/IUseStylingOptions.md) |
 | `state` | `string` |
 
 #### Returns
@@ -1840,7 +1839,7 @@ ___
 
 ### useUpdateOrCreatePortState
 
-▸ **useUpdateOrCreatePortState**(`port`): [`PortState`](classes/PortState) \| `undefined`
+▸ **useUpdateOrCreatePortState**(`port`): [`PortState`](classes/PortState.md) \| `undefined`
 
 #### Parameters
 
@@ -1850,4 +1849,4 @@ ___
 
 #### Returns
 
-[`PortState`](classes/PortState) \| `undefined`
+[`PortState`](classes/PortState.md) \| `undefined`

@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Implements
 
-- [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint)
+- [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint.md)
 
 ## Constructors
 
@@ -22,17 +22,17 @@ custom_edit_url: null
 | :------ | :------ |
 | `nodeId` | `string` |
 | `portId` | `string` |
-| `rootStore` | [`RootStore`](RootStore) |
+| `rootStore` | [`RootStore`](RootStore.md) |
 
 ## Accessors
 
 ### node
 
-• `get` **node**(): `undefined` \| [`NodeState`](NodeState)
+• `get` **node**(): `undefined` \| [`NodeState`](NodeState.md)
 
 #### Returns
 
-`undefined` \| [`NodeState`](NodeState)
+`undefined` \| [`NodeState`](NodeState.md)
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 #### Implementation of
 
-[ILinkPortEndpoint](../interfaces/ILinkPortEndpoint).[nodeId](../interfaces/ILinkPortEndpoint#nodeid)
+[ILinkPortEndpoint](../interfaces/ILinkPortEndpoint.md).[nodeId](../interfaces/ILinkPortEndpoint.md#nodeid)
 
 ___
 
@@ -62,11 +62,11 @@ ___
 
 ### port
 
-• `get` **port**(): `undefined` \| [`PortState`](PortState)
+• `get` **port**(): `undefined` \| [`PortState`](PortState.md)
 
 #### Returns
 
-`undefined` \| [`PortState`](PortState)
+`undefined` \| [`PortState`](PortState.md)
 
 ___
 
@@ -80,14 +80,14 @@ ___
 
 #### Implementation of
 
-[ILinkPortEndpoint](../interfaces/ILinkPortEndpoint).[portId](../interfaces/ILinkPortEndpoint#portid)
+[ILinkPortEndpoint](../interfaces/ILinkPortEndpoint.md).[portId](../interfaces/ILinkPortEndpoint.md#portid)
 
 ## Methods
 
 ### export
 
-▸ **export**(): [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint)
+▸ **export**(): [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint.md)
 
 #### Returns
 
-[`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint)
+[`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint.md)

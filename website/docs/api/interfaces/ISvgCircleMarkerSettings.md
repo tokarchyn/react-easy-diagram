@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- [`ISvgMarkerSettings`](ISvgMarkerSettings)
+- [`ISvgMarkerSettings`](ISvgMarkerSettings.md)
 
   ↳ **`ISvgCircleMarkerSettings`**
 
@@ -20,7 +20,7 @@ custom_edit_url: null
 
 #### Inherited from
 
-[ISvgMarkerSettings](ISvgMarkerSettings).[id](ISvgMarkerSettings#id)
+[ISvgMarkerSettings](ISvgMarkerSettings.md).[id](ISvgMarkerSettings.md#id)
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 #### Inherited from
 
-[ISvgMarkerSettings](ISvgMarkerSettings).[style](ISvgMarkerSettings#style)
+[ISvgMarkerSettings](ISvgMarkerSettings.md).[style](ISvgMarkerSettings.md#style)

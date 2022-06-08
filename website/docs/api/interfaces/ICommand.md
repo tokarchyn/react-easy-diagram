@@ -16,7 +16,7 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `rootStore` | [`RootStore`](../classes/RootStore) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
 
 #### Returns
 

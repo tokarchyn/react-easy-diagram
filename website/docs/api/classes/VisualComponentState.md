@@ -28,7 +28,7 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `component` | [`VisualComponent`](../#visualcomponent)<`TComponentProps`\> \| [`IComponentDefinition`](../interfaces/IComponentDefinition)<`TComponentProps`, `any`\> |
+| `component` | [`VisualComponent`](../#visualcomponent)<`TComponentProps`\> \| [`IComponentDefinition`](../interfaces/IComponentDefinition.md)<`TComponentProps`, `any`\> |
 
 ## Accessors
 
@@ -60,7 +60,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `newComponent` | [`VisualComponent`](../#visualcomponent)<`TComponentProps`\> \| [`IComponentDefinition`](../interfaces/IComponentDefinition)<`TComponentProps`, `any`\> |
+| `newComponent` | [`VisualComponent`](../#visualcomponent)<`TComponentProps`\> \| [`IComponentDefinition`](../interfaces/IComponentDefinition.md)<`TComponentProps`, `any`\> |
 
 #### Returns
 

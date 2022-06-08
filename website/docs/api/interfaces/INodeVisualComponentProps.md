@@ -14,7 +14,7 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- [`IVisualComponentProps`](IVisualComponentProps)<[`NodeState`](../classes/NodeState), `TSettings`\>
+- [`IVisualComponentProps`](IVisualComponentProps.md)<[`NodeState`](../classes/NodeState.md), `TSettings`\>
 
   ↳ **`INodeVisualComponentProps`**
 
@@ -22,11 +22,11 @@ custom_edit_url: null
 
 ### entity
 
-• **entity**: [`NodeState`](../classes/NodeState)
+• **entity**: [`NodeState`](../classes/NodeState.md)
 
 #### Inherited from
 
-[IVisualComponentProps](IVisualComponentProps).[entity](IVisualComponentProps#entity)
+[IVisualComponentProps](IVisualComponentProps.md).[entity](IVisualComponentProps.md#entity)
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 #### Inherited from
 
-[IVisualComponentProps](IVisualComponentProps).[settings](IVisualComponentProps#settings)
+[IVisualComponentProps](IVisualComponentProps.md).[settings](IVisualComponentProps.md#settings)

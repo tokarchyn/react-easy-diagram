@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- [`IVisualComponentsObject`](IVisualComponentsObject)<[`INodeVisualComponentProps`](INodeVisualComponentProps)\>
+- [`IVisualComponentsObject`](IVisualComponentsObject.md)<[`INodeVisualComponentProps`](INodeVisualComponentProps.md)\>
 
   ↳ **`INodesSettings`**
 
@@ -16,11 +16,11 @@ custom_edit_url: null
 
 ### components
 
-• `Optional` **components**: [`Dictionary`](Dictionary)<[`IComponentDefinition`](IComponentDefinition)<[`INodeVisualComponentProps`](INodeVisualComponentProps)<`any`\>, `any`\> \| [`VisualComponent`](../#visualcomponent)<[`INodeVisualComponentProps`](INodeVisualComponentProps)<`any`\>\>\>
+• `Optional` **components**: [`Dictionary`](Dictionary.md)<[`IComponentDefinition`](IComponentDefinition.md)<[`INodeVisualComponentProps`](INodeVisualComponentProps.md)<`any`\>, `any`\> \| [`VisualComponent`](../#visualcomponent)<[`INodeVisualComponentProps`](INodeVisualComponentProps.md)<`any`\>\>\>
 
 #### Inherited from
 
-[IVisualComponentsObject](IVisualComponentsObject).[components](IVisualComponentsObject#components)
+[IVisualComponentsObject](IVisualComponentsObject.md).[components](IVisualComponentsObject.md#components)
 
 ___
 

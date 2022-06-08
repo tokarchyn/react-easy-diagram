@@ -18,8 +18,8 @@ Encapsulate logic for dragging mechanism. Right now only nodes are supposed to b
 
 | Name | Type |
 | :------ | :------ |
-| `selectionState` | [`SelectionState`](SelectionState) |
-| `callbacks` | [`Callbacks`](Callbacks) |
+| `selectionState` | [`SelectionState`](SelectionState.md) |
+| `callbacks` | [`Callbacks`](Callbacks.md) |
 
 ## Accessors
 
@@ -59,7 +59,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `nodeToDrag` | [`NodeState`](NodeState) |
+| `nodeToDrag` | [`NodeState`](NodeState.md) |
 
 #### Returns
 

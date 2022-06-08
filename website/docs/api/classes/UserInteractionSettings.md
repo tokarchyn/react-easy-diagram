@@ -218,7 +218,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `obj?` | `Partial`<[`IUserInteraction`](../interfaces/IUserInteraction)\> |
+| `obj?` | `Partial`<[`IUserInteraction`](../interfaces/IUserInteraction.md)\> |
 
 #### Returns
 

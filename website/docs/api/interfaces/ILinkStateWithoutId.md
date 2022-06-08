@@ -10,9 +10,9 @@ custom_edit_url: null
 
 - **`ILinkStateWithoutId`**
 
-  ↳ [`ILinkStateWithId`](ILinkStateWithId)
+  ↳ [`ILinkStateWithId`](ILinkStateWithId.md)
 
-  ↳ [`ILinkState`](ILinkState)
+  ↳ [`ILinkState`](ILinkState.md)
 
 ## Properties
 
@@ -30,19 +30,19 @@ ___
 
 ### segments
 
-• `Optional` **segments**: [`ILinkSegment`](ILinkSegment)[]
+• `Optional` **segments**: [`ILinkSegment`](ILinkSegment.md)[]
 
 ___
 
 ### source
 
-• **source**: [`ILinkPortEndpoint`](ILinkPortEndpoint)
+• **source**: [`ILinkPortEndpoint`](ILinkPortEndpoint.md)
 
 ___
 
 ### target
 
-• **target**: [`ILinkPortEndpoint`](ILinkPortEndpoint)
+• **target**: [`ILinkPortEndpoint`](ILinkPortEndpoint.md)
 
 ___
 

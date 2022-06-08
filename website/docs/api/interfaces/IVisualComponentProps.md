@@ -17,11 +17,11 @@ custom_edit_url: null
 
 - **`IVisualComponentProps`**
 
-  ↳ [`ILinkVisualComponentProps`](ILinkVisualComponentProps)
+  ↳ [`ILinkVisualComponentProps`](ILinkVisualComponentProps.md)
 
-  ↳ [`INodeVisualComponentProps`](INodeVisualComponentProps)
+  ↳ [`INodeVisualComponentProps`](INodeVisualComponentProps.md)
 
-  ↳ [`IPortVisualComponentProps`](IPortVisualComponentProps)
+  ↳ [`IPortVisualComponentProps`](IPortVisualComponentProps.md)
 
 ## Properties
 

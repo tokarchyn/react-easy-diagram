@@ -16,40 +16,40 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `rootStore` | [`RootStore`](RootStore) |
+| `rootStore` | [`RootStore`](RootStore.md) |
 | `id` | `string` |
 | `nodeId` | `string` |
-| `state?` | [`IPortStateWithoutIds`](../interfaces/IPortStateWithoutIds) |
+| `state?` | [`IPortStateWithoutIds`](../interfaces/IPortStateWithoutIds.md) |
 
 ## Accessors
 
 ### componentDefinition
 
-• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState)<[`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps)<`any`\>\>
+• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState.md)<[`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps.md)<`any`\>\>
 
 #### Returns
 
-[`VisualComponentState`](VisualComponentState)<[`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps)<`any`\>\>
+[`VisualComponentState`](VisualComponentState.md)<[`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps.md)<`any`\>\>
 
 ___
 
 ### connectedLinks
 
-• `get` **connectedLinks**(): [`LinkState`](LinkState)[]
+• `get` **connectedLinks**(): [`LinkState`](LinkState.md)[]
 
 #### Returns
 
-[`LinkState`](LinkState)[]
+[`LinkState`](LinkState.md)[]
 
 ___
 
 ### connectedPorts
 
-• `get` **connectedPorts**(): [`PortState`](PortState)[]
+• `get` **connectedPorts**(): [`PortState`](PortState.md)[]
 
 #### Returns
 
-[`PortState`](PortState)[]
+[`PortState`](PortState.md)[]
 
 ___
 
@@ -159,11 +159,11 @@ ___
 
 ### node
 
-• `get` **node**(): [`NodeState`](NodeState)
+• `get` **node**(): [`NodeState`](NodeState.md)
 
 #### Returns
 
-[`NodeState`](NodeState)
+[`NodeState`](NodeState.md)
 
 ___
 
@@ -205,11 +205,11 @@ ___
 
 ### ref
 
-• `get` **ref**(): [`HtmlElementRefState`](HtmlElementRefState)
+• `get` **ref**(): [`HtmlElementRefState`](HtmlElementRefState.md)
 
 #### Returns
 
-[`HtmlElementRefState`](HtmlElementRefState)
+[`HtmlElementRefState`](HtmlElementRefState.md)
 
 ___
 
@@ -247,11 +247,11 @@ ___
 
 ### export
 
-▸ **export**(): [`IPortStateWithIds`](../interfaces/IPortStateWithIds)
+▸ **export**(): [`IPortStateWithIds`](../interfaces/IPortStateWithIds.md)
 
 #### Returns
 
-[`IPortStateWithIds`](../interfaces/IPortStateWithIds)
+[`IPortStateWithIds`](../interfaces/IPortStateWithIds.md)
 
 ___
 
@@ -265,7 +265,7 @@ Update all properties. If some property missing in `state` parameter, the defaul
 
 | Name | Type |
 | :------ | :------ |
-| `state?` | [`IPortStateWithoutIds`](../interfaces/IPortStateWithoutIds) |
+| `state?` | [`IPortStateWithoutIds`](../interfaces/IPortStateWithoutIds.md) |
 
 #### Returns
 
@@ -301,7 +301,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `value?` | ``null`` \| [`VisualComponent`](../#visualcomponent)<[`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps)<`any`\>\> |
+| `value?` | ``null`` \| [`VisualComponent`](../#visualcomponent)<[`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps.md)<`any`\>\> |
 
 #### Returns
 
@@ -415,7 +415,7 @@ Update only those properties presented in `state` parameter
 
 | Name | Type |
 | :------ | :------ |
-| `state?` | [`IPortStateWithoutIds`](../interfaces/IPortStateWithoutIds) |
+| `state?` | [`IPortStateWithoutIds`](../interfaces/IPortStateWithoutIds.md) |
 
 #### Returns
 

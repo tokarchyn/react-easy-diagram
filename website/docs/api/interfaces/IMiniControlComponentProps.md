@@ -16,7 +16,7 @@ custom_edit_url: null
 
 ### rootStore
 
-• **rootStore**: [`RootStore`](../classes/RootStore)
+• **rootStore**: [`RootStore`](../classes/RootStore.md)
 
 ___
 

@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- [`IPortState`](IPortState)
+- [`IPortState`](IPortState.md)
 
   ↳ **`IPortProps`**
 
@@ -16,11 +16,11 @@ custom_edit_url: null
 
 ### component
 
-• `Optional` **component**: [`VisualComponent`](../#visualcomponent)<[`IPortVisualComponentProps`](IPortVisualComponentProps)<`any`\>\>
+• `Optional` **component**: [`VisualComponent`](../#visualcomponent)<[`IPortVisualComponentProps`](IPortVisualComponentProps.md)<`any`\>\>
 
 #### Inherited from
 
-[IPortState](IPortState).[component](IPortState#component)
+[IPortState](IPortState.md).[component](IPortState.md#component)
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Inherited from
 
-[IPortState](IPortState).[extra](IPortState#extra)
+[IPortState](IPortState.md).[extra](IPortState.md#extra)
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 #### Inherited from
 
-[IPortState](IPortState).[id](IPortState#id)
+[IPortState](IPortState.md).[id](IPortState.md#id)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Inherited from
 
-[IPortState](IPortState).[isConnectionEnabled](IPortState#isconnectionenabled)
+[IPortState](IPortState.md).[isConnectionEnabled](IPortState.md#isconnectionenabled)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Inherited from
 
-[IPortState](IPortState).[label](IPortState#label)
+[IPortState](IPortState.md).[label](IPortState.md#label)
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 #### Inherited from
 
-[IPortState](IPortState).[linkDirection](IPortState#linkdirection)
+[IPortState](IPortState.md).[linkDirection](IPortState.md#linkdirection)
 
 ___
 
@@ -98,4 +98,4 @@ ___
 
 #### Inherited from
 
-[IPortState](IPortState).[type](IPortState#type)
+[IPortState](IPortState.md).[type](IPortState.md#type)

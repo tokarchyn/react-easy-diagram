@@ -9,7 +9,11 @@ module.exports = {
   organizationName: 'tokarchyn', // Usually your GitHub org/user name.
   projectName: 'react-easy-diagram', // Usually your repo name.
   themeConfig: {
-    hideableSidebar: true,
+    docs: {
+      sidebar: {
+        hideable: true,
+      },
+    },
     navbar: {
       title: 'React Easy Diagram',
       logo: {

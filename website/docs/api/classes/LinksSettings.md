@@ -36,21 +36,21 @@ ___
 
 ### svgMarkers
 
-• `get` **svgMarkers**(): readonly `FunctionComponent`<`Object`\>[]
+• `get` **svgMarkers**(): readonly `FunctionComponent`<{}\>[]
 
 #### Returns
 
-readonly `FunctionComponent`<`Object`\>[]
+readonly `FunctionComponent`<{}\>[]
 
 ___
 
 ### visualComponents
 
-• `get` **visualComponents**(): [`VisualComponents`](VisualComponents)<[`LinkState`](LinkState) \| [`LinkCreationState`](LinkCreationState), [`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps)<`any`\>\>
+• `get` **visualComponents**(): [`VisualComponents`](VisualComponents.md)<[`LinkState`](LinkState.md) \| [`LinkCreationState`](LinkCreationState.md), [`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
 
 #### Returns
 
-[`VisualComponents`](VisualComponents)<[`LinkState`](LinkState) \| [`LinkCreationState`](LinkCreationState), [`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps)<`any`\>\>
+[`VisualComponents`](VisualComponents.md)<[`LinkState`](LinkState.md) \| [`LinkCreationState`](LinkCreationState.md), [`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
 
 ## Methods
 
@@ -62,7 +62,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `obj?` | [`ILinksSettings`](../interfaces/ILinksSettings) |
+| `obj?` | [`ILinksSettings`](../interfaces/ILinksSettings.md) |
 
 #### Returns
 

@@ -16,43 +16,43 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `rootStore` | [`RootStore`](RootStore) |
+| `rootStore` | [`RootStore`](RootStore.md) |
 
 ## Accessors
 
 ### linkCreation
 
-• `get` **linkCreation**(): [`LinkCreationState`](LinkCreationState)
+• `get` **linkCreation**(): [`LinkCreationState`](LinkCreationState.md)
 
 #### Returns
 
-[`LinkCreationState`](LinkCreationState)
+[`LinkCreationState`](LinkCreationState.md)
 
 ___
 
 ### links
 
-• `get` **links**(): `ReadonlyMap`<`string`, [`LinkState`](LinkState)\>
+• `get` **links**(): `ReadonlyMap`<`string`, [`LinkState`](LinkState.md)\>
 
 #### Returns
 
-`ReadonlyMap`<`string`, [`LinkState`](LinkState)\>
+`ReadonlyMap`<`string`, [`LinkState`](LinkState.md)\>
 
 ## Methods
 
 ### addLink
 
-▸ **addLink**(`link`): [`LinkState`](LinkState)
+▸ **addLink**(`link`): [`LinkState`](LinkState.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `link` | [`ILinkState`](../interfaces/ILinkState) |
+| `link` | [`ILinkState`](../interfaces/ILinkState.md) |
 
 #### Returns
 
-[`LinkState`](LinkState)
+[`LinkState`](LinkState.md)
 
 ___
 
@@ -64,8 +64,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `source` | [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint) |
-| `target` | [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint) |
+| `source` | [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint.md) |
+| `target` | [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint.md) |
 
 #### Returns
 
@@ -75,49 +75,49 @@ ___
 
 ### export
 
-▸ **export**(): [`ILinkState`](../interfaces/ILinkState)[]
+▸ **export**(): [`ILinkState`](../interfaces/ILinkState.md)[]
 
 #### Returns
 
-[`ILinkState`](../interfaces/ILinkState)[]
+[`ILinkState`](../interfaces/ILinkState.md)[]
 
 ___
 
 ### getEndpointPort
 
-▸ **getEndpointPort**(`endpoint`): `undefined` \| [`PortState`](PortState)
+▸ **getEndpointPort**(`endpoint`): `undefined` \| [`PortState`](PortState.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `endpoint` | [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint) |
+| `endpoint` | [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint.md) |
 
 #### Returns
 
-`undefined` \| [`PortState`](PortState)
+`undefined` \| [`PortState`](PortState.md)
 
 ___
 
 ### getEndpointPortOrError
 
-▸ **getEndpointPortOrError**(`endpoint`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`PortState`](PortState), `undefined`\>
+▸ **getEndpointPortOrError**(`endpoint`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`PortState`](PortState.md), `undefined`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `endpoint` | [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint) |
+| `endpoint` | [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint.md) |
 
 #### Returns
 
-[`SuccessOrErrorResult`](../#successorerrorresult)<[`PortState`](PortState), `undefined`\>
+[`SuccessOrErrorResult`](../#successorerrorresult)<[`PortState`](PortState.md), `undefined`\>
 
 ___
 
 ### getLink
 
-▸ **getLink**(`id`): `undefined` \| [`LinkState`](LinkState)
+▸ **getLink**(`id`): `undefined` \| [`LinkState`](LinkState.md)
 
 #### Parameters
 
@@ -127,30 +127,30 @@ ___
 
 #### Returns
 
-`undefined` \| [`LinkState`](LinkState)
+`undefined` \| [`LinkState`](LinkState.md)
 
 ___
 
 ### getLinkForEndpointsIfExists
 
-▸ **getLinkForEndpointsIfExists**(`source`, `target`): `undefined` \| [`LinkState`](LinkState)
+▸ **getLinkForEndpointsIfExists**(`source`, `target`): `undefined` \| [`LinkState`](LinkState.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `source` | [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint) |
-| `target` | [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint) |
+| `source` | [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint.md) |
+| `target` | [`ILinkPortEndpoint`](../interfaces/ILinkPortEndpoint.md) |
 
 #### Returns
 
-`undefined` \| [`LinkState`](LinkState)
+`undefined` \| [`LinkState`](LinkState.md)
 
 ___
 
 ### getNodeLinks
 
-▸ **getNodeLinks**(`nodeId`): [`LinkState`](LinkState)[]
+▸ **getNodeLinks**(`nodeId`): [`LinkState`](LinkState.md)[]
 
 #### Parameters
 
@@ -160,13 +160,13 @@ ___
 
 #### Returns
 
-[`LinkState`](LinkState)[]
+[`LinkState`](LinkState.md)[]
 
 ___
 
 ### getPortLinks
 
-▸ **getPortLinks**(`nodeId`, `portId`): [`LinkState`](LinkState)[]
+▸ **getPortLinks**(`nodeId`, `portId`): [`LinkState`](LinkState.md)[]
 
 #### Parameters
 
@@ -177,7 +177,7 @@ ___
 
 #### Returns
 
-[`LinkState`](LinkState)[]
+[`LinkState`](LinkState.md)[]
 
 ___
 
@@ -189,7 +189,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `newLinks?` | [`ILinkState`](../interfaces/ILinkState)[] |
+| `newLinks?` | [`ILinkState`](../interfaces/ILinkState.md)[] |
 
 #### Returns
 
@@ -248,17 +248,17 @@ ___
 
 ### validateAndAddLink
 
-▸ **validateAndAddLink**(`link`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`LinkState`](LinkState), `undefined`\>
+▸ **validateAndAddLink**(`link`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`LinkState`](LinkState.md), `undefined`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `link` | [`ILinkState`](../interfaces/ILinkState) |
+| `link` | [`ILinkState`](../interfaces/ILinkState.md) |
 
 #### Returns
 
-[`SuccessOrErrorResult`](../#successorerrorresult)<[`LinkState`](LinkState), `undefined`\>
+[`SuccessOrErrorResult`](../#successorerrorresult)<[`LinkState`](LinkState.md), `undefined`\>
 
 ___
 
@@ -270,7 +270,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `link` | [`ILinkState`](../interfaces/ILinkState) |
+| `link` | [`ILinkState`](../interfaces/ILinkState.md) |
 
 #### Returns
 
@@ -286,7 +286,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `link` | [`ILinkState`](../interfaces/ILinkState) |
+| `link` | [`ILinkState`](../interfaces/ILinkState.md) |
 
 #### Returns
 

@@ -36,7 +36,7 @@ ___
 
 ### store
 
-• **store**: [`RootStore`](../classes/RootStore)
+• **store**: [`RootStore`](../classes/RootStore.md)
 
 #### Inherited from
 

@@ -16,67 +16,67 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `rootStore` | [`RootStore`](RootStore) |
+| `rootStore` | [`RootStore`](RootStore.md) |
 
 ## Accessors
 
 ### nodes
 
-• `get` **nodes**(): `ReadonlyMap`<`string`, [`NodeState`](NodeState)\>
+• `get` **nodes**(): `ReadonlyMap`<`string`, [`NodeState`](NodeState.md)\>
 
 #### Returns
 
-`ReadonlyMap`<`string`, [`NodeState`](NodeState)\>
+`ReadonlyMap`<`string`, [`NodeState`](NodeState.md)\>
 
 ## Methods
 
 ### addNode
 
-▸ **addNode**(`node`, `rewriteIfExists?`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState), [`INodeState`](../interfaces/INodeState)\>
+▸ **addNode**(`node`, `rewriteIfExists?`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState.md), [`INodeState`](../interfaces/INodeState.md)\>
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `node` | [`INodeState`](../interfaces/INodeState) | `undefined` |
+| `node` | [`INodeState`](../interfaces/INodeState.md) | `undefined` |
 | `rewriteIfExists` | `boolean` | `false` |
 
 #### Returns
 
-[`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState), [`INodeState`](../interfaces/INodeState)\>
+[`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState.md), [`INodeState`](../interfaces/INodeState.md)\>
 
 ___
 
 ### addNodes
 
-▸ **addNodes**(`nodes`, `rewriteIfExists?`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState), [`INodeState`](../interfaces/INodeState)\>[]
+▸ **addNodes**(`nodes`, `rewriteIfExists?`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState.md), [`INodeState`](../interfaces/INodeState.md)\>[]
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `nodes` | [`INodeState`](../interfaces/INodeState)[] | `undefined` |
+| `nodes` | [`INodeState`](../interfaces/INodeState.md)[] | `undefined` |
 | `rewriteIfExists` | `boolean` | `false` |
 
 #### Returns
 
-[`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState), [`INodeState`](../interfaces/INodeState)\>[]
+[`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState.md), [`INodeState`](../interfaces/INodeState.md)\>[]
 
 ___
 
 ### export
 
-▸ **export**(): [`INodeStateWithId`](../interfaces/INodeStateWithId)[]
+▸ **export**(): [`INodeStateWithId`](../interfaces/INodeStateWithId.md)[]
 
 #### Returns
 
-[`INodeStateWithId`](../interfaces/INodeStateWithId)[]
+[`INodeStateWithId`](../interfaces/INodeStateWithId.md)[]
 
 ___
 
 ### getNode
 
-▸ **getNode**(`nodeId`): `undefined` \| [`NodeState`](NodeState)
+▸ **getNode**(`nodeId`): `undefined` \| [`NodeState`](NodeState.md)
 
 #### Parameters
 
@@ -86,7 +86,7 @@ ___
 
 #### Returns
 
-`undefined` \| [`NodeState`](NodeState)
+`undefined` \| [`NodeState`](NodeState.md)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `newNodes?` | [`INodeState`](../interfaces/INodeState)[] |
+| `newNodes?` | [`INodeState`](../interfaces/INodeState.md)[] |
 
 #### Returns
 
