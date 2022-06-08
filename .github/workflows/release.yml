@@ -40,7 +40,7 @@ jobs:
       
       - name: Set package version
         run: |
-          version=$(echo ${{GITHUB_REF/refs\/tags\//}} | sed 's/v//g')
+          version=$(echo ${{github.event.client_payload.value}} | sed 's/v//g')
           echo "Version to use $version"
           sed -i "s|version.*|version\": \"$version\",|" lib/package/package.json
           cat lib/package/package.json
