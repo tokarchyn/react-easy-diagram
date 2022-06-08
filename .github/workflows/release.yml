@@ -1,11 +1,8 @@
 name: Release
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version'     
-        required: true
+  release:
+    types: [published]
 
 jobs:
   publish_library:
@@ -43,7 +40,8 @@ jobs:
       
       - name: Set package version
         run: |
-          sed -i 's|version.*|version": "${{ github.event.inputs.version }}",|' lib/package/package.json
+          version=$(echo ${{github.event.client_payload.value}} | sed 's/v//g')
+          sed -i 's|version.*|version": "$version",|' lib/package/package.json
           cat lib/package/package.json
 
       - name: Publish package      
