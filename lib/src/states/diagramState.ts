@@ -79,7 +79,7 @@ export class DiagramState
     this.setOffset(addPoints(this._offset, translateBy));
   };
 
-  tranlsateAndZoomInto = (
+  translateAndZoomInto = (
     translateBy: Point,
     pointToZoomInto: Point,
     zoomMultiplicator: number

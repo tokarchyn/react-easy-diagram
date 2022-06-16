@@ -688,9 +688,9 @@ ___
 
 ___
 
-### areTranformationsEqual
+### areTransformationsEqual
 
-▸ **areTranformationsEqual**(`a`, `b`): `boolean`
+▸ **areTransformationsEqual**(`a`, `b`): `boolean`
 
 #### Parameters
 
@@ -711,7 +711,7 @@ ___
 
 Does gesture can be potentially a tap/click event?
 Drag gesture will be tap/click gesture on mouse or touch release only when the drag displacement is inferior to 3 pixels.
-See useGestures documetation for more information.
+See useGestures documentation for more information.
 
 #### Parameters
 

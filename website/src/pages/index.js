@@ -78,8 +78,8 @@ function Home() {
   const { siteConfig = {} } = context;
   return (
     <Layout
-      title={`Build highly customazible React diagrams`}
-      description='Open source library to build highly customazible interactive React diagrams with easy.'
+      title={`Build highly customizable React diagrams`}
+      description='Open source library to build highly customizable interactive React diagrams with easy.'
     >
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className={styles.headerContainer}>

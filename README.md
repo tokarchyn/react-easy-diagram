@@ -1,9 +1,9 @@
-<img src="https://github.com/tokarchyn/react-easy-diagram/blob/main/repo/logo-with-name.png?raw=true" alt="React Easy Digram logo" height="50">
+<img src="https://github.com/tokarchyn/react-easy-diagram/blob/main/repo/logo-with-name.png?raw=true" alt="React Easy Diagram logo" height="50">
 
 ---
 
 Open source library to build highly customizable interactive React diagrams with easy.
-![React Easy Digram demo image](https://github.com/tokarchyn/react-easy-diagram/blob/main/website/static/img/demo.png?raw=true)
+![React Easy Diagram demo image](https://github.com/tokarchyn/react-easy-diagram/blob/main/website/static/img/demo.png?raw=true)
 
 - **Website**: https://tokarchyn.github.io/react-easy-diagram
 - **Repository**: https://github.com/tokarchyn/react-easy-diagram

@@ -32,7 +32,7 @@ export function useDiagramPinchHandlers(
           pinchState.current.elementLeftTop
         );
 
-        diagramState.tranlsateAndZoomInto(
+        diagramState.translateAndZoomInto(
           originDiff,
           originPositionOnElement,
           distance / pinchState.current.distance

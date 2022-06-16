@@ -24,9 +24,9 @@ ___
 
 ## Methods
 
-### tranlsateAndZoomInto
+### translateAndZoomInto
 
-▸ **tranlsateAndZoomInto**(`translateBy`, `pointToZoomInto`, `changeZoomBy`): `any`
+▸ **translateAndZoomInto**(`translateBy`, `pointToZoomInto`, `changeZoomBy`): `any`
 
 #### Parameters
 

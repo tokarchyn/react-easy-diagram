@@ -15,7 +15,7 @@ export interface ITransformation {
   offset: Point;
 }
 
-export const areTranformationsEqual = (
+export const areTransformationsEqual = (
   a: ITransformation,
   b: ITransformation
 ): boolean =>

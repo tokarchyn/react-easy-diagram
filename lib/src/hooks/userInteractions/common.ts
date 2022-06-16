@@ -41,7 +41,7 @@ export const eventPathContainsClass = (
 /**
  * Does gesture can be potentially a tap/click event?
  * Drag gesture will be tap/click gesture on mouse or touch release only when the drag displacement is inferior to 3 pixels.
- * See useGestures documetation for more information.
+ * See useGestures documentation for more information.
  * @param movement - state value of gesture, represent gesture offset
  */
 export function canDragGestureBeTapInstead(movement: Vector2): boolean {
@@ -56,7 +56,7 @@ export interface IUserInteractionTranslate {
 export interface IUserInteractionTranslateAndZoom {
   offset: Point;
   zoom: number;
-  tranlsateAndZoomInto: (
+  translateAndZoomInto: (
     translateBy: Point,
     pointToZoomInto: Point,
     changeZoomBy: number
