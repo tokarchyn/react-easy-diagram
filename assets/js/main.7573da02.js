@@ -12201,7 +12201,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 /* harmony default export */ __webpack_exports__["default"] = ({
   "title": "React Easy Diagram",
-  "tagline": "Open source library to build highly customazible interactive React diagrams with easy.",
+  "tagline": "Open source library to build highly customizable interactive React diagrams with easy.",
   "url": "https://tokarchyn.github.io/react-easy-diagram/",
   "baseUrl": "/react-easy-diagram/",
   "onBrokenLinks": "throw",
