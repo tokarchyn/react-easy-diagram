@@ -33,7 +33,7 @@ export function useDiagramWheelHandler(
           factor = 1 / factor;
         }
 
-        state.tranlsateAndZoomInto([0, 0], mousePositionOnElement, factor);
+        state.translateAndZoomInto([0, 0], mousePositionOnElement, factor);
       },
     }),
     [diagramState.ref, state, diagramSettings]

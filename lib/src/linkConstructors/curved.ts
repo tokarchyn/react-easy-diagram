@@ -33,7 +33,7 @@ export interface ICurvedLinkPathConstructorSettings {
   ) => number;
 }
 
-const defualtSettings: ICurvedLinkPathConstructorSettings = {
+const defaultSettings: ICurvedLinkPathConstructorSettings = {
   directionFactor: 60,
   tweakDirectionFactorBasedOnDistance: (distance, directionFactor) => {
     if (distance < 100) {
@@ -53,6 +53,6 @@ export function createCurvedLinkPathConstructor(
     curvedLinkPathConstructor(
       source,
       target,
-      settings ? { ...defualtSettings, ...settings } : defualtSettings
+      settings ? { ...defaultSettings, ...settings } : defaultSettings
     );
 }

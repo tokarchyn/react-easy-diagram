@@ -170,9 +170,9 @@ ___
 
 ___
 
-### tranlsateAndZoomInto
+### translateAndZoomInto
 
-▸ **tranlsateAndZoomInto**(`translateBy`, `pointToZoomInto`, `zoomMultiplicator`): `void`
+▸ **translateAndZoomInto**(`translateBy`, `pointToZoomInto`, `zoomMultiplicator`): `void`
 
 #### Parameters
 
@@ -188,7 +188,7 @@ ___
 
 #### Implementation of
 
-[IUserInteractionTranslateAndZoom](../interfaces/IUserInteractionTranslateAndZoom.md).[tranlsateAndZoomInto](../interfaces/IUserInteractionTranslateAndZoom.md#tranlsateandzoominto)
+[IUserInteractionTranslateAndZoom](../interfaces/IUserInteractionTranslateAndZoom.md).[translateAndZoomInto](../interfaces/IUserInteractionTranslateAndZoom.md#translateandzoominto)
 
 ___
 

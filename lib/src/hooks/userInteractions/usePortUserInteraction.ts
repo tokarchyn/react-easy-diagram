@@ -61,7 +61,7 @@ export const usePortUserInteraction = (
     [portState, linkCreation, diagramState]
   );
 
-  // Temporary bug fix when pointer events handlers are not reasigned.
+  // Temporary bug fix when pointer events handlers are not reassigned.
   // See https://github.com/pmndrs/use-gesture/issues/263 and https://github.com/pmndrs/@use-gesture/react/issues/264
   // There could be some other bugs related to handlers object replacing
   const bind = useGesture(handlers, {

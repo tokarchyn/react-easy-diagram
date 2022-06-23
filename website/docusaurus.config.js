@@ -1,6 +1,6 @@
 module.exports = {
   title: 'React Easy Diagram',
-  tagline: 'Open source library to build highly customazible interactive React diagrams with easy.',
+  tagline: 'Open source library to build highly customizable interactive React diagrams with easy.',
   url: 'https://tokarchyn.github.io/react-easy-diagram/',
   baseUrl: '/react-easy-diagram/',
   onBrokenLinks: 'throw',
