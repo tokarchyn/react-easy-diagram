@@ -1,7 +1,7 @@
 import { makeAutoObservable, reaction } from 'mobx';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { LinkState } from 'states/linkState';
-import { IPortStateWithoutIds, PortState } from 'states/portState';
+import { IPortExport, IPortStateWithoutIds, PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';
 import { COMPONENT_DEFAULT_TYPE } from 'states/visualComponents';
 import { deepCopy, Dictionary, isBoolean } from 'utils/common';
@@ -63,11 +63,12 @@ export class NodeState {
     this.setIsDragEnabled(newState?.isDragEnabled);
   };
 
-  export = (): INodeStateWithId => ({
+  export = (): INodeExport => ({
     ...deepCopy({
       id: this._id,
       label: this._label,
       position: this._position,
+      ports: Array.from(this._ports).map(([k,p]) => p.export()),
       type: this._type,
       extra: this.extra,
       isSelectionEnabled: this._isSelectionEnabled ?? undefined,
@@ -328,6 +329,11 @@ export interface INodePortState extends IPortStateWithoutIds {
 
 export interface INodeStateWithId extends INodeStateWithoutId {
   id: string;
+}
+
+export interface INodeExport extends INodeStateWithId {
+  id: string;
+  ports: IPortExport[];
 }
 
 export interface INodeState extends INodeStateWithoutId {

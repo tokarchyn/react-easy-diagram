@@ -129,21 +129,22 @@ export class PortState {
   update = (state?: IPortStateWithoutIds) => {
     if (!state) return;
 
-    state.type && this.setType(state.type);
-    state.label && this.setLabel(state.label);
-    state.extra && this.setExtra(state.extra);
-    state.component && this.setComponent(state.component);
-    state.linkDirection && this.setLinkDirection(state.linkDirection);
-    state.isConnectionEnabled &&
+    state.label !== undefined && this.setLabel(state.label);
+    state.type !== undefined && this.setType(state.type);
+    state.extra !== undefined && this.setExtra(state.extra);
+    state.component !== undefined && this.setComponent(state.component);
+    state.linkDirection !== undefined && this.setLinkDirection(state.linkDirection);
+    state.isConnectionEnabled !== undefined &&
       this.setIsConnectionEnabled(state.isConnectionEnabled);
   };
 
-  export = (): IPortStateWithIds =>
+  export = (): IPortExport =>
     deepCopy({
       id: this._id,
       nodeId: this._nodeId,
       label: this._label,
       type: this._type,
+      extra: this._extra,
       linkDirection: this._linkDirection ?? undefined,
       isConnectionEnabled: this._isConnectionEnabled ?? undefined,
     });
@@ -313,7 +314,7 @@ export interface IPortState extends IPortStateWithoutIds {
   id: string;
 }
 
-export interface IPortStateWithIds extends IPortStateWithoutIds {
+export interface IPortExport extends IPortStateWithoutIds {
   id: string;
   nodeId: string;
 }

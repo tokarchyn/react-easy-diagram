@@ -170,6 +170,22 @@ ___
 
 ___
 
+### translate
+
+▸ **translate**(`translateBy`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `translateBy` | [`Point`](../#point) |
+
+#### Returns
+
+`void`
+
+___
+
 ### translateAndZoomInto
 
 ▸ **translateAndZoomInto**(`translateBy`, `pointToZoomInto`, `zoomMultiplicator`): `void`
@@ -189,22 +205,6 @@ ___
 #### Implementation of
 
 [IUserInteractionTranslateAndZoom](../interfaces/IUserInteractionTranslateAndZoom.md).[translateAndZoomInto](../interfaces/IUserInteractionTranslateAndZoom.md#translateandzoominto)
-
-___
-
-### translate
-
-▸ **translate**(`translateBy`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `translateBy` | [`Point`](../#point) |
-
-#### Returns
-
-`void`
 
 ___
 

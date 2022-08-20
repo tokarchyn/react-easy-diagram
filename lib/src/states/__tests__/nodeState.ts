@@ -10,6 +10,39 @@ describe('Node state', () => {
     store = new RootStore();
   });
 
+  test('import/export',() => {
+    const node = new NodeState(store, 'test', {
+      type: 'someType',
+      extra: false,
+      label: 'Some label',
+      isDragEnabled: false,
+      isSelectionEnabled: false,
+      position: [5, 10],
+    });
+
+    node.addPort({
+      id: 'port_1',
+      label: 'Port 1',
+    })
+
+    expect(node.export()).toEqual({
+      id: 'test',
+      type: 'someType',
+      extra: false,
+      label: 'Some label',
+      ports: [{
+        id: 'port_1',
+        nodeId: "test",
+        label: 'Port 1',
+        extra: null,
+        type: "default"
+      }],
+      isDragEnabled: false,
+      isSelectionEnabled: false,
+      position: [5, 10],
+    });
+  });
+
   describe('nodePositionChanged callback', () => {
     let mockNodePositionChangedCallback: jest.Mock<
       ReturnType<NonNullable<ICallbacks['nodePositionChanged']>>,
