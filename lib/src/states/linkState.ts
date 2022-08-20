@@ -18,7 +18,7 @@ export class LinkState
   private _segments: ILinkSegment[];
   private _selected: boolean;
   private _hovered: boolean;
-  private _extra: any;
+  private _data: any;
   private _isSelectionEnabled: boolean | null;
   
   private _rootStore: RootStore;
@@ -42,7 +42,7 @@ export class LinkState
     this._target = this._createEndpointState(state.target);
     this.setType(state.type);
     this.setSegments(state.segments);
-    this.setExtra(state.extra);
+    this.setData(state.data);
     this.setIsSelectionEnabled(state?.isSelectionEnabled);
   };
   
@@ -63,7 +63,7 @@ export class LinkState
       id: this._id,
       type: this.type,
       segments: this.segments,
-      extra: this.extra,
+      data: this.data,
       isSelectionEnabled: this._isSelectionEnabled ?? undefined,
     }),
   });
@@ -113,8 +113,8 @@ export class LinkState
     this._hovered = value;
   }
 
-  get extra() {
-    return this._extra;
+  get data() {
+    return this._data;
   }
 
   get source() {
@@ -125,8 +125,8 @@ export class LinkState
     return this._target;
   }
 
-  setExtra = (value: any) => {
-    this._extra = value ?? null;
+  setData = (value: any) => {
+    this._data = value ?? null;
   };
 
   get isSelectionEnabled(): boolean {
@@ -191,7 +191,7 @@ export interface ILinkStateWithoutId {
   source: ILinkPortEndpoint;
   target: ILinkPortEndpoint;
   segments?: ILinkSegment[];
-  extra?: any;
+  data?: any;
   isSelectionEnabled?: boolean;
 }
 

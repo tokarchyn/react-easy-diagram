@@ -18,7 +18,7 @@ export class PortState {
   private _nodeId: string;
   private _label: string;
   private _type: string;
-  private _extra: any;
+  private _data: any;
   private _component: VisualComponentState<IPortVisualComponentProps> | null;
   private _linkDirection: DirectionWithDiagonals | null;
   private _isConnectionEnabled: boolean | null;
@@ -48,7 +48,7 @@ export class PortState {
     this._rootStore = rootStore;
 
     reaction(
-      () => [this._label, this._type, this._extra],
+      () => [this._label, this._type, this._data],
       () => {
         this.recalculateOffset();
       }
@@ -117,7 +117,7 @@ export class PortState {
   import = (state?: IPortStateWithoutIds) => {
     this.setType(state?.type);
     this.setLabel(state?.label);
-    this.setExtra(state?.extra);
+    this.setData(state?.data);
     this.setComponent(state?.component);
     this.setLinkDirection(state?.linkDirection);
     this.setIsConnectionEnabled(state?.isConnectionEnabled);
@@ -131,7 +131,7 @@ export class PortState {
 
     state.label !== undefined && this.setLabel(state.label);
     state.type !== undefined && this.setType(state.type);
-    state.extra !== undefined && this.setExtra(state.extra);
+    state.data !== undefined && this.setData(state.data);
     state.component !== undefined && this.setComponent(state.component);
     state.linkDirection !== undefined && this.setLinkDirection(state.linkDirection);
     state.isConnectionEnabled !== undefined &&
@@ -144,17 +144,17 @@ export class PortState {
       nodeId: this._nodeId,
       label: this._label,
       type: this._type,
-      extra: this._extra,
+      data: this._data,
       linkDirection: this._linkDirection ?? undefined,
       isConnectionEnabled: this._isConnectionEnabled ?? undefined,
     });
 
-  get extra() {
-    return this._extra;
+  get data() {
+    return this._data;
   }
 
-  setExtra = (value: any) => {
-    this._extra = value ?? null;
+  setData = (value: any) => {
+    this._data = value ?? null;
   };
 
   get node(): NodeState {
@@ -304,7 +304,7 @@ function getTranslate(item: HTMLElement): Point {
 export interface IPortStateWithoutIds {
   label?: string;
   type?: string;
-  extra?: any;
+  data?: any;
   component?: VisualComponent<IPortVisualComponentProps>;
   linkDirection?: DirectionWithDiagonals;
   isConnectionEnabled?: boolean;

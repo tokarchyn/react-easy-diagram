@@ -13,7 +13,7 @@ describe('Node state', () => {
   test('import/export',() => {
     const node = new NodeState(store, 'test', {
       type: 'someType',
-      extra: false,
+      data: false,
       label: 'Some label',
       isDragEnabled: false,
       isSelectionEnabled: false,
@@ -28,13 +28,13 @@ describe('Node state', () => {
     expect(node.export()).toEqual({
       id: 'test',
       type: 'someType',
-      extra: false,
+      data: false,
       label: 'Some label',
       ports: [{
         id: 'port_1',
         nodeId: "test",
         label: 'Port 1',
-        extra: null,
+        data: null,
         type: "default"
       }],
       isDragEnabled: false,

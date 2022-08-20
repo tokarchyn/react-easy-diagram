@@ -23,7 +23,7 @@ export class NodeState {
   private _type: string;
   private _selected: boolean;
   private _hovered: boolean;
-  private _extra: any;
+  private _data: any;
   private _isSelectionEnabled: boolean | null;
   private _isDragEnabled: boolean | null;
   private _isDragActive: boolean = false;
@@ -45,7 +45,7 @@ export class NodeState {
     });
 
     reaction(
-      () => [this._id, this._label, this._extra, this._type],
+      () => [this._id, this._label, this._data, this._type],
       () => {
         this.ref.recalculateSizeAndPosition();
         this.recalculatePortsOffset();
@@ -56,7 +56,7 @@ export class NodeState {
   import = (newState?: INodeStateWithoutId) => {
     this.setPosition(newState?.position ?? [0, 0]);
     this.setType(newState?.type);
-    this.setExtra(newState?.extra);
+    this.setData(newState?.data);
     this.label = newState?.label ?? '';
     this._ports = new Map();
     this.setIsSelectionEnabled(newState?.isSelectionEnabled);
@@ -70,7 +70,7 @@ export class NodeState {
       position: this._position,
       ports: Array.from(this._ports).map(([k,p]) => p.export()),
       type: this._type,
-      extra: this.extra,
+      data: this.data,
       isSelectionEnabled: this._isSelectionEnabled ?? undefined,
       isDragEnabled: this._isDragEnabled ?? undefined,
     }),
@@ -179,12 +179,12 @@ export class NodeState {
     this._hovered = value;
   }
 
-  get extra() {
-    return this._extra;
+  get data() {
+    return this._data;
   }
 
-  setExtra = (value: any) => {
-    this._extra = value ?? null;
+  setData = (value: any) => {
+    this._data = value ?? null;
   };
 
   get ref() {
@@ -318,7 +318,7 @@ export interface INodeStateWithoutId {
   label?: string;
   position: Point;
   type?: string;
-  extra?: any;
+  data?: any;
   isSelectionEnabled?: boolean;
   isDragEnabled?: boolean;
 }

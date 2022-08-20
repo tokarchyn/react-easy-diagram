@@ -18,9 +18,9 @@ const NumberProvider = observer<{ node: NodeState }>(({ node }) => {
         <input
           type='number'
           onChange={(event) =>
-            port?.setExtra(parseInt(event.target.value) || 0)
+            port?.setData(parseInt(event.target.value) || 0)
           }
-          defaultValue={port && port.extra}
+          defaultValue={port && port.data}
           className={`${styles.textInput} ${DISABLE_NODE_USER_INTERACTION_CLASS}`}
         />
       </span>
@@ -34,18 +34,18 @@ const Sum = observer<{ node: NodeState }>(({ node }) => {
   const getInputNumber = (portName: string): number => {
     const port = node.ports.get(portName);
     if (port && port.connectedPorts.length > 0) {
-      return port.connectedPorts[0].extra ?? 0;
+      return port.connectedPorts[0].data ?? 0;
     } else return 0;
   };
   const num1 = getInputNumber('number_1');
   const num2 = getInputNumber('number_2');
   const sum = num1 + num2;
 
-  useEffect(() => outputPort?.setExtra(sum), [outputPort, sum]);
+  useEffect(() => outputPort?.setData(sum), [outputPort, sum]);
 
   return (
     <>
-      <div>Sum: {outputPort ? outputPort.extra : ''}</div>
+      <div>Sum: {outputPort ? outputPort.data : ''}</div>
     </>
   );
 });

@@ -32,7 +32,7 @@ export function useUpdateOrCreatePortState(
     port?.id,
     port?.nodeId,
     port?.component,
-    port?.extra,
+    port?.data,
     port?.isConnectionEnabled,
     port?.label,
     port?.linkDirection,

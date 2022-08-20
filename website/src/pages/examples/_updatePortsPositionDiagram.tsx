@@ -14,7 +14,7 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
     useEffect(() => {
       // Size and position changes in DOM element are not reported to the library, so it is
       // required to trigger recalculation if you think size or position is changed. There is also
-      // possibility to store your data that could change size or position in port's or node's "extra" property,
+      // possibility to store your data that could change size or position in port's or node's "data" property,
       // changes in these properties along with the other are already handled by library.
       node.recalculatePortsOffset();
     }, [linesNumber]);
@@ -55,7 +55,7 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
 
 const NodeWithInternalData = observer<INodeVisualComponentProps>(
   ({ entity: node }) => {
-    const linesNumber = node.extra ?? 0;
+    const linesNumber = node.data ?? 0;
 
     const lines = useLines(linesNumber);
 
@@ -76,7 +76,7 @@ const NodeWithInternalData = observer<INodeVisualComponentProps>(
           <button
             className={DISABLE_NODE_USER_INTERACTION_CLASS}
             type='button'
-            onClick={() => node.setExtra(linesNumber + 1)}
+            onClick={() => node.setData(linesNumber + 1)}
           >
             Add line
           </button>
