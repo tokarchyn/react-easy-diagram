@@ -26,11 +26,11 @@ custom_edit_url: null
 
 ### componentDefinition
 
-• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState.md)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
+• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState.md)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>, `any`\>
 
 #### Returns
 
-[`VisualComponentState`](VisualComponentState.md)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
+[`VisualComponentState`](VisualComponentState.md)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>, `any`\>
 
 ___
 

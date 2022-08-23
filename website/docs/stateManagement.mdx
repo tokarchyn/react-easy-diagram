@@ -2,4 +2,29 @@
 title: State management
 ---
 
-TBD
+An entire diagram's state and triggering of React components rerendering on each changes in the state is managed by the state management library called [MobX](https://mobx.js.org/README.html).
+There are multiple ways how to get diagram's state:
+1. Using `storeRef`.
+   ```tsx
+  function YourDiagram () {
+    const storeRef = useRef<RootStore>(null);
+
+    // After store will be set you can use it like this:
+    console.log(storeRef.current?.selectionState.selectedNodes)
+
+    return (
+      <Diagram
+        storeRef={storeRef}
+        initState={{ ... }}
+      />
+    );
+  }
+   ```
+2. Using props provided to your custom component, like in this [link example](componentsCustomization/link.mdx#your-own-component), where props contains link's `entity`.
+3. Using [useRootStore](api/#userootstore) hook, which takes state from React context.
+
+## Mobx related
+In order to make your component react on changes in state you have to wrap it into the `observer`, which you can import like this `import { observer } from 'mobx-react-lite';`.
+This way your component will be subscribed on changes in values you use. You can read more in [MobX Documentation](https://mobx.js.org/react-integration.html#react-integration).
+
+Thanks to `MobX` you can also subscribe on any changes in the state. In this [example](/examples/callbacks) you can find how to log currently selected nodes on each changes.

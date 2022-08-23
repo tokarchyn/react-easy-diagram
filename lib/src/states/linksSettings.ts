@@ -20,7 +20,7 @@ import { ReactDOMAttributes } from '@use-gesture/react';
 export class LinksSettings {
   private _pathConstructor: ILinkPathConstructor;
   private _visualComponents = new VisualComponents<
-    LinkState | LinkCreationState,
+    any,
     ILinkVisualComponentProps
   >({
     [COMPONENT_DEFAULT_TYPE]: createLinkDefault(),
@@ -117,7 +117,7 @@ export interface ILinkVisualComponentProps<TSettings = any>
 }
 
 export interface ILinksSettings
-  extends IVisualComponentsObject<ILinkVisualComponentProps> {
+  extends IVisualComponentsObject<any, ILinkVisualComponentProps> {
   pathConstructor?: ILinkPathConstructor;
   preferLinksDirection?: LinksSettings['preferLinksDirection'];
   svgMarkers?: React.FunctionComponent[];

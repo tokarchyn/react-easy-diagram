@@ -26,11 +26,11 @@ ___
 
 ### visualComponents
 
-• `get` **visualComponents**(): [`VisualComponents`](VisualComponents.md)<[`NodeState`](NodeState.md), [`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps.md)<`any`\>\>
+• `get` **visualComponents**(): [`VisualComponents`](VisualComponents.md)<[`INodeComponentSettings`](../interfaces/INodeComponentSettings.md), [`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps.md)<[`INodeComponentSettings`](../interfaces/INodeComponentSettings.md)\>\>
 
 #### Returns
 
-[`VisualComponents`](VisualComponents.md)<[`NodeState`](NodeState.md), [`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps.md)<`any`\>\>
+[`VisualComponents`](VisualComponents.md)<[`INodeComponentSettings`](../interfaces/INodeComponentSettings.md), [`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps.md)<[`INodeComponentSettings`](../interfaces/INodeComponentSettings.md)\>\>
 
 ## Methods
 

@@ -29,7 +29,6 @@ export * from './hooks/useNotifyRef';
 export * from './hooks/useRelativePositionStyles';
 export * from './hooks/useRootStore';
 export * from './hooks/useStyling';
-export * from './hooks/useUpdateOrCreatePortState';
 export * from './hooks/userInteractions/common';
 export * from './hooks/userInteractions/useCursor';
 export * from './hooks/userInteractions/useDiagramDragHandlers';

@@ -12,6 +12,7 @@ import {
   VisualComponent,
 } from 'states/visualComponentState';
 import { isBoolean, deepCopy } from 'utils/common';
+import { PortPosition } from 'hooks/useRelativePositionStyles';
 
 export class PortState {
   private _id: string;
@@ -19,9 +20,11 @@ export class PortState {
   private _label: string;
   private _type: string;
   private _data: any;
-  private _component: VisualComponentState<IPortVisualComponentProps> | null;
   private _linkDirection: DirectionWithDiagonals | null;
   private _isConnectionEnabled: boolean | null;
+  private _position: PortPosition | null;
+  private _offsetFromNodeCenter: number | null;
+  private _offsetFromOrigin: Point | null;
 
   private _ref: HtmlElementRefState;
   private _dragging: boolean = false;
@@ -48,7 +51,14 @@ export class PortState {
     this._rootStore = rootStore;
 
     reaction(
-      () => [this._label, this._type, this._data],
+      () => [
+        this._label,
+        this._type,
+        this._data,
+        this._position,
+        this._offsetFromNodeCenter,
+        this._offsetFromOrigin,
+      ],
       () => {
         this.recalculateOffset();
       }
@@ -111,6 +121,30 @@ export class PortState {
     this._type = value ?? COMPONENT_DEFAULT_TYPE;
   };
 
+  get position() {
+    return this._position;
+  }
+
+  setPosition = (value: PortPosition | null | undefined) => {
+    this._position = value ?? null;
+  };
+
+  get offsetFromNodeCenter() {
+    return this._offsetFromNodeCenter;
+  }
+
+  setOffsetFromNodeCenter = (value: number | null | undefined) => {
+    this._offsetFromNodeCenter = value ?? null;
+  };
+
+  get offsetFromOrigin() {
+    return this._offsetFromOrigin;
+  }
+
+  setOffsetFromOrigin = (value: Point | null | undefined) => {
+    this._offsetFromOrigin = value ?? null;
+  };
+
   /**
    * Update all properties. If some property missing in `state` parameter, the default one will be used.
    */
@@ -118,9 +152,11 @@ export class PortState {
     this.setType(state?.type);
     this.setLabel(state?.label);
     this.setData(state?.data);
-    this.setComponent(state?.component);
     this.setLinkDirection(state?.linkDirection);
     this.setIsConnectionEnabled(state?.isConnectionEnabled);
+    this.setPosition(state?.position);
+    this.setOffsetFromNodeCenter(state?.offsetFromNodeCenter);
+    this.setOffsetFromOrigin(state?.offsetFromOrigin);
   };
 
   /**
@@ -132,10 +168,15 @@ export class PortState {
     state.label !== undefined && this.setLabel(state.label);
     state.type !== undefined && this.setType(state.type);
     state.data !== undefined && this.setData(state.data);
-    state.component !== undefined && this.setComponent(state.component);
-    state.linkDirection !== undefined && this.setLinkDirection(state.linkDirection);
+    state.linkDirection !== undefined &&
+      this.setLinkDirection(state.linkDirection);
     state.isConnectionEnabled !== undefined &&
       this.setIsConnectionEnabled(state.isConnectionEnabled);
+    state.position !== undefined && this.setPosition(state?.position);
+    state.offsetFromNodeCenter !== undefined &&
+      this.setOffsetFromNodeCenter(state?.offsetFromNodeCenter);
+    state.offsetFromOrigin !== undefined &&
+      this.setOffsetFromOrigin(state?.offsetFromOrigin);
   };
 
   export = (): IPortExport =>
@@ -147,6 +188,9 @@ export class PortState {
       data: this._data,
       linkDirection: this._linkDirection ?? undefined,
       isConnectionEnabled: this._isConnectionEnabled ?? undefined,
+      position: this._position ?? undefined,
+      offsetFromNodeCenter: this._offsetFromNodeCenter ?? undefined,
+      offsetFromOrigin: this._offsetFromOrigin ?? undefined,
     });
 
   get data() {
@@ -154,7 +198,7 @@ export class PortState {
   }
 
   setData = (value: any) => {
-    this._data = value ?? null;
+    this._data = value === undefined ? null : value;
   };
 
   get node(): NodeState {
@@ -213,20 +257,7 @@ export class PortState {
     return this._offsetRecalculationRequested;
   }
 
-  setComponent = (
-    value?: VisualComponent<IPortVisualComponentProps> | null
-  ) => {
-    if (!value) {
-      this._component = null;
-    } else {
-      this._component = new VisualComponentState<IPortVisualComponentProps>(
-        value
-      );
-    }
-  };
-
   get componentDefinition() {
-    if (this._component) return this._component;
     const { portVisualComponents } = this._rootStore.portsSettings;
     return portVisualComponents.getComponent(this.type);
   }
@@ -245,12 +276,14 @@ export class PortState {
 
   get linkDirection(): DirectionWithDiagonals | undefined {
     if (this._linkDirection) return this._linkDirection;
+    if (this.position) return positionToLinkDirection[this.position];
 
     // Try to guess
     if (!this.offsetRelativeToNode) return undefined;
 
     const nodeCenter =
-      this.node.ref.sizeExcludingZoom && multiplyPoint(this.node.ref.sizeExcludingZoom, 0.5);
+      this.node.ref.sizeExcludingZoom &&
+      multiplyPoint(this.node.ref.sizeExcludingZoom, 0.5);
     if (!nodeCenter) return undefined;
 
     if (this._rootStore.linksSettings.preferLinksDirection === 'horizontal') {
@@ -281,6 +314,31 @@ export class PortState {
   };
 }
 
+const positionToLinkDirection: {
+  [key in PortPosition]: DirectionWithDiagonals;
+} = {
+  'left-center': 'left',
+  'left-bottom': 'left',
+  'left-top': 'left',
+
+  'top-left': 'up',
+  'top-center': 'up',
+  'top-right': 'up',
+
+  'right-center': 'right',
+  'right-bottom': 'right',
+  'right-top': 'right',
+
+  'bottom-left': 'down',
+  'bottom-center': 'down',
+  'bottom-right': 'down',
+
+  'diagonal-left-top': 'left-up',
+  'diagonal-right-top': 'right-up',
+  'diagonal-right-bottom': 'right-down',
+  'diagonal-left-bottom': 'left-down',
+};
+
 // https://stackoverflow.com/questions/21912684/how-to-get-value-of-translatex-and-translatey
 // https://gist.github.com/aderaaij/a6b666bf756b2db1596b366da921755d
 function getTranslate(item: HTMLElement): Point {
@@ -305,9 +363,11 @@ export interface IPortStateWithoutIds {
   label?: string;
   type?: string;
   data?: any;
-  component?: VisualComponent<IPortVisualComponentProps>;
   linkDirection?: DirectionWithDiagonals;
   isConnectionEnabled?: boolean;
+  position?: PortPosition;
+  offsetFromNodeCenter?: number;
+  offsetFromOrigin?: Point;
 }
 
 export interface IPortState extends IPortStateWithoutIds {

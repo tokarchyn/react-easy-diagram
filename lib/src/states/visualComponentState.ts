@@ -1,22 +1,21 @@
 import {
   action,
   computed,
-  makeAutoObservable,
   makeObservable,
   observable,
 } from 'mobx';
 
-export class VisualComponentState<TComponentProps> {
+export class VisualComponentState<TComponentProps, TSettings> {
   private _component: VisualComponent<TComponentProps>;
-  private _settings: any = null;
+  private _settings: TSettings | null = null;
 
   constructor(
     component:
-      | IComponentDefinition<TComponentProps>
+      | IComponentDefinition<TComponentProps, TSettings>
       | VisualComponent<TComponentProps>
   ) {
     this.import(component);
-    makeObservable<VisualComponentState<TComponentProps>, '_component' | '_settings'>(this, {
+    makeObservable<VisualComponentState<TComponentProps, TSettings>, '_component' | '_settings'>(this, {
       _component: observable.ref,
       _settings: observable.ref,
       component: computed,
@@ -27,15 +26,15 @@ export class VisualComponentState<TComponentProps> {
 
   import = (
     newComponent:
-      | IComponentDefinition<TComponentProps>
+      | IComponentDefinition<TComponentProps, TSettings>
       | VisualComponent<TComponentProps>
   ) => {
     if ('component' in newComponent) {
       this._component = newComponent.component;
-      this._settings = newComponent.settings ?? {};
+      this._settings = newComponent.settings ?? null;
     } else {
       this._component = newComponent;
-      this._settings = {};
+      this._settings = null;
     }
   };
 
@@ -47,16 +46,16 @@ export class VisualComponentState<TComponentProps> {
   }
 }
 
-export interface IVisualComponentProps<TEntity, TSettings = any> {
+export interface IVisualComponentProps<TEntity, TSettings> {
   entity: TEntity;
-  settings?: TSettings;
+  settings: TSettings | null;
 }
 
 export type VisualComponent<
   TComponentProps
 > = React.FunctionComponent<TComponentProps>;
 
-export interface IComponentDefinition<TComponentProps, TSettings = any> {
+export interface IComponentDefinition<TComponentProps, TSettings> {
   component: VisualComponent<TComponentProps>;
   settings?: TSettings;
 }

@@ -67,6 +67,12 @@ createNode({
 })
 ```
 
+:::info
+
+All those listed methods will not only add `Port`s components to render ports you pass to it, but also register them in the component state, see [Ports](#ports).
+
+:::
+
 ### Styling
 
 You can provide classes and styles for node in [settings](#settings) for each state, like hovered, selected or both. The `base` classes and styles are applied regardless of node state.
@@ -96,6 +102,8 @@ createStarNode({
 Creating your own component for node is very simple and require only wrapping it in `observer` as were written in the [Introduction](introduction).
 
 Let's write a node component with background depending on rather node is hovered or not. It will also display it's position and label. To see other data available in `entity` object, which you will also get as a prop, go to the [Node state](../api/classes/NodeState.md).
+To render ports just use component `Port` and pass to it id of the port to render.
+
 ```jsx
 const NodeComponent = observer(({ entity }) => {
   return (
@@ -110,10 +118,62 @@ const NodeComponent = observer(({ entity }) => {
       <div>Label: {entity.label]}</div>
       <div>X: {entity.position[0]}</div>
       <div>Y: {entity.position[1]}</div>
-      <Port id='input' type='input' position='left-center' />
+      <Port id='input' />
     </div>
   );
 });
+```
+
+If you have many of ports or they can be added/removed dynamically, you can use code like this to render them all:
+```jsx
+{Array.from(entity.ports).map(([id]) => (
+  <Port id={id} key={id} />
+))}
+```
+
+## Ports
+When you add `<Port id='some-id' />` component to anywhere in node itself or its childs, it just means that you want to render in this place the port found in node's state by the id "some-id". But if this port has not been added to state then `Port` component will not render anything. There are two places where you can define which ports node will have:
+1. Right in the component definition - this way every node of this type will have those ports by default.
+2. In a node state - this way only this specific node will have specified port.
+
+You can also combine those methods and define some default ports for type, and then override some of port's values or add new ones for specific node.
+```tsx title="Example"
+<Diagram
+  settings={{
+    nodes: {
+      components: {
+        custom_node: {
+          component: MyCustomNode, // your React functional component
+          settings: {
+            ports: [ // ports are added to all nodes of type 'custom_node'
+              { 
+                id: 'port_1',
+                position: 'bottom-center',
+                data: 'any data you want to store here'
+              }
+            ]
+          }
+        }
+      }
+    }
+  }}
+  initState={{
+    nodes: [{
+      id: 'node_1',
+      position: [100, 100],
+      type: 'custom_node', // the component key you added in settings
+      ports: [
+        {
+          id: 'port_1',
+          data: "override data defined in component"
+        },
+        {
+          id: 'port_2', // add a new port
+        }
+      ]
+    }],
+  }}
+/>
 ```
 
 ## User interaction

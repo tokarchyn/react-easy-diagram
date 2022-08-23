@@ -1,6 +1,7 @@
 module.exports = {
   docs: [
     'introduction',
+    'stateManagement',
     'userInteraction',
     {
       type: 'category',
@@ -13,7 +14,6 @@ module.exports = {
         },
       ],
     },
-    'stateManagement',
     'dragAndDrop',
     {
       type: 'category',

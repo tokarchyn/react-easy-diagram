@@ -46,11 +46,11 @@ ___
 
 ### visualComponents
 
-• `get` **visualComponents**(): [`VisualComponents`](VisualComponents.md)<[`LinkState`](LinkState.md) \| [`LinkCreationState`](LinkCreationState.md), [`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
+• `get` **visualComponents**(): [`VisualComponents`](VisualComponents.md)<`any`, [`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
 
 #### Returns
 
-[`VisualComponents`](VisualComponents.md)<[`LinkState`](LinkState.md) \| [`LinkCreationState`](LinkCreationState.md), [`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
+[`VisualComponents`](VisualComponents.md)<`any`, [`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
 
 ## Methods
 

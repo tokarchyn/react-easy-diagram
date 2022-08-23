@@ -29,17 +29,17 @@ custom_edit_url: null
 
 ### componentDefinition
 
-• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState.md)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
+• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState.md)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>, `any`\>
 
 #### Returns
 
-[`VisualComponentState`](VisualComponentState.md)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>\>
+[`VisualComponentState`](VisualComponentState.md)<[`ILinkVisualComponentProps`](../interfaces/ILinkVisualComponentProps.md)<`any`\>, `any`\>
 
 ___
 
-### extra
+### data
 
-• `get` **extra**(): `any`
+• `get` **data**(): `any`
 
 #### Returns
 
@@ -47,7 +47,7 @@ ___
 
 #### Implementation of
 
-[ILinkState](../interfaces/ILinkState.md).[extra](../interfaces/ILinkState.md#extra)
+[ILinkState](../interfaces/ILinkState.md).[data](../interfaces/ILinkState.md#data)
 
 ___
 
@@ -231,9 +231,9 @@ ___
 
 ___
 
-### setExtra
+### setData
 
-▸ **setExtra**(`value`): `void`
+▸ **setData**(`value`): `void`
 
 #### Parameters
 

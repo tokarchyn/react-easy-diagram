@@ -22,7 +22,7 @@ ___
 
 ### ports
 
-• `Optional` **ports**: [`IPortProps`](IPortProps.md)[]
+• `Optional` **ports**: [`IPortState`](IPortState.md)[]
 
 ___
 

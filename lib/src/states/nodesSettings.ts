@@ -17,12 +17,13 @@ import {
 } from 'states/visualComponents';
 import { IVisualComponentProps } from 'states/visualComponentState';
 import { Point } from 'utils/point';
+import { IPortState } from './portState';
 
 export class NodesSettings {
   private _visualComponents: VisualComponents<
-    NodeState,
+  INodeComponentSettings,
     INodeVisualComponentProps
-  > = new VisualComponents<NodeState, INodeVisualComponentProps>({
+  > = new VisualComponents<INodeComponentSettings, INodeVisualComponentProps>({
     [COMPONENT_DEFAULT_TYPE]: createNode({ ports: [] }),
     input_output_horizontal: createInputOutputHorizontalNode(),
     input_output_vertical: createInputOutputVerticalNode(),
@@ -63,11 +64,15 @@ export class NodesSettings {
   };
 }
 
-export interface INodeVisualComponentProps<TSettings = any>
+export interface INodeComponentSettings {
+  ports?: IPortState[]
+}
+
+export interface INodeVisualComponentProps<TSettings extends INodeComponentSettings = INodeComponentSettings>
   extends IVisualComponentProps<NodeState, TSettings> {
 }
 
 export interface INodesSettings
-  extends IVisualComponentsObject<INodeVisualComponentProps> {
+  extends IVisualComponentsObject<INodeComponentSettings, INodeVisualComponentProps<INodeComponentSettings>> {
   gridSnap?: number | Point;
 }

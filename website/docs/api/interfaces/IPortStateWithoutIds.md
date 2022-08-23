@@ -10,23 +10,15 @@ custom_edit_url: null
 
 - **`IPortStateWithoutIds`**
 
-  ↳ [`INodePortState`](INodePortState.md)
-
   ↳ [`IPortState`](IPortState.md)
 
-  ↳ [`IPortStateWithIds`](IPortStateWithIds.md)
+  ↳ [`IPortExport`](IPortExport.md)
 
 ## Properties
 
-### component
+### data
 
-• `Optional` **component**: [`VisualComponent`](../#visualcomponent)<[`IPortVisualComponentProps`](IPortVisualComponentProps.md)<`any`\>\>
-
-___
-
-### extra
-
-• `Optional` **extra**: `any`
+• `Optional` **data**: `any`
 
 ___
 
@@ -45,6 +37,24 @@ ___
 ### linkDirection
 
 • `Optional` **linkDirection**: ``"left"`` \| ``"right"`` \| ``"up"`` \| ``"down"`` \| ``"left-down"`` \| ``"left-up"`` \| ``"right-down"`` \| ``"right-up"``
+
+___
+
+### offsetFromNodeCenter
+
+• `Optional` **offsetFromNodeCenter**: `number`
+
+___
+
+### offsetFromOrigin
+
+• `Optional` **offsetFromOrigin**: [`Point`](../#point)
+
+___
+
+### position
+
+• `Optional` **position**: ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"``
 
 ___
 

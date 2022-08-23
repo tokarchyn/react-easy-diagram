@@ -1,6 +1,6 @@
 ---
 id: "VisualComponentState"
-title: "Class: VisualComponentState<TComponentProps>"
+title: "Class: VisualComponentState<TComponentProps, TSettings>"
 sidebar_label: "VisualComponentState"
 sidebar_position: 0
 custom_edit_url: null
@@ -11,24 +11,26 @@ custom_edit_url: null
 | Name |
 | :------ |
 | `TComponentProps` |
+| `TSettings` |
 
 ## Constructors
 
 ### constructor
 
-• **new VisualComponentState**<`TComponentProps`\>(`component`)
+• **new VisualComponentState**<`TComponentProps`, `TSettings`\>(`component`)
 
 #### Type parameters
 
 | Name |
 | :------ |
 | `TComponentProps` |
+| `TSettings` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `component` | [`VisualComponent`](../#visualcomponent)<`TComponentProps`\> \| [`IComponentDefinition`](../interfaces/IComponentDefinition.md)<`TComponentProps`, `any`\> |
+| `component` | [`VisualComponent`](../#visualcomponent)<`TComponentProps`\> \| [`IComponentDefinition`](../interfaces/IComponentDefinition.md)<`TComponentProps`, `TSettings`\> |
 
 ## Accessors
 
@@ -44,11 +46,11 @@ ___
 
 ### settings
 
-• `get` **settings**(): `any`
+• `get` **settings**(): ``null`` \| `TSettings`
 
 #### Returns
 
-`any`
+``null`` \| `TSettings`
 
 ## Methods
 
@@ -60,7 +62,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `newComponent` | [`VisualComponent`](../#visualcomponent)<`TComponentProps`\> \| [`IComponentDefinition`](../interfaces/IComponentDefinition.md)<`TComponentProps`, `any`\> |
+| `newComponent` | [`VisualComponent`](../#visualcomponent)<`TComponentProps`\> \| [`IComponentDefinition`](../interfaces/IComponentDefinition.md)<`TComponentProps`, `TSettings`\> |
 
 #### Returns
 

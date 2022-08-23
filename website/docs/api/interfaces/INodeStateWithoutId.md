@@ -16,9 +16,9 @@ custom_edit_url: null
 
 ## Properties
 
-### extra
+### data
 
-• `Optional` **extra**: `any`
+• `Optional` **data**: `any`
 
 ___
 
@@ -37,6 +37,12 @@ ___
 ### label
 
 • `Optional` **label**: `string`
+
+___
+
+### ports
+
+• `Optional` **ports**: [`IPortState`](IPortState.md)[]
 
 ___
 

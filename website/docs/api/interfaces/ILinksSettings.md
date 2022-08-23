@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- [`IVisualComponentsObject`](IVisualComponentsObject.md)<[`ILinkVisualComponentProps`](ILinkVisualComponentProps.md)\>
+- [`IVisualComponentsObject`](IVisualComponentsObject.md)<`any`, [`ILinkVisualComponentProps`](ILinkVisualComponentProps.md)\>
 
   ↳ **`ILinksSettings`**
 

@@ -64,17 +64,18 @@ custom_edit_url: null
 - [ILinksSettings](interfaces/ILinksSettings.md)
 - [IMiniControlComponentProps](interfaces/IMiniControlComponentProps.md)
 - [IMiniControlDefaultSettings](interfaces/IMiniControlDefaultSettings.md)
+- [INodeComponentSettings](interfaces/INodeComponentSettings.md)
 - [INodeDefaultSettings](interfaces/INodeDefaultSettings.md)
-- [INodePortState](interfaces/INodePortState.md)
+- [INodeExport](interfaces/INodeExport.md)
 - [INodeState](interfaces/INodeState.md)
 - [INodeStateWithId](interfaces/INodeStateWithId.md)
 - [INodeStateWithoutId](interfaces/INodeStateWithoutId.md)
 - [INodeVisualComponentProps](interfaces/INodeVisualComponentProps.md)
 - [INodesSettings](interfaces/INodesSettings.md)
+- [IPortExport](interfaces/IPortExport.md)
 - [IPortInnerDefaultSettings](interfaces/IPortInnerDefaultSettings.md)
 - [IPortProps](interfaces/IPortProps.md)
 - [IPortState](interfaces/IPortState.md)
-- [IPortStateWithIds](interfaces/IPortStateWithIds.md)
 - [IPortStateWithoutIds](interfaces/IPortStateWithoutIds.md)
 - [IPortVisualComponentProps](interfaces/IPortVisualComponentProps.md)
 - [IPortsContainerProps](interfaces/IPortsContainerProps.md)
@@ -460,12 +461,6 @@ ___
 ### Port
 
 • `Const` **Port**: `React.FC`<[`IPortProps`](interfaces/IPortProps.md)\>
-
-___
-
-### RenderedPortsComponentsContext
-
-• `Const` **RenderedPortsComponentsContext**: `Context`<`IRenderedPorts`\>
 
 ___
 
@@ -1073,7 +1068,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `node` | `Pick`<[`INodeState`](interfaces/INodeState.md), ``"id"`` \| ``"label"`` \| ``"type"`` \| ``"extra"`` \| ``"isSelectionEnabled"`` \| ``"isDragEnabled"``\> |
+| `node` | `Pick`<[`INodeState`](interfaces/INodeState.md), ``"id"`` \| ``"label"`` \| ``"type"`` \| ``"data"`` \| ``"isSelectionEnabled"`` \| ``"isDragEnabled"`` \| ``"ports"``\> |
 
 #### Returns
 
@@ -1794,9 +1789,9 @@ ___
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `position?` | ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"`` | `undefined` |
-| `offsetFromParentCenter?` | `number` | `undefined` |
-| `offsetFromOrigin?` | [`Point`](#point) | `undefined` |
+| `position?` | ``null`` \| ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"`` | `undefined` |
+| `offsetFromParentCenter?` | ``null`` \| `number` | `undefined` |
+| `offsetFromOrigin?` | ``null`` \| [`Point`](#point) | `undefined` |
 | `usePortCenterPivot` | `boolean` | `true` |
 
 #### Returns
@@ -1834,19 +1829,3 @@ ___
 | :------ | :------ |
 | `className` | `string` |
 | `style` | `CSSProperties` |
-
-___
-
-### useUpdateOrCreatePortState
-
-▸ **useUpdateOrCreatePortState**(`port`): [`PortState`](classes/PortState.md) \| `undefined`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `port` | `IPortStateWithNodeId` |
-
-#### Returns
-
-[`PortState`](classes/PortState.md) \| `undefined`

@@ -10,7 +10,7 @@ custom_edit_url: null
 
 | Name | Type |
 | :------ | :------ |
-| `TSettings` | `any` |
+| `TSettings` | extends [`INodeComponentSettings`](INodeComponentSettings.md) = [`INodeComponentSettings`](INodeComponentSettings.md) |
 
 ## Hierarchy
 
@@ -32,7 +32,7 @@ ___
 
 ### settings
 
-• `Optional` **settings**: `TSettings`
+• **settings**: ``null`` \| `TSettings`
 
 #### Inherited from
 

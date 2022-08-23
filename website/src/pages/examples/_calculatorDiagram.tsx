@@ -17,9 +17,7 @@ const NumberProvider = observer<{ node: NodeState }>(({ node }) => {
       <span>
         <input
           type='number'
-          onChange={(event) =>
-            port?.setData(parseInt(event.target.value) || 0)
-          }
+          onChange={(event) => port?.setData(parseInt(event.target.value) || 0)}
           defaultValue={port && port.data}
           className={`${styles.textInput} ${DISABLE_NODE_USER_INTERACTION_CLASS}`}
         />
@@ -58,11 +56,13 @@ export default () => (
           id: 'num1',
           position: [100, 100],
           type: 'number',
+          ports: [{ id: 'output', data: 10 }],
         },
         {
           id: 'num2',
           position: [100, 300],
           type: 'number',
+          ports: [{ id: 'output', data: 5 }],
         },
         {
           id: 'num3',

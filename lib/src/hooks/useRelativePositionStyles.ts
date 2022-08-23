@@ -3,9 +3,9 @@ import { isNumber } from 'utils/common';
 import { isPoint, Point } from 'utils/point';
 
 export const useRelativePositionStyles = (
-  position?: PortPosition,
-  offsetFromParentCenter?: number,
-  offsetFromOrigin?: Point,
+  position?: PortPosition | null,
+  offsetFromParentCenter?: number | null,
+  offsetFromOrigin?: Point | null,
   usePortCenterPivot: boolean = true
 ): RelativePositionStyles => {
   return useMemo(() => {

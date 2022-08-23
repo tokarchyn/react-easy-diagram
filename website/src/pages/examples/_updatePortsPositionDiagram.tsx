@@ -8,7 +8,7 @@ import {
 import { observer } from 'mobx-react-lite';
 
 const NodeWithExternalData = observer<INodeVisualComponentProps>(
-  ({ entity: node }) => {
+  ({ entity }) => {
     const [linesNumber, setLinesNumber] = useState<number>(0);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
       // required to trigger recalculation if you think size or position is changed. There is also
       // possibility to store your data that could change size or position in port's or node's "data" property,
       // changes in these properties along with the other are already handled by library.
-      node.recalculatePortsOffset();
+      entity.recalculatePortsOffset();
     }, [linesNumber]);
 
     const lines = useLines(linesNumber);
@@ -26,13 +26,13 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
         className='react_fast_diagram_NodeDefault'
         style={{
           padding: 15,
-          border: node.selected ? '#6eb7ff solid 1px' : '',
+          border: entity.selected ? '#6eb7ff solid 1px' : '',
         }}
       >
         <div>Node with external state that cause node resize</div>
         <div>Fields:</div>
 
-        {lines.map(l => l)}
+        {lines.map((l) => l)}
 
         <div>
           <button
@@ -44,10 +44,9 @@ const NodeWithExternalData = observer<INodeVisualComponentProps>(
           </button>
         </div>
 
-        <Port id='left' position='left-center' />
-        <Port id='top' position='top-center' />
-        <Port id='right' position='right-center' />
-        <Port id='bottom' position='bottom-center' />
+        {Array.from(entity.ports).map(([id]) => (
+          <Port id={id} key={id} />
+        ))}
       </div>
     );
   }
@@ -70,7 +69,7 @@ const NodeWithInternalData = observer<INodeVisualComponentProps>(
         <div>Node with internal state that cause node resize</div>
         <div>Fields:</div>
 
-        {lines.map(l => l)}
+        {lines.map((l) => l)}
 
         <div>
           <button
@@ -82,17 +81,16 @@ const NodeWithInternalData = observer<INodeVisualComponentProps>(
           </button>
         </div>
 
-        <Port id='left' position='left-center' />
-        <Port id='top' position='top-center' />
-        <Port id='right' position='right-center' />
-        <Port id='bottom' position='bottom-center' />
+        {Array.from(node.ports).map(([id]) => (
+          <Port id={id} key={id} />
+        ))}
       </div>
     );
   }
 );
 
 function useLines(count: number) {
-  const lines = []
+  const lines = [];
   for (let i = 0; i < count; i++) {
     lines.push(<span key={i}>Line {i}</span>);
   }
@@ -211,8 +209,28 @@ export default () => (
     settings={{
       nodes: {
         components: {
-          internal: NodeWithInternalData,
-          external: NodeWithExternalData,
+          internal: {
+            component: NodeWithInternalData,
+            settings: {
+              ports: [
+                { id: 'left', position: 'left-center' },
+                { id: 'top', position: 'top-center' },
+                { id: 'right', position: 'right-center' },
+                { id: 'bottom', position: 'bottom-center' },
+              ],
+            },
+          },
+          external: {
+            component: NodeWithExternalData,
+            settings: {
+              ports: [
+                { id: 'left', position: 'left-center' },
+                { id: 'top', position: 'top-center' },
+                { id: 'right', position: 'right-center' },
+                { id: 'bottom', position: 'bottom-center' },
+              ],
+            },
+          },
         },
       },
     }}

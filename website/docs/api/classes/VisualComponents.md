@@ -1,6 +1,6 @@
 ---
 id: "VisualComponents"
-title: "Class: VisualComponents<TEntity, TComponentProps>"
+title: "Class: VisualComponents<TSettings, TComponentProps>"
 sidebar_label: "VisualComponents"
 sidebar_position: 0
 custom_edit_url: null
@@ -8,35 +8,35 @@ custom_edit_url: null
 
 ## Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `TEntity` | `TEntity` |
-| `TComponentProps` | extends [`IVisualComponentProps`](../interfaces/IVisualComponentProps.md)<`TEntity`\> |
+| Name |
+| :------ |
+| `TSettings` |
+| `TComponentProps` |
 
 ## Constructors
 
 ### constructor
 
-• **new VisualComponents**<`TEntity`, `TComponentProps`\>(`defaultComponents`)
+• **new VisualComponents**<`TSettings`, `TComponentProps`\>(`defaultComponents`)
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `TEntity` | `TEntity` |
-| `TComponentProps` | extends [`IVisualComponentProps`](../interfaces/IVisualComponentProps.md)<`TEntity`, `any`, `TComponentProps`\> |
+| Name |
+| :------ |
+| `TSettings` |
+| `TComponentProps` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `defaultComponents` | [`Dictionary`](../interfaces/Dictionary.md)<[`IComponentDefinition`](../interfaces/IComponentDefinition.md)<`TComponentProps`, `any`\> \| [`VisualComponent`](../#visualcomponent)<`TComponentProps`\>\> |
+| `defaultComponents` | [`Dictionary`](../interfaces/Dictionary.md)<[`IComponentDefinition`](../interfaces/IComponentDefinition.md)<`TComponentProps`, `TSettings`\> \| [`VisualComponent`](../#visualcomponent)<`TComponentProps`\>\> |
 
 ## Methods
 
 ### getComponent
 
-▸ **getComponent**(`type`): [`VisualComponentState`](VisualComponentState.md)<`TComponentProps`\>
+▸ **getComponent**(`type`): [`VisualComponentState`](VisualComponentState.md)<`TComponentProps`, `TSettings`\>
 
 #### Parameters
 
@@ -46,7 +46,7 @@ custom_edit_url: null
 
 #### Returns
 
-[`VisualComponentState`](VisualComponentState.md)<`TComponentProps`\>
+[`VisualComponentState`](VisualComponentState.md)<`TComponentProps`, `TSettings`\>
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `obj?` | [`IVisualComponentsObject`](../interfaces/IVisualComponentsObject.md)<`TComponentProps`\> |
+| `obj?` | [`IVisualComponentsObject`](../interfaces/IVisualComponentsObject.md)<`TSettings`, `TComponentProps`\> |
 
 #### Returns
 

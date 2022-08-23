@@ -10,9 +10,9 @@ import { IVisualComponentProps } from 'states/visualComponentState';
 
 export class PortsSettings {
   private _portVisualComponents: VisualComponents<
-    PortState,
+    any,
     IPortVisualComponentProps
-  > = new VisualComponents<PortState, IPortVisualComponentProps>({
+  > = new VisualComponents<any, IPortVisualComponentProps>({
     [COMPONENT_DEFAULT_TYPE]: createPortInnerDefault(),
   });
 
@@ -33,4 +33,4 @@ export interface IPortVisualComponentProps<TSettings = any>
   extends IVisualComponentProps<PortState, TSettings> {}
 
 export interface IPortsSettings
-  extends IVisualComponentsObject<IPortVisualComponentProps> {}
+  extends IVisualComponentsObject<any, IPortVisualComponentProps> {}

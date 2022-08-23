@@ -1,7 +1,7 @@
 ---
-id: "IPortState"
-title: "Interface: IPortState"
-sidebar_label: "IPortState"
+id: "IPortExport"
+title: "Interface: IPortExport"
+sidebar_label: "IPortExport"
 sidebar_position: 0
 custom_edit_url: null
 ---
@@ -10,7 +10,7 @@ custom_edit_url: null
 
 - [`IPortStateWithoutIds`](IPortStateWithoutIds.md)
 
-  ↳ **`IPortState`**
+  ↳ **`IPortExport`**
 
 ## Properties
 
@@ -57,6 +57,12 @@ ___
 #### Inherited from
 
 [IPortStateWithoutIds](IPortStateWithoutIds.md).[linkDirection](IPortStateWithoutIds.md#linkdirection)
+
+___
+
+### nodeId
+
+• **nodeId**: `string`
 
 ___
 

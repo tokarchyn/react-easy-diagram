@@ -24,11 +24,11 @@ custom_edit_url: null
 
 ### componentDefinition
 
-• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState.md)<[`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps.md)<`any`\>\>
+• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState.md)<[`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps.md)<[`INodeComponentSettings`](../interfaces/INodeComponentSettings.md)\>, [`INodeComponentSettings`](../interfaces/INodeComponentSettings.md)\>
 
 #### Returns
 
-[`VisualComponentState`](VisualComponentState.md)<[`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps.md)<`any`\>\>
+[`VisualComponentState`](VisualComponentState.md)<[`INodeVisualComponentProps`](../interfaces/INodeVisualComponentProps.md)<[`INodeComponentSettings`](../interfaces/INodeComponentSettings.md)\>, [`INodeComponentSettings`](../interfaces/INodeComponentSettings.md)\>
 
 ___
 
@@ -52,9 +52,9 @@ ___
 
 ___
 
-### extra
+### data
 
-• `get` **extra**(): `any`
+• `get` **data**(): `any`
 
 #### Returns
 
@@ -238,7 +238,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `port` | [`INodePortState`](../interfaces/INodePortState.md) |
+| `port` | [`IPortState`](../interfaces/IPortState.md) |
 
 #### Returns
 
@@ -248,11 +248,11 @@ ___
 
 ### export
 
-▸ **export**(): [`INodeStateWithId`](../interfaces/INodeStateWithId.md)
+▸ **export**(): [`INodeExport`](../interfaces/INodeExport.md)
 
 #### Returns
 
-[`INodeStateWithId`](../interfaces/INodeStateWithId.md)
+[`INodeExport`](../interfaces/INodeExport.md)
 
 ___
 
@@ -351,9 +351,9 @@ ___
 
 ___
 
-### setExtra
+### setData
 
-▸ **setExtra**(`value`): `void`
+▸ **setData**(`value`): `void`
 
 #### Parameters
 
@@ -392,6 +392,25 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `value` | `undefined` \| ``null`` \| `boolean` |
+
+#### Returns
+
+`void`
+
+___
+
+### setPorts
+
+▸ **setPorts**(`nodePorts?`): `void`
+
+Merge node component's ports (those provided in settings of component definition) with ports provided
+in {@link nodePorts}, where node component's port values will be overwritten by values specified in {@link nodePorts}.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `nodePorts?` | [`IPortState`](../interfaces/IPortState.md)[] |
 
 #### Returns
 

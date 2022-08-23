@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useMemo } from 'react';
 import { INodeVisualComponentProps } from 'states/nodesSettings';
 import { NodeState } from 'states/nodeState';
+import { IPortState } from 'states/portState';
 import {
   IComponentDefinition,
   VisualComponent,
@@ -37,13 +38,13 @@ const NodeDefault: React.FC<
       {settings?.innerNode && <settings.innerNode node={entity} />}
 
       {Array.isArray(settings?.ports) &&
-        settings?.ports.map((p) => <Port {...p} key={p.id} />)}
+        settings?.ports.map((p) => <Port id={p.id} key={p.id} />)}
     </div>
   );
 });
 
 export interface INodeDefaultSettings {
-  ports?: IPortProps[];
+  ports?: IPortState[];
   innerNode?: VisualComponent<{ node: NodeState }>;
   removeDefaultClasses?: true;
   classes?: NodeDefaultSettingsByStates<string[]>;

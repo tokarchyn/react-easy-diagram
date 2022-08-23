@@ -32,7 +32,7 @@ ___
 
 ### settings
 
-• `Optional` **settings**: `TSettings`
+• **settings**: ``null`` \| `TSettings`
 
 #### Inherited from
 

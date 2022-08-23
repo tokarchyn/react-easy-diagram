@@ -5,7 +5,7 @@ title: Introduction
 You can customize visual representation of nodes, ports and links mainly in two ways: by providing your own components or by modifying built-in components.
 
 :::caution
-In order to rerender your component when state of the library changed the component should be wrapped in `observer` function from `mobx` state management library. See more information about it in [State management](../stateManagement). You can import this function like this `import { observer } from 'mobx-react-lite';`.
+In order to rerender your component when state of the library changed the component should be wrapped in `observer` function from `mobx` state management library. See more information about it in [State management](../stateManagement#mobx-related).
 :::
 
 To be able to use new components provide them in diagram settings:
@@ -22,9 +22,29 @@ To be able to use new components provide them in diagram settings:
             type: 'your_port_type_1', // the port type is used to get component from settings to render port
             position: 'bottom-center'
           }],
-        })
-        your_node_type_3: MyCustomNode, // your React functional component
-        [COMPONENT_DEFAULT_TYPE]: MyDefaultNode, // to override default node component, which is just a component with a label
+        }),
+        your_node_type_3: {
+          component: MyCustomNode, // your React functional component
+          settings: {
+            ports: [ // ports are added to all nodes of type 'your_node_type_3'
+              { 
+                id: 'port_1',
+                position: 'bottom-center',
+              }
+            ]
+          }
+        },
+        [COMPONENT_DEFAULT_TYPE]: { // to override default node component, which is just a component with a label
+          component: MyDefaultNode,
+          settings: {
+            ports: [
+              { 
+                id: 'port_1',
+                position: 'bottom-center',
+              }
+            ]
+          }
+        }
       },
     },
     ports: {

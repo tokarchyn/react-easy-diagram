@@ -8,10 +8,10 @@ custom_edit_url: null
 
 ## Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `TComponentProps` | `TComponentProps` |
-| `TSettings` | `any` |
+| Name |
+| :------ |
+| `TComponentProps` |
+| `TSettings` |
 
 ## Properties
 

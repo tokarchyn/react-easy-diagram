@@ -18,13 +18,13 @@ custom_edit_url: null
 
 ## Properties
 
-### extra
+### data
 
-• `Optional` **extra**: `any`
+• `Optional` **data**: `any`
 
 #### Inherited from
 
-[ILinkStateWithoutId](ILinkStateWithoutId.md).[extra](ILinkStateWithoutId.md#extra)
+[ILinkStateWithoutId](ILinkStateWithoutId.md).[data](ILinkStateWithoutId.md#data)
 
 ___
 

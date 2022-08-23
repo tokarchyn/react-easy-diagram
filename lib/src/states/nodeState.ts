@@ -1,11 +1,11 @@
 import { makeAutoObservable, reaction } from 'mobx';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { LinkState } from 'states/linkState';
-import { IPortExport, IPortStateWithoutIds, PortState } from 'states/portState';
+import { INodeComponentSettings } from 'states/nodesSettings';
+import { IPortExport, IPortState, PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';
 import { COMPONENT_DEFAULT_TYPE } from 'states/visualComponents';
 import { deepCopy, Dictionary, isBoolean } from 'utils/common';
-import { guidForcedUniqueness } from 'utils/guid';
 import { addPoints, arePointsEqual, Point } from 'utils/point';
 import {
   errorResult,
@@ -58,7 +58,7 @@ export class NodeState {
     this.setType(newState?.type);
     this.setData(newState?.data);
     this.label = newState?.label ?? '';
-    this._ports = new Map();
+    this.setPorts(newState?.ports);
     this.setIsSelectionEnabled(newState?.isSelectionEnabled);
     this.setIsDragEnabled(newState?.isDragEnabled);
   };
@@ -68,7 +68,7 @@ export class NodeState {
       id: this._id,
       label: this._label,
       position: this._position,
-      ports: Array.from(this._ports).map(([k,p]) => p.export()),
+      ports: Array.from(this._ports).map(([k, p]) => p.export()),
       type: this._type,
       data: this.data,
       isSelectionEnabled: this._isSelectionEnabled ?? undefined,
@@ -91,6 +91,26 @@ export class NodeState {
   get position() {
     return this._position;
   }
+
+  /**
+   * Merge node component's ports (those provided in settings of component definition) with ports provided
+   * in {@link nodePorts}, where node component's port values will be overwritten by values specified in {@link nodePorts}.
+   * @param nodePorts
+   */
+  setPorts = (nodePorts?: IPortState[]) => {
+    const componentPorts = (
+      this.componentDefinition.settings as INodeComponentSettings
+    )?.ports;
+    const mergedPorts = new Map<string, IPortState>();
+
+    componentPorts?.forEach((n) => mergedPorts.set(n.id, n));
+    nodePorts?.forEach((n) =>
+      mergedPorts.set(n.id, { ...(mergedPorts.get(n.id) ?? {}), ...n })
+    );
+
+    this._ports = new Map();
+    mergedPorts.forEach((v) => this._ports.set(v.id, this._createPortState(v)));
+  };
 
   /**
    * @param newPosition - new position
@@ -210,16 +230,11 @@ export class NodeState {
     } else return undefined;
   };
 
-  addPort = (port: INodePortState): SuccessOrErrorResult<PortState> => {
-    if (!port || (port.id && this._ports.get(port.id))) {
+  addPort = (port: IPortState): SuccessOrErrorResult<PortState> => {
+    if (!port || this._ports.get(port.id)) {
       return errorResult();
     }
-    const newPort = new PortState(
-      this._rootStore,
-      port.id ?? guidForcedUniqueness((id) => !!this._ports.get(id)),
-      this._id,
-      port
-    );
+    const newPort = this._createPortState(port);
     this._ports.set(newPort.id, newPort);
     return successValueResult(newPort);
   };
@@ -239,6 +254,10 @@ export class NodeState {
     else
       throw `Port with id '${portId}' does not exist in the node '${this._id}'`;
   };
+
+  private _createPortState(port: IPortState) {
+    return new PortState(this._rootStore, port.id, this._id, port);
+  }
 
   get connectedExternalPorts(): Dictionary<PortState[]> {
     const keyValues = Object.values(this.ports).map((p) => [
@@ -321,10 +340,7 @@ export interface INodeStateWithoutId {
   data?: any;
   isSelectionEnabled?: boolean;
   isDragEnabled?: boolean;
-}
-
-export interface INodePortState extends IPortStateWithoutIds {
-  id?: string;
+  ports?: IPortState[];
 }
 
 export interface INodeStateWithId extends INodeStateWithoutId {

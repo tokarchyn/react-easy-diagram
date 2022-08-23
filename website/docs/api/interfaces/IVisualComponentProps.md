@@ -8,10 +8,10 @@ custom_edit_url: null
 
 ## Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `TEntity` | `TEntity` |
-| `TSettings` | `any` |
+| Name |
+| :------ |
+| `TEntity` |
+| `TSettings` |
 
 ## Hierarchy
 
@@ -33,4 +33,4 @@ ___
 
 ### settings
 
-• `Optional` **settings**: `TSettings`
+• **settings**: ``null`` \| `TSettings`

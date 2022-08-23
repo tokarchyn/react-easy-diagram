@@ -73,10 +73,10 @@ const defaultZoomToFitSettings: IZoomToFitSettings = {
 
 export interface IDiagramSettings {
   backgroundComponent?:
-    | IComponentDefinition<IBackgroundComponentProps>
+    | IComponentDefinition<IBackgroundComponentProps, any>
     | VisualComponent<IBackgroundComponentProps>;
   miniControlComponent?:
-    | IComponentDefinition<IMiniControlComponentProps>
+    | IComponentDefinition<IMiniControlComponentProps, any>
     | VisualComponent<IMiniControlComponentProps>;
   zoomInterval?: Point;
   zoomToFitSettings?: Partial<IZoomToFitSettings>;

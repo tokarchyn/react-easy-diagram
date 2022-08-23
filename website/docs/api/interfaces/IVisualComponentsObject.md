@@ -1,6 +1,6 @@
 ---
 id: "IVisualComponentsObject"
-title: "Interface: IVisualComponentsObject<TComponentProps>"
+title: "Interface: IVisualComponentsObject<TSettings, TComponentProps>"
 sidebar_label: "IVisualComponentsObject"
 sidebar_position: 0
 custom_edit_url: null
@@ -10,6 +10,7 @@ custom_edit_url: null
 
 | Name |
 | :------ |
+| `TSettings` |
 | `TComponentProps` |
 
 ## Hierarchy
@@ -26,4 +27,4 @@ custom_edit_url: null
 
 ### components
 
-• `Optional` **components**: [`Dictionary`](Dictionary.md)<[`IComponentDefinition`](IComponentDefinition.md)<`TComponentProps`, `any`\> \| [`VisualComponent`](../#visualcomponent)<`TComponentProps`\>\>
+• `Optional` **components**: [`Dictionary`](Dictionary.md)<[`IComponentDefinition`](IComponentDefinition.md)<`TComponentProps`, `TSettings`\> \| [`VisualComponent`](../#visualcomponent)<`TComponentProps`\>\>

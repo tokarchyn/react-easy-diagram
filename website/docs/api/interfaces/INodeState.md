@@ -14,13 +14,13 @@ custom_edit_url: null
 
 ## Properties
 
-### extra
+### data
 
-• `Optional` **extra**: `any`
+• `Optional` **data**: `any`
 
 #### Inherited from
 
-[INodeStateWithoutId](INodeStateWithoutId.md).[extra](INodeStateWithoutId.md#extra)
+[INodeStateWithoutId](INodeStateWithoutId.md).[data](INodeStateWithoutId.md#data)
 
 ___
 
@@ -57,6 +57,16 @@ ___
 #### Inherited from
 
 [INodeStateWithoutId](INodeStateWithoutId.md).[label](INodeStateWithoutId.md#label)
+
+___
+
+### ports
+
+• `Optional` **ports**: [`IPortState`](IPortState.md)[]
+
+#### Inherited from
+
+[INodeStateWithoutId](INodeStateWithoutId.md).[ports](INodeStateWithoutId.md#ports)
 
 ___
 

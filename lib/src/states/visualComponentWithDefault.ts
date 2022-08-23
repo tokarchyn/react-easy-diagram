@@ -6,11 +6,11 @@ import {
 } from 'states/visualComponentState';
 
 export class VisualComponentWithDefault<TComponentProps> {
-  private _innerComponent: VisualComponentState<TComponentProps>;
-  private _defaultComponent: VisualComponentState<TComponentProps>;
+  private _innerComponent: VisualComponentState<TComponentProps, any>;
+  private _defaultComponent: VisualComponentState<TComponentProps, any>;
 
-  constructor(defaultComponent: IComponentDefinition<TComponentProps>) {
-    this._innerComponent = new VisualComponentState<TComponentProps>(
+  constructor(defaultComponent: IComponentDefinition<TComponentProps, any>) {
+    this._innerComponent = new VisualComponentState<TComponentProps, any>(
       defaultComponent
     );
     this._defaultComponent = this._innerComponent;
@@ -27,11 +27,11 @@ export class VisualComponentWithDefault<TComponentProps> {
 
   import = (
     newComponent?:
-      | IComponentDefinition<TComponentProps>
+      | IComponentDefinition<TComponentProps, any>
       | VisualComponent<TComponentProps>
   ) => {
     this._innerComponent = newComponent
-      ? new VisualComponentState<TComponentProps>(newComponent)
+      ? new VisualComponentState<TComponentProps, any>(newComponent)
       : this._defaultComponent;
   };
 }

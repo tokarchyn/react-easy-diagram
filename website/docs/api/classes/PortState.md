@@ -25,11 +25,11 @@ custom_edit_url: null
 
 ### componentDefinition
 
-• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState.md)<[`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps.md)<`any`\>\>
+• `get` **componentDefinition**(): [`VisualComponentState`](VisualComponentState.md)<[`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps.md)<`any`\>, `any`\>
 
 #### Returns
 
-[`VisualComponentState`](VisualComponentState.md)<[`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps.md)<`any`\>\>
+[`VisualComponentState`](VisualComponentState.md)<[`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps.md)<`any`\>, `any`\>
 
 ___
 
@@ -53,6 +53,16 @@ ___
 
 ___
 
+### data
+
+• `get` **data**(): `any`
+
+#### Returns
+
+`any`
+
+___
+
 ### dragging
 
 • `get` **dragging**(): `boolean`
@@ -72,16 +82,6 @@ ___
 #### Returns
 
 `void`
-
-___
-
-### extra
-
-• `get` **extra**(): `any`
-
-#### Returns
-
-`any`
 
 ___
 
@@ -177,6 +177,26 @@ ___
 
 ___
 
+### offsetFromNodeCenter
+
+• `get` **offsetFromNodeCenter**(): ``null`` \| `number`
+
+#### Returns
+
+``null`` \| `number`
+
+___
+
+### offsetFromOrigin
+
+• `get` **offsetFromOrigin**(): ``null`` \| [`Point`](../#point)
+
+#### Returns
+
+``null`` \| [`Point`](../#point)
+
+___
+
 ### offsetRecalculationRequested
 
 • `get` **offsetRecalculationRequested**(): `number`
@@ -200,6 +220,16 @@ Offset relative to parent node, helps us to calculate positions of link endpoint
 ``null`` \| [`Point`](../#point)
 
 offset excluding zoom
+
+___
+
+### position
+
+• `get` **position**(): ``null`` \| ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"``
+
+#### Returns
+
+``null`` \| ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"``
 
 ___
 
@@ -247,11 +277,11 @@ ___
 
 ### export
 
-▸ **export**(): [`IPortStateWithIds`](../interfaces/IPortStateWithIds.md)
+▸ **export**(): [`IPortExport`](../interfaces/IPortExport.md)
 
 #### Returns
 
-[`IPortStateWithIds`](../interfaces/IPortStateWithIds.md)
+[`IPortExport`](../interfaces/IPortExport.md)
 
 ___
 
@@ -293,25 +323,9 @@ ___
 
 ___
 
-### setComponent
+### setData
 
-▸ **setComponent**(`value?`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value?` | ``null`` \| [`VisualComponent`](../#visualcomponent)<[`IPortVisualComponentProps`](../interfaces/IPortVisualComponentProps.md)<`any`\>\> |
-
-#### Returns
-
-`void`
-
-___
-
-### setExtra
-
-▸ **setExtra**(`value`): `void`
+▸ **setData**(`value`): `void`
 
 #### Parameters
 
@@ -382,6 +396,54 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `direction` | [`DirectionWithDiagonals`](../#directionwithdiagonals) |
+
+#### Returns
+
+`void`
+
+___
+
+### setOffsetFromNodeCenter
+
+▸ **setOffsetFromNodeCenter**(`value`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `undefined` \| ``null`` \| `number` |
+
+#### Returns
+
+`void`
+
+___
+
+### setOffsetFromOrigin
+
+▸ **setOffsetFromOrigin**(`value`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `undefined` \| ``null`` \| [`Point`](../#point) |
+
+#### Returns
+
+`void`
+
+___
+
+### setPosition
+
+▸ **setPosition**(`value`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `undefined` \| ``null`` \| ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"`` |
 
 #### Returns
 
