@@ -45,7 +45,7 @@ export class NodeState {
     });
 
     reaction(
-      () => [this._id, this._label, this._data, this._type],
+      () => [this._id, this._label, this._data, this._type, this._ports],
       () => {
         this.ref.recalculateSizeAndPosition();
         this.recalculatePortsOffset();
