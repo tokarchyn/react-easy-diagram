@@ -68,7 +68,7 @@ const defaultZoomInterval: Point = [0.1, 3];
 const defaultZoomToFitSettings: IZoomToFitSettings = {
   padding: [30, 30],
   zoomInterval: [0.1, 1.5],
-  callOnLoad: true
+  callOnImportState: true
 };
 
 export interface IDiagramSettings {
@@ -97,5 +97,5 @@ export interface IMiniControlComponentProps<TSettings = any> {
 export interface IZoomToFitSettings {
   padding: Point;
   zoomInterval: Point;
-  callOnLoad: boolean;
+  callOnImportState: boolean;
 }

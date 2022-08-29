@@ -10,15 +10,15 @@ custom_edit_url: null
 
 ### constructor
 
-• **new PortState**(`rootStore`, `id`, `nodeId`, `state?`)
+• **new PortState**(`rootStore`, `node`, `id`, `state?`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `rootStore` | [`RootStore`](RootStore.md) |
+| `node` | [`NodeState`](NodeState.md) |
 | `id` | `string` |
-| `nodeId` | `string` |
 | `state?` | [`IPortStateWithoutIds`](../interfaces/IPortStateWithoutIds.md) |
 
 ## Accessors
@@ -139,11 +139,11 @@ ___
 
 ### label
 
-• `get` **label**(): `string`
+• `get` **label**(): `undefined` \| `string`
 
 #### Returns
 
-`string`
+`undefined` \| `string`
 
 ___
 
@@ -167,6 +167,16 @@ ___
 
 ___
 
+### nodeComponentPortState
+
+• `get` **nodeComponentPortState**(): `undefined` \| [`IPortFinalState`](../interfaces/IPortFinalState.md)
+
+#### Returns
+
+`undefined` \| [`IPortFinalState`](../interfaces/IPortFinalState.md)
+
+___
+
 ### nodeId
 
 • `get` **nodeId**(): `string`
@@ -179,21 +189,21 @@ ___
 
 ### offsetFromNodeCenter
 
-• `get` **offsetFromNodeCenter**(): ``null`` \| `number`
+• `get` **offsetFromNodeCenter**(): `undefined` \| `number`
 
 #### Returns
 
-``null`` \| `number`
+`undefined` \| `number`
 
 ___
 
 ### offsetFromOrigin
 
-• `get` **offsetFromOrigin**(): ``null`` \| [`Point`](../#point)
+• `get` **offsetFromOrigin**(): `undefined` \| [`Point`](../#point)
 
 #### Returns
 
-``null`` \| [`Point`](../#point)
+`undefined` \| [`Point`](../#point)
 
 ___
 
@@ -225,11 +235,11 @@ ___
 
 ### position
 
-• `get` **position**(): ``null`` \| ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"``
+• `get` **position**(): `undefined` \| ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"``
 
 #### Returns
 
-``null`` \| ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"``
+`undefined` \| ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"``
 
 ___
 
@@ -379,23 +389,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `value` | `undefined` \| ``"left"`` \| ``"right"`` \| ``"up"`` \| ``"down"`` \| ``"left-down"`` \| ``"left-up"`` \| ``"right-down"`` \| ``"right-up"`` |
-
-#### Returns
-
-`void`
-
-___
-
-### setLinkDirectionIfNotYet
-
-▸ **setLinkDirectionIfNotYet**(`direction`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `direction` | [`DirectionWithDiagonals`](../#directionwithdiagonals) |
+| `value` | `undefined` \| ``null`` \| ``"left"`` \| ``"right"`` \| ``"up"`` \| ``"down"`` \| ``"left-down"`` \| ``"left-up"`` \| ``"right-down"`` \| ``"right-up"`` |
 
 #### Returns
 

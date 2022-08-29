@@ -8,6 +8,7 @@ import {
   createOutputVerticalNode,
   createStarNode,
 } from 'components/node/NodeDefault';
+import { PortPosition } from 'hooks/useRelativePositionStyles';
 import { makeAutoObservable } from 'mobx';
 import { NodeState } from 'states/nodeState';
 import {
@@ -17,7 +18,8 @@ import {
 } from 'states/visualComponents';
 import { IVisualComponentProps } from 'states/visualComponentState';
 import { Point } from 'utils/point';
-import { IPortState } from './portState';
+import { DirectionWithDiagonals } from 'utils/position';
+import { IPortFinalState, IPortState } from './portState';
 
 export class NodesSettings {
   private _visualComponents: VisualComponents<
@@ -65,7 +67,7 @@ export class NodesSettings {
 }
 
 export interface INodeComponentSettings {
-  ports?: IPortState[]
+  ports?: IPortFinalState[]
 }
 
 export interface INodeVisualComponentProps<TSettings extends INodeComponentSettings = INodeComponentSettings>

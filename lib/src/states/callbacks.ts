@@ -14,6 +14,7 @@ export class Callbacks {
   private _nodesAdded?: ICallbacks['nodesAdded'];
   private _nodePositionChanged?: ICallbacks['nodePositionChanged'];
   private _dragStateChanged?: ICallbacks['dragStateChanged'];
+  private _importedStateRendered?: ICallbacks['importedStateRendered'];
 
   private _rootStore: RootStore;
 
@@ -27,13 +28,15 @@ export class Callbacks {
     this._nodesAdded = callbacks?.nodesAdded;
     this._nodePositionChanged = callbacks?.nodePositionChanged;
     this._dragStateChanged = callbacks?.dragStateChanged;
+    this._importedStateRendered = callbacks?.importedStateRendered;
   };
 
-  export = () : ICallbacks => ({
+  export = (): ICallbacks => ({
     validateLinkEndpoints: this._validateLinkEndpoints,
     nodesAdded: this._nodesAdded,
     nodePositionChanged: this._nodePositionChanged,
     dragStateChanged: this._dragStateChanged,
+    importedStateRendered: this._importedStateRendered,
   });
 
   validateLinkEndpoints = (source: PortState, target: PortState) => {
@@ -72,6 +75,16 @@ export class Callbacks {
   dragStateChanged = (nodes: NodeState[], started: boolean) =>
     this._dragStateChanged &&
     this._dragStateChanged(nodes, started, this._rootStore);
+
+  importedStateRendered = () => {
+    if (this._rootStore.diagramSettings.zoomToFitSettings.callOnImportState) {
+      this._rootStore.diagramState.zoomToFit();
+    }
+
+    if (this._importedStateRendered) {
+      this._importedStateRendered(this._rootStore);
+    }
+  };
 }
 
 export interface ICallbacks {
@@ -98,4 +111,5 @@ export interface ICallbacks {
     started: boolean,
     rootStore: RootStore
   ) => void;
+  importedStateRendered?: (rootStore: RootStore) => void;
 }

@@ -10,7 +10,21 @@ describe('Node state', () => {
     store = new RootStore();
   });
 
-  test('import/export',() => {
+  test('import/export', () => {
+    const defaultComponent =
+      store.nodesSettings.visualComponents.getComponent('default');
+    defaultComponent.import({
+      component: defaultComponent.component,
+      settings: {
+        ports: [
+          {
+            id: 'port_1',
+            label: 'Port 1',
+          },
+        ],
+      },
+    });
+
     const node = new NodeState(store, 'test', {
       type: 'someType',
       data: false,
@@ -18,104 +32,39 @@ describe('Node state', () => {
       isDragEnabled: false,
       isSelectionEnabled: false,
       position: [5, 10],
+      ports: [
+        {
+          id: 'port_1',
+          data: 'Data 1',
+        },
+        {
+          id: 'port_2',
+          label: 'Port 2',
+        },
+      ],
     });
-
-    node.addPort({
-      id: 'port_1',
-      label: 'Port 1',
-    })
 
     expect(node.export()).toEqual({
       id: 'test',
       type: 'someType',
       data: false,
       label: 'Some label',
-      ports: [{
-        id: 'port_1',
-        nodeId: "test",
-        label: 'Port 1',
-        data: null,
-        type: "default"
-      }],
+      ports: [
+        {
+          id: 'port_1',
+          nodeId: 'test',
+          label: undefined, // only node port's values are exported, not component values
+          data: 'Data 1',
+        },
+        {
+          id: 'port_2',
+          nodeId: 'test',
+          label: 'Port 2',
+        },
+      ],
       isDragEnabled: false,
       isSelectionEnabled: false,
       position: [5, 10],
-    });
-  });
-
-  describe('nodePositionChanged callback', () => {
-    let mockNodePositionChangedCallback: jest.Mock<
-      ReturnType<NonNullable<ICallbacks['nodePositionChanged']>>,
-      Parameters<NonNullable<ICallbacks['nodePositionChanged']>>
-    >;
-
-    const validateCallbackCall = (
-      mockArgs: any[],
-      node: NodeState,
-      oldPos: Point,
-      newPos: Point
-    ) => {
-      expect(mockArgs[0]).toBe(node);
-      expect(mockArgs[1]).toEqual(oldPos);
-      expect(mockArgs[2]).toEqual(newPos);
-      expect(mockArgs[3]).toEqual(node.isDragActive);
-      expect(mockArgs[4]).toBe(store);
-    };
-
-    beforeEach(() => {
-      mockNodePositionChangedCallback = jest.fn((_a, _b, _c, _d, _e) => {});
-      store.callbacks.import({
-        nodePositionChanged: mockNodePositionChangedCallback,
-      });
-    });
-
-    test('Is not called on initialization', () => {
-      new NodeState(store, 'test', {
-        position: [5, 10],
-      });
-
-      expect(mockNodePositionChangedCallback.mock.calls.length).toBe(0);
-    });
-
-    test('Is not called if position remains the same', () => {
-      const node = new NodeState(store, 'test', {
-        position: [5, 10],
-      });
-      node.setPosition([5, 10]);
-      expect(mockNodePositionChangedCallback.mock.calls.length).toBe(0);
-    });
-
-    test('Is called for new node position set by code', () => {
-      const initPosition: Point = [5, 10];
-      const newPosition: Point = [50, 100];
-      const node = new NodeState(store, 'test', { position: initPosition });
-
-      node.setPosition(newPosition);
-
-      expect(mockNodePositionChangedCallback.mock.calls.length).toBe(1);
-      validateCallbackCall(
-        mockNodePositionChangedCallback.mock.calls[0],
-        node,
-        initPosition,
-        newPosition
-      );
-    });
-
-    test('Is called for new node position during dragging', () => {
-      const initPosition: Point = [5, 10];
-      const newPosition: Point = [50, 100];
-      const node = new NodeState(store, 'test', { position: initPosition });
-
-      node.isDragActive = true;
-      node.setPosition(newPosition);
-
-      expect(mockNodePositionChangedCallback.mock.calls.length).toBe(1);
-      validateCallbackCall(
-        mockNodePositionChangedCallback.mock.calls[0],
-        node,
-        initPosition,
-        newPosition
-      );
     });
   });
 
@@ -204,7 +153,7 @@ describe('Node state', () => {
         [-1, -1],
       ],
       [
-        [12,10],
+        [12, 10],
         [0, 0],
         [12, 10],
         [0, 0],
@@ -241,15 +190,27 @@ describe('Node state', () => {
         [-10, 10],
         [-10, 10],
       ],
-    ])(
-      'Node position %p should be rounded to %p',
-      (pos, expectedPos) => {
-        const node = new NodeState(store, 'test');
+    ])('Node position %p should be rounded to %p', (pos, expectedPos) => {
+      const node = new NodeState(store, 'test');
 
-        node.setPosition(pos);
+      node.setPosition(pos);
 
-        expect(node.position).toEqual(expectedPos);
-      }
-    );
+      expect(node.position).toEqual(expectedPos);
+    });
   });
+
+  test.each<[Point, string]>([
+    [[12, 18], 'translate(12px, 18px)'],
+    [[-12, -18], 'translate(-12px, -18px)'],
+    [[0, 0], 'translate(0px, 0px)'],
+  ])(
+    'Generate transform string for position %p',
+    (pos, expectedTransformStr) => {
+      const node = new NodeState(store, 'test', {
+        position: pos,
+      });
+
+      expect(node.transformString).toEqual(expectedTransformStr);
+    }
+  );
 });

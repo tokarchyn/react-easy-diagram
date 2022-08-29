@@ -49,6 +49,16 @@ ___
 
 ___
 
+### renderImportedRequestId
+
+• `get` **renderImportedRequestId**(): `number`
+
+#### Returns
+
+`number`
+
+___
+
 ### zoom
 
 • `get` **zoom**(): `number`
@@ -110,6 +120,16 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `state?` | [`IDiagramState`](../interfaces/IDiagramState.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### reportWhenImportedStateRendered
+
+▸ **reportWhenImportedStateRendered**(): `void`
 
 #### Returns
 

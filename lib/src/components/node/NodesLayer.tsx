@@ -7,13 +7,6 @@ import { NodeWrapper } from 'components/node/NodeWrapper';
 export const NodesLayer = observer<{
   transform: string;
 }>(({ transform }) => {
-  const rootStore = useRootStore();
-
-  useEffect(() => {
-    if (rootStore.diagramSettings.zoomToFitSettings.callOnLoad)
-      rootStore.diagramState.zoomToFit();
-  }, []);
-
   return (
     <div className='react_fast_diagram_Layer' style={{ transform: transform }}>
       <NodesList />

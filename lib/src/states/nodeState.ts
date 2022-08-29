@@ -2,7 +2,12 @@ import { makeAutoObservable, reaction } from 'mobx';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { LinkState } from 'states/linkState';
 import { INodeComponentSettings } from 'states/nodesSettings';
-import { IPortExport, IPortState, PortState } from 'states/portState';
+import {
+  IPortExport,
+  IPortState,
+  IPortStateWithoutIds,
+  PortState,
+} from 'states/portState';
 import { RootStore } from 'states/rootStore';
 import { COMPONENT_DEFAULT_TYPE } from 'states/visualComponents';
 import { deepCopy, Dictionary, isBoolean } from 'utils/common';
@@ -92,24 +97,20 @@ export class NodeState {
     return this._position;
   }
 
-  /**
-   * Merge node component's ports (those provided in settings of component definition) with ports provided
-   * in {@link nodePorts}, where node component's port values will be overwritten by values specified in {@link nodePorts}.
-   * @param nodePorts
-   */
   setPorts = (nodePorts?: IPortState[]) => {
-    const componentPorts = (
-      this.componentDefinition.settings as INodeComponentSettings
-    )?.ports;
-    const mergedPorts = new Map<string, IPortState>();
+    const componentPortsIds =
+      (this.componentDefinition.settings as INodeComponentSettings)?.ports?.map(
+        (p) => p.id
+      ) ?? [];
 
-    componentPorts?.forEach((n) => mergedPorts.set(n.id, n));
-    nodePorts?.forEach((n) =>
-      mergedPorts.set(n.id, { ...(mergedPorts.get(n.id) ?? {}), ...n })
-    );
+    const nodePortsIds = nodePorts?.map((p) => p.id) ?? [];
+
+    const portsIds = new Set([...componentPortsIds, ...nodePortsIds]);
 
     this._ports = new Map();
-    mergedPorts.forEach((v) => this._ports.set(v.id, this._createPortState(v)));
+    portsIds.forEach((id) =>
+      this._ports.set(id, this._createPortState(id, nodePorts?.find(p => p.id === id)))
+    );
   };
 
   /**
@@ -234,7 +235,7 @@ export class NodeState {
     if (!port || this._ports.get(port.id)) {
       return errorResult();
     }
-    const newPort = this._createPortState(port);
+    const newPort = this._createPortState(port.id, port);
     this._ports.set(newPort.id, newPort);
     return successValueResult(newPort);
   };
@@ -255,8 +256,8 @@ export class NodeState {
       throw `Port with id '${portId}' does not exist in the node '${this._id}'`;
   };
 
-  private _createPortState(port: IPortState) {
-    return new PortState(this._rootStore, port.id, this._id, port);
+  private _createPortState = (id: string, state?: IPortStateWithoutIds) => {
+    return new PortState(this._rootStore, this, id, state);
   }
 
   get connectedExternalPorts(): Dictionary<PortState[]> {

@@ -18,7 +18,7 @@ describe('Diagram settings', () => {
       zoomInterval: [10, 20],
       zoomToFitSettings: {
         zoomInterval: [0.5,5],
-        callOnLoad: false,
+        callOnImportState: false,
         padding: [100, 100],
       },
       userInteraction: {

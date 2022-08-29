@@ -8,9 +8,9 @@ custom_edit_url: null
 
 ## Properties
 
-### callOnLoad
+### callOnImportState
 
-• **callOnLoad**: `boolean`
+• **callOnImportState**: `boolean`
 
 ___
 

@@ -2,6 +2,7 @@ import { ICallbacks } from 'states/callbacks';
 import { INodeState } from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
 import { createDummyHTMLElement } from 'utils/__tests__/testUtils';
+import React from 'react';
 
 describe('Nodes store', () => {
   let store: RootStore;

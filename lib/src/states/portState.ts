@@ -4,27 +4,21 @@ import { DirectionWithDiagonals } from 'utils/position';
 import { HtmlElementRefState } from 'states/htmlElementRefState';
 import { LinkState } from 'states/linkState';
 import { NodeState } from 'states/nodeState';
-import { IPortVisualComponentProps } from 'states/portsSettings';
 import { RootStore } from 'states/rootStore';
 import { COMPONENT_DEFAULT_TYPE } from 'states/visualComponents';
-import {
-  VisualComponentState,
-  VisualComponent,
-} from 'states/visualComponentState';
 import { isBoolean, deepCopy } from 'utils/common';
 import { PortPosition } from 'hooks/useRelativePositionStyles';
 
 export class PortState {
   private _id: string;
-  private _nodeId: string;
-  private _label: string;
-  private _type: string;
+  private _label?: string | null;
+  private _type?: string | null;
   private _data: any;
-  private _linkDirection: DirectionWithDiagonals | null;
-  private _isConnectionEnabled: boolean | null;
-  private _position: PortPosition | null;
-  private _offsetFromNodeCenter: number | null;
-  private _offsetFromOrigin: Point | null;
+  private _linkDirection?: DirectionWithDiagonals | null;
+  private _isConnectionEnabled?: boolean | null;
+  private _position?: PortPosition | null;
+  private _offsetFromNodeCenter?: number | null;
+  private _offsetFromOrigin?: Point | null;
 
   private _ref: HtmlElementRefState;
   private _dragging: boolean = false;
@@ -34,21 +28,27 @@ export class PortState {
   private _offsetRecalculationRequested: number = 0;
   private _triggerOffsetRecalculation: number = 0;
 
+  private _node: NodeState;
   private _rootStore: RootStore;
 
   constructor(
     rootStore: RootStore,
+    node: NodeState,
     id: string,
-    nodeId: string,
     state?: IPortStateWithoutIds
   ) {
     this._id = id;
-    this._nodeId = nodeId;
+    this._node = node;
+    this._rootStore = rootStore;
     this._ref = new HtmlElementRefState(null, rootStore.diagramState);
     this.import(state);
 
-    makeAutoObservable(this);
-    this._rootStore = rootStore;
+    makeAutoObservable<PortState, '_rootStore' | '_node' | '_ref'>(this, {
+      _node: false,
+      node: false,
+      _rootStore: false,
+      _ref: false,
+    });
 
     reaction(
       () => [
@@ -65,12 +65,18 @@ export class PortState {
     );
   }
 
+  get nodeComponentPortState(): IPortFinalState | undefined {
+    return this.node.componentDefinition.settings?.ports?.find(
+      (p) => p.id === this._id
+    );
+  }
+
   get id() {
     return this._id;
   }
 
   get nodeId() {
-    return this._nodeId;
+    return this.node.id;
   }
 
   get fullId() {
@@ -105,44 +111,56 @@ export class PortState {
     this._validForConnection = value;
   }
 
-  get label() {
-    return this._label;
+  get label(): string | undefined {
+    return this._label === undefined
+      ? this.nodeComponentPortState?.label
+      : this._label ?? undefined;
   }
 
   setLabel = (value: string | null | undefined) => {
-    this._label = value ?? '';
+    this._label = value;
   };
 
-  get type() {
-    return this._type;
+  get type(): string {
+    return (
+      (this._type === undefined
+        ? this.nodeComponentPortState?.type
+        : this._type) ?? COMPONENT_DEFAULT_TYPE
+    );
   }
 
   setType = (value: string | null | undefined) => {
-    this._type = value ?? COMPONENT_DEFAULT_TYPE;
+    this._type = value;
   };
 
-  get position() {
-    return this._position;
+  get position(): PortPosition | undefined {
+    return this._position === undefined
+      ? this.nodeComponentPortState?.position
+      : this._position ?? undefined;
   }
 
   setPosition = (value: PortPosition | null | undefined) => {
-    this._position = value ?? null;
+    this._position = value;
   };
 
-  get offsetFromNodeCenter() {
-    return this._offsetFromNodeCenter;
+  get offsetFromNodeCenter(): number | undefined {
+    return this._offsetFromNodeCenter === undefined
+      ? this.nodeComponentPortState?.offsetFromNodeCenter
+      : this._offsetFromNodeCenter ?? undefined;
   }
 
   setOffsetFromNodeCenter = (value: number | null | undefined) => {
-    this._offsetFromNodeCenter = value ?? null;
+    this._offsetFromNodeCenter = value;
   };
 
-  get offsetFromOrigin() {
-    return this._offsetFromOrigin;
+  get offsetFromOrigin(): Point | undefined {
+    return this._offsetFromOrigin === undefined
+      ? this.nodeComponentPortState?.offsetFromOrigin
+      : this._offsetFromOrigin ?? undefined;
   }
 
   setOffsetFromOrigin = (value: Point | null | undefined) => {
-    this._offsetFromOrigin = value ?? null;
+    this._offsetFromOrigin = value;
   };
 
   /**
@@ -182,15 +200,15 @@ export class PortState {
   export = (): IPortExport =>
     deepCopy({
       id: this._id,
-      nodeId: this._nodeId,
+      nodeId: this.nodeId,
       label: this._label,
       type: this._type,
       data: this._data,
-      linkDirection: this._linkDirection ?? undefined,
-      isConnectionEnabled: this._isConnectionEnabled ?? undefined,
-      position: this._position ?? undefined,
-      offsetFromNodeCenter: this._offsetFromNodeCenter ?? undefined,
-      offsetFromOrigin: this._offsetFromOrigin ?? undefined,
+      linkDirection: this._linkDirection,
+      isConnectionEnabled: this._isConnectionEnabled,
+      position: this._position,
+      offsetFromNodeCenter: this._offsetFromNodeCenter,
+      offsetFromOrigin: this._offsetFromOrigin,
     });
 
   get data() {
@@ -198,13 +216,11 @@ export class PortState {
   }
 
   setData = (value: any) => {
-    this._data = value === undefined ? null : value;
+    this._data = value;
   };
 
   get node(): NodeState {
-    const node = this._rootStore.nodesStore.getNode(this.nodeId);
-    if (node) return node;
-    else throw `Node with id '${this.nodeId}' does not exist`;
+    return this._node;
   }
 
   /**
@@ -295,22 +311,21 @@ export class PortState {
     }
   }
 
-  setLinkDirection = (value: DirectionWithDiagonals | undefined) => {
-    this._linkDirection = value ?? null;
-  };
-
-  setLinkDirectionIfNotYet = (direction: DirectionWithDiagonals) => {
-    this._linkDirection = this._linkDirection ?? direction;
+  setLinkDirection = (value: DirectionWithDiagonals | undefined | null) => {
+    this._linkDirection = value;
   };
 
   get isConnectionEnabled(): boolean {
-    return this._isConnectionEnabled === null
-      ? this._rootStore.diagramSettings.userInteraction.portConnection
-      : this._isConnectionEnabled;
+    return (
+      (this._isConnectionEnabled === undefined
+        ? this.nodeComponentPortState?.isConnectionEnabled
+        : this._isConnectionEnabled) ??
+      this._rootStore.diagramSettings.userInteraction.portConnection
+    );
   }
 
   setIsConnectionEnabled = (value: boolean | null | undefined) => {
-    this._isConnectionEnabled = isBoolean(value) ? value : null;
+    this._isConnectionEnabled = value;
   };
 }
 
@@ -359,7 +374,8 @@ function getTranslate(item: HTMLElement): Point {
   return transArr;
 }
 
-export interface IPortStateWithoutIds {
+export interface IPortFinalState {
+  id: string;
   label?: string;
   type?: string;
   data?: any;
@@ -368,6 +384,17 @@ export interface IPortStateWithoutIds {
   position?: PortPosition;
   offsetFromNodeCenter?: number;
   offsetFromOrigin?: Point;
+}
+
+export interface IPortStateWithoutIds {
+  label?: string | null;
+  type?: string | null;
+  data?: any;
+  linkDirection?: DirectionWithDiagonals | null;
+  isConnectionEnabled?: boolean | null;
+  position?: PortPosition | null;
+  offsetFromNodeCenter?: number | null;
+  offsetFromOrigin?: Point | null;
 }
 
 export interface IPortState extends IPortStateWithoutIds {

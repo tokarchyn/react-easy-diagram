@@ -90,6 +90,7 @@ export class RootStore {
   importState = (nodes?: INodeState[], links?: ILinkState[]) => {
     this._nodesStore.import(nodes);
     this._linksStore.import(links);
+    this._diagramState.reportWhenImportedStateRendered();
   };
 
   export = (): { nodes: INodeState[]; links: ILinkState[] } => ({
@@ -97,12 +98,12 @@ export class RootStore {
     links: this._linksStore.export(),
   });
 
-  importSettings = (settings: ISettings) => {
-    this._diagramSettings.import(settings.diagram);
-    this._nodesSettings.import(settings.nodes);
-    this._linksSettings.import(settings.links);
-    this._portsSettings.import(settings.ports);
-    this._callbacks.import(settings.callbacks);
+  importSettings = (settings?: ISettings) => {
+    this._diagramSettings.import(settings?.diagram);
+    this._nodesSettings.import(settings?.nodes);
+    this._linksSettings.import(settings?.links);
+    this._portsSettings.import(settings?.ports);
+    this._callbacks.import(settings?.callbacks);
   };
 }
 

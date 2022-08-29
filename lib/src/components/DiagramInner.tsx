@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { LinksLayer } from 'components/link/LinksLayer';
 import { NodesLayer } from 'components/node/NodesLayer';
 import { useDiagramUserInteraction } from 'hooks/userInteractions/useDiagramUserInteraction';
@@ -11,6 +11,7 @@ import '../Diagram.css';
 
 export interface IDiagramInnerProps {
   diagramStyles?: React.CSSProperties;
+  children?: ReactNode | undefined;
 }
 
 export const DigramInner = observer<IDiagramInnerProps>((props) => {
@@ -43,6 +44,7 @@ export const DigramInner = observer<IDiagramInnerProps>((props) => {
       <BackgroundWrapper />
       <LinksLayer transform={transform} />
       <NodesLayer transform={transform} />
+      {props.children}
       <MiniControlWrapper />
     </div>
   );

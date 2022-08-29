@@ -403,9 +403,6 @@ ___
 
 ▸ **setPorts**(`nodePorts?`): `void`
 
-Merge node component's ports (those provided in settings of component definition) with ports provided
-in {@link nodePorts}, where node component's port values will be overwritten by values specified in {@link nodePorts}.
-
 #### Parameters
 
 | Name | Type |

@@ -15,13 +15,14 @@ export class DiagramState
   private _ref: HtmlElementRefState;
   private _rootStore: RootStore;
 
+  private _renderImportedRequestId: number = -1;
+
   constructor(rootStore: RootStore) {
     this._ref = new HtmlElementRefState(null, this);
     this._rootStore = rootStore;
     this.import();
 
-    makeAutoObservable(this, {
-      // @ts-ignore
+    makeAutoObservable<DiagramState, '_rootStore'>(this, {
       _rootStore: false,
     });
   }
@@ -47,6 +48,14 @@ export class DiagramState
       this._rootStore.diagramSettings.zoomInterval
     );
   };
+
+  reportWhenImportedStateRendered = () => {
+    this._renderImportedRequestId ++;
+  };
+
+  get renderImportedRequestId() {
+    return this._renderImportedRequestId;
+  }
 
   zoomIn = () => this.zoomIntoCenter(1 / 0.8);
   zoomOut = () => this.zoomIntoCenter(0.8);

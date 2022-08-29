@@ -1,50 +1,49 @@
 import { NodeLabel } from 'components/node/NodeLabel';
-import { IPortProps, Port } from 'components/port/Port';
+import { Port } from 'components/port/Port';
 import { IUseStylingOptions, useStyling } from 'hooks/useStyling';
 import { observer } from 'mobx-react-lite';
 import React, { useMemo } from 'react';
 import { INodeVisualComponentProps } from 'states/nodesSettings';
 import { NodeState } from 'states/nodeState';
-import { IPortState } from 'states/portState';
+import { IPortFinalState } from 'states/portState';
 import {
   IComponentDefinition,
   VisualComponent,
 } from 'states/visualComponentState';
 
-const NodeDefault: React.FC<
-  INodeVisualComponentProps<INodeDefaultSettings>
-> = observer(({ entity, settings }) => {
-  const stylingOptions = useMemo<IUseStylingOptions>(
-    () => ({
-      removeDefaultClasses: settings?.removeDefaultClasses,
-      baseState: 'base',
-      classes: settings?.classes,
-      defaultClasses: defaultNodeClasses,
-      style: settings?.style,
-      spareStates: { 'selected-hovered': ['selected', 'hovered'] },
-    }),
-    [settings]
-  );
+const NodeDefault: React.FC<INodeVisualComponentProps<INodeDefaultSettings>> =
+  observer(({ entity, settings }) => {
+    const stylingOptions = useMemo<IUseStylingOptions>(
+      () => ({
+        removeDefaultClasses: settings?.removeDefaultClasses,
+        baseState: 'base',
+        classes: settings?.classes,
+        defaultClasses: defaultNodeClasses,
+        style: settings?.style,
+        spareStates: { 'selected-hovered': ['selected', 'hovered'] },
+      }),
+      [settings]
+    );
 
-  let state = 'base';
-  if (entity.selected && entity.hovered) state = 'selected-hovered';
-  else if (entity.selected) state = 'selected';
-  else if (entity.hovered) state = 'hovered';
+    let state = 'base';
+    if (entity.selected && entity.hovered) state = 'selected-hovered';
+    else if (entity.selected) state = 'selected';
+    else if (entity.hovered) state = 'hovered';
 
-  const styling = useStyling(stylingOptions, state);
+    const styling = useStyling(stylingOptions, state);
 
-  return (
-    <div className={styling.className} style={styling.style}>
-      {settings?.innerNode && <settings.innerNode node={entity} />}
+    return (
+      <div className={styling.className} style={styling.style}>
+        {settings?.innerNode && <settings.innerNode node={entity} />}
 
-      {Array.isArray(settings?.ports) &&
-        settings?.ports.map((p) => <Port id={p.id} key={p.id} />)}
-    </div>
-  );
-});
+        {Array.isArray(settings?.ports) &&
+          settings?.ports.map((p) => <Port id={p.id} key={p.id} />)}
+      </div>
+    );
+  });
 
 export interface INodeDefaultSettings {
-  ports?: IPortState[];
+  ports?: IPortFinalState[];
   innerNode?: VisualComponent<{ node: NodeState }>;
   removeDefaultClasses?: true;
   classes?: NodeDefaultSettingsByStates<string[]>;

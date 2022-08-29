@@ -68,7 +68,7 @@ module.exports = {
               to: 'examples/configureUserInteraction',
             },
             {
-              label: 'Callbacks',
+              label: 'Callbacks (+ save and restore)',
               to: 'examples/callbacks',
             },
             {

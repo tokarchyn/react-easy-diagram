@@ -141,13 +141,13 @@ ___
 
 ### importSettings
 
-▸ **importSettings**(`settings`): `void`
+▸ **importSettings**(`settings?`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `settings` | [`ISettings`](../interfaces/ISettings.md) |
+| `settings?` | [`ISettings`](../interfaces/ISettings.md) |
 
 #### Returns
 

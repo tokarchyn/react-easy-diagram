@@ -24,40 +24,40 @@ ___
 
 ### isConnectionEnabled
 
-• `Optional` **isConnectionEnabled**: `boolean`
+• `Optional` **isConnectionEnabled**: ``null`` \| `boolean`
 
 ___
 
 ### label
 
-• `Optional` **label**: `string`
+• `Optional` **label**: ``null`` \| `string`
 
 ___
 
 ### linkDirection
 
-• `Optional` **linkDirection**: ``"left"`` \| ``"right"`` \| ``"up"`` \| ``"down"`` \| ``"left-down"`` \| ``"left-up"`` \| ``"right-down"`` \| ``"right-up"``
+• `Optional` **linkDirection**: ``null`` \| ``"left"`` \| ``"right"`` \| ``"up"`` \| ``"down"`` \| ``"left-down"`` \| ``"left-up"`` \| ``"right-down"`` \| ``"right-up"``
 
 ___
 
 ### offsetFromNodeCenter
 
-• `Optional` **offsetFromNodeCenter**: `number`
+• `Optional` **offsetFromNodeCenter**: ``null`` \| `number`
 
 ___
 
 ### offsetFromOrigin
 
-• `Optional` **offsetFromOrigin**: [`Point`](../#point)
+• `Optional` **offsetFromOrigin**: ``null`` \| [`Point`](../#point)
 
 ___
 
 ### position
 
-• `Optional` **position**: ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"``
+• `Optional` **position**: ``null`` \| ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"``
 
 ___
 
 ### type
 
-• `Optional` **type**: `string`
+• `Optional` **type**: ``null`` \| `string`

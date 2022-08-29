@@ -26,6 +26,22 @@ custom_edit_url: null
 
 ___
 
+### importedStateRendered
+
+▸ `Optional` **importedStateRendered**(`rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
 ### nodePositionChanged
 
 ▸ `Optional` **nodePositionChanged**(`node`, `oldPosition`, `newPosition`, `isDragActive`, `rootStore`): `void`

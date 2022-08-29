@@ -165,7 +165,8 @@ You can also combine those methods and define some default ports for type, and t
       ports: [
         {
           id: 'port_1',
-          data: "override data defined in component"
+          data: "override data defined in component",
+          position: null, // use null to override value to undefined even if this property is defined in component
         },
         {
           id: 'port_2', // add a new port

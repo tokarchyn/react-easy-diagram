@@ -32,7 +32,7 @@ ___
 
 ### isConnectionEnabled
 
-• `Optional` **isConnectionEnabled**: `boolean`
+• `Optional` **isConnectionEnabled**: ``null`` \| `boolean`
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ ___
 
 ### label
 
-• `Optional` **label**: `string`
+• `Optional` **label**: ``null`` \| `string`
 
 #### Inherited from
 
@@ -52,7 +52,7 @@ ___
 
 ### linkDirection
 
-• `Optional` **linkDirection**: ``"left"`` \| ``"right"`` \| ``"up"`` \| ``"down"`` \| ``"left-down"`` \| ``"left-up"`` \| ``"right-down"`` \| ``"right-up"``
+• `Optional` **linkDirection**: ``null`` \| ``"left"`` \| ``"right"`` \| ``"up"`` \| ``"down"`` \| ``"left-down"`` \| ``"left-up"`` \| ``"right-down"`` \| ``"right-up"``
 
 #### Inherited from
 
@@ -68,7 +68,7 @@ ___
 
 ### offsetFromNodeCenter
 
-• `Optional` **offsetFromNodeCenter**: `number`
+• `Optional` **offsetFromNodeCenter**: ``null`` \| `number`
 
 #### Inherited from
 
@@ -78,7 +78,7 @@ ___
 
 ### offsetFromOrigin
 
-• `Optional` **offsetFromOrigin**: [`Point`](../#point)
+• `Optional` **offsetFromOrigin**: ``null`` \| [`Point`](../#point)
 
 #### Inherited from
 
@@ -88,7 +88,7 @@ ___
 
 ### position
 
-• `Optional` **position**: ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"``
+• `Optional` **position**: ``null`` \| ``"left-top"`` \| ``"right-top"`` \| ``"right-bottom"`` \| ``"left-bottom"`` \| ``"left-center"`` \| ``"top-left"`` \| ``"top-center"`` \| ``"top-right"`` \| ``"right-center"`` \| ``"bottom-left"`` \| ``"bottom-center"`` \| ``"bottom-right"`` \| ``"diagonal-left-top"`` \| ``"diagonal-right-top"`` \| ``"diagonal-right-bottom"`` \| ``"diagonal-left-bottom"``
 
 #### Inherited from
 
@@ -98,7 +98,7 @@ ___
 
 ### type
 
-• `Optional` **type**: `string`
+• `Optional` **type**: ``null`` \| `string`
 
 #### Inherited from
 

@@ -73,6 +73,7 @@ custom_edit_url: null
 - [INodeVisualComponentProps](interfaces/INodeVisualComponentProps.md)
 - [INodesSettings](interfaces/INodesSettings.md)
 - [IPortExport](interfaces/IPortExport.md)
+- [IPortFinalState](interfaces/IPortFinalState.md)
 - [IPortInnerDefaultSettings](interfaces/IPortInnerDefaultSettings.md)
 - [IPortProps](interfaces/IPortProps.md)
 - [IPortState](interfaces/IPortState.md)
@@ -170,9 +171,15 @@ ___
 
 ___
 
+### IDiagramContextProps
+
+Ƭ **IDiagramContextProps**: `React.PropsWithChildren`<{ `initState?`: [`IDiagramInitState`](interfaces/IDiagramInitState.md) ; `settings?`: [`ISettings`](interfaces/ISettings.md) ; `storeRef?`: `React.MutableRefObject`<[`RootStore`](classes/RootStore.md) \| ``null``\>  }\>
+
+___
+
 ### IDiagramProps
 
-Ƭ **IDiagramProps**: `React.PropsWithChildren`<{ `initState?`: [`IDiagramInitState`](interfaces/IDiagramInitState.md) ; `settings?`: [`ISettings`](interfaces/ISettings.md) ; `storeRef?`: `React.MutableRefObject`<[`RootStore`](classes/RootStore.md) \| ``null``\>  }\>
+Ƭ **IDiagramProps**: [`IDiagramInnerProps`](interfaces/IDiagramInnerProps.md) & [`IDiagramContextProps`](#idiagramcontextprops)
 
 ___
 
@@ -380,6 +387,12 @@ ___
 
 ___
 
+### DiagramContext
+
+• `Const` **DiagramContext**: (`props`: `PropsWithChildren`<{ `initState?`: [`IDiagramInitState`](interfaces/IDiagramInitState.md) ; `settings?`: [`ISettings`](interfaces/ISettings.md) ; `storeRef?`: `MutableRefObject`<``null`` \| [`RootStore`](classes/RootStore.md)\>  }\>) => `Element` & { `displayName`: `string`  }
+
+___
+
 ### DigramInner
 
 • `Const` **DigramInner**: `FunctionComponent`<[`IDiagramInnerProps`](interfaces/IDiagramInnerProps.md)\>
@@ -574,23 +587,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `props` | `PropsWithChildren`<{ `initState?`: [`IDiagramInitState`](interfaces/IDiagramInitState.md) ; `settings?`: [`ISettings`](interfaces/ISettings.md) ; `storeRef?`: `MutableRefObject`<``null`` \| [`RootStore`](classes/RootStore.md)\>  }\> |
-
-#### Returns
-
-`Element`
-
-___
-
-### DiagramContext
-
-▸ **DiagramContext**(`props`): `Element`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `props` | `PropsWithChildren`<{ `initState?`: [`IDiagramInitState`](interfaces/IDiagramInitState.md) ; `settings?`: [`ISettings`](interfaces/ISettings.md) ; `storeRef?`: `MutableRefObject`<``null`` \| [`RootStore`](classes/RootStore.md)\>  }\> |
+| `props` | [`IDiagramProps`](#idiagramprops) |
 
 #### Returns
 
