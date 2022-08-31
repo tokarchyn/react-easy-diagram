@@ -12,6 +12,7 @@ import { Point } from 'utils/point';
 export class Callbacks {
   private _validateLinkEndpoints?: ICallbacks['validateLinkEndpoints'];
   private _nodesAdded?: ICallbacks['nodesAdded'];
+  private _onNodesRemoved?: ICallbacks['onNodesRemoved'];
   private _nodePositionChanged?: ICallbacks['nodePositionChanged'];
   private _dragStateChanged?: ICallbacks['dragStateChanged'];
   private _importedStateRendered?: ICallbacks['importedStateRendered'];
@@ -28,6 +29,7 @@ export class Callbacks {
   import = (callbacks?: ICallbacks) => {
     this._validateLinkEndpoints = callbacks?.validateLinkEndpoints;
     this._nodesAdded = callbacks?.nodesAdded;
+    this._onNodesRemoved = callbacks?.onNodesRemoved;
     this._nodePositionChanged = callbacks?.nodePositionChanged;
     this._dragStateChanged = callbacks?.dragStateChanged;
     this._importedStateRendered = callbacks?.importedStateRendered;
@@ -38,6 +40,7 @@ export class Callbacks {
   export = (): ICallbacks => ({
     validateLinkEndpoints: this._validateLinkEndpoints,
     nodesAdded: this._nodesAdded,
+    onNodesRemoved: this._onNodesRemoved,
     nodePositionChanged: this._nodePositionChanged,
     dragStateChanged: this._dragStateChanged,
     importedStateRendered: this._importedStateRendered,
@@ -62,6 +65,12 @@ export class Callbacks {
       importing,
       this._rootStore
     );
+
+  nodesRemoved = (info: OnNodesRemoved) => {
+    if (this._onNodesRemoved) {
+      this._onNodesRemoved(info, this._rootStore);
+    }
+  }
 
   nodePositionChanged = (
     node: NodeState,
@@ -117,6 +126,10 @@ export interface ICallbacks {
     importing: boolean,
     rootStore: RootStore
   ) => void;
+  onNodesRemoved?: (
+    info: OnNodesRemoved,
+    rootStore: RootStore
+  ) => void;
   nodePositionChanged?: (
     node: NodeState,
     oldPosition: Point,
@@ -142,4 +155,9 @@ export interface OnLinkingEnd {
   sourcePort: PortState;
   targetPort?: PortState;
   linked: boolean;
+}
+
+export interface OnNodesRemoved {
+  removedNodes: string[],
+  failedToRemoveNodesIds: string[],
 }

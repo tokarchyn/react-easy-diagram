@@ -87,6 +87,18 @@ export class NodesStore {
   };
 
   removeNode = (nodeId: string): boolean => {
+    const removed = this._removeNode(nodeId);
+    if (removed) {
+      this._rootStore.callbacks.nodesRemoved({
+        removedNodes: [nodeId],
+        failedToRemoveNodesIds: []
+      })
+    }
+
+    return removed;
+  };
+
+  private _removeNode = (nodeId: string): boolean => {
     const node = this._nodes.get(nodeId);
     if (node) {
       this._rootStore.linksStore.removeNodeLinks(nodeId);

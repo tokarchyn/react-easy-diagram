@@ -15,6 +15,9 @@ const settings: ISettings = {
       console.log('Added nodes:');
       console.log(addResults.map((r) => r.export()));
     },
+    onNodesRemoved(info, rootStore) {
+      console.log(`Removed nodes: ${info.removedNodes.reduce((prev, val) => prev + ', ' + val)}`);
+    },
     nodePositionChanged: (node, oldPos, newPos, isDragActive, store) => {
       console.log(
         `Position of node '${
