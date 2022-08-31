@@ -65,8 +65,8 @@ export class LinksStore {
     const fullPortId = createFullPortId(nodeId, portId);
     return nodeLinks.filter(
       (l) =>
-        (l.source.port && l.source.port.fullId === fullPortId) ||
-        (l.target.port && l.target.port.fullId === fullPortId)
+        (l.source && l.source.port.fullId === fullPortId) ||
+        (l.target && l.target.port.fullId === fullPortId)
     );
   };
 
@@ -85,8 +85,8 @@ export class LinksStore {
     };
     links.forEach((l) => {
       if (
-        linkPortEndpointsEquals(l.source, endpointToRemove) ||
-        linkPortEndpointsEquals(l.target, endpointToRemove)
+        linkPortEndpointsEquals(l.sourceEndpoint, endpointToRemove) ||
+        linkPortEndpointsEquals(l.targetEndpoint, endpointToRemove)
       ) {
         this.removeLink(l.id);
       }
@@ -119,12 +119,10 @@ export class LinksStore {
     const linkToRemove = this._links.get(linkId);
     if (linkToRemove) {
       this._removeLinkFromNodeLinksCollection(
-        linkToRemove,
-        linkToRemove.source.nodeId
+        linkToRemove.id, linkToRemove.sourceEndpoint.nodeId
       );
       this._removeLinkFromNodeLinksCollection(
-        linkToRemove,
-        linkToRemove.target.nodeId
+        linkToRemove.id, linkToRemove.targetEndpoint.nodeId
       );
 
       this._rootStore.selectionState.unselect(linkToRemove);
@@ -216,10 +214,10 @@ export class LinksStore {
     if (links) {
       return links.find(
         (l) =>
-          (linkPortEndpointsEquals(l.source, source) &&
-            linkPortEndpointsEquals(l.target, target)) ||
-          (linkPortEndpointsEquals(l.target, source) &&
-            linkPortEndpointsEquals(l.source, target))
+          (linkPortEndpointsEquals(l.sourceEndpoint, source) &&
+            linkPortEndpointsEquals(l.targetEndpoint, target)) ||
+          (linkPortEndpointsEquals(l.targetEndpoint, source) &&
+            linkPortEndpointsEquals(l.sourceEndpoint, target))
       );
     }
   };
@@ -234,12 +232,12 @@ export class LinksStore {
   };
 
   private _removeLinkFromNodeLinksCollection = (
-    link: LinkState,
+    linkId: string,
     nodeId: string
   ) => {
     let collection = this._nodesLinksCollection.get(nodeId);
     if (collection) {
-      collection = collection.filter((l) => l.id !== link.id);
+      collection = collection.filter((l) => l.id !== linkId);
       if (collection.length > 0) {
         this._nodesLinksCollection.set(nodeId, collection);
       } else {

@@ -1,54 +1,34 @@
 import { makeAutoObservable } from 'mobx';
-import { addPoints, multiplyPoint, Point } from 'utils/point';
-import { deepCopy } from 'utils/common';
-import { NodeState } from 'states/nodeState';
 import { PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';
+import { deepCopy } from 'utils/common';
+import { addPoints, multiplyPoint, Point } from 'utils/point';
 
 export class LinkPortEndpointState implements ILinkPortEndpoint {
-  private _nodeId: string;
-  private _portId: string;
+  private _port: PortState;
 
   private _rootStore: RootStore;
 
-  constructor(nodeId: string, portId: string, rootStore: RootStore) {
-    this._nodeId = nodeId;
-    this._portId = portId;
+  constructor(port: PortState, rootStore: RootStore) {
+    this._port = port;
     makeAutoObservable(this);
     this._rootStore = rootStore;
   }
 
   export = (): ILinkPortEndpoint =>
     deepCopy({
-      nodeId: this._nodeId,
-      portId: this._portId,
+      nodeId: this._port.nodeId,
+      portId: this._port.id,
     });
 
-  get nodeId() {
-    return this._nodeId;
-  }
-
-  get portId() {
-    return this._portId;
-  }
-
-  get node(): NodeState | undefined {
-    return this._rootStore.nodesStore.getNode(this._nodeId);
-  }
-
-  get port(): PortState | undefined {
-    return this.node?.getPort(this._portId);
+  get port(): PortState {
+    return this._port;
   }
 
   get point(): Point | undefined {
-    if (
-      this.node &&
-      this.port &&
-      this.port.offsetRelativeToNode &&
-      this.port.ref.sizeExcludingZoom
-    ) {
+    if (this.port.offsetRelativeToNode && this.port.ref.sizeExcludingZoom) {
       return addPoints(
-        this.node.position,
+        this.port.node.position,
         addPoints(
           this.port.offsetRelativeToNode,
           multiplyPoint(this.port.ref.sizeExcludingZoom, 0.5)
@@ -57,6 +37,14 @@ export class LinkPortEndpointState implements ILinkPortEndpoint {
     }
 
     return undefined;
+  }
+
+  get portId() {
+    return this.port.id;
+  }
+
+  get nodeId() {
+    return this.port.node.id;
   }
 }
 

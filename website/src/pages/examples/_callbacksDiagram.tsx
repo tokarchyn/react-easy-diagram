@@ -32,6 +32,16 @@ const settings: ISettings = {
     importedStateRendered: (store) => {
       console.log('Imported state has been rendered');
     },
+    onLinkingStart(info, rootStore) {
+      console.log(`Start linking port '${info.sourcePort.fullId}'`);
+    },
+    onLinkingEnd(info, rootStore) {
+      if (info.linked) {
+        console.log(`Port '${info.sourcePort.fullId}' has been linked with '${info.targetPort?.fullId}'`);
+      } else {
+        console.log(`Port '${info.sourcePort.fullId}' has not been linked`);
+      }
+    },
   },
 };
 

@@ -1,5 +1,9 @@
-import { Callbacks, ICallbacks } from 'states/callbacks';
+import {cleanup, fireEvent, render} from '@testing-library/react';
+import { Diagram } from 'components/Diagram';
+import React from 'react';
+import { Callbacks, ICallbacks, OnLinkingStart } from 'states/callbacks';
 import { NodeState } from 'states/nodeState';
+import { PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';
 import { Point } from 'utils/point';
 
@@ -100,6 +104,100 @@ describe('Callbacks import', () => {
         node,
         initPosition,
         newPosition
+      );
+    });
+  });
+
+  describe('onLinkingStart/onLinkingEnd callbacks', () => {
+    let mockOnLinkingStartCallback: jest.Mock<
+      ReturnType<NonNullable<ICallbacks['onLinkingStart']>>,
+      Parameters<NonNullable<ICallbacks['onLinkingStart']>>
+    >;
+
+    let mockOnLinkingEndCallback: jest.Mock<
+      ReturnType<NonNullable<ICallbacks['onLinkingEnd']>>,
+      Parameters<NonNullable<ICallbacks['onLinkingEnd']>>
+    >;
+    
+    const validateOnLinkingStartCallbackCall = (
+      mockArgs: [info: OnLinkingStart, rootStore: RootStore],
+      sourcePort: PortState,
+    ) => {
+      expect(mockArgs[0].sourcePort).toBe(sourcePort);
+      expect(mockArgs[1]).toBe(store);
+    };
+
+    let portInput: PortState, portOutput: PortState;
+
+    beforeEach(() => {
+      mockOnLinkingStartCallback = jest.fn((_a, _b) => {});
+      mockOnLinkingEndCallback = jest.fn((_a, _b) => {});
+      store.callbacks.import({
+        onLinkingStart: mockOnLinkingStartCallback,
+        onLinkingEnd: mockOnLinkingEndCallback,
+      });
+      store.nodesStore.import([
+        {
+          id: '1',
+          position: [0, 0],
+          ports: [
+            {
+              id: 'output'
+            }
+          ]
+        },
+        {
+          id: '2',
+          position: [5, 10],
+          ports: [
+            {
+              id: 'input'
+            }
+          ]
+        }
+      ])
+
+      const node1 = store.nodesStore.getNode('1')!;
+      expect(node1).toBeDefined();
+      const node2 = store.nodesStore.getNode('2')!;
+      expect(node2).toBeDefined();
+      portOutput = node1.getPort('output')!;
+      expect(portOutput).toBeDefined();
+      portInput = node2.getPort('input')!;
+      expect(portInput).toBeDefined();
+    });
+
+    test('Is not called on initialization', () => {      
+      store.linksStore.linkCreation.startLinking(portOutput, [0,1]);
+      
+      expect(mockOnLinkingStartCallback.mock.calls.length).toBe(1);
+      validateOnLinkingStartCallbackCall(mockOnLinkingStartCallback.mock.calls[0], portOutput);
+    });
+
+    test('Is not called on initialization', () => {      
+      const {queryByLabelText, getByLabelText} = render(
+        <Diagram initState={{
+          nodes: [
+            {
+              id: '1',
+              position: [0, 0],
+              ports: [
+                {
+                  id: 'output'
+                }
+              ]
+            },
+            {
+              id: '2',
+              position: [5, 10],
+              ports: [
+                {
+                  id: 'input'
+                }
+              ]
+            }
+          ]
+        }} />
       );
     });
   });

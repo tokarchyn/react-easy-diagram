@@ -10,11 +10,13 @@ import { COMPONENT_DEFAULT_TYPE } from 'states/visualComponents';
 import { isBoolean, deepCopy } from 'utils/common';
 
 export class LinkState
-  implements ILinkState, ILinkInteractionState {
+  implements ILinkInteractionState {
   private _id: string;
   private _type: string;
-  private _source: LinkPortEndpointState;
-  private _target: LinkPortEndpointState;
+  private _source?: LinkPortEndpointState;
+  private _sourceEndpoint: ILinkPortEndpoint;
+  private _target?: LinkPortEndpointState;
+  private _targetEndpoint: ILinkPortEndpoint;
   private _segments: ILinkSegment[];
   private _selected: boolean;
   private _hovered: boolean;
@@ -39,7 +41,15 @@ export class LinkState
   
   import = (state: ILinkStateWithoutId) => {
     this._source = this._createEndpointState(state.source);
+    this._sourceEndpoint = {
+      nodeId: state.source.nodeId,
+      portId: state.source.portId
+    };
     this._target = this._createEndpointState(state.target);
+    this._targetEndpoint = {
+      nodeId: state.target.nodeId,
+      portId: state.target.portId
+    };
     this.setType(state.type);
     this.setSegments(state.segments);
     this.setData(state.data);
@@ -48,17 +58,18 @@ export class LinkState
   
   private _createEndpointState = (
     endpoint: ILinkPortEndpoint
-  ): LinkPortEndpointState => {
-    return new LinkPortEndpointState(
-      endpoint.nodeId,
-      endpoint.portId,
-      this._rootStore
-    );
+  ): LinkPortEndpointState | undefined => {
+    const node = this._rootStore.nodesStore.getNode(endpoint.nodeId);
+    if (!node) return undefined;
+    const port = node.getPort(endpoint.portId);
+    if (!port) return undefined;
+
+    return new LinkPortEndpointState(port, this._rootStore);
   };
   
   export = (): ILinkStateWithId => ({
-    source: this.source.export(),
-    target: this.target.export(),
+    source: this._sourceEndpoint,
+    target: this._targetEndpoint,
     ...deepCopy({
       id: this._id,
       type: this.type,
@@ -89,7 +100,11 @@ export class LinkState
   };
 
   get path(): ILinkPath | undefined {
-    return createLinkPath(this._rootStore, this.source, this.target);
+    if (this.source && this.target){
+      return createLinkPath(this._rootStore, this.source, this.target);
+    }
+
+    return undefined;
   }
 
   get componentDefinition() {
@@ -121,8 +136,16 @@ export class LinkState
     return this._source;
   }
 
+  get sourceEndpoint() {
+    return this._sourceEndpoint;
+  }
+
   get target() {
     return this._target;
+  }
+
+  get targetEndpoint() {
+    return this._targetEndpoint;
   }
 
   setData = (value: any) => {

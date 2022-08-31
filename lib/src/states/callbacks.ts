@@ -15,6 +15,8 @@ export class Callbacks {
   private _nodePositionChanged?: ICallbacks['nodePositionChanged'];
   private _dragStateChanged?: ICallbacks['dragStateChanged'];
   private _importedStateRendered?: ICallbacks['importedStateRendered'];
+  private _onLinkingStart?: ICallbacks['onLinkingStart'];
+  private _onLinkingEnd?: ICallbacks['onLinkingEnd'];
 
   private _rootStore: RootStore;
 
@@ -29,6 +31,8 @@ export class Callbacks {
     this._nodePositionChanged = callbacks?.nodePositionChanged;
     this._dragStateChanged = callbacks?.dragStateChanged;
     this._importedStateRendered = callbacks?.importedStateRendered;
+    this._onLinkingStart = callbacks?.onLinkingStart;
+    this._onLinkingEnd = callbacks?.onLinkingEnd;
   };
 
   export = (): ICallbacks => ({
@@ -37,6 +41,8 @@ export class Callbacks {
     nodePositionChanged: this._nodePositionChanged,
     dragStateChanged: this._dragStateChanged,
     importedStateRendered: this._importedStateRendered,
+    onLinkingStart: this._onLinkingStart,
+    onLinkingEnd: this._onLinkingEnd,
   });
 
   validateLinkEndpoints = (source: PortState, target: PortState) => {
@@ -85,6 +91,18 @@ export class Callbacks {
       this._importedStateRendered(this._rootStore);
     }
   };
+
+  linkingStarted = (info: OnLinkingStart) => {
+    if (this._onLinkingStart) {
+      this._onLinkingStart(info, this._rootStore);
+    }
+  }
+
+  linkingEnded = (info: OnLinkingEnd) => {
+    if (this._onLinkingEnd) {
+      this._onLinkingEnd(info, this._rootStore);
+    }
+  }
 }
 
 export interface ICallbacks {
@@ -112,4 +130,16 @@ export interface ICallbacks {
     rootStore: RootStore
   ) => void;
   importedStateRendered?: (rootStore: RootStore) => void;
+  onLinkingStart?: (info: OnLinkingStart, rootStore: RootStore) => void;
+  onLinkingEnd?: (info: OnLinkingEnd, rootStore: RootStore) => void;
+}
+
+export interface OnLinkingStart {
+  sourcePort: PortState;
+}
+
+export interface OnLinkingEnd {
+  sourcePort: PortState;
+  targetPort?: PortState;
+  linked: boolean;
 }
