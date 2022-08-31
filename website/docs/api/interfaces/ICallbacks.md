@@ -81,6 +81,40 @@ ___
 
 ___
 
+### onLinkingEnd
+
+▸ `Optional` **onLinkingEnd**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinkingEnd`](OnLinkingEnd.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onLinkingStart
+
+▸ `Optional` **onLinkingStart**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinkingStart`](OnLinkingStart.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
 ### validateLinkEndpoints
 
 ▸ `Optional` **validateLinkEndpoints**(`source`, `target`, `rootStore`): `boolean`

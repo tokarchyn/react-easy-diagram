@@ -97,6 +97,8 @@ custom_edit_url: null
 - [IVisualComponentProps](interfaces/IVisualComponentProps.md)
 - [IVisualComponentsObject](interfaces/IVisualComponentsObject.md)
 - [IZoomToFitSettings](interfaces/IZoomToFitSettings.md)
+- [OnLinkingEnd](interfaces/OnLinkingEnd.md)
+- [OnLinkingStart](interfaces/OnLinkingStart.md)
 
 ## Type Aliases
 

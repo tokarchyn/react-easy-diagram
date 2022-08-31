@@ -84,31 +84,31 @@ ___
 
 ### source
 
-• `get` **source**(): ``null`` \| [`LinkPortEndpointState`](LinkPortEndpointState.md)
+• `get` **source**(): `undefined` \| [`LinkPortEndpointState`](LinkPortEndpointState.md)
 
 #### Returns
 
-``null`` \| [`LinkPortEndpointState`](LinkPortEndpointState.md)
+`undefined` \| [`LinkPortEndpointState`](LinkPortEndpointState.md)
 
 ___
 
 ### target
 
-• `get` **target**(): ``null`` \| [`LinkPointEndpointState`](LinkPointEndpointState.md)
+• `get` **target**(): `undefined` \| [`LinkPointEndpointState`](LinkPointEndpointState.md)
 
 #### Returns
 
-``null`` \| [`LinkPointEndpointState`](LinkPointEndpointState.md)
+`undefined` \| [`LinkPointEndpointState`](LinkPointEndpointState.md)
 
 ___
 
 ### targetPortCandidate
 
-• `get` **targetPortCandidate**(): ``null`` \| [`PortState`](PortState.md)
+• `get` **targetPortCandidate**(): `undefined` \| [`PortState`](PortState.md)
 
 #### Returns
 
-``null`` \| [`PortState`](PortState.md)
+`undefined` \| [`PortState`](PortState.md)
 
 ## Methods
 

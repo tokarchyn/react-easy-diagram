@@ -14,27 +14,16 @@ custom_edit_url: null
 
 ### constructor
 
-• **new LinkPortEndpointState**(`nodeId`, `portId`, `rootStore`)
+• **new LinkPortEndpointState**(`port`, `rootStore`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `nodeId` | `string` |
-| `portId` | `string` |
+| `port` | [`PortState`](PortState.md) |
 | `rootStore` | [`RootStore`](RootStore.md) |
 
 ## Accessors
-
-### node
-
-• `get` **node**(): `undefined` \| [`NodeState`](NodeState.md)
-
-#### Returns
-
-`undefined` \| [`NodeState`](NodeState.md)
-
-___
 
 ### nodeId
 
@@ -62,11 +51,11 @@ ___
 
 ### port
 
-• `get` **port**(): `undefined` \| [`PortState`](PortState.md)
+• `get` **port**(): [`PortState`](PortState.md)
 
 #### Returns
 
-`undefined` \| [`PortState`](PortState.md)
+[`PortState`](PortState.md)
 
 ___
 

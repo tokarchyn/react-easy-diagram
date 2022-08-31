@@ -73,6 +73,38 @@ ___
 
 ___
 
+### linkingEnded
+
+▸ **linkingEnded**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinkingEnd`](../interfaces/OnLinkingEnd.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### linkingStarted
+
+▸ **linkingStarted**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinkingStart`](../interfaces/OnLinkingStart.md) |
+
+#### Returns
+
+`void`
+
+___
+
 ### nodePositionChanged
 
 ▸ **nodePositionChanged**(`node`, `oldPosition`, `newPosition`, `isDragActive`): `undefined` \| `void`
