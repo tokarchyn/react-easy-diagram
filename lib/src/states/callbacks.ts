@@ -12,15 +12,15 @@ import { ILinkState, ILinkStateWithId, LinkState } from './linkState';
 
 export class Callbacks {
   private _validateLinkEndpoints?: ICallbacks['validateLinkEndpoints'];
-  private _nodesAdded?: ICallbacks['onNodesAddResult'];
-  private _onNodesRemoved?: ICallbacks['onNodesRemoveResult'];
+  private _onNodesAddResult?: ICallbacks['onNodesAddResult'];
+  private _onNodesRemoveResult?: ICallbacks['onNodesRemoveResult'];
   private _nodePositionChanged?: ICallbacks['nodePositionChanged'];
   private _dragStateChanged?: ICallbacks['dragStateChanged'];
-  private _importedStateRendered?: ICallbacks['onImportedStateRendered'];
-  private _onLinksAdded?: ICallbacks['onLinksAddResult'];
-  private _onLinksRemoved?: ICallbacks['onLinksRemoveResult'];
-  private _onLinkingStart?: ICallbacks['onLinkingStarted'];
-  private _onLinkingEnd?: ICallbacks['onLinkingEnded'];
+  private _onImportedStateRendered?: ICallbacks['onImportedStateRendered'];
+  private _onLinksAddResult?: ICallbacks['onLinksAddResult'];
+  private _onLinksRemoveResult?: ICallbacks['onLinksRemoveResult'];
+  private _onLinkingStarted?: ICallbacks['onLinkingStarted'];
+  private _onLinkingEnded?: ICallbacks['onLinkingEnded'];
 
   private _rootStore: RootStore;
 
@@ -31,28 +31,28 @@ export class Callbacks {
 
   import = (callbacks?: ICallbacks) => {
     this._validateLinkEndpoints = callbacks?.validateLinkEndpoints;
-    this._nodesAdded = callbacks?.onNodesAddResult;
-    this._onNodesRemoved = callbacks?.onNodesRemoveResult;
+    this._onNodesAddResult = callbacks?.onNodesAddResult;
+    this._onNodesRemoveResult = callbacks?.onNodesRemoveResult;
     this._nodePositionChanged = callbacks?.nodePositionChanged;
     this._dragStateChanged = callbacks?.dragStateChanged;
-    this._importedStateRendered = callbacks?.onImportedStateRendered;
-    this._onLinksAdded = callbacks?.onLinksAddResult;
-    this._onLinksRemoved = callbacks?.onLinksRemoveResult;
-    this._onLinkingStart = callbacks?.onLinkingStarted;
-    this._onLinkingEnd = callbacks?.onLinkingEnded;
+    this._onImportedStateRendered = callbacks?.onImportedStateRendered;
+    this._onLinksAddResult = callbacks?.onLinksAddResult;
+    this._onLinksRemoveResult = callbacks?.onLinksRemoveResult;
+    this._onLinkingStarted = callbacks?.onLinkingStarted;
+    this._onLinkingEnded = callbacks?.onLinkingEnded;
   };
 
   export = (): ICallbacks => ({
     validateLinkEndpoints: this._validateLinkEndpoints,
-    onNodesAddResult: this._nodesAdded,
-    onNodesRemoveResult: this._onNodesRemoved,
+    onNodesAddResult: this._onNodesAddResult,
+    onNodesRemoveResult: this._onNodesRemoveResult,
     nodePositionChanged: this._nodePositionChanged,
     dragStateChanged: this._dragStateChanged,
-    onImportedStateRendered: this._importedStateRendered,
-    onLinksAddResult: this._onLinksAdded,
-    onLinksRemoveResult: this._onLinksRemoved,
-    onLinkingStarted: this._onLinkingStart,
-    onLinkingEnded: this._onLinkingEnd,
+    onImportedStateRendered: this._onImportedStateRendered,
+    onLinksAddResult: this._onLinksAddResult,
+    onLinksRemoveResult: this._onLinksRemoveResult,
+    onLinkingStarted: this._onLinkingStarted,
+    onLinkingEnded: this._onLinkingEnded,
   });
 
   validateLinkEndpoints = (source: PortState, target: PortState) => {
@@ -62,14 +62,14 @@ export class Callbacks {
   };
 
   nodesAdded = (info: OnNodesAddResult) => {
-    if (this._nodesAdded) {
-      this._nodesAdded(info, this._rootStore);
+    if (this._onNodesAddResult) {
+      this._onNodesAddResult(info, this._rootStore);
     }
   };
 
   nodesRemoved = (info: OnNodesRemoveResult) => {
-    if (this._onNodesRemoved) {
-      this._onNodesRemoved(info, this._rootStore);
+    if (this._onNodesRemoveResult) {
+      this._onNodesRemoveResult(info, this._rootStore);
     }
   };
 
@@ -97,32 +97,32 @@ export class Callbacks {
       this._rootStore.diagramState.zoomToFit();
     }
 
-    if (this._importedStateRendered) {
-      this._importedStateRendered(this._rootStore);
+    if (this._onImportedStateRendered) {
+      this._onImportedStateRendered(this._rootStore);
     }
   };
 
   linksAdded = (info: OnLinksAddResult) => {
-    if (this._onLinksAdded) {
-      this._onLinksAdded(info, this._rootStore);
+    if (this._onLinksAddResult) {
+      this._onLinksAddResult(info, this._rootStore);
     }
   };
 
   linksRemoved = (info: OnLinksRemoveResult) => {
-    if (this._onLinksRemoved) {
-      this._onLinksRemoved(info, this._rootStore);
+    if (this._onLinksRemoveResult) {
+      this._onLinksRemoveResult(info, this._rootStore);
     }
   };
 
   linkingStarted = (info: OnLinkingStarted) => {
-    if (this._onLinkingStart) {
-      this._onLinkingStart(info, this._rootStore);
+    if (this._onLinkingStarted) {
+      this._onLinkingStarted(info, this._rootStore);
     }
   };
 
   linkingEnded = (info: OnLinkingEnded) => {
-    if (this._onLinkingEnd) {
-      this._onLinkingEnd(info, this._rootStore);
+    if (this._onLinkingEnded) {
+      this._onLinkingEnded(info, this._rootStore);
     }
   };
 }
