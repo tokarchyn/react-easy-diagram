@@ -13,14 +13,14 @@ describe('Nodes store', () => {
 
   describe('Nodes added callback', () => {
     let mockNodesAddedCallback: jest.Mock<
-      ReturnType<NonNullable<ICallbacks['nodesAdded']>>,
-      Parameters<NonNullable<ICallbacks['nodesAdded']>>
+      ReturnType<NonNullable<ICallbacks['onNodesAddResult']>>,
+      Parameters<NonNullable<ICallbacks['onNodesAddResult']>>
     >;
 
     beforeEach(() => {
       mockNodesAddedCallback = jest.fn((a, b, c, d) => {});
       store.callbacks.import({
-        nodesAdded: mockNodesAddedCallback,
+        onNodesAddResult: mockNodesAddedCallback,
       });
     });
 

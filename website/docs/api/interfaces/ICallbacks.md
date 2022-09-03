@@ -115,6 +115,57 @@ ___
 
 ___
 
+### onLinksAdded
+
+▸ `Optional` **onLinksAdded**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinksAdded`](OnLinksAdded.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onLinksRemoved
+
+▸ `Optional` **onLinksRemoved**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinksRemoved`](OnLinksRemoved.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onNodesRemoved
+
+▸ `Optional` **onNodesRemoved**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnNodesRemoved`](OnNodesRemoved.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
 ### validateLinkEndpoints
 
 ▸ `Optional` **validateLinkEndpoints**(`source`, `target`, `rootStore`): `boolean`

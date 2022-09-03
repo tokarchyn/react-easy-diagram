@@ -1,16 +1,21 @@
 import { makeAutoObservable } from 'mobx';
-import { BoundingBox } from 'utils/common';
 import {
-  SuccessOrErrorResult,
-  errorResult,
-  successValueResult,
-  errorValueResult,
-} from 'utils/result';
-import { guidForcedUniqueness } from 'utils/guid';
-import { NodeState, INodeState, INodeStateWithId } from 'states/nodeState';
+  INodeExport,
+  INodeState,
+  INodeStateWithId,
+  NodeState,
+} from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
-import { addPoints, multiplyPoint, Point, subtractPoints } from 'utils/point';
-import { DragState } from 'states/dragState';
+import { BoundingBox } from 'utils/common';
+import { guidForcedUniqueness } from 'utils/guid';
+import { Point, subtractPoints } from 'utils/point';
+import {
+  errorValueResult,
+  isError,
+  isSuccess,
+  SuccessOrErrorResult,
+  successValueResult,
+} from 'utils/result';
 
 export class NodesStore {
   private _nodes = new Map<string, NodeState>();
@@ -29,8 +34,12 @@ export class NodesStore {
     this._nodes = new Map();
     if (newNodes) {
       let results = this._addNodesInternal(newNodes, false);
-      results.length != 0 &&
-        this._rootStore.callbacks.nodesAdded(results, true);
+
+      this._rootStore.callbacks.nodesAdded({
+        addedNodes: results.filter(isSuccess).map((r) => r.value),
+        failedToAddNodes: results.filter(isError),
+        importing: true,
+      });
     }
   };
 
@@ -41,8 +50,16 @@ export class NodesStore {
     nodes: INodeState[],
     rewriteIfExists: boolean = false
   ): SuccessOrErrorResult<NodeState, INodeState>[] => {
+    if (!Array.isArray(nodes) || nodes.length == 0) return [];
+
     let results = this._addNodesInternal(nodes, rewriteIfExists);
-    results.length != 0 && this._rootStore.callbacks.nodesAdded(results, false);
+
+    this._rootStore.callbacks.nodesAdded({
+      addedNodes: results.filter(isSuccess).map((r) => r.value),
+      failedToAddNodes: results.filter(isError),
+      importing: false,
+    });
+
     return results;
   };
 
@@ -50,11 +67,10 @@ export class NodesStore {
     nodes: INodeState[],
     rewriteIfExists: boolean
   ): SuccessOrErrorResult<NodeState, INodeState>[] => {
-    if (!Array.isArray(nodes) || nodes.length == 0) return [];
-
     let results = nodes.map((node) =>
       this._addNodeInternal(node, rewriteIfExists)
     );
+
     return results;
   };
 
@@ -62,8 +78,14 @@ export class NodesStore {
     node: INodeState,
     rewriteIfExists: boolean = false
   ): SuccessOrErrorResult<NodeState, INodeState> => {
-    let result = this._addNodeInternal(node, rewriteIfExists);
-    this._rootStore.callbacks.nodesAdded([result], false);
+    const result = this._addNodeInternal(node, rewriteIfExists);
+
+    this._rootStore.callbacks.nodesAdded({
+      addedNodes: result.success ? [result.value] : [],
+      failedToAddNodes: result.success ? [] : [result],
+      importing: false,
+    });
+
     return result;
   };
 
@@ -86,27 +108,48 @@ export class NodesStore {
     return successValueResult(newNode);
   };
 
-  removeNode = (nodeId: string): boolean => {
-    const removed = this._removeNode(nodeId);
-    if (removed) {
-      this._rootStore.callbacks.nodesRemoved({
-        removedNodes: [nodeId],
-        failedToRemoveNodesIds: []
-      })
-    }
+  removeNodes = (
+    nodeIds: string[]
+  ): SuccessOrErrorResult<INodeExport, string>[] => {
+    if (!Array.isArray(nodeIds) || nodeIds.length == 0) return [];
 
-    return removed;
+    const results = nodeIds.map<SuccessOrErrorResult<INodeExport, string>>(
+      (id) => {
+        const removedNode = this._removeNode(id);
+        if (removedNode) return successValueResult(removedNode);
+        else return errorValueResult(id);
+      }
+    );
+
+    this._rootStore.callbacks.nodesRemoved({
+      removedNodes: results.filter(isSuccess).map((r) => r.value),
+      failedToRemoveNodeIds: results.filter(isError).map((r) => r.value),
+    });
+
+    return results;
   };
 
-  private _removeNode = (nodeId: string): boolean => {
+  removeNode = (nodeId: string): INodeExport | undefined => {
+    const removedNode = this._removeNode(nodeId);
+
+    this._rootStore.callbacks.nodesRemoved({
+      removedNodes: removedNode ? [removedNode] : [],
+      failedToRemoveNodeIds: removedNode ? [] : [nodeId],
+    });
+
+    return removedNode;
+  };
+
+  private _removeNode = (nodeId: string): INodeExport | undefined => {
     const node = this._nodes.get(nodeId);
     if (node) {
+      const nodeState = node.export();
       this._rootStore.linksStore.removeNodeLinks(nodeId);
       this._rootStore.selectionState.unselect(node);
       this._nodes.delete(nodeId);
-      return true;
+      return nodeState;
     }
-    return false;
+    return undefined;
   };
 
   getNode = (nodeId: string): NodeState | undefined => {

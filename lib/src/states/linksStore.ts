@@ -1,19 +1,22 @@
 import { makeAutoObservable } from 'mobx';
-import {
-  SuccessOrErrorResult,
-  successValueResult,
-  errorResult,
-  successResult,
-} from 'utils/result';
-import { guidForcedUniqueness } from 'utils/guid';
 import { LinkCreationState } from 'states/linkCreationState';
 import {
-  linkPortEndpointsEquals,
   ILinkPortEndpoint,
+  linkPortEndpointsEquals,
 } from 'states/linkPortEndpointState';
-import { LinkState, ILinkState } from 'states/linkState';
+import { ILinkState, ILinkStateWithId, LinkState } from 'states/linkState';
 import { createFullPortId, PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';
+import { guidForcedUniqueness } from 'utils/guid';
+import {
+  errorResult,
+  errorValueResult,
+  isError,
+  isSuccess,
+  SuccessOrErrorResult,
+  successResult,
+  successValueResult,
+} from 'utils/result';
 
 export class LinksStore {
   private _links: Map<string, LinkState>;
@@ -32,13 +35,16 @@ export class LinksStore {
   import = (newLinks?: ILinkState[]) => {
     this._links = new Map();
     this._nodesLinksCollection = new Map();
-    // do not check existence of link's ports as they could be added after first node rendering
-    newLinks &&
-      newLinks.forEach((link) => {
-        if (this.validateLinkProperties(link)) {
-          this.addLink(link);
-        }
+
+    if (newLinks) {
+      let results = this._addLinksInternal(newLinks, false);
+
+      this._rootStore.callbacks.linksAdded({
+        addedLinks: results.filter(isSuccess).map((r) => r.value),
+        failedToAddLinks: results.filter(isError),
+        importing: true,
       });
+    }
   };
 
   export = (): ILinkState[] =>
@@ -70,70 +76,90 @@ export class LinksStore {
     );
   };
 
+  addLinks = (
+    links: ILinkState[],
+    rewriteIfAlreadyConnected: boolean = false
+  ): SuccessOrErrorResult<LinkState, ILinkState>[] => {
+    if (!Array.isArray(links) || links.length == 0) return [];
+
+    let results = this._addLinksInternal(links, rewriteIfAlreadyConnected);
+
+    this._rootStore.callbacks.linksAdded({
+      addedLinks: results.filter(isSuccess).map((r) => r.value),
+      failedToAddLinks: results.filter(isError),
+      importing: false,
+    });
+
+    return results;
+  };
+
+  addLink = (
+    link: ILinkState,
+    rewriteIfAlreadyConnected: boolean = false
+  ): SuccessOrErrorResult<LinkState, ILinkState> => {
+    const result = this._addLinkInternal(link, rewriteIfAlreadyConnected);
+
+    this._rootStore.callbacks.linksAdded({
+      addedLinks: result.success ? [result.value] : [],
+      failedToAddLinks: result.success ? [] : [result],
+      importing: false,
+    });
+
+    return result;
+  };
+
+  removeLink = (linkId: string): ILinkStateWithId | undefined => {
+    const removedLink = this._removeLink(linkId);
+
+    this._rootStore.callbacks.linksRemoved({
+      removedLinks: removedLink ? [removedLink] : [],
+      failedToRemoveLinkIds: removedLink ? [] : [linkId],
+    });
+
+    return removedLink;
+  };
+
+  removeLinks = (
+    linkIds: string[]
+  ): SuccessOrErrorResult<ILinkStateWithId, string>[] => {
+    if (!Array.isArray(linkIds) || linkIds.length == 0) return [];
+
+    let results = this._removeLinks(linkIds);
+
+    this._rootStore.callbacks.linksRemoved({
+      removedLinks: results.filter(isSuccess).map((r) => r.value),
+      failedToRemoveLinkIds: results.filter(isError).map((r) => r.value),
+    });
+
+    return results;
+  };
+
   removeNodeLinks = (nodeId: string) => {
-    const links = this.getNodeLinks(nodeId);
-    links.forEach((l) => this.removeLink(l.id));
+    const linkIds = this.getNodeLinks(nodeId).map((l) => l.id);
+    this.removeLinks(linkIds);
   };
 
   removePortLinks = (nodeId: string, portId: string) => {
     if (!nodeId || !portId) return;
 
-    const links = this.getNodeLinks(nodeId);
     const endpointToRemove = {
       nodeId,
       portId,
     };
-    links.forEach((l) => {
-      if (
-        linkPortEndpointsEquals(l.sourceEndpoint, endpointToRemove) ||
-        linkPortEndpointsEquals(l.targetEndpoint, endpointToRemove)
-      ) {
-        this.removeLink(l.id);
-      }
-    });
+    const linkIds = this.getNodeLinks(nodeId)
+      .filter(
+        (l) =>
+          linkPortEndpointsEquals(l.sourceEndpoint, endpointToRemove) ||
+          linkPortEndpointsEquals(l.targetEndpoint, endpointToRemove)
+      )
+      .map((l) => l.id);
+    this.removeLinks(linkIds);
   };
 
-  addLink = (link: ILinkState): LinkState => {
-    const newLink = new LinkState(
-      this._rootStore,
-      link.id ?? guidForcedUniqueness((id) => this._links.has(id)),
-      link
-    );
-    this._links.set(newLink.id, newLink);
-    this._addLinkToNodeLinksCollection(newLink, link.source.nodeId);
-    this._addLinkToNodeLinksCollection(newLink, link.target.nodeId);
-
-    return newLink;
-  };
-
-  validateAndAddLink = (link: ILinkState): SuccessOrErrorResult<LinkState> => {
-    const canAdd = this.validateLink(link);
-    if (!canAdd.success) return canAdd;
-
-    const newlyCreatedLink = this.addLink(link);
-
-    return successValueResult(newlyCreatedLink);
-  };
-
-  removeLink = (linkId: string): boolean => {
-    const linkToRemove = this._links.get(linkId);
-    if (linkToRemove) {
-      this._removeLinkFromNodeLinksCollection(
-        linkToRemove.id, linkToRemove.sourceEndpoint.nodeId
-      );
-      this._removeLinkFromNodeLinksCollection(
-        linkToRemove.id, linkToRemove.targetEndpoint.nodeId
-      );
-
-      this._rootStore.selectionState.unselect(linkToRemove);
-      this._links.delete(linkId);
-      return true;
-    }
-
-    return false;
-  };
-
-  validateLink = (link: ILinkState): SuccessOrErrorResult => {
+  validateLink = (
+    link: ILinkState,
+    ignoreIfAlreadyConnected: boolean = false
+  ): SuccessOrErrorResult => {
     const propsValidationResult = this.validateLinkProperties(link);
     if (!propsValidationResult.success) return propsValidationResult;
 
@@ -142,7 +168,10 @@ export class LinksStore {
     const targetPortResult = this.getEndpointPortOrError(link.target);
     if (!targetPortResult.success) return targetPortResult;
 
-    if (this.areEndpointsConnected(link.source, link.target))
+    if (
+      !ignoreIfAlreadyConnected &&
+      this.areEndpointsConnected(link.source, link.target)
+    )
       return errorResult(`Link's endpoints are already connected`);
 
     if (
@@ -222,13 +251,88 @@ export class LinksStore {
     }
   };
 
+  private _addLinksInternal = (
+    links: ILinkState[],
+    rewriteIfAlreadyConnected: boolean
+  ): SuccessOrErrorResult<LinkState, ILinkState>[] => {
+    if (!Array.isArray(links) || links.length == 0) return [];
+
+    let results = links.map((link) =>
+      this._addLinkInternal(link, rewriteIfAlreadyConnected)
+    );
+    return results;
+  };
+
+  private _addLinkInternal = (
+    link: ILinkState,
+    rewriteIfAlreadyConnected: boolean
+  ): SuccessOrErrorResult<LinkState, ILinkState> => {
+    const validationResult = this.validateLink(link, rewriteIfAlreadyConnected);
+    if (!validationResult.success) {
+      return errorValueResult(link, validationResult.error);
+    }
+
+    if (rewriteIfAlreadyConnected) {
+      const existedLink = this.getLinkForEndpointsIfExists(
+        link.source,
+        link.target
+      );
+      if (existedLink) {
+        this._removeLink(existedLink.id);
+      }
+    }
+
+    const newLink = new LinkState(
+      this._rootStore,
+      link.id ?? guidForcedUniqueness((id) => this._links.has(id)),
+      link
+    );
+    this._links.set(newLink.id, newLink);
+    this._addLinkToNodeLinksCollection(newLink, link.source.nodeId);
+    this._addLinkToNodeLinksCollection(newLink, link.target.nodeId);
+
+    return successValueResult(newLink);
+  };
+
   private _addLinkToNodeLinksCollection = (link: LinkState, nodeId: string) => {
     let links = this._nodesLinksCollection.get(nodeId);
     if (!links) {
       this._nodesLinksCollection.set(nodeId, [link]);
-    } else {
+    } else if (!links.includes(link)) {
       links.push(link);
     }
+  };
+
+  private _removeLinks = (
+    linkIds: string[]
+  ): SuccessOrErrorResult<ILinkStateWithId, string>[] => {
+    return linkIds.map((id) => {
+      const removedLink = this._removeLink(id);
+      if (removedLink) return successValueResult(removedLink);
+      else return errorValueResult(id);
+    });
+  };
+
+  private _removeLink = (linkId: string): ILinkStateWithId | undefined => {
+    const linkToRemove = this._links.get(linkId);
+    if (linkToRemove) {
+      const linkState = linkToRemove.export();
+
+      this._removeLinkFromNodeLinksCollection(
+        linkToRemove.id,
+        linkToRemove.sourceEndpoint.nodeId
+      );
+      this._removeLinkFromNodeLinksCollection(
+        linkToRemove.id,
+        linkToRemove.targetEndpoint.nodeId
+      );
+
+      this._rootStore.selectionState.unselect(linkToRemove);
+      this._links.delete(linkId);
+      return linkState;
+    }
+
+    return undefined;
   };
 
   private _removeLinkFromNodeLinksCollection = (

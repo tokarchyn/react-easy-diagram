@@ -109,7 +109,7 @@ export class LinkCreationState implements ILinkInteractionState {
   stopLinking = () => {
     let linked = false;
     if (this._targetPortCandidate && this._source) {
-      const result = this._rootStore.linksStore.validateAndAddLink({
+      const result = this._rootStore.linksStore.addLink({
         source: {
           nodeId: this._source.port.nodeId,
           portId: this._source.port.id,

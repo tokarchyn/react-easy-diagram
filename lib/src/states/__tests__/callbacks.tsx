@@ -1,7 +1,7 @@
 import {cleanup, fireEvent, render} from '@testing-library/react';
 import { Diagram } from 'components/Diagram';
 import React from 'react';
-import { Callbacks, ICallbacks, OnLinkingStart } from 'states/callbacks';
+import { Callbacks, ICallbacks, OnLinkingStarted } from 'states/callbacks';
 import { NodeState } from 'states/nodeState';
 import { PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';
@@ -20,14 +20,14 @@ describe('Callbacks import', () => {
     let callback = () => true;
     callbacks.import({
       validateLinkEndpoints: callback,
-      nodesAdded: callback,
+      onNodesAddResult: callback,
       nodePositionChanged: callback,
       dragStateChanged: callback
     });
 
     const exportedCallbacks = callbacks.export();
     expect(exportedCallbacks.validateLinkEndpoints).toBe(callback);
-    expect(exportedCallbacks.nodesAdded).toBe(callback);
+    expect(exportedCallbacks.onNodesAddResult).toBe(callback);
     expect(exportedCallbacks.nodePositionChanged).toBe(callback);
     expect(exportedCallbacks.dragStateChanged).toBe(callback);
   });
@@ -110,17 +110,17 @@ describe('Callbacks import', () => {
 
   describe('onLinkingStart/onLinkingEnd callbacks', () => {
     let mockOnLinkingStartCallback: jest.Mock<
-      ReturnType<NonNullable<ICallbacks['onLinkingStart']>>,
-      Parameters<NonNullable<ICallbacks['onLinkingStart']>>
+      ReturnType<NonNullable<ICallbacks['onLinkingStarted']>>,
+      Parameters<NonNullable<ICallbacks['onLinkingStarted']>>
     >;
 
     let mockOnLinkingEndCallback: jest.Mock<
-      ReturnType<NonNullable<ICallbacks['onLinkingEnd']>>,
-      Parameters<NonNullable<ICallbacks['onLinkingEnd']>>
+      ReturnType<NonNullable<ICallbacks['onLinkingEnded']>>,
+      Parameters<NonNullable<ICallbacks['onLinkingEnded']>>
     >;
     
     const validateOnLinkingStartCallbackCall = (
-      mockArgs: [info: OnLinkingStart, rootStore: RootStore],
+      mockArgs: [info: OnLinkingStarted, rootStore: RootStore],
       sourcePort: PortState,
     ) => {
       expect(mockArgs[0].sourcePort).toBe(sourcePort);
@@ -133,8 +133,8 @@ describe('Callbacks import', () => {
       mockOnLinkingStartCallback = jest.fn((_a, _b) => {});
       mockOnLinkingEndCallback = jest.fn((_a, _b) => {});
       store.callbacks.import({
-        onLinkingStart: mockOnLinkingStartCallback,
-        onLinkingEnd: mockOnLinkingEndCallback,
+        onLinkingStarted: mockOnLinkingStartCallback,
+        onLinkingEnded: mockOnLinkingEndCallback,
       });
       store.nodesStore.import([
         {

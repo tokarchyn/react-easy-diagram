@@ -105,6 +105,38 @@ ___
 
 ___
 
+### linksAdded
+
+▸ **linksAdded**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinksAdded`](../interfaces/OnLinksAdded.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### linksRemoved
+
+▸ **linksRemoved**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinksRemoved`](../interfaces/OnLinksRemoved.md) |
+
+#### Returns
+
+`void`
+
+___
+
 ### nodePositionChanged
 
 ▸ **nodePositionChanged**(`node`, `oldPosition`, `newPosition`, `isDragActive`): `undefined` \| `void`
@@ -138,6 +170,22 @@ ___
 #### Returns
 
 `undefined` \| `void`
+
+___
+
+### nodesRemoved
+
+▸ **nodesRemoved**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnNodesRemoved`](../interfaces/OnNodesRemoved.md) |
+
+#### Returns
+
+`void`
 
 ___
 

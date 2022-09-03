@@ -99,6 +99,9 @@ custom_edit_url: null
 - [IZoomToFitSettings](interfaces/IZoomToFitSettings.md)
 - [OnLinkingEnd](interfaces/OnLinkingEnd.md)
 - [OnLinkingStart](interfaces/OnLinkingStart.md)
+- [OnLinksAdded](interfaces/OnLinksAdded.md)
+- [OnLinksRemoved](interfaces/OnLinksRemoved.md)
+- [OnNodesRemoved](interfaces/OnNodesRemoved.md)
 
 ## Type Aliases
 

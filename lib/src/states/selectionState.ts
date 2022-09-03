@@ -19,9 +19,15 @@ export class SelectionState {
     ) as NodeState[];
   }
 
+  get selectedLinks(): LinkState[] {
+    return this.selectedItems.filter(
+      (i) => i instanceof LinkState
+    ) as LinkState[];
+  }
+
   select = (item: SelectableItem, unselectOther: boolean = false): boolean => {
     if (unselectOther) this.unselectAll();
-    
+
     if (!this._selectedItems.has(item)) {
       item.selected = true;
       this._selectedItems.add(item);
@@ -29,7 +35,10 @@ export class SelectionState {
     } else return false;
   };
 
-  switch = (item: SelectableItem, unselectOtherOnSelection: boolean = false) => {
+  switch = (
+    item: SelectableItem,
+    unselectOtherOnSelection: boolean = false
+  ) => {
     if (item.selected) {
       this.unselect(item);
     } else {

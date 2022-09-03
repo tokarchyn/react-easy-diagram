@@ -11,12 +11,22 @@ import { useCallback } from 'react';
 
 const settings: ISettings = {
   callbacks: {
-    nodesAdded: (addResults, failedToAdd, importing, store) => {
-      console.log('Added nodes:');
-      console.log(addResults.map((r) => r.export()));
+    onNodesAddResult: (info, store) => {
+      if (info.addedNodes.length > 0) {
+        console.log(
+          'Added nodes:',
+          info.addedNodes.map((n) => n.export())
+        );
+      }
     },
-    onNodesRemoved(info, rootStore) {
-      console.log(`Removed nodes: ${info.removedNodes.reduce((prev, val) => prev + ', ' + val)}`);
+    onNodesRemoveResult(info, rootStore) {
+      if (info.removedNodes.length > 0){
+        console.log(
+          `Removed nodes: ${info.removedNodes
+            .map((n) => n.id)
+            .reduce((prev, val) => prev + ', ' + val)}`
+        );
+      }
     },
     nodePositionChanged: (node, oldPos, newPos, isDragActive, store) => {
       console.log(
@@ -32,18 +42,26 @@ const settings: ISettings = {
           .reduce((prev, val) => prev + ', ' + val)}'`
       );
     },
-    importedStateRendered: (store) => {
+    onImportedStateRendered: (store) => {
       console.log('Imported state has been rendered');
     },
-    onLinkingStart(info, rootStore) {
+    onLinkingStarted(info, rootStore) {
       console.log(`Start linking port '${info.sourcePort.fullId}'`);
     },
-    onLinkingEnd(info, rootStore) {
+    onLinkingEnded(info, rootStore) {
       if (info.linked) {
-        console.log(`Port '${info.sourcePort.fullId}' has been linked with '${info.targetPort?.fullId}'`);
+        console.log(
+          `Port '${info.sourcePort.fullId}' has been linked with '${info.targetPort?.fullId}'`
+        );
       } else {
         console.log(`Port '${info.sourcePort.fullId}' has not been linked`);
       }
+    },
+    onLinksAddResult(info, rootStore) {
+      console.log(`Links add result: `, info);
+    },
+    onLinksRemoveResult(info, rootStore) {
+      console.log(`Links remove result: `, info);
     },
   },
 };

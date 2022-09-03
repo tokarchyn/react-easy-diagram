@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, observable } from 'mobx';
 import { Point } from 'utils/point';
 import { LinkPointEndpointState } from 'states/linkPointEndpointState';
 import {
@@ -9,8 +9,7 @@ import { RootStore } from 'states/rootStore';
 import { COMPONENT_DEFAULT_TYPE } from 'states/visualComponents';
 import { isBoolean, deepCopy } from 'utils/common';
 
-export class LinkState
-  implements ILinkInteractionState {
+export class LinkState implements ILinkInteractionState {
   private _id: string;
   private _type: string;
   private _source?: LinkPortEndpointState;
@@ -22,7 +21,7 @@ export class LinkState
   private _hovered: boolean;
   private _data: any;
   private _isSelectionEnabled: boolean | null;
-  
+
   private _rootStore: RootStore;
 
   constructor(rootStore: RootStore, id: string, state: ILinkStateWithoutId) {
@@ -36,37 +35,28 @@ export class LinkState
     makeAutoObservable(this, {
       // @ts-ignore
       _rootStore: false,
+      _sourceEndpoint: observable.ref,
+      _targetEndpoint: observable.ref,
     });
   }
-  
+
   import = (state: ILinkStateWithoutId) => {
     this._source = this._createEndpointState(state.source);
     this._sourceEndpoint = {
       nodeId: state.source.nodeId,
-      portId: state.source.portId
+      portId: state.source.portId,
     };
     this._target = this._createEndpointState(state.target);
     this._targetEndpoint = {
       nodeId: state.target.nodeId,
-      portId: state.target.portId
+      portId: state.target.portId,
     };
     this.setType(state.type);
     this.setSegments(state.segments);
     this.setData(state.data);
     this.setIsSelectionEnabled(state?.isSelectionEnabled);
   };
-  
-  private _createEndpointState = (
-    endpoint: ILinkPortEndpoint
-  ): LinkPortEndpointState | undefined => {
-    const node = this._rootStore.nodesStore.getNode(endpoint.nodeId);
-    if (!node) return undefined;
-    const port = node.getPort(endpoint.portId);
-    if (!port) return undefined;
 
-    return new LinkPortEndpointState(port, this._rootStore);
-  };
-  
   export = (): ILinkStateWithId => ({
     source: this._sourceEndpoint,
     target: this._targetEndpoint,
@@ -100,7 +90,7 @@ export class LinkState
   };
 
   get path(): ILinkPath | undefined {
-    if (this.source && this.target){
+    if (this.source && this.target) {
       return createLinkPath(this._rootStore, this.source, this.target);
     }
 
@@ -160,6 +150,17 @@ export class LinkState
 
   setIsSelectionEnabled = (value: boolean | null | undefined) => {
     this._isSelectionEnabled = isBoolean(value) ? value : null;
+  };
+
+  private _createEndpointState = (
+    endpoint: ILinkPortEndpoint
+  ): LinkPortEndpointState | undefined => {
+    const node = this._rootStore.nodesStore.getNode(endpoint.nodeId);
+    if (!node) return undefined;
+    const port = node.getPort(endpoint.portId);
+    if (!port) return undefined;
+
+    return new LinkPortEndpointState(port, this._rootStore);
   };
 }
 

@@ -1,6 +1,6 @@
 import { PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';
-import { INodeState, NodeState } from 'states/nodeState';
+import { INodeExport, INodeState, NodeState } from 'states/nodeState';
 import {
   ErrorResult,
   isError,
@@ -8,16 +8,19 @@ import {
   SuccessOrErrorResult,
 } from 'utils/result';
 import { Point } from 'utils/point';
+import { ILinkState, ILinkStateWithId, LinkState } from './linkState';
 
 export class Callbacks {
   private _validateLinkEndpoints?: ICallbacks['validateLinkEndpoints'];
-  private _nodesAdded?: ICallbacks['nodesAdded'];
-  private _onNodesRemoved?: ICallbacks['onNodesRemoved'];
+  private _nodesAdded?: ICallbacks['onNodesAddResult'];
+  private _onNodesRemoved?: ICallbacks['onNodesRemoveResult'];
   private _nodePositionChanged?: ICallbacks['nodePositionChanged'];
   private _dragStateChanged?: ICallbacks['dragStateChanged'];
-  private _importedStateRendered?: ICallbacks['importedStateRendered'];
-  private _onLinkingStart?: ICallbacks['onLinkingStart'];
-  private _onLinkingEnd?: ICallbacks['onLinkingEnd'];
+  private _importedStateRendered?: ICallbacks['onImportedStateRendered'];
+  private _onLinksAdded?: ICallbacks['onLinksAddResult'];
+  private _onLinksRemoved?: ICallbacks['onLinksRemoveResult'];
+  private _onLinkingStart?: ICallbacks['onLinkingStarted'];
+  private _onLinkingEnd?: ICallbacks['onLinkingEnded'];
 
   private _rootStore: RootStore;
 
@@ -28,24 +31,28 @@ export class Callbacks {
 
   import = (callbacks?: ICallbacks) => {
     this._validateLinkEndpoints = callbacks?.validateLinkEndpoints;
-    this._nodesAdded = callbacks?.nodesAdded;
-    this._onNodesRemoved = callbacks?.onNodesRemoved;
+    this._nodesAdded = callbacks?.onNodesAddResult;
+    this._onNodesRemoved = callbacks?.onNodesRemoveResult;
     this._nodePositionChanged = callbacks?.nodePositionChanged;
     this._dragStateChanged = callbacks?.dragStateChanged;
-    this._importedStateRendered = callbacks?.importedStateRendered;
-    this._onLinkingStart = callbacks?.onLinkingStart;
-    this._onLinkingEnd = callbacks?.onLinkingEnd;
+    this._importedStateRendered = callbacks?.onImportedStateRendered;
+    this._onLinksAdded = callbacks?.onLinksAddResult;
+    this._onLinksRemoved = callbacks?.onLinksRemoveResult;
+    this._onLinkingStart = callbacks?.onLinkingStarted;
+    this._onLinkingEnd = callbacks?.onLinkingEnded;
   };
 
   export = (): ICallbacks => ({
     validateLinkEndpoints: this._validateLinkEndpoints,
-    nodesAdded: this._nodesAdded,
-    onNodesRemoved: this._onNodesRemoved,
+    onNodesAddResult: this._nodesAdded,
+    onNodesRemoveResult: this._onNodesRemoved,
     nodePositionChanged: this._nodePositionChanged,
     dragStateChanged: this._dragStateChanged,
-    importedStateRendered: this._importedStateRendered,
-    onLinkingStart: this._onLinkingStart,
-    onLinkingEnd: this._onLinkingEnd,
+    onImportedStateRendered: this._importedStateRendered,
+    onLinksAddResult: this._onLinksAdded,
+    onLinksRemoveResult: this._onLinksRemoved,
+    onLinkingStarted: this._onLinkingStart,
+    onLinkingEnded: this._onLinkingEnd,
   });
 
   validateLinkEndpoints = (source: PortState, target: PortState) => {
@@ -54,23 +61,17 @@ export class Callbacks {
     else return true;
   };
 
-  nodesAdded = (
-    addResults: SuccessOrErrorResult<NodeState, INodeState>[],
-    importing: boolean
-  ) =>
-    this._nodesAdded &&
-    this._nodesAdded(
-      addResults.filter(isSuccess).map((r) => r.value),
-      addResults.filter(isError),
-      importing,
-      this._rootStore
-    );
+  nodesAdded = (info: OnNodesAddResult) => {
+    if (this._nodesAdded) {
+      this._nodesAdded(info, this._rootStore);
+    }
+  };
 
-  nodesRemoved = (info: OnNodesRemoved) => {
+  nodesRemoved = (info: OnNodesRemoveResult) => {
     if (this._onNodesRemoved) {
       this._onNodesRemoved(info, this._rootStore);
     }
-  }
+  };
 
   nodePositionChanged = (
     node: NodeState,
@@ -101,17 +102,29 @@ export class Callbacks {
     }
   };
 
-  linkingStarted = (info: OnLinkingStart) => {
+  linksAdded = (info: OnLinksAddResult) => {
+    if (this._onLinksAdded) {
+      this._onLinksAdded(info, this._rootStore);
+    }
+  };
+
+  linksRemoved = (info: OnLinksRemoveResult) => {
+    if (this._onLinksRemoved) {
+      this._onLinksRemoved(info, this._rootStore);
+    }
+  };
+
+  linkingStarted = (info: OnLinkingStarted) => {
     if (this._onLinkingStart) {
       this._onLinkingStart(info, this._rootStore);
     }
-  }
+  };
 
-  linkingEnded = (info: OnLinkingEnd) => {
+  linkingEnded = (info: OnLinkingEnded) => {
     if (this._onLinkingEnd) {
       this._onLinkingEnd(info, this._rootStore);
     }
-  }
+  };
 }
 
 export interface ICallbacks {
@@ -120,14 +133,9 @@ export interface ICallbacks {
     target: PortState,
     rootStore: RootStore
   ) => boolean;
-  nodesAdded?: (
-    addedNodes: NodeState[],
-    failedToAdd: ErrorResult<INodeState>[],
-    importing: boolean,
-    rootStore: RootStore
-  ) => void;
-  onNodesRemoved?: (
-    info: OnNodesRemoved,
+  onNodesAddResult?: (info: OnNodesAddResult, rootStore: RootStore) => void;
+  onNodesRemoveResult?: (
+    info: OnNodesRemoveResult,
     rootStore: RootStore
   ) => void;
   nodePositionChanged?: (
@@ -142,22 +150,44 @@ export interface ICallbacks {
     started: boolean,
     rootStore: RootStore
   ) => void;
-  importedStateRendered?: (rootStore: RootStore) => void;
-  onLinkingStart?: (info: OnLinkingStart, rootStore: RootStore) => void;
-  onLinkingEnd?: (info: OnLinkingEnd, rootStore: RootStore) => void;
+  onImportedStateRendered?: (rootStore: RootStore) => void;
+  onLinksAddResult?: (info: OnLinksAddResult, rootStore: RootStore) => void;
+  onLinksRemoveResult?: (
+    info: OnLinksRemoveResult,
+    rootStore: RootStore
+  ) => void;
+  onLinkingStarted?: (info: OnLinkingStarted, rootStore: RootStore) => void;
+  onLinkingEnded?: (info: OnLinkingEnded, rootStore: RootStore) => void;
 }
 
-export interface OnLinkingStart {
+export interface OnNodesAddResult {
+  addedNodes: NodeState[];
+  failedToAddNodes: ErrorResult<INodeState>[];
+  importing: boolean;
+}
+
+export interface OnNodesRemoveResult {
+  removedNodes: INodeExport[];
+  failedToRemoveNodeIds: string[];
+}
+
+export interface OnLinksAddResult {
+  addedLinks: LinkState[];
+  failedToAddLinks: ErrorResult<ILinkState>[];
+  importing: boolean;
+}
+
+export interface OnLinksRemoveResult {
+  removedLinks: ILinkStateWithId[];
+  failedToRemoveLinkIds: string[];
+}
+
+export interface OnLinkingStarted {
   sourcePort: PortState;
 }
 
-export interface OnLinkingEnd {
+export interface OnLinkingEnded {
   sourcePort: PortState;
   targetPort?: PortState;
   linked: boolean;
-}
-
-export interface OnNodesRemoved {
-  removedNodes: string[],
-  failedToRemoveNodesIds: string[],
 }
