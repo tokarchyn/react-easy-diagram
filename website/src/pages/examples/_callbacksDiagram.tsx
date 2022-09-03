@@ -20,7 +20,7 @@ const settings: ISettings = {
       }
     },
     onNodesRemoveResult(info, rootStore) {
-      if (info.removedNodes.length > 0){
+      if (info.removedNodes.length > 0) {
         console.log(
           `Removed nodes: ${info.removedNodes
             .map((n) => n.id)
@@ -28,16 +28,26 @@ const settings: ISettings = {
         );
       }
     },
-    nodePositionChanged: (node, oldPos, newPos, isDragActive, store) => {
+    onNodePositionChanged: (info, store) => {
       console.log(
         `Position of node '${
-          node.id
-        }' changed from '${oldPos.toString()}' to '${newPos.toString()}'`
+          info.node.id
+        }' changed from '${info.oldPosition.toString()}' to '${info.newPosition.toString()}'`
       );
     },
-    dragStateChanged: (nodes, dragStarted, store) => {
+    onDragStarted: ({ nodes }, store) => {
       console.log(
-        `${dragStarted ? 'Start' : 'Finish'} dragging nodes: '${nodes
+        `Start dragging nodes: '${nodes
+          .map((n) => n.id)
+          .reduce((prev, val) => prev + ', ' + val)}'`
+      );
+    },
+    onDrag: ({ delta }, store) => {
+      console.log(`Drag by ${delta}`);
+    },
+    onDragEnded: ({ nodes }, store) => {
+      console.log(
+        `End dragging nodes: '${nodes
           .map((n) => n.id)
           .reduce((prev, val) => prev + ', ' + val)}'`
       );

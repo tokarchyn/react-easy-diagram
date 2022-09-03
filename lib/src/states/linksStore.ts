@@ -175,10 +175,10 @@ export class LinksStore {
       return errorResult(`Link's endpoints are already connected`);
 
     if (
-      this._rootStore.callbacks.validateLinkEndpoints?.(
-        sourcePortResult.value,
-        targetPortResult.value
-      ) === false
+      this._rootStore.callbacks.linkValidation({
+        source: sourcePortResult.value,
+        target: targetPortResult.value,
+      }) === false
     ) {
       return errorResult(
         `Link's endpoints are not valid according to validation callback`
@@ -190,13 +190,13 @@ export class LinksStore {
 
   validateLinkProperties = (link: ILinkState): SuccessOrErrorResult => {
     if (!link) return errorResult(`Cannot add empty`);
-    if (link.id && typeof link !== 'string')
+    if (link.id && typeof link.id !== 'string')
       return errorResult(
         `Cannot add link with id '${link.id}' of type different than 'string'`
       );
     if (link.id && this._links.has(link.id))
       return errorResult(
-        `Cannot add link with id '${link.id}', as it already exists`
+        `Cannot add link with id '${link.id}' because link with this id already exists`
       );
 
     if (link.source.nodeId === link.target.nodeId)

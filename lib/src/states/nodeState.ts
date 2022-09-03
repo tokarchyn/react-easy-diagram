@@ -109,7 +109,13 @@ export class NodeState {
 
     this._ports = new Map();
     portsIds.forEach((id) =>
-      this._ports.set(id, this._createPortState(id, nodePorts?.find(p => p.id === id)))
+      this._ports.set(
+        id,
+        this._createPortState(
+          id,
+          nodePorts?.find((p) => p.id === id)
+        )
+      )
     );
   };
 
@@ -136,12 +142,12 @@ export class NodeState {
 
       // Do not notify if position was not initialized before
       if (oldPos) {
-        this._rootStore.callbacks.nodePositionChanged(
-          this,
-          oldPos,
-          this._position,
-          this.isDragActive
-        );
+        this._rootStore.callbacks.nodePositionChanged({
+          node: this,
+          oldPosition: oldPos,
+          newPosition: this._position,
+          isDragActive: this.isDragActive,
+        });
       }
       return true;
     } else return false;
@@ -258,7 +264,7 @@ export class NodeState {
 
   private _createPortState = (id: string, state?: IPortStateWithoutIds) => {
     return new PortState(this._rootStore, this, id, state);
-  }
+  };
 
   get connectedExternalPorts(): Dictionary<PortState[]> {
     const keyValues = Object.values(this.ports).map((p) => [

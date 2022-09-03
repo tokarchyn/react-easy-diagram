@@ -103,7 +103,7 @@ const Configurator = observer<INodeVisualComponentProps>(() => {
 const UserInteractionCheckbox = observer<{
   userInteractionPropertyName: keyof Omit<
     IUserInteraction,
-    'multiselectionKey'
+    'multiselectionKey' | 'disableAllMouseAndTouchInteractions'
   >;
 }>(({ userInteractionPropertyName }) => {
   const { diagramSettings } = useRootStore();

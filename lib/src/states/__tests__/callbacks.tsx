@@ -19,23 +19,23 @@ describe('Callbacks import', () => {
   test('Import/Export', () => {
     let callback = () => true;
     callbacks.import({
-      validateLinkEndpoints: callback,
+      onLinkValidation: callback,
       onNodesAddResult: callback,
-      nodePositionChanged: callback,
+      onNodePositionChanged: callback,
       dragStateChanged: callback
     });
 
     const exportedCallbacks = callbacks.export();
-    expect(exportedCallbacks.validateLinkEndpoints).toBe(callback);
+    expect(exportedCallbacks.onLinkValidation).toBe(callback);
     expect(exportedCallbacks.onNodesAddResult).toBe(callback);
-    expect(exportedCallbacks.nodePositionChanged).toBe(callback);
+    expect(exportedCallbacks.onNodePositionChanged).toBe(callback);
     expect(exportedCallbacks.dragStateChanged).toBe(callback);
   });
 
   describe('nodePositionChanged callback', () => {
     let mockNodePositionChangedCallback: jest.Mock<
-      ReturnType<NonNullable<ICallbacks['nodePositionChanged']>>,
-      Parameters<NonNullable<ICallbacks['nodePositionChanged']>>
+      ReturnType<NonNullable<ICallbacks['onNodePositionChanged']>>,
+      Parameters<NonNullable<ICallbacks['onNodePositionChanged']>>
     >;
 
     const validateCallbackCall = (
@@ -54,7 +54,7 @@ describe('Callbacks import', () => {
     beforeEach(() => {
       mockNodePositionChangedCallback = jest.fn((_a, _b, _c, _d, _e) => {});
       store.callbacks.import({
-        nodePositionChanged: mockNodePositionChangedCallback,
+        onNodePositionChanged: mockNodePositionChangedCallback,
       });
     });
 

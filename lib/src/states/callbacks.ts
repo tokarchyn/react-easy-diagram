@@ -11,12 +11,14 @@ import { Point } from 'utils/point';
 import { ILinkState, ILinkStateWithId, LinkState } from './linkState';
 
 export class Callbacks {
-  private _validateLinkEndpoints?: ICallbacks['validateLinkEndpoints'];
   private _onNodesAddResult?: ICallbacks['onNodesAddResult'];
   private _onNodesRemoveResult?: ICallbacks['onNodesRemoveResult'];
-  private _nodePositionChanged?: ICallbacks['nodePositionChanged'];
-  private _dragStateChanged?: ICallbacks['dragStateChanged'];
+  private _onNodePositionChanged?: ICallbacks['onNodePositionChanged'];
+  private _onDragStarted?: ICallbacks['onDragStarted'];
+  private _onDrag?: ICallbacks['onDrag'];
+  private _onDragEnded?: ICallbacks['onDragEnded'];
   private _onImportedStateRendered?: ICallbacks['onImportedStateRendered'];
+  private _onLinkValidation?: ICallbacks['onLinkValidation'];
   private _onLinksAddResult?: ICallbacks['onLinksAddResult'];
   private _onLinksRemoveResult?: ICallbacks['onLinksRemoveResult'];
   private _onLinkingStarted?: ICallbacks['onLinkingStarted'];
@@ -30,11 +32,13 @@ export class Callbacks {
   }
 
   import = (callbacks?: ICallbacks) => {
-    this._validateLinkEndpoints = callbacks?.validateLinkEndpoints;
+    this._onLinkValidation = callbacks?.onLinkValidation;
     this._onNodesAddResult = callbacks?.onNodesAddResult;
     this._onNodesRemoveResult = callbacks?.onNodesRemoveResult;
-    this._nodePositionChanged = callbacks?.nodePositionChanged;
-    this._dragStateChanged = callbacks?.dragStateChanged;
+    this._onNodePositionChanged = callbacks?.onNodePositionChanged;
+    this._onDragStarted = callbacks?.onDragStarted;
+    this._onDrag = callbacks?.onDrag;
+    this._onDragEnded = callbacks?.onDragEnded;
     this._onImportedStateRendered = callbacks?.onImportedStateRendered;
     this._onLinksAddResult = callbacks?.onLinksAddResult;
     this._onLinksRemoveResult = callbacks?.onLinksRemoveResult;
@@ -43,21 +47,23 @@ export class Callbacks {
   };
 
   export = (): ICallbacks => ({
-    validateLinkEndpoints: this._validateLinkEndpoints,
     onNodesAddResult: this._onNodesAddResult,
     onNodesRemoveResult: this._onNodesRemoveResult,
-    nodePositionChanged: this._nodePositionChanged,
-    dragStateChanged: this._dragStateChanged,
+    onNodePositionChanged: this._onNodePositionChanged,
+    onDragStarted: this._onDragStarted,
+    onDrag: this._onDrag,
+    onDragEnded: this._onDragEnded,
     onImportedStateRendered: this._onImportedStateRendered,
+    onLinkValidation: this._onLinkValidation,
     onLinksAddResult: this._onLinksAddResult,
     onLinksRemoveResult: this._onLinksRemoveResult,
     onLinkingStarted: this._onLinkingStarted,
     onLinkingEnded: this._onLinkingEnded,
   });
 
-  validateLinkEndpoints = (source: PortState, target: PortState) => {
-    if (this._validateLinkEndpoints)
-      return this._validateLinkEndpoints(source, target, this._rootStore);
+  linkValidation = (info: OnLinkValidation) => {
+    if (this._onLinkValidation)
+      return this._onLinkValidation(info, this._rootStore);
     else return true;
   };
 
@@ -73,24 +79,29 @@ export class Callbacks {
     }
   };
 
-  nodePositionChanged = (
-    node: NodeState,
-    oldPosition: Point,
-    newPosition: Point,
-    isDragActive: boolean
-  ) =>
-    this._nodePositionChanged &&
-    this._nodePositionChanged(
-      node,
-      oldPosition,
-      newPosition,
-      isDragActive,
-      this._rootStore
-    );
+  nodePositionChanged = (info: OnNodePositionChanged) => {
+    if (this._onNodePositionChanged) {
+      this._onNodePositionChanged(info, this._rootStore);
+    }
+  };
 
-  dragStateChanged = (nodes: NodeState[], started: boolean) =>
-    this._dragStateChanged &&
-    this._dragStateChanged(nodes, started, this._rootStore);
+  dragStarted = (info: OnDragStarted) => {
+    if (this._onDragStarted) {
+      this._onDragStarted(info, this._rootStore);
+    }
+  };
+
+  drag = (info: OnDrag) => {
+    if (this._onDrag) {
+      this._onDrag(info, this._rootStore);
+    }
+  };
+
+  dragEnded = (info: OnDragEnded) => {
+    if (this._onDragEnded) {
+      this._onDragEnded(info, this._rootStore);
+    }
+  };
 
   importedStateRendered = () => {
     if (this._rootStore.diagramSettings.zoomToFitSettings.callOnImportState) {
@@ -128,29 +139,20 @@ export class Callbacks {
 }
 
 export interface ICallbacks {
-  validateLinkEndpoints?: (
-    source: PortState,
-    target: PortState,
-    rootStore: RootStore
-  ) => boolean;
   onNodesAddResult?: (info: OnNodesAddResult, rootStore: RootStore) => void;
   onNodesRemoveResult?: (
     info: OnNodesRemoveResult,
     rootStore: RootStore
   ) => void;
-  nodePositionChanged?: (
-    node: NodeState,
-    oldPosition: Point,
-    newPosition: Point,
-    isDragActive: boolean,
+  onNodePositionChanged?: (
+    info: OnNodePositionChanged,
     rootStore: RootStore
   ) => void;
-  dragStateChanged?: (
-    nodes: NodeState[],
-    started: boolean,
-    rootStore: RootStore
-  ) => void;
+  onDragStarted?: (info: OnDragStarted, rootStore: RootStore) => void;
+  onDrag?: (info: OnDrag, rootStore: RootStore) => void;
+  onDragEnded?: (info: OnDragEnded, rootStore: RootStore) => void;
   onImportedStateRendered?: (rootStore: RootStore) => void;
+  onLinkValidation?: (info: OnLinkValidation, rootStore: RootStore) => boolean;
   onLinksAddResult?: (info: OnLinksAddResult, rootStore: RootStore) => void;
   onLinksRemoveResult?: (
     info: OnLinksRemoveResult,
@@ -158,6 +160,26 @@ export interface ICallbacks {
   ) => void;
   onLinkingStarted?: (info: OnLinkingStarted, rootStore: RootStore) => void;
   onLinkingEnded?: (info: OnLinkingEnded, rootStore: RootStore) => void;
+}
+
+export interface OnDragStarted {
+  nodes: NodeState[];
+}
+
+export interface OnDrag {
+  nodes: NodeState[];
+  delta: Point;
+}
+
+export interface OnDragEnded {
+  nodes: NodeState[];
+}
+
+export interface OnNodePositionChanged {
+  node: NodeState;
+  oldPosition: Point;
+  newPosition: Point;
+  isDragActive: boolean;
 }
 
 export interface OnNodesAddResult {
@@ -169,6 +191,11 @@ export interface OnNodesAddResult {
 export interface OnNodesRemoveResult {
   removedNodes: INodeExport[];
   failedToRemoveNodeIds: string[];
+}
+
+export interface OnLinkValidation {
+  source: PortState;
+  target: PortState;
 }
 
 export interface OnLinksAddResult {
