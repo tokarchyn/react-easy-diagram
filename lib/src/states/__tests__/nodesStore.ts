@@ -1,8 +1,13 @@
-import { ICallbacks } from 'states/callbacks';
+import {
+  ICallbacks,
+  OnNodesAddResult,
+  OnNodesRemoveResult,
+} from 'states/callbacks';
 import { INodeState } from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
 import { createDummyHTMLElement } from 'utils/__tests__/testUtils';
 import React from 'react';
+import { isError, isSuccess } from 'utils/result';
 
 describe('Nodes store', () => {
   let store: RootStore;
@@ -11,91 +16,172 @@ describe('Nodes store', () => {
     store = new RootStore();
   });
 
-  describe('Nodes added callback', () => {
-    let mockNodesAddedCallback: jest.Mock<
+  describe('Add/remove', () => {
+    let mockOnNodesAddResultCallback: jest.Mock<
       ReturnType<NonNullable<ICallbacks['onNodesAddResult']>>,
       Parameters<NonNullable<ICallbacks['onNodesAddResult']>>
     >;
 
+    let mockOnNodesRemoveResultCallback: jest.Mock<
+      ReturnType<NonNullable<ICallbacks['onNodesRemoveResult']>>,
+      Parameters<NonNullable<ICallbacks['onNodesRemoveResult']>>
+    >;
+
     beforeEach(() => {
-      mockNodesAddedCallback = jest.fn((a, b, c, d) => {});
+      mockOnNodesAddResultCallback = jest.fn((a, b) => {});
+      mockOnNodesRemoveResultCallback = jest.fn((a, b) => {});
       store.callbacks.import({
-        onNodesAddResult: mockNodesAddedCallback,
+        onNodesAddResult: mockOnNodesAddResultCallback,
+        onNodesRemoveResult: mockOnNodesRemoveResultCallback,
       });
     });
 
-    test('Import new nodes', () => {
+    const validateOnNodesAddResult = (
+      invocation: number,
+      info: OnNodesAddResult
+    ) => {
+      const callbackCall = mockOnNodesAddResultCallback.mock.calls[invocation];
+
+      expect(callbackCall[0].addedNodes.length).toBe(info.addedNodes.length);
+      info.addedNodes.forEach((v) =>
+        expect(callbackCall[0].addedNodes).toContain(v)
+      );
+
+      expect(callbackCall[0].failedToAddNodes.length).toBe(
+        info.failedToAddNodes.length
+      );
+      info.failedToAddNodes.forEach((v) =>
+        expect(callbackCall[0].failedToAddNodes).toContain(v)
+      );
+
+      expect(callbackCall[0].importing).toBe(info.importing);
+      expect(callbackCall[1]).toBe(store);
+    };
+
+    const validateOnNodesRemoveResult = (
+      invocation: number,
+      info: OnNodesRemoveResult
+    ) => {
+      const callbackCall =
+        mockOnNodesRemoveResultCallback.mock.calls[invocation];
+
+      expect(callbackCall[0].removedNodes.length).toBe(
+        info.removedNodes.length
+      );
+      info.removedNodes.forEach((v) =>
+        expect(callbackCall[0].removedNodes).toContain(v)
+      );
+
+      expect(callbackCall[0].failedToRemoveNodeIds).toEqual(
+        info.failedToRemoveNodeIds
+      );
+      expect(callbackCall[1]).toBe(store);
+    };
+
+    test('Import nodes', () => {
       const nodes: INodeState[] = [
         { id: 'first', position: [0, 10] },
-        { id: 'first', position: [10, 20] },
         { position: [100, 110] },
       ];
 
       store.nodesStore.import(nodes);
 
       expect(store.nodesStore.nodes.size).toBe(2);
+      const nodesImported = Array.from(store.nodesStore.nodes.values());
+      expect(mockOnNodesAddResultCallback.mock.calls.length).toBe(1);
+      validateOnNodesAddResult(0, {
+        addedNodes: nodesImported,
+        failedToAddNodes: [],
+        importing: true,
+      });
 
-      const callbackCalls = mockNodesAddedCallback.mock.calls;
-      expect(callbackCalls.length).toBe(1);
-      expect(callbackCalls[0][2]).toBe(true);
-      expect(callbackCalls[0][3]).toBe(store);
-
-      const addedNodes = callbackCalls[0][0];
-      expect(addedNodes.length).toBe(2);
-      expect(addedNodes[0].position).toEqual([0, 10]);
-      expect(addedNodes[1].position).toEqual([100, 110]);
-
-      const failedToAdd = callbackCalls[0][1];
-      expect(failedToAdd.length).toBe(1);
-      expect(failedToAdd[0].success).toBe(false);
-      expect(failedToAdd[0].value).toBe(nodes[1]);
-    });
-
-    test('Import should not call callback if there are not any nodes', () => {
-      store.nodesStore.import([]);
-      expect(mockNodesAddedCallback.mock.calls.length).toBe(0);
+      expect(nodesImported[0].id).toEqual(nodes[0].id);
+      expect(nodesImported[0].position).toEqual([0, 10]);
+      expect(nodesImported[1].position).toEqual([100, 110]);
     });
 
     test('Import should not call callback if nodes are not provided', () => {
       store.nodesStore.import();
-      expect(mockNodesAddedCallback.mock.calls.length).toBe(0);
+      expect(mockOnNodesAddResultCallback.mock.calls.length).toBe(0);
     });
 
-    test('Add nodes should call callback', () => {
-      store.nodesStore.addNodes([{ position: [0, 10] }], false);
+    test('Import new nodes should remove previous nodes', () => {
+      store.nodesStore.import([{ position: [0, 10] }]);
+      store.nodesStore.import([]);
+      expect(store.nodesStore.nodes.size).toBe(0);
+      expect(mockOnNodesAddResultCallback.mock.calls.length).toBe(1);
+      expect(mockOnNodesRemoveResultCallback.mock.calls.length).toBe(0);
+    });
 
-      const callbackCalls = mockNodesAddedCallback.mock.calls;
-      expect(callbackCalls.length).toBe(1);
-      expect(callbackCalls[0][2]).toBe(false);
-      expect(callbackCalls[0][3]).toBe(store);
+    test('Add undefined node should failed', () => {
+      const result = store.nodesStore.addNode(undefined as any, false);
 
-      const addedNodes = callbackCalls[0][0];
-      expect(addedNodes.length).toBe(1);
-      expect(addedNodes[0].position).toEqual([0, 10]);
+      expect(store.nodesStore.nodes.size).toBe(0);
+      expect(result.success).toBeFalsy();
+      expect(result.value).toBeUndefined();
+      expect(mockOnNodesAddResultCallback.mock.calls.length).toBe(1);
+      validateOnNodesAddResult(0, {
+        addedNodes: [],
+        failedToAddNodes: [isError(result) ? result : undefined!],
+        importing: false,
+      });
+    });
 
-      const failedToAdd = callbackCalls[0][1];
-      expect(failedToAdd.length).toBe(0);
+    test('Add nodes', () => {
+      const nodes: INodeState[] = [
+        { id: 'first', position: [0, 10] },
+        { position: [100, 110] },
+      ];
+
+      const result = store.nodesStore.addNodes(nodes);
+
+      const nodesImported = Array.from(store.nodesStore.nodes.values());
+
+      expect(store.nodesStore.nodes.size).toBe(2);
+
+      expect(result.length).toBe(2);
+      expect(result[0].success).toBeTruthy();
+      expect(result[0].value).toBe(nodesImported[0]);
+      expect(result[1].success).toBeTruthy();
+      expect(result[1].value).toBe(nodesImported[1]);
+
+      expect(mockOnNodesAddResultCallback.mock.calls.length).toBe(1);
+      validateOnNodesAddResult(0, {
+        addedNodes: nodesImported,
+        failedToAddNodes: [],
+        importing: false,
+      });
+
+      expect(nodesImported[0].id).toEqual(nodes[0].id);
+      expect(nodesImported[0].position).toEqual([0, 10]);
+      expect(nodesImported[1].position).toEqual([100, 110]);
+    });
+
+    test('Add node', () => {
+      const node: INodeState = { id: 'first', position: [0, 10] };
+
+      const result = store.nodesStore.addNode(node);
+
+      const nodesImported = Array.from(store.nodesStore.nodes.values());
+
+      expect(result.success).toBeTruthy();
+      expect(result.value).toBe(nodesImported[0]);
+      expect(store.nodesStore.nodes.size).toBe(1);
+
+      expect(mockOnNodesAddResultCallback.mock.calls.length).toBe(1);
+      validateOnNodesAddResult(0, {
+        addedNodes: nodesImported,
+        failedToAddNodes: [],
+        importing: false,
+      });
+
+      expect(nodesImported[0].id).toEqual(node.id);
+      expect(nodesImported[0].position).toEqual([0, 10]);
     });
 
     test('Add nodes should not call callback if nodes parameter is empty', () => {
       store.nodesStore.addNodes([], false);
-      expect(mockNodesAddedCallback.mock.calls.length).toBe(0);
-    });
-
-    test('Add node should call callback', () => {
-      store.nodesStore.addNode({ position: [0, 10] }, false);
-
-      const callbackCalls = mockNodesAddedCallback.mock.calls;
-      expect(callbackCalls.length).toBe(1);
-      expect(callbackCalls[0][2]).toBe(false);
-      expect(callbackCalls[0][3]).toBe(store);
-
-      const addedNodes = callbackCalls[0][0];
-      expect(addedNodes.length).toBe(1);
-      expect(addedNodes[0].position).toEqual([0, 10]);
-
-      const failedToAdd = callbackCalls[0][1];
-      expect(failedToAdd.length).toBe(0);
+      expect(mockOnNodesAddResultCallback.mock.calls.length).toBe(0);
     });
 
     test('Add existed node should failed', () => {
@@ -104,43 +190,115 @@ describe('Nodes store', () => {
       const nodeToAdd: INodeState = { id: 'mynode', position: [0, 100] };
       const result = store.nodesStore.addNode(nodeToAdd, false);
 
+      const nodesAdded = Array.from(store.nodesStore.nodes.values());
+
       expect(result.success).toBeFalsy();
+      expect(result.value).toBe(nodeToAdd);
+      expect(store.nodesStore.nodes.size).toBe(1);
 
-      const callbackCalls = mockNodesAddedCallback.mock.calls;
-      expect(callbackCalls.length).toBe(2);
-      expect(callbackCalls[1][2]).toBe(false);
-      expect(callbackCalls[1][3]).toBe(store);
+      expect(mockOnNodesAddResultCallback.mock.calls.length).toBe(2);
+      validateOnNodesAddResult(1, {
+        addedNodes: [],
+        failedToAddNodes: [isError(result) ? result : undefined!],
+        importing: false,
+      });
 
-      const addedNodes = callbackCalls[1][0];
-      expect(addedNodes.length).toBe(0);
-
-      const failedToAdd = callbackCalls[1][1];
-      expect(failedToAdd.length).toBe(1);
-      expect(failedToAdd[0].value).toBe(nodeToAdd);
+      expect(nodesAdded[0].id).toEqual(nodeToAdd.id);
+      expect(nodesAdded[0].position).toEqual([0, 10]);
     });
-  });
 
-  test('Import new nodes should remove previous nodes', () => {
-    store.nodesStore.import([{ position: [0, 10] }]);
-    store.nodesStore.import([]);
-    expect(store.nodesStore.nodes.size).toBe(0);
-  });
+    test('Existed node is not rewritten on adding by default', () => {
+      store.nodesStore.import([{ id: 'mynode', position: [0, 10] }]);
 
-  test('Add undefined node should failed', () => {
-    const result = store.nodesStore.addNode(undefined as any, false);
-    expect(store.nodesStore.nodes.size).toBe(0);
-    expect(result.success).toBeFalsy();
-  });
+      const nodeToAdd: INodeState = { id: 'mynode', position: [0, 11] };
+      const result = store.nodesStore.addNode(nodeToAdd);
 
-  test('Remove node', () => {
-    store.nodesStore.import([{ position: [0, 10] }]);
+      expect(result.success).toBe(false);
+      expect(result.value).toBe(nodeToAdd);
+      expect(store.nodesStore.getNode('mynode')?.position).toEqual([0, 10]);
 
-    const result = store.nodesStore.removeNode(
-      store.nodesStore.nodes.keys().next().value
-    );
+      expect(mockOnNodesAddResultCallback.mock.calls.length).toBe(2);
+      validateOnNodesAddResult(1, {
+        addedNodes: [],
+        failedToAddNodes: [isError(result) ? result : undefined!],
+        importing: false,
+      });
+    });
 
-    expect(result).toBeTruthy();
-    expect(store.nodesStore.nodes.size).toBe(0);
+    test('Existed node is not rewritten on adding many nodes by default', () => {
+      store.nodesStore.import([{ id: 'mynode', position: [0, 10] }]);
+
+      const nodeToAdd1: INodeState = { id: 'mynode', position: [0, 11] };
+      const nodeToAdd2: INodeState = { id: 'mynode2', position: [0, 12] };
+      const result = store.nodesStore.addNodes([nodeToAdd1, nodeToAdd2]);
+
+      expect(result.length).toBe(2);
+
+      expect(result[0].success).toBe(false);
+      expect(result[0].value).toBe(nodeToAdd1);
+      expect(store.nodesStore.getNode('mynode')?.position).toEqual([0, 10]);
+
+      expect(result[1].success).toBe(true);
+      const addedNode = store.nodesStore.getNode('mynode2');
+      expect(result[1].value).toBe(addedNode);
+      expect(addedNode?.position).toEqual([0, 12]);
+
+      expect(mockOnNodesAddResultCallback.mock.calls.length).toBe(2);
+      validateOnNodesAddResult(1, {
+        addedNodes: [addedNode!],
+        failedToAddNodes: [isError(result[0]) ? result[0] : undefined!],
+        importing: false,
+      });
+    });
+
+    test('Remove node', () => {
+      const addResult = store.nodesStore.addNode({ position: [0, 10] });
+      if (!addResult.success) throw new Error('Add node failed');
+      expect(store.nodesStore.nodes.size).toBe(1);
+
+      const result = store.nodesStore.removeNode(addResult.value.id!);
+
+      expect(result).toBeDefined();
+      expect(store.nodesStore.nodes.size).toBe(0);
+
+      expect(mockOnNodesRemoveResultCallback.mock.calls.length).toBe(1);
+      validateOnNodesRemoveResult(0, {
+        removedNodes: [result!],
+        failedToRemoveNodeIds: [],
+      });
+    });
+
+    test('Remove not existed node', () => {
+      const result = store.nodesStore.removeNode('someId');
+
+      expect(result).toBeUndefined();
+
+      expect(mockOnNodesRemoveResultCallback.mock.calls.length).toBe(1);
+      validateOnNodesRemoveResult(0, {
+        removedNodes: [],
+        failedToRemoveNodeIds: ['someId'],
+      });
+    });
+
+    test('Remove nodes', () => {
+      store.nodesStore.addNodes([
+        { id: '1', position: [0, 10] },
+        { id: '2', position: [0, 10] },
+      ]);
+      expect(store.nodesStore.nodes.size).toBe(2);
+
+      const results = store.nodesStore.removeNodes(['1', '3']);
+
+      expect(results.length).toBe(2);
+      expect(store.nodesStore.nodes.size).toBe(1);
+      expect(store.nodesStore.getNode('2')).toBeDefined();
+
+      expect(mockOnNodesRemoveResultCallback.mock.calls.length).toBe(1);
+      validateOnNodesRemoveResult(0, {
+        removedNodes: [isSuccess(results[0]) ? results[0].value : undefined!],
+        failedToRemoveNodeIds: ['3'],
+      });
+    });
   });
 
   test('Get node', () => {
@@ -153,11 +311,6 @@ describe('Nodes store', () => {
     store.nodesStore.import([{ id: 'mynode', position: [0, 10] }]);
     const result = store.nodesStore.getNode(undefined as any);
     expect(result).toBeUndefined();
-  });
-
-  test('Remove unexisted node', () => {
-    const result = store.nodesStore.removeNode('1');
-    expect(result).toBeFalsy();
   });
 
   test('Export nodes', () => {
@@ -222,35 +375,5 @@ describe('Nodes store', () => {
       expect(box.bottomRightCorner).toEqual([100, 100]);
       expect(box.size).toEqual([100, 100]);
     });
-  });
-
-  test('Existed node is not rewritten on adding by default', () => {
-    store.nodesStore.import([{ id: 'mynode', position: [0, 10] }]);
-
-    const nodeToAdd: INodeState = { id: 'mynode', position: [0, 11] };
-    const result = store.nodesStore.addNode(nodeToAdd);
-
-    expect(result.success).toBe(false);
-    expect(result.value).toBe(nodeToAdd);
-    expect(store.nodesStore.getNode('mynode')?.position).toEqual([0, 10]);
-  });
-
-  test('Existed node is not rewritten on adding many nodes by default', () => {
-    store.nodesStore.import([{ id: 'mynode', position: [0, 10] }]);
-
-    const nodeToAdd1: INodeState = { id: 'mynode', position: [0, 11] };
-    const nodeToAdd2: INodeState = { id: 'mynode2', position: [0, 12] };
-    const result = store.nodesStore.addNodes([nodeToAdd1, nodeToAdd2]);
-
-    expect(result.length).toBe(2);
-
-    expect(result[0].success).toBe(false);
-    expect(result[0].value).toBe(nodeToAdd1);
-    expect(store.nodesStore.getNode('mynode')?.position).toEqual([0, 10]);
-
-    expect(result[1].success).toBe(true);
-    const addedNode = store.nodesStore.getNode('mynode2');
-    expect(result[1].value).toBe(addedNode);
-    expect(addedNode?.position).toEqual([0, 12]);
   });
 });

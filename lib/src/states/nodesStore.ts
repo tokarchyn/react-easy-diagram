@@ -50,8 +50,6 @@ export class NodesStore {
     nodes: INodeState[],
     rewriteIfExists: boolean = false
   ): SuccessOrErrorResult<NodeState, INodeState>[] => {
-    if (!Array.isArray(nodes) || nodes.length == 0) return [];
-
     let results = this._addNodesInternal(nodes, rewriteIfExists);
 
     this._rootStore.callbacks.nodesAdded({

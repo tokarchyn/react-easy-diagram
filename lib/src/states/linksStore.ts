@@ -80,8 +80,6 @@ export class LinksStore {
     links: ILinkState[],
     rewriteIfAlreadyConnected: boolean = false
   ): SuccessOrErrorResult<LinkState, ILinkState>[] => {
-    if (!Array.isArray(links) || links.length == 0) return [];
-
     let results = this._addLinksInternal(links, rewriteIfAlreadyConnected);
 
     this._rootStore.callbacks.linksAdded({
@@ -122,8 +120,6 @@ export class LinksStore {
   removeLinks = (
     linkIds: string[]
   ): SuccessOrErrorResult<ILinkStateWithId, string>[] => {
-    if (!Array.isArray(linkIds) || linkIds.length == 0) return [];
-
     let results = this._removeLinks(linkIds);
 
     this._rootStore.callbacks.linksRemoved({
@@ -255,8 +251,6 @@ export class LinksStore {
     links: ILinkState[],
     rewriteIfAlreadyConnected: boolean
   ): SuccessOrErrorResult<LinkState, ILinkState>[] => {
-    if (!Array.isArray(links) || links.length == 0) return [];
-
     let results = links.map((link) =>
       this._addLinkInternal(link, rewriteIfAlreadyConnected)
     );

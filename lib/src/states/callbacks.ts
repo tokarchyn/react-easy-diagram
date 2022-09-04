@@ -1,13 +1,8 @@
+import { INodeExport, INodeState, NodeState } from 'states/nodeState';
 import { PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';
-import { INodeExport, INodeState, NodeState } from 'states/nodeState';
-import {
-  ErrorResult,
-  isError,
-  isSuccess,
-  SuccessOrErrorResult,
-} from 'utils/result';
 import { Point } from 'utils/point';
+import { ErrorResult } from 'utils/result';
 import { ILinkState, ILinkStateWithId, LinkState } from './linkState';
 
 export class Callbacks {
@@ -68,13 +63,19 @@ export class Callbacks {
   };
 
   nodesAdded = (info: OnNodesAddResult) => {
-    if (this._onNodesAddResult) {
+    if (
+      this._onNodesAddResult &&
+      (info.addedNodes.length > 0 || info.failedToAddNodes.length > 0)
+    ) {
       this._onNodesAddResult(info, this._rootStore);
     }
   };
 
   nodesRemoved = (info: OnNodesRemoveResult) => {
-    if (this._onNodesRemoveResult) {
+    if (
+      this._onNodesRemoveResult &&
+      (info.removedNodes.length > 0 || info.failedToRemoveNodeIds.length > 0)
+    ) {
       this._onNodesRemoveResult(info, this._rootStore);
     }
   };
@@ -114,13 +115,19 @@ export class Callbacks {
   };
 
   linksAdded = (info: OnLinksAddResult) => {
-    if (this._onLinksAddResult) {
+    if (
+      this._onLinksAddResult &&
+      (info.addedLinks.length > 0 || info.failedToAddLinks.length > 0)
+    ) {
       this._onLinksAddResult(info, this._rootStore);
     }
   };
 
   linksRemoved = (info: OnLinksRemoveResult) => {
-    if (this._onLinksRemoveResult) {
+    if (
+      this._onLinksRemoveResult &&
+      (info.removedLinks.length > 0 || info.failedToRemoveLinkIds.length > 0)
+    ) {
       this._onLinksRemoveResult(info, this._rootStore);
     }
   };
