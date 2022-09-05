@@ -156,7 +156,7 @@ export class LinksStore {
     link: ILinkState,
     ignoreIfAlreadyConnected: boolean = false
   ): SuccessOrErrorResult => {
-    const propsValidationResult = this.validateLinkProperties(link);
+    const propsValidationResult = this.validateLinkProperties(link, ignoreIfAlreadyConnected);
     if (!propsValidationResult.success) return propsValidationResult;
 
     const sourcePortResult = this.getEndpointPortOrError(link.source);
@@ -184,13 +184,14 @@ export class LinksStore {
     return successResult();
   };
 
-  validateLinkProperties = (link: ILinkState): SuccessOrErrorResult => {
+  validateLinkProperties = (link: ILinkState,
+    ignoreIfAlreadyConnected: boolean = false): SuccessOrErrorResult => {
     if (!link) return errorResult(`Cannot add empty`);
     if (link.id && typeof link.id !== 'string')
       return errorResult(
         `Cannot add link with id '${link.id}' of type different than 'string'`
       );
-    if (link.id && this._links.has(link.id))
+    if (!ignoreIfAlreadyConnected && link.id && this._links.has(link.id))
       return errorResult(
         `Cannot add link with id '${link.id}' because link with this id already exists`
       );
@@ -267,7 +268,8 @@ export class LinksStore {
     }
 
     if (rewriteIfAlreadyConnected) {
-      const existedLink = this.getLinkForEndpointsIfExists(
+      let existedLink = link.id ? this.getLink(link.id) : undefined;
+      existedLink = this.getLinkForEndpointsIfExists(
         link.source,
         link.target
       );

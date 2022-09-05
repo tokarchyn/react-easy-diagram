@@ -52,7 +52,7 @@ describe('Callbacks import', () => {
     };
 
     beforeEach(() => {
-      mockNodePositionChangedCallback = jest.fn((_a, _b, _c, _d, _e) => {});
+      mockNodePositionChangedCallback = jest.fn((_a, _b) => {});
       store.callbacks.import({
         onNodePositionChanged: mockNodePositionChangedCallback,
       });
