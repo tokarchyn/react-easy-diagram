@@ -20,20 +20,51 @@ custom_edit_url: null
 
 ## Methods
 
-### dragStateChanged
+### drag
 
-▸ **dragStateChanged**(`nodes`, `started`): `undefined` \| `void`
+▸ **drag**(`info`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `nodes` | [`NodeState`](NodeState.md)[] |
-| `started` | `boolean` |
+| `info` | [`OnDrag`](../interfaces/OnDrag.md) |
 
 #### Returns
 
-`undefined` \| `void`
+`void`
+
+___
+
+### dragEnded
+
+▸ **dragEnded**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnDragEnded`](../interfaces/OnDragEnded.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### dragStarted
+
+▸ **dragStarted**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnDragStarted`](../interfaces/OnDragStarted.md) |
+
+#### Returns
+
+`void`
 
 ___
 
@@ -73,53 +104,128 @@ ___
 
 ___
 
-### nodePositionChanged
+### linkValidation
 
-▸ **nodePositionChanged**(`node`, `oldPosition`, `newPosition`, `isDragActive`): `undefined` \| `void`
+▸ **linkValidation**(`info`): `boolean`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`NodeState`](NodeState.md) |
-| `oldPosition` | [`Point`](../#point) |
-| `newPosition` | [`Point`](../#point) |
-| `isDragActive` | `boolean` |
+| `info` | [`OnLinkValidation`](../interfaces/OnLinkValidation.md) |
 
 #### Returns
 
-`undefined` \| `void`
+`boolean`
+
+___
+
+### linkingEnded
+
+▸ **linkingEnded**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinkingEnded`](../interfaces/OnLinkingEnded.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### linkingStarted
+
+▸ **linkingStarted**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinkingStarted`](../interfaces/OnLinkingStarted.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### linksAdded
+
+▸ **linksAdded**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinksAddResult`](../interfaces/OnLinksAddResult.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### linksRemoved
+
+▸ **linksRemoved**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinksRemoveResult`](../interfaces/OnLinksRemoveResult.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### nodePositionChanged
+
+▸ **nodePositionChanged**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnNodePositionChanged`](../interfaces/OnNodePositionChanged.md) |
+
+#### Returns
+
+`void`
 
 ___
 
 ### nodesAdded
 
-▸ **nodesAdded**(`addResults`, `importing`): `undefined` \| `void`
+▸ **nodesAdded**(`info`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `addResults` | [`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState.md), [`INodeState`](../interfaces/INodeState.md)\>[] |
-| `importing` | `boolean` |
+| `info` | [`OnNodesAddResult`](../interfaces/OnNodesAddResult.md) |
 
 #### Returns
 
-`undefined` \| `void`
+`void`
 
 ___
 
-### validateLinkEndpoints
+### nodesRemoved
 
-▸ **validateLinkEndpoints**(`source`, `target`): `boolean`
+▸ **nodesRemoved**(`info`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `source` | [`PortState`](PortState.md) |
-| `target` | [`PortState`](PortState.md) |
+| `info` | [`OnNodesRemoveResult`](../interfaces/OnNodesRemoveResult.md) |
 
 #### Returns
 
-`boolean`
+`void`

@@ -23,9 +23,8 @@ export class UserInteractionSettings {
     this._nodeSelection = obj?.nodeSelection ?? true;
     this._linkSelection = obj?.linkSelection ?? true;
     this._multiselectionKey = obj?.multiselectionKey ?? 'shift';
-    this._disableAllPointerInteractionsCounter = obj?.disableAllMouseAndTouchInteractions
-      ? 1
-      : 0;
+    this._disableAllPointerInteractionsCounter =
+      obj?.disableAllMouseAndTouchInteractions ? 1 : 0;
   };
 
   get diagramZoom() {

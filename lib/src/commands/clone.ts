@@ -4,12 +4,15 @@ import { addPoints } from 'utils/point';
 
 export const cloneSelectedNodesCommand = {
   execute(rootStore: RootStore) {
-    rootStore.selectionState.selectedNodes.forEach((node) => {
-      const nodeObj = node.export() as INodeState;
-      nodeObj.id = undefined;
-      nodeObj.label = nodeObj.label;
-      nodeObj.position = addPoints(nodeObj.position, [50, 50]);
-      rootStore.nodesStore.addNode(nodeObj, false);
+    const nodeStates = rootStore.selectionState.selectedNodes.map((node) => {
+      const nodeState = node.export() as INodeState;
+      nodeState.id = undefined;
+      nodeState.label = nodeState.label;
+      nodeState.position = addPoints(nodeState.position, [50, 50]);
+
+      return nodeState
     });
+
+    rootStore.nodesStore.addNodes(nodeStates, false);
   },
 };

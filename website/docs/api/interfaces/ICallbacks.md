@@ -8,16 +8,15 @@ custom_edit_url: null
 
 ## Methods
 
-### dragStateChanged
+### onDrag
 
-▸ `Optional` **dragStateChanged**(`nodes`, `started`, `rootStore`): `void`
+▸ `Optional` **onDrag**(`info`, `rootStore`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `nodes` | [`NodeState`](../classes/NodeState.md)[] |
-| `started` | `boolean` |
+| `info` | [`OnDrag`](OnDrag.md) |
 | `rootStore` | [`RootStore`](../classes/RootStore.md) |
 
 #### Returns
@@ -26,9 +25,43 @@ custom_edit_url: null
 
 ___
 
-### importedStateRendered
+### onDragEnded
 
-▸ `Optional` **importedStateRendered**(`rootStore`): `void`
+▸ `Optional` **onDragEnded**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnDragEnded`](OnDragEnded.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onDragStarted
+
+▸ `Optional` **onDragStarted**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnDragStarted`](OnDragStarted.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onImportedStateRendered
+
+▸ `Optional` **onImportedStateRendered**(`rootStore`): `void`
 
 #### Parameters
 
@@ -42,57 +75,136 @@ ___
 
 ___
 
-### nodePositionChanged
+### onLinkValidation
 
-▸ `Optional` **nodePositionChanged**(`node`, `oldPosition`, `newPosition`, `isDragActive`, `rootStore`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | [`NodeState`](../classes/NodeState.md) |
-| `oldPosition` | [`Point`](../#point) |
-| `newPosition` | [`Point`](../#point) |
-| `isDragActive` | `boolean` |
-| `rootStore` | [`RootStore`](../classes/RootStore.md) |
-
-#### Returns
-
-`void`
-
-___
-
-### nodesAdded
-
-▸ `Optional` **nodesAdded**(`addedNodes`, `failedToAdd`, `importing`, `rootStore`): `void`
+▸ `Optional` **onLinkValidation**(`info`, `rootStore`): `boolean`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `addedNodes` | [`NodeState`](../classes/NodeState.md)[] |
-| `failedToAdd` | { `error?`: `string` ; `success`: ``false`` ; `value`: [`INodeState`](INodeState.md)  }[] |
-| `importing` | `boolean` |
-| `rootStore` | [`RootStore`](../classes/RootStore.md) |
-
-#### Returns
-
-`void`
-
-___
-
-### validateLinkEndpoints
-
-▸ `Optional` **validateLinkEndpoints**(`source`, `target`, `rootStore`): `boolean`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `source` | [`PortState`](../classes/PortState.md) |
-| `target` | [`PortState`](../classes/PortState.md) |
+| `info` | [`OnLinkValidation`](OnLinkValidation.md) |
 | `rootStore` | [`RootStore`](../classes/RootStore.md) |
 
 #### Returns
 
 `boolean`
+
+___
+
+### onLinkingEnded
+
+▸ `Optional` **onLinkingEnded**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinkingEnded`](OnLinkingEnded.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onLinkingStarted
+
+▸ `Optional` **onLinkingStarted**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinkingStarted`](OnLinkingStarted.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onLinksAddResult
+
+▸ `Optional` **onLinksAddResult**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinksAddResult`](OnLinksAddResult.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onLinksRemoveResult
+
+▸ `Optional` **onLinksRemoveResult**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinksRemoveResult`](OnLinksRemoveResult.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onNodePositionChanged
+
+▸ `Optional` **onNodePositionChanged**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnNodePositionChanged`](OnNodePositionChanged.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onNodesAddResult
+
+▸ `Optional` **onNodesAddResult**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnNodesAddResult`](OnNodesAddResult.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onNodesRemoveResult
+
+▸ `Optional` **onNodesRemoveResult**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnNodesRemoveResult`](OnNodesRemoveResult.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`

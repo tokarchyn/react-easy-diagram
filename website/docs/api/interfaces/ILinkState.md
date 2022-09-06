@@ -12,10 +12,6 @@ custom_edit_url: null
 
   ↳ **`ILinkState`**
 
-## Implemented by
-
-- [`LinkState`](../classes/LinkState.md)
-
 ## Properties
 
 ### data

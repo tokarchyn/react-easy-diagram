@@ -156,7 +156,7 @@ export default () => (
         },
       },
       callbacks: {
-        validateLinkEndpoints: (source, target, rootStore) => {
+        onLinkValidation: ({source, target}, rootStore) => {
           // allow connection only if target port is still unconnected
           if (target.type === 'input' && target.connectedLinks.length > 0)
             return false;

@@ -1,7 +1,59 @@
+import {
+  ICallbacks,
+  OnDrag,
+  OnDragEnded,
+  OnDragStarted,
+} from 'states/callbacks';
 import { RootStore } from 'states/rootStore';
 
 describe('Drag state', () => {
   let store: RootStore;
+
+  let mockOnDragStartedCallback: jest.Mock<
+    ReturnType<NonNullable<ICallbacks['onDragStarted']>>,
+    Parameters<NonNullable<ICallbacks['onDragStarted']>>
+  >;
+
+  let mockOnDragCallback: jest.Mock<
+    ReturnType<NonNullable<ICallbacks['onDrag']>>,
+    Parameters<NonNullable<ICallbacks['onDrag']>>
+  >;
+
+  let mockOnDragEndedCallback: jest.Mock<
+    ReturnType<NonNullable<ICallbacks['onDragEnded']>>,
+    Parameters<NonNullable<ICallbacks['onDragEnded']>>
+  >;
+
+  const validateOnDragStartedCallbackCall = (
+    invocation: number,
+    expected: OnDragStarted
+  ) => {
+    const callbackCall = mockOnDragStartedCallback.mock.calls[invocation];
+
+    expect(callbackCall[0].nodes.length).toBe(expected.nodes.length);
+    expected.nodes.forEach((v) => expect(callbackCall[0].nodes).toContain(v));
+    expect(callbackCall[1]).toBe(store);
+  };
+
+  const validateOnDragCallbackCall = (invocation: number, expected: OnDrag) => {
+    const callbackCall = mockOnDragCallback.mock.calls[invocation];
+
+    expect(callbackCall[0].nodes.length).toBe(expected.nodes.length);
+    expected.nodes.forEach((v) => expect(callbackCall[0].nodes).toContain(v));
+    expect(callbackCall[0].delta).toEqual(expected.delta);
+    expect(callbackCall[1]).toBe(store);
+  };
+
+  const validateOnDragEndedCallbackCall = (
+    invocation: number,
+    expected: OnDragEnded
+  ) => {
+    const callbackCall = mockOnDragEndedCallback.mock.calls[invocation];
+
+    expect(callbackCall[0].nodes.length).toBe(expected.nodes.length);
+    expected.nodes.forEach((v) => expect(callbackCall[0].nodes).toContain(v));
+    expect(callbackCall[1]).toBe(store);
+  };
 
   beforeEach(() => {
     store = new RootStore();
@@ -25,6 +77,15 @@ describe('Drag state', () => {
         },
       ]
     );
+    mockOnDragStartedCallback = jest.fn((_a, _b) => {});
+    mockOnDragCallback = jest.fn((_a, _b) => {});
+    mockOnDragEndedCallback = jest.fn((_a, _b) => {});
+
+    store.callbacks.import({
+      onDragStarted: mockOnDragStartedCallback,
+      onDrag: mockOnDragCallback,
+      onDragEnded: mockOnDragEndedCallback,
+    });
   });
 
   test('Drag already selected nodes', () => {
@@ -147,5 +208,54 @@ describe('Drag state', () => {
 
     expect(node1.position).toEqual([0, 10]);
     expect(node2.position).toEqual([0, -10]);
+  });
+
+  test('Drag callbacks called', () => {
+    const node1 = store.nodesStore.getNode('1')!;
+    const node2 = store.nodesStore.getNode('2')!;
+    const node3 = store.nodesStore.getNode('3')!;
+    store.selectionState.select(node1);
+    store.selectionState.select(node2);
+
+    const started = store.dragState.startDragging(node2);
+
+    expect(mockOnDragStartedCallback.mock.calls.length).toBe(1);
+    validateOnDragStartedCallbackCall(0, {
+      nodes: [node1, node2],
+    });
+
+    store.dragState.dragBy([10, 10]);
+
+    expect(mockOnDragCallback.mock.calls.length).toBe(1);
+    validateOnDragCallbackCall(0, {
+      nodes: [node1, node2],
+      delta: [10, 10],
+    });
+
+    expect(store.dragState.isActive).toBeTruthy();
+    expect(started).toBeTruthy();
+    expect(node1.position).toEqual([10, 10]);
+    expect(node1.isDragActive).toBeTruthy();
+
+    expect(node2.position).toEqual([10, 110]);
+    expect(node2.isDragActive).toBeTruthy();
+
+    expect(node3.position).toEqual([0, 200]);
+    expect(node3.isDragActive).toBeFalsy();
+
+    store.dragState.dragBy([15, 12]);
+
+    expect(mockOnDragCallback.mock.calls.length).toBe(2);
+    validateOnDragCallbackCall(1, {
+      nodes: [node1, node2],
+      delta: [15, 12],
+    });
+
+    store.dragState.stopDragging();
+
+    expect(mockOnDragEndedCallback.mock.calls.length).toBe(1);
+    validateOnDragEndedCallbackCall(0, {
+      nodes: [node1, node2],
+    });
   });
 });

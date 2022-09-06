@@ -11,26 +11,67 @@ import { useCallback } from 'react';
 
 const settings: ISettings = {
   callbacks: {
-    nodesAdded: (addResults, failedToAdd, importing, store) => {
-      console.log('Added nodes:');
-      console.log(addResults.map((r) => r.export()));
+    onNodesAddResult: (info, store) => {
+      if (info.addedNodes.length > 0) {
+        console.log(
+          'Added nodes:',
+          info.addedNodes.map((n) => n.export())
+        );
+      }
     },
-    nodePositionChanged: (node, oldPos, newPos, isDragActive, store) => {
+    onNodesRemoveResult(info, rootStore) {
+      if (info.removedNodes.length > 0) {
+        console.log(
+          `Removed nodes: ${info.removedNodes
+            .map((n) => n.id)
+            .reduce((prev, val) => prev + ', ' + val)}`
+        );
+      }
+    },
+    onNodePositionChanged: (info, store) => {
       console.log(
         `Position of node '${
-          node.id
-        }' changed from '${oldPos.toString()}' to '${newPos.toString()}'`
+          info.node.id
+        }' changed from '${info.oldPosition.toString()}' to '${info.newPosition.toString()}'`
       );
     },
-    dragStateChanged: (nodes, dragStarted, store) => {
+    onDragStarted: ({ nodes }, store) => {
       console.log(
-        `${dragStarted ? 'Start' : 'Finish'} dragging nodes: '${nodes
+        `Start dragging nodes: '${nodes
           .map((n) => n.id)
           .reduce((prev, val) => prev + ', ' + val)}'`
       );
     },
-    importedStateRendered: (store) => {
+    onDrag: ({ delta }, store) => {
+      console.log(`Drag by ${delta}`);
+    },
+    onDragEnded: ({ nodes }, store) => {
+      console.log(
+        `End dragging nodes: '${nodes
+          .map((n) => n.id)
+          .reduce((prev, val) => prev + ', ' + val)}'`
+      );
+    },
+    onImportedStateRendered: (store) => {
       console.log('Imported state has been rendered');
+    },
+    onLinkingStarted(info, rootStore) {
+      console.log(`Start linking port '${info.sourcePort.fullId}'`);
+    },
+    onLinkingEnded(info, rootStore) {
+      if (info.linked) {
+        console.log(
+          `Port '${info.sourcePort.fullId}' has been linked with '${info.targetPort?.fullId}'`
+        );
+      } else {
+        console.log(`Port '${info.sourcePort.fullId}' has not been linked`);
+      }
+    },
+    onLinksAddResult(info, rootStore) {
+      console.log(`Links add result: `, info);
+    },
+    onLinksRemoveResult(info, rootStore) {
+      console.log(`Links remove result: `, info);
     },
   },
 };

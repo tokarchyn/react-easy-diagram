@@ -1,0 +1,19 @@
+{
+  "files.associations": {
+    "*.mdx": "markdown"
+  },
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "on",
+    "editor.renderWhitespace": "all",
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.tabSize": 2
+  },
+  "jestrunner.debugOptions": {
+    "skipFiles": [
+      "${workspaceFolder}/lib/node_modules/**/*.js",
+      "${workspaceFolder}/node_modules/**/*.js",
+      "<node_internals>/**/*.js"
+    ]
+  }
+}

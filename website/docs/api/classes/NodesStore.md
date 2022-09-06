@@ -120,7 +120,7 @@ ___
 
 ### removeNode
 
-▸ **removeNode**(`nodeId`): `boolean`
+▸ **removeNode**(`nodeId`): `undefined` \| [`INodeExport`](../interfaces/INodeExport.md)
 
 #### Parameters
 
@@ -130,4 +130,20 @@ ___
 
 #### Returns
 
-`boolean`
+`undefined` \| [`INodeExport`](../interfaces/INodeExport.md)
+
+___
+
+### removeNodes
+
+▸ **removeNodes**(`nodeIds`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`INodeExport`](../interfaces/INodeExport.md), `string`\>[]
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `nodeIds` | `string`[] |
+
+#### Returns
+
+[`SuccessOrErrorResult`](../#successorerrorresult)<[`INodeExport`](../interfaces/INodeExport.md), `string`\>[]

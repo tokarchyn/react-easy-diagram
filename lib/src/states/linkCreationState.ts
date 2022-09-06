@@ -12,9 +12,9 @@ import { PortState } from 'states/portState';
 import { RootStore } from 'states/rootStore';
 
 export class LinkCreationState implements ILinkInteractionState {
-  private _source: LinkPortEndpointState | null = null;
-  private _target: LinkPointEndpointState | null = null;
-  private _targetPortCandidate: PortState | null = null;
+  private _source?: LinkPortEndpointState = undefined;
+  private _target?: LinkPointEndpointState = undefined;
+  private _targetPortCandidate?: PortState = undefined;
 
   private _rootStore: RootStore;
 
@@ -49,11 +49,7 @@ export class LinkCreationState implements ILinkInteractionState {
 
   startLinking = (portState: PortState, pointOnPort: Point): boolean => {
     this._resetProps();
-    this._source = new LinkPortEndpointState(
-      portState.nodeId,
-      portState.id,
-      this._rootStore
-    );
+    this._source = new LinkPortEndpointState(portState, this._rootStore);
 
     const sourcePoint = this._source.point;
     const portSize = this._source.port!.ref.sizeExcludingZoom;
@@ -74,6 +70,10 @@ export class LinkCreationState implements ILinkInteractionState {
       return false;
     }
 
+    this._rootStore.callbacks.linkingStarted({
+      sourcePort: portState,
+    });
+
     return true;
   };
 
@@ -82,8 +82,8 @@ export class LinkCreationState implements ILinkInteractionState {
 
     const canAddLink = this._rootStore.linksStore.validateLink({
       source: {
-        nodeId: this._source.nodeId,
-        portId: this._source.portId,
+        nodeId: this._source.port.nodeId,
+        portId: this._source.port.id,
       },
       target: {
         nodeId: portState.nodeId,
@@ -101,27 +101,40 @@ export class LinkCreationState implements ILinkInteractionState {
 
   resetTargetPortCandidate = (portState: PortState) => {
     if (this._targetPortCandidate === portState) {
-      this._targetPortCandidate = null;
+      this._targetPortCandidate = undefined;
     }
     portState.validForConnection = true;
   };
 
   stopLinking = () => {
+    let linked = false;
     if (this._targetPortCandidate && this._source) {
-      const result = this._rootStore.linksStore.validateAndAddLink({
+      const result = this._rootStore.linksStore.addLink({
         source: {
-          nodeId: this._source.nodeId,
-          portId: this._source.portId,
+          nodeId: this._source.port.nodeId,
+          portId: this._source.port.id,
         },
         target: {
           nodeId: this._targetPortCandidate.nodeId,
           portId: this._targetPortCandidate.id,
         },
       });
+
       if (result.success) {
         this._rootStore.selectionState.select(result.value, true);
       }
+
+      linked = result.success;
     }
+
+    if (this._source){
+      this._rootStore.callbacks.linkingEnded({
+        sourcePort: this._source.port,
+        targetPort: this._targetPortCandidate,
+        linked: linked,
+      });
+    }
+
     this._resetProps();
   };
 
@@ -140,12 +153,12 @@ export class LinkCreationState implements ILinkInteractionState {
       if (this._source.port) {
         this._source.port.validForConnection = true;
       }
-      this._source = null;
+      this._source = undefined;
     }
-    this._target = null;
+    this._target = undefined;
     if (this._targetPortCandidate) {
       this._targetPortCandidate.validForConnection = true;
-      this._targetPortCandidate = null;
+      this._targetPortCandidate = undefined;
     }
   };
 }

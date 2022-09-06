@@ -1,0 +1,80 @@
+---
+title: Callbacks
+slug: /
+---
+
+All callbacks receive two arguments: `info` with the information about event occured, and `rootStore` which gives you access to entire diagram state.
+
+To start using any callbacks define them in settings:
+```jsx
+const YourDiagram = () => (
+  <Diagram initState={...} settings={{
+    callbacks: {
+      onNodesAddResult: (info, store) => {
+        if (info.addedNodes.length > 0) {
+          console.log('Added nodes:',info.addedNodes.map((n) => n.export()));
+        }
+      }
+    }
+  }} />
+);
+```
+
+:::tip
+[Here](/examples/callbacks) you can find example of callbacks usage.
+:::
+
+## onNodesAddResult
+Is called whenever [addNodes](api/classes/NodesStore#addnodes), [addNode](api/classes/NodesStore#addnode) or [import](api/classes/NodesStore#import) are called regardless of the fact if any nodes were actually added.
+
+Information type: [OnNodesAddResult](api/interfaces/OnNodesAddResult)
+
+## onNodesRemoveResult
+Is called whenever [removeNode](api/classes/NodesStore#removenode), or [removeNodes](api/classes/NodesStore#removenodes) are called regardless of the fact if any nodes were actually removed.
+
+Information type: [OnNodesRemoveResult](api/interfaces/OnNodesRemoveResult)
+
+## onNodePositionChanged
+
+Information type: [OnNodePositionChanged](api/interfaces/OnNodePositionChanged)
+
+## onDragStarted
+
+Information type: [OnDragStarted](api/interfaces/OnDragStarted)
+
+## onDrag
+
+Information type: [OnDrag](api/interfaces/OnDrag)
+
+## onDragEnded
+
+Information type: [OnDragEnded](api/interfaces/OnNodesAddResult)
+
+## onImportedStateRendered
+Is called whenever imported nodes and links are rendered.
+Callback does not provide any additional information.
+
+## onLinkValidation
+Is called whenever the diagram is trying to validate if it is possible to connect source and target ports. This callback should return `boolean` where `true` means connecting is possible.
+
+See example [here](/examples/calculator).
+
+Information type: [OnLinkValidation](api/interfaces/OnLinkValidation)
+
+## onLinksAddResult
+Is called whenever [addLinks](api/classes/LinksStore#addlinks), [addLink](api/classes/LinksStore#addlink) or [import](api/classes/LinksStore#import) are called regardless of the fact if any links were actually added.
+
+Information type: [OnLinksAddResult](api/interfaces/OnLinksAddResult)
+
+## onLinksRemoveResult
+Is called whenever [removeLink](api/classes/LinksStore#removelink), or [removeLinks](api/classes/LinksStore#removelinks) are called regardless of the fact if any links were actually removed.
+
+Information type: [OnLinksRemoveResult](api/interfaces/OnLinksRemoveResult)
+
+## onLinkingStarted
+
+Information type: [OnLinkingStarted](api/interfaces/OnLinkingStarted)
+
+## onLinkingEnded
+
+Information type: [OnLinkingEnded](api/interfaces/OnLinkingEnded)

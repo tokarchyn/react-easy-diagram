@@ -1,4 +1,4 @@
-import { ICallbacks } from 'states/callbacks';
+import { ICallbacks, OnNodePositionChanged } from 'states/callbacks';
 import { NodeState } from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
 import { Point } from 'utils/point';
@@ -213,4 +213,80 @@ describe('Node state', () => {
       expect(node.transformString).toEqual(expectedTransformStr);
     }
   );
+
+  describe('onNodePositionChanged callback', () => {
+    let mockNodePositionChangedCallback: jest.Mock<
+      ReturnType<NonNullable<ICallbacks['onNodePositionChanged']>>,
+      Parameters<NonNullable<ICallbacks['onNodePositionChanged']>>
+    >;
+
+    const validateCallbackCall = (
+      mockArgs: [OnNodePositionChanged, RootStore],
+      node: NodeState,
+      oldPos: Point,
+      newPos: Point
+    ) => {
+      expect(mockArgs[0].node).toBe(node);
+      expect(mockArgs[0].oldPosition).toEqual(oldPos);
+      expect(mockArgs[0].newPosition).toEqual(newPos);
+      expect(mockArgs[0].isDragActive).toEqual(node.isDragActive);
+      expect(mockArgs[1]).toBe(store);
+    };
+
+    beforeEach(() => {
+      mockNodePositionChangedCallback = jest.fn((_a, _b) => {});
+      store.callbacks.import({
+        onNodePositionChanged: mockNodePositionChangedCallback,
+      });
+    });
+
+    test('Is not called on initialization', () => {
+      new NodeState(store, 'test', {
+        position: [5, 10],
+      });
+
+      expect(mockNodePositionChangedCallback.mock.calls.length).toBe(0);
+    });
+
+    test('Is not called if position remains the same', () => {
+      const node = new NodeState(store, 'test', {
+        position: [5, 10],
+      });
+      node.setPosition([5, 10]);
+      expect(mockNodePositionChangedCallback.mock.calls.length).toBe(0);
+    });
+
+    test('Is called for new node position set by code', () => {
+      const initPosition: Point = [5, 10];
+      const newPosition: Point = [50, 100];
+      const node = new NodeState(store, 'test', { position: initPosition });
+
+      node.setPosition(newPosition);
+
+      expect(mockNodePositionChangedCallback.mock.calls.length).toBe(1);
+      validateCallbackCall(
+        mockNodePositionChangedCallback.mock.calls[0],
+        node,
+        initPosition,
+        newPosition
+      );
+    });
+
+    test('Is called for new node position during dragging', () => {
+      const initPosition: Point = [5, 10];
+      const newPosition: Point = [50, 100];
+      const node = new NodeState(store, 'test', { position: initPosition });
+
+      node.isDragActive = true;
+      node.setPosition(newPosition);
+
+      expect(mockNodePositionChangedCallback.mock.calls.length).toBe(1);
+      validateCallbackCall(
+        mockNodePositionChangedCallback.mock.calls[0],
+        node,
+        initPosition,
+        newPosition
+      );
+    });
+  });
 });

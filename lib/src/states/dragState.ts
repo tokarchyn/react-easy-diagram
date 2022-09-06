@@ -25,13 +25,13 @@ export class DragState {
     return this._nodesBeingDragged.size !== 0;
   }
 
-  startDragging = (nodeToDrag: NodeState) : boolean => {
+  startDragging = (nodeToDrag: NodeState): boolean => {
     if (!nodeToDrag.isDragEnabled || this.isActive) return false;
 
     if (nodeToDrag.selected) {
       this._selectionState.unselectItems(
         this._selectionState.selectedItems.filter(
-          (i) => (i instanceof NodeState) && !i.isDragEnabled
+          (i) => i instanceof NodeState && !i.isDragEnabled
         )
       );
     } else {
@@ -43,26 +43,34 @@ export class DragState {
       n.isDragActive = true;
       this._nodesBeingDragged.add(n);
       // Force snapping to grid to prevent from desynchronized dragging if some of nodes positions were
-      // set by ignoring grid  
+      // set by ignoring grid
       n.setPosition(n.position);
     });
 
-    this._callbacks.dragStateChanged(this._selectionState.selectedNodes, true);
+    this._callbacks.dragStarted({
+      nodes: this._selectionState.selectedNodes,
+    });
+
     return true;
   };
 
   /**
-   * Drag by a vector
-   * @param vector vector to drag by which takes into account diagram zoom
+   * Drag by a difference between previous coordinate and current
+   * @param delta vector to drag by which takes into account diagram zoom
    */
-  dragBy = (vector: Point) => {
+  dragBy = (delta: Point) => {
     this._nodesBeingDragged.forEach((n) => {
       const vectorWithRemainder = addPoints(
-        vector,
+        delta,
         this._remaindersFromDrags.get(n.id)
       );
       const newRemainder = n.moveBy(vectorWithRemainder);
       this._remaindersFromDrags.set(n.id, newRemainder);
+    });
+
+    this._callbacks.drag({
+      nodes: this._selectionState.selectedNodes,
+      delta: delta,
     });
   };
 
@@ -70,6 +78,8 @@ export class DragState {
     this._nodesBeingDragged.forEach((n) => (n.isDragActive = false));
     this._nodesBeingDragged.clear();
     this._remaindersFromDrags.clear();
-    this._callbacks.dragStateChanged(this._selectionState.selectedNodes, false);
+    this._callbacks.dragEnded({
+      nodes: this._selectionState.selectedNodes,
+    });
   };
 }
