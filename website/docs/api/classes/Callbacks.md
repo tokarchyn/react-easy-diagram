@@ -20,20 +20,51 @@ custom_edit_url: null
 
 ## Methods
 
-### dragStateChanged
+### drag
 
-▸ **dragStateChanged**(`nodes`, `started`): `undefined` \| `void`
+▸ **drag**(`info`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `nodes` | [`NodeState`](NodeState.md)[] |
-| `started` | `boolean` |
+| `info` | [`OnDrag`](../interfaces/OnDrag.md) |
 
 #### Returns
 
-`undefined` \| `void`
+`void`
+
+___
+
+### dragEnded
+
+▸ **dragEnded**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnDragEnded`](../interfaces/OnDragEnded.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### dragStarted
+
+▸ **dragStarted**(`info`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnDragStarted`](../interfaces/OnDragStarted.md) |
+
+#### Returns
+
+`void`
 
 ___
 
@@ -73,6 +104,22 @@ ___
 
 ___
 
+### linkValidation
+
+▸ **linkValidation**(`info`): `boolean`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnLinkValidation`](../interfaces/OnLinkValidation.md) |
+
+#### Returns
+
+`boolean`
+
+___
+
 ### linkingEnded
 
 ▸ **linkingEnded**(`info`): `void`
@@ -81,7 +128,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `info` | [`OnLinkingEnd`](../interfaces/OnLinkingEnd.md) |
+| `info` | [`OnLinkingEnded`](../interfaces/OnLinkingEnded.md) |
 
 #### Returns
 
@@ -97,7 +144,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `info` | [`OnLinkingStart`](../interfaces/OnLinkingStart.md) |
+| `info` | [`OnLinkingStarted`](../interfaces/OnLinkingStarted.md) |
 
 #### Returns
 
@@ -113,7 +160,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `info` | [`OnLinksAdded`](../interfaces/OnLinksAdded.md) |
+| `info` | [`OnLinksAddResult`](../interfaces/OnLinksAddResult.md) |
 
 #### Returns
 
@@ -129,7 +176,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `info` | [`OnLinksRemoved`](../interfaces/OnLinksRemoved.md) |
+| `info` | [`OnLinksRemoveResult`](../interfaces/OnLinksRemoveResult.md) |
 
 #### Returns
 
@@ -139,37 +186,33 @@ ___
 
 ### nodePositionChanged
 
-▸ **nodePositionChanged**(`node`, `oldPosition`, `newPosition`, `isDragActive`): `undefined` \| `void`
+▸ **nodePositionChanged**(`info`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`NodeState`](NodeState.md) |
-| `oldPosition` | [`Point`](../#point) |
-| `newPosition` | [`Point`](../#point) |
-| `isDragActive` | `boolean` |
+| `info` | [`OnNodePositionChanged`](../interfaces/OnNodePositionChanged.md) |
 
 #### Returns
 
-`undefined` \| `void`
+`void`
 
 ___
 
 ### nodesAdded
 
-▸ **nodesAdded**(`addResults`, `importing`): `undefined` \| `void`
+▸ **nodesAdded**(`info`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `addResults` | [`SuccessOrErrorResult`](../#successorerrorresult)<[`NodeState`](NodeState.md), [`INodeState`](../interfaces/INodeState.md)\>[] |
-| `importing` | `boolean` |
+| `info` | [`OnNodesAddResult`](../interfaces/OnNodesAddResult.md) |
 
 #### Returns
 
-`undefined` \| `void`
+`void`
 
 ___
 
@@ -181,25 +224,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `info` | [`OnNodesRemoved`](../interfaces/OnNodesRemoved.md) |
+| `info` | [`OnNodesRemoveResult`](../interfaces/OnNodesRemoveResult.md) |
 
 #### Returns
 
 `void`
-
-___
-
-### validateLinkEndpoints
-
-▸ **validateLinkEndpoints**(`source`, `target`): `boolean`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `source` | [`PortState`](PortState.md) |
-| `target` | [`PortState`](PortState.md) |
-
-#### Returns
-
-`boolean`

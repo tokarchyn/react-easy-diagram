@@ -35,15 +35,15 @@ Encapsulate logic for dragging mechanism. Right now only nodes are supposed to b
 
 ### dragBy
 
-▸ **dragBy**(`vector`): `void`
+▸ **dragBy**(`delta`): `void`
 
-Drag by a vector
+Drag by a difference between previous coordinate and current
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `vector` | [`Point`](../#point) | vector to drag by which takes into account diagram zoom |
+| `delta` | [`Point`](../#point) | vector to drag by which takes into account diagram zoom |
 
 #### Returns
 

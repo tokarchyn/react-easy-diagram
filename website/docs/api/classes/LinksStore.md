@@ -42,17 +42,35 @@ ___
 
 ### addLink
 
-▸ **addLink**(`link`): [`LinkState`](LinkState.md)
+▸ **addLink**(`link`, `rewriteIfAlreadyConnected?`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`LinkState`](LinkState.md), [`ILinkState`](../interfaces/ILinkState.md)\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `link` | [`ILinkState`](../interfaces/ILinkState.md) |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `link` | [`ILinkState`](../interfaces/ILinkState.md) | `undefined` |
+| `rewriteIfAlreadyConnected` | `boolean` | `false` |
 
 #### Returns
 
-[`LinkState`](LinkState.md)
+[`SuccessOrErrorResult`](../#successorerrorresult)<[`LinkState`](LinkState.md), [`ILinkState`](../interfaces/ILinkState.md)\>
+
+___
+
+### addLinks
+
+▸ **addLinks**(`links`, `rewriteIfAlreadyConnected?`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`LinkState`](LinkState.md), [`ILinkState`](../interfaces/ILinkState.md)\>[]
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `links` | [`ILinkState`](../interfaces/ILinkState.md)[] | `undefined` |
+| `rewriteIfAlreadyConnected` | `boolean` | `false` |
+
+#### Returns
+
+[`SuccessOrErrorResult`](../#successorerrorresult)<[`LinkState`](LinkState.md), [`ILinkState`](../interfaces/ILinkState.md)\>[]
 
 ___
 
@@ -199,7 +217,7 @@ ___
 
 ### removeLink
 
-▸ **removeLink**(`linkId`): `boolean`
+▸ **removeLink**(`linkId`): `undefined` \| [`ILinkStateWithId`](../interfaces/ILinkStateWithId.md)
 
 #### Parameters
 
@@ -209,7 +227,23 @@ ___
 
 #### Returns
 
-`boolean`
+`undefined` \| [`ILinkStateWithId`](../interfaces/ILinkStateWithId.md)
+
+___
+
+### removeLinks
+
+▸ **removeLinks**(`linkIds`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`ILinkStateWithId`](../interfaces/ILinkStateWithId.md), `string`\>[]
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `linkIds` | `string`[] |
+
+#### Returns
+
+[`SuccessOrErrorResult`](../#successorerrorresult)<[`ILinkStateWithId`](../interfaces/ILinkStateWithId.md), `string`\>[]
 
 ___
 
@@ -246,31 +280,16 @@ ___
 
 ___
 
-### validateAndAddLink
-
-▸ **validateAndAddLink**(`link`): [`SuccessOrErrorResult`](../#successorerrorresult)<[`LinkState`](LinkState.md), `undefined`\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `link` | [`ILinkState`](../interfaces/ILinkState.md) |
-
-#### Returns
-
-[`SuccessOrErrorResult`](../#successorerrorresult)<[`LinkState`](LinkState.md), `undefined`\>
-
-___
-
 ### validateLink
 
-▸ **validateLink**(`link`): [`SuccessOrErrorResult`](../#successorerrorresult)<`undefined`, `undefined`\>
+▸ **validateLink**(`link`, `ignoreIfAlreadyConnected?`): [`SuccessOrErrorResult`](../#successorerrorresult)<`undefined`, `undefined`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `link` | [`ILinkState`](../interfaces/ILinkState.md) |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `link` | [`ILinkState`](../interfaces/ILinkState.md) | `undefined` |
+| `ignoreIfAlreadyConnected` | `boolean` | `false` |
 
 #### Returns
 
@@ -280,13 +299,14 @@ ___
 
 ### validateLinkProperties
 
-▸ **validateLinkProperties**(`link`): [`SuccessOrErrorResult`](../#successorerrorresult)<`undefined`, `undefined`\>
+▸ **validateLinkProperties**(`link`, `ignoreIfAlreadyConnected?`): [`SuccessOrErrorResult`](../#successorerrorresult)<`undefined`, `undefined`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `link` | [`ILinkState`](../interfaces/ILinkState.md) |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `link` | [`ILinkState`](../interfaces/ILinkState.md) | `undefined` |
+| `ignoreIfAlreadyConnected` | `boolean` | `false` |
 
 #### Returns
 

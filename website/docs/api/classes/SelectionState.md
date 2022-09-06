@@ -24,6 +24,16 @@ custom_edit_url: null
 
 ___
 
+### selectedLinks
+
+• `get` **selectedLinks**(): [`LinkState`](LinkState.md)[]
+
+#### Returns
+
+[`LinkState`](LinkState.md)[]
+
+___
+
 ### selectedNodes
 
 • `get` **selectedNodes**(): [`NodeState`](NodeState.md)[]

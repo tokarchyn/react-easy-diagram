@@ -2,6 +2,7 @@ module.exports = {
   docs: [
     'introduction',
     'stateManagement',
+    'callbacks',
     'userInteraction',
     {
       type: 'category',

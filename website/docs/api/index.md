@@ -97,11 +97,17 @@ custom_edit_url: null
 - [IVisualComponentProps](interfaces/IVisualComponentProps.md)
 - [IVisualComponentsObject](interfaces/IVisualComponentsObject.md)
 - [IZoomToFitSettings](interfaces/IZoomToFitSettings.md)
-- [OnLinkingEnd](interfaces/OnLinkingEnd.md)
-- [OnLinkingStart](interfaces/OnLinkingStart.md)
-- [OnLinksAdded](interfaces/OnLinksAdded.md)
-- [OnLinksRemoved](interfaces/OnLinksRemoved.md)
-- [OnNodesRemoved](interfaces/OnNodesRemoved.md)
+- [OnDrag](interfaces/OnDrag.md)
+- [OnDragEnded](interfaces/OnDragEnded.md)
+- [OnDragStarted](interfaces/OnDragStarted.md)
+- [OnLinkValidation](interfaces/OnLinkValidation.md)
+- [OnLinkingEnded](interfaces/OnLinkingEnded.md)
+- [OnLinkingStarted](interfaces/OnLinkingStarted.md)
+- [OnLinksAddResult](interfaces/OnLinksAddResult.md)
+- [OnLinksRemoveResult](interfaces/OnLinksRemoveResult.md)
+- [OnNodePositionChanged](interfaces/OnNodePositionChanged.md)
+- [OnNodesAddResult](interfaces/OnNodesAddResult.md)
+- [OnNodesRemoveResult](interfaces/OnNodesRemoveResult.md)
 
 ## Type Aliases
 
