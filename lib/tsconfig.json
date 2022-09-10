@@ -13,7 +13,7 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true,
-
+    "useDefineForClassFields": true,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,

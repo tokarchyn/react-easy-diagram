@@ -1,22 +1,22 @@
 ---
-id: "OnNodePositionChanged"
-title: "Interface: OnNodePositionChanged"
-sidebar_label: "OnNodePositionChanged"
+id: "OnNodeIsDragEnabledChanged"
+title: "Interface: OnNodeIsDragEnabledChanged"
+sidebar_label: "OnNodeIsDragEnabledChanged"
 sidebar_position: 0
 custom_edit_url: null
 ---
 
 ## Hierarchy
 
-- [`OnNodePropertyChanged`](OnNodePropertyChanged.md)<[`Point`](../#point)\>
+- [`OnNodePropertyChanged`](OnNodePropertyChanged.md)<`boolean` \| `undefined`\>
 
-  ↳ **`OnNodePositionChanged`**
+  ↳ **`OnNodeIsDragEnabledChanged`**
 
 ## Properties
 
 ### newValue
 
-• **newValue**: [`Point`](../#point)
+• **newValue**: `undefined` \| `boolean`
 
 #### Inherited from
 
@@ -36,7 +36,7 @@ ___
 
 ### oldValue
 
-• **oldValue**: [`Point`](../#point)
+• **oldValue**: `undefined` \| `boolean`
 
 #### Inherited from
 

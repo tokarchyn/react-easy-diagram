@@ -9,6 +9,11 @@ export class Callbacks {
   private _onNodesAddResult?: ICallbacks['onNodesAddResult'];
   private _onNodesRemoveResult?: ICallbacks['onNodesRemoveResult'];
   private _onNodePositionChanged?: ICallbacks['onNodePositionChanged'];
+  private _onNodeLabelChanged?: ICallbacks['onNodeLabelChanged'];
+  private _onNodeTypeChanged?: ICallbacks['onNodeTypeChanged'];
+  private _onNodeDataChanged?: ICallbacks['onNodeDataChanged'];
+  private _onNodeIsSelectionEnabledChanged?: ICallbacks['onNodeIsSelectionEnabledChanged'];
+  private _onNodeIsDragEnabledChanged?: ICallbacks['onNodeIsDragEnabledChanged'];
   private _onDragStarted?: ICallbacks['onDragStarted'];
   private _onDrag?: ICallbacks['onDrag'];
   private _onDragEnded?: ICallbacks['onDragEnded'];
@@ -31,6 +36,12 @@ export class Callbacks {
     this._onNodesAddResult = callbacks?.onNodesAddResult;
     this._onNodesRemoveResult = callbacks?.onNodesRemoveResult;
     this._onNodePositionChanged = callbacks?.onNodePositionChanged;
+    this._onNodeLabelChanged = callbacks?.onNodeLabelChanged;
+    this._onNodeTypeChanged = callbacks?.onNodeTypeChanged;
+    this._onNodeDataChanged = callbacks?.onNodeDataChanged;
+    this._onNodeIsSelectionEnabledChanged =
+      callbacks?.onNodeIsSelectionEnabledChanged;
+    this._onNodeIsDragEnabledChanged = callbacks?.onNodeIsDragEnabledChanged;
     this._onDragStarted = callbacks?.onDragStarted;
     this._onDrag = callbacks?.onDrag;
     this._onDragEnded = callbacks?.onDragEnded;
@@ -45,6 +56,11 @@ export class Callbacks {
     onNodesAddResult: this._onNodesAddResult,
     onNodesRemoveResult: this._onNodesRemoveResult,
     onNodePositionChanged: this._onNodePositionChanged,
+    onNodeLabelChanged: this._onNodeLabelChanged,
+    onNodeTypeChanged: this._onNodeTypeChanged,
+    onNodeDataChanged: this._onNodeDataChanged,
+    onNodeIsSelectionEnabledChanged: this._onNodeIsSelectionEnabledChanged,
+    onNodeIsDragEnabledChanged: this._onNodeIsDragEnabledChanged,
     onDragStarted: this._onDragStarted,
     onDrag: this._onDrag,
     onDragEnded: this._onDragEnded,
@@ -80,9 +96,93 @@ export class Callbacks {
     }
   };
 
-  nodePositionChanged = (info: OnNodePositionChanged) => {
+  nodePositionChanged = (node: NodeState, change: PropertyChange<Point>) => {
     if (this._onNodePositionChanged) {
-      this._onNodePositionChanged(info, this._rootStore);
+      this._onNodePositionChanged(
+        {
+          oldValue: change.oldValue,
+          newValue: change.newValue,
+          node: node,
+        },
+        this._rootStore
+      );
+    }
+  };
+
+  nodeTypeChanged = (
+    node: NodeState,
+    change: PropertyChange<string | undefined>
+  ) => {
+    if (this._onNodeTypeChanged) {
+      this._onNodeTypeChanged(
+        {
+          oldValue: change.oldValue,
+          newValue: change.newValue,
+          node: node,
+        },
+        this._rootStore
+      );
+    }
+  };
+
+  nodeLabelChanged = (
+    node: NodeState,
+    change: PropertyChange<string | undefined>
+  ) => {
+    if (this._onNodeLabelChanged) {
+      this._onNodeLabelChanged(
+        {
+          oldValue: change.oldValue,
+          newValue: change.newValue,
+          node: node,
+        },
+        this._rootStore
+      );
+    }
+  };
+
+  nodeDataChanged = (node: NodeState, change: PropertyChange<any>) => {
+    if (this._onNodeDataChanged) {
+      this._onNodeDataChanged(
+        {
+          oldValue: change.oldValue,
+          newValue: change.newValue,
+          node: node,
+        },
+        this._rootStore
+      );
+    }
+  };
+
+  nodeIsSelectionEnabledChanged = (
+    node: NodeState,
+    change: PropertyChange<boolean | undefined>
+  ) => {
+    if (this._onNodeIsSelectionEnabledChanged) {
+      this._onNodeIsSelectionEnabledChanged(
+        {
+          oldValue: change.oldValue,
+          newValue: change.newValue,
+          node: node,
+        },
+        this._rootStore
+      );
+    }
+  };
+
+  nodeIsDragEnabledChanged = (
+    node: NodeState,
+    change: PropertyChange<boolean | undefined>
+  ) => {
+    if (this._onNodeIsDragEnabledChanged) {
+      this._onNodeIsDragEnabledChanged(
+        {
+          oldValue: change.oldValue,
+          newValue: change.newValue,
+          node: node,
+        },
+        this._rootStore
+      );
     }
   };
 
@@ -155,6 +255,17 @@ export interface ICallbacks {
     info: OnNodePositionChanged,
     rootStore: RootStore
   ) => void;
+  onNodeLabelChanged?: (info: OnNodeLabelChanged, rootStore: RootStore) => void;
+  onNodeTypeChanged?: (info: OnNodeTypeChanged, rootStore: RootStore) => void;
+  onNodeDataChanged?: (info: OnNodeDataChanged, rootStore: RootStore) => void;
+  onNodeIsSelectionEnabledChanged?: (
+    info: OnNodeIsSelectionEnabledChanged,
+    rootStore: RootStore
+  ) => void;
+  onNodeIsDragEnabledChanged?: (
+    info: OnNodeIsDragEnabledChanged,
+    rootStore: RootStore
+  ) => void;
   onDragStarted?: (info: OnDragStarted, rootStore: RootStore) => void;
   onDrag?: (info: OnDrag, rootStore: RootStore) => void;
   onDragEnded?: (info: OnDragEnded, rootStore: RootStore) => void;
@@ -182,12 +293,25 @@ export interface OnDragEnded {
   nodes: NodeState[];
 }
 
-export interface OnNodePositionChanged {
+export interface OnNodePropertyChanged<TValue> extends PropertyChange<TValue> {
   node: NodeState;
-  oldPosition: Point;
-  newPosition: Point;
-  isDragActive: boolean;
 }
+
+export interface OnNodePositionChanged extends OnNodePropertyChanged<Point> {}
+
+export interface OnNodeLabelChanged
+  extends OnNodePropertyChanged<string | undefined> {}
+
+export interface OnNodeTypeChanged
+  extends OnNodePropertyChanged<string | undefined> {}
+
+export interface OnNodeDataChanged extends OnNodePropertyChanged<any> {}
+
+export interface OnNodeIsSelectionEnabledChanged
+  extends OnNodePropertyChanged<boolean | undefined> {}
+
+export interface OnNodeIsDragEnabledChanged
+  extends OnNodePropertyChanged<boolean | undefined> {}
 
 export interface OnNodesAddResult {
   addedNodes: NodeState[];
@@ -225,3 +349,8 @@ export interface OnLinkingEnded {
   targetPort?: PortState;
   linked: boolean;
 }
+
+export type PropertyChange<TValue> = {
+  oldValue: TValue;
+  newValue: TValue;
+};

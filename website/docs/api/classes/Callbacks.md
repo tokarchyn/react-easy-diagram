@@ -184,15 +184,101 @@ ___
 
 ___
 
-### nodePositionChanged
+### nodeDataChanged
 
-▸ **nodePositionChanged**(`info`): `void`
+▸ **nodeDataChanged**(`node`, `change`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `info` | [`OnNodePositionChanged`](../interfaces/OnNodePositionChanged.md) |
+| `node` | [`NodeState`](NodeState.md) |
+| `change` | [`PropertyChange`](../#propertychange)<`any`\> |
+
+#### Returns
+
+`void`
+
+___
+
+### nodeIsDragEnabledChanged
+
+▸ **nodeIsDragEnabledChanged**(`node`, `change`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `node` | [`NodeState`](NodeState.md) |
+| `change` | [`PropertyChange`](../#propertychange)<`undefined` \| `boolean`\> |
+
+#### Returns
+
+`void`
+
+___
+
+### nodeIsSelectionEnabledChanged
+
+▸ **nodeIsSelectionEnabledChanged**(`node`, `change`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `node` | [`NodeState`](NodeState.md) |
+| `change` | [`PropertyChange`](../#propertychange)<`undefined` \| `boolean`\> |
+
+#### Returns
+
+`void`
+
+___
+
+### nodeLabelChanged
+
+▸ **nodeLabelChanged**(`node`, `change`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `node` | [`NodeState`](NodeState.md) |
+| `change` | [`PropertyChange`](../#propertychange)<`undefined` \| `string`\> |
+
+#### Returns
+
+`void`
+
+___
+
+### nodePositionChanged
+
+▸ **nodePositionChanged**(`node`, `change`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `node` | [`NodeState`](NodeState.md) |
+| `change` | [`PropertyChange`](../#propertychange)<[`Point`](../#point)\> |
+
+#### Returns
+
+`void`
+
+___
+
+### nodeTypeChanged
+
+▸ **nodeTypeChanged**(`node`, `change`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `node` | [`NodeState`](NodeState.md) |
+| `change` | [`PropertyChange`](../#propertychange)<`undefined` \| `string`\> |
 
 #### Returns
 

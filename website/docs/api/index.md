@@ -68,6 +68,7 @@ custom_edit_url: null
 - [INodeDefaultSettings](interfaces/INodeDefaultSettings.md)
 - [INodeExport](interfaces/INodeExport.md)
 - [INodeState](interfaces/INodeState.md)
+- [INodeStateDiff](interfaces/INodeStateDiff.md)
 - [INodeStateWithId](interfaces/INodeStateWithId.md)
 - [INodeStateWithoutId](interfaces/INodeStateWithoutId.md)
 - [INodeVisualComponentProps](interfaces/INodeVisualComponentProps.md)
@@ -105,7 +106,13 @@ custom_edit_url: null
 - [OnLinkingStarted](interfaces/OnLinkingStarted.md)
 - [OnLinksAddResult](interfaces/OnLinksAddResult.md)
 - [OnLinksRemoveResult](interfaces/OnLinksRemoveResult.md)
+- [OnNodeDataChanged](interfaces/OnNodeDataChanged.md)
+- [OnNodeIsDragEnabledChanged](interfaces/OnNodeIsDragEnabledChanged.md)
+- [OnNodeIsSelectionEnabledChanged](interfaces/OnNodeIsSelectionEnabledChanged.md)
+- [OnNodeLabelChanged](interfaces/OnNodeLabelChanged.md)
 - [OnNodePositionChanged](interfaces/OnNodePositionChanged.md)
+- [OnNodePropertyChanged](interfaces/OnNodePropertyChanged.md)
+- [OnNodeTypeChanged](interfaces/OnNodeTypeChanged.md)
 - [OnNodesAddResult](interfaces/OnNodesAddResult.md)
 - [OnNodesRemoveResult](interfaces/OnNodesRemoveResult.md)
 
@@ -309,6 +316,25 @@ ___
 ### Position
 
 Ƭ **Position**: typeof [`positionValues`](#positionvalues)[`number`]
+
+___
+
+### PropertyChange
+
+Ƭ **PropertyChange**<`TValue`\>: `Object`
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `TValue` |
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `newValue` | `TValue` |
+| `oldValue` | `TValue` |
 
 ___
 

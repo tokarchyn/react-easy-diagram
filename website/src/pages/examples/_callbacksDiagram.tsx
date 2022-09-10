@@ -32,7 +32,7 @@ const settings: ISettings = {
       console.log(
         `Position of node '${
           info.node.id
-        }' changed from '${info.oldPosition.toString()}' to '${info.newPosition.toString()}'`
+        }' changed from '${info.oldValue.toString()}' to '${info.newValue.toString()}'`
       );
     },
     onDragStarted: ({ nodes }, store) => {

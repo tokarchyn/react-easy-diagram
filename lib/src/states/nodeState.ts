@@ -18,20 +18,21 @@ import {
   successValueResult,
 } from 'utils/result';
 import { generateTransform } from 'utils/transformation';
+import { PropertyChange } from 'states/callbacks';
 
 export class NodeState {
   private _id: string;
-  private _label: string;
+  private _label?: string;
   private _position: Point;
   private _ports: Map<string, PortState>;
   private _ref: HtmlElementRefState;
-  private _type: string;
+  private _type?: string;
   private _selected: boolean;
   private _hovered: boolean;
-  private _data: any;
-  private _isSelectionEnabled: boolean | null;
-  private _isDragEnabled: boolean | null;
-  private _isDragActive: boolean = false;
+  private _data?: any;
+  private _isSelectionEnabled?: boolean;
+  private _isDragEnabled?: boolean;
+  private _isDragActive: boolean;
 
   private _rootStore: RootStore;
 
@@ -42,6 +43,7 @@ export class NodeState {
     this._ref = new HtmlElementRefState(null, rootStore.diagramState);
     this._selected = false;
     this._hovered = false;
+    this._isDragActive = false;
     this.import(state);
 
     makeAutoObservable(this, {
@@ -59,13 +61,13 @@ export class NodeState {
   }
 
   import = (newState?: INodeStateWithoutId) => {
-    this.setPosition(newState?.position ?? [0, 0]);
-    this.setType(newState?.type);
-    this.setData(newState?.data);
-    this.label = newState?.label ?? '';
+    this._setPosition(newState?.position ?? [0, 0]);
+    this._setType(newState?.type);
+    this._setData(newState?.data);
+    this._setLabel(newState?.label);
     this.setPorts(newState?.ports);
-    this.setIsSelectionEnabled(newState?.isSelectionEnabled);
-    this.setIsDragEnabled(newState?.isDragEnabled);
+    this._setIsSelectionEnabled(newState?.isSelectionEnabled);
+    this._setIsDragEnabled(newState?.isDragEnabled);
   };
 
   export = (): INodeExport => ({
@@ -89,45 +91,59 @@ export class NodeState {
     return this._label;
   }
 
-  set label(value: string) {
-    this._label = value;
-  }
+  setLabel = (
+    value?: string | null
+  ): PropertyChange<string | undefined> | undefined => {
+    const change = this._setLabel(value);
+
+    if (change) {
+      this._rootStore.callbacks.nodeLabelChanged(this, change);
+    }
+
+    return change;
+  };
+
+  private _setLabel = (
+    value?: string | null
+  ): PropertyChange<string | undefined> | undefined => {
+    const valueToSet = value ?? undefined;
+    if (this._label === valueToSet) {
+      return undefined;
+    }
+    const oldValue = this._label;
+    this._label = valueToSet;
+    return {
+      oldValue: oldValue,
+      newValue: this._label,
+    };
+  };
 
   get position() {
     return this._position;
   }
 
-  setPorts = (nodePorts?: IPortState[]) => {
-    const componentPortsIds =
-      (this.componentDefinition.settings as INodeComponentSettings)?.ports?.map(
-        (p) => p.id
-      ) ?? [];
-
-    const nodePortsIds = nodePorts?.map((p) => p.id) ?? [];
-
-    const portsIds = new Set([...componentPortsIds, ...nodePortsIds]);
-
-    this._ports = new Map();
-    portsIds.forEach((id) =>
-      this._ports.set(
-        id,
-        this._createPortState(
-          id,
-          nodePorts?.find((p) => p.id === id)
-        )
-      )
-    );
-  };
-
   /**
    * @param newPosition - new position
    * @param ignoreSnapping - do not take into account snapping to grid
-   * @returns false if position did not change
+   * @returns `undefined` if position did not change
    */
   setPosition = (
     newPosition: Point,
     ignoreSnapping: boolean = false
-  ): boolean => {
+  ): PropertyChange<Point> | undefined => {
+    const change = this._setPosition(newPosition, ignoreSnapping);
+
+    if (change) {
+      this._rootStore.callbacks.nodePositionChanged(this, change);
+    }
+
+    return change;
+  };
+
+  private _setPosition = (
+    newPosition: Point,
+    ignoreSnapping: boolean = false
+  ): PropertyChange<Point> | undefined => {
     const snap = this._rootStore.nodesSettings.gridSnap;
     if (!ignoreSnapping && snap) {
       newPosition = [
@@ -140,17 +156,11 @@ export class NodeState {
       const oldPos = this._position;
       this._position = newPosition;
 
-      // Do not notify if position was not initialized before
-      if (oldPos) {
-        this._rootStore.callbacks.nodePositionChanged({
-          node: this,
-          oldPosition: oldPos,
-          newPosition: this._position,
-          isDragActive: this.isDragActive,
-        });
-      }
-      return true;
-    } else return false;
+      return {
+        oldValue: oldPos,
+        newValue: this._position,
+      };
+    } else return undefined;
   };
 
   /**
@@ -179,24 +189,36 @@ export class NodeState {
     return remainder;
   };
 
-  get type() {
-    return this._type;
+  get type(): string {
+    return this._type ?? COMPONENT_DEFAULT_TYPE;
   }
 
-  setType = (value: string | null | undefined) => {
-    this._type = value ?? COMPONENT_DEFAULT_TYPE;
+  setType = (
+    value: string | null | undefined
+  ): PropertyChange<string | undefined> | undefined => {
+    const change = this._setType(value);
+
+    if (change) {
+      this._rootStore.callbacks.nodeTypeChanged(this, change);
+    }
+
+    return change;
   };
 
-  get selected() {
-    return this._selected;
-  }
-
-  set selected(value: boolean) {
-    this._selected = value;
-    if (!value) {
-      this.isDragActive = false;
+  private _setType = (
+    value: string | null | undefined
+  ): PropertyChange<string | undefined> | undefined => {
+    const valueToSet = value ?? undefined;
+    if (this._type === valueToSet) {
+      return undefined;
     }
-  }
+    const oldValue = this._type;
+    this._type = valueToSet;
+    return {
+      oldValue: oldValue,
+      newValue: this._type,
+    };
+  };
 
   get hovered() {
     return this._hovered;
@@ -210,8 +232,26 @@ export class NodeState {
     return this._data;
   }
 
-  setData = (value: any) => {
-    this._data = value ?? null;
+  setData = (value?: any): PropertyChange<any> | undefined => {
+    const change = this._setData(value);
+
+    if (change) {
+      this._rootStore.callbacks.nodeDataChanged(this, change);
+    }
+
+    return change;
+  };
+
+  private _setData = (value?: any): PropertyChange<any> | undefined => {
+    if (this._data === value) {
+      return undefined;
+    }
+    const oldValue = this._data;
+    this._data = value ?? undefined;
+    return {
+      oldValue: oldValue,
+      newValue: this._data,
+    };
   };
 
   get ref() {
@@ -222,14 +262,27 @@ export class NodeState {
     return this._ports;
   }
 
-  get transformString() {
-    return generateTransform(this._position);
-  }
+  setPorts = (nodePorts?: IPortState[]) => {
+    const componentPortsIds =
+      (this.componentDefinition.settings as INodeComponentSettings)?.ports?.map(
+        (p) => p.id
+      ) ?? [];
 
-  get componentDefinition() {
-    const { visualComponents } = this._rootStore.nodesSettings;
-    return visualComponents.getComponent(this.type);
-  }
+    const nodePortsIds = nodePorts?.map((p) => p.id) ?? [];
+
+    const portsIds = new Set([...componentPortsIds, ...nodePortsIds]);
+
+    this._ports = new Map();
+    portsIds.forEach((id) =>
+      this._ports.set(
+        id,
+        this._createPortState(
+          id,
+          nodePorts?.find((p) => p.id === id)
+        )
+      )
+    );
+  };
 
   getPort = (portId: string): PortState | undefined => {
     if (portId) {
@@ -282,26 +335,94 @@ export class NodeState {
     this._ports.forEach((p) => p.recalculateOffset());
   };
 
+  get transformString() {
+    return generateTransform(this._position);
+  }
+
+  get componentDefinition() {
+    const { visualComponents } = this._rootStore.nodesSettings;
+    return visualComponents.getComponent(this.type);
+  }
+
+  get selected() {
+    return this._selected;
+  }
+
+  set selected(value: boolean) {
+    this._selected = value;
+    if (!value) {
+      this.isDragActive = false;
+    }
+  }
+
   get isSelectionEnabled(): boolean {
-    return this._isSelectionEnabled === null
+    return this._isSelectionEnabled === undefined
       ? this._rootStore.diagramSettings.userInteraction.nodeSelection
       : this._isSelectionEnabled;
   }
 
-  setIsSelectionEnabled = (value: boolean | null | undefined) => {
-    this._isSelectionEnabled = isBoolean(value) ? value : null;
+  setIsSelectionEnabled = (
+    value: boolean | null | undefined
+  ): PropertyChange<boolean | undefined> | undefined => {
+    const change = this._setIsSelectionEnabled(value);
+
+    if (change) {
+      this._rootStore.callbacks.nodeIsSelectionEnabledChanged(this, change);
+    }
+
+    return change;
+  };
+
+  private _setIsSelectionEnabled = (
+    value: boolean | null | undefined
+  ): PropertyChange<boolean | undefined> | undefined => {
+    const valueToSet = isBoolean(value) ? value : undefined;
+    if (this._isSelectionEnabled === valueToSet) {
+      return undefined;
+    }
+
+    const oldValue = this._isSelectionEnabled;
+    this._isSelectionEnabled = valueToSet;
+    return {
+      oldValue: oldValue,
+      newValue: this._isSelectionEnabled,
+    };
   };
 
   get isDragEnabled(): boolean {
     return (
-      (this._isDragEnabled === null
+      (this._isDragEnabled === undefined
         ? this._rootStore.diagramSettings.userInteraction.nodeDrag
         : this._isDragEnabled) && this.isSelectionEnabled
     );
   }
 
-  setIsDragEnabled = (value: boolean | null | undefined) => {
-    this._isDragEnabled = isBoolean(value) ? value : null;
+  setIsDragEnabled = (
+    value: boolean | null | undefined
+  ): PropertyChange<boolean | undefined> | undefined => {
+    const change = this._setIsDragEnabled(value);
+
+    if (change) {
+      this._rootStore.callbacks.nodeIsDragEnabledChanged(this, change);
+    }
+
+    return change;
+  };
+
+  private _setIsDragEnabled = (
+    value: boolean | null | undefined
+  ): PropertyChange<boolean | undefined> | undefined => {
+    const valueToSet = isBoolean(value) ? value : undefined;
+    if (this._isDragEnabled === valueToSet) {
+      return undefined;
+    }
+
+    const oldValue = this._isDragEnabled;
+    this._isDragEnabled = valueToSet;
+    return {
+      oldValue: oldValue,
+      newValue: this._isDragEnabled,
+    };
   };
 
   get isDragActive() {
@@ -361,4 +482,14 @@ export interface INodeExport extends INodeStateWithId {
 
 export interface INodeState extends INodeStateWithoutId {
   id?: string;
+}
+
+export interface INodeStateDiff {
+  label?: string | null;
+  position?: Point;
+  type?: string;
+  data?: any;
+  isSelectionEnabled?: boolean;
+  isDragEnabled?: boolean;
+  ports?: IPortState[];
 }

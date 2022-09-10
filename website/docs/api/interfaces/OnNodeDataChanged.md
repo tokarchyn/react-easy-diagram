@@ -1,22 +1,22 @@
 ---
-id: "OnNodePositionChanged"
-title: "Interface: OnNodePositionChanged"
-sidebar_label: "OnNodePositionChanged"
+id: "OnNodeDataChanged"
+title: "Interface: OnNodeDataChanged"
+sidebar_label: "OnNodeDataChanged"
 sidebar_position: 0
 custom_edit_url: null
 ---
 
 ## Hierarchy
 
-- [`OnNodePropertyChanged`](OnNodePropertyChanged.md)<[`Point`](../#point)\>
+- [`OnNodePropertyChanged`](OnNodePropertyChanged.md)<`any`\>
 
-  ↳ **`OnNodePositionChanged`**
+  ↳ **`OnNodeDataChanged`**
 
 ## Properties
 
 ### newValue
 
-• **newValue**: [`Point`](../#point)
+• **newValue**: `any`
 
 #### Inherited from
 
@@ -36,7 +36,7 @@ ___
 
 ### oldValue
 
-• **oldValue**: [`Point`](../#point)
+• **oldValue**: `any`
 
 #### Inherited from
 

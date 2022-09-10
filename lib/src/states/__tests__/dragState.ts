@@ -59,9 +59,9 @@ describe('Drag state', () => {
     store = new RootStore();
     store.importState(
       [
-        { id: '1', position: [0, 0] },
-        { id: '2', position: [0, 100] },
-        { id: '3', position: [0, 200] },
+        { id: '1', position: [0, 0], type: 'input_output_horizontal' },
+        { id: '2', position: [0, 100], type: 'input_output_horizontal' },
+        { id: '3', position: [0, 200], type: 'input_output_horizontal' },
       ],
       [
         {

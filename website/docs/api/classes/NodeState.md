@@ -138,23 +138,11 @@ ___
 
 ### label
 
-• `get` **label**(): `string`
+• `get` **label**(): `undefined` \| `string`
 
 #### Returns
 
-`string`
-
-• `set` **label**(`value`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value` | `string` |
-
-#### Returns
-
-`void`
+`undefined` \| `string`
 
 ___
 
@@ -353,23 +341,23 @@ ___
 
 ### setData
 
-▸ **setData**(`value`): `void`
+▸ **setData**(`value?`): `undefined` \| [`PropertyChange`](../#propertychange)<`any`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `value` | `any` |
+| `value?` | `any` |
 
 #### Returns
 
-`void`
+`undefined` \| [`PropertyChange`](../#propertychange)<`any`\>
 
 ___
 
 ### setIsDragEnabled
 
-▸ **setIsDragEnabled**(`value`): `void`
+▸ **setIsDragEnabled**(`value`): `undefined` \| [`PropertyChange`](../#propertychange)<`undefined` \| `boolean`\>
 
 #### Parameters
 
@@ -379,13 +367,13 @@ ___
 
 #### Returns
 
-`void`
+`undefined` \| [`PropertyChange`](../#propertychange)<`undefined` \| `boolean`\>
 
 ___
 
 ### setIsSelectionEnabled
 
-▸ **setIsSelectionEnabled**(`value`): `void`
+▸ **setIsSelectionEnabled**(`value`): `undefined` \| [`PropertyChange`](../#propertychange)<`undefined` \| `boolean`\>
 
 #### Parameters
 
@@ -395,7 +383,23 @@ ___
 
 #### Returns
 
-`void`
+`undefined` \| [`PropertyChange`](../#propertychange)<`undefined` \| `boolean`\>
+
+___
+
+### setLabel
+
+▸ **setLabel**(`value?`): `undefined` \| [`PropertyChange`](../#propertychange)<`undefined` \| `string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value?` | ``null`` \| `string` |
+
+#### Returns
+
+`undefined` \| [`PropertyChange`](../#propertychange)<`undefined` \| `string`\>
 
 ___
 
@@ -417,7 +421,7 @@ ___
 
 ### setPosition
 
-▸ **setPosition**(`newPosition`, `ignoreSnapping?`): `boolean`
+▸ **setPosition**(`newPosition`, `ignoreSnapping?`): `undefined` \| [`PropertyChange`](../#propertychange)<[`Point`](../#point)\>
 
 #### Parameters
 
@@ -428,15 +432,15 @@ ___
 
 #### Returns
 
-`boolean`
+`undefined` \| [`PropertyChange`](../#propertychange)<[`Point`](../#point)\>
 
-false if position did not change
+`undefined` if position did not change
 
 ___
 
 ### setType
 
-▸ **setType**(`value`): `void`
+▸ **setType**(`value`): `undefined` \| [`PropertyChange`](../#propertychange)<`undefined` \| `string`\>
 
 #### Parameters
 
@@ -446,4 +450,4 @@ ___
 
 #### Returns
 
-`void`
+`undefined` \| [`PropertyChange`](../#propertychange)<`undefined` \| `string`\>

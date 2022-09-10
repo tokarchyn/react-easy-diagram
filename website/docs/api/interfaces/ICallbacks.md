@@ -160,6 +160,74 @@ ___
 
 ___
 
+### onNodeDataChanged
+
+▸ `Optional` **onNodeDataChanged**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnNodeDataChanged`](OnNodeDataChanged.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onNodeIsDragEnabledChanged
+
+▸ `Optional` **onNodeIsDragEnabledChanged**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnNodeIsDragEnabledChanged`](OnNodeIsDragEnabledChanged.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onNodeIsSelectionEnabledChanged
+
+▸ `Optional` **onNodeIsSelectionEnabledChanged**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnNodeIsSelectionEnabledChanged`](OnNodeIsSelectionEnabledChanged.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onNodeLabelChanged
+
+▸ `Optional` **onNodeLabelChanged**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnNodeLabelChanged`](OnNodeLabelChanged.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
 ### onNodePositionChanged
 
 ▸ `Optional` **onNodePositionChanged**(`info`, `rootStore`): `void`
@@ -169,6 +237,23 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `info` | [`OnNodePositionChanged`](OnNodePositionChanged.md) |
+| `rootStore` | [`RootStore`](../classes/RootStore.md) |
+
+#### Returns
+
+`void`
+
+___
+
+### onNodeTypeChanged
+
+▸ `Optional` **onNodeTypeChanged**(`info`, `rootStore`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `info` | [`OnNodeTypeChanged`](OnNodeTypeChanged.md) |
 | `rootStore` | [`RootStore`](../classes/RootStore.md) |
 
 #### Returns

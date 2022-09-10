@@ -1,6 +1,15 @@
-import { ICallbacks, OnNodePositionChanged } from 'states/callbacks';
+import {
+  ICallbacks,
+  OnNodeDataChanged,
+  OnNodeIsDragEnabledChanged,
+  OnNodeIsSelectionEnabledChanged,
+  OnNodeLabelChanged,
+  OnNodePositionChanged,
+  OnNodeTypeChanged,
+} from 'states/callbacks';
 import { NodeState } from 'states/nodeState';
 import { RootStore } from 'states/rootStore';
+import { COMPONENT_DEFAULT_TYPE } from 'states/visualComponents';
 import { Point } from 'utils/point';
 
 describe('Node state', () => {
@@ -222,14 +231,11 @@ describe('Node state', () => {
 
     const validateCallbackCall = (
       mockArgs: [OnNodePositionChanged, RootStore],
-      node: NodeState,
-      oldPos: Point,
-      newPos: Point
+      expected: OnNodePositionChanged
     ) => {
-      expect(mockArgs[0].node).toBe(node);
-      expect(mockArgs[0].oldPosition).toEqual(oldPos);
-      expect(mockArgs[0].newPosition).toEqual(newPos);
-      expect(mockArgs[0].isDragActive).toEqual(node.isDragActive);
+      expect(mockArgs[0].node).toBe(expected.node);
+      expect(mockArgs[0].oldValue).toEqual(expected.oldValue);
+      expect(mockArgs[0].newValue).toEqual(expected.newValue);
       expect(mockArgs[1]).toBe(store);
     };
 
@@ -241,10 +247,11 @@ describe('Node state', () => {
     });
 
     test('Is not called on initialization', () => {
-      new NodeState(store, 'test', {
+      const node = new NodeState(store, 'test', {
         position: [5, 10],
       });
 
+      expect(node.position).toEqual([5, 10]);
       expect(mockNodePositionChangedCallback.mock.calls.length).toBe(0);
     });
 
@@ -252,7 +259,11 @@ describe('Node state', () => {
       const node = new NodeState(store, 'test', {
         position: [5, 10],
       });
+      expect(node.position).toEqual([5, 10]);
+
       node.setPosition([5, 10]);
+
+      expect(node.position).toEqual([5, 10]);
       expect(mockNodePositionChangedCallback.mock.calls.length).toBe(0);
     });
 
@@ -260,16 +271,17 @@ describe('Node state', () => {
       const initPosition: Point = [5, 10];
       const newPosition: Point = [50, 100];
       const node = new NodeState(store, 'test', { position: initPosition });
+      expect(node.position).toEqual(initPosition);
 
       node.setPosition(newPosition);
 
+      expect(node.position).toEqual(newPosition);
       expect(mockNodePositionChangedCallback.mock.calls.length).toBe(1);
-      validateCallbackCall(
-        mockNodePositionChangedCallback.mock.calls[0],
-        node,
-        initPosition,
-        newPosition
-      );
+      validateCallbackCall(mockNodePositionChangedCallback.mock.calls[0], {
+        node: node,
+        oldValue: initPosition,
+        newValue: newPosition,
+      });
     });
 
     test('Is called for new node position during dragging', () => {
@@ -281,12 +293,455 @@ describe('Node state', () => {
       node.setPosition(newPosition);
 
       expect(mockNodePositionChangedCallback.mock.calls.length).toBe(1);
-      validateCallbackCall(
-        mockNodePositionChangedCallback.mock.calls[0],
-        node,
-        initPosition,
-        newPosition
+      validateCallbackCall(mockNodePositionChangedCallback.mock.calls[0], {
+        node: node,
+        oldValue: initPosition,
+        newValue: newPosition,
+      });
+    });
+  });
+
+  describe('onNodeLabelChanged callback', () => {
+    let mockNodeLabelChangedCallback: jest.Mock<
+      ReturnType<NonNullable<ICallbacks['onNodeLabelChanged']>>,
+      Parameters<NonNullable<ICallbacks['onNodeLabelChanged']>>
+    >;
+
+    const validateCallbackCall = (
+      mockArgs: [OnNodeLabelChanged, RootStore],
+      expected: OnNodeLabelChanged
+    ) => {
+      expect(mockArgs[0].node).toBe(expected.node);
+      expect(mockArgs[0].oldValue).toEqual(expected.oldValue);
+      expect(mockArgs[0].newValue).toEqual(expected.newValue);
+      expect(mockArgs[1]).toBe(store);
+    };
+
+    beforeEach(() => {
+      mockNodeLabelChangedCallback = jest.fn((_a, _b) => {});
+      store.callbacks.import({
+        onNodeLabelChanged: mockNodeLabelChangedCallback,
+      });
+    });
+
+    test('Is not called on initialization', () => {
+      const node = new NodeState(store, 'test', {
+        label: 'Label',
+        position: [5, 10],
+      });
+
+      expect(node.label).toEqual('Label');
+      expect(mockNodeLabelChangedCallback.mock.calls.length).toBe(0);
+    });
+
+    test('Is not called if value remains the same', () => {
+      const node = new NodeState(store, 'test', {
+        label: 'Label',
+        position: [5, 10],
+      });
+      expect(node.label).toEqual('Label');
+
+      node.setLabel('Label');
+
+      expect(node.label).toEqual('Label');
+      expect(mockNodeLabelChangedCallback.mock.calls.length).toBe(0);
+    });
+
+    test('Is called for new value set by code', () => {
+      const node = new NodeState(store, 'test', {
+        label: 'Label',
+        position: [5, 10],
+      });
+      expect(node.label).toEqual('Label');
+
+      node.setLabel('Label New');
+
+      expect(node.label).toEqual('Label New');
+      expect(mockNodeLabelChangedCallback.mock.calls.length).toBe(1);
+      validateCallbackCall(mockNodeLabelChangedCallback.mock.calls[0], {
+        node: node,
+        oldValue: 'Label',
+        newValue: 'Label New',
+      });
+    });
+
+    test('Is called for value set to undefined', () => {
+      const node = new NodeState(store, 'test', {
+        label: 'Label',
+        position: [5, 10],
+      });
+      expect(node.label).toEqual('Label');
+
+      node.setLabel(undefined);
+
+      expect(node.label).toEqual(undefined);
+      expect(mockNodeLabelChangedCallback.mock.calls.length).toBe(1);
+      validateCallbackCall(mockNodeLabelChangedCallback.mock.calls[0], {
+        node: node,
+        oldValue: 'Label',
+        newValue: undefined,
+      });
+    });
+  });
+
+  describe('onNodeTypeChanged callback', () => {
+    let mockNodeTypeChangedCallback: jest.Mock<
+      ReturnType<NonNullable<ICallbacks['onNodeTypeChanged']>>,
+      Parameters<NonNullable<ICallbacks['onNodeTypeChanged']>>
+    >;
+
+    const validateCallbackCall = (
+      mockArgs: [OnNodeTypeChanged, RootStore],
+      expected: OnNodeTypeChanged
+    ) => {
+      expect(mockArgs[0].node).toBe(expected.node);
+      expect(mockArgs[0].oldValue).toEqual(expected.oldValue);
+      expect(mockArgs[0].newValue).toEqual(expected.newValue);
+      expect(mockArgs[1]).toBe(store);
+    };
+
+    beforeEach(() => {
+      mockNodeTypeChangedCallback = jest.fn((_a, _b) => {});
+      store.callbacks.import({
+        onNodeTypeChanged: mockNodeTypeChangedCallback,
+      });
+    });
+
+    test('Is not called on initialization', () => {
+      const node = new NodeState(store, 'test', {
+        type: 'Type',
+        position: [5, 10],
+      });
+
+      expect(node.type).toEqual('Type');
+      expect(mockNodeTypeChangedCallback.mock.calls.length).toBe(0);
+    });
+
+    test('Is not called if value remains the same', () => {
+      const node = new NodeState(store, 'test', {
+        type: 'Type',
+        position: [5, 10],
+      });
+      expect(node.type).toEqual('Type');
+
+      node.setType('Type');
+
+      expect(node.type).toEqual('Type');
+      expect(mockNodeTypeChangedCallback.mock.calls.length).toBe(0);
+    });
+
+    test('Is called for new value set by code', () => {
+      const node = new NodeState(store, 'test', {
+        type: 'Type',
+        position: [5, 10],
+      });
+      expect(node.type).toEqual('Type');
+
+      node.setType('Type New');
+
+      expect(node.type).toEqual('Type New');
+      expect(mockNodeTypeChangedCallback.mock.calls.length).toBe(1);
+      validateCallbackCall(mockNodeTypeChangedCallback.mock.calls[0], {
+        node: node,
+        oldValue: 'Type',
+        newValue: 'Type New',
+      });
+    });
+
+    test('Is called for value set to undefined', () => {
+      const node = new NodeState(store, 'test', {
+        type: 'Type',
+        position: [5, 10],
+      });
+      expect(node.type).toEqual('Type');
+
+      node.setType(undefined);
+
+      expect(node.type).toBe(COMPONENT_DEFAULT_TYPE);
+      expect(mockNodeTypeChangedCallback.mock.calls.length).toBe(1);
+      validateCallbackCall(mockNodeTypeChangedCallback.mock.calls[0], {
+        node: node,
+        oldValue: 'Type',
+        newValue: undefined,
+      });
+    });
+  });
+
+  describe('onNodeDataChanged callback', () => {
+    let mockNodeDataChangedCallback: jest.Mock<
+      ReturnType<NonNullable<ICallbacks['onNodeDataChanged']>>,
+      Parameters<NonNullable<ICallbacks['onNodeDataChanged']>>
+    >;
+
+    const validateCallbackCall = (
+      mockArgs: [OnNodeDataChanged, RootStore],
+      expected: OnNodeDataChanged
+    ) => {
+      expect(mockArgs[0].node).toBe(expected.node);
+      expect(mockArgs[0].oldValue).toEqual(expected.oldValue);
+      expect(mockArgs[0].newValue).toEqual(expected.newValue);
+      expect(mockArgs[1]).toBe(store);
+    };
+
+    beforeEach(() => {
+      mockNodeDataChangedCallback = jest.fn((_a, _b) => {});
+      store.callbacks.import({
+        onNodeDataChanged: mockNodeDataChangedCallback,
+      });
+    });
+
+    test('Is not called on initialization', () => {
+      const node = new NodeState(store, 'test', {
+        data: 'Data',
+        position: [5, 10],
+      });
+
+      expect(node.data).toEqual('Data');
+      expect(mockNodeDataChangedCallback.mock.calls.length).toBe(0);
+    });
+
+    test('Is not called if value remains the same', () => {
+      const node = new NodeState(store, 'test', {
+        data: 'Data',
+        position: [5, 10],
+      });
+      expect(node.data).toEqual('Data');
+
+      node.setData('Data');
+
+      expect(node.data).toEqual('Data');
+      expect(mockNodeDataChangedCallback.mock.calls.length).toBe(0);
+    });
+
+    test('Is called for new value set by code', () => {
+      const node = new NodeState(store, 'test', {
+        data: 'Data',
+        position: [5, 10],
+      });
+      expect(node.data).toEqual('Data');
+
+      node.setData({
+        value1: 'Data1',
+        value2: 'Data2',
+      });
+
+      expect(node.data).toEqual({
+        value1: 'Data1',
+        value2: 'Data2',
+      });
+      expect(mockNodeDataChangedCallback.mock.calls.length).toBe(1);
+      validateCallbackCall(mockNodeDataChangedCallback.mock.calls[0], {
+        node: node,
+        oldValue: 'Data',
+        newValue: {
+          value1: 'Data1',
+          value2: 'Data2',
+        },
+      });
+    });
+
+    test('Is called for value set to undefined', () => {
+      const node = new NodeState(store, 'test', {
+        data: 'Data',
+        position: [5, 10],
+      });
+      expect(node.data).toEqual('Data');
+
+      node.setData(undefined);
+
+      expect(node.data).toEqual(undefined);
+      expect(mockNodeDataChangedCallback.mock.calls.length).toBe(1);
+      validateCallbackCall(mockNodeDataChangedCallback.mock.calls[0], {
+        node: node,
+        oldValue: 'Data',
+        newValue: undefined,
+      });
+    });
+  });
+
+  describe('onNodeIsSelectionEnabledChanged callback', () => {
+    let mockNodeIsSelectionEnabledChangedCallback: jest.Mock<
+      ReturnType<NonNullable<ICallbacks['onNodeIsSelectionEnabledChanged']>>,
+      Parameters<NonNullable<ICallbacks['onNodeIsSelectionEnabledChanged']>>
+    >;
+
+    const validateCallbackCall = (
+      mockArgs: [OnNodeIsSelectionEnabledChanged, RootStore],
+      expected: OnNodeIsSelectionEnabledChanged
+    ) => {
+      expect(mockArgs[0].node).toBe(expected.node);
+      expect(mockArgs[0].oldValue).toEqual(expected.oldValue);
+      expect(mockArgs[0].newValue).toEqual(expected.newValue);
+      expect(mockArgs[1]).toBe(store);
+    };
+
+    beforeEach(() => {
+      mockNodeIsSelectionEnabledChangedCallback = jest.fn((_a, _b) => {});
+      store.callbacks.import({
+        onNodeIsSelectionEnabledChanged:
+          mockNodeIsSelectionEnabledChangedCallback,
+      });
+    });
+
+    test('Is not called on initialization', () => {
+      const node = new NodeState(store, 'test', {
+        isSelectionEnabled: true,
+        position: [5, 10],
+      });
+
+      expect(node.isSelectionEnabled).toEqual(true);
+      expect(mockNodeIsSelectionEnabledChangedCallback.mock.calls.length).toBe(
+        0
       );
+    });
+
+    test('Is not called if value remains the same', () => {
+      const node = new NodeState(store, 'test', {
+        isSelectionEnabled: false,
+        position: [5, 10],
+      });
+      expect(node.isSelectionEnabled).toEqual(false);
+
+      node.setIsSelectionEnabled(false);
+
+      expect(node.isSelectionEnabled).toEqual(false);
+      expect(mockNodeIsSelectionEnabledChangedCallback.mock.calls.length).toBe(
+        0
+      );
+    });
+
+    test('Is called for new value set by code', () => {
+      const node = new NodeState(store, 'test', {
+        isSelectionEnabled: undefined,
+        position: [5, 10],
+      });
+      expect(node.isSelectionEnabled).toEqual(true);
+
+      node.setIsSelectionEnabled(true);
+
+      expect(node.isSelectionEnabled).toEqual(true);
+      expect(mockNodeIsSelectionEnabledChangedCallback.mock.calls.length).toBe(
+        1
+      );
+      validateCallbackCall(
+        mockNodeIsSelectionEnabledChangedCallback.mock.calls[0],
+        {
+          node: node,
+          oldValue: undefined,
+          newValue: true,
+        }
+      );
+    });
+
+    test('Is called for value set to undefined', () => {
+      const node = new NodeState(store, 'test', {
+        isSelectionEnabled: false,
+        position: [5, 10],
+      });
+      expect(node.isSelectionEnabled).toEqual(false);
+
+      node.setIsSelectionEnabled(undefined);
+
+      expect(node.isSelectionEnabled).toEqual(true);
+      expect(mockNodeIsSelectionEnabledChangedCallback.mock.calls.length).toBe(
+        1
+      );
+      validateCallbackCall(
+        mockNodeIsSelectionEnabledChangedCallback.mock.calls[0],
+        {
+          node: node,
+          oldValue: false,
+          newValue: undefined,
+        }
+      );
+    });
+  });
+
+  describe('onNodeIsDragEnabledChanged callback', () => {
+    let mockNodeIsDragEnabledChangedCallback: jest.Mock<
+      ReturnType<NonNullable<ICallbacks['onNodeIsDragEnabledChanged']>>,
+      Parameters<NonNullable<ICallbacks['onNodeIsDragEnabledChanged']>>
+    >;
+
+    const validateCallbackCall = (
+      mockArgs: [OnNodeIsDragEnabledChanged, RootStore],
+      expected: OnNodeIsDragEnabledChanged
+    ) => {
+      expect(mockArgs[0].node).toBe(expected.node);
+      expect(mockArgs[0].oldValue).toEqual(expected.oldValue);
+      expect(mockArgs[0].newValue).toEqual(expected.newValue);
+      expect(mockArgs[1]).toBe(store);
+    };
+
+    beforeEach(() => {
+      mockNodeIsDragEnabledChangedCallback = jest.fn((_a, _b) => {});
+      store.callbacks.import({
+        onNodeIsDragEnabledChanged: mockNodeIsDragEnabledChangedCallback,
+      });
+    });
+
+    test('Is not called on initialization', () => {
+      const node = new NodeState(store, 'test', {
+        isDragEnabled: true,
+        position: [5, 10],
+      });
+
+      expect(node.isDragEnabled).toEqual(true);
+      expect(mockNodeIsDragEnabledChangedCallback.mock.calls.length).toBe(0);
+    });
+
+    test('Is not called if value remains the same', () => {
+      const node = new NodeState(store, 'test', {
+        isDragEnabled: false,
+        position: [5, 10],
+      });
+      expect(node.isDragEnabled).toEqual(false);
+
+      node.setIsDragEnabled(false);
+
+      expect(node.isDragEnabled).toEqual(false);
+      expect(mockNodeIsDragEnabledChangedCallback.mock.calls.length).toBe(0);
+    });
+
+    test('Is called for new value set by code', () => {
+      const node = new NodeState(store, 'test', {
+        isDragEnabled: undefined,
+        position: [5, 10],
+      });
+      expect(node.isDragEnabled).toEqual(true);
+
+      node.setIsDragEnabled(true);
+      store.diagramSettings.import({
+        userInteraction: {
+          nodeDrag: false,
+        },
+      });
+
+      expect(node.isDragEnabled).toEqual(true);
+      expect(mockNodeIsDragEnabledChangedCallback.mock.calls.length).toBe(1);
+      validateCallbackCall(mockNodeIsDragEnabledChangedCallback.mock.calls[0], {
+        node: node,
+        oldValue: undefined,
+        newValue: true,
+      });
+    });
+
+    test('Is called for value set to undefined', () => {
+      const node = new NodeState(store, 'test', {
+        isDragEnabled: false,
+        position: [5, 10],
+      });
+      expect(node.isDragEnabled).toEqual(false)
+
+      node.setIsDragEnabled(undefined);
+
+      expect(node.isDragEnabled).toEqual(true)
+      expect(mockNodeIsDragEnabledChangedCallback.mock.calls.length).toBe(1);
+      validateCallbackCall(mockNodeIsDragEnabledChangedCallback.mock.calls[0], {
+        node: node,
+        oldValue: false,
+        newValue: undefined,
+      });
     });
   });
 });
