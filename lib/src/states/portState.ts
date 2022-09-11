@@ -212,7 +212,9 @@ export class PortState {
     });
 
   get data() {
-    return this._data;
+    return this._data === undefined
+      ? this.nodeComponentPortState?.data
+      : this._data;
   }
 
   setData = (value: any) => {

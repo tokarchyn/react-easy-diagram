@@ -139,4 +139,45 @@ describe('Port state', () => {
     expect(port.data).toEqual('data');
     expect(port.label).toEqual('new label');
   });
+
+  test('Port data is not defined node in component but exists in component', () => {
+    const defaultComponent =
+      store.nodesSettings.visualComponents.getComponent('default');
+    defaultComponent.import({
+      component: defaultComponent.component,
+      settings: {
+        ports: [
+          {
+            id: '1',
+            data: 'new data',
+          },
+        ],
+      },
+    });
+
+    store.nodesStore.import([
+      {
+        id: 'mynode',
+        position: [0, 10],
+        ports: [
+          {
+            id: '1',
+          },
+        ],
+      },
+    ]);
+
+    const node = store.nodesStore.getNode('mynode')!;
+    expect(node).toBeDefined();
+    const port = node.getPortOrThrowException('1');
+    expect(port.id).toEqual('1');
+    expect(port.data).toEqual('new data');
+    expect(port.isConnectionEnabled).toEqual(true);
+    expect(port.label).toBeUndefined();
+    expect(port.linkDirection).toBeUndefined();
+    expect(port.offsetFromNodeCenter).toBeUndefined();
+    expect(port.offsetFromOrigin).toBeUndefined();
+    expect(port.position).toBeUndefined();
+    expect(port.type).toEqual('default');
+  });
 });
