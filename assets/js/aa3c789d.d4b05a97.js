@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkwebsite"] = self["webpackChunkwebsite"] || []).push([[7918],{
+(self["webpackChunkwebsite"] = self["webpackChunkwebsite"] || []).push([[5829,7918],{
 
 /***/ 5061:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
@@ -173,7 +173,7 @@ var topLeftCornerPoint=subtractPoints(sourcePoint,multiplyPoint(portSize,0.5));_
          * Update all properties. If some property missing in `state` parameter, the default one will be used.
          */Object.defineProperty(this,"import",{enumerable:true,configurable:true,writable:true,value:function value(state){_this.setType(state===null||state===void 0?void 0:state.type);_this.setLabel(state===null||state===void 0?void 0:state.label);_this.setData(state===null||state===void 0?void 0:state.data);_this.setLinkDirection(state===null||state===void 0?void 0:state.linkDirection);_this.setIsConnectionEnabled(state===null||state===void 0?void 0:state.isConnectionEnabled);_this.setPosition(state===null||state===void 0?void 0:state.position);_this.setOffsetFromNodeCenter(state===null||state===void 0?void 0:state.offsetFromNodeCenter);_this.setOffsetFromOrigin(state===null||state===void 0?void 0:state.offsetFromOrigin);}});/**
          * Update only those properties presented in `state` parameter
-         */Object.defineProperty(this,"update",{enumerable:true,configurable:true,writable:true,value:function value(state){if(!state)return;state.label!==undefined&&_this.setLabel(state.label);state.type!==undefined&&_this.setType(state.type);state.data!==undefined&&_this.setData(state.data);state.linkDirection!==undefined&&_this.setLinkDirection(state.linkDirection);state.isConnectionEnabled!==undefined&&_this.setIsConnectionEnabled(state.isConnectionEnabled);state.position!==undefined&&_this.setPosition(state===null||state===void 0?void 0:state.position);state.offsetFromNodeCenter!==undefined&&_this.setOffsetFromNodeCenter(state===null||state===void 0?void 0:state.offsetFromNodeCenter);state.offsetFromOrigin!==undefined&&_this.setOffsetFromOrigin(state===null||state===void 0?void 0:state.offsetFromOrigin);}});Object.defineProperty(this,"export",{enumerable:true,configurable:true,writable:true,value:function value(){return deepCopy({id:_this._id,nodeId:_this.nodeId,label:_this._label,type:_this._type,data:_this._data,linkDirection:_this._linkDirection,isConnectionEnabled:_this._isConnectionEnabled,position:_this._position,offsetFromNodeCenter:_this._offsetFromNodeCenter,offsetFromOrigin:_this._offsetFromOrigin});}});Object.defineProperty(this,"setData",{enumerable:true,configurable:true,writable:true,value:function value(_value12){_this._data=_value12;}});Object.defineProperty(this,"recalculateOffset",{enumerable:true,configurable:true,writable:true,value:function value(){_this._offsetRecalculationRequested+=1;}});Object.defineProperty(this,"recalculateOffsetImmediately",{enumerable:true,configurable:true,writable:true,value:function value(){_this._triggerOffsetRecalculation+=1;}});Object.defineProperty(this,"setLinkDirection",{enumerable:true,configurable:true,writable:true,value:function value(_value13){_this._linkDirection=_value13;}});Object.defineProperty(this,"setIsConnectionEnabled",{enumerable:true,configurable:true,writable:true,value:function value(_value14){_this._isConnectionEnabled=_value14;}});this._id=id;this._node=node;this._rootStore=rootStore;this._ref=new HtmlElementRefState(null,rootStore.diagramState);this.import(state);(0,mobx__WEBPACK_IMPORTED_MODULE_2__/* .makeAutoObservable */ .ky)(this,{_node:false,node:false,_rootStore:false,_ref:false});(0,mobx__WEBPACK_IMPORTED_MODULE_2__/* .reaction */ .U5)(function(){return[_this._label,_this._type,_this._data,_this._position,_this._offsetFromNodeCenter,_this._offsetFromOrigin];},function(){_this.recalculateOffset();});}Object.defineProperty(PortState.prototype,"nodeComponentPortState",{get:function get(){var _this=this;var _a,_b;return(_b=(_a=this.node.componentDefinition.settings)===null||_a===void 0?void 0:_a.ports)===null||_b===void 0?void 0:_b.find(function(p){return p.id===_this._id;});},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"id",{get:function get(){return this._id;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"nodeId",{get:function get(){return this.node.id;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"fullId",{get:function get(){return createFullPortId(this.nodeId,this.id);},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"ref",{get:function get(){return this._ref;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"dragging",{get:function get(){return this._dragging;},set:function set(value){this._dragging=value;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"hovered",{get:function get(){return this._hovered;},set:function set(value){this._hovered=value;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"validForConnection",{get:function get(){return this._validForConnection;},set:function set(value){this._validForConnection=value;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"label",{get:function get(){var _a,_b;return this._label===undefined?(_a=this.nodeComponentPortState)===null||_a===void 0?void 0:_a.label:(_b=this._label)!==null&&_b!==void 0?_b:undefined;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"type",{get:function get(){var _a,_b;return(_b=this._type===undefined?(_a=this.nodeComponentPortState)===null||_a===void 0?void 0:_a.type:this._type)!==null&&_b!==void 0?_b:COMPONENT_DEFAULT_TYPE;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"position",{get:function get(){var _a,_b;return this._position===undefined?(_a=this.nodeComponentPortState)===null||_a===void 0?void 0:_a.position:(_b=this._position)!==null&&_b!==void 0?_b:undefined;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"offsetFromNodeCenter",{get:function get(){var _a,_b;return this._offsetFromNodeCenter===undefined?(_a=this.nodeComponentPortState)===null||_a===void 0?void 0:_a.offsetFromNodeCenter:(_b=this._offsetFromNodeCenter)!==null&&_b!==void 0?_b:undefined;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"offsetFromOrigin",{get:function get(){var _a,_b;return this._offsetFromOrigin===undefined?(_a=this.nodeComponentPortState)===null||_a===void 0?void 0:_a.offsetFromOrigin:(_b=this._offsetFromOrigin)!==null&&_b!==void 0?_b:undefined;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"data",{get:function get(){return this._data;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"node",{get:function get(){return this._node;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"offsetRelativeToNode",{/**
+         */Object.defineProperty(this,"update",{enumerable:true,configurable:true,writable:true,value:function value(state){if(!state)return;state.label!==undefined&&_this.setLabel(state.label);state.type!==undefined&&_this.setType(state.type);state.data!==undefined&&_this.setData(state.data);state.linkDirection!==undefined&&_this.setLinkDirection(state.linkDirection);state.isConnectionEnabled!==undefined&&_this.setIsConnectionEnabled(state.isConnectionEnabled);state.position!==undefined&&_this.setPosition(state===null||state===void 0?void 0:state.position);state.offsetFromNodeCenter!==undefined&&_this.setOffsetFromNodeCenter(state===null||state===void 0?void 0:state.offsetFromNodeCenter);state.offsetFromOrigin!==undefined&&_this.setOffsetFromOrigin(state===null||state===void 0?void 0:state.offsetFromOrigin);}});Object.defineProperty(this,"export",{enumerable:true,configurable:true,writable:true,value:function value(){return deepCopy({id:_this._id,nodeId:_this.nodeId,label:_this._label,type:_this._type,data:_this._data,linkDirection:_this._linkDirection,isConnectionEnabled:_this._isConnectionEnabled,position:_this._position,offsetFromNodeCenter:_this._offsetFromNodeCenter,offsetFromOrigin:_this._offsetFromOrigin});}});Object.defineProperty(this,"setData",{enumerable:true,configurable:true,writable:true,value:function value(_value12){_this._data=_value12;}});Object.defineProperty(this,"recalculateOffset",{enumerable:true,configurable:true,writable:true,value:function value(){_this._offsetRecalculationRequested+=1;}});Object.defineProperty(this,"recalculateOffsetImmediately",{enumerable:true,configurable:true,writable:true,value:function value(){_this._triggerOffsetRecalculation+=1;}});Object.defineProperty(this,"setLinkDirection",{enumerable:true,configurable:true,writable:true,value:function value(_value13){_this._linkDirection=_value13;}});Object.defineProperty(this,"setIsConnectionEnabled",{enumerable:true,configurable:true,writable:true,value:function value(_value14){_this._isConnectionEnabled=_value14;}});this._id=id;this._node=node;this._rootStore=rootStore;this._ref=new HtmlElementRefState(null,rootStore.diagramState);this.import(state);(0,mobx__WEBPACK_IMPORTED_MODULE_2__/* .makeAutoObservable */ .ky)(this,{_node:false,node:false,_rootStore:false,_ref:false});(0,mobx__WEBPACK_IMPORTED_MODULE_2__/* .reaction */ .U5)(function(){return[_this._label,_this._type,_this._data,_this._position,_this._offsetFromNodeCenter,_this._offsetFromOrigin];},function(){_this.recalculateOffset();});}Object.defineProperty(PortState.prototype,"nodeComponentPortState",{get:function get(){var _this=this;var _a,_b;return(_b=(_a=this.node.componentDefinition.settings)===null||_a===void 0?void 0:_a.ports)===null||_b===void 0?void 0:_b.find(function(p){return p.id===_this._id;});},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"id",{get:function get(){return this._id;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"nodeId",{get:function get(){return this.node.id;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"fullId",{get:function get(){return createFullPortId(this.nodeId,this.id);},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"ref",{get:function get(){return this._ref;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"dragging",{get:function get(){return this._dragging;},set:function set(value){this._dragging=value;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"hovered",{get:function get(){return this._hovered;},set:function set(value){this._hovered=value;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"validForConnection",{get:function get(){return this._validForConnection;},set:function set(value){this._validForConnection=value;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"label",{get:function get(){var _a,_b;return this._label===undefined?(_a=this.nodeComponentPortState)===null||_a===void 0?void 0:_a.label:(_b=this._label)!==null&&_b!==void 0?_b:undefined;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"type",{get:function get(){var _a,_b;return(_b=this._type===undefined?(_a=this.nodeComponentPortState)===null||_a===void 0?void 0:_a.type:this._type)!==null&&_b!==void 0?_b:COMPONENT_DEFAULT_TYPE;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"position",{get:function get(){var _a,_b;return this._position===undefined?(_a=this.nodeComponentPortState)===null||_a===void 0?void 0:_a.position:(_b=this._position)!==null&&_b!==void 0?_b:undefined;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"offsetFromNodeCenter",{get:function get(){var _a,_b;return this._offsetFromNodeCenter===undefined?(_a=this.nodeComponentPortState)===null||_a===void 0?void 0:_a.offsetFromNodeCenter:(_b=this._offsetFromNodeCenter)!==null&&_b!==void 0?_b:undefined;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"offsetFromOrigin",{get:function get(){var _a,_b;return this._offsetFromOrigin===undefined?(_a=this.nodeComponentPortState)===null||_a===void 0?void 0:_a.offsetFromOrigin:(_b=this._offsetFromOrigin)!==null&&_b!==void 0?_b:undefined;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"data",{get:function get(){var _a;return this._data===undefined?(_a=this.nodeComponentPortState)===null||_a===void 0?void 0:_a.data:this._data;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"node",{get:function get(){return this._node;},enumerable:false,configurable:true});Object.defineProperty(PortState.prototype,"offsetRelativeToNode",{/**
          * Offset relative to parent node, helps us to calculate positions of link endpoints for example.
          * @returns offset excluding zoom
          */get:function get(){/* This value is implemented as getter to automatically recalculate
@@ -244,6 +244,87 @@ if(event.position){event.store.commandExecutor.execute(addNodeCommand(_assign(_a
 
 /***/ }),
 
+/***/ 3099:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": function() { return /* binding */ BrowserOnly; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
+/* harmony import */ var _docusaurus_useIsBrowser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6457);
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */// Similar comp to the one described here:
+// https://www.joshwcomeau.com/react/the-perils-of-rehydration/#abstractions
+function BrowserOnly(_ref){var children=_ref.children,fallback=_ref.fallback;var isBrowser=(0,_docusaurus_useIsBrowser__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)();if(isBrowser){if(typeof children!=='function'&&"production"==='development'){}return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment,null,children==null?void 0:children());}return fallback!=null?fallback:null;}
+
+/***/ }),
+
+/***/ 7709:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "G": function() { return /* binding */ DiagramContainer; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
+/* harmony import */ var _docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3099);
+/* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5199);
+function DiagramContainer(props){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div",{className:_styles_module_css__WEBPACK_IMPORTED_MODULE_2__/* ["default"].diagramContainer */ .Z.diagramContainer},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_docusaurus_BrowserOnly__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z,null,function(){return props.children;}));}
+
+/***/ }),
+
+/***/ 1713:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "U": function() { return /* binding */ ExampleWrapper; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7378);
+/* harmony import */ var _theme_SkipToContent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6076);
+/* harmony import */ var _theme_AnnouncementBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(717);
+/* harmony import */ var _theme_Navbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9033);
+/* harmony import */ var _theme_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1124);
+/* harmony import */ var _theme_LayoutProviders__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2801);
+/* harmony import */ var _docusaurus_theme_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(174);
+/* harmony import */ var _docusaurus_theme_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(8831);
+// Copied from docusaurus Layout (https://github.com/facebook/docusaurus/blob/main/packages/docusaurus-theme-classic/src/theme/Layout/index.tsx)
+function ExampleWrapper(props){var title=props.title,description=props.description;(0,_docusaurus_theme_common__WEBPACK_IMPORTED_MODULE_6__/* .useKeyboardNavigation */ .t)();return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_LayoutProviders__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z,null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_docusaurus_theme_common__WEBPACK_IMPORTED_MODULE_7__/* .PageMetadata */ .d,{title:title,description:description}),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_SkipToContent__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z,null),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_AnnouncementBar__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z,null),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_Navbar__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z,null),props.children,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme_Footer__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z,null));}
+
+/***/ }),
+
+/***/ 834:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": function() { return /* binding */ Example; }
+});
+
+// EXTERNAL MODULE: ../node_modules/react/index.js
+var react = __webpack_require__(7378);
+// EXTERNAL MODULE: ./src/pages/examples/_exampleWrapper.jsx
+var _exampleWrapper = __webpack_require__(1713);
+// EXTERNAL MODULE: ../node_modules/@docusaurus/theme-live-codeblock/lib/theme/CodeBlock/index.js + 16 modules
+var CodeBlock = __webpack_require__(3786);
+// EXTERNAL MODULE: ./src/pages/examples/_diagramContainer.jsx
+var _diagramContainer = __webpack_require__(7709);
+;// CONCATENATED MODULE: ../node_modules/raw-loader/dist/cjs.js!./src/pages/examples/_basicDiagram.tsx
+/* harmony default export */ var _basicDiagram = ("import React from 'react';\nimport {\n  Diagram,\n} from 'react-easy-diagram';\n\nexport default function () {\n  return (\n    <Diagram\n      initState={{\n        nodes: [\n          {\n            id: 'node_1',\n            label: 'Node 1',\n            position: [300, 300],\n            type: 'output_horizontal'\n          },\n          {\n            id: 'node_2',\n            label: 'Node 2',\n            position: [520, 400],\n            type: 'input_output_horizontal'\n          },\n          {\n            id: 'node_3',\n            label: 'Node 3',\n            position: [520, 200],\n            type: 'input_horizontal'\n          },\n        ],\n        links: [\n          {\n            source: {\n              nodeId: 'node_1',\n              portId: 'output',\n            },\n            target: {\n              nodeId: 'node_2',\n              portId: 'input',\n            }\n          },\n          {\n            source: {\n              nodeId: 'node_1',\n              portId: 'output',\n            },\n            target: {\n              nodeId: 'node_3',\n              portId: 'input',\n            },\n          },\n          {\n            source: {\n              nodeId: 'node_3',\n              portId: 'input',\n            },\n            target: {\n              nodeId: 'node_2',\n              portId: 'output',\n            },\n          },\n        ],\n      }}\n    />\n  );\n}\n");
+// EXTERNAL MODULE: ../lib/dist/index.esm.js
+var index_esm = __webpack_require__(5061);
+;// CONCATENATED MODULE: ./src/pages/examples/_basicDiagram.tsx
+/* harmony default export */ function examples_basicDiagram() {return/*#__PURE__*/react.createElement(index_esm.Diagram,{initState:{nodes:[{id:'node_1',label:'Node 1',position:[300,300],type:'output_horizontal'},{id:'node_2',label:'Node 2',position:[520,400],type:'input_output_horizontal'},{id:'node_3',label:'Node 3',position:[520,200],type:'input_horizontal'}],links:[{source:{nodeId:'node_1',portId:'output'},target:{nodeId:'node_2',portId:'input'}},{source:{nodeId:'node_1',portId:'output'},target:{nodeId:'node_3',portId:'input'}},{source:{nodeId:'node_3',portId:'input'},target:{nodeId:'node_2',portId:'output'}}]}});}
+;// CONCATENATED MODULE: ./src/pages/examples/basic.jsx
+function Example(){return/*#__PURE__*/react.createElement(_exampleWrapper/* ExampleWrapper */.U,{title:"Basic Example"},/*#__PURE__*/react.createElement(_diagramContainer/* DiagramContainer */.G,null,/*#__PURE__*/react.createElement(examples_basicDiagram,null)),/*#__PURE__*/react.createElement(CodeBlock/* default */.Z,{className:"language-jsx"},_basicDiagram));}
+
+/***/ }),
+
 /***/ 3244:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -291,6 +372,14 @@ var _excluded=["children","theme","transformCode"];/**
  * LICENSE file in the root directory of this source tree.
  */// Add react-live imports you need here
 var ReactLiveScope=Object.assign({React:react__WEBPACK_IMPORTED_MODULE_0__},react__WEBPACK_IMPORTED_MODULE_0__,react_easy_diagram__WEBPACK_IMPORTED_MODULE_1__,{observer:mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__/* .observer */ .Pi});/* harmony default export */ __webpack_exports__["Z"] = (ReactLiveScope);
+
+/***/ }),
+
+/***/ 5199:
+/***/ (function(__unused_webpack_module, __webpack_exports__) {
+
+// extracted by mini-css-extract-plugin
+/* harmony default export */ __webpack_exports__["Z"] = ({"heroBanner":"heroBanner_UJJx","headerContainer":"headerContainer_pmZr","headerDemoImage":"headerDemoImage_Oc_W","buttons":"buttons_pzbO","features":"features_keug","featureImage":"featureImage_yA8i","title":"title_VwV3","subtitle":"subtitle_WGyH","diagramContainer":"diagramContainer_xAW4","textInput":"textInput_QVEH","nodePadding":"nodePadding_ui5l"});
 
 /***/ })
 
