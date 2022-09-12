@@ -43,7 +43,7 @@ export class NodesStore {
     }
   };
 
-  export = (): INodeStateWithId[] =>
+  export = (): INodeExport[] =>
     Array.from(this._nodes).map(([key, value]) => value.export());
 
   addNodes = (

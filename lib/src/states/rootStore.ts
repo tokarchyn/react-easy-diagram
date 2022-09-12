@@ -6,7 +6,7 @@ import { LinksStore } from 'states/linksStore';
 import { ILinkState } from 'states/linkState';
 import { NodesSettings, INodesSettings } from 'states/nodesSettings';
 import { NodesStore } from 'states/nodesStore';
-import { INodeState } from 'states/nodeState';
+import { INodeExport, INodeState } from 'states/nodeState';
 import { PortsSettings, IPortsSettings } from 'states/portsSettings';
 import { SelectionState } from 'states/selectionState';
 import { DragState } from 'states/dragState';
@@ -93,7 +93,7 @@ export class RootStore {
     this._diagramState.reportWhenImportedStateRendered();
   };
 
-  export = (): { nodes: INodeState[]; links: ILinkState[] } => ({
+  export = (): { nodes: INodeExport[]; links: ILinkState[] } => ({
     nodes: this._nodesStore.export(),
     links: this._linksStore.export(),
   });
