@@ -66,11 +66,11 @@ ___
 
 ### export
 
-▸ **export**(): [`INodeStateWithId`](../interfaces/INodeStateWithId.md)[]
+▸ **export**(): [`INodeExport`](../interfaces/INodeExport.md)[]
 
 #### Returns
 
-[`INodeStateWithId`](../interfaces/INodeStateWithId.md)[]
+[`INodeExport`](../interfaces/INodeExport.md)[]
 
 ___
 

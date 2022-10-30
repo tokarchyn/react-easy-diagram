@@ -283,3 +283,13 @@ ___
 #### Returns
 
 `void`
+
+___
+
+### swapEndpoints
+
+▸ **swapEndpoints**(): `void`
+
+#### Returns
+
+`void`

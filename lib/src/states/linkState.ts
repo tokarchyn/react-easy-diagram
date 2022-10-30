@@ -34,19 +34,15 @@ export class LinkState implements ILinkInteractionState {
 
     makeAutoObservable(this, {
       // @ts-ignore
-      _rootStore: false,
-      _sourceEndpoint: observable.ref,
-      _targetEndpoint: observable.ref,
+      _rootStore: false
     });
   }
 
   import = (state: ILinkStateWithoutId) => {
-    this._source = this._createEndpointState(state.source);
     this._sourceEndpoint = {
       nodeId: state.source.nodeId,
       portId: state.source.portId,
     };
-    this._target = this._createEndpointState(state.target);
     this._targetEndpoint = {
       nodeId: state.target.nodeId,
       portId: state.target.portId,
@@ -58,10 +54,10 @@ export class LinkState implements ILinkInteractionState {
   };
 
   export = (): ILinkStateWithId => ({
-    source: this._sourceEndpoint,
-    target: this._targetEndpoint,
     ...deepCopy({
       id: this._id,
+      source: this._sourceEndpoint,
+      target: this._targetEndpoint,
       type: this.type,
       segments: this.segments,
       data: this.data,
@@ -123,7 +119,7 @@ export class LinkState implements ILinkInteractionState {
   }
 
   get source() {
-    return this._source;
+    return this._createEndpointState(this.sourceEndpoint);
   }
 
   get sourceEndpoint() {
@@ -131,11 +127,17 @@ export class LinkState implements ILinkInteractionState {
   }
 
   get target() {
-    return this._target;
+    return this._createEndpointState(this.targetEndpoint);
   }
 
   get targetEndpoint() {
     return this._targetEndpoint;
+  }
+
+  swapEndpoints = () => {
+    const tmp = this.sourceEndpoint;
+    this._sourceEndpoint = this.targetEndpoint;
+    this._targetEndpoint = tmp;
   }
 
   setData = (value: any) => {

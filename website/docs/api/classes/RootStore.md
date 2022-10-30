@@ -135,7 +135,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `links` | [`ILinkState`](../interfaces/ILinkState.md)[] |
-| `nodes` | [`INodeState`](../interfaces/INodeState.md)[] |
+| `nodes` | [`INodeExport`](../interfaces/INodeExport.md)[] |
 
 ___
 
