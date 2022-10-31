@@ -20,7 +20,7 @@ export function useDiagramPinchHandlers(
   const handlers = useMemo<IPinchHandlers>(
     () => ({
       onPinch: ({ da: [distance], origin }) => {
-        if (!activeRef.current || !diagramState.ref.current) {
+        if (!activeRef.current || !diagramState.ref.current || distance <= 0) {
           return;
         }
         const originDiff = diagramSettings.userInteraction.diagramPan
@@ -48,7 +48,8 @@ export function useDiagramPinchHandlers(
         if (
           !diagramSettings.userInteraction.diagramZoom ||
           cancel(event) ||
-          !diagramState.ref.current
+          !diagramState.ref.current ||
+          distance <= 0
         ) {
           return;
         }
@@ -63,13 +64,7 @@ export function useDiagramPinchHandlers(
       },
       onPinchEnd: () => (activeRef.current = false),
     }),
-    [
-      diagramState.ref.current,
-      activeRef,
-      diagramState,
-      cancel,
-      diagramSettings,
-    ]
+    [diagramState.ref.current, activeRef, diagramState, cancel, diagramSettings]
   );
 
   return handlers;
