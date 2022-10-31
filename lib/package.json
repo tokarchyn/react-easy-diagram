@@ -20,7 +20,7 @@
   "types": "dist/index.d.ts",
   "source": "src/index.ts",
   "dependencies": {
-    "@use-gesture/react": "^10.1.1",
+    "@use-gesture/react": "^10.2.21",
     "mobx": "^6.4.0",
     "mobx-react-lite": "^3.4.0"
   },

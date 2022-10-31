@@ -15,7 +15,7 @@ import {
 } from 'states/visualComponents';
 import { IVisualComponentProps } from 'states/visualComponentState';
 import { createArrowMarker, createCircleMarker } from 'components/link/Markers';
-import { ReactDOMAttributes } from '@use-gesture/react';
+import { ReactDOMAttributes } from '@use-gesture/react/dist/declarations/src/types';
 
 export class LinksSettings {
   private _pathConstructor: ILinkPathConstructor;

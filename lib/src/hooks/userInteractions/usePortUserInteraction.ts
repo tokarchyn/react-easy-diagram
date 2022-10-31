@@ -1,10 +1,11 @@
 import { useMemo } from 'react';
-import { ReactDOMAttributes, useGesture } from '@use-gesture/react';
+import { useGesture } from '@use-gesture/react';
 import { PortState } from 'states/portState';
 import { multiplyPoint, subtractPoints } from 'utils/point';
 import { useRootStore } from 'hooks/useRootStore';
 import type { IDragHandlers } from 'hooks/userInteractions/useDiagramDragHandlers';
 import { useDiagramCursor } from 'hooks/userInteractions/useCursor';
+import { ReactDOMAttributes } from '@use-gesture/react/dist/declarations/src/types';
 
 export const usePortUserInteraction = (
   portState?: PortState

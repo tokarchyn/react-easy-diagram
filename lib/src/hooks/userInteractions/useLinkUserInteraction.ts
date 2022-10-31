@@ -1,10 +1,11 @@
 import { useNotifyRef } from 'hooks/useNotifyRef';
 import { useRootStore } from 'hooks/useRootStore';
 import { useMemo, useRef } from 'react';
-import { ReactDOMAttributes, useGesture } from '@use-gesture/react';
+import { useGesture } from '@use-gesture/react';
 import { LinkCreationState } from 'states/linkCreationState';
 import { LinkState } from 'states/linkState';
 import { GestureHandlers } from 'hooks/userInteractions/common';
+import { ReactDOMAttributes } from '@use-gesture/react/dist/declarations/src/types';
 
 export const useLinkUserInteraction = (
   linkState: LinkState | LinkCreationState
