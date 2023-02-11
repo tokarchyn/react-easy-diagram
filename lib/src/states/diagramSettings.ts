@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { action, makeAutoObservable, observable, trace } from 'mobx';
 import { Point } from 'utils/point';
 import { createSvgBackground } from 'components/background/SvgBackground';
 import { VisualComponentWithDefault } from 'states/visualComponentWithDefault';
@@ -8,24 +8,40 @@ import {
   IComponentDefinition,
   VisualComponent,
 } from 'states/visualComponentState';
-import { IUserInteraction, UserInteractionSettings } from 'states/userInteractionSettings';
+import {
+  IUserInteraction,
+  UserInteractionSettings,
+} from 'states/userInteractionSettings';
 
 export class DiagramSettings {
   private _backgroundComponentState: VisualComponentWithDefault<IBackgroundComponentProps>;
   private _miniControlComponentState: VisualComponentWithDefault<IMiniControlComponentProps>;
-  private _zoomInterval: Point = defaultZoomInterval;
-  private _zoomToFitSettings: IZoomToFitSettings = defaultZoomToFitSettings;
+  private _zoomInterval: Point;
+  private _zoomToFitSettings: IZoomToFitSettings;
   private _userInteraction: UserInteractionSettings;
 
   constructor() {
-    this._backgroundComponentState = new VisualComponentWithDefault<IBackgroundComponentProps>(
-      createSvgBackground()
-    );
-    this._miniControlComponentState = new VisualComponentWithDefault<IMiniControlComponentProps>(
-      createDefaultMiniControl()
-    );
+    this._backgroundComponentState =
+      new VisualComponentWithDefault<IBackgroundComponentProps>(
+        createSvgBackground()
+      );
+    this._miniControlComponentState =
+      new VisualComponentWithDefault<IMiniControlComponentProps>(
+        createDefaultMiniControl()
+      );
     this._userInteraction = new UserInteractionSettings();
-    makeAutoObservable(this);
+
+    this.import({
+      zoomInterval: defaultZoomInterval,
+      zoomToFitSettings: defaultZoomToFitSettings,
+    });
+
+    makeAutoObservable(this, {
+      // Probably some bug in mobx, without this annotation warning is thrown saying "cannot change _zoomInterval outside action"
+      setZoomInterval: action,
+      // @ts-ignore
+      _zoomInterval: observable.ref,
+    });
   }
 
   import = (obj?: IDiagramSettings) => {
@@ -68,7 +84,7 @@ const defaultZoomInterval: Point = [0.1, 3];
 const defaultZoomToFitSettings: IZoomToFitSettings = {
   padding: [30, 30],
   zoomInterval: [0.1, 1.5],
-  callOnImportState: true
+  callOnImportState: true,
 };
 
 export interface IDiagramSettings {
