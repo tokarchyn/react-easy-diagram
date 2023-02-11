@@ -1,4 +1,10 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, {
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import { LinksLayer } from 'components/link/LinksLayer';
 import { NodesLayer } from 'components/node/NodesLayer';
 import { useDiagramUserInteraction } from 'hooks/userInteractions/useDiagramUserInteraction';
@@ -23,9 +29,35 @@ export const DigramInner = observer<IDiagramInnerProps>((props) => {
     rootStore.nodesStore.nodes.forEach((n) => n.recalculatePortsOffset());
   });
 
-  const offset = rootStore.diagramState.offset;
-  const zoom = rootStore.diagramState.zoom;
-  const transform = generateTransform(offset, zoom);
+  const [{ offset, zoom }, setOffsetZoom] = useState({
+    offset: rootStore.diagramState.offset,
+    zoom: rootStore.diagramState.zoom,
+  });
+
+  useEffect(() => {
+    setOffsetZoom({
+      offset: rootStore.diagramState.offset,
+      zoom: rootStore.diagramState.zoom,
+    });
+  }, [rootStore.diagramState.offset, rootStore.diagramState.zoom]);
+
+  const lastRenderedImportRef = useRef(-1);
+
+  useLayoutEffect(() => {
+    if (
+      rootStore.diagramState.importGenerationId > lastRenderedImportRef.current
+    ) {
+      lastRenderedImportRef.current = rootStore.diagramState.importGenerationId;
+
+      rootStore.callbacks.importedStateRendered();
+
+      setOffsetZoom({
+        offset: rootStore.diagramState.offset,
+        zoom: rootStore.diagramState.zoom,
+      });
+    }
+  }, [rootStore.diagramState.importGenerationId]);
+
   let className = 'react_fast_diagram_DiagramInner';
   if (
     !rootStore.diagramSettings.userInteraction.arePointerInteractionsDisabled
@@ -33,6 +65,8 @@ export const DigramInner = observer<IDiagramInnerProps>((props) => {
     // Disable touch actions as useGesture library recommends
     className += ' react_fast_diagram_touch_action_disabled';
   }
+
+  const transform = generateTransform(offset, zoom);
 
   return (
     <div

@@ -1,4 +1,4 @@
-export type Point = [number, number];
+export type Point = readonly [number, number];
 
 export function isPoint(value: any): value is Point {
   return (

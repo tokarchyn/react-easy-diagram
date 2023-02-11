@@ -54,6 +54,10 @@ export class HtmlElementRefState {
 
   get boundingRect() {
     this._triggerSizePositionRecalculation | 1;
+    return this.getRealBoundingRect();
+  }
+
+  getRealBoundingRect() {
     if (this.current) {
       const rect = this.current.getBoundingClientRect();
       const zoom = this._diagramState.getRenderedZoom();

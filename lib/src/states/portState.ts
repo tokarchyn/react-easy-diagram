@@ -359,7 +359,7 @@ const positionToLinkDirection: {
 // https://stackoverflow.com/questions/21912684/how-to-get-value-of-translatex-and-translatey
 // https://gist.github.com/aderaaij/a6b666bf756b2db1596b366da921755d
 function getTranslate(item: HTMLElement): Point {
-  const transArr: Point = [0, 0];
+  let transArr: Point = [0, 0];
   if (!window.getComputedStyle) {
     return transArr;
   }
@@ -369,8 +369,10 @@ function getTranslate(item: HTMLElement): Point {
   // consider also to add matrix3d(a, b, 0, 0, c, d, 0, 0, 0, 0, 1, 0, tx, ty, 0, 1)
   let mat = transform.match(/^matrix\((.+)\)$/);
   if (mat) {
-    transArr[0] = parseFloat(mat[1].split(', ')[4]);
-    transArr[1] = parseFloat(mat[1].split(', ')[5]);
+    transArr = [
+      parseFloat(mat[1].split(', ')[4]),
+      parseFloat(mat[1].split(', ')[5]),
+    ];
   }
 
   return transArr;

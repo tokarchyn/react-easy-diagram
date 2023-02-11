@@ -11,6 +11,7 @@ import { PortsSettings, IPortsSettings } from 'states/portsSettings';
 import { SelectionState } from 'states/selectionState';
 import { DragState } from 'states/dragState';
 import { CommandExecutor } from 'states/commandExecutor';
+import { IDiagramInitState } from 'components/DiagramContext';
 
 export class RootStore {
   private _diagramState: DiagramState;
@@ -27,7 +28,7 @@ export class RootStore {
   private _linksSettings: LinksSettings;
   private _callbacks: Callbacks;
 
-  constructor() {
+  constructor(settings?: ISettings, state?: IDiagramInitState) {
     this._diagramSettings = new DiagramSettings();
     this._nodesSettings = new NodesSettings();
     this._linksSettings = new LinksSettings();
@@ -41,6 +42,11 @@ export class RootStore {
     this._linksStore = new LinksStore(this);
     this._selectionState = new SelectionState();
     this._dragState = new DragState(this._selectionState, this._callbacks);
+
+    this.importSettings(settings);
+    if (state) {
+      this.importState(state.nodes, state.links);
+    }
   }
 
   get diagramState() {
@@ -88,9 +94,9 @@ export class RootStore {
   }
 
   importState = (nodes?: INodeState[], links?: ILinkState[]) => {
+    this._diagramState.incrementImportGenerationId();
     this._nodesStore.import(nodes);
     this._linksStore.import(links);
-    this._diagramState.reportWhenImportedStateRendered();
   };
 
   export = (): { nodes: INodeExport[]; links: ILinkState[] } => ({
