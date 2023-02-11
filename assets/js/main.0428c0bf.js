@@ -12294,7 +12294,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     "footer": {
       "style": "dark",
-      "copyright": "Copyright © 2022 Tokarchyn Vitalii.",
+      "copyright": "Copyright © 2023 Tokarchyn Vitalii.",
       "links": []
     },
     "colorMode": {
