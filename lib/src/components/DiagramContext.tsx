@@ -1,50 +1,42 @@
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import { RootStore } from 'states/rootStore';
-import type { ISettings } from 'states/rootStore';
-import type { INodeState } from 'states/nodeState';
-import type { ILinkState } from 'states/linkState';
 import { observer } from 'mobx-react-lite';
+import React, { useEffect, useMemo } from 'react';
+import type { ILinkState } from 'states/linkState';
+import type { INodeState } from 'states/nodeState';
+import type { ISettings } from 'states/rootStore';
+import { RootStore } from 'states/rootStore';
 
 export const RootStoreContext = React.createContext<RootStore | null>(null);
 
 export const DiagramContext = observer((props: IDiagramContextProps) => {
-  const rootStore = useMemo(() => new RootStore(), []);
+  const [rootStore, initialSettings, initialState] = useMemo(
+    () => [
+      new RootStore(props.settings, props.initState),
+      props.settings,
+      props.initState,
+    ],
+    []
+  );
 
   useEffect(() => {
-    rootStore.importSettings(props.settings);
-  }, [rootStore, props.settings]);
+    if (initialSettings !== props.settings) {
+      rootStore.importSettings(props.settings);
+    }
+  }, [rootStore, props.settings, initialSettings]);
 
   useEffect(() => {
-    rootStore.importState(
-      props.initState?.nodes ?? [],
-      props.initState?.links ?? []
-    );
-  }, [rootStore, props.initState]);
+    if (initialState !== props.initState) {
+      rootStore.importState(
+        props.initState?.nodes ?? [],
+        props.initState?.links ?? []
+      );
+    }
+  }, [rootStore, props.initState, initialState]);
 
   useEffect(() => {
     if (props.storeRef) {
       props.storeRef.current = rootStore;
     }
   }, [rootStore, props.storeRef]);
-
-  const lastRenderedImportRef = useRef(-1);
-
-  useLayoutEffect(() => {
-    if (
-      rootStore.diagramState.renderImportedRequestId >
-      lastRenderedImportRef.current
-    ) {
-      rootStore.callbacks.importedStateRendered();
-      lastRenderedImportRef.current =
-        rootStore.diagramState.renderImportedRequestId;
-    }
-  }, [rootStore.diagramState.renderImportedRequestId]);
 
   return (
     <RootStoreContext.Provider value={rootStore}>

@@ -9,13 +9,14 @@ import { BoundingBox, clampValue, deepCopy } from 'utils/common';
 import { addPoints, multiplyPoint, Point, subtractPoints } from 'utils/point';
 
 export class DiagramState
-  implements IUserInteractionTranslate, IUserInteractionTranslateAndZoom {
+  implements IUserInteractionTranslate, IUserInteractionTranslateAndZoom
+{
   private _offset: Point;
   private _zoom: number;
   private _ref: HtmlElementRefState;
   private _rootStore: RootStore;
 
-  private _renderImportedRequestId: number = -1;
+  private _importGenerationId: number = -1;
 
   constructor(rootStore: RootStore) {
     this._ref = new HtmlElementRefState(null, this);
@@ -49,12 +50,12 @@ export class DiagramState
     );
   };
 
-  reportWhenImportedStateRendered = () => {
-    this._renderImportedRequestId ++;
+  incrementImportGenerationId = () => {
+    this._importGenerationId++;
   };
 
-  get renderImportedRequestId() {
-    return this._renderImportedRequestId;
+  get importGenerationId() {
+    return this._importGenerationId;
   }
 
   zoomIn = () => this.zoomIntoCenter(1 / 0.8);
@@ -144,7 +145,7 @@ export class DiagramState
   zoomToFit = () => {
     const nodesBoundingBox = this._getNodesBoundingBoxWithPadding();
 
-    const diagramSize = this.ref.boundingRect?.size;
+    const diagramSize = this.ref.getRealBoundingRect()?.size;
     if (!diagramSize) {
       console.warn('Cannot retrieve diagram size');
       return;
