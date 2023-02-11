@@ -83,7 +83,7 @@ export const useNodeUserInteraction = (nodeState: NodeState) => {
         if (interactionActiveRef.current) {
           cancelSelectOnLongTap();
           if (nodeState.isSelectionEnabled) {
-            selectOnLongTapRef.current = global.setTimeout(() => {
+            selectOnLongTapRef.current = setTimeout(() => {
               if (selectOnLongTapRef.current) {
                 selectOnLongTapRef.current = null;
                 // It can happen if user simultaneously tap two nodes and will start move one of them

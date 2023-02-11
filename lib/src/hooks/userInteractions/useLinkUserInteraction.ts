@@ -32,7 +32,7 @@ export const useLinkUserInteraction = (
                 selectionHandledRef.current = false;
 
                 if (linkState.isSelectionEnabled) {
-                  selectionTimeoutRef.current = global.setTimeout(() => {
+                  selectionTimeoutRef.current = setTimeout(() => {
                     if (!selectionHandledRef.current) {
                       selectionHandledRef.current = true;
                       rootStore.selectionState.switch(linkState);
