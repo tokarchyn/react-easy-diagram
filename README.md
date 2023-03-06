@@ -1,5 +1,8 @@
 <img src="https://github.com/tokarchyn/react-easy-diagram/blob/main/repo/logo-with-name.png?raw=true" alt="React Easy Diagram logo" height="50">
 
+> :warning: **This package will not be supported anymore. I recommend using https://reactflow.dev instead.**
+
+> I started developing this package almost 3 years ago because of very poor developer experience with other existing packages at that moment. Since I invested my spare time only on features I personally needed, the development wasn't very fast, and so, during this period another package arrived, that has so many features, that it would be a waste of time to try to implement all of them again. That is why I decided to stop developing React Easy Diagrams and switch to React Flow for my personal projects.
 ---
 
 Open source library to build highly customizable interactive React diagrams with easy.
